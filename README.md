@@ -4,4 +4,4 @@
 
 A project for CS 3733 for alcohol label submissions and searches.
 
-- Team E
+Created by Team E
