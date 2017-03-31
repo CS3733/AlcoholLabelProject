@@ -23,18 +23,17 @@ public class AuthenticatedUsersDatabase {
      * @return True if the TTB agent is valid, False otherwise
      */
     public boolean isValidTTBAgent(String userName, String password) {
-
-        return false;
+        return userName.equals("Admin") && password.equals("Admin1");
     }
 
     /**
      * Checks if Applicant login is valid.
      *
-     * @param username username of the applicant
-     * @param password password of the applicant
+     * @param userName The username of the applicant
+     * @param password The password of the applicant
      * @return True if the applicant login is valid, False otherwise
      */
-    public boolean isValidApplicant(String username, String password) {
-        return false;
+    public boolean isValidApplicant(String userName, String password) {
+        return userName.equals("Admin") && password.equals("Admin1");
     }
 }
