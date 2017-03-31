@@ -4,7 +4,8 @@ import org.apache.derby.jdbc.EmbeddedDriver;
 import java.sql.*;
 
 /**
- * Created by Kyle on 3/24/2017.
+ * Dan, Kyle, Elijah on 3/31/17
+ * This class does stuff for databases
  */
 public class Database {
 
