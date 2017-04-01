@@ -9,9 +9,19 @@ import javafx.scene.control.Label;
 public class ApplicationController {
     public Label applicantNameLabel;
     public Button logoutBtn;
-
+    public Button newApplicationBtn;
+    public Button updatePrevApplicationBtn;
+    public Button viewSubmittedApplicationBtn;
 
     public ApplicationController(){
+        //nothing
+    }
+
+    public void newApplication() {
+        
+    }
+
+    public void updateApplication(){
 
     }
 }
