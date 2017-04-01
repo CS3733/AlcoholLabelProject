@@ -8,28 +8,51 @@ public class AlcoholInfo {
     private int alcoholContent;
     private String name;
     private String brandName;
-    private String origin;
+    private ProductSource origin;
 
-    AlcoholInfo(int alcoholContent, String name, String brandName, String origin){
-        alcoholContent=this.alcoholContent;
+    /**
+     * Constructor to create a new AlcoholInfo
+     * @param alcoholContent Alcohol percentage of beverage
+     * @param name Fanciful name of alcohol
+     * @param brandName Brand name of alcohol
+     * @param origin Whether the alcohol is domestic or imported
+     */
+    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin){
+        this.alcoholContent=alcoholContent;
         this.name=name;
         this.brandName=brandName;
         this.origin=origin;
     }
 
-    int getAlcoholContent(){
+    /**
+     * Gets the alcohol content of the alcohol
+     * @return the alcohol percentage as an int
+     */
+    public int getAlcoholContent(){
         return this.alcoholContent;
     }
 
-    String getName(){
+    /**
+     * Gets the fanciful name of the alcohol
+     * @return the alcohol name as a String
+     */
+    public String getName(){
         return this.name;
     }
 
-    String getBrandName(){
+    /**
+     * Gets the brand name of the alcohol
+     * @return the brand name as a String
+     */
+    public String getBrandName(){
         return this.brandName;
     }
 
-    String getOrigin(){
+    /**
+     * Gets the origin of the alcohol
+     * @return Domestic or Imported
+     */
+    public ProductSource getOrigin(){
         return this.origin;
     }
 
