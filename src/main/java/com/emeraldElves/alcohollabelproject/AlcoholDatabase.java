@@ -66,7 +66,9 @@ public class AlcoholDatabase {
      * @param status      The new status of the application.
      * @return True if the status was updated without error.
      */
-    public boolean updateApplicationStatus(ApplicationInfo application, ApplicationStatus status) {
+    public boolean updateApplicationStatus(ApplicationInfo application, ApplicationStatus status)
+    {
+
         return false;
     }
 }
