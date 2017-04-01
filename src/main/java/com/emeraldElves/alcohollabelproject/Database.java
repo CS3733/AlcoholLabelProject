@@ -1,5 +1,4 @@
 package com.emeraldElves.alcohollabelproject;
-
 import org.apache.derby.jdbc.EmbeddedDriver;
 
 import java.sql.*;
