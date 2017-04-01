@@ -26,6 +26,7 @@ public class AlcoholDatabase {
      * @return A list of the most recently approved applications ordered from most recent to least recent.
      */
     public List<ApplicationInfo> getMostRecentApproved(int numApplications) {
+
         return null;
     }
 
@@ -36,6 +37,7 @@ public class AlcoholDatabase {
      * @return A list of approved alcohols containing the brandName ordered by time approved.
      */
     public List<ApplicationInfo> searchByBrandName(String brandName) {
+
         return null;
     }
 
@@ -46,6 +48,7 @@ public class AlcoholDatabase {
      * @return True if the application was submitted without error.
      */
     public boolean submitApplication(ApplicationInfo application) {
+
         return false;
     }
 
@@ -66,8 +69,7 @@ public class AlcoholDatabase {
      * @param status      The new status of the application.
      * @return True if the status was updated without error.
      */
-    public boolean updateApplicationStatus(ApplicationInfo application, ApplicationStatus status)
-    {
+    public boolean updateApplicationStatus(ApplicationInfo application, ApplicationStatus status) {
 
         return false;
     }
