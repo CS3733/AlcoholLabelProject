@@ -1,7 +1,5 @@
 package com.emeraldElves.alcohollabelproject;
 
-import sun.plugin2.main.client.ProcessUI;
-
 /**
  * Created by jessieying on 4/1/17.
  */
