@@ -1,13 +1,18 @@
 package com.emeraldElves.alcohollabelproject;
 
 /**
- * Created by Kylec on 4/1/2017.
+ * A representation of a phone number which is validated.
  */
 public class PhoneNumber {
 
     private String phoneNumber;
 
 
+    /**
+     * Create a phone number.
+     *
+     * @param phoneNumber The phone number in most acceptable formats.
+     */
     public PhoneNumber(String phoneNumber) {
         this.phoneNumber = extractPhoneNumber(phoneNumber);
     }
@@ -21,11 +26,22 @@ public class PhoneNumber {
         return phoneNumber.length() == 10 || phoneNumber.length() == 11;
     }
 
+    /**
+     * Get the phone number as a string of only numbers without any dashes or dots.
+     *
+     * @return The phone number.
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
 
+    /**
+     * Extract the phone number from a string.
+     *
+     * @param phoneNumber A string containing the phone number.
+     * @return The string phone number with only numbers.
+     */
     private String extractPhoneNumber(String phoneNumber) {
         String extractedNumber = "";
 

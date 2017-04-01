@@ -1,7 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
 /**
- * Created by Kylec on 4/1/2017.
+ * Information about the manufacturer of the alcohol.
  */
 public class ManufacturerInfo {
 
@@ -13,30 +13,65 @@ public class ManufacturerInfo {
     private PhoneNumber phoneNumber;
     private EmailAddress emailAddress;
 
+    /**
+     * Get the name of the applicant.
+     *
+     * @return The name of the applicant.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Get the physical address of the manufacturer.
+     *
+     * @return The physical address of the manufacturer.
+     */
     public String getPhysicalAddress() {
         return physicalAddress;
     }
 
+    /**
+     * Get the company of the manufacturer.
+     *
+     * @return The company.
+     */
     public String getCompany() {
         return company;
     }
 
+    /**
+     * Get the ID of the representative.
+     *
+     * @return The ID of the representative.
+     */
     public int getRepresentativeID() {
         return representativeID;
     }
 
+    /**
+     * Get the permit number of the manufacturer.
+     *
+     * @return The permit number of the manufacturer.
+     */
     public int getPermitNum() {
         return permitNum;
     }
 
+    /**
+     * Get the phone number of the manufacturer.
+     *
+     * @return The phone number of the manufacturer.
+     */
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * Get the email address of the manufacturer.
+     *
+     * @return The email address of the manufacturer.
+     */
     public EmailAddress getEmailAddress() {
         return emailAddress;
     }
