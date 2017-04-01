@@ -6,6 +6,19 @@ import java.util.List;
  * Created by elijaheldredge on 3/31/17.
  */
 public class AlcoholDatabase {
+
+
+    private Database db;
+
+    /**
+     * Creates an AlcoholDatabase
+     *
+     * @param db the main database that contains the data
+     */
+    public AlcoholDatabase(Database db) {
+        this.db = db;
+    }
+
     /**
      * Get the most recently approved applications.
      *
