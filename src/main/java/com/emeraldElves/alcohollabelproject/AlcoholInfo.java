@@ -12,10 +12,30 @@ public class AlcoholInfo {
 
     AlcoholInfo(int alcoholContent, String name, String brandName, String origin){
         alcoholContent=this.alcoholContent;
-        name=this.name;
-        brandName=this.brandName;
-        origin=this.origin;
+        this.name=name;
+        this.brandName=brandNamae;
+        this.origin=origin;
     }
+
+    int getAlcoholContent(){
+        return this.alcoholContent;
+    }
+
+    String getName(){
+        return this.name;
+    }
+
+    String getBrandName(){
+        return this.brandName;
+    }
+
+    String getOrigin(){
+        return this.origin;
+    }
+
+
+
+
 
 
 }
