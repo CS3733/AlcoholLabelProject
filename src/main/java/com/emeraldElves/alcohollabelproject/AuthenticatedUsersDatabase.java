@@ -7,7 +7,7 @@ public class AuthenticatedUsersDatabase {
     private Database db;
 
     /**
-     * Creaters an AuthenticatedUsersDatabase
+     * Creates an AuthenticatedUsersDatabase
      *
      * @param db the main database that contains the data
      */
