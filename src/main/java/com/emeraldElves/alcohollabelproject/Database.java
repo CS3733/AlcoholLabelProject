@@ -1,4 +1,5 @@
 package com.emeraldElves.alcohollabelproject;
+
 import org.apache.derby.jdbc.EmbeddedDriver;
 
 import java.sql.*;
@@ -134,6 +135,27 @@ public class Database {
     /**
      * Select values from the table.
      *
+     * @param values  The SQL statement for which values to select. Ex: "*"
+     * @param table   The SQL table to run the select on.
+     * @param orderBy The column to order by.
+     * @return The {@link ResultSet} from the select query.
+     */
+    public ResultSet selectOrdered(String values, String table, String orderBy) {
+        if (!connected) {
+            System.err.println("Database was not connected to.");
+            return null;
+        }
+        try {
+            return statement.executeQuery("SELECT " + values + " FROM " + table + " ORDER BY " + orderBy);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Select values from the table.
+     *
      * @param values The SQL statement for which values to select. Ex: "*"
      * @param table  The SQL table to run the select on.
      * @param where  The where clause to the SQL select query.
@@ -146,6 +168,28 @@ public class Database {
         }
         try {
             return statement.executeQuery("SELECT " + values + " FROM " + table + " WHERE " + where);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Select values from the table.
+     *
+     * @param values  The SQL statement for which values to select. Ex: "*"
+     * @param table   The SQL table to run the select on.
+     * @param where   The where clause to the SQL select query.
+     * @param orderBy The column to order by.
+     * @return The {@link ResultSet} from the select query.
+     */
+    public ResultSet selectOrdered(String values, String table, String where, String orderBy) {
+        if (!connected) {
+            System.err.println("Database was not connected to.");
+            return null;
+        }
+        try {
+            return statement.executeQuery("SELECT " + values + " FROM " + table + " WHERE " + where + " ORDER BY " + orderBy);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
