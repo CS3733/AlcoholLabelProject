@@ -13,7 +13,7 @@ public class AlcoholInfo {
     AlcoholInfo(int alcoholContent, String name, String brandName, String origin){
         alcoholContent=this.alcoholContent;
         this.name=name;
-        this.brandName=brandNamae;
+        this.brandName=brandName;
         this.origin=origin;
     }
 
