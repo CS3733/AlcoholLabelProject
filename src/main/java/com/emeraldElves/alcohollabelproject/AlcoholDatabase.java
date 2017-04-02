@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by elijaheldredge on 3/31/17.
@@ -19,6 +20,8 @@ public class AlcoholDatabase {
         this.db = db;
     }
 
+    // TODO: finish getMostRecentApproved
+
     /**
      * Get the most recently approved applications.
      *
@@ -27,8 +30,10 @@ public class AlcoholDatabase {
      */
     public List<SubmittedApplicaiton> getMostRecentApproved(int numApplications) {
 
-        return null;
+        return new ArrayList<SubmittedApplication>();
     }
+
+    // TODO: finish searchByBrandName
 
     /**
      * Search by the brand name of alcohol.
@@ -38,8 +43,10 @@ public class AlcoholDatabase {
      */
     public List<SubmittedApplication> searchByBrandName(String brandName) {
 
-        return null;
+        return new ArrayList<SubmittedApplication>();
     }
+
+    // TODO: finish submitApplication
 
     /**
      * Submit an application for review.
@@ -52,6 +59,8 @@ public class AlcoholDatabase {
         return false;
     }
 
+    // TODO: finish getMostRecentUnapproved
+
     /**
      * Get the most recent unapproved applications.
      *
@@ -61,6 +70,8 @@ public class AlcoholDatabase {
     public List<SubmittedApplication> getMostRecentUnapproved(int numApplications) {
         return null;
     }
+
+    // TODO: finish updateApplicationStatus
 
     /**
      * Update the approval status of the application.
