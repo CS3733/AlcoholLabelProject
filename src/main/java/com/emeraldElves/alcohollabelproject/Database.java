@@ -1,4 +1,5 @@
 package com.emeraldElves.alcohollabelproject;
+
 import org.apache.derby.jdbc.EmbeddedDriver;
 
 import java.sql.*;
@@ -38,7 +39,6 @@ public class Database {
             e.printStackTrace();
             return false;
         }
-
         return true;
     }
 
@@ -48,16 +48,11 @@ public class Database {
      * @param tableName The table name
      * @return True if it was able to drop the table without error.
      */
-    public boolean dropTable(String tableName) {
+    public boolean dropTable(String tableName) throws SQLException {
         if (!connected)
             return false;
 
-        try {
-            statement.execute("DROP TABLE " + tableName);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        statement.execute("DROP TABLE " + tableName);
 
         return true;
     }
@@ -70,7 +65,7 @@ public class Database {
      * @param entities  The entities of the table (columns)
      * @return True if the table was created without error.
      */
-    public boolean createTable(String tableName, TableField... entities) {
+    public boolean createTable(String tableName, TableField... entities) throws SQLException {
         if (!connected)
             return false;
 
@@ -81,13 +76,8 @@ public class Database {
         }
 
         entityString = entityString.substring(0, entityString.length() - 2);
-        try {
-            statement.execute("CREATE TABLE " + tableName + "(\n" + entityString + "\n)");
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        statement.execute("CREATE TABLE " + tableName + "(\n" + entityString + "\n)");
+        return true;
     }
 
 
@@ -103,6 +93,19 @@ public class Database {
             return false;
         try {
             statement.execute("INSERT INTO " + tableName + " VALUES ( " + values + " )");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public boolean runStatement(String sql) {
+        if (!connected)
+            return false;
+        try {
+            statement.execute(sql);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

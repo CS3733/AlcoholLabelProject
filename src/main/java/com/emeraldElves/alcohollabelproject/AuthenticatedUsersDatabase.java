@@ -1,5 +1,8 @@
 package com.emeraldElves.alcohollabelproject;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by Dan on 3/31/2017.
  */
@@ -23,7 +26,16 @@ public class AuthenticatedUsersDatabase {
      * @return True if the TTB agent is valid, False otherwise
      */
     public boolean isValidTTBAgent(String userName, String password) {
-        return userName.equals("Admin") && password.equals("Admin1");
+        ResultSet results = db.select("*", "TTBAgentLogin", "username = '" + userName +
+                "' AND  password = '" + password + "'");
+        if (results == null)
+            return false;
+        try {
+            return results.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -34,6 +46,15 @@ public class AuthenticatedUsersDatabase {
      * @return True if the applicant login is valid, False otherwise
      */
     public boolean isValidApplicant(String userName, String password) {
-        return userName.equals("Admin") && password.equals("Admin1");
+        ResultSet results = db.select("*", "ApplicantLogin", "username = '" + userName +
+                "' AND  password = '" + password + "'");
+        if (results == null)
+            return false;
+        try {
+            return results.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
