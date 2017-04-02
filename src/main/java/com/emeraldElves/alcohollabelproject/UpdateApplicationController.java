@@ -1,21 +1,72 @@
-package sample;
+package com.emeraldElves.alcohollabelproject;;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import com.emeraldElves.alcohollabelproject.UpdateApplication;
+import com.emeraldElves.alcohollabelproject.ApplicationStatus;
+
 /**
- * Created by Kyle on 4/2/2017.
+ * Created by Keion Bisland on 4/2/2017.
  */
+
 public class UpdateApplicationController {
 
+   public ApplicationStatus status;//get status from database
+
     @FXML
-    TextField name;
+    TextField repIDNoTextField;
+    TextField permitNoTextField;
+    TextField brandNameField;
+    TextField AddressField;
+    TextField phoneNumberField;
+    TextField emailAddressField;
+    TextField alcoholContentField;
+    TextField wineVintageYearField;
+    TextField phLevelField;
+    TextField signatureField;
 
-    public void login(){
+    @FXML
+    RadioButton InternationalRadio;
+    RadioButton DomesticRadio;
+    RadioButton ProductType_Beer;
+    RadioButton ProductType_Wine;
 
-        UpdateApplication.user = name.getText();
+    @FXML
+    DatePicker datePicker;
 
-        //UpdateApplication.loadFXML("UpdateApplication.fxml");
+
+    public void ApplicationStatuschecker()
+    {
+        switch(status)
+        {
+            case REJECTED:
+                updateRejected();
+                break;
+            case APPROVED:
+                updateApproved();
+                break;
+            case PENDING_REVIEW:
+                //idk what im supposed to do in this case rn
+                break;
+
+        }
+
     }
+
+
+    public void updateRejected()
+    {
+
+
+    }
+
+    public void updateApproved()
+    {
+
+
+    }
+
+
 
 }

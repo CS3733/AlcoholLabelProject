@@ -1,4 +1,6 @@
-package com.emeraldElves.alcohollabelproject;/**
+package com.emeraldElves.alcohollabelproject;
+
+/**
  * Created by keionbis on 4/2/17.
  */
 
