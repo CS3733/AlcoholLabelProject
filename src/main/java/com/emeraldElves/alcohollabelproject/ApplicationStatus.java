@@ -1,16 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
-/**
-<<<<<<< HEAD
- * Created by keionbis on 4/2/17.
- */
-public enum ApplicationStatus {
-    APPROVED,
-    PENDING_REVIEW,
-    REJECTED
-};
-=======
- * Created by elijaheldredge on 3/31/17.
+ /** Created by elijaheldredge on 3/31/17.
  */
 public enum ApplicationStatus {
     APPROVED("Your application was approved"),
@@ -42,4 +32,4 @@ public enum ApplicationStatus {
         return message;
     }
 }
->>>>>>> origin/develop
+//>>>>>>> origin/develop

@@ -58,7 +58,7 @@ public class UpdateApplicationController {
             case APPROVED:
                 updateApproved();
                 break;
-            case PENDING_REVIEW:
+            case PENDINGREVIEW:
                 //idk what im supposed to do in this case rn
                 break;
 
