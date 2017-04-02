@@ -16,20 +16,32 @@ public class UpdateApplicationController {
 
     @FXML
     TextField repIDNoTextField;
+    @FXML
     TextField permitNoTextField;
+    @FXML
     TextField brandNameField;
+    @FXML
     TextField AddressField;
+    @FXML
     TextField phoneNumberField;
+    @FXML
     TextField emailAddressField;
+    @FXML
     TextField alcoholContentField;
+    @FXML
     TextField wineVintageYearField;
+    @FXML
     TextField phLevelField;
+    @FXML
     TextField signatureField;
 
     @FXML
     RadioButton InternationalRadio;
+    @FXML
     RadioButton DomesticRadio;
+    @FXML
     RadioButton ProductType_Beer;
+    @FXML
     RadioButton ProductType_Wine;
 
     @FXML
