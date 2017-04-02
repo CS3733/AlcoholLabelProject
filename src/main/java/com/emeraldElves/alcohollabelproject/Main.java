@@ -13,7 +13,7 @@ public class Main extends Application {
     public static Stage stage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainGUI.fxml"));
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root, 800, 400));
@@ -21,6 +21,11 @@ public class Main extends Application {
         stage = primaryStage;
     }
 
+    /**
+     * Load an FXML file and set the stage to the new UI.
+     *
+     * @param path The relative path to the FXML file.
+     */
     public static void loadFXML(String path) {
         Parent root = null;
         try {
