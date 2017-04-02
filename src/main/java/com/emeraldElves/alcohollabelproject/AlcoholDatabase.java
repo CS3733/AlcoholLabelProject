@@ -28,7 +28,7 @@ public class AlcoholDatabase {
      * @param numApplications The maximum number of applications to receive.
      * @return A list of the most recently approved applications ordered from most recent to least recent.
      */
-    public List<SubmittedApplicaiton> getMostRecentApproved(int numApplications) {
+    public List<SubmittedApplication> getMostRecentApproved(int numApplications) {
 
         return new ArrayList<SubmittedApplication>();
     }
