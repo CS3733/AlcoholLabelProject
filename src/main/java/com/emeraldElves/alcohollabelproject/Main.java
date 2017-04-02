@@ -47,7 +47,6 @@ public class Main extends Application {
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainGUI.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/fxml/UpdateApplication.fxml"));
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root, 800, 400));
         primaryStage.show();
