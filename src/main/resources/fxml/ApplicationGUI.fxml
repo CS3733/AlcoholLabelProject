@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.ApplicationController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button mnemonicParsing="false" text="Logout" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <ImageView fitHeight="130.0" fitWidth="1025.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+         <image>
+            <Image url="@../Desktop/ttbmasthead.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="76.0" fitWidth="235.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <image>
+            <Image url="@../Desktop/logo_cola_registry.gif" />
+         </image>
+      </ImageView>
+      <Label text="  Welcome, [ApplicantName]." GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <TextField fx:id="repIDNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="permitNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <RadioButton fx:id="productSourceRadios" mnemonicParsing="false" text="Product Source" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <RadioButton fx:id="productTypeRadios" mnemonicParsing="false" text="Wine" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Name:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="6" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adress:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="7" />
+      <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="8" />
+      <TextField fx:id="emailAddressField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="9" />
+      <TextField fx:id="signatureField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Signature:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="10" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Representative ID:" textAlignment="RIGHT" wrappingWidth="341.77734375" GridPane.rowIndex="2" />
+      <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Permit Number:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="3" />
+      <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <Text layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="11" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Content:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="12" />
+      <TextField fx:id="wineVintageYearField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wine Vintage Year (if applicable):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="13" />
+      <TextField fx:id="pHLevelField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH level:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.rowIndex="14" />
+      <Button fx:id="Submit" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.rowIndex="15" />
+   </children>
+</GridPane>
