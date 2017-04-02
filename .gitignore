@@ -162,7 +162,6 @@ local.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -185,3 +184,10 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+*.log
+*.dat
+ttbDB/
+testDB/
+src/main/java/com/emeraldElves/alcohollabelproject/Main.java
+src/main/java/com/emeraldElves/alcohollabelproject/Main.java

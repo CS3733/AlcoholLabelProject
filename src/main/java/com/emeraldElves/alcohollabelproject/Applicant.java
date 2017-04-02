@@ -1,0 +1,24 @@
+package com.emeraldElves.alcohollabelproject;
+
+import java.util.List;
+
+/**
+ * Represents an applicant who may have submitted applications.
+ */
+public class Applicant {
+
+    private List<SubmittedApplication> applications;
+
+    /**
+     * Creates an Applicant with the given applications.
+     *
+     * @param applications The submitted applications of the applicant.
+     */
+    public Applicant(List<SubmittedApplication> applications) {
+        this.applications = applications;
+    }
+
+    public List<SubmittedApplication> getApplications() {
+        return applications;
+    }
+}
