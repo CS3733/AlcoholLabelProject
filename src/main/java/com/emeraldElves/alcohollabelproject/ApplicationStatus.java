@@ -1,7 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
-/**
- * Created by elijaheldredge on 3/31/17.
+ /** Created by elijaheldredge on 3/31/17.
  */
 public enum ApplicationStatus {
     APPROVED("Your application was approved"),
@@ -33,3 +32,4 @@ public enum ApplicationStatus {
         return message;
     }
 }
+
