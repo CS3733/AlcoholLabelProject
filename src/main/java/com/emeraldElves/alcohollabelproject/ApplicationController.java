@@ -18,10 +18,10 @@ public class ApplicationController {
     }
 
     public void newApplication() {
-        
+        Main.loadFXML("/fxml/NewApplication.fxml");
     }
 
     public void updateApplication(){
-
+        Main.loadFXML("/fxml/UpdateApplication.fxml");
     }
 }
