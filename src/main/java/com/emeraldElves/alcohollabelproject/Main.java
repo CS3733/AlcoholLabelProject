@@ -12,10 +12,11 @@ import java.io.IOException;
 public class Main extends Application {
 
     public static Stage stage;
+    public static Database database;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Database database = new Database("ttbDB");
+        database = new Database("ttbDB");
         database.connect();
         try {
             database.createTable("TTBAgentLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
@@ -30,7 +31,7 @@ public class Main extends Application {
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"));
             Log.console("Created new ApplicantLogin table");
         } catch (SQLException e) {
-            Log.console("Used existing TTBAgentLogin table");
+            Log.console("Used existing ApplicantLogin table");
         }
 
         try {
