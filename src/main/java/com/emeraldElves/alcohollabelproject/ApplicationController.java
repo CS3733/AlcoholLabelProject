@@ -17,11 +17,15 @@ public class ApplicationController {
         //nothing
     }
 
+    /**
+     * Loads the new application fxml file
+     */
     public void newApplication() {
         Main.loadFXML("/fxml/NewApplication.fxml");
     }
 
-    public void updateApplication(){
-        Main.loadFXML("/fxml/UpdateApplication.fxml");
-    }
+    /**
+     * Loads the update application fxml file
+     */
+    public void updateApplication(){ Main.loadFXML("/fxml/UpdateApplication.fxml");}
 }
