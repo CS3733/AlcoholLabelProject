@@ -32,6 +32,19 @@ public class Main extends Application {
         } catch (SQLException e) {
             Log.console("Used existing TTBAgentLogin table");
         }
+
+        try {
+            database.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
+                    new Database.TableField("status", "INTEGER NOT NULL"),
+                    new Database.TableField("statusMsg", "VARCHAR (10000)"),
+                    new Database.TableField("submissionTime", "TIMESTAMP"));
+            Log.console("Created new SubmittedApplications table");
+        } catch (SQLException e) {
+            Log.console("Used existing SubmittedApplications table");
+        }
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainGUI.fxml"));
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root, 800, 400));
