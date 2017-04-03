@@ -123,7 +123,7 @@ public class NewApplicationController {
         ManufacturerInfo appManInfo = new ManufacturerInfo("placeholder", addressField.getText(), brandNameField.getText(),
                 Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()), appPhone, appEmail);
         ProductSource pSource = ProductSource.DOMESTIC;
-        AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
+    //    AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
 
         if(productSource.getSelectedToggle() == domestic) {
             pSource = ProductSource.DOMESTIC;
@@ -132,23 +132,19 @@ public class NewApplicationController {
             pSource = ProductSource.IMPORTED;
         }
         if(productType.getSelectedToggle() == beer) {
-            appAlcoholInfo = new BeerInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
-        }
-        if(productType.getSelectedToggle() == wine) {
-            appAlcoholInfo = new WineInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource,
-                    Integer.parseInt(wineVintageYearField.getText()), Integer.parseInt(pHLevelField.getText()));
+            //appAlcoholInfo = new BeerInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
         }
 
         java.sql.Date newDate = java.sql.Date.valueOf(datePicker.getValue());
-        ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
+   //     ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
 
         ApplicationStatus placeholder = ApplicationStatus.APPROVED;
 
         List<SubmittedApplication> appliers = new ArrayList();
         Applicant applicant = new Applicant(appliers);
 
-        SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
-        alcoholDB.submitApplication(newApp);
+   //     SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
+     //   alcoholDB.submitApplication(newApp);
     }
 
     public void cancelApp() {
