@@ -57,6 +57,34 @@ public class NewApplicationController {
 
     public void nextPage(){
 
+        if(repIDNoTextField.getText().isEmpty()) {
+            error.setText("Please fill in the representative ID");
+            return;
+        }
+        if(permitNoTextField.getText().isEmpty()) {
+            error.setText("Please fill in the Permit Number");
+            return;
+        }
+        if(addressField.getText().isEmpty()) {
+            error.setText("Please fill in the physical address of your company");
+            return;
+        }
+        if(phoneNumberField.getText().isEmpty()) {
+            error.setText("Please fill in the contact number");
+            return;
+        }
+        if(emailAddressField.getText().isEmpty()) {
+            error.setText("Please fill in the contact email");
+            return;
+        }
+
+        EmailAddress appEmail = new EmailAddress(emailAddressField.getText());
+
+        PhoneNumber appPhone = new PhoneNumber(phoneNumberField.getText());
+
+        ManufacturerInfo appManInfo = new ManufacturerInfo("placeholder", addressField.getText(), brandNameField.getText(),
+                Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()), appPhone, appEmail);
+
     }
 
     public void submitApp() {
@@ -75,14 +103,6 @@ public class NewApplicationController {
         needs to be filled out. for the fields specific to wine, it will only throw an error if wine is selected in the product type
         radio button group
          */
-        if(repIDNoTextField.getText().isEmpty()) {
-            error.setText("Please fill in the representative ID");
-            return;
-        }
-        if(permitNoTextField.getText().isEmpty()) {
-            error.setText("Please fill in the Permit Number");
-            return;
-        }
         if(productType.getSelectedToggle() == null) {
             error.setText("Please select Whether your product is international or domestic");
             return;
@@ -99,26 +119,6 @@ public class NewApplicationController {
             error.setText("Please fill in your brand name");
             return;
         }
-        if(addressField.getText().isEmpty()) {
-            error.setText("Please fill in the physical address of your company");
-            return;
-        }
-        if(phoneNumberField.getText().isEmpty()) {
-            error.setText("Please fill in the contact number");
-            return;
-        }
-        if(emailAddressField.getText().isEmpty()) {
-            error.setText("Please fill in the contact email");
-            return;
-        }
-        if(signatureField.getText().isEmpty()) {
-            error.setText("Please fill in the signature field");
-            return;
-        }
-        if(datePicker == null) {
-            error.setText("Please fill in the date of your alcohol");
-            return;
-        }
         if(alcoholContentField.getText().isEmpty()) {
             error.setText("Please fill in the alcohol content of your beverage");
             return;
@@ -131,16 +131,21 @@ public class NewApplicationController {
             error.setText("Please fill in the ph level");
             return;
         }
+        if(datePicker == null) {
+            error.setText("Please fill in the date of your alcohol");
+            return;
+        }
+        if(signatureField.getText().isEmpty()) {
+            error.setText("Please fill in the signature field");
+            return;
+        }
 
         /*
         Nothing much going on here, just parsing information from TextFields and inputting it into the fields of
         ManufacturerInfo to be used in SubmittedApplication
          */
         AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
-        EmailAddress appEmail = new EmailAddress(emailAddressField.getText());
-        PhoneNumber appPhone = new PhoneNumber(phoneNumberField.getText());
-        ManufacturerInfo appManInfo = new ManufacturerInfo("placeholder", addressField.getText(), brandNameField.getText(),
-                Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()), appPhone, appEmail);
+
         ProductSource pSource = ProductSource.DOMESTIC;
     //    AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
 
@@ -166,7 +171,7 @@ public class NewApplicationController {
         //SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
         //alcoholDB.submitApplication(newApp);
     }
-    
+
     public void cancelApp() {
 
         loadFXML("mainGUI.FXML");
