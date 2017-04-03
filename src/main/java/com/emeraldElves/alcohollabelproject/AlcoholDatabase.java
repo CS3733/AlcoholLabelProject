@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -82,5 +84,25 @@ public class AlcoholDatabase {
      */
     public boolean updateApplicationStatus(SubmittedApplication application, ApplicationStatus status) {
         return false;
+    }
+
+
+    private ManufacturerInfo getManufacturerInfoByID(int applicationID) {
+        ResultSet results = db.select("*", "ManufacturerInfo", "applicationID = " + applicationID);
+        try {
+            if (results.next()) {
+                String authorizedName = results.getString("authorizedName");
+                String physicalAddress = results.getString("physicalAddress");
+                String company = results.getString("company");
+                int repID = results.getInt("representativeID");
+                int permitNum = results.getInt("permitNum");
+                PhoneNumber phoneNumber = new PhoneNumber(results.getString("phoneNum"));
+                EmailAddress emailAddress = new EmailAddress(results.getString("emailAddress"));
+                return new ManufacturerInfo(authorizedName, physicalAddress, company, repID, permitNum, phoneNumber, emailAddress);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
