@@ -104,15 +104,15 @@ public class NewApplicationController {
             error.setText("Please fill in the date of your alcohol");
             return;
         }
-        if(alcoholContentField.getText() == null) {
+        if(alcoholContentField.getText().isEmpty()) {
             error.setText("Please fill in the alcohol content of your beverage");
             return;
         }
-        if(productType.getSelectedToggle() == wine && wineVintageYearField.getText() == null) {
+        if(productType.getSelectedToggle() == wine && wineVintageYearField.getText().isEmpty()) {
             error.setText("Please fill in the wine vintage year");
             return;
         }
-        if(productType.getSelectedToggle() == wine && pHLevelField.getText() == null) {
+        if(productType.getSelectedToggle() == wine && pHLevelField.getText().isEmpty()) {
             error.setText("Please fill in the ph level");
             return;
         }
