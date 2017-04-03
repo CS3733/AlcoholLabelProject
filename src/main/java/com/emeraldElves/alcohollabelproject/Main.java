@@ -38,11 +38,12 @@ public class Main extends Application {
             database.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("applicantID", "INTEGER NOT NULL"),
                     new Database.TableField("status", "INTEGER NOT NULL"),
-                    new Database.TableField("statusMsg", "VARCHAR (10000)"),
-                    new Database.TableField("submissionTime", "TIMESTAMP"),
-                    new Database.TableField("expirationDate", "TIMESTAMP"),
-                    new Database.TableField("agentName", "VARCHAR (255)"),
-                    new Database.TableField("approvalDate", "TIMESTAMP"));
+                    new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("submissionTime", "TIMESTAMP NOT NULL"),
+                    new Database.TableField("expirationDate", "TIMESTAMP NOT NULL"),
+                    new Database.TableField("agentName", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("approvalDate", "TIMESTAMP NOT NULL"),
+                    new Database.TableField("TTBUsername", "VARCHAR (255) NOT NULL"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
@@ -50,16 +51,30 @@ public class Main extends Application {
 
         try {
             database.createTable("ManufacturerInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("authorizedName", "VARCHAR (255)"),
-                    new Database.TableField("physicalAddress", "VARCHAR (255)"),
-                    new Database.TableField("company", "VARCHAR (10000)"),
+                    new Database.TableField("authorizedName", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("physicalAddress", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("company", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
                     new Database.TableField("permitNum", "INTEGER NOT NULL"),
-                    new Database.TableField("phoneNum", "VARCHAR (15)"),//check with kyle
-                    new Database.TableField("emailAddress", "VARCHAR (255)"));
+                    new Database.TableField("phoneNum", "VARCHAR (255) NOT NULL"), //check with kyle
+                    new Database.TableField("emailAddress", "VARCHAR (255) NOT NULL"));
             Log.console("Created new ManufacturerInfo table");
         } catch (SQLException e) {
             Log.console("Used existing ManufacturerInfo table");
+        }
+
+        try {
+            database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
+                    new Database.TableField("fancifulName", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("origin", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("type", "INTEGER NOT NULL"),  //only beer or wine?
+                    new Database.TableField("pH", "DOUBLE"),
+                    new Database.TableField("vintageYear", "VARCHAR (255)"));
+            Log.console("Created new AlcoholInfo table");
+        } catch (SQLException e) {
+            Log.console("Used existing AlcoholInfo table");
         }
 
 
