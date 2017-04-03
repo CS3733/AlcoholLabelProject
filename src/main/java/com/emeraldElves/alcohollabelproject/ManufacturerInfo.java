@@ -13,6 +13,16 @@ public class ManufacturerInfo {
     private PhoneNumber phoneNumber;
     private EmailAddress emailAddress;
 
+    public ManufacturerInfo(String name, String physicalAddress, String company, int representativeID, int permitNum, PhoneNumber phoneNumber, EmailAddress emailAddress) {
+        this.name = name;
+        this.physicalAddress = physicalAddress;
+        this.company = company;
+        this.representativeID = representativeID;
+        this.permitNum = permitNum;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+    }
+
     /**
      * Get the name of the applicant.
      *
