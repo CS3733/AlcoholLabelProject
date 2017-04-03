@@ -84,19 +84,19 @@ public class NewApplicationController {
             error.setText("Please fill in your brand name");
             return;
         }
-        if(addressField.getText() == null) {
+        if(addressField.getText().isEmpty()) {
             error.setText("Please fill in the physical address of your company");
             return;
         }
-        if(phoneNumberField.getText() == null) {
+        if(phoneNumberField.getText().isEmpty()) {
             error.setText("Please fill in the contact number");
             return;
         }
-        if(emailAddressField.getText() == null) {
+        if(emailAddressField.getText().isEmpty()) {
             error.setText("Please fill in the contact email");
             return;
         }
-        if(signatureField.getText() == null) {
+        if(signatureField.getText().isEmpty()) {
             error.setText("Please fill in the signature field");
             return;
         }
