@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.NewApplicationController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.00001525878906" minWidth="10.0" prefWidth="290.3333282470703" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="429.6666717529297" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.3333740234375" minWidth="10.0" prefWidth="303.6666259765625" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="89.33333587646484" minHeight="10.0" prefHeight="86.66666412353516" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="55.333335876464844" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="124.33333587646484" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="159.0" minHeight="0.0" prefHeight="76.33334350585938" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="163.66665649414062" minHeight="10.0" prefHeight="64.66665649414062" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="152.66665649414062" minHeight="10.0" prefHeight="61.333343505859375" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="157.0" minHeight="10.0" prefHeight="66.66665649414062" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="201.33331298828125" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="201.33334350585938" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <ImageView fitHeight="87.0" fitWidth="720.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+         <image>
+            <Image url="@../images/ttbmasthead.gif" />
+         </image>
+      </ImageView>
+      <Label text="  Welcome, [ApplicantName]." GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <TextField fx:id="repIDNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="permitNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+      <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+      <TextField fx:id="emailAddressField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Representative ID:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Permit Number:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+      <Button fx:id="nextPageBtn" mnemonicParsing="false" onMouseClicked="#nextPage" text="Next Page" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+      <Label text="Please fill out the following infoformation:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+   </children>
+</GridPane>

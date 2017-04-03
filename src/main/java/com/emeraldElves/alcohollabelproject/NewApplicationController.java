@@ -46,9 +46,18 @@ public class NewApplicationController {
     @FXML
     Button cancelApplication;
     @FXML
-    Button submit;
+    Button nextPageBtn;
+    @FXML
+    Button submitBtn;
+    @FXML
+    Button logoutBtn;
     @FXML
     Label error;
+
+
+    public void nextPage(){
+
+    }
 
     public void submitApp() {
         /*radio buttons need to be put in a group so that they can function, these two groups are for
@@ -157,11 +166,13 @@ public class NewApplicationController {
         //SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
         //alcoholDB.submitApplication(newApp);
     }
-
+    
     public void cancelApp() {
 
         loadFXML("mainGUI.FXML");
     }
     public void saveApp() {
+    }
+    public void logout() {
     }
 }
