@@ -55,15 +55,16 @@ public class NewApplicationController {
         ToggleGroup productType = new ToggleGroup();
         beer.setToggleGroup(productType);
         wine.setToggleGroup(productType);
+
         ToggleGroup productSource = new ToggleGroup();
         international.setToggleGroup(productSource);
         domestic.setToggleGroup(productSource);
 
-        if(repIDNoTextField.getText() == null) {
+        if(repIDNoTextField.getText().isEmpty()) {
             error.setText("Please fill in the representative ID");
             return;
         }
-        if(permitNoTextField.getText() == null) {
+        if(permitNoTextField.getText().isEmpty()) {
             error.setText("Please fill in the Permit Number");
             return;
         }
@@ -75,11 +76,11 @@ public class NewApplicationController {
             error.setText("Please select what Type of Alcohol you are selling");
             return;
         }
-        if(alcoholName.getText() == null) {
+        if(alcoholName.getText().isEmpty()) {
             error.setText("Please fill in your alcohols name");
             return;
         }
-        if(brandNameField.getText() == null) {
+        if(brandNameField.getText().isEmpty()) {
             error.setText("Please fill in your brand name");
             return;
         }
