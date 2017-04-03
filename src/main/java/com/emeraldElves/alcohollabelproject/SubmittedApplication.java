@@ -33,4 +33,15 @@ public class SubmittedApplication {
     public Applicant getApplicant() {
         return applicant;
     }
+
+    public void setApplication(ApplicationInfo application) {
+        this.application = application;
+    }
+    public void setStatus(ApplicationStatus status){
+        this.status = status;
+    }
+    public void setApplicant(Applicant applicant){
+        this.applicant = applicant;
+    }
+
 }
