@@ -30,7 +30,7 @@ public class LoginController {
     }
 
     public void returnHome(){
-        loadFXML("homepageGUI.FXML");
+        loadFXML("mainGUI.FXML");
     }
 
 
