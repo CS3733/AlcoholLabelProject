@@ -9,7 +9,26 @@ public class AlcoholInfo {
     private String name;
     private String brandName;
     private ProductSource origin;
+    private AlcoholType alcoholType;
+    private WineInfo wineInfo;
 
+
+    class WineInfo{
+        int vintageYear;
+        int pH;
+        public int getvintageYear() {
+            return(this.vintageYear);
+        }
+        public int getpH() {
+            return this.pH;
+        }
+        public void setVintageYear(int vintageYear){
+            this.vintageYear = vintageYear;
+        }
+        public void setpH(int pH){
+            this.pH = pH;
+        }
+    }
     /**
      * Constructor to create a new AlcoholInfo
      *
@@ -18,11 +37,21 @@ public class AlcoholInfo {
      * @param brandName      Brand name of alcohol
      * @param origin         Whether the alcohol is domestic or imported
      */
-    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin) {
+    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, WineInfo wineInfo) {
         this.alcoholContent = alcoholContent;
         this.name = name;
         this.brandName = brandName;
         this.origin = origin;
+        this.alcoholType = alcoholType;
+        if(alcoholType == AlcoholType.WINE)
+        {
+            this.wineInfo = wineInfo;
+        }
+        else if(alcoholType != AlcoholType.WINE)
+        {
+            this.wineInfo = null;
+        }
+
     }
 
     /**
@@ -60,5 +89,17 @@ public class AlcoholInfo {
     public ProductSource getOrigin() {
         return this.origin;
     }
+
+    public AlcoholType getAlcoholType(){ return this.alcoholType; }
+
+    public void setAlcoholType(AlcoholType alcoholType) {
+        this.alcoholType = alcoholType;
+    }
+
+    public WineInfo getWineInfo()
+    {
+        return this.wineInfo;
+    }
+
 
 }
