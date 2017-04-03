@@ -60,7 +60,6 @@ public class NewApplicationController {
 
 
     public void nextPage(){
-
         if(repIDNoTextField.getText().isEmpty()) {
             repIDNoTextField=null;
             return;
