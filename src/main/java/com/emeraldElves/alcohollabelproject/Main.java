@@ -39,7 +39,10 @@ public class Main extends Application {
                     new Database.TableField("applicantID", "INTEGER NOT NULL"),
                     new Database.TableField("status", "INTEGER NOT NULL"),
                     new Database.TableField("statusMsg", "VARCHAR (10000)"),
-                    new Database.TableField("submissionTime", "TIMESTAMP"));
+                    new Database.TableField("submissionTime", "TIMESTAMP"),
+                    new Database.TableField("expirationDate", "TIMESTAMP"),
+                    new Database.TableField("agentName", "VARCHAR (255)"),
+                    new Database.TableField("approvalDate", "TIMESTAMP"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
