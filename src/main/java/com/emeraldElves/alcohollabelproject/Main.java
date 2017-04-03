@@ -49,14 +49,14 @@ public class Main extends Application {
         }
 
         try {
-            database.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
-                    new Database.TableField("status", "INTEGER NOT NULL"),
-                    new Database.TableField("statusMsg", "VARCHAR (10000)"),
-                    new Database.TableField("submissionTime", "TIMESTAMP"),
-                    new Database.TableField("expirationDate", "TIMESTAMP"),
-                    new Database.TableField("agentName", "VARCHAR (255)"),
-                    new Database.TableField("approvalDate", "TIMESTAMP"));
+            database.createTable("ManufacturerInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("authorizedName", "VARCHAR (255)"),
+                    new Database.TableField("physicalAddress", "VARCHAR (255)"),
+                    new Database.TableField("company", "VARCHAR (10000)"),
+                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("phoneNum", "VARCHAR (15)"),//check with kyle
+                    new Database.TableField("emailAddress", "VARCHAR (255)"));
             Log.console("Created new ManufacturerInfo table");
         } catch (SQLException e) {
             Log.console("Used existing ManufacturerInfo table");
