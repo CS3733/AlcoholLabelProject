@@ -13,22 +13,6 @@ public class AlcoholInfo {
     private WineInfo wineInfo;
 
 
-    class WineInfo{
-        int vintageYear;
-        int pH;
-        public int getvintageYear() {
-            return(this.vintageYear);
-        }
-        public int getpH() {
-            return this.pH;
-        }
-        public void setVintageYear(int vintageYear){
-            this.vintageYear = vintageYear;
-        }
-        public void setpH(int pH){
-            this.pH = pH;
-        }
-    }
     /**
      * Constructor to create a new AlcoholInfo
      *
