@@ -14,6 +14,7 @@ public class Main extends Application {
 
     public static Stage stage;
     public static Database database;
+    public static Applicant applier;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -47,7 +48,7 @@ public class Main extends Application {
         }
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainGUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ApplicationGUI.fxml"));
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root, 800, 400));
         primaryStage.show();
