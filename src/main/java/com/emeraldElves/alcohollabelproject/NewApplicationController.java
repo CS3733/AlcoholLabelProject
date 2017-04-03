@@ -56,7 +56,6 @@ public class NewApplicationController {
 
 
     public void nextPage(){
-
     }
 
     public void submitApp() {
