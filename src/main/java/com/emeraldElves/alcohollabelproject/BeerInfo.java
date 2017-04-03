@@ -13,6 +13,7 @@ public class BeerInfo extends AlcoholInfo {
      * @param origin Whether the alcohol is domestic or imported
      */
     public BeerInfo(int alcoholContent, String name, String brandName, ProductSource origin){
-        super(alcoholContent, name, brandName, origin);
+        super(alcoholContent, name, brandName, origin, AlcoholType.BEER, null);
     }
 }
+
