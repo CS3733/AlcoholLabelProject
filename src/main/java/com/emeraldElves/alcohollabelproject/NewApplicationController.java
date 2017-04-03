@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 import static com.emeraldElves.alcohollabelproject.Main.loadFXML;
 
-public class ApplicationController {
+public class NewApplicationController {
     @FXML
     TextField reIDNoTextField;
     @FXML
@@ -43,6 +43,7 @@ public class ApplicationController {
     Button Submit;
 
     public void submitApp() {
+        AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
     }
 
     public void cancelApp() {
