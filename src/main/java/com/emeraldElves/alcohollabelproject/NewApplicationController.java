@@ -52,39 +52,35 @@ public class NewApplicationController {
     @FXML
     Button logoutBtn;
     @FXML
-    Label error;
+    Label error1;
+    @FXML
+    Label error2;
+    @FXML
+    Label permitNoErrorField;
 
 
     public void nextPage(){
 
         if(repIDNoTextField.getText().isEmpty()) {
-            error.setText("Please fill in the representative ID");
+            repIDNoTextField=null;
             return;
         }
         if(permitNoTextField.getText().isEmpty()) {
-            error.setText("Please fill in the Permit Number");
+            permitNoErrorField.setText("Please fill your permit number.");
             return;
         }
         if(addressField.getText().isEmpty()) {
-            error.setText("Please fill in the physical address of your company");
+            error1.setText("Please fill in the physical address of your company");
             return;
         }
         if(phoneNumberField.getText().isEmpty()) {
-            error.setText("Please fill in the contact number");
+            error1.setText("Please fill in the contact number.");
             return;
         }
         if(emailAddressField.getText().isEmpty()) {
-            error.setText("Please fill in the contact email");
+            error1.setText("Please fill in the contact email.");
             return;
         }
-
-        EmailAddress appEmail = new EmailAddress(emailAddressField.getText());
-
-        PhoneNumber appPhone = new PhoneNumber(phoneNumberField.getText());
-
-        ManufacturerInfo appManInfo = new ManufacturerInfo("placeholder", addressField.getText(), brandNameField.getText(),
-                Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()), appPhone, appEmail);
-
     }
 
     public void submitApp() {
@@ -104,39 +100,39 @@ public class NewApplicationController {
         radio button group
          */
         if(productType.getSelectedToggle() == null) {
-            error.setText("Please select Whether your product is international or domestic");
+            error2.setText("Please select Whether your product is international or domestic");
             return;
         }
         if(productSource.getSelectedToggle() == null) {
-            error.setText("Please select what Type of Alcohol you are selling");
+            error2.setText("Please select what Type of Alcohol you are selling");
             return;
         }
         if(alcoholName.getText().isEmpty()) {
-            error.setText("Please fill in your alcohols name");
+            error2.setText("Please fill in your alcohols name");
             return;
         }
         if(brandNameField.getText().isEmpty()) {
-            error.setText("Please fill in your brand name");
+            error2.setText("Please fill in your brand name");
             return;
         }
         if(alcoholContentField.getText().isEmpty()) {
-            error.setText("Please fill in the alcohol content of your beverage");
+            error2.setText("Please fill in the alcohol content of your beverage");
             return;
         }
         if(productType.getSelectedToggle() == wine && wineVintageYearField.getText().isEmpty()) {
-            error.setText("Please fill in the wine vintage year");
+            error2.setText("Please fill in the wine vintage year");
             return;
         }
         if(productType.getSelectedToggle() == wine && pHLevelField.getText().isEmpty()) {
-            error.setText("Please fill in the ph level");
+            error2.setText("Please fill in the ph level");
             return;
         }
         if(datePicker == null) {
-            error.setText("Please fill in the date of your alcohol");
+            error2.setText("Please fill in the date of your alcohol");
             return;
         }
         if(signatureField.getText().isEmpty()) {
-            error.setText("Please fill in the signature field");
+            error2.setText("Please fill in the signature field");
             return;
         }
 
@@ -145,6 +141,13 @@ public class NewApplicationController {
         ManufacturerInfo to be used in SubmittedApplication
          */
         AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
+
+        EmailAddress appEmail = new EmailAddress(emailAddressField.getText());
+
+        PhoneNumber appPhone = new PhoneNumber(phoneNumberField.getText());
+
+        ManufacturerInfo appManInfo = new ManufacturerInfo("placeholder", addressField.getText(), brandNameField.getText(),
+                Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()), appPhone, appEmail);
 
         ProductSource pSource = ProductSource.DOMESTIC;
     //    AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
@@ -170,6 +173,8 @@ public class NewApplicationController {
 
         //SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
         //alcoholDB.submitApplication(newApp);
+
+        loadFXML("mainGUI.FXML");
     }
 
     public void cancelApp() {

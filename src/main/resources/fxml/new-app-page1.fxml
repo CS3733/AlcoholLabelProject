@@ -54,7 +54,7 @@
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Representative ID:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Representative ID (if any):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
@@ -66,5 +66,6 @@
       <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
       <Label text="Please fill out the following information:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Label fx:id="error1" GridPane.columnIndex="1" GridPane.rowIndex="8" />
    </children>
 </GridPane>
