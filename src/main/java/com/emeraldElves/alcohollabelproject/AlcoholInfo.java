@@ -12,8 +12,6 @@ public class AlcoholInfo {
     private AlcoholType alcoholType;
     private WineInfo wineInfo;
 
-
-
     /**
      * Constructor to create a new AlcoholInfo
      *
