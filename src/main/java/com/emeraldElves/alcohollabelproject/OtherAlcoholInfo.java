@@ -16,4 +16,3 @@ public class OtherAlcoholInfo extends AlcoholInfo {
         super(alcoholContent, name, brandName, origin, AlcoholType.OTHER, null);
     }
 }
-//not sure if we should just remove this as it doesnt seem to be needed explicitly

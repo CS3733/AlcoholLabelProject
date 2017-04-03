@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import com.emeraldElves.alcohollabelproject.ApplicationStatus;
 import com.emeraldElves.alcohollabelproject.ProductSource;
 import com.emeraldElves.alcohollabelproject.AlcoholType;
+import com.emeraldElves.alcohollabelproject.SubmittedApplication;
 
 /**
  * Created by Keion Bisland on 4/2/2017.
@@ -92,20 +93,49 @@ public class UpdateApplicationController {
         if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE)
         {
             ProductType_Wine.setSelected(true);
-            wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getvintageYear()));
-            phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getpH()));
+            wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getVintageYear()));
+            phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getPH()));
         }
         else if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER)
         {
             ProductType_Beer.setSelected(true);
         }
 
+
     }
 
     public void updateApproved()
     {
+        SubmittedApplication CurrentlyBeingUpdated = null;
 
+        repIDNoTextField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID()));
+        permitNoTextField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPermitNum()));
+        brandNameField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getBrandName()));
+        AddressField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPhysicalAddress()));
+        phoneNumberField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPhoneNumber()));
+        emailAddressField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getEmailAddress()));
+        alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
+        datePicker.setPromptText(String.valueOf(CurrentlyBeingUpdated.getApplication().getSubmissionDate()));
+        if(CurrentlyBeingUpdated.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED)
+        {
+            InternationalRadio.setSelected(true);
+        }
+        else if(CurrentlyBeingUpdated.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC)
+        {
+            DomesticRadio.setSelected(true);
+        }
+        if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE)
+        {
+            ProductType_Wine.setSelected(true);
+            wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getVintageYear()));
+            phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getPH()));
+        }
+        else if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER)
+        {
+            ProductType_Beer.setSelected(true);
+        }
 
+       // CurrentlyBeingUpdated.application.manufacturer.setRepresentativeID(repIDNoTextField.getText());
     }
 
 

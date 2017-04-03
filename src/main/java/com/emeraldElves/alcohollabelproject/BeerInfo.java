@@ -17,4 +17,3 @@ public class BeerInfo extends AlcoholInfo {
     }
 }
 
-//not sure if we should just remove this as it doesnt seem to be needed explicitly
