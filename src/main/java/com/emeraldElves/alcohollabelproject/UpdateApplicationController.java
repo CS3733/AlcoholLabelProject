@@ -67,9 +67,7 @@ public class UpdateApplicationController {
                 updateApproved();
                 break;
             case PENDINGREVIEW:
-                //idk what im supposed to do in this case rn
                 break;
-
         }
 
     }
@@ -77,7 +75,6 @@ public class UpdateApplicationController {
 
     public void updateRejected(){
         SubmittedApplication CurrentlyBeingUpdated = null;
-
         repIDNoTextField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID()));
         permitNoTextField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPermitNum()));
         brandNameField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getBrandName()));
@@ -103,8 +100,6 @@ public class UpdateApplicationController {
         {
             ProductType_Beer.setSelected(true);
         }
-
-
     }
 
     public void updateApproved() {
@@ -136,8 +131,6 @@ public class UpdateApplicationController {
         {
             ProductType_Beer.setSelected(true);
         }
-
-
     }
 
     public void SubmitUpdateApplication(){
@@ -170,22 +163,13 @@ public class UpdateApplicationController {
              alcoholType = AlcoholType.WINE;
              wineInfo = new AlcoholInfo.Wine(vintageYear,pH);
         }
-
-
         Date submissionDate = java.sql.Date.valueOf(String.valueOf(datePicker.getValue())) ;
-
         ManufacturerInfo manufacturer =  new  ManufacturerInfo(applicantname, physicalAddress, company, representativeID, permitNum, phoneNumber, emailAddress);
-
-
-        ApplicationStatus status = null;
+        //ApplicationStatus status = null;
         AlcoholInfo submittedAlcohol = new AlcoholInfo( alcoholContent,  fancifulname, brandName, origin, alcoholType, wineInfo);
-
         ApplicationInfo application = new ApplicationInfo( submissionDate,  manufacturer,  submittedAlcohol);
-
-
-
-        Applicant applicant;
-        SubmittedApplication CurrentlyBeingUpdated = null;
+        Applicant applicant = new Applicant(null);
+        SubmittedApplication CurrentlyBeingUpdated =new SubmittedApplication(application,status,applicant);
 
     }
 
