@@ -51,7 +51,9 @@ public class NewApplicationController {
     Label error;
 
     public void submitApp() {
-
+        /*radio buttons need to be put in a group so that they can function, these two groups are for
+        product source and the product type radio buttons.
+         */
         ToggleGroup productType = new ToggleGroup();
         beer.setToggleGroup(productType);
         wine.setToggleGroup(productType);
@@ -60,6 +62,10 @@ public class NewApplicationController {
         international.setToggleGroup(productSource);
         domestic.setToggleGroup(productSource);
 
+        /*These next few if statements are all checking to see if there is anything in the application that hasnt been filled out that
+        needs to be filled out. for the fields specific to wine, it will only throw an error if wine is selected in the product type
+        radio button group
+         */
         if(repIDNoTextField.getText().isEmpty()) {
             error.setText("Please fill in the representative ID");
             return;
@@ -117,6 +123,10 @@ public class NewApplicationController {
             return;
         }
 
+        /*
+        Nothing much going on here, just parsing information from TextFields and inputting it into the fields of
+        ManufacturerInfo to be used in SubmittedApplication
+         */
         AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
         EmailAddress appEmail = new EmailAddress(emailAddressField.getText());
         PhoneNumber appPhone = new PhoneNumber(phoneNumberField.getText());
@@ -125,6 +135,7 @@ public class NewApplicationController {
         ProductSource pSource = ProductSource.DOMESTIC;
     //    AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
 
+        //Checking if the product is domestic or imported by checking the product source radio button group
         if(productSource.getSelectedToggle() == domestic) {
             pSource = ProductSource.DOMESTIC;
         }
@@ -136,15 +147,15 @@ public class NewApplicationController {
         }
 
         java.sql.Date newDate = java.sql.Date.valueOf(datePicker.getValue());
-   //     ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
+        //ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
 
         ApplicationStatus placeholder = ApplicationStatus.APPROVED;
 
         List<SubmittedApplication> appliers = new ArrayList();
         Applicant applicant = new Applicant(appliers);
 
-   //     SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
-     //   alcoholDB.submitApplication(newApp);
+        //SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
+        //alcoholDB.submitApplication(newApp);
     }
 
     public void cancelApp() {
