@@ -7,10 +7,10 @@ public class AppState {
 
     private static AppState instance = null;
 
-    protected AppState() {
+    private AppState() {
     }
 
-    public static AppState getInstance() {
+    public static synchronized AppState getInstance() {
         if (instance == null) {
             instance = new AppState();
         }
