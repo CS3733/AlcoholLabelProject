@@ -81,6 +81,8 @@ public class AlcoholDatabaseTest {
 
         assertEquals(1, alcoholDatabase.getMostRecentApproved(10).size());
 
+        assertEquals(1, alcoholDatabase.getMostRecentUnapproved(10).size());
+
         assertEquals(1, alcoholDatabase.searchByBrandName("brand").size());
     }
 
