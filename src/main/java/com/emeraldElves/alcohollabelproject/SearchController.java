@@ -70,7 +70,7 @@ public class SearchController {
     public void search(ActionEvent e) {
 
         //Remove previous results
-        //data.remove(0, data.size());
+        data.remove(0, data.size());
 
         //Find & add matching applications
         List<SubmittedApplication> resultsList = (new AlcoholDatabase(Main.database)).searchByBrandName(searchField.getText());
