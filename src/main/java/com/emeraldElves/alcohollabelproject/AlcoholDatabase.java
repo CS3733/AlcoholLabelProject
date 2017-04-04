@@ -62,7 +62,9 @@ public class AlcoholDatabase {
      * @return True if the application was submitted without error.
      */
     public boolean submitApplication(SubmittedApplication application) {
-        
+        // Put them in the right database or else
+        // Fill in fields for submitted application and the other databases
+        // read javadocs for return statement
         return false;
     }
 
