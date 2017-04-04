@@ -50,8 +50,6 @@ public class NewApplicationController {
     @FXML
     Button logoutBtn;
     @FXML
-    Label error1;
-    @FXML
     Label error2;
     @FXML
     Label permitNoErrorField;
@@ -92,18 +90,30 @@ public class NewApplicationController {
 
         Boolean formFilled=false;
 
-        //errors are printed if required fields are not filled in
+        //errors are printed only if required fields are not filled in
         if(permitNoTextField.getText().isEmpty()) {
             permitNoErrorField.setText("Please fill in your permit number.");
+        }
+        else{
+            permitNoErrorField.setText("");
         }
         if(addressField.getText().isEmpty()) {
             addressErrorField.setText("Please fill in the physical address of your company.");
         }
+        else{
+            addressErrorField.setText("");
+        }
         if(phoneNumberField.getText().isEmpty()) {
             phoneNumErrorField.setText("Please fill in the contact number.");
         }
+        else{
+            phoneNumErrorField.setText("");
+        }
         if(emailAddressField.getText().isEmpty()) {
             emailErrorField.setText("Please fill in the contact email.");
+        }
+        else{
+            emailErrorField.setText("");
         }
 
         //check if required fields are filled
@@ -132,7 +142,7 @@ public class NewApplicationController {
             //also check if emails or phone numbers are valid!!!!!!
 
             //form is now filled in so go to page 2 of label application
-            Main.loadFXML("/fxml/new-app-page2.FXML");
+            Main.loadFXML("/fxml/newApplicationPage2.FXML");
         }
     }
 
@@ -229,7 +239,7 @@ public class NewApplicationController {
 
             //Create a SubmittedApplication
             SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
-            applicant.addSubmittedApp(newApp); //<---need to be able to add this application to appList in workflow
+            applicant.addSubmittedApp(newApp);
 
             //Submit the new application to the database
             //alcoholDB.submitApplication(newApp);

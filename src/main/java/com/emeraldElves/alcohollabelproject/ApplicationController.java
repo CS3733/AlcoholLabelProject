@@ -21,11 +21,11 @@ public class ApplicationController {
      * Loads the new application fxml file
      */
     public void newApplication() {
-        Main.loadFXML("/fxml/NewApplication.fxml");
+        Main.loadFXML("/fxml/newApplicationPage1.fxml");
     }
 
     /**
      * Loads the update application fxml file
      */
-    public void updateApplication(){ Main.loadFXML("/fxml/UpdateApplication.fxml");}
+    public void updateApplication(){ Main.loadFXML("/fxml/update-app.fxml");}
 }
