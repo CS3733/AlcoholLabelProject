@@ -83,51 +83,61 @@ public class AlcoholDatabase {
         //
         boolean worked;//whether or not it added stuff to database
 
-        int appID = (int)(Math.random()*100);//the unique application id for now
+        int appID = (int) System.currentTimeMillis(); //the unique application id for now
+
 
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
 
-        if(resultsSubmitted != null){
-            //unique ID in table, so this application is already in table.
-            //So we update the fields? I don't know how to do this, I'm so sorry kyle
-        }
-        else{
-            //not in table, need to add to all 3 tables
-            //SubmittedApplications
-            worked = db.insert("'"+ appID + "', '" //application id
-                            + manInfo.getRepresentativeID() + "', '" //applicant ID
-                            + status + "', '" //status
-                            + status.getMessage() + "', '" //status message
-                            + info.getSubmissionDate() + "', '" //submission time
-                            + info.getSubmissionDate() + "', '"//no field for expiration date
-                            + manInfo.getName() + "', '" //agent name
-                            + info.getSubmissionDate() + "', '" //approval date
-                            + "admin1'" //TTBUsername
-                    ,"SubmittedApplications");
+        try {
+            if (!resultsSubmitted.next()) {
+                //unique ID in table, so this application is already in table.
+                //So we update the fields? I don't know how to do this, I'm so sorry kyle
+            } else {
+                //not in table, need to add to all 3 tables
+                //SubmittedApplications
+                worked = db.insert("'" + appID + "', '" //application id
+                                + manInfo.getRepresentativeID() + "', '" //applicant ID
+                                + status + "', '" //status
+                                + status.getMessage() + "', '" //status message
+                                + info.getSubmissionDate() + "', '" //submission time
+                                + info.getSubmissionDate() + "', '"//no field for expiration date
+                                + manInfo.getName() + "', '" //agent name
+                                + info.getSubmissionDate() + "', '" //approval date
+                                + "admin1'" //TTBUsername
+                        , "SubmittedApplications");
 
-            if(!worked){ return false;}//didn't add to at least 1 table, so return false
-            //ManufacturerInfo
-            worked = db.insert("'" + appID +"', '"
-                            + manInfo.getName() + "', " //authorized name: i assume this is just the name of the applicant???
-                            + manInfo.getPhysicalAddress() + "', " //physical address
-                            + manInfo.getCompany() + "', " //company
-                            + manInfo.getRepresentativeID() + "', " //representative id
-                            + manInfo.getPermitNum() //permit num
-                            + manInfo.getPhoneNumber().getPhoneNumber() + "', " //phone num. It may look stupid but it works
-                            + manInfo.getEmailAddress().getEmailAddress() + "'" //email
-                    ,"ManufacturerInfo");
-            if(!worked){ return false;}//didn't add to at least 1 table, so return false
-            //AlcoholInfo
-            worked = db.insert("'" + appID + "', "
-                            + alcInfo.getAlcoholContent() + "', " //alcohol content
-                            + alcInfo.getName() + "', " //fanciful name
-                            + alcInfo.getBrandName() + "', " //brand name
-                            + alcInfo.getOrigin() + "', " //origin: still not sure how it handles enums...
-                            + alcInfo.getAlcoholType() + "', " //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
-                            + alcInfo.getWineInfo().pH + "', " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
-                            + alcInfo.getWineInfo().vintageYear + "'" //vintage year: see above comment
-                    ,"AlcoholInfo");
-            if(!worked){ return false;}//didn't add to at least 1 table, so return false
+                if (!worked) {
+                    return false;
+                }//didn't add to at least 1 table, so return false
+                //ManufacturerInfo
+                worked = db.insert("'" + appID + "', '"
+                                + manInfo.getName() + "', " //authorized name: i assume this is just the name of the applicant???
+                                + manInfo.getPhysicalAddress() + "', " //physical address
+                                + manInfo.getCompany() + "', " //company
+                                + manInfo.getRepresentativeID() + "', " //representative id
+                                + manInfo.getPermitNum() //permit num
+                                + manInfo.getPhoneNumber().getPhoneNumber() + "', " //phone num. It may look stupid but it works
+                                + manInfo.getEmailAddress().getEmailAddress() + "'" //email
+                        , "ManufacturerInfo");
+                if (!worked) {
+                    return false;
+                }//didn't add to at least 1 table, so return false
+                //AlcoholInfo
+                worked = db.insert("'" + appID + "', "
+                                + alcInfo.getAlcoholContent() + "', " //alcohol content
+                                + alcInfo.getName() + "', " //fanciful name
+                                + alcInfo.getBrandName() + "', " //brand name
+                                + alcInfo.getOrigin() + "', " //origin: still not sure how it handles enums...
+                                + alcInfo.getAlcoholType() + "', " //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
+                                + alcInfo.getWineInfo().pH + "', " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                                + alcInfo.getWineInfo().vintageYear + "'" //vintage year: see above comment
+                        , "AlcoholInfo");
+                if (!worked) {
+                    return false;
+                }//didn't add to at least 1 table, so return false
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return true;
