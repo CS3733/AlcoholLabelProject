@@ -64,7 +64,16 @@ public class Main extends Application {
 
     }
 
-    public void loadUpdateApplicationPage(SubmittedApplication application){
+    public void loadUpdateApplicationPage(SubmittedApplication application, String Username){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
+        try {
+            Parent root = loader.load();
+            UpdateApplicationController controller = loader.getController();
+            controller.init(this, application, Username);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
