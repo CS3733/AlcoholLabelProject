@@ -6,8 +6,6 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.emeraldElves.alcohollabelproject.Main.loadFXML;
-
 public class NewApplicationController {
     @FXML
     TextField repIDNoTextField;
@@ -224,14 +222,14 @@ public class NewApplicationController {
             ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
-            List<SubmittedApplication> appList = new ArrayList<SubmittedApplication>();
-            //appList.add(newApp); <---need to be able to add this application to appList in workflow
+            List<SubmittedApplication> appList = new ArrayList();
 
             //Create applicant to store in submitted application
             Applicant applicant = new Applicant(appList);
 
             //Create a SubmittedApplication
             SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
+            applicant.addSubmittedApp(newApp); //<---need to be able to add this application to appList in workflow
 
             //Submit the new application to the database
             //alcoholDB.submitApplication(newApp);
