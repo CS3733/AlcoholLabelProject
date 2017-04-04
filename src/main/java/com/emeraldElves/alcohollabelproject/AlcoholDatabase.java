@@ -11,9 +11,6 @@ import java.util.ArrayList;
  */
 public class AlcoholDatabase {
 
-    // TODO: ints to enums
-
-
     private Database db;
 
     /**
@@ -34,8 +31,23 @@ public class AlcoholDatabase {
      * @return A list of the most recently approved applications ordered from most recent to least recent.
      */
     public List<SubmittedApplication> getMostRecentApproved(int numApplications) {
+        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "submissionTime ASC");
 
-        return new ArrayList<SubmittedApplication>();
+        List<SubmittedApplication> applications = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            while (results.next() && ids.size() < numApplications) {
+                ids.add(results.getInt("applicationID"));
+            }
+            for (int i = 0; i < ids.size(); i++) {
+                applications.add(getApplicationByID(ids.get(i)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return applications;
     }
 
     // TODO: finish searchByBrandName
@@ -47,11 +59,26 @@ public class AlcoholDatabase {
      * @return A list of approved alcohols containing the brandName ordered by time approved.
      */
     public List<SubmittedApplication> searchByBrandName(String brandName) {
+        ResultSet results = db.select("*", "AlcoholInfo", "brandName='" + brandName + "'");
 
-        return new ArrayList<SubmittedApplication>();
+        List<SubmittedApplication> applications = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            while (results.next()) {
+                ids.add(results.getInt("applicationID"));
+            }
+            for (int i = 0; i < ids.size(); i++) {
+                SubmittedApplication application = getApplicationByID(ids.get(i));
+                if (application.getStatus() == ApplicationStatus.APPROVED)
+                    applications.add(application);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return applications;
     }
-
-    // TODO: finish submitApplication
 
     /**
      * Submit an application for review.
@@ -63,7 +90,7 @@ public class AlcoholDatabase {
         /*KYLE read this before checking my code. This is how i assume this method works:
         you add info to submittedapplications, manufacturerinfo, and alcoholinfo table.
         all of that info from the application passed in. I understood it better as i was typing
-        this out, but i figured you might like to see this. Just imagine me maniachally laughing to myself at
+        this out, but i figured you might like to see this. Just imagine me maniacally laughing to myself at
         night. Thats how i'll type out this code.
         */
 
@@ -182,7 +209,7 @@ public class AlcoholDatabase {
             while (results.next() && ids.size() < numApplications) {
                 ids.add(results.getInt("applicationID"));
             }
-            for(int i = 0; i < ids.size(); i++){
+            for (int i = 0; i < ids.size(); i++) {
                 applications.add(getApplicationByID(ids.get(i)));
             }
         } catch (SQLException e) {
@@ -234,7 +261,8 @@ public class AlcoholDatabase {
      * @return True if the status was updated without error.
      */
     public boolean updateApplicationStatus(SubmittedApplication application, ApplicationStatus status) {
-        return false;
+        application.setStatus(status);
+        return db.update("SubmittedApplications", "status = " + status.getValue() + ", statusMsg = '" + status.getMessage() + "'", "applicationID = " + application.getApplicationID());
     }
 
 

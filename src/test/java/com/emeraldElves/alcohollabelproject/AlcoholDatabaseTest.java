@@ -74,11 +74,14 @@ public class AlcoholDatabaseTest {
 
         List<SubmittedApplication> applications = alcoholDatabase.getMostRecentUnapproved(1);
         assertEquals(1, applications.size());
-    }
 
-//    @Test
-    public void testUnapproved() {
-        //assertTrue(alcoholDatabase.getMostRecentUnapproved(10).isEmpty());
+        assertTrue(alcoholDatabase.getMostRecentApproved(10).isEmpty());
+
+        assertTrue(alcoholDatabase.updateApplicationStatus(test, ApplicationStatus.APPROVED));
+
+        assertEquals(1, alcoholDatabase.getMostRecentApproved(10).size());
+
+        assertEquals(1, alcoholDatabase.searchByBrandName("brand").size());
     }
 
 
