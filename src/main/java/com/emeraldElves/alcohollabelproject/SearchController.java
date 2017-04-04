@@ -13,7 +13,14 @@ import javafx.util.Callback;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.lang.Object.StringEscapeUtils;
+=======
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+>>>>>>> refs/remotes/origin/develop
 import java.util.List;
 
 /**
@@ -47,7 +54,10 @@ public class SearchController {
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getManufacturer().getCompany()));
+                DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+                Date date = p.getValue().getApplication().getSubmissionDate();
+                date.setYear(date.getYear() - 1900);
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
             }
         });
         manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
