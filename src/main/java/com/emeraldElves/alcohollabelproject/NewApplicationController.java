@@ -275,20 +275,6 @@ public class NewApplicationController {
             //Submit the new application to the database
             alcoholDB.submitApplication(newApp);
 
-//            AlcoholInfo alc = new AlcoholInfo(5, "name", "brand", ProductSource.DOMESTIC
-//                    , AlcoholType.BEER, null); //alcohol info for test
-//            Date subDate = new Date(1997, 5, 20);
-//            ManufacturerInfo man = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
-//                    new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
-//
-//            ApplicationInfo appInfo2 = new ApplicationInfo(subDate, man, alc);
-//
-//            Applicant applicant2 = new Applicant(null);
-//
-//            SubmittedApplication test = new SubmittedApplication(appInfo2, ApplicationStatus.PENDINGREVIEW, applicant2);
-//
-//            alcoholDB.submitApplication(test);
-
             //Go back to homepage
             Main.loadFXML("/fxml/mainGUI.FXML");
         }
