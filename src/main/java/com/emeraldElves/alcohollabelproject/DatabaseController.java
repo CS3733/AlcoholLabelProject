@@ -31,7 +31,8 @@ public class DatabaseController {
 
         try {
             database.createTable("ApplicantLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
+                    new Database.TableField("password", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("representativeID", "INTEGER UNIQUE NOT NULL"));
             Log.console("Created new ApplicantLogin table");
         } catch (SQLException e) {
             Log.console("Used existing ApplicantLogin table");
