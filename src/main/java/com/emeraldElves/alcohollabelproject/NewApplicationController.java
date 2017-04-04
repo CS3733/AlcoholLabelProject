@@ -65,30 +65,41 @@ public class NewApplicationController {
     Label emailErrorField;
 
 
+    //Creates a database to store the alcohol information from form
+    AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
+
+    //Stores representative ID number
+    int repIDNo = -1; //means they didn't enter a rep ID num
+    //Stores the permit number
+    int permitNo = 0;
+    //Stores the physical address of the applicant/company
+    String physicalAddress= null;
+    //Stores the applicant's email
+    EmailAddress applicantEmail = null;
+    //Stores the applicant's phone number
+    PhoneNumber applicantPhone = null;
+    //Stores the manufacturer's info
+    ManufacturerInfo appManInfo = null;
 
 
     public void nextPage(){
 
         Boolean formFilled=false;
 
-        if(repIDNoTextField.getText().isEmpty()) {
-            repIDNoTextField=null;
-        }
-
         if(permitNoTextField.getText().isEmpty()) {
-            error1.setText("Please fill your permit number.");
-           // return;
+            permitNoErrorField.setText("Please fill in your permit number.");
+            //return;
         }
         if(addressField.getText().isEmpty()) {
-            error1.setText("Please fill in the physical address of your company");
-           // return;
+            addressErrorField.setText("Please fill in the physical address of your company.");
+            //return;
         }
         if(phoneNumberField.getText().isEmpty()) {
-            error1.setText("Please fill in the contact number.");
-           // return;
+            phoneNumErrorField.setText("Please fill in the contact number.");
+            //return;
         }
         if(emailAddressField.getText().isEmpty()) {
-            error1.setText("Please fill in the contact email.");
+            emailErrorField.setText("Please fill in the contact email.");
             //return;
         }
 
@@ -96,7 +107,6 @@ public class NewApplicationController {
                 !addressField.getText().isEmpty()&&!permitNoTextField.getText().isEmpty()){
             formFilled=true;
         }
-
         if(formFilled){
             //form is all filled in so go to page 2 of label application
             Main.loadFXML("/fxml/new-app-page2.FXML");
@@ -128,8 +138,8 @@ public class NewApplicationController {
             return;
         }
         if(alcoholName.getText().isEmpty()) {
-            alcoholName=null;
-            //return;
+            error2.setText("Please fill in your alcohols name");
+            return;
         }
         if(brandNameField.getText().isEmpty()) {
             error2.setText("Please fill in your brand name");
@@ -168,7 +178,7 @@ public class NewApplicationController {
         PhoneNumber applicantPhone = new PhoneNumber(phoneNumberField.getText());
 
         //Creates a ManufacturerInfo from the address, brand
-        ManufacturerInfo appManInfo = new ManufacturerInfo("Person", addressField.getText(), brandNameField.getText(), 
+        ManufacturerInfo appManInfo = new ManufacturerInfo("Person", addressField.getText(), brandNameField.getText(),
                 Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()),
                 applicantPhone, applicantEmail);
 
