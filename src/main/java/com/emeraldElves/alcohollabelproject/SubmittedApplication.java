@@ -8,6 +8,7 @@ public class SubmittedApplication {
     private ApplicationInfo application;
     private ApplicationStatus status;
     private Applicant applicant;
+    private int applicationID = -1;
 
     /**
      * Creates an application which was submitted.
@@ -20,6 +21,14 @@ public class SubmittedApplication {
         this.application = application;
         this.status = status;
         this.applicant = applicant;
+    }
+
+    public int getApplicationID() {
+        return applicationID;
+    }
+
+    public void setApplicationID(int applicationID) {
+        this.applicationID = applicationID;
     }
 
     public ApplicationInfo getApplication() {

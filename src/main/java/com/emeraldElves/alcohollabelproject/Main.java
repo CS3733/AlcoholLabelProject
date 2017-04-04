@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -16,34 +15,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        database = new Database("ttbDB");
-        database.connect();
-        try {
-            database.createTable("TTBAgentLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
-            Log.console("Created new TTBAgentLogin table");
-        } catch (SQLException e) {
-            Log.console("Used existing TTBAgentLogin table");
-        }
-
-        try {
-            database.createTable("ApplicantLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
-            Log.console("Created new ApplicantLogin table");
-        } catch (SQLException e) {
-            Log.console("Used existing ApplicantLogin table");
-        }
-
-        try {
-            database.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
-                    new Database.TableField("status", "INTEGER NOT NULL"),
-                    new Database.TableField("statusMsg", "VARCHAR (10000)"),
-                    new Database.TableField("submissionTime", "TIMESTAMP"));
-            Log.console("Created new SubmittedApplications table");
-        } catch (SQLException e) {
-            Log.console("Used existing SubmittedApplications table");
-        }
+        database = DatabaseController.getInstance().initDatabase("ttbDB");
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainGUI.fxml"));
