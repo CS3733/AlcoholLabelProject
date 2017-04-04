@@ -9,11 +9,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.Object.StringEscapeUtils;
 import java.util.List;
 
 /**
