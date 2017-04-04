@@ -69,7 +69,15 @@ public class Main extends Application {
     }
 
     public void loadHomepage(UserType userType, String username){
-
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Homepage.fxml"));
+//        try {
+//            Parent root = loader.load();
+//            HomeController controller = loader.getController();
+//            controller.init(this, userType, username);
+//            stage.getScene().setRoot(root);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void loadProfilePage(String username){
@@ -77,7 +85,15 @@ public class Main extends Application {
     }
 
     public void loadNewApplicationPage(String username){
-
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewApplication.fxml"));
+//        try {
+//            Parent root = loader.load();
+//            ApplicationController controller = loader.getController();
+//            controller.init(this, username);
+//            stage.getScene().setRoot(root);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void loadUpdateApplicationPage(SubmittedApplication application, String Username){
