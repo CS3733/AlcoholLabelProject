@@ -31,7 +31,8 @@ public class DatabaseController {
 
         try {
             database.createTable("ApplicantLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
+                    new Database.TableField("password", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("representativeID", "INTEGER UNIQUE NOT NULL"));
             Log.console("Created new ApplicantLogin table");
         } catch (SQLException e) {
             Log.console("Used existing ApplicantLogin table");
@@ -69,7 +70,7 @@ public class DatabaseController {
         try {
             database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
-                    new Database.TableField("fancifulName", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"),  //only beer or wine?
