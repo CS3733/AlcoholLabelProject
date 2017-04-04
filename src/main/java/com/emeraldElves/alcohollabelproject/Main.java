@@ -18,11 +18,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
-
-
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/new-app-page1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"));
         primaryStage.setTitle("Alcohol Label Project");
-        primaryStage.setScene(new Scene(root, 800, 400));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
         stage = primaryStage;
     }
