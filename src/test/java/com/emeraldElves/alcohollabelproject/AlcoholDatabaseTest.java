@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -22,7 +23,19 @@ public class AlcoholDatabaseTest {
     }
     @Test
     public void testSubmitApplication(){
-        //AlcoholInfo alc = new AlcoholInfo()
+        AlcoholInfo alc = new AlcoholInfo(5,"name","brand", ProductSource.DOMESTIC
+        , AlcoholType.BEER, null); //alcohol info for test
+        Date subDate = new Date(1997, 5, 20);
+        ManufacturerInfo man = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
+                new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
+
+        ApplicationInfo appInfo = new ApplicationInfo(subDate, man, alc);
+
+        Applicant applicant = new Applicant(null);
+
+        SubmittedApplication test = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant);
+        assertTrue(alcoholDatabase.submitApplication(test));
+
     }
 
     @Test

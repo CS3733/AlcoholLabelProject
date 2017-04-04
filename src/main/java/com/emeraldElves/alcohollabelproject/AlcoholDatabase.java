@@ -62,10 +62,6 @@ public class AlcoholDatabase {
      * @return True if the application was submitted without error.
      */
     public boolean submitApplication(SubmittedApplication application) {
-        // Put them in the right database or else
-        // Fill in fields for submitted application and the other databases
-        // read javadocs for return statement
-
         /*KYLE read this before checking my code. This is how i assume this method works:
         you add info to submittedapplications, manufacturerinfo, and alcoholinfo table.
         all of that info from the application passed in. I understood it better as i was typing
@@ -78,9 +74,6 @@ public class AlcoholDatabase {
         Also, I don't know where to find the approval time, expiration date, TTBUsername. Nothing in submittedapplication relating to it. hope you can figure this
         out. I'll do what i can with the rest.
         */
-        // ManufacturerInfo
-        //SubmittedApplications
-        // AlcoholInfo
 
         //getting all info needed from submitted application into variables
         ApplicationStatus status = application.getStatus();
@@ -95,7 +88,8 @@ public class AlcoholDatabase {
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
 
         if(resultsSubmitted != null){
-            //already in table, so we update? I'm so sorry kyle
+            //unique ID in table, so this application is already in table.
+            //So we update the fields? I don't know how to do this, I'm so sorry kyle
         }
         else{
             //not in table, need to add to all 3 tables
