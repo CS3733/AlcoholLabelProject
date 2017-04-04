@@ -65,6 +65,65 @@ public class AlcoholDatabase {
         // Put them in the right database or else
         // Fill in fields for submitted application and the other databases
         // read javadocs for return statement
+
+        /*KYLE read this before checking my code. This is how i assume this method works:
+        you add info to submittedapplications, manufacturerinfo, and alcoholinfo table.
+        all of that info from the application passed in. I understood it better as i was typing
+        this out, but i figured you might like to see this. Just imagine me maniachally laughing to myself at
+        night. Thats how i'll type out this code.
+        */
+
+        /*IMPORTANT: I have not idea where to find the unique ID number for the application. I will just make a randomID number for each application, but
+        i dont know where to associate the id number to the application. Other than that, this function should work.
+        Also, I don't know where to find the approval time, expiration date, TTBUsername. Nothing in submittedapplication relating to it. hope you can figure this
+        out. I'll do what i can with the rest.
+        */
+        // ManufacturerInfo
+        //SubmittedApplications
+        // AlcoholInfo
+
+        //getting all info needed from submitted application into variables
+        ApplicationStatus status = application.getStatus();
+        ApplicationInfo info = application.getApplication();
+        AlcoholInfo alcInfo = info.getAlcohol();
+        ManufacturerInfo manInfo = info.getManufacturer();
+        //
+
+        int appID = (int)(Math.random()*100);//the unique application id for now
+
+        ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
+
+        if(resultsSubmitted != null){
+            //already in table, so we update
+        }
+        else{
+            //not in table, need to add to all 3 tables
+            db.insert("'"+ appID + "', '" //application id
+                            + manInfo.getRepresentativeID() + "', '" //applicant ID
+                            + status + "', '" //status
+                            + status.getMessage() + "', '" //status message
+                            + info.getSubmissionDate() + "', '" //submission time
+                            + info.getSubmissionDate() + "', '"//no field for expiration date
+                            + manInfo.getName() + "', '" //agent name
+                            + info.getSubmissionDate() + "', '" //approval date
+                            + "admin1'" //TTBUsername
+                    ,"SubmittedApplications");
+
+            db.insert("'" + appID +"', '"
+                            + manInfo.getName() + "', " //authorized name: i assume this is just the name of the applicant???
+                            + manInfo.getPhysicalAddress() + "', " //physical address
+                            + manInfo.getCompany() + "', " //company
+                            + manInfo.getRepresentativeID() + "', " //representative id
+                            + manInfo.getPermitNum() //permit num
+                            + manInfo.getPhoneNumber().getPhoneNumber() + "', " //phone num. It may look stupid but it works
+                            + manInfo.getEmailAddress() + "'" //email
+                    ,"ManufacturerInfo");
+        }
+
+
+
+
+
         return false;
     }
 
