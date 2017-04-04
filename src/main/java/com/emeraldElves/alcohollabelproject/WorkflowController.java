@@ -19,23 +19,36 @@ import java.text.SimpleDateFormat;
 
 public class WorkflowController implements Initializable {
     @FXML
-    public Label ttbAgentNameLabel;
+    Label fanciful1;
     @FXML
-    public ComboBox pullApplicationsDropDown;
+    Label fanciful2;
     @FXML
-    public Button logoutBtn;
+    Label fanciful3;
     @FXML
-    public Button viewCompletedApplicationBtn;
+    Label fanciful4;
     @FXML
-    public ComboBox statusDropdown;
+    Label fanciful5;
     @FXML
-    public Label alcoholNameLabel;
+    Label brand1;
     @FXML
-    public Label applicatorNameLabel;
+    Label brand2;
     @FXML
-    public Label dateLabel;
+    Label brand3;
     @FXML
-    public Button submitBtn;
+    Label brand4;
+    @FXML
+    Label brand5;
+    @FXML
+    Label date1;
+    @FXML
+    Label date2;
+    @FXML
+    Label date3;
+    @FXML
+    Label date4;
+    @FXML
+    Label date5;
+
 
 
     AlcoholDatabase db = new AlcoholDatabase(Main.database);
@@ -45,6 +58,32 @@ public class WorkflowController implements Initializable {
     public String[] dates = new String[50];
     public String pattern = "MM/dd/yyyy";
     public int i = 0;
+
+    // for init
+    Main main;
+    String Username;
+
+    public void init(Main main, String Username ) {
+        this.main = main;
+        this.Username = Username;
+
+        // load application values into labels on FXML
+        fanciful1.setText(appNames[0]);
+        fanciful2.setText(appNames[1]);
+        fanciful3.setText(appNames[2]);
+        fanciful4.setText(appNames[3]);
+        fanciful5.setText(appNames[4]);
+        brand1.setText(appBrandNames[0]);
+        brand2.setText(appBrandNames[1]);
+        brand3.setText(appBrandNames[2]);
+        brand4.setText(appBrandNames[3]);
+        brand5.setText(appBrandNames[4]);
+        date1.setText(dates[0]);
+        date2.setText(dates[1]);
+        date3.setText(dates[2]);
+        date4.setText(dates[3]);
+        date5.setText(dates[4]);
+    }
 
     public void queryDatabase(String ttbUsername) {
         List<SubmittedApplication> list = db.getAssignedApplications(ttbUsername);
