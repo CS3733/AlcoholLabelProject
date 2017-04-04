@@ -40,6 +40,42 @@ public class Main extends Application {
         stage.getScene().setRoot(root);
     }
 
+    public void loadSearchPage(String searchTerm){
+
+    }
+
+    public void loadDetailedSearchPage(SubmittedApplication application){
+
+    }
+
+    public void loadLoginPage(){
+
+    }
+
+    public void loadHomepage(UserType userType, String username){
+
+    }
+
+    public void loadProfilePage(String username){
+
+    }
+
+    public void loadNewApplicationPage(String username){
+
+    }
+
+    public void loadUpdateApplicationPage(SubmittedApplication application){
+
+    }
+
+    public void loadWorkflowPage(String username){
+
+    }
+
+    public void loadWorkflowActionsPage(String username, SubmittedApplication application){
+
+    }
+
 
     public static void main(String[] args) {
         launch(args);
