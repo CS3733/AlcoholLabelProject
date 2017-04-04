@@ -72,25 +72,24 @@ public class NewApplicationController {
         Boolean formFilled=false;
 
         if(repIDNoTextField.getText().isEmpty()) {
-            error1.setText("Please fill in your representative number");
-            return;
+            repIDNoTextField=null;
         }
 
         if(permitNoTextField.getText().isEmpty()) {
             error1.setText("Please fill your permit number.");
-            return;
+           // return;
         }
         if(addressField.getText().isEmpty()) {
             error1.setText("Please fill in the physical address of your company");
-            return;
+           // return;
         }
         if(phoneNumberField.getText().isEmpty()) {
             error1.setText("Please fill in the contact number.");
-            return;
+           // return;
         }
         if(emailAddressField.getText().isEmpty()) {
             error1.setText("Please fill in the contact email.");
-            return;
+            //return;
         }
 
         if(!emailAddressField.getText().isEmpty()&&!phoneNumberField.getText().isEmpty()&&
@@ -129,8 +128,8 @@ public class NewApplicationController {
             return;
         }
         if(alcoholName.getText().isEmpty()) {
-            error2.setText("Please fill in your alcohols name");
-            return;
+            alcoholName=null;
+            //return;
         }
         if(brandNameField.getText().isEmpty()) {
             error2.setText("Please fill in your brand name");
