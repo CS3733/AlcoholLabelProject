@@ -14,7 +14,6 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,21 +21,21 @@ import java.util.List;
  */
 public class SearchController {
     @FXML
-    TextField searchField;
+    private TextField searchField;
     @FXML
-    TableView<SubmittedApplication> resultsTable;
+    private TableView<SubmittedApplication> resultsTable;
     @FXML
-    TableColumn<SubmittedApplication, String> dateCol;
+    private TableColumn<SubmittedApplication, String> dateCol;
     @FXML
-    TableColumn<SubmittedApplication, String> manufacturerCol;
+    private TableColumn<SubmittedApplication, String> manufacturerCol;
     @FXML
-    TableColumn<SubmittedApplication, String> brandCol;
+    private TableColumn<SubmittedApplication, String> brandCol;
     @FXML
-    Button saveBtn;
+    private Button saveBtn;
     @FXML
-    MenuItem contextSaveBtn;
+    private MenuItem contextSaveBtn;
     @FXML
-    Label descriptionLabel;
+    private Label descriptionLabel;
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
     public SearchController(){
 
@@ -48,19 +47,18 @@ public class SearchController {
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(StringEscapeUtils.escapeJava(p.getValue().getApplication().getManufacturer().getCompany()));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getManufacturer().getCompany()));
             }
         });
         manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(StringEscapeUtils.escapeJava(p.getValue().getApplication().getManufacturer().getCompany()));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getManufacturer().getCompany()));
             }
         });
         brandCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName()));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName()));
             }
         });
         saveBtn.setDisable(data.size() == 0);
