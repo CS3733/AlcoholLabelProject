@@ -34,8 +34,19 @@ public class UpdateApplicationController {
     @FXML
     DatePicker datePicker;
 
+    Main main;
+    SubmittedApplication CurrentlyBeingUpdated;
+    String Username;
 
 
+
+
+    public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username ) {
+        this.main = main;
+        this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
+        this.Username = Username;
+
+    }
     public void ApplicationStatuschecker() {
         switch(status)
         {
@@ -54,10 +65,8 @@ public class UpdateApplicationController {
         }
 
     }
-
-
     public void updateRejected(){
-        SubmittedApplication CurrentlyBeingUpdated = null;
+        //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
         if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE)
         {
@@ -70,7 +79,7 @@ public class UpdateApplicationController {
     }
 
     public void updateApproved() {
-        SubmittedApplication CurrentlyBeingUpdated = null;
+        //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
 
         if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE)
@@ -85,8 +94,10 @@ public class UpdateApplicationController {
 
     public void submitApp(){
         ApplicationStatuschecker();
-        String applicantname = null;
-        SubmittedApplication CurrentlyBeingUpdated = null;
+
+        //SubmittedApplication CurrentlyBeingUpdated = null;
+        String applicantname = CurrentlyBeingUpdated.getApplication().getManufacturer().getName();
+        int UniqID = CurrentlyBeingUpdated.getApplicationID();
         String physicalAddress = CurrentlyBeingUpdated.getApplication().getManufacturer().getPhysicalAddress();
         String company = null;
         int representativeID = CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID();;
@@ -107,6 +118,7 @@ public class UpdateApplicationController {
         ApplicationInfo application = new ApplicationInfo( submissionDate,  manufacturer,  submittedAlcohol);
         Applicant applicant = new Applicant(null);
         SubmittedApplication UpdatedApplication =new SubmittedApplication(application,status,applicant);
+        main.loadHomepage(UserType.TTBAGENT, Username);
 
     }
 

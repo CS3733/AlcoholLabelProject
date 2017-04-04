@@ -5,6 +5,14 @@ package com.emeraldElves.alcohollabelproject;
  * Created by keionbis on 4/4/17.
  */
 public class WorkflowActionsController {
+    Main main;
+    SubmittedApplication CurrentlyBeingUpdated;
+    String Username;
+    public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username ) {
+        this.main = main;
+        this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
+        this.Username = Username;
+    }
 
     public void approve() {
         AlcoholDatabase alcoholDatabase = null;
