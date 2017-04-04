@@ -34,7 +34,17 @@ public class AlcoholDatabase {
      */
     public List<SubmittedApplication> getMostRecentApproved(int numApplications) {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "submissionTime ASC");
+        return getApplicationsFromResultSet(results, numApplications);
+    }
 
+    /**
+     * Get applications from a {@link ResultSet}
+     *
+     * @param results         The results of an database query
+     * @param numApplications The number of applications to get.
+     * @return A list of {@link SubmittedApplication} from the {@link ResultSet}
+     */
+    private List<SubmittedApplication> getApplicationsFromResultSet(ResultSet results, int numApplications) {
         List<SubmittedApplication> applications = new ArrayList<>();
         List<Integer> ids = new ArrayList<>();
 
@@ -52,7 +62,29 @@ public class AlcoholDatabase {
         return applications;
     }
 
-    // TODO: finish searchByBrandName
+    /**
+     * Get applications from a {@link ResultSet}
+     *
+     * @param results The results of an database query
+     * @return A list of {@link SubmittedApplication} from the {@link ResultSet}
+     */
+    private List<SubmittedApplication> getApplicationsFromResultSet(ResultSet results) {
+        List<SubmittedApplication> applications = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            while (results.next()) {
+                ids.add(results.getInt("applicationID"));
+            }
+            for (int i = 0; i < ids.size(); i++) {
+                applications.add(getApplicationByID(ids.get(i)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return applications;
+    }
 
     /**
      * Search by the brand name of alcohol.
@@ -63,22 +95,12 @@ public class AlcoholDatabase {
     public List<SubmittedApplication> searchByBrandName(String brandName) {
         ResultSet results = db.select("*", "AlcoholInfo", "brandName='" + brandName + "'");
 
-        List<SubmittedApplication> applications = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>();
+        List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
 
-        try {
-            while (results.next()) {
-                ids.add(results.getInt("applicationID"));
-            }
-            for (int i = 0; i < ids.size(); i++) {
-                SubmittedApplication application = getApplicationByID(ids.get(i));
-                if (application.getStatus() == ApplicationStatus.APPROVED)
-                    applications.add(application);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        for (int i = applications.size() - 1; i >= 0; i--) {
+            if (applications.get(i).getStatus() == ApplicationStatus.APPROVED)
+                applications.remove(i);
         }
-
         return applications;
     }
 
@@ -210,22 +232,7 @@ public class AlcoholDatabase {
      */
     public List<SubmittedApplication> getMostRecentUnapproved(int numApplications) {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue(), "submissionTime ASC");
-
-        List<SubmittedApplication> applications = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>();
-
-        try {
-            while (results.next() && ids.size() < numApplications) {
-                ids.add(results.getInt("applicationID"));
-            }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return applications;
+        return getApplicationsFromResultSet(results, numApplications);
     }
 
     private SubmittedApplication getApplicationByID(int id) {
@@ -305,21 +312,7 @@ public class AlcoholDatabase {
     public List<SubmittedApplication> getAssignedApplications(String ttbAgentUsername) {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue() + " AND TTBUsername = '" + ttbAgentUsername + "'", "submissionTime ASC");
 
-        List<SubmittedApplication> applications = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>();
-
-        try {
-            while (results.next()) {
-                ids.add(results.getInt("applicationID"));
-            }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return applications;
+        return getApplicationsFromResultSet(results);
     }
 
 }
