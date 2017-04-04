@@ -10,6 +10,7 @@ public class DetailedSearchController {
 
     private Main main;
     private SubmittedApplication application;
+    private String searchTerm;
 
     @FXML
     Label brandName;
@@ -20,10 +21,10 @@ public class DetailedSearchController {
     @FXML
     Label alcoholType;
 
-
-    public void init(Main main, SubmittedApplication application) {
+    public void init(Main main, SubmittedApplication application, String searchTerm) {
         this.main = main;
         this.application = application;
+        this.searchTerm = searchTerm;
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
         String type = "";

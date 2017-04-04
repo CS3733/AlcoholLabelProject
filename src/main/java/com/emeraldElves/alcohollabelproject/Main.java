@@ -6,8 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.xml.soap.Detail;
 import java.io.IOException;
-import java.util.Date;
 
 public class Main extends Application {
 
@@ -44,8 +44,16 @@ public class Main extends Application {
 
     }
 
-    public void loadDetailedSearchPage(SubmittedApplication application){
-
+    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DetailedSearchController.fxml"));
+        try {
+            Parent root = loader.load();
+            DetailedSearchController controller = loader.getController();
+            controller.init(this, application, searchTerm);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadLoginPage(){
