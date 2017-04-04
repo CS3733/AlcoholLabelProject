@@ -17,4 +17,15 @@ public enum AlcoholType {
     public int getValue() {
         return value;
     }
+
+    public static AlcoholType fromInt(int val) {
+        switch (val) {
+            case 0:
+                return BEER;
+            case 1:
+                return WINE;
+            default:
+                return OTHER;
+        }
+    }
 }

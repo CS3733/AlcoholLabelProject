@@ -16,4 +16,8 @@ public enum ProductSource {
     public int getValue() {
         return value;
     }
+
+    public static ProductSource fromInt(int val) {
+        return val == 0 ? DOMESTIC : IMPORTED;
+    }
 }

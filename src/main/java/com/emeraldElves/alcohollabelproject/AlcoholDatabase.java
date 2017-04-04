@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -175,16 +176,52 @@ public class AlcoholDatabase {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue(), "submissionTime ASC");
 
         List<SubmittedApplication> applications = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
 
         try {
-            while (results.next()) {
-                System.out.println(results.getString("submissionTime"));
+            while (results.next() && ids.size() < numApplications) {
+                ids.add(results.getInt("applicationID"));
+            }
+            for(int i = 0; i < ids.size(); i++){
+                applications.add(getApplicationByID(ids.get(i)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return applications;
+    }
+
+    private SubmittedApplication getApplicationByID(int id) {
+        ResultSet submittedResult = db.select("*", "SubmittedApplications", "applicationID = " + id);
+
+        try {
+            if (submittedResult.next()) {
+                Date subDate = new Date(submittedResult.getLong("submissionTime"));
+
+                Applicant applicant = new Applicant(null); // TODO: implement this
+                ApplicationStatus status = ApplicationStatus.fromInt(submittedResult.getInt("status"));
+
+                ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
+
+                ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + id);
+                AlcoholInfo alcoholInfo = null;
+                if (alcoholResult.next()) {
+                    alcoholInfo = new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
+                            alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
+                            ProductSource.fromInt(alcoholResult.getInt("origin")),
+                            AlcoholType.fromInt(alcoholResult.getInt("type")),
+                            null);
+
+                }
+
+                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
+                return new SubmittedApplication(info, status, applicant);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // TODO: finish updateApplicationStatus

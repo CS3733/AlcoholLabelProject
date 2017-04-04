@@ -41,5 +41,17 @@ public enum ApplicationStatus {
     public String getMessage() {
         return message;
     }
+
+
+    public static ApplicationStatus fromInt(int val) {
+        switch (val) {
+            case 0:
+                return APPROVED;
+            case 1:
+                return PENDINGREVIEW;
+            default:
+                return REJECTED;
+        }
+    }
 }
 
