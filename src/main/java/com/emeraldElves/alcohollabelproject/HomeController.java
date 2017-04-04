@@ -11,12 +11,13 @@ public class HomeController {
     public Button loginBtn;
     public ArrayList<Label> mostRecentLabels;
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
-    public LoginState state;
 
-    public HomeController(LoginState state) {
-        this.state = state;
+    public LoginStatus status;
+
+    public HomeController(LoginStatus status) {
         mostRecentLabels = new ArrayList<Label>();
         mostRecentSubmissions = new ArrayList<SubmittedApplication>();
+        this.status = status;
     }
 
     // TODO: put FXML in correct folder
@@ -25,11 +26,11 @@ public class HomeController {
      * Loads homepage
      */
     public void loadHomePageFXML(){
-        switch (state) {
+        switch (status) {
             case LOGGEDIN:
                 Main.loadFXML("/fxml/HomePageLoggedIn.fxml");
                 break;
-            case NOTLOGGEDIN:
+            case LOGGEDOUT:
                 Main.loadFXML("/fxml/HomePageLoggedOut.fxml");
                 break;
         }
@@ -40,7 +41,22 @@ public class HomeController {
      */
     public void loadLoginPageFXML(){
         // This could change depending on actual file name
-        Main.loadFXML("/fxml/Loginpage.fxml");
+        Main.loadFXML("/fxml/LoginPage.fxml");
+    }
+
+    /**
+     * Loads normal home page when logout button is clicked
+     */
+    public void loadLogoutPageFXML(){
+        Main.loadFXML("/fxml/HomePageLoggedOut.fxml");
+    }
+
+    /**
+     * Loads profile when My Profile button is clicked
+     */
+    public void loadMyProfileFXML(){
+        // this does not exist yet
+        Main.loadFXML("/fxml/Profile.fxml");
     }
 
     /**

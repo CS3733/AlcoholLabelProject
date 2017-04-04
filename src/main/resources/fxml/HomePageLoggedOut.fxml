@@ -59,8 +59,8 @@
                         </Label>
                     </children>
                 </GridPane>
-                <Label layoutX="260.0" layoutY="189.0" text="Recently Approved Beverages" />
-                <TextField layoutX="511.0" layoutY="28.0" text="Search..." />
+                <Label layoutX="260.0" layoutY="189.0" text="Recenly Approved Beverages" />
+            <TextField layoutX="512.0" layoutY="28.0" text="Search..." />
             </children>
         </Pane>
     </children>

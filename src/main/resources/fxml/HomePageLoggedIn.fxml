@@ -59,9 +59,9 @@
                         </Label>
                     </children>
                 </GridPane>
-                <Label layoutX="260.0" layoutY="189.0" text="Recently Approved Beverages" />
+                <Label layoutX="260.0" layoutY="189.0" text="Recenly Approved Beverages" />
             <TextField layoutX="409.0" layoutY="28.0" text="Search..." />
-            <Button layoutX="611.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#loadProfile" text="My Profile" />
+            <Button layoutX="614.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#loadMyProfileFXML" text="My Profile" />
             </children>
         </Pane>
     </children>
