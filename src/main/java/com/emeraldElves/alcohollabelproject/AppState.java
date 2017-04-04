@@ -6,6 +6,7 @@ package com.emeraldElves.alcohollabelproject;
 public class AppState {
 
     private static AppState instance = null;
+    public RoundRobin<String> ttbAgents = null;
 
     private AppState() {
     }

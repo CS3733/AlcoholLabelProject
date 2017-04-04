@@ -2,6 +2,8 @@ package com.emeraldElves.alcohollabelproject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dan on 3/31/2017.
@@ -36,6 +38,20 @@ public class AuthenticatedUsersDatabase {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public List<String> getAllAgents() {
+        ResultSet resultSet = db.select("username", "TTBAgentLogin");
+        List<String> agents = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                agents.add(resultSet.getString("username"));
+            }
+            return agents;
+        } catch (SQLException e) {
+            return new ArrayList<>();
+        }
+
     }
 
     /**
