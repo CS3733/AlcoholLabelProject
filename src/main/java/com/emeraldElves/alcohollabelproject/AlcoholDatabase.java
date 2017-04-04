@@ -10,6 +10,11 @@ import java.util.ArrayList;
  */
 public class AlcoholDatabase {
 
+    // TODO: ints to enums
+
+    private final int UNAPPROVED = 0;
+    private final int APPROVED = 1;
+
 
     private Database db;
 
@@ -57,7 +62,7 @@ public class AlcoholDatabase {
      * @return True if the application was submitted without error.
      */
     public boolean submitApplication(SubmittedApplication application) {
-
+        
         return false;
     }
 
@@ -70,7 +75,19 @@ public class AlcoholDatabase {
      * @return A list of the most recent unapproved applications ordered from most recent to least recent.
      */
     public List<SubmittedApplication> getMostRecentUnapproved(int numApplications) {
-        return null;
+        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + UNAPPROVED, "submissionTime ASC");
+
+        List<SubmittedApplication> applications = new ArrayList<>();
+
+        try {
+            while (results.next()) {
+                System.out.println(results.getString("submissionTime"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return applications;
     }
 
     // TODO: finish updateApplicationStatus
