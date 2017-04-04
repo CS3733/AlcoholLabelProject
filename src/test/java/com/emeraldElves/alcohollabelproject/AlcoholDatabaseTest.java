@@ -22,7 +22,7 @@ public class AlcoholDatabaseTest {
     }
     @Test
     public void testSubmitApplication(){
-
+        //AlcoholInfo alc = new AlcoholInfo()
     }
 
     @Test

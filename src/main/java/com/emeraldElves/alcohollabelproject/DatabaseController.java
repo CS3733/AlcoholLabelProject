@@ -68,12 +68,12 @@ public class DatabaseController {
 
         try {
             database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
+                    new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
                     new Database.TableField("fancifulName", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"),  //only beer or wine?
-                    new Database.TableField("pH", "DOUBLE"),
+                    new Database.TableField("pH", "INTEGER"),
                     new Database.TableField("vintageYear", "VARCHAR (255)"));
             Log.console("Created new AlcoholInfo table");
         } catch (SQLException e) {

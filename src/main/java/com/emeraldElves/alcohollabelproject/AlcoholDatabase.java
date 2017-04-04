@@ -95,7 +95,7 @@ public class AlcoholDatabase {
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
 
         if(resultsSubmitted != null){
-            //already in table, so we update
+            //already in table, so we update? I'm so sorry kyle
         }
         else{
             //not in table, need to add to all 3 tables
@@ -135,7 +135,7 @@ public class AlcoholDatabase {
                     ,"AlcoholInfo");
             if(!worked){ return false;}//didn't add to at least 1 table, so return false
         }
-        
+
         return true;
     }
 
