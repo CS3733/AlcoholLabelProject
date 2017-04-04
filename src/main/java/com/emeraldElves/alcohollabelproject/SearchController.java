@@ -13,14 +13,11 @@ import javafx.util.Callback;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.lang.Object.StringEscapeUtils;
-=======
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
->>>>>>> refs/remotes/origin/develop
 import java.util.List;
 
 /**

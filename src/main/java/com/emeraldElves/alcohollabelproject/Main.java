@@ -5,10 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class Main extends Application {
 
@@ -19,10 +17,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/develop
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"));
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root));
