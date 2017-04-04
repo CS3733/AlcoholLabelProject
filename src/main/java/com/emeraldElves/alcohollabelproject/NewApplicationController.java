@@ -224,7 +224,7 @@ public class NewApplicationController {
             ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
-            List<SubmittedApplication> appList = new ArrayList();
+            List<SubmittedApplication> appList = new ArrayList<SubmittedApplication>();
             //appList.add(newApp); <---need to be able to add this application to appList in workflow
 
             //Create applicant to store in submitted application
