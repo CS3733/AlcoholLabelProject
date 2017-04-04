@@ -74,7 +74,7 @@ public class DatabaseController {
                     new Database.TableField("origin", "INTEGER NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"),  //only beer or wine?
                     new Database.TableField("pH", "REAL"),
-                    new Database.TableField("vintageYear", "VARCHAR (255)"));
+                    new Database.TableField("vintageYear", "INTEGER"));
             Log.console("Created new AlcoholInfo table");
         } catch (SQLException e) {
             Log.console("Used existing AlcoholInfo table");
