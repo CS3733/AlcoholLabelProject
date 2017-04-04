@@ -12,10 +12,6 @@ public class AlcoholDatabase {
 
     // TODO: ints to enums
 
-    private final int UNAPPROVED = 0;
-    private final int APPROVED = 1;
-    private final int REJECTED = 2;
-
 
     private Database db;
 
@@ -83,19 +79,6 @@ public class AlcoholDatabase {
         ManufacturerInfo manInfo = info.getManufacturer();
 
 
-        int statusAsInt = 0;
-        switch (status) {
-            case APPROVED:
-                statusAsInt = APPROVED;
-                break;
-            case PENDINGREVIEW:
-                statusAsInt = UNAPPROVED;
-                break;
-            case REJECTED:
-                statusAsInt = REJECTED;
-                break;
-        }
-
         //
         boolean worked;//whether or not it added stuff to database
 
@@ -119,7 +102,7 @@ public class AlcoholDatabase {
                 //SubmittedApplications
                 worked = db.insert(appID + ", " //application id
                                 + manInfo.getRepresentativeID() + ", " //applicant ID
-                                + statusAsInt + ", '" //status
+                                + status.getValue() + ", '" //status
                                 + status.getMessage() + "', " //status message
                                 + info.getSubmissionDate().getTime() + ", " //submission time
                                 + info.getSubmissionDate().getTime() + ", '"//no field for expiration date
@@ -189,7 +172,7 @@ public class AlcoholDatabase {
      * @return A list of the most recent unapproved applications ordered from most recent to least recent.
      */
     public List<SubmittedApplication> getMostRecentUnapproved(int numApplications) {
-        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + UNAPPROVED, "submissionTime ASC");
+        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue(), "submissionTime ASC");
 
         List<SubmittedApplication> applications = new ArrayList<>();
 
