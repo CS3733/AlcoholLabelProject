@@ -18,7 +18,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
+        Parent root = loader.load();
+        HomeController controller = loader.getController();
+        controller.init(this, UserType.BASIC, "");
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -69,7 +72,7 @@ public class Main extends Application {
     }
 
     public void loadHomepage(UserType userType, String username){
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Homepage.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
 //        try {
 //            Parent root = loader.load();
 //            HomeController controller = loader.getController();
