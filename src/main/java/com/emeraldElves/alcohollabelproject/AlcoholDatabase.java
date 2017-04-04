@@ -272,7 +272,7 @@ public class AlcoholDatabase {
                     return new WineInfo(alcoholResult.getInt("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")),
-                            alcoholResult.getInt("vintageYear"), alcoholResult.getInt("pH"));
+                            alcoholResult.getInt("vintageYear"), (double) alcoholResult.getFloat("pH"));
                 } else {
                     return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
