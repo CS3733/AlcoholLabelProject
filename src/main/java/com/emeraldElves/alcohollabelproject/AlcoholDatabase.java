@@ -98,6 +98,7 @@ public class AlcoholDatabase {
         }
         else{
             //not in table, need to add to all 3 tables
+            //SubmittedApplications
             db.insert("'"+ appID + "', '" //application id
                             + manInfo.getRepresentativeID() + "', '" //applicant ID
                             + status + "', '" //status
@@ -108,7 +109,7 @@ public class AlcoholDatabase {
                             + info.getSubmissionDate() + "', '" //approval date
                             + "admin1'" //TTBUsername
                     ,"SubmittedApplications");
-
+            //ManufacturerInfo
             db.insert("'" + appID +"', '"
                             + manInfo.getName() + "', " //authorized name: i assume this is just the name of the applicant???
                             + manInfo.getPhysicalAddress() + "', " //physical address
@@ -116,8 +117,19 @@ public class AlcoholDatabase {
                             + manInfo.getRepresentativeID() + "', " //representative id
                             + manInfo.getPermitNum() //permit num
                             + manInfo.getPhoneNumber().getPhoneNumber() + "', " //phone num. It may look stupid but it works
-                            + manInfo.getEmailAddress() + "'" //email
+                            + manInfo.getEmailAddress().getEmailAddress() + "'" //email
                     ,"ManufacturerInfo");
+
+            //AlcoholInfo
+            db.insert("'" + appID + "', "
+                            + alcInfo.getAlcoholContent() + "', " //alcohol content
+                            + alcInfo.getName() + "', " //fanciful name
+                            + alcInfo.getBrandName() + "', " //brand name
+                            + alcInfo.getOrigin() + "', " //origin
+                            + alcInfo.getAlcoholType() + "', " //type
+                            + alcInfo.getWineInfo().pH + "', " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                            + alcInfo.getWineInfo().vintageYear + "'" //vintage year: see above comment
+                    ,"AlcoholInfo");
         }
 
 
