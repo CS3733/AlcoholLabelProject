@@ -39,7 +39,6 @@ public class DetailedSearchController {
                 break;
         }
         alcoholType.setText(type);
-
     }
 
 }
