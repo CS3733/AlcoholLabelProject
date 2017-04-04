@@ -24,6 +24,10 @@ import java.util.List;
  * Created by Essam on 4/2/2017.
  */
 public class SearchController {
+
+    private Main main;
+    private String searchTerm;
+
     @FXML
     private TextField searchField;
     @FXML
@@ -41,13 +45,20 @@ public class SearchController {
     @FXML
     private Label descriptionLabel;
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
-    public SearchController(){
+
+    public SearchController() {
 
 
     }
 
+    public void init(Main main, String searchTerm) {
+        this.main = main;
+        this.searchTerm = searchTerm;
+        search(searchTerm);
+    }
+
     @FXML
-    protected void initialize(){
+    protected void initialize() {
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
@@ -75,19 +86,23 @@ public class SearchController {
     }
 
     public void search(ActionEvent e) {
+        search(searchField.getText());
+    }
 
+    public void search(String searchTerm) {
         //Remove previous results
         data.remove(0, data.size());
 
         //Find & add matching applications
-        List<SubmittedApplication> resultsList = (new AlcoholDatabase(Main.database)).searchByBrandName(searchField.getText());
+        List<SubmittedApplication> resultsList = (new AlcoholDatabase(Main.database)).searchByBrandName(searchTerm);
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchField.getText() + "\"");
         descriptionLabel.setVisible(true);
         saveBtn.setDisable(data.size() == 0);
         contextSaveBtn.setDisable(data.size() == 0);
     }
-    public void saveCSV(ActionEvent e){
+
+    public void saveCSV(ActionEvent e) {
 
 
         FileChooser fileChooser = new FileChooser();
@@ -123,7 +138,7 @@ public class SearchController {
                     for (int colId = 0; colId < resultsTable.getColumns().size(); colId++) {
                         TableColumn<SubmittedApplication, ?> col = resultsTable.getColumns().get(colId);
                         if (colId > 0) fileWriter.write(",");
-                        fileWriter.write(StringEscapeUtils.escapeCsv((String)col.getCellObservableValue(rowId).getValue()));
+                        fileWriter.write(StringEscapeUtils.escapeCsv((String) col.getCellObservableValue(rowId).getValue()));
                     }
                     fileWriter.write("\r\n");
                 }
