@@ -59,20 +59,6 @@ public class HomeController {
         Main.loadFXML("/fxml/Profile.fxml");
     }
 
-    /**
-     * Loads normal home page when logout button is clicked
-     * note: similar code to loadHomePageFXML() but simpler to ensure errors are avoided
-     */
-    public void loadLogoutPageFXML(){
-        Main.loadFXML("/fxml/HomePageLoggedOut.fxml");
-    }
-
-    /**
-     * Loads profile page when "My Profile" is clicked
-     */
-    public void loadProfileFXML(){
-        // TODO
-    }
 
 
 }
