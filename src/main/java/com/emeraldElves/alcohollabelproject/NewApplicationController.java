@@ -72,24 +72,25 @@ public class NewApplicationController {
         Boolean formFilled=false;
 
         if(repIDNoTextField.getText().isEmpty()) {
-            repIDNoTextField=null;
+            error1.setText("Please fill in your representative number");
+            return;
         }
 
         if(permitNoTextField.getText().isEmpty()) {
-            permitNoErrorField.setText("Please fill your permit number.");
-            //return;
+            error1.setText("Please fill your permit number.");
+            return;
         }
         if(addressField.getText().isEmpty()) {
-            addressErrorField.setText("Please fill in the physical address of your company");
-            //return;
+            error1.setText("Please fill in the physical address of your company");
+            return;
         }
         if(phoneNumberField.getText().isEmpty()) {
-            phoneNumErrorField.setText("Please fill in the contact number.");
-            //return;
+            error1.setText("Please fill in the contact number.");
+            return;
         }
         if(emailAddressField.getText().isEmpty()) {
-            emailErrorField.setText("Please fill in the contact email.");
-            //return;
+            error1.setText("Please fill in the contact email.");
+            return;
         }
 
         if(!emailAddressField.getText().isEmpty()&&!phoneNumberField.getText().isEmpty()&&
@@ -168,12 +169,19 @@ public class NewApplicationController {
         PhoneNumber applicantPhone = new PhoneNumber(phoneNumberField.getText());
 
         //Creates a ManufacturerInfo from the address, brand
-//        ManufacturerInfo appManInfo = new ManufacturerInfo("Person", addressField.getText(),
-//                Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()),
-//                applicantPhone, applicantEmail);
+        ManufacturerInfo appManInfo = new ManufacturerInfo("Person", addressField.getText(), brandNameField.getText(), 
+                Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()),
+                applicantPhone, applicantEmail);
 
+        /*
+        The next 5 lines of code are all placeholders that may or may not be edited depending on if certain conditions
+        are met
+         */
         ProductSource pSource = ProductSource.DOMESTIC;
-    //    AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
+        AlcoholType mainAlcType = AlcoholType.OTHER;
+        AlcoholInfo.Wine winePlaceholder = new AlcoholInfo.Wine(0, 0);
+        AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(),
+                pSource, mainAlcType, winePlaceholder);
 
         //Checking if the product is domestic or imported by checking the product source radio button group
         if(productSource.getSelectedToggle() == domestic) {
@@ -182,27 +190,32 @@ public class NewApplicationController {
         if(productSource.getSelectedToggle() == international) {
             pSource = ProductSource.IMPORTED;
         }
+
         if(productType.getSelectedToggle() == beer) {
-            //appAlcoholInfo = new BeerInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
+            mainAlcType = AlcoholType.BEER;
+        }
+        if(productType.getSelectedToggle() == wine) {
+            mainAlcType = AlcoholType.WINE;
+            winePlaceholder = new AlcoholInfo.Wine(Double.parseDouble(pHLevelField.getText()), Integer.parseInt(wineVintageYearField.getText()));
         }
 
         java.sql.Date newDate = java.sql.Date.valueOf(datePicker.getValue());
-        //ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
+        ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
 
         ApplicationStatus placeholder = ApplicationStatus.APPROVED;
 
         List<SubmittedApplication> appliers = new ArrayList();
         Applicant applicant = new Applicant(appliers);
 
-        //SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
-        //alcoholDB.submitApplication(newApp);
+        SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
+        alcoholDB.submitApplication(newApp);
 
-        //Main.loadFXML("mainGUI.FXML");
+        Main.loadFXML("/fxml/mainGUI.FXML");
     }
 
     public void cancelApp() {
 
-        Main.loadFXML("mainGUI.FXML");
+        Main.loadFXML("/fxml/mainGUI.FXML");
     }
     public void saveApp() {
     }
