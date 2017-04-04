@@ -21,6 +21,11 @@ public class AlcoholInfo {
             this.vintageYear = vintageYear;
         }
     }
+
+    public void setAlcoholContent(int alcoholContent) {
+        this.alcoholContent = alcoholContent;
+    }
+
     /**
      * Constructor to create a new AlcoholInfo
      *
