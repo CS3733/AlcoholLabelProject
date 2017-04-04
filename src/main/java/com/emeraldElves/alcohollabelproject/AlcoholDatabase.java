@@ -98,7 +98,7 @@ public class AlcoholDatabase {
         List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
 
         for (int i = applications.size() - 1; i >= 0; i--) {
-            if (applications.get(i).getStatus() == ApplicationStatus.APPROVED)
+            if (applications.get(i).getStatus() != ApplicationStatus.APPROVED)
                 applications.remove(i);
         }
         return applications;

@@ -14,6 +14,9 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,7 +50,9 @@ public class SearchController {
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getManufacturer().getCompany()));
+                DateFormat dateFormat = DateFormat.getDateInstance();
+                Date date = p.getValue().getApplication().getSubmissionDate();
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
             }
         });
         manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
