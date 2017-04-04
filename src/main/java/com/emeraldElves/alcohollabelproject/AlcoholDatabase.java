@@ -265,17 +265,16 @@ public class AlcoholDatabase {
 
     private AlcoholInfo getAlcoholInfoByID(int applicationID) {
         ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + applicationID);
-        AlcoholInfo alcoholInfo = null;
         try {
             if (alcoholResult.next()) {
                 AlcoholType type = AlcoholType.fromInt(alcoholResult.getInt("type"));
                 if (type == AlcoholType.WINE) {
-                    alcoholInfo = new WineInfo(alcoholResult.getInt("alcoholContent"),
+                    return new WineInfo(alcoholResult.getInt("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")),
                             alcoholResult.getInt("vintageYear"), alcoholResult.getInt("pH"));
                 } else {
-                    alcoholInfo = new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
+                    return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")), type, null);
                 }
