@@ -57,28 +57,49 @@ public class NewApplicationController {
     Label error2;
     @FXML
     Label permitNoErrorField;
+    @FXML
+    Label addressErrorField;
+    @FXML
+    Label phoneNumErrorField;
+    @FXML
+    Label emailErrorField;
+
+
 
 
     public void nextPage(){
+
+        Boolean formFilled=false;
+
         if(repIDNoTextField.getText().isEmpty()) {
             repIDNoTextField=null;
-            return;
         }
+
         if(permitNoTextField.getText().isEmpty()) {
             permitNoErrorField.setText("Please fill your permit number.");
-            return;
+            //return;
         }
         if(addressField.getText().isEmpty()) {
-            error1.setText("Please fill in the physical address of your company");
-            return;
+            addressErrorField.setText("Please fill in the physical address of your company");
+            //return;
         }
         if(phoneNumberField.getText().isEmpty()) {
-            error1.setText("Please fill in the contact number.");
-            return;
+            phoneNumErrorField.setText("Please fill in the contact number.");
+            //return;
         }
         if(emailAddressField.getText().isEmpty()) {
-            error1.setText("Please fill in the contact email.");
-            return;
+            emailErrorField.setText("Please fill in the contact email.");
+            //return;
+        }
+
+        if(!emailAddressField.getText().isEmpty()&&!phoneNumberField.getText().isEmpty()&&
+                !addressField.getText().isEmpty()&&!permitNoTextField.getText().isEmpty()){
+            formFilled=true;
+        }
+
+        if(formFilled){
+            //form is all filled in so go to page 2 of label application
+            Main.loadFXML("/fxml/new-app-page2.FXML");
         }
     }
 
@@ -135,18 +156,21 @@ public class NewApplicationController {
             return;
         }
 
-        /*
-        Nothing much going on here, just parsing information from TextFields and inputting it into the fields of
-        ManufacturerInfo to be used in SubmittedApplication
-         */
+
+
+        //Creates a database to store the alcohol information from form
         AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
 
-        EmailAddress appEmail = new EmailAddress(emailAddressField.getText());
+        //Parses the text from the email address field and stores it as an EmailAddress
+        EmailAddress applicantEmail = new EmailAddress(emailAddressField.getText());
 
-        PhoneNumber appPhone = new PhoneNumber(phoneNumberField.getText());
+        //Parses the text from the email address field and stores it as a PhoneNumber
+        PhoneNumber applicantPhone = new PhoneNumber(phoneNumberField.getText());
 
-        ManufacturerInfo appManInfo = new ManufacturerInfo("placeholder", addressField.getText(), brandNameField.getText(),
-                Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()), appPhone, appEmail);
+        //Creates a ManufacturerInfo from the address, brand
+//        ManufacturerInfo appManInfo = new ManufacturerInfo("Person", addressField.getText(),
+//                Integer.parseInt(repIDNoTextField.getText()), Integer.parseInt(permitNoTextField.getText()),
+//                applicantPhone, applicantEmail);
 
         ProductSource pSource = ProductSource.DOMESTIC;
     //    AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(), pSource);
@@ -173,12 +197,12 @@ public class NewApplicationController {
         //SubmittedApplication newApp = new SubmittedApplication(appInfo, placeholder, applicant);
         //alcoholDB.submitApplication(newApp);
 
-        loadFXML("mainGUI.FXML");
+        //Main.loadFXML("mainGUI.FXML");
     }
 
     public void cancelApp() {
 
-        loadFXML("mainGUI.FXML");
+        Main.loadFXML("mainGUI.FXML");
     }
     public void saveApp() {
     }
