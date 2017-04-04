@@ -129,7 +129,7 @@ public class AlcoholDatabase {
         int appID;
 
         if (application.getApplicationID() == -1) {
-            appID = (int) System.currentTimeMillis(); //the unique application id for now
+            appID = generateApplicationID();
             application.setApplicationID(appID);
         } else {
             appID = application.getApplicationID();
@@ -301,6 +301,11 @@ public class AlcoholDatabase {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue() + " AND TTBUsername = '" + ttbAgentUsername + "'", "submissionTime ASC");
 
         return getApplicationsFromResultSet(results);
+    }
+
+
+    private int generateApplicationID(){
+        return (int) System.currentTimeMillis();
     }
 
 }
