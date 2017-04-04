@@ -5,6 +5,8 @@ package com.emeraldElves.alcohollabelproject;
  */
 
 import javafx.scene.control.*;
+import java.util.ArrayList;
+
 
 public class WorkflowController {
     public Label ttbAgentNameLabel;
@@ -16,5 +18,7 @@ public class WorkflowController {
     public Label applicatorNameLabel;
     public Label dateLabel;
     public Button submitBtn;
-    
+
+    public void queryDatabase()
+
 }
