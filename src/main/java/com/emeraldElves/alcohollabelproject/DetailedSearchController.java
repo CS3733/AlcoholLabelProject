@@ -3,6 +3,10 @@ package com.emeraldElves.alcohollabelproject;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Kylec on 4/4/2017.
  */
@@ -12,6 +16,7 @@ public class DetailedSearchController {
     private SubmittedApplication application;
     private String searchTerm;
 
+
     @FXML
     Label brandName;
 
@@ -20,6 +25,12 @@ public class DetailedSearchController {
 
     @FXML
     Label alcoholType;
+
+    @FXML
+    Label submissionDate;
+
+    @FXML
+    Label company;
 
     public void init(Main main, SubmittedApplication application, String searchTerm) {
         this.main = main;
@@ -40,6 +51,11 @@ public class DetailedSearchController {
                 break;
         }
         alcoholType.setText(type);
+        DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+        Date date = application.getApplication().getSubmissionDate();
+        date.setYear(date.getYear() - 1900);
+        submissionDate.setText(dateFormat.format(date));
+        company.setText(application.getApplication().getManufacturer().getCompany());
     }
 
 }
