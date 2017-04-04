@@ -68,6 +68,9 @@ public class AlcoholDatabaseTest {
 
         List<SubmittedApplication> applicationList = alcoholDatabase.getMostRecentUnapproved(10);
         assertEquals(2, applicationList.size());
+        assertTrue(applicationList.get(0).getApplication().getSubmissionDate().compareTo(
+                applicationList.get(1).getApplication().getSubmissionDate()
+        ) < 0);
 
         List<SubmittedApplication> applications = alcoholDatabase.getMostRecentUnapproved(1);
         assertEquals(1, applications.size());
