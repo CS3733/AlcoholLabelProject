@@ -86,4 +86,17 @@ public class AuthenticatedUsersDatabase {
             return false;
         }
     }
+
+    public boolean isValidAccount(String userName, String password){
+        return isValidApplicant(userName, password) || isValidTTBAgent(userName, password);
+    }
+
+    public UserType getAccountType(String userName, String password){
+        if(isValidTTBAgent(userName, password))
+            return UserType.TTBAGENT;
+        if(isValidApplicant(userName, password))
+            return UserType.APPLICANT;
+        return UserType.BASIC;
+    }
+
 }
