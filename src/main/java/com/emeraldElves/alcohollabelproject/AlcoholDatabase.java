@@ -84,7 +84,7 @@ public class AlcoholDatabase {
 
 
         int statusAsInt = 0;
-        switch (status){
+        switch (status) {
             case APPROVED:
                 statusAsInt = APPROVED;
                 break;
@@ -99,14 +99,21 @@ public class AlcoholDatabase {
         //
         boolean worked;//whether or not it added stuff to database
 
-        int appID = (int) System.currentTimeMillis(); //the unique application id for now
+        int appID;
+
+        if (application.getApplicationID() == -1) {
+            appID = (int) System.currentTimeMillis(); //the unique application id for now
+            application.setApplicationID(appID);
+        } else {
+            appID = application.getApplicationID();
+        }
 
 
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
 
         try {
             if (resultsSubmitted.next()) {
-               return false;
+                return false;
             } else {
                 //not in table, need to add to all 3 tables
                 //SubmittedApplications
@@ -142,7 +149,7 @@ public class AlcoholDatabase {
                 //AlcoholInfo
 
 
-                if(alcInfo.getAlcoholType() == AlcoholType.WINE){
+                if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
                     worked = db.insert(appID + ", "
                                     + alcInfo.getAlcoholContent() + ", '" //alcohol content
                                     + alcInfo.getName() + "', '" //fanciful name

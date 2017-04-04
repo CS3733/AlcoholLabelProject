@@ -44,6 +44,7 @@ public class AlcoholDatabaseTest {
 
         SubmittedApplication test = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
         assertTrue(alcoholDatabase.submitApplication(test));
+        assertFalse(alcoholDatabase.submitApplication(test));
     }
 
     @Test
