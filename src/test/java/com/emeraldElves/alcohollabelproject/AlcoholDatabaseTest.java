@@ -19,6 +19,15 @@ public class AlcoholDatabaseTest {
     @Before
     public void setup() {
         db = DatabaseController.getInstance().initDatabase("testDB");
+        try {
+            db.dropTable("SubmittedApplications");
+            db.dropTable("ManufacturerInfo");
+            db.dropTable("AlcoholInfo");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        db.close();
+        db = DatabaseController.getInstance().initDatabase("testDB");
         alcoholDatabase = new AlcoholDatabase(db);
     }
     @Test
@@ -33,9 +42,8 @@ public class AlcoholDatabaseTest {
 
         Applicant applicant = new Applicant(null);
 
-        SubmittedApplication test = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant);
+        SubmittedApplication test = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
         assertTrue(alcoholDatabase.submitApplication(test));
-
     }
 
     @Test

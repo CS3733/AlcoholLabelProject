@@ -42,11 +42,11 @@ public class DatabaseController {
                     new Database.TableField("applicantID", "INTEGER NOT NULL"),
                     new Database.TableField("status", "INTEGER NOT NULL"),
                     new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
-                    new Database.TableField("submissionTime", "TIMESTAMP NOT NULL"),
-                    new Database.TableField("expirationDate", "TIMESTAMP NOT NULL"),
-                    new Database.TableField("agentName", "VARCHAR (255) NOT NULL"),
-                    new Database.TableField("approvalDate", "TIMESTAMP NOT NULL"),
-                    new Database.TableField("TTBUsername", "VARCHAR (255) NOT NULL"));
+                    new Database.TableField("submissionTime", "BIGINT NOT NULL"),
+                    new Database.TableField("expirationDate", "BIGINT"),
+                    new Database.TableField("agentName", "VARCHAR (255)"),
+                    new Database.TableField("approvalDate", "BIGINT"),
+                    new Database.TableField("TTBUsername", "VARCHAR (255)"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
@@ -71,7 +71,7 @@ public class DatabaseController {
                     new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
                     new Database.TableField("fancifulName", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
-                    new Database.TableField("origin", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("origin", "INTEGER NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"),  //only beer or wine?
                     new Database.TableField("pH", "INTEGER"),
                     new Database.TableField("vintageYear", "VARCHAR (255)"));
