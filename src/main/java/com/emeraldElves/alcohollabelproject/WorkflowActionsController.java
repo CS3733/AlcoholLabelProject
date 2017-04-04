@@ -32,7 +32,6 @@ public class WorkflowActionsController {
 
     public void reject() {
         alcoholDatabase.updateApplicationStatus(CurrentlyBeingUpdated, ApplicationStatus.REJECTED);
-
     }
 
     public void forwardApplication() {
