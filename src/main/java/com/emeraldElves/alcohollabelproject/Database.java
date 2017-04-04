@@ -32,7 +32,8 @@ public class Database {
     public boolean connect() {
         try {
             DriverManager.registerDriver(new EmbeddedDriver());
-            connection = DriverManager.getConnection("jdbc:derby:" + dbName + ";create=true");
+            connection = DriverManager.getConnection("jdbc:derby:" + dbName + ";create=true");            connection.setAutoCommit(false);
+            connection.setAutoCommit(false);
             statement = connection.createStatement();
             connected = true;
         } catch (SQLException e) {
@@ -53,6 +54,8 @@ public class Database {
             return false;
 
         statement.execute("DROP TABLE " + tableName);
+
+        connection.commit();
 
         return true;
     }
@@ -77,6 +80,7 @@ public class Database {
 
         entityString = entityString.substring(0, entityString.length() - 2);
         statement.execute("CREATE TABLE " + tableName + "(\n" + entityString + "\n)");
+        connection.commit();
         return true;
     }
 
@@ -93,11 +97,13 @@ public class Database {
             return false;
         try {
             statement.execute("INSERT INTO " + tableName + " VALUES ( " + values + " )");
+            connection.commit();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
+
     }
 
 
@@ -106,6 +112,7 @@ public class Database {
             return false;
         try {
             statement.execute(sql);
+            connection.commit();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -195,6 +202,18 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public boolean update(String tableName, String values, String where) {
+        if (!connected)
+            return false;
+        try {
+            statement.execute("UPDATE " + tableName + " SET " + values + " WHERE " + where);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

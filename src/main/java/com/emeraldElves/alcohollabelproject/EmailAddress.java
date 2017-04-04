@@ -27,4 +27,6 @@ public class EmailAddress {
         Pattern email = Pattern.compile("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$");
         return email.matcher(emailAddress).matches();
     }
+
+    public String getEmailAddress(){ return emailAddress;}
 }
