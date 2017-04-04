@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class AlcoholDatabase {
 
     private Database db;
+    private AuthenticatedUsersDatabase usersDatabase;
 
     /**
      * Creates an AlcoholDatabase
@@ -20,6 +21,7 @@ public class AlcoholDatabase {
      */
     public AlcoholDatabase(Database db) {
         this.db = db;
+        usersDatabase = new AuthenticatedUsersDatabase(db);
     }
 
     // TODO: finish getMostRecentApproved
@@ -100,6 +102,10 @@ public class AlcoholDatabase {
         out. I'll do what i can with the rest.
         */
 
+        if (AppState.getInstance().ttbAgents == null) {
+            AppState.getInstance().ttbAgents = new RoundRobin<>(usersDatabase.getAllAgents());
+        }
+
         //getting all info needed from submitted application into variables
         ApplicationStatus status = application.getStatus();
         ApplicationInfo info = application.getApplication();
@@ -126,6 +132,9 @@ public class AlcoholDatabase {
             if (resultsSubmitted.next()) {
                 return false;
             } else {
+                String assignedAgent = "";
+                if (AppState.getInstance().ttbAgents.size() != 0)
+                    assignedAgent = AppState.getInstance().ttbAgents.next();
                 //not in table, need to add to all 3 tables
                 //SubmittedApplications
                 worked = db.insert(appID + ", " //application id
@@ -136,7 +145,7 @@ public class AlcoholDatabase {
                                 + info.getSubmissionDate().getTime() + ", '"//no field for expiration date
                                 + manInfo.getName() + "', " //agent name
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
-                                + "admin1'" //TTBUsername
+                                + assignedAgent + "'" //TTBUsername
                         , "SubmittedApplications");
 
                 Log.console("SubmittedApplication");
@@ -249,7 +258,9 @@ public class AlcoholDatabase {
                 }
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
-                return new SubmittedApplication(info, status, applicant);
+                SubmittedApplication application = new SubmittedApplication(info, status, applicant);
+                application.setApplicationID(id);
+                return application;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -290,4 +301,25 @@ public class AlcoholDatabase {
         }
         return null;
     }
+
+    public List<SubmittedApplication> getAssignedApplications(String ttbAgentUsername) {
+        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue() + " AND TTBUsername = '" + ttbAgentUsername + "'", "submissionTime ASC");
+
+        List<SubmittedApplication> applications = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            while (results.next()) {
+                ids.add(results.getInt("applicationID"));
+            }
+            for (int i = 0; i < ids.size(); i++) {
+                applications.add(getApplicationByID(ids.get(i)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return applications;
+    }
+
 }

@@ -26,6 +26,7 @@ public class AlcoholDatabaseTest {
             db.dropTable("SubmittedApplications");
             db.dropTable("ManufacturerInfo");
             db.dropTable("AlcoholInfo");
+            db.dropTable("TTBAgentLogin");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,6 +46,8 @@ public class AlcoholDatabaseTest {
         ApplicationInfo appInfo = new ApplicationInfo(subDate, man, alc);
 
         Applicant applicant = new Applicant(null);
+
+        setUpAgents();
 
         SubmittedApplication test = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
         assertTrue(alcoholDatabase.submitApplication(test));
@@ -77,13 +80,30 @@ public class AlcoholDatabaseTest {
 
         assertTrue(alcoholDatabase.getMostRecentApproved(10).isEmpty());
 
+        List<SubmittedApplication> assignedApps = alcoholDatabase.getAssignedApplications("Admin");
+
+        for (SubmittedApplication application : assignedApps) {
+            Log.console(application.getApplicationID());
+        }
+
+        assertEquals(1, assignedApps.size());
+
         assertTrue(alcoholDatabase.updateApplicationStatus(test, ApplicationStatus.APPROVED));
+
+        assertEquals(0, alcoholDatabase.getAssignedApplications("Admin").size());
 
         assertEquals(1, alcoholDatabase.getMostRecentApproved(10).size());
 
         assertEquals(1, alcoholDatabase.getMostRecentUnapproved(10).size());
 
         assertEquals(1, alcoholDatabase.searchByBrandName("brand").size());
+
+    }
+
+
+    private void setUpAgents() {
+        db.insert("'Admin', 'Admin1'", "TTBAgentLogin");
+        db.insert("'Admin2', 'Admin123'", "TTBAgentLogin");
     }
 
 
