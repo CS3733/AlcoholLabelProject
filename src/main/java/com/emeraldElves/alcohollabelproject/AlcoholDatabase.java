@@ -34,7 +34,17 @@ public class AlcoholDatabase {
      */
     public List<SubmittedApplication> getMostRecentApproved(int numApplications) {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "submissionTime ASC");
+        return getApplicationsFromResultSet(results, numApplications);
+    }
 
+    /**
+     * Get applications from a {@link ResultSet}
+     *
+     * @param results         The results of an database query
+     * @param numApplications The number of applications to get.
+     * @return A list of {@link SubmittedApplication} from the {@link ResultSet}
+     */
+    private List<SubmittedApplication> getApplicationsFromResultSet(ResultSet results, int numApplications) {
         List<SubmittedApplication> applications = new ArrayList<>();
         List<Integer> ids = new ArrayList<>();
 
@@ -52,7 +62,29 @@ public class AlcoholDatabase {
         return applications;
     }
 
-    // TODO: finish searchByBrandName
+    /**
+     * Get applications from a {@link ResultSet}
+     *
+     * @param results The results of an database query
+     * @return A list of {@link SubmittedApplication} from the {@link ResultSet}
+     */
+    private List<SubmittedApplication> getApplicationsFromResultSet(ResultSet results) {
+        List<SubmittedApplication> applications = new ArrayList<>();
+        List<Integer> ids = new ArrayList<>();
+
+        try {
+            while (results.next()) {
+                ids.add(results.getInt("applicationID"));
+            }
+            for (int i = 0; i < ids.size(); i++) {
+                applications.add(getApplicationByID(ids.get(i)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return applications;
+    }
 
     /**
      * Search by the brand name of alcohol.
@@ -63,22 +95,12 @@ public class AlcoholDatabase {
     public List<SubmittedApplication> searchByBrandName(String brandName) {
         ResultSet results = db.select("*", "AlcoholInfo", "brandName='" + brandName + "'");
 
-        List<SubmittedApplication> applications = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>();
+        List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
 
-        try {
-            while (results.next()) {
-                ids.add(results.getInt("applicationID"));
-            }
-            for (int i = 0; i < ids.size(); i++) {
-                SubmittedApplication application = getApplicationByID(ids.get(i));
-                if (application.getStatus() == ApplicationStatus.APPROVED)
-                    applications.add(application);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        for (int i = applications.size() - 1; i >= 0; i--) {
+            if (applications.get(i).getStatus() != ApplicationStatus.APPROVED)
+                applications.remove(i);
         }
-
         return applications;
     }
 
@@ -89,18 +111,6 @@ public class AlcoholDatabase {
      * @return True if the application was submitted without error.
      */
     public boolean submitApplication(SubmittedApplication application) {
-        /*KYLE read this before checking my code. This is how i assume this method works:
-        you add info to submittedapplications, manufacturerinfo, and alcoholinfo table.
-        all of that info from the application passed in. I understood it better as i was typing
-        this out, but i figured you might like to see this. Just imagine me maniacally laughing to myself at
-        night. Thats how i'll type out this code.
-        */
-
-        /*IMPORTANT: I have not idea where to find the unique ID number for the application. I will just make a randomID number for each application, but
-        i dont know where to associate the id number to the application. Other than that, this function should work.
-        Also, I don't know where to find the approval time, expiration date, TTBUsername. Nothing in submittedapplication relating to it. hope you can figure this
-        out. I'll do what i can with the rest.
-        */
 
         if (AppState.getInstance().ttbAgents == null) {
             AppState.getInstance().ttbAgents = new RoundRobin<>(usersDatabase.getAllAgents());
@@ -119,7 +129,7 @@ public class AlcoholDatabase {
         int appID;
 
         if (application.getApplicationID() == -1) {
-            appID = (int) System.currentTimeMillis(); //the unique application id for now
+            appID = generateApplicationID();
             application.setApplicationID(appID);
         } else {
             appID = application.getApplicationID();
@@ -210,22 +220,7 @@ public class AlcoholDatabase {
      */
     public List<SubmittedApplication> getMostRecentUnapproved(int numApplications) {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue(), "submissionTime ASC");
-
-        List<SubmittedApplication> applications = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>();
-
-        try {
-            while (results.next() && ids.size() < numApplications) {
-                ids.add(results.getInt("applicationID"));
-            }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return applications;
+        return getApplicationsFromResultSet(results, numApplications);
     }
 
     private SubmittedApplication getApplicationByID(int id) {
@@ -240,22 +235,7 @@ public class AlcoholDatabase {
 
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
 
-                ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + id);
-                AlcoholInfo alcoholInfo = null;
-                if (alcoholResult.next()) {
-                    AlcoholType type = AlcoholType.fromInt(alcoholResult.getInt("type"));
-                    if (type == AlcoholType.WINE) {
-                        alcoholInfo = new WineInfo(alcoholResult.getInt("alcoholContent"),
-                                alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
-                                ProductSource.fromInt(alcoholResult.getInt("origin")),
-                                alcoholResult.getInt("vintageYear"), alcoholResult.getInt("pH"));
-                    } else {
-                        alcoholInfo = new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
-                                alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
-                                ProductSource.fromInt(alcoholResult.getInt("origin")), type, null);
-                    }
-
-                }
+                AlcoholInfo alcoholInfo = getAlcoholInfoByID(id);
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
@@ -282,6 +262,60 @@ public class AlcoholDatabase {
         return db.update("SubmittedApplications", "status = " + status.getValue() + ", statusMsg = '" + status.getMessage() + "'", "applicationID = " + application.getApplicationID());
     }
 
+    public boolean changeVintageYear(SubmittedApplication application, int vintageYear){
+        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+            return false;
+        }
+
+        application.getApplication().getAlcohol().getWineInfo().vintageYear = vintageYear;
+
+        return db.update("AlcoholInfo", "vintageYear = " + vintageYear, "applicationID = " + application.getApplicationID());
+    }
+
+    public boolean changePH(SubmittedApplication application, double pH){
+        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+            return false;
+        }
+
+        application.getApplication().getAlcohol().getWineInfo().pH = pH;
+
+        return db.update("AlcoholInfo", "pH = " + pH, "applicationID = " + application.getApplicationID());
+    }
+
+    public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent){
+        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+            return false;
+        }
+
+        application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
+
+        return db.update("AlcoholInfo", "alcoholContent = " + alcoholContent, "applicationID = " + application.getApplicationID());
+
+    }
+
+
+    private AlcoholInfo getAlcoholInfoByID(int applicationID) {
+        ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + applicationID);
+        try {
+            if (alcoholResult.next()) {
+                AlcoholType type = AlcoholType.fromInt(alcoholResult.getInt("type"));
+                if (type == AlcoholType.WINE) {
+                    return new WineInfo(alcoholResult.getInt("alcoholContent"),
+                            alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
+                            ProductSource.fromInt(alcoholResult.getInt("origin")),
+                            alcoholResult.getInt("vintageYear"), (double) alcoholResult.getFloat("pH"));
+                } else {
+                    return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
+                            alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
+                            ProductSource.fromInt(alcoholResult.getInt("origin")), type, null);
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     private ManufacturerInfo getManufacturerInfoByID(int applicationID) {
         ResultSet results = db.select("*", "ManufacturerInfo", "applicationID = " + applicationID);
@@ -305,21 +339,12 @@ public class AlcoholDatabase {
     public List<SubmittedApplication> getAssignedApplications(String ttbAgentUsername) {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue() + " AND TTBUsername = '" + ttbAgentUsername + "'", "submissionTime ASC");
 
-        List<SubmittedApplication> applications = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>();
+        return getApplicationsFromResultSet(results);
+    }
 
-        try {
-            while (results.next()) {
-                ids.add(results.getInt("applicationID"));
-            }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
-        return applications;
+    private int generateApplicationID() {
+        return (int) System.currentTimeMillis();
     }
 
 }
