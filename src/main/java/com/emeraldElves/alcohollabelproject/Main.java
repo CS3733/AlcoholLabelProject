@@ -31,13 +31,25 @@ public class Main extends Application {
      */
 
     public static void loadFXML(String path) {
-        Parent root = null;
+        FXMLLoader root = null;
         try {
-            root = FXMLLoader.load(Main.class.getResource(path));
+            root = new FXMLLoader(Main.class.getResource(path));
+            stage.getScene().setRoot((Parent)root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.getScene().setRoot(root);
+    }
+
+    public static void loadFXML(String path, NewApplicationController controller) {
+        FXMLLoader root = null;
+        try {
+            root = new FXMLLoader(Main.class.getResource(path));
+            root.setController(controller);
+            stage.getScene().setRoot((Parent)root.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {

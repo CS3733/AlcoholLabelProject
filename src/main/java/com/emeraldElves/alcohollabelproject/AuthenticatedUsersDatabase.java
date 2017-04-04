@@ -48,7 +48,7 @@ public class AuthenticatedUsersDatabase {
                 agents.add(resultSet.getString("username"));
             }
             return agents;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             return new ArrayList<>();
         }
 

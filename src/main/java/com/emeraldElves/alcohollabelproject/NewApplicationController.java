@@ -1,9 +1,11 @@
 package com.emeraldElves.alcohollabelproject;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NewApplicationController {
@@ -50,8 +52,6 @@ public class NewApplicationController {
     @FXML
     Button logoutBtn;
     @FXML
-    Label error2;
-    @FXML
     Label permitNoErrorField;
     @FXML
     Label addressErrorField;
@@ -59,10 +59,23 @@ public class NewApplicationController {
     Label phoneNumErrorField;
     @FXML
     Label emailErrorField;
+    @FXML
+    Label welcomeApplicantLabel;
+    @FXML
+    Label pSourceErrorField;
+    @FXML
+    Label pTypeErrorField;
+    @FXML
+    Label brandNameErrorField;
+    @FXML
+    Label alcContentErrorField;
+    @FXML
+    Label dateErrorField;
+    @FXML
+    Label signatureErrorField;
 
 
-    //Creates a database to store the alcohol information from form
-    AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
+
 
     //Initializes and temporarily stores applicant's info
     int repIDNo = -1; //means they didn't enter a rep ID num
@@ -93,26 +106,22 @@ public class NewApplicationController {
         //errors are printed only if required fields are not filled in
         if(permitNoTextField.getText().isEmpty()) {
             permitNoErrorField.setText("Please fill in your permit number.");
-        }
-        else{
+        } else{
             permitNoErrorField.setText("");
         }
         if(addressField.getText().isEmpty()) {
             addressErrorField.setText("Please fill in the physical address of your company.");
-        }
-        else{
+        } else{
             addressErrorField.setText("");
         }
         if(phoneNumberField.getText().isEmpty()) {
             phoneNumErrorField.setText("Please fill in the contact number.");
-        }
-        else{
+        } else{
             phoneNumErrorField.setText("");
         }
         if(emailAddressField.getText().isEmpty()) {
             emailErrorField.setText("Please fill in the contact email.");
-        }
-        else{
+        } else{
             emailErrorField.setText("");
         }
 
@@ -125,7 +134,9 @@ public class NewApplicationController {
 
             //NEED TO CHECK IF THIS IS ACTUALLY AN INT!!!
             if(!repIDNoTextField.getText().isEmpty()) {
-                repIDNo=Integer.parseInt(repIDNoTextField.getText());
+                repIDNo=Integer.parseInt(repIDNoTextField.getText().trim());
+            } else{
+                repIDNo=0;
             }
             //Parses text from permit number field and stores it as an int
             permitNo=Integer.parseInt(permitNoTextField.getText()); //CHECK INT!!!
@@ -141,13 +152,17 @@ public class NewApplicationController {
 
             //also check if emails or phone numbers are valid!!!!!!
 
+
             //form is now filled in so go to page 2 of label application
-            Main.loadFXML("/fxml/newApplicationPage2.FXML");
+            Main.loadFXML("/fxml/newApplicationPage2.FXML", this);
         }
     }
 
 
     public void submitApp() {
+
+        //Creates a database to store the alcohol information from form
+        AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
 
         Boolean formFilled=false;
 
@@ -162,18 +177,26 @@ public class NewApplicationController {
         international.setToggleGroup(productSource);
         domestic.setToggleGroup(productSource);
 
-        //errors are printed if required fields are not filled in
+        //errors are printed only if required fields are not filled in
         if(productSource.getSelectedToggle() == null) {
-            error2.setText("Please select whether the alcohol is imported or domestic.");
+            pSourceErrorField.setText("Please select whether the alcohol is imported or domestic.");
+        } else{
+            pSourceErrorField.setText("");
         }
         if(productType.getSelectedToggle() == null) {
-            error2.setText("Please select whether the alcohol is a beer or wine.");
+            pTypeErrorField.setText("Please select whether the alcohol is a beer or wine.");
+        } else{
+            pTypeErrorField.setText("");
         }
         if(brandNameField.getText().isEmpty()) {
-            error2.setText("Please fill in the brand name.");
+            brandNameErrorField.setText("Please fill in the brand name.");
+        } else{
+            brandNameErrorField.setText("");
         }
         if(alcoholContentField.getText().isEmpty()) {
-            error2.setText("Please fill in the alcohol content (as a %) of the beverage.");
+            alcContentErrorField.setText("Please fill in the alcohol content (as a %) of the beverage.");
+        } else {
+            alcContentErrorField.setText("");
         }
         if (productType.getSelectedToggle() == wine){
             int vintageYr=0;
@@ -186,11 +209,15 @@ public class NewApplicationController {
             }
             wineType = new AlcoholInfo.Wine(pH, vintageYr);
         }
-        if(datePicker == null) {
-            error2.setText("Please select the date.");
+        if(datePicker==null) { //this doesn't work for now
+            dateErrorField.setText("Please select the date.");
+        } else{
+            dateErrorField.setText("");
         }
         if(signatureField.getText().isEmpty()) {
-            error2.setText("Please fill in the signature field.");
+            signatureErrorField.setText("Please fill in the signature field.");
+        } else{
+            signatureErrorField.setText("");
         }
 
         //check if required fields are filled in
@@ -225,14 +252,18 @@ public class NewApplicationController {
             //sets the alcohol info
             appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType);
 
+            //creates a new ManufacturerInfo
+            this.appManInfo= new ManufacturerInfo("Name Person", physicalAddress, "company", repIDNo,
+                    permitNo, applicantPhone, applicantEmail);
+
             //creates and sets the date value
-            java.sql.Date newDate = java.sql.Date.valueOf(datePicker.getValue());
+            Date newDate = java.sql.Date.valueOf(datePicker.getValue());
 
             // Creates a new application info and sets data
-            ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);
+            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo);
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
-            List<SubmittedApplication> appList = new ArrayList();
+            List<SubmittedApplication> appList = new ArrayList<>();
 
             //Create applicant to store in submitted application
             Applicant applicant = new Applicant(appList);
@@ -242,7 +273,21 @@ public class NewApplicationController {
             applicant.addSubmittedApp(newApp);
 
             //Submit the new application to the database
-            //alcoholDB.submitApplication(newApp);
+            alcoholDB.submitApplication(newApp);
+
+//            AlcoholInfo alc = new AlcoholInfo(5, "name", "brand", ProductSource.DOMESTIC
+//                    , AlcoholType.BEER, null); //alcohol info for test
+//            Date subDate = new Date(1997, 5, 20);
+//            ManufacturerInfo man = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
+//                    new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
+//
+//            ApplicationInfo appInfo2 = new ApplicationInfo(subDate, man, alc);
+//
+//            Applicant applicant2 = new Applicant(null);
+//
+//            SubmittedApplication test = new SubmittedApplication(appInfo2, ApplicationStatus.PENDINGREVIEW, applicant2);
+//
+//            alcoholDB.submitApplication(test);
 
             //Go back to homepage
             Main.loadFXML("/fxml/mainGUI.FXML");
