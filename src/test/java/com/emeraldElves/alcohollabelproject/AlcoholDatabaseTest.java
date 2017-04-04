@@ -20,6 +20,10 @@ public class AlcoholDatabaseTest {
         db = DatabaseController.getInstance().initDatabase("testDB");
         alcoholDatabase = new AlcoholDatabase(db);
     }
+    @Test
+    public void testSubmitApplication(){
+
+    }
 
     @Test
     public void testUnapproved(){
