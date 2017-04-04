@@ -108,7 +108,27 @@ public class NewApplicationController {
             formFilled=true;
         }
         if(formFilled){
-            //form is all filled in so go to page 2 of label application
+            //Store the applicant information now that the form is filled
+
+            //NEED TO CHECK IF THIS IS ACTUALLY AN INT!!!
+            if(!repIDNoTextField.getText().isEmpty()) {
+                repIDNo=Integer.parseInt(repIDNoTextField.getText());
+            }
+            //Parses text from permit number field and stores it as an int
+            //permitNo=Integer.parseInt(permitNoTextField.getText());
+
+            //Gets text from email address field and stores it as a string
+            physicalAddress=addressField.getText();
+
+            //Gets text from the email address field and stores it as an EmailAddress
+            applicantEmail = new EmailAddress(emailAddressField.getText());
+
+            //Gets text from the email address field and stores it as a PhoneNumber
+            applicantPhone = new PhoneNumber(phoneNumberField.getText());
+
+            //also check if emails or phone numbers are valid!
+
+            //form is now filled in so go to page 2 of label application
             Main.loadFXML("/fxml/new-app-page2.FXML");
         }
     }
@@ -189,8 +209,7 @@ public class NewApplicationController {
         ProductSource pSource = ProductSource.DOMESTIC;
         AlcoholType mainAlcType = AlcoholType.OTHER;
         AlcoholInfo.Wine winePlaceholder = new AlcoholInfo.Wine(0, 0);
-        AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(),
-                pSource, mainAlcType, winePlaceholder);
+
 
         //Checking if the product is domestic or imported by checking the product source radio button group
         if(productSource.getSelectedToggle() == domestic) {
@@ -207,6 +226,9 @@ public class NewApplicationController {
             mainAlcType = AlcoholType.WINE;
             winePlaceholder = new AlcoholInfo.Wine(Double.parseDouble(pHLevelField.getText()), Integer.parseInt(wineVintageYearField.getText()));
         }
+
+        AlcoholInfo appAlcoholInfo =  new AlcoholInfo(Integer.parseInt(alcoholContentField.getText()), alcoholName.getText(), brandNameField.getText(),
+                pSource, mainAlcType, winePlaceholder);
 
         java.sql.Date newDate = java.sql.Date.valueOf(datePicker.getValue());
         ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo);

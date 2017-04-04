@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.NewApplicationController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.NewApplicationController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.3333435058594" minWidth="10.0" prefWidth="285.3333435058594" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="434.6666564941406" />
@@ -107,7 +107,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <RadioButton fx:id="international" mnemonicParsing="false" text="International" GridPane.rowIndex="1">
+                <RadioButton fx:id="international" mnemonicParsing="false" text="Imported" GridPane.rowIndex="1">
                     <toggleGroup>
                         <ToggleGroup fx:id="ProductSourceGroup" />
                     </toggleGroup>
@@ -124,7 +124,7 @@
                 <Insets right="10.0" />
             </GridPane.margin></Text>
         <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Name:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fanciful Name (if any):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
             <GridPane.margin>
                 <Insets right="10.0" />
             </GridPane.margin></Text>
