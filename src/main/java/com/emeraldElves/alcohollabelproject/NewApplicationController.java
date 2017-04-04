@@ -178,7 +178,6 @@ public class NewApplicationController {
             }
             wineType = new AlcoholInfo.Wine(pH, vintageYr);
         }
-
         if(datePicker == null) {
             error2.setText("Please select the date.");
         }
@@ -198,7 +197,7 @@ public class NewApplicationController {
             if (productSource.getSelectedToggle() == domestic) {
                 pSource = ProductSource.DOMESTIC;
             }
-            if (productSource.getSelectedToggle() == international) {
+            else if (productSource.getSelectedToggle() == international) {
                 pSource = ProductSource.IMPORTED;
             }
 
@@ -206,7 +205,7 @@ public class NewApplicationController {
             if (productType.getSelectedToggle() == beer) {
                 alcType = AlcoholType.BEER;
             }
-            if (productType.getSelectedToggle() == wine) {
+            else if (productType.getSelectedToggle() == wine) {
                 alcType = AlcoholType.WINE;
             }
 
@@ -235,7 +234,7 @@ public class NewApplicationController {
             SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
 
             //Submit the new application to the database
-            alcoholDB.submitApplication(newApp);
+            //alcoholDB.submitApplication(newApp);
 
             //Go back to homepage
             Main.loadFXML("/fxml/mainGUI.FXML");
