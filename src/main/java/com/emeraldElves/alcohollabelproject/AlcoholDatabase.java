@@ -262,6 +262,37 @@ public class AlcoholDatabase {
         return db.update("SubmittedApplications", "status = " + status.getValue() + ", statusMsg = '" + status.getMessage() + "'", "applicationID = " + application.getApplicationID());
     }
 
+    public boolean changeVintageYear(SubmittedApplication application, int vintageYear){
+        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+            return false;
+        }
+
+        application.getApplication().getAlcohol().getWineInfo().vintageYear = vintageYear;
+
+        return db.update("AlcoholInfo", "vintageYear = " + vintageYear, "applicationID = " + application.getApplicationID());
+    }
+
+    public boolean changePH(SubmittedApplication application, double pH){
+        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+            return false;
+        }
+
+        application.getApplication().getAlcohol().getWineInfo().pH = pH;
+
+        return db.update("AlcoholInfo", "pH = " + pH, "applicationID = " + application.getApplicationID());
+    }
+
+    public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent){
+        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+            return false;
+        }
+
+        application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
+
+        return db.update("AlcoholInfo", "alcoholContent = " + alcoholContent, "applicationID = " + application.getApplicationID());
+
+    }
+
 
     private AlcoholInfo getAlcoholInfoByID(int applicationID) {
         ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + applicationID);

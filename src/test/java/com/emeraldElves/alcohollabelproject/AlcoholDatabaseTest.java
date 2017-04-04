@@ -55,7 +55,7 @@ public class AlcoholDatabaseTest {
 
 
         AlcoholInfo alc2 = new AlcoholInfo(5, "name", "brand", ProductSource.DOMESTIC
-                , AlcoholType.BEER, null); //alcohol info for test
+                , AlcoholType.WINE, new AlcoholInfo.Wine(1.3, 1998)); //alcohol info for test
         Date subDate2 = new Date(2000, 10, 20);
         ManufacturerInfo man2 = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
                 new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
@@ -97,6 +97,11 @@ public class AlcoholDatabaseTest {
         assertEquals(1, alcoholDatabase.getMostRecentUnapproved(10).size());
 
         assertEquals(1, alcoholDatabase.searchByBrandName("brand").size());
+
+        assertTrue(alcoholDatabase.changePH(test2, 1.8));
+
+        assertEquals(1.8, test2.getApplication().getAlcohol().getWineInfo().pH, 0);
+
 
     }
 
