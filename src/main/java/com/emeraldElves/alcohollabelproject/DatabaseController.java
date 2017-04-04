@@ -69,7 +69,7 @@ public class DatabaseController {
         try {
             database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
-                    new Database.TableField("fancifulName", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"),  //only beer or wine?
