@@ -35,6 +35,7 @@ public class UpdateApplicationController {
     DatePicker datePicker;
 
 
+
     public void ApplicationStatuschecker() {
         switch(status)
         {
@@ -83,10 +84,9 @@ public class UpdateApplicationController {
     }
 
     public void submitApp(){
+        ApplicationStatuschecker();
         String applicantname = null;
-
-       SubmittedApplication CurrentlyBeingUpdated = null;
-
+        SubmittedApplication CurrentlyBeingUpdated = null;
         String physicalAddress = CurrentlyBeingUpdated.getApplication().getManufacturer().getPhysicalAddress();
         String company = null;
         int representativeID = CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID();;
