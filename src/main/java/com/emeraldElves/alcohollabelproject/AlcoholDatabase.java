@@ -111,18 +111,6 @@ public class AlcoholDatabase {
      * @return True if the application was submitted without error.
      */
     public boolean submitApplication(SubmittedApplication application) {
-        /*KYLE read this before checking my code. This is how i assume this method works:
-        you add info to submittedapplications, manufacturerinfo, and alcoholinfo table.
-        all of that info from the application passed in. I understood it better as i was typing
-        this out, but i figured you might like to see this. Just imagine me maniacally laughing to myself at
-        night. Thats how i'll type out this code.
-        */
-
-        /*IMPORTANT: I have not idea where to find the unique ID number for the application. I will just make a randomID number for each application, but
-        i dont know where to associate the id number to the application. Other than that, this function should work.
-        Also, I don't know where to find the approval time, expiration date, TTBUsername. Nothing in submittedapplication relating to it. hope you can figure this
-        out. I'll do what i can with the rest.
-        */
 
         if (AppState.getInstance().ttbAgents == null) {
             AppState.getInstance().ttbAgents = new RoundRobin<>(usersDatabase.getAllAgents());
