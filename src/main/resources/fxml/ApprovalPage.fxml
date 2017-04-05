@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.ApprovalProcessController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
+            <children>
+                <Label fx:id="brandName" layoutX="14.0" layoutY="185.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="fancifulName" layoutX="18.0" layoutY="291.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="alcoholType" alignment="CENTER" contentDisplay="CENTER" layoutX="382.0" layoutY="190.0" textAlignment="CENTER">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="submissionDate" layoutX="651.0" layoutY="188.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="company" layoutX="673.0" layoutY="291.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="origin" layoutX="372.0" layoutY="292.0">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Button layoutX="27.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#GoHome" text="Home" />
+            <Button layoutX="72.0" layoutY="487.0" mnemonicParsing="false" onMouseClicked="#Aprove" text="Aprove" />
+            <Button layoutX="176.0" layoutY="488.0" mnemonicParsing="false" onMouseClicked="#Reject" text="Reject" />
+            <Button layoutX="273.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#PendingReview" text="Pending Review" />
+            <Button layoutX="419.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#ApprovedConditionally" text="Approved with conditions" />
+            <Button layoutX="629.0" layoutY="488.0" mnemonicParsing="false" onMouseClicked="#NeedsCorrections" text="Needs corrections" />
+            </children>
+        </Pane>
+        <Pane>
+            <children>
+                <ImageView fitHeight="181.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/ttbmasthead.gif" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+    </children>
+</GridPane>

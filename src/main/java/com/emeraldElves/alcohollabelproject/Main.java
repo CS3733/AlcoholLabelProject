@@ -70,12 +70,12 @@ public class Main extends Application {
         }
     }
 
-    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm) {
+    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm, String Username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DetailedSearchPage.fxml"));
         try {
             Parent root = loader.load();
             DetailedSearchController controller = loader.getController();
-            controller.init(this, application, searchTerm);
+            controller.init(this, application, searchTerm, Username);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
