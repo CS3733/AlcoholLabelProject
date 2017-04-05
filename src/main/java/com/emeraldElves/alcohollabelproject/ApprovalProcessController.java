@@ -8,16 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Kylec on 4/4/2017.
+ * Created by keionbis on 4/5/17.
  */
-public class DetailedSearchController {
 
-    private Main main;
-    private SubmittedApplication application;
-    private String searchTerm;
-    public String Username;
-
-
+public class ApprovalProcessController {
+    Main main;
+    String Username;
+    SubmittedApplication application;
     @FXML
     Label brandName;
 
@@ -36,11 +33,10 @@ public class DetailedSearchController {
     @FXML
     Label origin;
 
-    public void init(Main main, SubmittedApplication application, String searchTerm, String Username) {
+    public void init(Main main, String Username, SubmittedApplication application){
         this.main = main;
-        this.application = application;
-        this.searchTerm = searchTerm;
         this.Username = Username;
+        this.application = application;
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
         String type = "";
@@ -72,9 +68,28 @@ public class DetailedSearchController {
         }
         origin.setText(productSource);
     }
-    public void GoHome(){
-        main.loadHomepage(UserType.TTBAGENT,Username);
+
+    public void GoHome() {
+        main.loadHomepage(UserType.TTBAGENT, Username);
+
     }
+    public void Aprove(){
+        application.setStatus(ApplicationStatus.APPROVED);
+        //WorkflowActionsController.
+    }
+    public void Reject(){
+        application.setStatus(ApplicationStatus.REJECTED);
+    }
+    public void PendingReview(){
+        application.setStatus(ApplicationStatus.PENDINGREVIEW);
+    }
+    public void ApprovedConditionally(){
+        application.setStatus(ApplicationStatus.APPROVEDWITHCONDITIONS);
+    }
+    public void NeedsCorrections(){
+        application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
+    }
+    public void MoveToNextApp(){
 
-
+    }
 }

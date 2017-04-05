@@ -86,7 +86,7 @@ public class SearchController {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     SubmittedApplication rowData = row.getItem();
-                    main.loadDetailedSearchPage(rowData, searchTerm);
+                    main.loadDetailedSearchPage(rowData, searchTerm, username);
                 }
             });
             return row;
