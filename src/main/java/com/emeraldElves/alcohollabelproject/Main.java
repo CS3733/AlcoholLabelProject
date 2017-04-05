@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class Main extends Application {
 
@@ -16,6 +17,19 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
+        AlcoholInfo alc2 = new AlcoholInfo(5, "name", "brand", ProductSource.DOMESTIC
+                , AlcoholType.WINE, new AlcoholInfo.Wine(1.3, 1998)); //alcohol info for test
+        Date subDate2 = new Date(2000, 10, 20);
+        ManufacturerInfo man2 = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
+                new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
+
+        ApplicationInfo appInfo2 = new ApplicationInfo(subDate2, man2, alc2);
+
+        Applicant applicant2 = new Applicant(null);
+
+        SubmittedApplication test2 = new SubmittedApplication(appInfo2, ApplicationStatus.PENDINGREVIEW, applicant2);
+        AlcoholDatabase alcoholDatabase = new AlcoholDatabase(database);
+        alcoholDatabase.submitApplication(test2);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
         HomeController controller = loader.getController();
@@ -66,7 +80,15 @@ public class Main extends Application {
     }
 
     public void loadLoginPage() {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+        try {
+            Parent root = loader.load();
+            LoginController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadHomepage(UserType userType, String username) {
@@ -110,7 +132,7 @@ public class Main extends Application {
     }
 
     public void loadWorkflowPage(String username) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/workflowController.fxml"));
         try {
             Parent root = loader.load();
             WorkflowController controller = loader.getController();

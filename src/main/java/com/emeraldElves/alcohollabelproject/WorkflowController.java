@@ -14,15 +14,15 @@ import java.text.SimpleDateFormat;
 
 public class WorkflowController {
     @FXML
-    Label id1;
+    Hyperlink id1;
     @FXML
-    Label id2;
+    Hyperlink id2;
     @FXML
-    Label id3;
+    Hyperlink id3;
     @FXML
-    Label id4;
+    Hyperlink id4;
     @FXML
-    Label id5;
+    Hyperlink id5;
     @FXML
     Label fanciful1;
     @FXML

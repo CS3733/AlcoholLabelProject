@@ -21,20 +21,28 @@ public class LoginController {
     @FXML
     VBox errorMsg;
 
-    public LoginController(){
+    private Main main;
+
+    public LoginController() {
 
     }
-    public void login(ActionEvent e){
-        System.out.println("Event called.");
+
+    public void init(Main main) {
+        this.main = main;
+    }
+
+    public void login(ActionEvent e) {
         String username = usernameField.getText();
         String password = passwordField.getText();
         AuthenticatedUsersDatabase authDb = new AuthenticatedUsersDatabase(Main.database);
         if (authDb.isValidAccount(username, password)) {
             errorMsg.setVisible(false);
-            //TODO: load the homepage.
-            //new Main().loadHomepage(authDb.getAccountType(username, password), username);
-        }
-        else {
+            if (authDb.isValidApplicant(username, password)) {
+                main.loadHomepage(UserType.APPLICANT, username);
+            } else if (authDb.isValidTTBAgent(username, password)) {
+                main.loadHomepage(UserType.TTBAGENT, username);
+            }
+        } else {
             errorMsg.setVisible(true);
         }
     }
