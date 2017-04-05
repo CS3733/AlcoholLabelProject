@@ -180,7 +180,7 @@ public class NewApplicationController {
             applicantPhone = new PhoneNumber(phoneNumberField.getText());
 
             //form is now filled in so go to page 2 of label application
-            Main.loadFXML("/fxml/newApplicationPage2.FXML", this);
+            Main.loadFXML("/fxml/newApplicationPage2.fxml", this);
         }
     }
 
