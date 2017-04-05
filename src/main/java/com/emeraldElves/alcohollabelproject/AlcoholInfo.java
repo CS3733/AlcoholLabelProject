@@ -6,9 +6,25 @@ package com.emeraldElves.alcohollabelproject;
 public class AlcoholInfo {
 
     private int alcoholContent;
-    private String name;
+    private String fancifulname;
     private String brandName;
     private ProductSource origin;
+    private AlcoholType alcoholType;
+    private Wine wineInfo;
+
+    public static class Wine{
+        double pH;
+        int vintageYear;
+
+        public Wine(double pH, int vintageYear) {
+            this.pH = pH;
+            this.vintageYear = vintageYear;
+        }
+    }
+
+    public void setAlcoholContent(int alcoholContent) {
+        this.alcoholContent = alcoholContent;
+    }
 
     /**
      * Constructor to create a new AlcoholInfo
@@ -18,11 +34,21 @@ public class AlcoholInfo {
      * @param brandName      Brand name of alcohol
      * @param origin         Whether the alcohol is domestic or imported
      */
-    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin) {
+    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo) {
         this.alcoholContent = alcoholContent;
-        this.name = name;
+        this.fancifulname = name;
         this.brandName = brandName;
         this.origin = origin;
+        this.alcoholType = alcoholType;
+        if(alcoholType == AlcoholType.WINE)
+        {
+            this.wineInfo = wineInfo;
+        }
+        else if(alcoholType != AlcoholType.WINE)
+        {
+            this.wineInfo = null;
+        }
+
     }
 
     /**
@@ -40,7 +66,7 @@ public class AlcoholInfo {
      * @return the alcohol name as a String
      */
     public String getName() {
-        return this.name;
+        return this.fancifulname;
     }
 
     /**
@@ -60,5 +86,17 @@ public class AlcoholInfo {
     public ProductSource getOrigin() {
         return this.origin;
     }
+
+    public AlcoholType getAlcoholType(){ return this.alcoholType; }
+
+    public void setAlcoholType(AlcoholType alcoholType) {
+        this.alcoholType = alcoholType;
+    }
+
+    public Wine getWineInfo()
+    {
+        return this.wineInfo;
+    }
+
 
 }
