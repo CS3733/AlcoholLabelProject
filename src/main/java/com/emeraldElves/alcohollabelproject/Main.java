@@ -19,8 +19,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
 
-        database.insert("'Admin3', 'Admin1'", "ApplicantLogin");
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
         HomeController controller = loader.getController();

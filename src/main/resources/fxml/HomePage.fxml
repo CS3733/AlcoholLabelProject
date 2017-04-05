@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.HomeController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.HomeController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -30,7 +30,7 @@
                   <Button layoutX="186.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" text="Search" />
                </children>
             </Group>
-                <GridPane layoutX="260.0" layoutY="123.0" prefHeight="367.0" prefWidth="283.0">
+                <GridPane layoutX="1.0" layoutY="125.0" prefHeight="365.0" prefWidth="802.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -42,27 +42,27 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label fx:id="label0" GridPane.rowIndex="1">
+                        <Label fx:id="label0" alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="1">
                             <font>
                                 <Font size="36.0" />
                             </font>
                         </Label>
-                        <Label fx:id="label1" GridPane.rowIndex="2">
+                        <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="2">
                             <font>
                                 <Font size="36.0" />
                             </font>
                         </Label>
-                        <Label fx:id="label2" GridPane.rowIndex="3">
+                        <Label fx:id="label2" alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="3">
                             <font>
                                 <Font size="36.0" />
                             </font>
                         </Label>
-                        <Label fx:id="label3" GridPane.rowIndex="4">
+                        <Label fx:id="label3" alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="4">
                             <font>
                                 <Font size="36.0" />
                             </font>
                         </Label>
-                      <Label text="Recenly Approved Beverages" />
+                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="802.0" text="Recenly Approved Beverages" />
                     </children>
                 </GridPane>
                 <Button fx:id="logButton" layoutX="698.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" text="Login" />
