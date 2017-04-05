@@ -102,6 +102,8 @@ public class NewApplicationController {
     public void nextPage(){
 
         Boolean formFilled=false;
+        Boolean emailValid=false;
+        Boolean phoneValid=false;
 
         //errors are printed only if required fields are not filled in
         if(permitNoTextField.getText().isEmpty()) {
@@ -130,7 +132,26 @@ public class NewApplicationController {
                 !addressField.getText().isEmpty()&&!permitNoTextField.getText().isEmpty()){
             formFilled=true;
         }
-        if(formFilled) { //Store the applicant information now that the form is filled
+
+        //check if email field is valid
+        if(!emailAddressField.getText().isEmpty()){
+            applicantEmail = new EmailAddress(emailAddressField.getText()); //get text from the email address field
+            if(applicantEmail.isValid()) {
+                emailValid = true;
+            }
+            else emailErrorField.setText("Please fill in a valid email address.");
+        }
+
+        //check if phone number field is valid
+        if(!phoneNumberField.getText().isEmpty()){
+            applicantPhone = new PhoneNumber(phoneNumberField.getText()); //get text from phone num field
+            if(applicantPhone.isValid()) {
+                phoneValid=true;
+            }
+            else phoneNumErrorField.setText("Please fill in a valid phone number.");
+        }
+
+        if(formFilled && emailValid && phoneValid) { //Store the applicant information now that the form is filled
 
             //NEED TO CHECK IF THIS IS ACTUALLY AN INT!!!
             if(!repIDNoTextField.getText().isEmpty()) {
@@ -149,9 +170,6 @@ public class NewApplicationController {
 
             //Gets text from the email address field and stores it as a PhoneNumber
             applicantPhone = new PhoneNumber(phoneNumberField.getText());
-
-            //also check if emails or phone numbers are valid!!!!!!
-
 
             //form is now filled in so go to page 2 of label application
             Main.loadFXML("/fxml/newApplicationPage2.FXML", this);
