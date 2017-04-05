@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by elijaheldredge on 3/31/17.
@@ -332,6 +333,16 @@ public class AlcoholDatabase {
 
     }
 
+
+    public SubmittedApplication getRandomApproved(){
+        ResultSet alcoholResult = db.select("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue());
+        List<SubmittedApplication> applications = getApplicationsFromResultSet(alcoholResult);
+        Random random = new Random();
+        int pos = random.nextInt(applications.size());
+        if(applications.isEmpty())
+            return null;
+        return applications.get(pos);
+    }
 
     private AlcoholInfo getAlcoholInfoByID(int applicationID) {
         ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + applicationID);

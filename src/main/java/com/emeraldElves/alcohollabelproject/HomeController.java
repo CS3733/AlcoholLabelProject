@@ -78,6 +78,13 @@ public class HomeController {
         main.loadSearchPage(usertype, username, searchbox.getText());
     }
 
+    public void feelingThirsty(){
+        AlcoholDatabase alcoholDatabase = new AlcoholDatabase(Main.database);
+        SubmittedApplication application = alcoholDatabase.getRandomApproved();
+        if(application != null)
+            main.loadDetailedSearchPage(application, application.getApplication().getAlcohol().getBrandName(), usertype, username);
+    }
+
     public void init(Main main, UserType usertype, String username) {
         this.usertype = usertype;
         this.username = username;
