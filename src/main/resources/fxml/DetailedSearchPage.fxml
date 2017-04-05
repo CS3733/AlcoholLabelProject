@@ -21,38 +21,37 @@
     <children>
         <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
          <children>
-            <Label fx:id="brandName" layoutX="14.0" layoutY="185.0">
+            <Label fx:id="brandName" layoutX="14.0" layoutY="185.0" text="Brand Name">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="fancifulName" layoutX="18.0" layoutY="291.0">
+            <Label fx:id="fancifulName" layoutX="18.0" layoutY="291.0" text="Fanciful name">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="alcoholType" alignment="CENTER" contentDisplay="CENTER" layoutX="382.0" layoutY="190.0" textAlignment="CENTER">
+            <Label fx:id="alcoholType" alignment="CENTER" contentDisplay="CENTER" layoutX="382.0" layoutY="190.0" text="Alcohol type" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="submissionDate" layoutX="651.0" layoutY="188.0">
+            <Label fx:id="submissionDate" layoutX="651.0" layoutY="188.0" text="Submission date">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="company" layoutX="673.0" layoutY="291.0">
+            <Label fx:id="company" layoutX="673.0" layoutY="291.0" text="Company">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="origin" layoutX="372.0" layoutY="292.0">
+            <Label fx:id="origin" layoutX="372.0" layoutY="292.0" text="Origin">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
             <Button layoutX="38.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#GoHome" text="Home" />
-            <Button layoutX="615.0" layoutY="494.0" mnemonicParsing="false" onMouseClicked="#NextApplication" text="Go to next application" />
          </children>
         </Pane>
         <Pane>

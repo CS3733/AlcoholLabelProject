@@ -75,8 +75,6 @@ public class DetailedSearchController {
     public void GoHome(){
         main.loadHomepage(UserType.TTBAGENT,Username);
     }
-    public void NextApplication(){
-        //idk how to proceed to the next next one yet
-    }
+
 
 }

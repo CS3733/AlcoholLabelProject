@@ -110,6 +110,8 @@ public class HomeController {
                 logButton.setText("Log In");
                 break;
         }
+
+
     }
 
 }

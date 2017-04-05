@@ -75,6 +75,7 @@ public class ApprovalProcessController {
     }
     public void Aprove(){
         application.setStatus(ApplicationStatus.APPROVED);
+        //WorkflowActionsController.
     }
     public void Reject(){
         application.setStatus(ApplicationStatus.REJECTED);
@@ -87,5 +88,8 @@ public class ApprovalProcessController {
     }
     public void NeedsCorrections(){
         application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
+    }
+    public void MoveToNextApp(){
+
     }
 }

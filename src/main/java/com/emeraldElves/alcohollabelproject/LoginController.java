@@ -47,4 +47,7 @@ public class LoginController {
             errorMsg.setVisible(true);
         }
     }
+    public void GoHome(){
+        main.loadHomepage(UserType.BASIC,"");
+    }
 }
