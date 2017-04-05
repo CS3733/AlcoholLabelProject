@@ -1,14 +1,15 @@
 package com.emeraldElves.alcohollabelproject;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import com.emeraldElves.alcohollabelproject.ApplicationStatus;
 import com.emeraldElves.alcohollabelproject.ProductSource;
 import com.emeraldElves.alcohollabelproject.AlcoholType;
 import com.emeraldElves.alcohollabelproject.SubmittedApplication;
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.time.Instant;
 /**
  * Created by Keion Bisland on 4/2/2017.
  */
@@ -16,19 +17,8 @@ import com.emeraldElves.alcohollabelproject.SubmittedApplication;
 public class UpdateApplicationController {
 
    public ApplicationStatus status;//get status from database
-
-    @FXML
-    TextField repIDNoTextField;
-    @FXML
-    TextField permitNoTextField;
     @FXML
     TextField brandNameField;
-    @FXML
-    TextField AddressField;
-    @FXML
-    TextField phoneNumberField;
-    @FXML
-    TextField emailAddressField;
     @FXML
     TextField alcoholContentField;
     @FXML
@@ -36,23 +26,28 @@ public class UpdateApplicationController {
     @FXML
     TextField phLevelField;
     @FXML
+    TextField fancifulName;
+    @FXML
     TextField signatureField;
-
     @FXML
-    RadioButton InternationalRadio;
-    @FXML
-    RadioButton DomesticRadio;
-    @FXML
-    RadioButton ProductType_Beer;
-    @FXML
-    RadioButton ProductType_Wine;
-
+    Button submitBtn;
     @FXML
     DatePicker datePicker;
 
+    Main main;
+    SubmittedApplication CurrentlyBeingUpdated;
+    String Username;
 
-    public void ApplicationStatuschecker()
-    {
+
+
+
+    public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username ) {
+        this.main = main;
+        this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
+        this.Username = Username;
+
+    }
+    public void ApplicationStatuschecker() {
         switch(status)
         {
             case REJECTED:
@@ -62,82 +57,79 @@ public class UpdateApplicationController {
                 updateApproved();
                 break;
             case PENDINGREVIEW:
-                //idk what im supposed to do in this case rn
                 break;
-
+            case APPROVEDWITHCONDITIONS:
+                break;
+            case NEEDSCORRECTIONS:
+                break;
         }
 
     }
-
-
-    public void updateRejected()
-    {
-        SubmittedApplication CurrentlyBeingUpdated = null;
-
-        repIDNoTextField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID()));
-        permitNoTextField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPermitNum()));
-        brandNameField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getBrandName()));
-        AddressField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPhysicalAddress()));
-        phoneNumberField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPhoneNumber()));
-        emailAddressField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getEmailAddress()));
+    public void updateRejected(){
+        //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
-        datePicker.setPromptText(String.valueOf(CurrentlyBeingUpdated.getApplication().getSubmissionDate()));
-        if(CurrentlyBeingUpdated.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED)
-        {
-            InternationalRadio.setSelected(true);
-        }
-        else if(CurrentlyBeingUpdated.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC)
-        {
-            DomesticRadio.setSelected(true);
-        }
         if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE)
         {
-            ProductType_Wine.setSelected(true);
-            wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getVintageYear()));
-            phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getPH()));
+            wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().vintageYear));
+            phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().pH));
         }
         else if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER)
         {
-            ProductType_Beer.setSelected(true);
         }
-
-
     }
 
-    public void updateApproved()
-    {
-        SubmittedApplication CurrentlyBeingUpdated = null;
-
-        repIDNoTextField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID()));
-        permitNoTextField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPermitNum()));
-        brandNameField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getBrandName()));
-        AddressField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPhysicalAddress()));
-        phoneNumberField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPhoneNumber()));
-        emailAddressField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getEmailAddress()));
+    public void updateApproved() {
+        //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
-        datePicker.setPromptText(String.valueOf(CurrentlyBeingUpdated.getApplication().getSubmissionDate()));
-        if(CurrentlyBeingUpdated.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED)
-        {
-            InternationalRadio.setSelected(true);
-        }
-        else if(CurrentlyBeingUpdated.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC)
-        {
-            DomesticRadio.setSelected(true);
-        }
+
         if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE)
         {
-            ProductType_Wine.setSelected(true);
-            wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getVintageYear()));
-            phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().getPH()));
+            wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().vintageYear));
+            phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().pH));
         }
         else if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER)
         {
-            ProductType_Beer.setSelected(true);
         }
-
-       // CurrentlyBeingUpdated.application.manufacturer.setRepresentativeID(repIDNoTextField.getText());
     }
 
+    public void submitApp(){
+        ApplicationStatuschecker();
 
+        //SubmittedApplication CurrentlyBeingUpdated = null;
+        String applicantname = CurrentlyBeingUpdated.getApplication().getManufacturer().getName();
+        int UniqID = CurrentlyBeingUpdated.getApplicationID();
+        String physicalAddress = CurrentlyBeingUpdated.getApplication().getManufacturer().getPhysicalAddress();
+        String company = null;
+        int representativeID = CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID();;
+        int permitNum = CurrentlyBeingUpdated.getApplication().getManufacturer().getPermitNum();
+        PhoneNumber phoneNumber = new PhoneNumber(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPhoneNumber()));
+        EmailAddress emailAddress = new EmailAddress(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getEmailAddress()));
+        String fancifulname = fancifulName.getText();
+        String brandName = CurrentlyBeingUpdated.getApplication().getAlcohol().getBrandName();
+        int pH = Integer.parseInt(phLevelField.getText()) ;
+        int vintageYear = Integer.parseInt(wineVintageYearField.getText());
+        int alcoholContent = Integer.parseInt(alcoholContentField.getText());
+        ProductSource origin = CurrentlyBeingUpdated.getApplication().getAlcohol().getOrigin();
+        AlcoholType alcoholType = CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType();
+        AlcoholInfo.Wine wineInfo = new AlcoholInfo.Wine(vintageYear,pH);;
+        Date submissionDate = java.sql.Date.valueOf(String.valueOf(datePicker.getValue())) ;
+        ManufacturerInfo manufacturer =  new  ManufacturerInfo(applicantname, physicalAddress, company, representativeID, permitNum, phoneNumber, emailAddress);
+        AlcoholInfo submittedAlcohol = new AlcoholInfo( alcoholContent,  fancifulname, brandName, origin, alcoholType, wineInfo);
+        ApplicationInfo application = new ApplicationInfo( submissionDate,  manufacturer,  submittedAlcohol);
+        Applicant applicant = new Applicant(null);
+        SubmittedApplication UpdatedApplication =new SubmittedApplication(application,status,applicant);
+        main.loadHomepage(UserType.TTBAGENT, Username);
+
+    }
+
+    public void cancelApp()
+    {
+        main.loadHomepage(UserType.APPLICANT,"");
+
+    }
+    public void logout()
+    {
+        main.loadHomepage(UserType.BASIC,"");
+    }
 
 }

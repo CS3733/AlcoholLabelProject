@@ -2,6 +2,8 @@ package com.emeraldElves.alcohollabelproject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dan on 3/31/2017.
@@ -38,6 +40,33 @@ public class AuthenticatedUsersDatabase {
         }
     }
 
+
+    public int getRepresentativeID(String username) {
+        ResultSet resultSet = db.select("representativeID", "ApplicantLogin", "username = '" + username + "'");
+        try {
+            if (resultSet.next()) {
+                return resultSet.getInt("representativeID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public List<String> getAllAgents() {
+        ResultSet resultSet = db.select("username", "TTBAgentLogin");
+        List<String> agents = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                agents.add(resultSet.getString("username"));
+            }
+            return agents;
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+
+    }
+
     /**
      * Checks if Applicant login is valid.
      *
@@ -57,4 +86,17 @@ public class AuthenticatedUsersDatabase {
             return false;
         }
     }
+
+    public boolean isValidAccount(String userName, String password){
+        return isValidApplicant(userName, password) || isValidTTBAgent(userName, password);
+    }
+
+    public UserType getAccountType(String userName, String password){
+        if(isValidTTBAgent(userName, password))
+            return UserType.TTBAGENT;
+        if(isValidApplicant(userName, password))
+            return UserType.APPLICANT;
+        return UserType.BASIC;
+    }
+
 }

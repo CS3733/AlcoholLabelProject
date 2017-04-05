@@ -17,8 +17,13 @@ public class Applicant {
     public Applicant(List<SubmittedApplication> applications) {
         this.applications = applications;
     }
-
     public List<SubmittedApplication> getApplications() {
         return applications;
+    }
+    public void setApplications(List<SubmittedApplication> subApps) {
+        this.applications = subApps;
+    }
+    public void addSubmittedApp(SubmittedApplication submittedApp) {
+        this.applications.add(submittedApp);
     }
 }

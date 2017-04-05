@@ -6,12 +6,25 @@ package com.emeraldElves.alcohollabelproject;
 public class AlcoholInfo {
 
     private int alcoholContent;
-    private String name;
+    private String fancifulname;
     private String brandName;
     private ProductSource origin;
     private AlcoholType alcoholType;
-    private WineInfo wineInfo;
+    private Wine wineInfo;
 
+    public static class Wine{
+        double pH;
+        int vintageYear;
+
+        public Wine(double pH, int vintageYear) {
+            this.pH = pH;
+            this.vintageYear = vintageYear;
+        }
+    }
+
+    public void setAlcoholContent(int alcoholContent) {
+        this.alcoholContent = alcoholContent;
+    }
 
     /**
      * Constructor to create a new AlcoholInfo
@@ -21,9 +34,9 @@ public class AlcoholInfo {
      * @param brandName      Brand name of alcohol
      * @param origin         Whether the alcohol is domestic or imported
      */
-    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, WineInfo wineInfo) {
+    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo) {
         this.alcoholContent = alcoholContent;
-        this.name = name;
+        this.fancifulname = name;
         this.brandName = brandName;
         this.origin = origin;
         this.alcoholType = alcoholType;
@@ -53,7 +66,7 @@ public class AlcoholInfo {
      * @return the alcohol name as a String
      */
     public String getName() {
-        return this.name;
+        return this.fancifulname;
     }
 
     /**
@@ -80,7 +93,7 @@ public class AlcoholInfo {
         this.alcoholType = alcoholType;
     }
 
-    public WineInfo getWineInfo()
+    public Wine getWineInfo()
     {
         return this.wineInfo;
     }
