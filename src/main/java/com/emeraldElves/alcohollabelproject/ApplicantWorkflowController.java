@@ -12,7 +12,7 @@ public class ApplicantWorkflowController {
     Main main;
     private ListView <SubmittedApplication> ApplicationsList;
     public void init(String Username, Main main){
-        this.Username = Username;;
+        this.Username = Username;
         this.main = main;
     }
     AlcoholDatabase alcoholDatabase = new AlcoholDatabase((Main.database));
