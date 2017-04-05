@@ -124,6 +124,18 @@ public class Main extends Application {
 
     }
 
+    public void loadNewApplicationPage(String username, SubmittedApplication application) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
+        try {
+            Parent root = loader.load();
+            NewApplicationController controller = loader.getController();
+            controller.init(this, application, username);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loadNewApplicationPage(String username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
         try {

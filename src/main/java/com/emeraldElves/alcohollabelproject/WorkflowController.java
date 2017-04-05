@@ -120,6 +120,10 @@ public class WorkflowController {
         date5.setText(dates[4]);
     }
 
+    public void logout(){
+        main.loadHomepage(UserType.BASIC, "");
+    }
+
     public void goHome(){
         main.loadHomepage(UserType.TTBAGENT, username);
     }

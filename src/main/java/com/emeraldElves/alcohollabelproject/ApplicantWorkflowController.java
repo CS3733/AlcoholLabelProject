@@ -59,6 +59,10 @@ public class ApplicantWorkflowController {
         return applications.get(i);
     }
 
+    public void reviseApplication(){
+        main.loadNewApplicationPage(Username, getSelectedApplication());
+    }
+
     public void ApplicationWorkflow() {
         main.loadUpdateApplicationPage(getSelectedApplication(), Username);
     }
