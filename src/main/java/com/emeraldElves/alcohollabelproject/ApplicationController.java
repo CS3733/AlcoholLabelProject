@@ -27,5 +27,5 @@ public class ApplicationController {
     /**
      * Loads the update application fxml file
      */
-    public void updateApplication(){ Main.loadFXML("/fxml/update-app.fxml");}
+    public void updateApplication(){ Main.loadFXML("/fxml/UpdateApplication.fxml");}
 }
