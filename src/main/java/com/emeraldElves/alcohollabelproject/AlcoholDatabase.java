@@ -110,7 +110,7 @@ public class AlcoholDatabase {
      * @param application The application to submit. If this is an update to an application, be sure to include the correct unique ID number in the application.
      * @return True if the application was submitted without error.
      */
-    public boolean submitApplication(SubmittedApplication application) {
+    public boolean submitApplication(SubmittedApplication application, String username) {
 
         if (AppState.getInstance().ttbAgents == null) {
             AppState.getInstance().ttbAgents = new RoundRobin<>(usersDatabase.getAllAgents());
@@ -174,7 +174,9 @@ public class AlcoholDatabase {
                                 + info.getSubmissionDate().getTime() + ", '"//no field for expiration date
                                 + manInfo.getName() + "', " //agent name
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
-                                + assignedAgent + "'" //TTBUsername
+                                + assignedAgent + "', '"
+                                + username + "'"
+                                //TTBUsername
                         , "SubmittedApplications");
 
                 Log.console("SubmittedApplication");
@@ -232,6 +234,11 @@ public class AlcoholDatabase {
 
     public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID){
         ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);
+        return getApplicationsFromResultSet(results);
+    }
+
+    public List<SubmittedApplication> getApplicationsByApplicantUsername(String username){
+        ResultSet results = db.select("*", "SubmittedApplications", "submitterUsername = '" + username + "'");
         return getApplicationsFromResultSet(results);
     }
 
