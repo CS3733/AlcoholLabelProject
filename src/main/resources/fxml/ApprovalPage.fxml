@@ -20,7 +20,7 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane fx:id="reason" prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
+        <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
             <children>
                 <Label fx:id="brandName" layoutX="14.0" layoutY="185.0" text="Brand name">
                     <font>
@@ -59,7 +59,7 @@
             <Button layoutX="419.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#ApprovedConditionally" text="Approved with conditions" visible="false" />
             <Button layoutX="629.0" layoutY="488.0" mnemonicParsing="false" onMouseClicked="#NeedsCorrections" text="Needs corrections" visible="false" />
             <Button disable="true" layoutX="604.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#MoveToNextApp" text="View next application" visible="false" />
-            <TextArea layoutX="78.0" layoutY="335.0" prefHeight="127.0" prefWidth="659.0" promptText="Reason for choice:" />
+            <TextArea fx:id="reason" layoutX="78.0" layoutY="335.0" prefHeight="127.0" prefWidth="659.0" promptText="Reason for choice:" />
             </children>
         </Pane>
         <Pane>

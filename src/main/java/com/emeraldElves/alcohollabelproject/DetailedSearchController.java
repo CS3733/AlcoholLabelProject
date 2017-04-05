@@ -16,6 +16,7 @@ public class DetailedSearchController {
     private SubmittedApplication application;
     private String searchTerm;
     public String Username;
+    private UserType userType;
 
 
     @FXML
@@ -36,11 +37,12 @@ public class DetailedSearchController {
     @FXML
     Label origin;
 
-    public void init(Main main, SubmittedApplication application, String searchTerm, String Username) {
+    public void init(Main main, SubmittedApplication application, String searchTerm, UserType userType, String Username) {
         this.main = main;
         this.application = application;
         this.searchTerm = searchTerm;
         this.Username = Username;
+        this.userType = userType;
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
         String type = "";
@@ -72,8 +74,9 @@ public class DetailedSearchController {
         }
         origin.setText(productSource);
     }
-    public void GoHome(){
-        main.loadHomepage(UserType.TTBAGENT,Username);
+
+    public void GoHome() {
+        main.loadHomepage(userType, Username);
     }
 
 

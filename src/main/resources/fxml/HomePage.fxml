@@ -42,22 +42,22 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label fx:id="label0" alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="1">
+                        <Label fx:id="label0" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                             <font>
                                 <Font size="36.0" />
                             </font>
                         </Label>
-                        <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="2">
+                        <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                             <font>
                                 <Font size="36.0" />
                             </font>
                         </Label>
-                        <Label fx:id="label2" alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="3">
+                        <Label fx:id="label2" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                             <font>
                                 <Font size="36.0" />
                             </font>
                         </Label>
-                        <Label fx:id="label3" alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="4">
+                        <Label fx:id="label3" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                             <font>
                                 <Font size="36.0" />
                             </font>
