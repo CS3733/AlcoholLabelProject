@@ -77,6 +77,7 @@ public class HomeController {
                 utility.setVisible(true);
                 utility.setText("Applications");
                 logButton.setText("Log Out");
+                break;
             default:
                 utility.setVisible(false);
                 logButton.setText("Log In");
