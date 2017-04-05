@@ -28,6 +28,8 @@ public class SearchController {
 
     private Main main;
     private String searchTerm;
+    private UserType userType;
+    private String username;
 
     @FXML
     private TextField searchField;
@@ -52,9 +54,11 @@ public class SearchController {
 
     }
 
-    public void init(Main main, String searchTerm) {
+    public void init(Main main, UserType userType, String username, String searchTerm) {
         this.main = main;
         this.searchTerm = searchTerm;
+        this.username = username;
+        this.userType = userType;
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
@@ -79,6 +83,17 @@ public class SearchController {
         descriptionLabel.setVisible(false);
         contextSaveBtn.setDisable(data.size() == 0);
         resultsTable.setItems(data);
+        resultsTable.setRowFactory(tv -> {
+            TableRow<SubmittedApplication> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    SubmittedApplication rowData = row.getItem();
+                    main.loadDetailedSearchPage(rowData, searchTerm);
+                }
+            });
+            return row;
+        });
+
         search(searchTerm);
     }
 
@@ -99,8 +114,8 @@ public class SearchController {
         contextSaveBtn.setDisable(data.size() == 0);
     }
 
-    public void goHome(){
-        main.loadHomepage(UserType.BASIC, "");
+    public void goHome() {
+        main.loadHomepage(userType, username);
     }
 
     public void saveCSV(ActionEvent e) {

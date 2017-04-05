@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="875.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.SearchController">
+<GridPane prefHeight="875.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.SearchController">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" />
   </columnConstraints>
@@ -39,7 +39,7 @@
             <Group layoutX="194.0" layoutY="37.0">
                <children>
                   <TextField fx:id="searchField" onAction="#search" promptText="Search..." />
-                  <Button fx:id="searchBtn" layoutX="156.0" mnemonicParsing="false" onAction="#search" text="Lookup" />
+                  <Button fx:id="searchBtn" layoutX="156.0" mnemonicParsing="false" onAction="#search" text="Search" />
                </children>
             </Group>
             <Button fx:id="saveBtn" layoutX="490.0" layoutY="38.0" mnemonicParsing="false" onAction="#saveCSV" prefHeight="25.0" prefWidth="98.0" text="Export Results" />
