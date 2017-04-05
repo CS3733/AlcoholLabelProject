@@ -62,7 +62,7 @@
                                 <Font size="36.0" />
                             </font>
                         </Label>
-                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="802.0" text="Recenly Approved Beverages" />
+                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="802.0" text="Recently Approved Beverages" />
                     </children>
                 </GridPane>
                 <Button fx:id="logButton" layoutX="698.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" text="Login" />
