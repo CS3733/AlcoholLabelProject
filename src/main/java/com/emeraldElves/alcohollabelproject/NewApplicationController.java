@@ -98,6 +98,14 @@ public class NewApplicationController {
     //Stores the alcohol info from the form
     AlcoholInfo appAlcoholInfo = null;
 
+    private Main main;
+    private String username;
+
+
+    public void init(Main main, String username){
+        this.main = main;
+        this.username = username;
+    }
 
     public void nextPage(){
 
@@ -294,13 +302,13 @@ public class NewApplicationController {
             alcoholDB.submitApplication(newApp);
 
             //Go back to homepage
-            Main.loadFXML("/fxml/mainGUI.FXML");
+            main.loadHomepage(UserType.APPLICANT, username);
         }
     }
 
     public void cancelApp() {
         //Go back to homepage
-        Main.loadFXML("/fxml/mainGUI.FXML");
+        main.loadHomepage(UserType.APPLICANT, username);
     }
     public void saveApp() {
     }
