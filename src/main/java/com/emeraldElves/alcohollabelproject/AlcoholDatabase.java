@@ -326,11 +326,7 @@ public class AlcoholDatabase {
     }
 
     public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent) {
-        if (application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE) {
-            return false;
-        }
-
-        application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
+         application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
 
         return db.update("AlcoholInfo", "alcoholContent = " + alcoholContent, "applicationID = " + application.getApplicationID());
 
