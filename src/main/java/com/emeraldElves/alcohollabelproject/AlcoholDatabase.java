@@ -338,9 +338,9 @@ public class AlcoholDatabase {
         ResultSet alcoholResult = db.select("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue());
         List<SubmittedApplication> applications = getApplicationsFromResultSet(alcoholResult);
         Random random = new Random();
-        int pos = random.nextInt(applications.size());
         if(applications.isEmpty())
             return null;
+        int pos = random.nextInt(applications.size());
         return applications.get(pos);
     }
 
