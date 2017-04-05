@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.WorkflowController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.WorkflowController">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,9 +31,9 @@
     </rowConstraints>
     <children>
         <Button mnemonicParsing="false" text="Logout" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-        <ImageView fitHeight="130.0" fitWidth="1025.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+        <ImageView fitHeight="125.0" fitWidth="1025.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
             <image>
-                <Image url="@../Desktop/ttbmasthead.gif" />
+                <Image url="@../images/ttbmasthead.gif" />
             </image>
         </ImageView>
         <Button mnemonicParsing="false" text="View Completed Applications" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
@@ -66,5 +66,6 @@
       <Label fx:id="fanciful3" text="Beverage 3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <Label fx:id="fanciful4" text="Beverage 4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
       <Label fx:id="fanciful5" text="Beverage 5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#goHome" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
     </children>
 </GridPane>

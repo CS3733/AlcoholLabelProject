@@ -19,6 +19,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
 
+//        database.insert("'Admin', 'Admin'", "TTBAgentLogin");
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
         HomeController controller = loader.getController();
@@ -39,7 +41,7 @@ public class Main extends Application {
         FXMLLoader root = null;
         try {
             root = new FXMLLoader(Main.class.getResource(path));
-            stage.getScene().setRoot((Parent)root.load());
+            stage.getScene().setRoot((Parent) root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +53,7 @@ public class Main extends Application {
         try {
             root = new FXMLLoader(Main.class.getResource(path));
             root.setController(controller);
-            stage.getScene().setRoot((Parent)root.load());
+            stage.getScene().setRoot((Parent) root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,12 +72,24 @@ public class Main extends Application {
         }
     }
 
-    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm) {
+    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm, UserType userType, String Username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DetailedSearchPage.fxml"));
         try {
             Parent root = loader.load();
             DetailedSearchController controller = loader.getController();
-            controller.init(this, application, searchTerm);
+            controller.init(this, application, searchTerm, userType, Username);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadNewUserPage(UserType userType, String username){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewUser.fxml"));
+        try {
+            Parent root = loader.load();
+            NewUserController controller = loader.getController();
+            controller.init(this, userType, username);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
@@ -156,13 +170,24 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             ApplicantWorkflowController controller = loader.getController();
-            controller.init(Username,this);
+            controller.init(Username, this);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
+    public void loadApprovalProcessController(SubmittedApplication application, String Username) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApprovalPage.fxml"));
+        try {
+            Parent root = loader.load();
+            ApprovalProcessController controller = loader.getController();
+            controller.init(this, Username, application);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);

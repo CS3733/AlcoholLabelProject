@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by elijaheldredge on 3/31/17.
@@ -156,7 +157,6 @@ public class AlcoholDatabase {
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
 
 
-
         try {
             if (resultsSubmitted.next()) {
                 return false;
@@ -176,7 +176,7 @@ public class AlcoholDatabase {
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
                                 + assignedAgent + "', '"
                                 + username + "'"
-                                //TTBUsername
+                        //TTBUsername
                         , "SubmittedApplications");
 
                 Log.console("SubmittedApplication");
@@ -232,12 +232,12 @@ public class AlcoholDatabase {
     }
 
 
-    public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID){
+    public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID) {
         ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);
         return getApplicationsFromResultSet(results);
     }
 
-    public List<SubmittedApplication> getApplicationsByApplicantUsername(String username){
+    public List<SubmittedApplication> getApplicationsByApplicantUsername(String username) {
         ResultSet results = db.select("*", "SubmittedApplications", "submitterUsername = '" + username + "'");
         return getApplicationsFromResultSet(results);
     }
@@ -263,6 +263,7 @@ public class AlcoholDatabase {
 
                 Applicant applicant = new Applicant(null); // TODO: implement this
                 ApplicationStatus status = ApplicationStatus.fromInt(submittedResult.getInt("status"));
+                String message = submittedResult.getString("statusMsg");
 
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
 
@@ -271,6 +272,7 @@ public class AlcoholDatabase {
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
+                application.setTtbMessage(message);
                 return application;
             }
         } catch (SQLException e) {
@@ -293,8 +295,19 @@ public class AlcoholDatabase {
         return db.update("SubmittedApplications", "status = " + status.getValue() + ", statusMsg = '" + status.getMessage() + "'", "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changeVintageYear(SubmittedApplication application, int vintageYear){
-        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+    public boolean approveApplication(SubmittedApplication application, String agentUsername, Date expirationDate) {
+        application.setStatus(ApplicationStatus.APPROVED);
+        return db.update("SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue() + ", TTBUsername = '" + agentUsername + "', approvalDate = " +
+                +(new Date().getTime()) + ", expirationDate = " + expirationDate.getTime(), "applicationID = " + application.getApplicationID());
+    }
+
+    public boolean rejectApplication(SubmittedApplication application, String message) {
+        application.setStatus(ApplicationStatus.REJECTED);
+        return db.update("SubmittedApplications", "status = " + ApplicationStatus.REJECTED.getValue() + ", statusMsg = '" + message + "'", "applicationID = " + application.getApplicationID());
+    }
+
+    public boolean changeVintageYear(SubmittedApplication application, int vintageYear) {
+        if (application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE) {
             return false;
         }
 
@@ -303,8 +316,8 @@ public class AlcoholDatabase {
         return db.update("AlcoholInfo", "vintageYear = " + vintageYear, "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changePH(SubmittedApplication application, double pH){
-        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+    public boolean changePH(SubmittedApplication application, double pH) {
+        if (application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE) {
             return false;
         }
 
@@ -313,17 +326,23 @@ public class AlcoholDatabase {
         return db.update("AlcoholInfo", "pH = " + pH, "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent){
-        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
-            return false;
-        }
-
-        application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
+    public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent) {
+         application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
 
         return db.update("AlcoholInfo", "alcoholContent = " + alcoholContent, "applicationID = " + application.getApplicationID());
 
     }
 
+
+    public SubmittedApplication getRandomApproved(){
+        ResultSet alcoholResult = db.select("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue());
+        List<SubmittedApplication> applications = getApplicationsFromResultSet(alcoholResult);
+        Random random = new Random();
+        if(applications.isEmpty())
+            return null;
+        int pos = random.nextInt(applications.size());
+        return applications.get(pos);
+    }
 
     private AlcoholInfo getAlcoholInfoByID(int applicationID) {
         ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + applicationID);

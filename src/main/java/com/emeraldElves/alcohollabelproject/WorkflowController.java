@@ -84,10 +84,25 @@ public class WorkflowController {
 
         // load application values into labels on FXML
         id1.setText(ids[0]);
+        id1.setOnMouseClicked(e -> {
+            main.loadApprovalProcessController(submittedApps[0], username);
+        });
         id2.setText(ids[1]);
+        id2.setOnMouseClicked(e -> {
+            main.loadApprovalProcessController(submittedApps[1], username);
+        });
         id3.setText(ids[2]);
+        id3.setOnMouseClicked(e -> {
+            main.loadApprovalProcessController(submittedApps[2], username);
+        });
         id4.setText(ids[3]);
+        id4.setOnMouseClicked(e -> {
+            main.loadApprovalProcessController(submittedApps[3], username);
+        });
         id5.setText(ids[4]);
+        id5.setOnMouseClicked(e -> {
+            main.loadApprovalProcessController(submittedApps[4], username);
+        });
         fanciful1.setText(appNames[0]);
         fanciful2.setText(appNames[1]);
         fanciful3.setText(appNames[2]);
@@ -103,6 +118,10 @@ public class WorkflowController {
         date3.setText(dates[2]);
         date4.setText(dates[3]);
         date5.setText(dates[4]);
+    }
+
+    public void goHome(){
+        main.loadHomepage(UserType.TTBAGENT, username);
     }
 
     /** queryDatabase()
