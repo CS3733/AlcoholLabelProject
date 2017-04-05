@@ -324,5 +324,6 @@ public class NewApplicationController {
     public void saveApp() {
     }
     public void logout() {
+        main.loadHomepage(UserType.BASIC, "");
     }
 }
