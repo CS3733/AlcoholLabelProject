@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Detail;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -18,7 +17,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/HomePage.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Search.fxml"));
+        Parent root = loader.load();
+        SearchController controller = loader.getController();
+        controller.init(this, UserType.BASIC, "", "brand");
+//        controller.init(this, UserType.BASIC, "");
+
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -54,20 +59,20 @@ public class Main extends Application {
 
     }
 
-    public void loadSearchPage(String searchTerm){
+    public void loadSearchPage(UserType userType, String username, String searchTerm) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Search.fxml"));
         try {
             Parent root = loader.load();
             SearchController controller = loader.getController();
-            controller.init(this, searchTerm);
+            controller.init(this, userType, username, searchTerm);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DetailedPage.fxml"));
+    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DetailedSearchPage.fxml"));
         try {
             Parent root = loader.load();
             DetailedSearchController controller = loader.getController();
@@ -78,23 +83,39 @@ public class Main extends Application {
         }
     }
 
-    public void loadLoginPage(){
+    public void loadLoginPage() {
 
     }
 
-    public void loadHomepage(UserType userType, String username){
+    public void loadHomepage(UserType userType, String username) {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
+//        try {
+//            Parent root = loader.load();
+//            HomeController controller = loader.getController();
+//            controller.init(this, userType, username);
+//            stage.getScene().setRoot(root);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public void loadProfilePage(String username) {
 
     }
 
-    public void loadProfilePage(String username){
-
+    public void loadNewApplicationPage(String username) {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewApplication.fxml"));
+//        try {
+//            Parent root = loader.load();
+//            ApplicationController controller = loader.getController();
+//            controller.init(this, username);
+//            stage.getScene().setRoot(root);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    public void loadNewApplicationPage(String username){
-
-    }
-
-    public void loadUpdateApplicationPage(SubmittedApplication application, String Username){
+    public void loadUpdateApplicationPage(SubmittedApplication application, String Username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
         try {
             Parent root = loader.load();
@@ -107,7 +128,7 @@ public class Main extends Application {
 
     }
 
-    public void loadWorkflowPage(String username){
+    public void loadWorkflowPage(String username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
         try {
             Parent root = loader.load();
@@ -119,7 +140,7 @@ public class Main extends Application {
         }
     }
 
-    public void loadWorkflowActionsPage(String username, SubmittedApplication application){
+    public void loadWorkflowActionsPage(String username, SubmittedApplication application) {
 
     }
 
