@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="875.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.SearchController">
+<GridPane prefHeight="875.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.SearchController">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" />
   </columnConstraints>
@@ -39,15 +39,16 @@
             <Group layoutX="194.0" layoutY="37.0">
                <children>
                   <TextField fx:id="searchField" onAction="#search" promptText="Search..." />
-                  <Button fx:id="searchBtn" layoutX="156.0" mnemonicParsing="false" onAction="#search" text="Lookup" />
+                  <Button fx:id="searchBtn" layoutX="156.0" mnemonicParsing="false" onAction="#search" text="Search" />
                </children>
             </Group>
             <Button fx:id="saveBtn" layoutX="490.0" layoutY="38.0" mnemonicParsing="false" onAction="#saveCSV" prefHeight="25.0" prefWidth="98.0" text="Export Results" />
             <Label fx:id="descriptionLabel" alignment="CENTER" layoutY="70.0" prefHeight="20.0" prefWidth="600.0" text="N/A" />
+            <Button layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#goHome" text="Go Home" />
          </children></Pane>
       <Pane fx:id="resultsPane" maxHeight="700.0" prefWidth="600.0" GridPane.rowIndex="2">
          <children>
-            <TableView fx:id="resultsTable" prefWidth="600.0" prefHeight="700.0">
+            <TableView fx:id="resultsTable" prefHeight="700.0" prefWidth="600.0">
                <columns>
                   <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="200.0" resizable="false" text="Date" />
                   <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="200.0" resizable="false" text="Manufacturer" />
