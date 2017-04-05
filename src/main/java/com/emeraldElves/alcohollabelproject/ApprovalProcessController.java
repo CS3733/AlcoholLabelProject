@@ -33,6 +33,8 @@ public class ApprovalProcessController {
     @FXML
     Label origin;
 
+    AlcoholDatabase alcoholDatabase;
+
     public void init(Main main, String Username, SubmittedApplication application){
         this.main = main;
         this.Username = Username;
@@ -67,6 +69,7 @@ public class ApprovalProcessController {
                 break;
         }
         origin.setText(productSource);
+        alcoholDatabase = new AlcoholDatabase(Main.database);
     }
 
     public void GoHome() {
@@ -74,20 +77,24 @@ public class ApprovalProcessController {
 
     }
     public void Aprove(){
-        application.setStatus(ApplicationStatus.APPROVED);
-        //WorkflowActionsController.
+        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.APPROVED);
+        main.loadWorkflowPage(Username);
     }
     public void Reject(){
-        application.setStatus(ApplicationStatus.REJECTED);
+        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.REJECTED);
+        main.loadWorkflowPage(Username);
     }
     public void PendingReview(){
-        application.setStatus(ApplicationStatus.PENDINGREVIEW);
+        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.PENDINGREVIEW);
+        main.loadWorkflowPage(Username);
     }
     public void ApprovedConditionally(){
-        application.setStatus(ApplicationStatus.APPROVEDWITHCONDITIONS);
+        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.APPROVEDWITHCONDITIONS);
+        main.loadWorkflowPage(Username);
     }
     public void NeedsCorrections(){
-        application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
+        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.NEEDSCORRECTIONS);
+        main.loadWorkflowPage(Username);
     }
     public void MoveToNextApp(){
 

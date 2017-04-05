@@ -120,6 +120,10 @@ public class WorkflowController {
         date5.setText(dates[4]);
     }
 
+    public void goHome(){
+        main.loadHomepage(UserType.TTBAGENT, username);
+    }
+
     /** queryDatabase()
      * Queries database for queued associated applications; stores them in arrays
      * @param ttbUsername
