@@ -19,16 +19,16 @@ import javafx.stage.Stage;
  */
 
 public class ApplicantWorkflowController {
-    int RepresentativeID;
+   String Username;
     Main main;
     private ListView <SubmittedApplication> ApplicationsList;
-    public void init(int RepresentativeID, Main main){
-        this.RepresentativeID = RepresentativeID;
+    public void init(String Username, Main main){
+        this.Username = Username;;
         this.main = main;
     }
     AlcoholDatabase alcoholDatabase = new AlcoholDatabase((Main.database));
-
+    AuthenticatedUsersDatabase RepID = new AuthenticatedUsersDatabase(Main.database);
     public void ApplicationWorkflow() {
-        ApplicationsList = new ListView<SubmittedApplication>(FXCollections.observableArrayList(alcoholDatabase.getApplicationsByRepresentative(RepresentativeID)));
+        ApplicationsList = new ListView<SubmittedApplication>(FXCollections.observableArrayList(alcoholDatabase.getApplicationsByRepresentative(RepID.getRepresentativeID(Username))));
     }
 }
