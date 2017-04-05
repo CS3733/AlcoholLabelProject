@@ -262,6 +262,7 @@ public class AlcoholDatabase {
 
                 Applicant applicant = new Applicant(null); // TODO: implement this
                 ApplicationStatus status = ApplicationStatus.fromInt(submittedResult.getInt("status"));
+                String message = submittedResult.getString("statusMsg");
 
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
 
@@ -270,6 +271,7 @@ public class AlcoholDatabase {
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
+                application.setTtbMessage(message);
                 return application;
             }
         } catch (SQLException e) {
