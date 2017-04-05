@@ -8,38 +8,35 @@ public class WorkflowActionsController {
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
     String Username;
-    public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username ) {
+
+    AlcoholDatabase alcoholDatabase;
+
+    public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username) {
         this.main = main;
         this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
         this.Username = Username;
+        alcoholDatabase = new AlcoholDatabase(Main.database);
     }
 
     public void approve() {
-        AlcoholDatabase alcoholDatabase = null;
-        SubmittedApplication ApplicationUnderReview = null;
-        alcoholDatabase.updateApplicationStatus(ApplicationUnderReview ,ApplicationStatus.APPROVED);
-
+        alcoholDatabase.updateApplicationStatus(CurrentlyBeingUpdated, ApplicationStatus.APPROVED);
     }
+
     public void approveWithConditions() {
-        AlcoholDatabase alcoholDatabase = null;
-        SubmittedApplication ApplicationUnderReview = null;
-        alcoholDatabase.updateApplicationStatus(ApplicationUnderReview ,ApplicationStatus.APPROVEDWITHCONDITIONS);
+        alcoholDatabase.updateApplicationStatus(CurrentlyBeingUpdated, ApplicationStatus.APPROVEDWITHCONDITIONS);
     }
-    public void needsCorrections(){
-        AlcoholDatabase alcoholDatabase = null;
-        SubmittedApplication ApplicationUnderReview = null;
-        alcoholDatabase.updateApplicationStatus(ApplicationUnderReview ,ApplicationStatus.NEEDSCORRECTIONS);
+
+    public void needsCorrections() {
+        alcoholDatabase.updateApplicationStatus(CurrentlyBeingUpdated, ApplicationStatus.NEEDSCORRECTIONS);
     }
-    public void reject(){
-        AlcoholDatabase alcoholDatabase = null;
-        SubmittedApplication ApplicationUnderReview = null;
-        alcoholDatabase.updateApplicationStatus(ApplicationUnderReview ,ApplicationStatus.REJECTED);
+
+    public void reject() {
+        alcoholDatabase.updateApplicationStatus(CurrentlyBeingUpdated, ApplicationStatus.REJECTED);
 
     }
+
     public void forwardApplication() {
-        AlcoholDatabase alcoholDatabase = null;
-        SubmittedApplication ApplicationUnderReview = null;
-        alcoholDatabase.updateApplicationStatus(ApplicationUnderReview ,ApplicationStatus.PENDINGREVIEW);
+        alcoholDatabase.updateApplicationStatus(CurrentlyBeingUpdated, ApplicationStatus.PENDINGREVIEW);
     }
 
 }
