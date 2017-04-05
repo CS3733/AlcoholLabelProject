@@ -1,6 +1,10 @@
 package com.emeraldElves.alcohollabelproject;
 
 import javafx.collections.FXCollections;
+
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 /**
@@ -8,6 +12,8 @@ import javafx.scene.control.ListView;
  */
 
 public class ApplicantWorkflowController {
+    @FXML
+    Button UpdateApplications;
    String Username;
     Main main;
     private ListView <SubmittedApplication> ApplicationsList;
@@ -22,5 +28,15 @@ public class ApplicantWorkflowController {
         ApplicationsList.getSelectionModel().getSelectedItem();
 
 
+    }
+
+    public void GoHome()
+    {
+        main.loadHomepage(UserType.APPLICANT,Username);
+    }
+
+    public void MakeNewApplication()
+    {
+        main.loadNewApplicationPage(Username);
     }
 }
