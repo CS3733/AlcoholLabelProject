@@ -39,7 +39,8 @@ public class LoginController {
             errorMsg.setVisible(false);
             if (authDb.isValidApplicant(username, password)) {
                 main.loadHomepage(UserType.APPLICANT, username);
-            } else if (authDb.isValidTTBAgent(username, password)) {
+            }
+            if (authDb.isValidTTBAgent(username, password)) {
                 main.loadHomepage(UserType.TTBAGENT, username);
             }
         } else {
