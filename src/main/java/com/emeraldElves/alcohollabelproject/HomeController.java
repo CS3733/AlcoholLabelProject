@@ -74,6 +74,10 @@ public class HomeController {
         }
     }
 
+    public void createNewUser(){
+        main.loadNewUserPage(usertype, username);
+    }
+
     public void searchDatabase() {
         main.loadSearchPage(usertype, username, searchbox.getText());
     }

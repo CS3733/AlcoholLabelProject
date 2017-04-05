@@ -84,6 +84,18 @@ public class Main extends Application {
         }
     }
 
+    public void loadNewUserPage(UserType userType, String username){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewUser.fxml"));
+        try {
+            Parent root = loader.load();
+            NewUserController controller = loader.getController();
+            controller.init(this, userType, username);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loadLoginPage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         try {

@@ -66,12 +66,13 @@
                     </children>
                 </GridPane>
                 <Button fx:id="logButton" layoutX="698.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" text="Login" />
-            <Button fx:id="utility" layoutX="688.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="77.0" text="test">
+            <Button fx:id="utility" layoutX="644.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="121.0" text="test">
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
             </Button>
-            <Button layoutX="272.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" text="I'm Feeling Thirsty" />
+            <Button layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onMouseClicked="#createNewUser" text="Create new user" />
+            <Button layoutX="270.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" text="I'm Feeling Thirsty" />
             </children>
         </Pane>
       <Pane>
