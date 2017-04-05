@@ -67,22 +67,22 @@
       <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
       <Label text="Please fill out the following information:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label fx:id="error1" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <Label fx:id="permitNoErrorField" text="error:" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <Label fx:id="permitNoErrorField" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <padding>
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label fx:id="phoneNumErrorField" text="error2:" GridPane.columnIndex="2" GridPane.rowIndex="6">
+      <Label fx:id="phoneNumErrorField" GridPane.columnIndex="2" GridPane.rowIndex="6">
          <padding>
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label fx:id="addressErrorField" text=" error1:" GridPane.columnIndex="2" GridPane.rowIndex="5">
+      <Label fx:id="addressErrorField" GridPane.columnIndex="2" GridPane.rowIndex="5">
          <padding>
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label fx:id="emailErrorField" text="error3:" GridPane.columnIndex="2" GridPane.rowIndex="7">
+      <Label fx:id="emailErrorField" GridPane.columnIndex="2" GridPane.rowIndex="7">
          <padding>
             <Insets left="10.0" />
          </padding>
