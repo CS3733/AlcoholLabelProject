@@ -18,7 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/newApplicationPage1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/HomePage.fxml"));
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
