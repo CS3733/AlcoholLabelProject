@@ -16,11 +16,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Search.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
-        SearchController controller = loader.getController();
-        controller.init(this, UserType.BASIC, "", "brand");
-//        controller.init(this, UserType.BASIC, "");
+        HomeController controller = loader.getController();
+        controller.init(this, UserType.BASIC, "");
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -71,15 +70,15 @@ public class Main extends Application {
     }
 
     public void loadHomepage(UserType userType, String username) {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
-//        try {
-//            Parent root = loader.load();
-//            HomeController controller = loader.getController();
-//            controller.init(this, userType, username);
-//            stage.getScene().setRoot(root);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
+        try {
+            Parent root = loader.load();
+            HomeController controller = loader.getController();
+            controller.init(this, userType, username);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadProfilePage(String username) {
@@ -87,15 +86,14 @@ public class Main extends Application {
     }
 
     public void loadNewApplicationPage(String username) {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewApplication.fxml"));
-//        try {
-//            Parent root = loader.load();
-//            ApplicationController controller = loader.getController();
-//            controller.init(this, username);
-//            stage.getScene().setRoot(root);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewApplication.fxml"));
+        try {
+            Parent root = loader.load();
+            ApplicationController controller = loader.getController();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadUpdateApplicationPage(SubmittedApplication application, String Username) {
