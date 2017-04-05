@@ -111,10 +111,11 @@ public class Main extends Application {
     }
 
     public void loadNewApplicationPage(String username) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewApplication.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
         try {
             Parent root = loader.load();
-            ApplicationController controller = loader.getController();
+            NewApplicationController controller = loader.getController();
+            controller.init(this, username);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
