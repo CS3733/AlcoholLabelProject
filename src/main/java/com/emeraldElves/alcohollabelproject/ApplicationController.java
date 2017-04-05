@@ -21,7 +21,7 @@ public class ApplicationController {
      * Loads the new application fxml file
      */
     public void newApplication() {
-        Main.loadFXML("/fxml/NewApplication.fxml");
+        Main.loadFXML("/fxml/newApplicationPage1.fxml");
     }
 
     /**

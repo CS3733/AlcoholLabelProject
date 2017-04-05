@@ -1,20 +1,16 @@
 package com.emeraldElves.alcohollabelproject;
 
-import javafx.fxml.FXML;
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableRow;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by keionbis on 4/4/17.
@@ -23,29 +19,42 @@ import javafx.stage.Stage;
 public class ApplicantWorkflowController {
     @FXML
     Button UpdateApplications;
-   String Username;
+    String Username;
     Main main;
-    private ListView <SubmittedApplication> ApplicationsList;
-    public void init(String Username, Main main){
+    private List<SubmittedApplication> applications;
+
+    @FXML
+    ListView<String> list;
+    AlcoholDatabase alcoholDatabase;
+
+    public void init(String Username, Main main) {
         this.Username = Username;
         this.main = main;
+        alcoholDatabase = new AlcoholDatabase(Main.database);
+        applications = alcoholDatabase.getApplicationsByApplicantUsername(Username);
+        List<String> applicationNames = applications.stream()
+                .map(SubmittedApplication::getApplication)
+                .map(ApplicationInfo::getAlcohol)
+                .map(AlcoholInfo::getBrandName)
+                .collect(Collectors.toList());
+        ObservableList<String> items = FXCollections.observableList(applicationNames);
+        list.setItems(items);
     }
-    AlcoholDatabase alcoholDatabase = new AlcoholDatabase((Main.database));
-    AuthenticatedUsersDatabase RepID = new AuthenticatedUsersDatabase(Main.database);
+
+    public SubmittedApplication getSelectedApplication() {
+        int i = list.getSelectionModel().getSelectedIndex();
+        return applications.get(i);
+    }
+
     public void ApplicationWorkflow() {
-        ApplicationsList = new ListView<SubmittedApplication>(FXCollections.observableArrayList(alcoholDatabase.getApplicationsByRepresentative(RepID.getRepresentativeID(Username))));
-        ApplicationsList.getSelectionModel().getSelectedItem();
-
-
+        main.loadUpdateApplicationPage(getSelectedApplication(), Username);
     }
 
-    public void GoHome()
-    {
-        main.loadHomepage(UserType.APPLICANT,Username);
+    public void GoHome() {
+        main.loadHomepage(UserType.APPLICANT, Username);
     }
 
-    public void MakeNewApplication()
-    {
+    public void MakeNewApplication() {
         main.loadNewApplicationPage(Username);
     }
 }

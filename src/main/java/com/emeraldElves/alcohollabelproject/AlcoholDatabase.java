@@ -110,7 +110,7 @@ public class AlcoholDatabase {
      * @param application The application to submit. If this is an update to an application, be sure to include the correct unique ID number in the application.
      * @return True if the application was submitted without error.
      */
-    public boolean submitApplication(SubmittedApplication application) {
+    public boolean submitApplication(SubmittedApplication application, String username) {
 
         if (AppState.getInstance().ttbAgents == null) {
             AppState.getInstance().ttbAgents = new RoundRobin<>(usersDatabase.getAllAgents());
@@ -121,6 +121,9 @@ public class AlcoholDatabase {
         ApplicationInfo info = application.getApplication();
         AlcoholInfo alcInfo = info.getAlcohol();
         ManufacturerInfo manInfo = info.getManufacturer();
+
+
+        manInfo = new ManufacturerInfo("name", "physicalAddress", "company", 10, 10, new PhoneNumber("9781112222"), new EmailAddress("gjergne@wpi.edu"));
 
 
         //
@@ -134,9 +137,25 @@ public class AlcoholDatabase {
         } else {
             appID = application.getApplicationID();
         }
-
+        /*
+        try {
+            db.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
+                    new Database.TableField("status", "INTEGER NOT NULL"),
+                    new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("submissionTime", "BIGINT NOT NULL"),
+                    new Database.TableField("expirationDate", "BIGINT"),
+                    new Database.TableField("agentName", "VARCHAR (255)"),
+                    new Database.TableField("approvalDate", "BIGINT"),
+                    new Database.TableField("TTBUsername", "VARCHAR (255)"));
+            Log.console("Created new SubmittedApplications table");
+        } catch (SQLException e) {
+            Log.console("Used existing SubmittedApplications table");
+        }*/
 
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
+
+
 
         try {
             if (resultsSubmitted.next()) {
@@ -155,7 +174,9 @@ public class AlcoholDatabase {
                                 + info.getSubmissionDate().getTime() + ", '"//no field for expiration date
                                 + manInfo.getName() + "', " //agent name
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
-                                + assignedAgent + "'" //TTBUsername
+                                + assignedAgent + "', '"
+                                + username + "'"
+                                //TTBUsername
                         , "SubmittedApplications");
 
                 Log.console("SubmittedApplication");
@@ -213,6 +234,11 @@ public class AlcoholDatabase {
 
     public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID){
         ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);
+        return getApplicationsFromResultSet(results);
+    }
+
+    public List<SubmittedApplication> getApplicationsByApplicantUsername(String username){
+        ResultSet results = db.select("*", "SubmittedApplications", "submitterUsername = '" + username + "'");
         return getApplicationsFromResultSet(results);
     }
 

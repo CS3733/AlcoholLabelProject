@@ -7,16 +7,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import java.util.List;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 
 public class HomeController {
-    public Button loginBtn;
     public ArrayList<Label> mostRecentLabels;
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
+    public AlcoholDatabase aldb = new AlcoholDatabase(Main.database);
+    public List<SubmittedApplication> submitted = aldb.getMostRecentApproved(4);
 
-    public LoginStatus status;
+
     private UserType usertype;
     private String username;
     private Main main;
@@ -26,12 +27,19 @@ public class HomeController {
     private TextField searchbox;
     @FXML
     private Button logButton;
+    @FXML
+    private Label label0;
+    @FXML
+    private Label label1;
+    @FXML
+    private Label label2;
+    @FXML
+    private Label label3;
 
 
-    public HomeController(LoginStatus status) {
+    public HomeController() {
         mostRecentLabels = new ArrayList<Label>();
         mostRecentSubmissions = new ArrayList<SubmittedApplication>();
-        this.status = status;
     }
 
     // TODO: put FXML in correct folder
@@ -71,6 +79,21 @@ public class HomeController {
         this.usertype=usertype;
         this.username=username;
         this.main=main;
+        for(int i=0; i<submitted.size(); i++){
+            switch(i){
+                case 0:
+                    label0.setText(submitted.get(i).getApplication().getAlcohol().getBrandName()+ "    -    " +submitted.get(i).getApplication().getAlcohol().getName());
+                    break;
+                case 1:
+                    label1.setText(submitted.get(i).getApplication().getAlcohol().getBrandName()+"    -    " +submitted.get(i).getApplication().getAlcohol().getName());
+                    break;
+                case 2:
+                    label2.setText(submitted.get(i).getApplication().getAlcohol().getBrandName()+"    -    " +submitted.get(i).getApplication().getAlcohol().getName());
+                    break;
+                default:
+                    label3.setText(submitted.get(i).getApplication().getAlcohol().getBrandName()+"    -    " +submitted.get(i).getApplication().getAlcohol().getName());
+            }
+        }
         switch (usertype){
             case TTBAGENT:
                 utility.setVisible(true);
@@ -81,6 +104,7 @@ public class HomeController {
                 utility.setVisible(true);
                 utility.setText("Applications");
                 logButton.setText("Log Out");
+                break;
             default:
                 utility.setVisible(false);
                 logButton.setText("Log In");

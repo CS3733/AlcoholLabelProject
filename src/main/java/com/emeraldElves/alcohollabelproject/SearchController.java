@@ -106,7 +106,7 @@ public class SearchController {
         //Find & add matching applications
         List<SubmittedApplication> resultsList = (new AlcoholDatabase(Main.database)).searchByBrandName(searchTerm);
         data.addAll(resultsList); //change to resultsList
-        descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchField.getText() + "\"");
+        descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);
         saveBtn.setDisable(data.size() == 0);
         contextSaveBtn.setDisable(data.size() == 0);

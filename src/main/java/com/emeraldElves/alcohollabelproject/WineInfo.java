@@ -1,9 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
-/**
- * Created by jessieying on 4/1/17.
- */
-public class WineInfo extends AlcoholInfo {
+
+public class WineInfo extends AlcoholInfo{
 
     /**
      * Constructor to create a new WineInfo
@@ -17,7 +15,4 @@ public class WineInfo extends AlcoholInfo {
     public WineInfo(int alcoholContent, String name, String brandName, ProductSource origin, int vintageYear, double pH){
         super(alcoholContent, name, brandName, origin, AlcoholType.WINE,  new AlcoholInfo.Wine(pH,vintageYear));
     }
-
-
-
 }
