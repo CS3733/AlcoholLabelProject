@@ -130,7 +130,6 @@ public class UpdateApplicationController {
     public void logout()
     {
         main.loadHomepage(UserType.BASIC,"");
-
     }
 
 }
