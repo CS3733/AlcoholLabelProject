@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -13,6 +12,7 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.WorkflowController">
     <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -30,36 +30,41 @@
       <RowConstraints maxHeight="307.0000305175781" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Button mnemonicParsing="false" text="Logout" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-        <ImageView fitHeight="130.0" fitWidth="1025.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+        <Button mnemonicParsing="false" text="Logout" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+        <ImageView fitHeight="130.0" fitWidth="1025.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
             <image>
                 <Image url="@../Desktop/ttbmasthead.gif" />
             </image>
         </ImageView>
-        <Button mnemonicParsing="false" text="View Completed Applications" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-        <ComboBox prefHeight="26.0" prefWidth="72.0" promptText="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-        <Label text="Pull # Applications:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-        <Label text="Welcome, [TTBAgentName]." GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-        <Separator prefWidth="200.0" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+        <Button mnemonicParsing="false" text="View Completed Applications" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+        <Label text="Assigned Applications:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+        <Label text="Welcome, [TTBAgentName]." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
         <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
         <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-        <Label text="Name of Beverage" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-        <Label text="Brand Name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-        <Label text="Date Submitted" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-        <Hyperlink fx:id="fanciful2" text="Alcohol 2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-        <Hyperlink fx:id="fanciful3" text="Alcohol 3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-        <Hyperlink fx:id="fanciful4" text="Alcohol 4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-        <Hyperlink fx:id="fanciful1" text="Alcohol 1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-        <Label fx:id="brand1" text="x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-        <Label fx:id="brand2" text="x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-        <Label fx:id="brand3" text="x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-        <Label fx:id="brand4" text="x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-        <Label fx:id="date1" text="MM/dd/yy" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-        <Label fx:id="date2" text="MM/dd/yy" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-        <Label fx:id="date3" text="MM/dd/yy" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-        <Label fx:id="date4" text="MM/dd/yy" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-      <Hyperlink fx:id="fanciful5" text="Alcohol 5" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-      <Label fx:id="brand5" text="x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-      <Label fx:id="date5" text="MM/dd/yy" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+        <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+        <Label text="Name of Beverage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+        <Label text="Brand Name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+        <Label text="Date Submitted" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+        <Label fx:id="brand1" text="x" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+        <Label fx:id="brand2" text="x" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+        <Label fx:id="brand3" text="x" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+        <Label fx:id="brand4" text="x" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+        <Label fx:id="date1" text="MM/dd/yy" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+        <Label fx:id="date2" text="MM/dd/yy" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+        <Label fx:id="date3" text="MM/dd/yy" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+        <Label fx:id="date4" text="MM/dd/yy" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+      <Label fx:id="brand5" text="x" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+      <Label fx:id="date5" text="MM/dd/yy" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+      <Label text="Application ID" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <Hyperlink fx:id="id1" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Hyperlink fx:id="id2" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Hyperlink fx:id="id3" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <Hyperlink fx:id="id4" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+      <Hyperlink fx:id="id5" text="ID" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+      <Label fx:id="fanciful1" text="Beverage 1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Label fx:id="fanciful2" text="Beverage 2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Label fx:id="fanciful3" text="Beverage 3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <Label fx:id="fanciful4" text="Beverage 4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+      <Label fx:id="fanciful5" text="Beverage 5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
     </children>
 </GridPane>
