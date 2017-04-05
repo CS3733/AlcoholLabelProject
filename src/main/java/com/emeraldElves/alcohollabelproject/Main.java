@@ -94,7 +94,15 @@ public class Main extends Application {
     }
 
     public void loadWorkflowPage(String username){
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
+        try {
+            Parent root = loader.load();
+            WorkflowController controller = loader.getController();
+            controller.init(this, username);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadWorkflowActionsPage(String username, SubmittedApplication application){
