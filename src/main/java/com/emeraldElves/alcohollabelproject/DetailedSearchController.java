@@ -32,6 +32,9 @@ public class DetailedSearchController {
     @FXML
     Label company;
 
+    @FXML
+    Label origin;
+
     public void init(Main main, SubmittedApplication application, String searchTerm) {
         this.main = main;
         this.application = application;
@@ -56,6 +59,16 @@ public class DetailedSearchController {
         date.setYear(date.getYear() - 1900);
         submissionDate.setText(dateFormat.format(date));
         company.setText(application.getApplication().getManufacturer().getCompany());
+        String productSource = "";
+        switch (application.getApplication().getAlcohol().getOrigin()) {
+            case IMPORTED:
+                productSource = "Imported";
+                break;
+            case DOMESTIC:
+                productSource = "Domestic";
+                break;
+        }
+        origin.setText(productSource);
     }
 
 }

@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
@@ -54,11 +55,6 @@ public class SearchController {
     public void init(Main main, String searchTerm) {
         this.main = main;
         this.searchTerm = searchTerm;
-        search(searchTerm);
-    }
-
-    @FXML
-    protected void initialize() {
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
@@ -83,6 +79,7 @@ public class SearchController {
         descriptionLabel.setVisible(false);
         contextSaveBtn.setDisable(data.size() == 0);
         resultsTable.setItems(data);
+        search(searchTerm);
     }
 
     public void search(ActionEvent e) {
@@ -100,6 +97,10 @@ public class SearchController {
         descriptionLabel.setVisible(true);
         saveBtn.setDisable(data.size() == 0);
         contextSaveBtn.setDisable(data.size() == 0);
+    }
+
+    public void goHome(){
+        main.loadHomepage(UserType.BASIC, "");
     }
 
     public void saveCSV(ActionEvent e) {
