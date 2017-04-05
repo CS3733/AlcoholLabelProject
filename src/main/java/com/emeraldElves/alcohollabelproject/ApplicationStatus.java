@@ -6,7 +6,9 @@ package com.emeraldElves.alcohollabelproject;
 public enum ApplicationStatus {
     APPROVED("Your application was approved", 0),
     PENDINGREVIEW("Pending Review", 1),
-    REJECTED("Reason", 2);
+    REJECTED("Reason", 2),
+    APPROVEDWITHCONDITIONS("Approved with conditions",3),
+    NEEDSCORRECTIONS("Needs corrections",4);
     private String message;
     private int value;
 

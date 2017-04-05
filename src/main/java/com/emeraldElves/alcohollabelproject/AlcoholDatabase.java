@@ -229,7 +229,12 @@ public class AlcoholDatabase {
         return true;
     }
 
-    // TODO: finish getMostRecentUnapproved
+
+    public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID){
+        ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);
+        return getApplicationsFromResultSet(results);
+    }
+
 
     /**
      * Get the most recent unapproved applications.
