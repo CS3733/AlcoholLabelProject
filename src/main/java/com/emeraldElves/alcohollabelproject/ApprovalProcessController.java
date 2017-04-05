@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,9 @@ public class ApprovalProcessController {
 
     @FXML
     Label origin;
+
+    @FXML
+    TextArea reason;
 
     AlcoholDatabase alcoholDatabase;
 
@@ -76,12 +80,14 @@ public class ApprovalProcessController {
         main.loadHomepage(UserType.TTBAGENT, Username);
 
     }
-    public void Aprove(){
-        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.APPROVED);
+    public void Approve(){
+        Date date = new Date();
+        date.setYear(date.getYear() + 5);
+        alcoholDatabase.approveApplication(application, Username, date);
         main.loadWorkflowPage(Username);
     }
     public void Reject(){
-        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.REJECTED);
+        alcoholDatabase.rejectApplication(application, reason.getText());
         main.loadWorkflowPage(Username);
     }
     public void PendingReview(){
