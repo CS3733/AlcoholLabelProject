@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableRow;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -30,5 +31,8 @@ public class ApplicantWorkflowController {
     AuthenticatedUsersDatabase RepID = new AuthenticatedUsersDatabase(Main.database);
     public void ApplicationWorkflow() {
         ApplicationsList = new ListView<SubmittedApplication>(FXCollections.observableArrayList(alcoholDatabase.getApplicationsByRepresentative(RepID.getRepresentativeID(Username))));
+        ApplicationsList.getSelectionModel().getSelectedItem();
+
+
     }
 }
