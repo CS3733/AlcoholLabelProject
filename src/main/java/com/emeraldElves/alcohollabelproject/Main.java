@@ -162,7 +162,17 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    
+    public void loadApprovalProcessController(SubmittedApplication application, String Username ){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApprovalPage.fxml"));
+        try {
+            Parent root = loader.load();
+            ApprovalProcessController controller = loader.getController();
+            controller.init(this,Username,application );
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
