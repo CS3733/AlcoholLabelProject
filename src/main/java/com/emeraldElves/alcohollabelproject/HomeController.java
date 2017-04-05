@@ -64,7 +64,7 @@ public class HomeController {
     }
 
     public void searchDatabase(){
-        main.l
+        main.loadSearchPage(usertype, username, searchbox.getText());
     }
 
     public void init(Main main, UserType usertype, String username){
@@ -87,5 +87,5 @@ public class HomeController {
                 break;
         }
     }
-    
+
 }
