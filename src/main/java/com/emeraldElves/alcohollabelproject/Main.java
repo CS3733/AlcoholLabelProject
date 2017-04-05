@@ -143,6 +143,17 @@ public class Main extends Application {
     public void loadWorkflowActionsPage(String username, SubmittedApplication application) {
 
     }
+    public void loadApplicantWorkflowController(String Username) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApplicantWorkflowPage.fxml"));
+        try {
+            Parent root = loader.load();
+            ApplicantWorkflowController controller = loader.getController();
+            controller.init(Username,this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public static void main(String[] args) {
