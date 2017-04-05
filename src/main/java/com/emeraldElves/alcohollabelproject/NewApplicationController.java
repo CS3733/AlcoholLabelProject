@@ -42,6 +42,8 @@ public class NewApplicationController {
     @FXML
     TextField pHLevelField;
     @FXML
+    Label welcomeApplicantLabel;
+    @FXML
     Button saveApplication;
     @FXML
     Button cancelApplication;
@@ -59,8 +61,6 @@ public class NewApplicationController {
     Label phoneNumErrorField;
     @FXML
     Label emailErrorField;
-    @FXML
-    Label welcomeApplicantLabel;
     @FXML
     Label pSourceErrorField;
     @FXML
@@ -194,7 +194,7 @@ public class NewApplicationController {
             brandNameErrorField.setText("");
         }
         if(alcoholContentField.getText().isEmpty()) {
-            alcContentErrorField.setText("Please fill in the alcohol content (as a %) of the beverage.");
+            alcContentErrorField.setText("Please fill in the alcohol % of the beverage.");
         } else {
             alcContentErrorField.setText("");
         }
