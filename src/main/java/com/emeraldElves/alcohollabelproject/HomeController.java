@@ -11,6 +11,7 @@ public class HomeController {
     public Button loginBtn;
     public ArrayList<Label> mostRecentLabels;
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
+
     public LoginStatus status;
 
     public HomeController(LoginStatus status) {
@@ -18,6 +19,8 @@ public class HomeController {
         mostRecentSubmissions = new ArrayList<SubmittedApplication>();
         this.status = status;
     }
+
+    // TODO: put FXML in correct folder
 
     /**
      * Loads homepage
@@ -55,6 +58,7 @@ public class HomeController {
         // this does not exist yet
         Main.loadFXML("/fxml/Profile.fxml");
     }
+
 
 
 }

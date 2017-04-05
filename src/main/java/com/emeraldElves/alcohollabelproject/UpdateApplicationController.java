@@ -122,4 +122,15 @@ public class UpdateApplicationController {
 
     }
 
+    public void cancelApp()
+    {
+        main.loadHomepage(UserType.APPLICANT,"");
+
+    }
+    public void logout()
+    {
+        main.loadHomepage(UserType.BASIC,"");
+
+    }
+
 }
