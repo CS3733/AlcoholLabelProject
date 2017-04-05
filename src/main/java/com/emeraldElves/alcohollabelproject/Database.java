@@ -210,6 +210,7 @@ public class Database {
             return false;
         try {
             statement.execute("UPDATE " + tableName + " SET " + values + " WHERE " + where);
+            connection.commit();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

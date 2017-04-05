@@ -50,8 +50,8 @@ public class AlcoholDatabaseTest {
         setUpAgents();
 
         SubmittedApplication test = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
-        assertTrue(alcoholDatabase.submitApplication(test));
-        assertFalse(alcoholDatabase.submitApplication(test));
+        assertTrue(alcoholDatabase.submitApplication(test, "Admin1"));
+        assertFalse(alcoholDatabase.submitApplication(test, "Admin1"));
 
 
         AlcoholInfo alc2 = new AlcoholInfo(5, "name", "brand", ProductSource.DOMESTIC
@@ -67,7 +67,7 @@ public class AlcoholDatabaseTest {
         SubmittedApplication test2 = new SubmittedApplication(appInfo2, ApplicationStatus.PENDINGREVIEW, applicant2);
 
 
-        assertTrue(alcoholDatabase.submitApplication(test2));
+        assertTrue(alcoholDatabase.submitApplication(test2, "Admin1"));
 
         List<SubmittedApplication> applicationList = alcoholDatabase.getMostRecentUnapproved(10);
         assertEquals(2, applicationList.size());
@@ -102,7 +102,7 @@ public class AlcoholDatabaseTest {
 
         assertEquals(1.8, test2.getApplication().getAlcohol().getWineInfo().pH, 0);
 
-        // assertEquals(2, alcoholDatabase.getApplicationsByRepresentative(69).size());
+         assertEquals(2, alcoholDatabase.getApplicationsByApplicantUsername("Admin1").size());
 
 
     }
