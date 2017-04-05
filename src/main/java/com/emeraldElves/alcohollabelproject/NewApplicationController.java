@@ -299,7 +299,7 @@ public class NewApplicationController {
             applicant.addSubmittedApp(newApp);
 
             //Submit the new application to the database
-            alcoholDB.submitApplication(newApp);
+            alcoholDB.submitApplication(newApp, username);
 
             //Go back to homepage
             main.loadHomepage(UserType.APPLICANT, username);

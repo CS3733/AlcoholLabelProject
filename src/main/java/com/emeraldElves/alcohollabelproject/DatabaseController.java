@@ -31,8 +31,7 @@ public class DatabaseController {
 
         try {
             database.createTable("ApplicantLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"),
-                    new Database.TableField("representativeID", "INTEGER UNIQUE NOT NULL"));
+                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
             Log.console("Created new ApplicantLogin table");
         } catch (SQLException e) {
             Log.console("Used existing ApplicantLogin table");
@@ -47,7 +46,8 @@ public class DatabaseController {
                     new Database.TableField("expirationDate", "BIGINT"),
                     new Database.TableField("agentName", "VARCHAR (255)"),
                     new Database.TableField("approvalDate", "BIGINT"),
-                    new Database.TableField("TTBUsername", "VARCHAR (255)"));
+                    new Database.TableField("TTBUsername", "VARCHAR (255)"),
+                    new Database.TableField("submitterUsername", "VARCHAR (255)"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
