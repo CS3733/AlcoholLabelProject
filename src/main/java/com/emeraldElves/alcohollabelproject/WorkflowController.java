@@ -84,10 +84,10 @@ public class WorkflowController {
 
         // load application values into labels on FXML
         id1.setText(ids[0]);
-        id1.setText(ids[1]);
-        id1.setText(ids[2]);
-        id1.setText(ids[3]);
-        id1.setText(ids[4]);
+        id2.setText(ids[1]);
+        id3.setText(ids[2]);
+        id4.setText(ids[3]);
+        id5.setText(ids[4]);
         fanciful1.setText(appNames[0]);
         fanciful2.setText(appNames[1]);
         fanciful3.setText(appNames[2]);
@@ -121,6 +121,7 @@ public class WorkflowController {
             // format date into string
             SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
             Date currentDate = current.getApplication().getSubmissionDate();
+            currentDate.setYear(currentDate.getYear() - 1900);
             dates[i] = dateFormat.format(currentDate);
             i++;
         }

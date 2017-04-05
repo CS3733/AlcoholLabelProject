@@ -146,6 +146,7 @@ public class Main extends Application {
     public void loadWorkflowActionsPage(String username, SubmittedApplication application) {
 
     }
+
     public void loadApplicantWorkflowPage(String Username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApplicantWorkflowPage.fxml"));
         try {
