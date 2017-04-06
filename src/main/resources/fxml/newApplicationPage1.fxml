@@ -30,7 +30,7 @@
       <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <ImageView fitHeight="87.0" fitWidth="720.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
          <image>
             <Image url="@../images/ttbmasthead.gif" />

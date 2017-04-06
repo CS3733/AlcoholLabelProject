@@ -124,9 +124,6 @@ public class AlcoholDatabase {
         ManufacturerInfo manInfo = info.getManufacturer();
 
 
-        manInfo = new ManufacturerInfo("name", "physicalAddress", "company", 10, 10, new PhoneNumber("9781112222"), new EmailAddress("gjergne@wpi.edu"));
-
-
         //
         boolean worked;//whether or not it added stuff to database
 
@@ -159,7 +156,41 @@ public class AlcoholDatabase {
 
         try {
             if (resultsSubmitted.next()) {
-                return false;
+                db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
+                        + status.getValue() + ", statusMsg = '" //status
+                        + status.getMessage() + "', submissionTime = " //status message
+                        + info.getSubmissionDate().getTime() + ", expirationDate = " //submission time
+                        + info.getSubmissionDate().getTime() + ", agentName = '"//no field for expiration date
+                        + manInfo.getName() + "', approvalDate = " //agent name
+                        + info.getSubmissionDate().getTime() + ", submitterUsername = '"
+                        + username + "'", "applicationID = " + application.getApplicationID());
+
+                db.update("ManufacturerInfo", "authorizedName = '"
+                        + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
+                        + manInfo.getPhysicalAddress() + "', company = '" //physical address
+                        + manInfo.getCompany() + "', representativeID = " //company
+                        + manInfo.getRepresentativeID() + ", permitNum = " //representative id
+                        + manInfo.getPermitNum() + ", phoneNum = '"//permit num
+                        + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
+                        + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
+
+                if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
+                    db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', origin = " //brand name
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", pH = " //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
+                                    + alcInfo.getWineInfo().pH + ", vintageYear = " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                                    + alcInfo.getWineInfo().vintageYear //vintage year: see above comment
+                            , "applicationID = " + application.getApplicationID());
+                } else {
+                    db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', origin = " //brand name
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue()
+                            , "applicationID = " + application.getApplicationID());
+                }
             } else {
                 String assignedAgent = "";
                 if (AppState.getInstance().ttbAgents.size() != 0)
@@ -327,18 +358,18 @@ public class AlcoholDatabase {
     }
 
     public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent) {
-         application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
+        application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
 
         return db.update("AlcoholInfo", "alcoholContent = " + alcoholContent, "applicationID = " + application.getApplicationID());
 
     }
 
 
-    public SubmittedApplication getRandomApproved(){
+    public SubmittedApplication getRandomApproved() {
         ResultSet alcoholResult = db.select("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue());
         List<SubmittedApplication> applications = getApplicationsFromResultSet(alcoholResult);
         Random random = new Random();
-        if(applications.isEmpty())
+        if (applications.isEmpty())
             return null;
         int pos = random.nextInt(applications.size());
         return applications.get(pos);

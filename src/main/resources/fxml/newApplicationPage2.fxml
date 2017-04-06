@@ -127,7 +127,7 @@
         <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
         <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
         <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
-        <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+        <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
         <Label fx:id="error2" GridPane.columnIndex="1" GridPane.rowIndex="12" />
       <Label fx:id="pSourceErrorField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <Label fx:id="pTypeErrorField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
