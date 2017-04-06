@@ -28,7 +28,8 @@ public class Main extends Application {
         controller.init(this, UserType.BASIC, "");
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.getIcons().add(new Image(("images/logo.png")));
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.show();
         stage = primaryStage;
     }

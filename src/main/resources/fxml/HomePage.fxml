@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.HomeController">
+<GridPane alignment="center" hgap="10" style="-fx-background-color: #99d9ea;" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.HomeController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -22,7 +22,7 @@
       <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
+        <Pane id="pane" prefHeight="542.0" prefWidth="802.0" style="-fx-background-color: #99d9ea;" GridPane.rowIndex="1">
             <children>
             <Group layoutX="401.0" layoutY="16.0">
                <children>
@@ -72,7 +72,17 @@
                </padding>
             </Button>
             <Button layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onMouseClicked="#createNewUser" text="Create new user" />
-            <Button layoutX="270.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" text="I'm Feeling Thirsty" />
+            <Button layoutX="250.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" text="I'm Feeling Thirsty" />
+            <ImageView fitHeight="73.0" fitWidth="153.0" layoutX="52.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/emeraldElves.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="211.0" fitWidth="165.0" layoutX="670.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/elf2.png" />
+               </image>
+            </ImageView>
             </children>
         </Pane>
       <Pane>
@@ -80,6 +90,11 @@
             <ImageView fitHeight="181.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/ttbmasthead.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="115.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/elf.png" />
                </image>
             </ImageView>
          </children>
