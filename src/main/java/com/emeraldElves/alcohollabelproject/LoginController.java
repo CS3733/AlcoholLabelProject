@@ -8,7 +8,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-import static com.emeraldElves.alcohollabelproject.LoginStatus.LOGGEDIN;
 
 /**
  * Created by Essam on 4/4/2017.
@@ -37,7 +36,8 @@ public class LoginController {
         AuthenticatedUsersDatabase authDb = new AuthenticatedUsersDatabase(Main.database);
         if (authDb.isValidTTBAgent(username, password)) {
             errorMsg.setVisible(false);
-            main.loadHomepage(UserType.TTBAGENT, username);
+            LoginState.getInstance().login(UserType.TTBAGENT, username);
+            main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
         }
@@ -49,7 +49,8 @@ public class LoginController {
         AuthenticatedUsersDatabase authDb = new AuthenticatedUsersDatabase(Main.database);
         if (authDb.isValidApplicant(username, password)) {
             errorMsg.setVisible(false);
-            main.loadHomepage(UserType.APPLICANT, username);
+            LoginState.getInstance().login(UserType.APPLICANT, username);
+            main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
         }
@@ -62,10 +63,10 @@ public class LoginController {
         if (authDb.isValidAccount(username, password)) {
             errorMsg.setVisible(false);
             if (authDb.isValidApplicant(username, password)) {
-                main.loadHomepage(UserType.APPLICANT, username);
+//                main.loadHomepage(UserType.APPLICANT, username);
             }
             if (authDb.isValidTTBAgent(username, password)) {
-                main.loadHomepage(UserType.TTBAGENT, username);
+//                main.loadHomepage(UserType.TTBAGENT, username);
             }
         } else {
             errorMsg.setVisible(true);
@@ -73,6 +74,7 @@ public class LoginController {
     }
 
     public void GoHome() {
-        main.loadHomepage(UserType.BASIC, "");
+        LoginState.getInstance().logout();
+        main.loadHomepage();
     }
 }

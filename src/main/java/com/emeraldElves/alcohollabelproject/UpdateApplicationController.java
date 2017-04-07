@@ -104,17 +104,18 @@ public class UpdateApplicationController {
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         alcoholDatabase.changeAlcoholContent(CurrentlyBeingUpdated, alcoholContent);
 
-        main.loadHomepage(UserType.APPLICANT, Username);
+        main.loadHomepage();
 
     }
 
     public void cancelApp() {
-        main.loadHomepage(UserType.APPLICANT, Username);
+        main.loadHomepage();
 
     }
 
     public void logout() {
-        main.loadHomepage(UserType.BASIC, "");
+        LoginState.getInstance().logout();
+        main.loadHomepage();
     }
 
 }

@@ -4,20 +4,23 @@ import javafx.collections.FXCollections;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 /**
  * Created by keionbis on 4/4/17.
  */
 
-public class ApplicantWorkflowController {
+public class ApplicantWorkflowController implements Initializable{
     @FXML
     Button UpdateApplications;
     String Username;
@@ -68,10 +71,14 @@ public class ApplicantWorkflowController {
     }
 
     public void GoHome() {
-        main.loadHomepage(UserType.APPLICANT, Username);
+        main.loadHomepage();
     }
 
     public void MakeNewApplication() {
         main.loadNewApplicationPage(Username);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
     }
 }

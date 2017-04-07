@@ -36,7 +36,7 @@ public class NewUserController {
         String password = passwordField.getText();
         if (Main.database.insert("'" + username + "', '" + password + "'", "TTBAgentLogin")) {
             errorMsg.setVisible(false);
-            main.loadHomepage(this.userType, this.username);
+            main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
         }
@@ -47,7 +47,7 @@ public class NewUserController {
         String password = passwordField.getText();
         if (Main.database.insert("'" + username + "', '" + password + "'", "ApplicantLogin")) {
             errorMsg.setVisible(false);
-            main.loadHomepage(this.userType, this.username);
+            main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
         }
@@ -57,6 +57,6 @@ public class NewUserController {
 
     }
     public void GoHome(){
-        main.loadHomepage(UserType.BASIC,"");
+        main.loadHomepage();
     }
 }

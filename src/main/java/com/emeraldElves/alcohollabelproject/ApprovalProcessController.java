@@ -108,7 +108,7 @@ public class ApprovalProcessController {
     }
 
     public void GoHome() {
-        main.loadHomepage(UserType.TTBAGENT, Username);
+        main.loadHomepage();
 
     }
 

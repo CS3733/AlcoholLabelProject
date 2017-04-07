@@ -121,11 +121,12 @@ public class WorkflowController {
     }
 
     public void logout(){
-        main.loadHomepage(UserType.BASIC, "");
+        LoginState.getInstance().logout();
+        main.loadHomepage();
     }
 
     public void goHome(){
-        main.loadHomepage(UserType.TTBAGENT, username);
+        main.loadHomepage();
     }
 
     /** queryDatabase()

@@ -8,13 +8,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class Main extends Application {
 
     public static Stage stage;
     public static Database database;
-    public static Applicant applier;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -25,7 +23,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
         HomeController controller = loader.getController();
-        controller.init(this, UserType.BASIC, "");
+        controller.init(this);
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.getIcons().add(new Image(("images/logo.png")));
         Scene scene = new Scene(root);
@@ -111,12 +109,12 @@ public class Main extends Application {
         }
     }
 
-    public void loadHomepage(UserType userType, String username) {
+    public void loadHomepage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         try {
             Parent root = loader.load();
             HomeController controller = loader.getController();
-            controller.init(this, userType, username);
+            controller.init(this);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

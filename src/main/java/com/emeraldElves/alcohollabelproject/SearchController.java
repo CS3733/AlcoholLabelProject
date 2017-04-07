@@ -113,7 +113,7 @@ public class SearchController {
     }
 
     public void goHome() {
-        main.loadHomepage(userType, username);
+        main.loadHomepage();
     }
 
     public void saveCSV(ActionEvent e) {

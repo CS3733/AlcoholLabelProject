@@ -63,10 +63,12 @@ public class HomeController {
     public void loadLog() {
         switch (usertype) {
             case TTBAGENT:
-                main.loadHomepage(UserType.BASIC, "");
+                LoginState.getInstance().logout();
+                main.loadHomepage();
                 break;
             case APPLICANT:
-                main.loadHomepage(UserType.BASIC, "");
+                LoginState.getInstance().logout();
+                main.loadHomepage();
                 break;
             case BASIC:
                 main.loadLoginPage();
@@ -89,9 +91,9 @@ public class HomeController {
             main.loadDetailedSearchPage(application, application.getApplication().getAlcohol().getBrandName(), usertype, username);
     }
 
-    public void init(Main main, UserType usertype, String username) {
-        this.usertype = usertype;
-        this.username = username;
+    public void init(Main main) {
+        this.usertype = LoginState.getInstance().getUserType();
+        this.username = LoginState.getInstance().getUsername();
         this.main = main;
         for (int i = 0; i < submitted.size(); i++) {
             switch (i) {

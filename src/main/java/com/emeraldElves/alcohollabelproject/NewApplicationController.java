@@ -313,17 +313,18 @@ public class NewApplicationController {
             alcoholDB.submitApplication(newApp, username);
 
             //Go back to homepage
-            main.loadHomepage(UserType.APPLICANT, username);
+            main.loadHomepage();
         }
     }
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadHomepage(UserType.APPLICANT, username);
+        main.loadHomepage();
     }
     public void saveApp() {
     }
     public void logout() {
-        main.loadHomepage(UserType.BASIC, "");
+        LoginState.getInstance().logout();
+        main.loadHomepage();
     }
 }

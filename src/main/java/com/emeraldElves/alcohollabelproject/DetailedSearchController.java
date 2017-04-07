@@ -76,7 +76,7 @@ public class DetailedSearchController {
     }
 
     public void GoHome() {
-        main.loadHomepage(userType, Username);
+        main.loadHomepage();
     }
 
 
