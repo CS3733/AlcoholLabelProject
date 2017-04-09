@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
@@ -21,17 +22,15 @@ import java.util.List;
 public class ApplicantWorkflowController {
     @FXML
     Button UpdateApplications;
-    String Username;
     Main main;
     private List<SubmittedApplication> applications;
 
     @FXML
     ListView<String> list;
 
-    public void init(String Username, Main main) {
-        this.Username = Username;
+    public void init(Main main) {
         this.main = main;
-        applications = Storage.getInstance().getApplicationsByApplicant(Username);
+        applications = Storage.getInstance().getApplicationsByApplicant(Authenticator.getInstance().getUsername());
         List<String> applicationNames = new ArrayList<>();
         for (SubmittedApplication application : applications) {
             String name = "";
@@ -59,18 +58,18 @@ public class ApplicantWorkflowController {
     }
 
     public void reviseApplication(){
-        main.loadNewApplicationPage(Username, getSelectedApplication());
+        main.loadNewApplicationPage(getSelectedApplication());
     }
 
     public void ApplicationWorkflow() {
-        main.loadUpdateApplicationPage(getSelectedApplication(), Username);
+        main.loadUpdateApplicationPage(getSelectedApplication());
     }
 
     public void GoHome() {
-        main.loadHomepage(UserType.APPLICANT, Username);
+        main.loadHomepage();
     }
 
     public void MakeNewApplication() {
-        main.loadNewApplicationPage(Username);
+        main.loadNewApplicationPage();
     }
 }

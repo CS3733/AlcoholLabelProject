@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.AuthenticatedUsersDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
@@ -33,9 +34,9 @@ public class LoginController {
     public void loginAsAgent() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if (Storage.getInstance().isValidUser(UserType.TTBAGENT, username, password)) {
+        if (Authenticator.getInstance().login(UserType.TTBAGENT, username, password)) {
             errorMsg.setVisible(false);
-            main.loadHomepage(UserType.TTBAGENT, username);
+            main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
         }
@@ -44,9 +45,9 @@ public class LoginController {
     public void loginAsApplicant() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if (Storage.getInstance().isValidUser(UserType.APPLICANT, username, password)) {
+        if (Authenticator.getInstance().login(UserType.APPLICANT, username, password)) {
             errorMsg.setVisible(false);
-            main.loadHomepage(UserType.APPLICANT, username);
+            main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
         }
@@ -69,6 +70,6 @@ public class LoginController {
     }
 
     public void GoHome() {
-        main.loadHomepage(UserType.BASIC, "");
+        main.loadHomepage();
     }
 }

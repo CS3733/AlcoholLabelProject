@@ -100,20 +100,18 @@ public class NewApplicationController {
     AlcoholInfo appAlcoholInfo = null;
 
     private Main main;
-    private String username;
 
     private SubmittedApplication application;
 
 
-    public void init(Main main, SubmittedApplication application, String username) {
+    public void init(Main main, SubmittedApplication application) {
         this.main = main;
-        this.username = username;
         this.application = application;
     }
 
 
-    public void init(Main main, String username){
-        init(main, null, username);
+    public void init(Main main){
+        init(main, null);
     }
 
     public void nextPage(){
@@ -310,20 +308,21 @@ public class NewApplicationController {
                 newApp.setApplicationID(application.getApplicationID());
 
             //Submit the new application to the database
-            Storage.getInstance().submitApplication(newApp, username);
+            Storage.getInstance().submitApplication(newApp, Authenticator.getInstance().getUsername());
 
             //Go back to homepage
-            main.loadHomepage(UserType.APPLICANT, username);
+            main.loadHomepage();
         }
     }
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadHomepage(UserType.APPLICANT, username);
+        main.loadHomepage();
     }
     public void saveApp() {
     }
     public void logout() {
-        main.loadHomepage(UserType.BASIC, "");
+        Authenticator.getInstance().logout();
+        main.loadHomepage();
     }
 }

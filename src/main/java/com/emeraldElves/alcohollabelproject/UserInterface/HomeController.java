@@ -4,6 +4,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
  * Created by Harry and Joe on 4/2/2017.
  */
 
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
@@ -23,9 +24,6 @@ public class HomeController {
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
     public List<SubmittedApplication> submitted;
 
-
-    private UserType usertype;
-    private String username;
     private Main main;
     @FXML
     private Button utility;
@@ -55,23 +53,25 @@ public class HomeController {
      * Loads homepage
      */
     public void utilityButton() {
-        switch (usertype) {
+        switch (Authenticator.getInstance().getUserType()) {
             case TTBAGENT:
-                main.loadWorkflowPage(username);
+                main.loadWorkflowPage();
                 break;
             case APPLICANT:
-                main.loadApplicantWorkflowPage(username);
+                main.loadApplicantWorkflowPage();
                 break;
         }
     }
 
     public void loadLog() {
-        switch (usertype) {
+        switch (Authenticator.getInstance().getUserType()) {
             case TTBAGENT:
-                main.loadHomepage(UserType.BASIC, "");
+                Authenticator.getInstance().logout();
+                main.loadHomepage();
                 break;
             case APPLICANT:
-                main.loadHomepage(UserType.BASIC, "");
+                Authenticator.getInstance().logout();
+                main.loadHomepage();
                 break;
             case BASIC:
                 main.loadLoginPage();
@@ -80,11 +80,11 @@ public class HomeController {
     }
 
     public void createNewUser(){
-        main.loadNewUserPage(usertype, username);
+        main.loadNewUserPage();
     }
 
     public void searchDatabase() {
-        main.loadSearchPage(usertype, username, searchbox.getText());
+        main.loadSearchPage(searchbox.getText());
     }
 
     public void feelingThirsty(){
@@ -98,42 +98,40 @@ public class HomeController {
             application = applications.get(pos);
         }
         if(application != null)
-            main.loadDetailedSearchPage(application, application.getApplication().getAlcohol().getBrandName(), usertype, username);
+            main.loadDetailedSearchPage(application, application.getApplication().getAlcohol().getBrandName());
     }
 
-    public void init(Main main, UserType usertype, String username) {
-        this.usertype = usertype;
-        this.username = username;
+    public void init(Main main) {
         this.main = main;
         for (int i = 0; i < submitted.size(); i++) {
             switch (i) {
                 case 0:
                     label0.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "    -    " + submitted.get(i).getApplication().getAlcohol().getName());
                     label0.setOnMouseClicked(event -> {
-                        main.loadDetailedSearchPage(submitted.get(0), submitted.get(0).getApplication().getAlcohol().getBrandName(), usertype, username);
+                        main.loadDetailedSearchPage(submitted.get(0), submitted.get(0).getApplication().getAlcohol().getBrandName());
                     });
                     break;
                 case 1:
                     label1.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "    -    " + submitted.get(i).getApplication().getAlcohol().getName());
                     label1.setOnMouseClicked(event -> {
-                        main.loadDetailedSearchPage(submitted.get(1), submitted.get(1).getApplication().getAlcohol().getBrandName(), usertype, username);
+                        main.loadDetailedSearchPage(submitted.get(1), submitted.get(1).getApplication().getAlcohol().getBrandName());
                     });
                     break;
                 case 2:
                     label2.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "    -    " + submitted.get(i).getApplication().getAlcohol().getName());
                     label2.setOnMouseClicked(event -> {
-                        main.loadDetailedSearchPage(submitted.get(2), submitted.get(2).getApplication().getAlcohol().getBrandName(), usertype, username);
+                        main.loadDetailedSearchPage(submitted.get(2), submitted.get(2).getApplication().getAlcohol().getBrandName());
                     });
                     break;
                 case 3:
                     label3.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "    -    " + submitted.get(i).getApplication().getAlcohol().getName());
                     label3.setOnMouseClicked(event -> {
-                        main.loadDetailedSearchPage(submitted.get(3), submitted.get(3).getApplication().getAlcohol().getBrandName(), usertype, username);
+                        main.loadDetailedSearchPage(submitted.get(3), submitted.get(3).getApplication().getAlcohol().getBrandName());
                     });
                     break;
             }
         }
-        switch (usertype) {
+        switch (Authenticator.getInstance().getUserType()) {
             case TTBAGENT:
                 utility.setVisible(true);
                 utility.setText("Applications");

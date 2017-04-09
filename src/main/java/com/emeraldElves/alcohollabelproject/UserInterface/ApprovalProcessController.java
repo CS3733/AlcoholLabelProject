@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,7 +16,6 @@ import java.util.Date;
 
 public class ApprovalProcessController {
     Main main;
-    String Username;
     SubmittedApplication application;
     @FXML
     Label brandName;
@@ -62,9 +62,8 @@ public class ApprovalProcessController {
             Label applicationID;
 
 
-    public void init(Main main, String Username, SubmittedApplication application) {
+    public void init(Main main, SubmittedApplication application) {
         this.main = main;
-        this.Username = Username;
         this.application = application;
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
@@ -107,38 +106,38 @@ public class ApprovalProcessController {
     }
 
     public void GoHome() {
-        main.loadHomepage(UserType.TTBAGENT, Username);
+        main.loadHomepage();
 
     }
 
     public void Approve() {
         Date date = new Date();
         date.setYear(date.getYear() + 5 - 1900);
-        Storage.getInstance().approveApplication(application, Username, date);
-        main.loadWorkflowPage(Username);
+        Storage.getInstance().approveApplication(application, Authenticator.getInstance().getUsername(), date);
+        main.loadWorkflowPage();
     }
 
     public void Reject() {
         Storage.getInstance().rejectApplication(application, reason.getText());
-        main.loadWorkflowPage(Username);
+        main.loadWorkflowPage();
     }
 
     public void PendingReview() {
         application.setStatus(ApplicationStatus.PENDINGREVIEW);
-        Storage.getInstance().submitApplication(application, Username);
-        main.loadWorkflowPage(Username);
+        Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
+        main.loadWorkflowPage();
     }
 
     public void ApprovedConditionally() {
         application.setStatus(ApplicationStatus.APPROVEDWITHCONDITIONS);
-        Storage.getInstance().submitApplication(application, Username);
-        main.loadWorkflowPage(Username);
+        Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
+        main.loadWorkflowPage();
     }
 
     public void NeedsCorrections() {
         application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
-        Storage.getInstance().submitApplication(application, Username);
-        main.loadWorkflowPage(Username);
+        Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
+        main.loadWorkflowPage();
     }
 
     public void MoveToNextApp() {

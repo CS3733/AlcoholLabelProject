@@ -119,7 +119,12 @@ public class Storage {
     }
 
     public boolean isValidUser(UserType usertype, String username, String password) {
-        return usersDB.isValidAccount(username, password);
+        if (usertype == UserType.TTBAGENT) {
+            return usersDB.isValidTTBAgent(username, password);
+        } else if (usertype == UserType.APPLICANT) {
+            return usersDB.isValidApplicant(username, password);
+        }
+        return false;
     }
 
     public List<SubmittedApplication> getRecentlyApprovedApplications(int numApps) {

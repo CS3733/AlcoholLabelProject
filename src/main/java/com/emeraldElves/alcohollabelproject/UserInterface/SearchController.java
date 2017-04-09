@@ -30,8 +30,6 @@ public class SearchController {
 
     private Main main;
     private String searchTerm;
-    private UserType userType;
-    private String username;
 
     @FXML
     private TextField searchField;
@@ -56,11 +54,9 @@ public class SearchController {
 
     }
 
-    public void init(Main main, UserType userType, String username, String searchTerm) {
+    public void init(Main main, String searchTerm) {
         this.main = main;
         this.searchTerm = searchTerm;
-        this.username = username;
-        this.userType = userType;
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
@@ -88,7 +84,7 @@ public class SearchController {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     SubmittedApplication rowData = row.getItem();
-                    main.loadDetailedSearchPage(rowData, searchTerm, userType, username);
+                    main.loadDetailedSearchPage(rowData, searchTerm);
                 }
             });
             return row;
@@ -116,7 +112,7 @@ public class SearchController {
     }
 
     public void goHome() {
-        main.loadHomepage(userType, username);
+        main.loadHomepage();
     }
 
     public void saveCSV(ActionEvent e) {

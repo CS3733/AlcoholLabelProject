@@ -4,6 +4,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
  * Created by Harry and Joe on 4/3/2017.
  */
 
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
@@ -71,40 +72,37 @@ public class WorkflowController {
 
     // for init
     Main main;
-    String username;
 
     /** public void init()
      * Initializes the FXML page
      * @param main
-     * @param username
      */
-    public void init(Main main, String username) {
+    public void init(Main main) {
         this.main = main;
-        this.username = username;
 
         // set global values
-        queryDatabase(username);
+        queryDatabase(Authenticator.getInstance().getUsername());
 
         // load application values into labels on FXML
         id1.setText(ids[0]);
         id1.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[0], username);
+            main.loadApprovalProcessController(submittedApps[0]);
         });
         id2.setText(ids[1]);
         id2.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[1], username);
+            main.loadApprovalProcessController(submittedApps[1]);
         });
         id3.setText(ids[2]);
         id3.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[2], username);
+            main.loadApprovalProcessController(submittedApps[2]);
         });
         id4.setText(ids[3]);
         id4.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[3], username);
+            main.loadApprovalProcessController(submittedApps[3]);
         });
         id5.setText(ids[4]);
         id5.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[4], username);
+            main.loadApprovalProcessController(submittedApps[4]);
         });
         fanciful1.setText(appNames[0]);
         fanciful2.setText(appNames[1]);
@@ -124,11 +122,12 @@ public class WorkflowController {
     }
 
     public void logout(){
-        main.loadHomepage(UserType.BASIC, "");
+        Authenticator.getInstance().logout();
+        main.loadHomepage();
     }
 
     public void goHome(){
-        main.loadHomepage(UserType.TTBAGENT, username);
+        main.loadHomepage();
     }
 
     /** queryDatabase()
@@ -158,18 +157,18 @@ public class WorkflowController {
      */
     // TODO: make all of these one function
     public void linkToApplication1() {
-        main.loadWorkflowActionsPage(username, submittedApps[0]);
+        main.loadWorkflowActionsPage(submittedApps[0]);
     }
     public void linkToApplication2() {
-        main.loadWorkflowActionsPage(username, submittedApps[1]);
+        main.loadWorkflowActionsPage(submittedApps[1]);
     }
     public void linkToApplication3() {
-        main.loadWorkflowActionsPage(username, submittedApps[2]);
+        main.loadWorkflowActionsPage(submittedApps[2]);
     }
     public void linkToApplication4() {
-        main.loadWorkflowActionsPage(username, submittedApps[3]);
+        main.loadWorkflowActionsPage(submittedApps[3]);
     }
     public void linkToApplication5() {
-        main.loadWorkflowActionsPage(username, submittedApps[4]);
+        main.loadWorkflowActionsPage(submittedApps[4]);
     }
 }

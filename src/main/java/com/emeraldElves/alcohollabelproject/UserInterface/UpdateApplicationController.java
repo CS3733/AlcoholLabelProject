@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -26,13 +27,11 @@ public class UpdateApplicationController {
 
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
-    String Username;
 
 
-    public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username) {
+    public void init(Main main, SubmittedApplication CurrentlyBeingUpdated) {
         this.main = main;
         this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
-        this.Username = Username;
         status = CurrentlyBeingUpdated.getStatus();
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
         if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE){
@@ -92,24 +91,25 @@ public class UpdateApplicationController {
             alcoholInfo.getWineInfo().pH = pH;
             alcoholInfo.getWineInfo().vintageYear = vintageYear;
 
-            Storage.getInstance().submitApplication(CurrentlyBeingUpdated, Username);
+            Storage.getInstance().submitApplication(CurrentlyBeingUpdated, Authenticator.getInstance().getUsername());
         }
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         alcoholInfo.setAlcoholContent(alcoholContent);
-        Storage.getInstance().submitApplication(CurrentlyBeingUpdated, Username);
+        Storage.getInstance().submitApplication(CurrentlyBeingUpdated, Authenticator.getInstance().getUsername());
 
-        main.loadHomepage(UserType.APPLICANT, Username);
+        main.loadHomepage();
 
     }
 
     public void cancelApp() {
-        main.loadHomepage(UserType.APPLICANT, Username);
+        main.loadHomepage();
 
     }
 
     public void logout() {
-        main.loadHomepage(UserType.BASIC, "");
+        Authenticator.getInstance().logout();
+        main.loadHomepage();
     }
 
 }
