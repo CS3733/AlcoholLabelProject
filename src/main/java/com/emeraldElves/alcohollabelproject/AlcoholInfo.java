@@ -9,16 +9,43 @@ public class AlcoholInfo {
     private String fancifulname;
     private String brandName;
     private ProductSource origin;
+    private String serialNumber;
+    private String formula;
+
+
+    public AlcoholInfo(int alcoholContent, String fancifulname, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo, String serialNumber, String formula) {
+        this.alcoholContent = alcoholContent;
+        this.fancifulname = fancifulname;
+        this.brandName = brandName;
+        this.origin = origin;
+        this.alcoholType = alcoholType;
+        this.wineInfo = wineInfo;
+        this.serialNumber = serialNumber;
+        this.formula = formula;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public String getFormula() {
+        return formula;
+    }
+
     private AlcoholType alcoholType;
     private Wine wineInfo;
 
     public static class Wine{
         double pH;
         int vintageYear;
+        String grapeVarietal;
+        String appellation;
 
-        public Wine(double pH, int vintageYear) {
+        public Wine(double pH, int vintageYear, String grapeVarietal, String appellation) {
             this.pH = pH;
             this.vintageYear = vintageYear;
+            this.grapeVarietal = grapeVarietal;
+            this.appellation = appellation;
         }
     }
 
