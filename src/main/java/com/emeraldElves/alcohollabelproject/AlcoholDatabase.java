@@ -205,8 +205,8 @@ public class AlcoholDatabase {
                                 + info.getSubmissionDate().getTime() + ", '"//no field for expiration date
                                 + manInfo.getName() + "', " //agent name
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
-                                + assignedAgent + "', '"
-                                + username + "'"
+                                + assignedAgent + "', '" //TTB username
+                                + username + "'" //submitter username
                         //TTBUsername
                         , "SubmittedApplications");
 
