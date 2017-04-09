@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.AuthenticatedUsersDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Database;
 import org.junit.Before;
 import org.junit.Test;
 
