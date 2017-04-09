@@ -237,9 +237,12 @@ public class AlcoholDatabase {
                                     + alcInfo.getName() + "', '" //fanciful name
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
-                                    + alcInfo.getAlcoholType().getValue() + ", " //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
+                                    + alcInfo.getAlcoholType().getValue() + ", '" //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
+                                    + alcInfo.getFormula() + "', " //formula
                                     + alcInfo.getWineInfo().pH + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
-                                    + alcInfo.getWineInfo().vintageYear //vintage year: see above comment
+                                    + alcInfo.getWineInfo().vintageYear + ", '" //vintage year: see above comment
+                                    + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
+                                    + alcInfo.getWineInfo().appellation + "'" //appalation
                             , "AlcoholInfo");
                 } else {
                     worked = db.insert(appID + ", "
@@ -247,7 +250,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getName() + "', '" //fanciful name
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
-                                    + alcInfo.getAlcoholType().getValue()
+                                    + alcInfo.getAlcoholType().getValue() + ", '"
+                                    + alcInfo.getFormula() + "'" //formula
                             , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type)");
                 }
 

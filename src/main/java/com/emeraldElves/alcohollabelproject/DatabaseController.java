@@ -74,10 +74,10 @@ public class DatabaseController {
                     new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),
-                    new Database.TableField("type", "INTEGER NOT NULL"),  //only beer or wine?
+                    new Database.TableField("type", "INTEGER NOT NULL"),
+                    new Database.TableField("formula", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("pH", "REAL"),
                     new Database.TableField("vintageYear", "INTEGER"),
-                    new Database.TableField("formula", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("varietals", "VARCHAR (255)"),
                     new Database.TableField("wineAppellation", "VARCHAR (255)"));
             Log.console("Created new AlcoholInfo table");
