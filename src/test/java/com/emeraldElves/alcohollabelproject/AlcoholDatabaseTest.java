@@ -51,7 +51,7 @@ public class AlcoholDatabaseTest {
 
         SubmittedApplication test = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
         assertTrue(alcoholDatabase.submitApplication(test, "Admin1"));
-        assertFalse(alcoholDatabase.submitApplication(test, "Admin1"));
+        assertTrue(alcoholDatabase.submitApplication(test, "Admin1"));
 
 
         AlcoholInfo alc2 = new AlcoholInfo(5, "name", "brand", ProductSource.DOMESTIC

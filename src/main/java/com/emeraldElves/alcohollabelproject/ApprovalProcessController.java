@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,7 +34,35 @@ public class ApprovalProcessController {
     @FXML
     Label origin;
 
-    public void init(Main main, String Username, SubmittedApplication application){
+    @FXML
+    Label applicantID;
+
+    @FXML
+    TextArea reason;
+
+    @FXML
+    Label authorizedName;
+
+    @FXML
+    Label physicalAddress;
+
+    @FXML
+    Label permitNum;
+
+    @FXML
+    Label phoneNum;
+    @FXML
+    Label emailAddress;
+
+    @FXML
+    Label alcoholContent;
+
+    @FXML
+            Label applicationID;
+
+    AlcoholDatabase alcoholDatabase;
+
+    public void init(Main main, String Username, SubmittedApplication application) {
         this.main = main;
         this.Username = Username;
         this.application = application;
@@ -54,9 +83,10 @@ public class ApprovalProcessController {
         alcoholType.setText(type);
         DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-        date.setYear(date.getYear() - 1900);
-        submissionDate.setText(dateFormat.format(date));
-        company.setText(application.getApplication().getManufacturer().getCompany());
+//        date.setYear(date.getYear() - 1900);
+        submissionDate.setText("Submission date: " + dateFormat.format(date));
+        applicationID.setText("Application ID: " + String.valueOf(application.getApplicationID()));
+        company.setText("Company: " + application.getApplication().getManufacturer().getCompany());
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {
             case IMPORTED:
@@ -66,30 +96,50 @@ public class ApprovalProcessController {
                 productSource = "Domestic";
                 break;
         }
-        origin.setText(productSource);
+        origin.setText("Source: " + productSource);
+        applicantID.setText("Representative ID: " + String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
+        authorizedName.setText("Authorized name: " + application.getApplication().getManufacturer().getName());
+        physicalAddress.setText("Physical Address: " + application.getApplication().getManufacturer().getPhysicalAddress());
+        permitNum.setText("Permit number: " + String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
+        phoneNum.setText("Phone number: " + application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
+        emailAddress.setText("Email address: " + application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
+        alcoholContent.setText("Alcohol content: " + String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+        alcoholDatabase = new AlcoholDatabase(Main.database);
     }
 
     public void GoHome() {
         main.loadHomepage(UserType.TTBAGENT, Username);
 
     }
-    public void Aprove(){
-        application.setStatus(ApplicationStatus.APPROVED);
-        //WorkflowActionsController.
+
+    public void Approve() {
+        Date date = new Date();
+        date.setYear(date.getYear() + 5);
+        alcoholDatabase.approveApplication(application, Username, date);
+        main.loadWorkflowPage(Username);
     }
-    public void Reject(){
-        application.setStatus(ApplicationStatus.REJECTED);
+
+    public void Reject() {
+        alcoholDatabase.rejectApplication(application, reason.getText());
+        main.loadWorkflowPage(Username);
     }
-    public void PendingReview(){
-        application.setStatus(ApplicationStatus.PENDINGREVIEW);
+
+    public void PendingReview() {
+        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.PENDINGREVIEW);
+        main.loadWorkflowPage(Username);
     }
-    public void ApprovedConditionally(){
-        application.setStatus(ApplicationStatus.APPROVEDWITHCONDITIONS);
+
+    public void ApprovedConditionally() {
+        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.APPROVEDWITHCONDITIONS);
+        main.loadWorkflowPage(Username);
     }
-    public void NeedsCorrections(){
-        application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
+
+    public void NeedsCorrections() {
+        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.NEEDSCORRECTIONS);
+        main.loadWorkflowPage(Username);
     }
-    public void MoveToNextApp(){
+
+    public void MoveToNextApp() {
 
     }
 }

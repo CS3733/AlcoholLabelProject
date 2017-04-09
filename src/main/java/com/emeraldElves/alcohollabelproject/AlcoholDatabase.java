@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by elijaheldredge on 3/31/17.
@@ -123,9 +124,6 @@ public class AlcoholDatabase {
         ManufacturerInfo manInfo = info.getManufacturer();
 
 
-        manInfo = new ManufacturerInfo("name", "physicalAddress", "company", 10, 10, new PhoneNumber("9781112222"), new EmailAddress("gjergne@wpi.edu"));
-
-
         //
         boolean worked;//whether or not it added stuff to database
 
@@ -156,10 +154,43 @@ public class AlcoholDatabase {
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
 
 
-
         try {
             if (resultsSubmitted.next()) {
-                return false;
+                db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
+                        + status.getValue() + ", statusMsg = '" //status
+                        + status.getMessage() + "', submissionTime = " //status message
+                        + info.getSubmissionDate().getTime() + ", expirationDate = " //submission time
+                        + info.getSubmissionDate().getTime() + ", agentName = '"//no field for expiration date
+                        + manInfo.getName() + "', approvalDate = " //agent name
+                        + info.getSubmissionDate().getTime() + ", submitterUsername = '"
+                        + username + "'", "applicationID = " + application.getApplicationID());
+
+                db.update("ManufacturerInfo", "authorizedName = '"
+                        + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
+                        + manInfo.getPhysicalAddress() + "', company = '" //physical address
+                        + manInfo.getCompany() + "', representativeID = " //company
+                        + manInfo.getRepresentativeID() + ", permitNum = " //representative id
+                        + manInfo.getPermitNum() + ", phoneNum = '"//permit num
+                        + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
+                        + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
+
+                if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
+                    db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', origin = " //brand name
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", pH = " //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
+                                    + alcInfo.getWineInfo().pH + ", vintageYear = " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                                    + alcInfo.getWineInfo().vintageYear //vintage year: see above comment
+                            , "applicationID = " + application.getApplicationID());
+                } else {
+                    db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', origin = " //brand name
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue()
+                            , "applicationID = " + application.getApplicationID());
+                }
             } else {
                 String assignedAgent = "";
                 if (AppState.getInstance().ttbAgents.size() != 0)
@@ -176,7 +207,7 @@ public class AlcoholDatabase {
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
                                 + assignedAgent + "', '"
                                 + username + "'"
-                                //TTBUsername
+                        //TTBUsername
                         , "SubmittedApplications");
 
                 Log.console("SubmittedApplication");
@@ -232,12 +263,12 @@ public class AlcoholDatabase {
     }
 
 
-    public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID){
+    public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID) {
         ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);
         return getApplicationsFromResultSet(results);
     }
 
-    public List<SubmittedApplication> getApplicationsByApplicantUsername(String username){
+    public List<SubmittedApplication> getApplicationsByApplicantUsername(String username) {
         ResultSet results = db.select("*", "SubmittedApplications", "submitterUsername = '" + username + "'");
         return getApplicationsFromResultSet(results);
     }
@@ -263,6 +294,7 @@ public class AlcoholDatabase {
 
                 Applicant applicant = new Applicant(null); // TODO: implement this
                 ApplicationStatus status = ApplicationStatus.fromInt(submittedResult.getInt("status"));
+                String message = submittedResult.getString("statusMsg");
 
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
 
@@ -271,6 +303,7 @@ public class AlcoholDatabase {
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
+                application.setTtbMessage(message);
                 return application;
             }
         } catch (SQLException e) {
@@ -293,8 +326,19 @@ public class AlcoholDatabase {
         return db.update("SubmittedApplications", "status = " + status.getValue() + ", statusMsg = '" + status.getMessage() + "'", "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changeVintageYear(SubmittedApplication application, int vintageYear){
-        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+    public boolean approveApplication(SubmittedApplication application, String agentUsername, Date expirationDate) {
+        application.setStatus(ApplicationStatus.APPROVED);
+        return db.update("SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue() + ", TTBUsername = '" + agentUsername + "', approvalDate = " +
+                +(new Date().getTime()) + ", expirationDate = " + expirationDate.getTime(), "applicationID = " + application.getApplicationID());
+    }
+
+    public boolean rejectApplication(SubmittedApplication application, String message) {
+        application.setStatus(ApplicationStatus.REJECTED);
+        return db.update("SubmittedApplications", "status = " + ApplicationStatus.REJECTED.getValue() + ", statusMsg = '" + message + "'", "applicationID = " + application.getApplicationID());
+    }
+
+    public boolean changeVintageYear(SubmittedApplication application, int vintageYear) {
+        if (application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE) {
             return false;
         }
 
@@ -303,8 +347,8 @@ public class AlcoholDatabase {
         return db.update("AlcoholInfo", "vintageYear = " + vintageYear, "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changePH(SubmittedApplication application, double pH){
-        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
+    public boolean changePH(SubmittedApplication application, double pH) {
+        if (application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE) {
             return false;
         }
 
@@ -313,17 +357,23 @@ public class AlcoholDatabase {
         return db.update("AlcoholInfo", "pH = " + pH, "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent){
-        if(application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE){
-            return false;
-        }
-
+    public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent) {
         application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
 
         return db.update("AlcoholInfo", "alcoholContent = " + alcoholContent, "applicationID = " + application.getApplicationID());
 
     }
 
+
+    public SubmittedApplication getRandomApproved() {
+        ResultSet alcoholResult = db.select("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue());
+        List<SubmittedApplication> applications = getApplicationsFromResultSet(alcoholResult);
+        Random random = new Random();
+        if (applications.isEmpty())
+            return null;
+        int pos = random.nextInt(applications.size());
+        return applications.get(pos);
+    }
 
     private AlcoholInfo getAlcoholInfoByID(int applicationID) {
         ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + applicationID);

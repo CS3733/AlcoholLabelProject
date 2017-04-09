@@ -9,6 +9,15 @@ public class SubmittedApplication {
     private ApplicationStatus status;
     private Applicant applicant;
     private int applicationID = -1;
+    private String ttbMessage = "";
+
+    public String getTtbMessage() {
+        return ttbMessage;
+    }
+
+    public void setTtbMessage(String ttbMessage) {
+        this.ttbMessage = ttbMessage;
+    }
 
     /**
      * Creates an application which was submitted.

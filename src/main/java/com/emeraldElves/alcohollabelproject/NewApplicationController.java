@@ -101,10 +101,18 @@ public class NewApplicationController {
     private Main main;
     private String username;
 
+    private SubmittedApplication application;
 
-    public void init(Main main, String username){
+
+    public void init(Main main, SubmittedApplication application, String username) {
         this.main = main;
         this.username = username;
+        this.application = application;
+    }
+
+
+    public void init(Main main, String username){
+        init(main, null, username);
     }
 
     public void nextPage(){
@@ -180,7 +188,7 @@ public class NewApplicationController {
             applicantPhone = new PhoneNumber(phoneNumberField.getText());
 
             //form is now filled in so go to page 2 of label application
-            Main.loadFXML("/fxml/newApplicationPage2.FXML", this);
+            Main.loadFXML("/fxml/newApplicationPage2.fxml", this);
         }
     }
 
@@ -298,6 +306,9 @@ public class NewApplicationController {
             SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
             applicant.addSubmittedApp(newApp);
 
+            if (application != null)
+                newApp.setApplicationID(application.getApplicationID());
+
             //Submit the new application to the database
             alcoholDB.submitApplication(newApp, username);
 
@@ -313,5 +324,6 @@ public class NewApplicationController {
     public void saveApp() {
     }
     public void logout() {
+        main.loadHomepage(UserType.BASIC, "");
     }
 }

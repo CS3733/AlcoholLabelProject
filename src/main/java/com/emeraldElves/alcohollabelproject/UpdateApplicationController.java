@@ -35,6 +35,7 @@ public class UpdateApplicationController {
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
     String Username;
+    AlcoholDatabase alcoholDatabase;
 
 
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username) {
@@ -42,6 +43,12 @@ public class UpdateApplicationController {
         this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
         this.Username = Username;
         status = CurrentlyBeingUpdated.getStatus();
+        alcoholDatabase = new AlcoholDatabase(Main.database);
+        alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
+        if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE){
+            wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().vintageYear));
+            phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().pH));
+        }
     }
 
     public void ApplicationStatuschecker() {
@@ -84,47 +91,25 @@ public class UpdateApplicationController {
     }
 
     public void submitApp() {
-        ApplicationStatuschecker();
-
-        //SubmittedApplication CurrentlyBeingUpdated = null;
-        String applicantname = CurrentlyBeingUpdated.getApplication().getManufacturer().getName();
-        int UniqID = CurrentlyBeingUpdated.getApplicationID();
-        String physicalAddress = CurrentlyBeingUpdated.getApplication().getManufacturer().getPhysicalAddress();
-        String company = null;
-        int representativeID = CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID();
-        int permitNum = CurrentlyBeingUpdated.getApplication().getManufacturer().getPermitNum();
-        PhoneNumber phoneNumber = new PhoneNumber(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getPhoneNumber()));
-        EmailAddress emailAddress = new EmailAddress(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getEmailAddress()));
-        String fancifulname = CurrentlyBeingUpdated.getApplication().getAlcohol().getName();
-        String brandName = CurrentlyBeingUpdated.getApplication().getAlcohol().getBrandName();
         AlcoholType alcoholType = CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType();
-        int pH;
+        double pH;
         int vintageYear;
         if(alcoholType == AlcoholType.WINE) {
-            pH = Integer.parseInt(phLevelField.getText());
+            pH = Double.parseDouble(phLevelField.getText());
             vintageYear = Integer.parseInt(wineVintageYearField.getText());
-        }
-        else {
-            pH = 0;
-            vintageYear = 0;
+            alcoholDatabase.changePH(CurrentlyBeingUpdated, pH);
+            alcoholDatabase.changeVintageYear(CurrentlyBeingUpdated, vintageYear);
         }
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
-        ProductSource origin = CurrentlyBeingUpdated.getApplication().getAlcohol().getOrigin();
+        alcoholDatabase.changeAlcoholContent(CurrentlyBeingUpdated, alcoholContent);
 
-        AlcoholInfo.Wine wineInfo = new AlcoholInfo.Wine(vintageYear, pH);
-        Date submissionDate = java.sql.Date.valueOf(String.valueOf(datePicker.getValue()));
-        ManufacturerInfo manufacturer = new ManufacturerInfo(applicantname, physicalAddress, company, representativeID, permitNum, phoneNumber, emailAddress);
-        AlcoholInfo submittedAlcohol = new AlcoholInfo(alcoholContent, fancifulname, brandName, origin, alcoholType, wineInfo);
-        ApplicationInfo application = new ApplicationInfo(submissionDate, manufacturer, submittedAlcohol);
-        Applicant applicant = new Applicant(null);
-        SubmittedApplication UpdatedApplication = new SubmittedApplication(application, status, applicant);
-        main.loadHomepage(UserType.TTBAGENT, Username);
+        main.loadHomepage(UserType.APPLICANT, Username);
 
     }
 
     public void cancelApp() {
-        main.loadHomepage(UserType.APPLICANT, "");
+        main.loadHomepage(UserType.APPLICANT, Username);
 
     }
 

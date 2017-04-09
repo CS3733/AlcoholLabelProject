@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,11 +33,23 @@ public class ApplicantWorkflowController {
         this.main = main;
         alcoholDatabase = new AlcoholDatabase(Main.database);
         applications = alcoholDatabase.getApplicationsByApplicantUsername(Username);
-        List<String> applicationNames = applications.stream()
-                .map(SubmittedApplication::getApplication)
-                .map(ApplicationInfo::getAlcohol)
-                .map(AlcoholInfo::getBrandName)
-                .collect(Collectors.toList());
+        List<String> applicationNames = new ArrayList<>();
+        for (SubmittedApplication application : applications) {
+            String name = "";
+            name += application.getApplication().getAlcohol().getBrandName();
+            switch (application.getStatus()) {
+                case APPROVED:
+                    name += " - Approved";
+                    break;
+                case REJECTED:
+                    name += " - Rejected: " + application.getTtbMessage();
+                    break;
+                case PENDINGREVIEW:
+                    name += " - Pending Review";
+                    break;
+            }
+            applicationNames.add(name);
+        }
         ObservableList<String> items = FXCollections.observableList(applicationNames);
         list.setItems(items);
     }
@@ -44,6 +57,10 @@ public class ApplicantWorkflowController {
     public SubmittedApplication getSelectedApplication() {
         int i = list.getSelectionModel().getSelectedIndex();
         return applications.get(i);
+    }
+
+    public void reviseApplication(){
+        main.loadNewApplicationPage(Username, getSelectedApplication());
     }
 
     public void ApplicationWorkflow() {

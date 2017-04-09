@@ -30,7 +30,7 @@
       <RowConstraints maxHeight="307.0000305175781" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Button mnemonicParsing="false" text="Logout" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+        <Button mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
         <ImageView fitHeight="125.0" fitWidth="1025.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
             <image>
                 <Image url="@../images/ttbmasthead.gif" />
@@ -66,5 +66,6 @@
       <Label fx:id="fanciful3" text="Beverage 3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <Label fx:id="fanciful4" text="Beverage 4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
       <Label fx:id="fanciful5" text="Beverage 5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#goHome" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
     </children>
 </GridPane>

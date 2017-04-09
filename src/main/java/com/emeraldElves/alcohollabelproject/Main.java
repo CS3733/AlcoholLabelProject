@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,11 +20,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         database = DatabaseController.getInstance().initDatabase("ttbDB");
 
+//        database.insert("'Admin', 'Admin'", "TTBAgentLogin");
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
         HomeController controller = loader.getController();
         controller.init(this, UserType.BASIC, "");
         primaryStage.setTitle("Alcohol Label Project");
+        primaryStage.getIcons().add(new Image(("images/logo.png")));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         stage = primaryStage;
@@ -39,7 +43,7 @@ public class Main extends Application {
         FXMLLoader root = null;
         try {
             root = new FXMLLoader(Main.class.getResource(path));
-            stage.getScene().setRoot((Parent)root.load());
+            stage.getScene().setRoot((Parent) root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +55,7 @@ public class Main extends Application {
         try {
             root = new FXMLLoader(Main.class.getResource(path));
             root.setController(controller);
-            stage.getScene().setRoot((Parent)root.load());
+            stage.getScene().setRoot((Parent) root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,12 +74,24 @@ public class Main extends Application {
         }
     }
 
-    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm, String Username) {
+    public void loadDetailedSearchPage(SubmittedApplication application, String searchTerm, UserType userType, String Username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DetailedSearchPage.fxml"));
         try {
             Parent root = loader.load();
             DetailedSearchController controller = loader.getController();
-            controller.init(this, application, searchTerm, Username);
+            controller.init(this, application, searchTerm, userType, Username);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadNewUserPage(UserType userType, String username){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewUser.fxml"));
+        try {
+            Parent root = loader.load();
+            NewUserController controller = loader.getController();
+            controller.init(this, userType, username);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,6 +124,18 @@ public class Main extends Application {
 
     public void loadProfilePage(String username) {
 
+    }
+
+    public void loadNewApplicationPage(String username, SubmittedApplication application) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
+        try {
+            Parent root = loader.load();
+            NewApplicationController controller = loader.getController();
+            controller.init(this, application, username);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadNewApplicationPage(String username) {
@@ -156,18 +184,19 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             ApplicantWorkflowController controller = loader.getController();
-            controller.init(Username,this);
+            controller.init(Username, this);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void loadApprovalProcessController(SubmittedApplication application, String Username ){
+
+    public void loadApprovalProcessController(SubmittedApplication application, String Username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApprovalPage.fxml"));
         try {
             Parent root = loader.load();
             ApprovalProcessController controller = loader.getController();
-            controller.init(this,Username,application );
+            controller.init(this, Username, application);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

@@ -31,6 +31,30 @@ public class LoginController {
         this.main = main;
     }
 
+    public void loginAsAgent() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        AuthenticatedUsersDatabase authDb = new AuthenticatedUsersDatabase(Main.database);
+        if (authDb.isValidTTBAgent(username, password)) {
+            errorMsg.setVisible(false);
+            main.loadHomepage(UserType.TTBAGENT, username);
+        } else {
+            errorMsg.setVisible(true);
+        }
+    }
+
+    public void loginAsApplicant() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        AuthenticatedUsersDatabase authDb = new AuthenticatedUsersDatabase(Main.database);
+        if (authDb.isValidApplicant(username, password)) {
+            errorMsg.setVisible(false);
+            main.loadHomepage(UserType.APPLICANT, username);
+        } else {
+            errorMsg.setVisible(true);
+        }
+    }
+
     public void login(ActionEvent e) {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -47,7 +71,8 @@ public class LoginController {
             errorMsg.setVisible(true);
         }
     }
-    public void GoHome(){
-        main.loadHomepage(UserType.BASIC,"");
+
+    public void GoHome() {
+        main.loadHomepage(UserType.BASIC, "");
     }
 }
