@@ -290,7 +290,8 @@ public class NewApplicationController {
         //check if required fields are filled in
         if((productType.getSelectedToggle() != null) && (productSource.getSelectedToggle() != null) &&
                 !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
-                (datePicker != null) && !signatureField.getText().isEmpty()){
+                (datePicker != null) && !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
+                && !formulaText.getText().isEmpty()){
             formFilled=true;
         }
 

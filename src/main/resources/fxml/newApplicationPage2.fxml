@@ -197,5 +197,6 @@
       <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Extra Info:" wrappingWidth="74.3974609375" GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
       <TextField fx:id="extraInfoText" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Label fx:id="serialErrorField" GridPane.columnIndex="2" GridPane.rowIndex="9" />
     </children>
 </GridPane>
