@@ -330,7 +330,12 @@ public class NewApplicationController {
             Date newDate = java.sql.Date.valueOf(datePicker.getValue());
 
             // Creates a new application info and sets data
-            extraInfo = extraInfoText.getText();//sets extra info for application
+            if(extraInfoText.getText().isEmpty()){
+                extraInfo = " ";
+            }
+            else{
+                extraInfo = extraInfoText.getText();
+            }
             ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,extraInfo);//fix extra info
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
