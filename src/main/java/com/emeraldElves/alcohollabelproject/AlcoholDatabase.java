@@ -206,7 +206,8 @@ public class AlcoholDatabase {
                                 + manInfo.getName() + "', " //agent name
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
                                 + assignedAgent + "', '" //TTB username
-                                + username + "'" //submitter username
+                                + username + "', '" //submitter username
+                                + info.getExtraInfo() + "'" //extra info
                         //TTBUsername
                         , "SubmittedApplications");
 
