@@ -19,7 +19,7 @@ public class AlcoholDatabaseTest {
 
     @Before
     public void setup() throws InterruptedException {
-        if (db != null)
+        /*if (db != null)
             db.close();
         db = DatabaseController.getInstance().initDatabase("testDB");
         try {
@@ -111,6 +111,7 @@ public class AlcoholDatabaseTest {
     private void setUpAgents() {
         db.insert("'Admin', 'Admin1'", "TTBAgentLogin");
         db.insert("'Admin2', 'Admin123'", "TTBAgentLogin");
+    */
     }
 
 
