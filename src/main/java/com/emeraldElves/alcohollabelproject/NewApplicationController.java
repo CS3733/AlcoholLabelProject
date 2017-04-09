@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
+import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -83,6 +84,10 @@ public class NewApplicationController {
     Label varietalErrorField;
     @FXML
     Label formulaErrorField;
+    @FXML
+    TextField serialText;
+    @FXML
+    TextField extraInfoText;
 
 
 
@@ -109,6 +114,8 @@ public class NewApplicationController {
     AlcoholInfo appAlcoholInfo = null;
 
     private String formula;
+    private String serialNum;
+    private String extraInfo;
 
     private Main main;
     private String username;
@@ -303,8 +310,8 @@ public class NewApplicationController {
             alcName = alcoholName.getText();
             brandName = brandNameField.getText();
             alcContent = Integer.parseInt(alcoholContentField.getText()); //CHECK IF INTEGER
-
             formula = formulaText.getText();
+            serialNum = serialText.getText();
 
             //sets the alcohol info
             appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType,"123", formula);//fix serial number
@@ -317,7 +324,8 @@ public class NewApplicationController {
             Date newDate = java.sql.Date.valueOf(datePicker.getValue());
 
             // Creates a new application info and sets data
-            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,"extra");//fix extra info
+            extraInfo = extraInfoText.getText();//sets extra info for application
+            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,extraInfo);//fix extra info
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
             List<SubmittedApplication> appList = new ArrayList<>();
