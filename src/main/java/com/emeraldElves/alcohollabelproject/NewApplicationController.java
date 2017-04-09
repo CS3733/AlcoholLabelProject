@@ -88,6 +88,8 @@ public class NewApplicationController {
     TextField serialText;
     @FXML
     TextField extraInfoText;
+    @FXML
+    Label serialErrorField;
 
 
 
@@ -161,6 +163,7 @@ public class NewApplicationController {
         } else{
             emailErrorField.setText("");
         }
+
 
         //check if required fields are filled
         if(!emailAddressField.getText().isEmpty()&&!phoneNumberField.getText().isEmpty()&&
@@ -255,6 +258,8 @@ public class NewApplicationController {
             formulaErrorField.setText("Please fill in the formula");
         }
         else formulaErrorField.setText("");
+        if(serialText.getText().isEmpty()){ serialErrorField.setText("Please input a serial number");}
+        else serialErrorField.setText("");
 
         if (productType.getSelectedToggle() == wine){
             int vintageYr=0;
