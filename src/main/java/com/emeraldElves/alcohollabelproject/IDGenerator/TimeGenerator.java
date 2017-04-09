@@ -5,6 +5,9 @@ package com.emeraldElves.alcohollabelproject.IDGenerator;
  */
 public class TimeGenerator implements IDGenerator {
     @Override
+    /**
+     * Generate an ID based on the current system time.
+     */
     public String generateID() {
         return String.valueOf(getTime());
     }

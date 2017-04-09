@@ -5,6 +5,9 @@ package com.emeraldElves.alcohollabelproject.IDGenerator;
  */
 public class TimeIDGenerator extends ApplicationIDGenerator {
 
+    /**
+     * Create an ID generator which uses the current time of the system.
+     */
     public TimeIDGenerator() {
         super(new TimeGenerator());
     }

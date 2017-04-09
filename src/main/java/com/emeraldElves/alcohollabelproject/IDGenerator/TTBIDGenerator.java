@@ -5,7 +5,12 @@ package com.emeraldElves.alcohollabelproject.IDGenerator;
  */
 public class TTBIDGenerator extends ApplicationIDGenerator {
 
-    public TTBIDGenerator(int counter){
+    /**
+     * Create a generator which produces application IDs in the TTB format of year, julian date, submission type, and application count for the day
+     *
+     * @param counter The current number of applications submitted in the day.
+     */
+    public TTBIDGenerator(int counter) {
         super(new TTBFormatGenerator(counter, 1));
     }
 

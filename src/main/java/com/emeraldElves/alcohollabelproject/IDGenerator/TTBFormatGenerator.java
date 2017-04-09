@@ -11,6 +11,11 @@ public class TTBFormatGenerator implements IDGenerator {
     private int counter;
     private int fileMethod;
 
+    /**
+     * Create a generator which uses the TTB format.
+     * @param counter The number of applications submitted for the current day.
+     * @param fileMethod The method of submission: 1 for electronic
+     */
     public TTBFormatGenerator(int counter, int fileMethod) {
         this.counter = counter;
         this.fileMethod = fileMethod;
