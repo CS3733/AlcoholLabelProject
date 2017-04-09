@@ -5,6 +5,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
  */
 
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
@@ -15,12 +16,12 @@ import javafx.scene.control.TextField;
 import java.util.List;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class HomeController {
     public ArrayList<Label> mostRecentLabels;
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
-    public AlcoholDatabase aldb = new AlcoholDatabase(Main.database);
-    public List<SubmittedApplication> submitted = aldb.getMostRecentApproved(4);
+    public List<SubmittedApplication> submitted;
 
 
     private UserType usertype;
@@ -43,8 +44,9 @@ public class HomeController {
 
 
     public HomeController() {
-        mostRecentLabels = new ArrayList<Label>();
-        mostRecentSubmissions = new ArrayList<SubmittedApplication>();
+        mostRecentLabels = new ArrayList<>();
+        mostRecentSubmissions = new ArrayList<>();
+        submitted = Storage.getInstance().getRecentlyApprovedApplications(4);
     }
 
     // TODO: put FXML in correct folder
@@ -86,8 +88,15 @@ public class HomeController {
     }
 
     public void feelingThirsty(){
-        AlcoholDatabase alcoholDatabase = new AlcoholDatabase(Main.database);
-        SubmittedApplication application = alcoholDatabase.getRandomApproved();
+        List<SubmittedApplication> applications = Storage.getInstance().getApprovedApplications();
+        Random random = new Random();
+        SubmittedApplication application;
+        if (applications.isEmpty()) {
+            application = null;
+        } else {
+            int pos = random.nextInt(applications.size());
+            application = applications.get(pos);
+        }
         if(application != null)
             main.loadDetailedSearchPage(application, application.getApplication().getAlcohol().getBrandName(), usertype, username);
     }

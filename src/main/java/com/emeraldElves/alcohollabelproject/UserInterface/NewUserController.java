@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +36,7 @@ public class NewUserController {
     public void createTTBAgent(){
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if (Main.database.insert("'" + username + "', '" + password + "'", "TTBAgentLogin")) {
+        if(Storage.getInstance().createUser(UserType.TTBAGENT, username, password)){
             errorMsg.setVisible(false);
             main.loadHomepage(this.userType, this.username);
         } else {
@@ -46,7 +47,7 @@ public class NewUserController {
     public void createApplicant(){
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if (Main.database.insert("'" + username + "', '" + password + "'", "ApplicantLogin")) {
+        if (Storage.getInstance().createUser(UserType.APPLICANT, username, password)) {
             errorMsg.setVisible(false);
             main.loadHomepage(this.userType, this.username);
         } else {

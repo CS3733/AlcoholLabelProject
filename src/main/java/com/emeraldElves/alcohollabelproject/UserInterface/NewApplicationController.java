@@ -197,7 +197,6 @@ public class NewApplicationController {
     public void submitApp() {
 
         //Creates a database to store the alcohol information from form
-        AlcoholDatabase alcoholDB = new AlcoholDatabase(Main.database);
 
         Boolean formFilled=false;
 
@@ -311,7 +310,7 @@ public class NewApplicationController {
                 newApp.setApplicationID(application.getApplicationID());
 
             //Submit the new application to the database
-            alcoholDB.submitApplication(newApp, username);
+            Storage.getInstance().submitApplication(newApp, username);
 
             //Go back to homepage
             main.loadHomepage(UserType.APPLICANT, username);

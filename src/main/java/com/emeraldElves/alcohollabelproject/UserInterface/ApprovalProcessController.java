@@ -1,9 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
-import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
+import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -64,7 +61,6 @@ public class ApprovalProcessController {
     @FXML
             Label applicationID;
 
-    AlcoholDatabase alcoholDatabase;
 
     public void init(Main main, String Username, SubmittedApplication application) {
         this.main = main;
@@ -108,7 +104,6 @@ public class ApprovalProcessController {
         phoneNum.setText("Phone number: " + application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
         emailAddress.setText("Email address: " + application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
         alcoholContent.setText("Alcohol content: " + String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
-        alcoholDatabase = new AlcoholDatabase(Main.database);
     }
 
     public void GoHome() {
@@ -118,28 +113,31 @@ public class ApprovalProcessController {
 
     public void Approve() {
         Date date = new Date();
-        date.setYear(date.getYear() + 5);
-        alcoholDatabase.approveApplication(application, Username, date);
+        date.setYear(date.getYear() + 5 - 1900);
+        Storage.getInstance().approveApplication(application, Username, date);
         main.loadWorkflowPage(Username);
     }
 
     public void Reject() {
-        alcoholDatabase.rejectApplication(application, reason.getText());
+        Storage.getInstance().rejectApplication(application, reason.getText());
         main.loadWorkflowPage(Username);
     }
 
     public void PendingReview() {
-        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.PENDINGREVIEW);
+        application.setStatus(ApplicationStatus.PENDINGREVIEW);
+        Storage.getInstance().submitApplication(application, Username);
         main.loadWorkflowPage(Username);
     }
 
     public void ApprovedConditionally() {
-        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.APPROVEDWITHCONDITIONS);
+        application.setStatus(ApplicationStatus.APPROVEDWITHCONDITIONS);
+        Storage.getInstance().submitApplication(application, Username);
         main.loadWorkflowPage(Username);
     }
 
     public void NeedsCorrections() {
-        alcoholDatabase.updateApplicationStatus(application, ApplicationStatus.NEEDSCORRECTIONS);
+        application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
+        Storage.getInstance().submitApplication(application, Username);
         main.loadWorkflowPage(Username);
     }
 

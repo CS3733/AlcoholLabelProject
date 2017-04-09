@@ -5,6 +5,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
  */
 
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
@@ -59,7 +60,6 @@ public class WorkflowController {
 
 
 
-    AlcoholDatabase db = new AlcoholDatabase(Main.database);
     // TODO: array sizes are currently arbitrary; possibly change to ArrayList<> in the future
     public SubmittedApplication[] submittedApps = new SubmittedApplication[50];
     public String[] ids = new String[50];
@@ -136,7 +136,7 @@ public class WorkflowController {
      * @param ttbUsername
      */
     public void queryDatabase(String ttbUsername) {
-        List<SubmittedApplication> list = db.getAssignedApplications(ttbUsername);
+        List<SubmittedApplication> list = Storage.getInstance().getAssignedApplications(ttbUsername);
         for (ListIterator<SubmittedApplication> itr = list.listIterator(); itr.hasNext(); ) {
             SubmittedApplication current = itr.next();
             submittedApps[i] = current;

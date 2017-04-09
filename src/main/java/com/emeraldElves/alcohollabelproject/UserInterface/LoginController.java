@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.AuthenticatedUsersDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,8 +33,7 @@ public class LoginController {
     public void loginAsAgent() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        AuthenticatedUsersDatabase authDb = new AuthenticatedUsersDatabase(Main.database);
-        if (authDb.isValidTTBAgent(username, password)) {
+        if (Storage.getInstance().isValidUser(UserType.TTBAGENT, username, password)) {
             errorMsg.setVisible(false);
             main.loadHomepage(UserType.TTBAGENT, username);
         } else {
@@ -44,8 +44,7 @@ public class LoginController {
     public void loginAsApplicant() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        AuthenticatedUsersDatabase authDb = new AuthenticatedUsersDatabase(Main.database);
-        if (authDb.isValidApplicant(username, password)) {
+        if (Storage.getInstance().isValidUser(UserType.APPLICANT, username, password)) {
             errorMsg.setVisible(false);
             main.loadHomepage(UserType.APPLICANT, username);
         } else {
@@ -56,18 +55,17 @@ public class LoginController {
     public void login(ActionEvent e) {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        AuthenticatedUsersDatabase authDb = new AuthenticatedUsersDatabase(Main.database);
-        if (authDb.isValidAccount(username, password)) {
-            errorMsg.setVisible(false);
-            if (authDb.isValidApplicant(username, password)) {
-                main.loadHomepage(UserType.APPLICANT, username);
-            }
-            if (authDb.isValidTTBAgent(username, password)) {
-                main.loadHomepage(UserType.TTBAGENT, username);
-            }
-        } else {
-            errorMsg.setVisible(true);
-        }
+//        if (Storage.getInstance().isValidUser()) {
+//            errorMsg.setVisible(false);
+//            if (authDb.isValidApplicant(username, password)) {
+//                main.loadHomepage(UserType.APPLICANT, username);
+//            }
+//            if (authDb.isValidTTBAgent(username, password)) {
+//                main.loadHomepage(UserType.TTBAGENT, username);
+//            }
+//        } else {
+//            errorMsg.setVisible(true);
+//        }
     }
 
     public void GoHome() {

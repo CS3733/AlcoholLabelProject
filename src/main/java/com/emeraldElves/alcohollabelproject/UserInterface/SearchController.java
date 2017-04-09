@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -105,7 +106,8 @@ public class SearchController {
         data.remove(0, data.size());
 
         //Find & add matching applications
-        List<SubmittedApplication> resultsList = (new AlcoholDatabase(Main.database)).searchByBrandName(searchTerm);
+        List<SubmittedApplication> resultsList = Storage.getInstance().getApplicationsByBrandName(searchTerm);
+                ;
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);

@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.collections.FXCollections;
@@ -26,13 +27,11 @@ public class ApplicantWorkflowController {
 
     @FXML
     ListView<String> list;
-    AlcoholDatabase alcoholDatabase;
 
     public void init(String Username, Main main) {
         this.Username = Username;
         this.main = main;
-        alcoholDatabase = new AlcoholDatabase(Main.database);
-        applications = alcoholDatabase.getApplicationsByApplicantUsername(Username);
+        applications = Storage.getInstance().getApplicationsByApplicant(Username);
         List<String> applicationNames = new ArrayList<>();
         for (SubmittedApplication application : applications) {
             String name = "";

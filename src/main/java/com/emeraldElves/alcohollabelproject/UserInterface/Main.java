@@ -2,7 +2,6 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.*;
 import com.emeraldElves.alcohollabelproject.Data.Database;
-import com.emeraldElves.alcohollabelproject.Data.DatabaseController;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.application.Application;
@@ -17,15 +16,10 @@ import java.io.IOException;
 public class Main extends Application {
 
     public static Stage stage;
-    public static Database database;
     public static Applicant applier;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        database = DatabaseController.getInstance().initDatabase("ttbDB");
-
-//        database.insert("'Admin', 'Admin'", "TTBAgentLogin");
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
         HomeController controller = loader.getController();

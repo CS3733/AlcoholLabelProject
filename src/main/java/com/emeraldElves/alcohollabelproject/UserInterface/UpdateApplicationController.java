@@ -27,7 +27,6 @@ public class UpdateApplicationController {
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
     String Username;
-    AlcoholDatabase alcoholDatabase;
 
 
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username) {
@@ -35,7 +34,6 @@ public class UpdateApplicationController {
         this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
         this.Username = Username;
         status = CurrentlyBeingUpdated.getStatus();
-        alcoholDatabase = new AlcoholDatabase(Main.database);
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
         if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE){
             wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().vintageYear));
@@ -83,18 +81,23 @@ public class UpdateApplicationController {
     }
 
     public void submitApp() {
-        AlcoholType alcoholType = CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType();
+        AlcoholInfo alcoholInfo = CurrentlyBeingUpdated.getApplication().getAlcohol();
+        AlcoholType alcoholType = alcoholInfo.getAlcoholType();
         double pH;
         int vintageYear;
         if(alcoholType == AlcoholType.WINE) {
             pH = Double.parseDouble(phLevelField.getText());
             vintageYear = Integer.parseInt(wineVintageYearField.getText());
-            alcoholDatabase.changePH(CurrentlyBeingUpdated, pH);
-            alcoholDatabase.changeVintageYear(CurrentlyBeingUpdated, vintageYear);
+
+            alcoholInfo.getWineInfo().pH = pH;
+            alcoholInfo.getWineInfo().vintageYear = vintageYear;
+
+            Storage.getInstance().submitApplication(CurrentlyBeingUpdated, Username);
         }
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
-        alcoholDatabase.changeAlcoholContent(CurrentlyBeingUpdated, alcoholContent);
+        alcoholInfo.setAlcoholContent(alcoholContent);
+        Storage.getInstance().submitApplication(CurrentlyBeingUpdated, Username);
 
         main.loadHomepage(UserType.APPLICANT, Username);
 
