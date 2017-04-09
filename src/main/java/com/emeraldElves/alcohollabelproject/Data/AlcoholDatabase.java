@@ -430,4 +430,9 @@ public class AlcoholDatabase {
         return (int) System.currentTimeMillis();
     }
 
+    public List<SubmittedApplication> getApproved() {
+        ResultSet results = db.select("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue());
+        return getApplicationsFromResultSet(results);
+    }
+
 }
