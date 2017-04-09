@@ -37,5 +37,21 @@ public class Storage {
     public List<SubmittedApplication> getApprovedApplications(){
         return alcoholDB.getApproved();
     }
+    public List<SubmittedApplication> ApplicationsbyBrandName(String brandName){
+        return alcoholDB.searchByBrandName(brandName);
+    }
+    public List<SubmittedApplication> getApplicationsByName(String name){
+        return alcoholDB.searchByName(name);
+    }
+    public List<SubmittedApplication> getApplicationsByFancifulName(String fancifulName){
+        return alcoholDB.searchByFancifulName(fancifulName);
+    }
+    public List<SubmittedApplication> getApplicationsByApplicant(String username){
+        return alcoholDB.getApplicationsByApplicantUsername(username);
+    }
+    public List<SubmittedApplication> getAssignedApplications(String agentName){
+        return alcoholDB.getAssignedApplications(agentName);
+    }
     
+
 }

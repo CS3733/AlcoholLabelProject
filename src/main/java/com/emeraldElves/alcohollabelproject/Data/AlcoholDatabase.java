@@ -88,7 +88,23 @@ public class AlcoholDatabase {
 
         return applications;
     }
+    /**
+     * Search by the brand or fanciful name of alcohol.
+     *
+     * @param name The name to search.
+     * @return A list of approved alcohols containing the name ordered by time approved.
+     */
+    public List<SubmittedApplication> searchByName(String name) {
+        ResultSet results = db.select("*", "AlcoholInfo", "brandName='" + name + "' OR fancifulName='" + name + "'");
 
+        List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
+
+        for (int i = applications.size() - 1; i >= 0; i--) {
+            if (applications.get(i).getStatus() != ApplicationStatus.APPROVED)
+                applications.remove(i);
+        }
+        return applications;
+    }
     /**
      * Search by the brand name of alcohol.
      *
@@ -106,7 +122,23 @@ public class AlcoholDatabase {
         }
         return applications;
     }
+    /**
+     * Search by the fanciful name of alcohol.
+     *
+     * @param fancifulName The fanciful name to search.
+     * @return A list of approved alcohols containing the brandName ordered by time approved.
+     */
+    public List<SubmittedApplication> searchByFancifulName(String fancifulName) {
+        ResultSet results = db.select("*", "AlcoholInfo", "fancifulName='" + fancifulName + "'");
 
+        List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
+
+        for (int i = applications.size() - 1; i >= 0; i--) {
+            if (applications.get(i).getStatus() != ApplicationStatus.APPROVED)
+                applications.remove(i);
+        }
+        return applications;
+    }
     /**
      * Submit an application for review.
      *
