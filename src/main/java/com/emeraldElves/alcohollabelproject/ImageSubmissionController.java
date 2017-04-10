@@ -25,7 +25,7 @@ public class ImageSubmissionController {
     File file;
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif");
         fileChooser.getExtensionFilters().add(extFilter);
         file = fileChooser.showOpenDialog(null);
         Path source = Paths.get((file.getPath()));
