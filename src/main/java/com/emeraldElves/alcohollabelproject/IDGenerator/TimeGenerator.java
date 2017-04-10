@@ -12,7 +12,7 @@ public class TimeGenerator implements IDGenerator {
         return String.valueOf(getTime());
     }
 
-    private long getTime() {
-        return System.currentTimeMillis();
+    private int getTime() {
+        return (int) (System.currentTimeMillis()/1000.0);
     }
 }

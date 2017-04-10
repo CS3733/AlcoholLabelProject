@@ -19,7 +19,7 @@ public class ApplicationIDGeneratorTest {
         String timeVal = String.valueOf(time);
         String id = generator.generateID();
         // This could vary by a few milliseconds, so I only care that it passes a certain threshold
-        assertEquals(timeVal.substring(0, timeVal.length() - 2), id.substring(0, id.length() - 2));
+        assertEquals(timeVal.substring(0, timeVal.length() - 3), id);
     }
 
 
