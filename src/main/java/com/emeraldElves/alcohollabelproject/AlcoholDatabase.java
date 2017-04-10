@@ -182,7 +182,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", formula = '"
-                                    + alcInfo.getFormula() + "', pH = "
+                                    + alcInfo.getFormula() + "', serialNumber = '"
+                                    + alcInfo.getSerialNumber() + "', pH = "
                                     + alcInfo.getWineInfo().pH + ", vintageYear = "
                                     + alcInfo.getWineInfo().vintageYear + ", varietals = '"
                                     + alcInfo.getWineInfo().grapeVarietal + "', wineAppellation = '"
@@ -194,7 +195,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", formula = '"
-                                    + alcInfo.getFormula() + "'"
+                                    + alcInfo.getFormula() + "', serialNumber = '"
+                                    + alcInfo.getSerialNumber() + "'"
                             , "applicationID = " + application.getApplicationID());
                 }
             } else {
@@ -245,7 +247,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", '" //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
-                                    + alcInfo.getFormula() + "', " //formula
+                                    + alcInfo.getFormula() + "', '" //formula
+                                    + alcInfo.getSerialNumber() + "', "//serial number
                                     + alcInfo.getWineInfo().pH + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
                                     + alcInfo.getWineInfo().vintageYear + ", '" //vintage year: see above comment
                                     + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
@@ -258,8 +261,9 @@ public class AlcoholDatabase {
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", '"
-                                    + alcInfo.getFormula() + "'" //formula
-                            , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type, formula)");
+                                    + alcInfo.getFormula() + "', '" //formula
+                                    + alcInfo.getSerialNumber() + "'"
+                            , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type, formula, serialNumber)");
                 }
 
                 if (!worked) {
@@ -311,7 +315,9 @@ public class AlcoholDatabase {
 
                 AlcoholInfo alcoholInfo = getAlcoholInfoByID(id);
 
-                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
+                String extraInfo = submittedResult.getString("extraInfo");
+
+                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo, extraInfo);
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
@@ -400,7 +406,8 @@ public class AlcoholDatabase {
                 } else {
                     return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
-                            ProductSource.fromInt(alcoholResult.getInt("origin")), type, null);
+                            ProductSource.fromInt(alcoholResult.getInt("origin")), type, null,
+                            alcoholResult.getString("serialNumber"), alcoholResult.getString("formula"));
                 }
 
             }
