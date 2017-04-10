@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
+import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,6 +74,22 @@ public class NewApplicationController {
     Label dateErrorField;
     @FXML
     Label signatureErrorField;
+    @FXML
+    TextField varietalText;
+    @FXML
+    TextField appellationText;
+    @FXML
+    TextField formulaText;
+    @FXML
+    Label varietalErrorField;
+    @FXML
+    Label formulaErrorField;
+    @FXML
+    TextField serialText;
+    @FXML
+    TextField extraInfoText;
+    @FXML
+    Label serialErrorField;
 
 
 
@@ -97,6 +114,10 @@ public class NewApplicationController {
 
     //Stores the alcohol info from the form
     AlcoholInfo appAlcoholInfo = null;
+
+    private String formula;
+    private String serialNum;
+    private String extraInfo;
 
     private Main main;
     private String username;
@@ -142,6 +163,7 @@ public class NewApplicationController {
         } else{
             emailErrorField.setText("");
         }
+
 
         //check if required fields are filled
         if(!emailAddressField.getText().isEmpty()&&!phoneNumberField.getText().isEmpty()&&
@@ -232,16 +254,27 @@ public class NewApplicationController {
         } else {
             alcContentErrorField.setText("");
         }
+        if(formulaText.getText().isEmpty()){
+            formulaErrorField.setText("Please fill in the formula");
+        }
+        else formulaErrorField.setText("");
+        if(serialText.getText().isEmpty()){ serialErrorField.setText("Please input a serial number");}
+        else serialErrorField.setText("");
+
         if (productType.getSelectedToggle() == wine){
             int vintageYr=0;
             double pH=0.0;
+            String varietal="";
+            String appellation="";
             if(!wineVintageYearField.getText().isEmpty()) {
                 vintageYr=Integer.parseInt(wineVintageYearField.getText()); //CHECK IF INPUT INTEGER!
             }
             if(!pHLevelField.getText().isEmpty()) {
                 pH=Double.parseDouble(pHLevelField.getText()); //CHECK IF INPUT INTEGER!
             }
-            wineType = new AlcoholInfo.Wine(pH, vintageYr);
+            if(!varietalText.getText().isEmpty()) varietal = varietalText.getText();
+            if(!appellationText.getText().isEmpty()) appellationText.getText();
+            wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
         }
         if(datePicker==null) { //this doesn't work for now
             dateErrorField.setText("Please select the date.");
@@ -257,7 +290,8 @@ public class NewApplicationController {
         //check if required fields are filled in
         if((productType.getSelectedToggle() != null) && (productSource.getSelectedToggle() != null) &&
                 !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
-                (datePicker != null) && !signatureField.getText().isEmpty()){
+                (datePicker != null) && !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
+                && !formulaText.getText().isEmpty()){
             formFilled=true;
         }
 
@@ -282,9 +316,11 @@ public class NewApplicationController {
             alcName = alcoholName.getText();
             brandName = brandNameField.getText();
             alcContent = Integer.parseInt(alcoholContentField.getText()); //CHECK IF INTEGER
+            formula = formulaText.getText();
+            serialNum = serialText.getText();
 
             //sets the alcohol info
-            appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType);
+            appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType,"123", formula);//fix serial number
 
             //creates a new ManufacturerInfo
             this.appManInfo= new ManufacturerInfo("Name Person", physicalAddress, "company", repIDNo,
@@ -294,7 +330,13 @@ public class NewApplicationController {
             Date newDate = java.sql.Date.valueOf(datePicker.getValue());
 
             // Creates a new application info and sets data
-            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo);
+            if(extraInfoText.getText().isEmpty()){
+                extraInfo = " ";
+            }
+            else{
+                extraInfo = extraInfoText.getText();
+            }
+            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,extraInfo);//fix extra info
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
             List<SubmittedApplication> appList = new ArrayList<>();
