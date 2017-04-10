@@ -262,8 +262,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", '"
                                     + alcInfo.getFormula() + "', '" //formula
-                                    +alcInfo.getSerialNumber() + "'"
-                            , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type, formula)");
+                                    + alcInfo.getSerialNumber() + "'"
+                            , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type, formula, serialNumber)");
                 }
 
                 if (!worked) {
