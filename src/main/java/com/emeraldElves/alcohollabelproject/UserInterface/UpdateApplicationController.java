@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
@@ -27,12 +28,14 @@ public class UpdateApplicationController {
 
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
+    ApplicantInterface applicantInterface;
 
 
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated) {
         this.main = main;
         this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
         status = CurrentlyBeingUpdated.getStatus();
+        applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
         if(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE){
             wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().vintageYear));
@@ -91,12 +94,13 @@ public class UpdateApplicationController {
             alcoholInfo.getWineInfo().pH = pH;
             alcoholInfo.getWineInfo().vintageYear = vintageYear;
 
-            Storage.getInstance().submitApplication(CurrentlyBeingUpdated, Authenticator.getInstance().getUsername());
+            applicantInterface.submitApplication(CurrentlyBeingUpdated);
         }
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         alcoholInfo.setAlcoholContent(alcoholContent);
-        Storage.getInstance().submitApplication(CurrentlyBeingUpdated, Authenticator.getInstance().getUsername());
+
+        applicantInterface.submitApplication(CurrentlyBeingUpdated);
 
         main.loadHomepage();
 

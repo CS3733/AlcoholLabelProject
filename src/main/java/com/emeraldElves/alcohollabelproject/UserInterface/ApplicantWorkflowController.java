@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
@@ -23,16 +24,16 @@ public class ApplicantWorkflowController {
     @FXML
     Button UpdateApplications;
     Main main;
-    private List<SubmittedApplication> applications;
+    private ApplicantInterface applicantInterface;
 
     @FXML
     ListView<String> list;
 
     public void init(Main main) {
         this.main = main;
-        applications = Storage.getInstance().getApplicationsByApplicant(Authenticator.getInstance().getUsername());
+        applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
         List<String> applicationNames = new ArrayList<>();
-        for (SubmittedApplication application : applications) {
+        for (SubmittedApplication application : applicantInterface.getSubmittedApplications()) {
             String name = "";
             name += application.getApplication().getAlcohol().getBrandName();
             switch (application.getStatus()) {
@@ -54,7 +55,7 @@ public class ApplicantWorkflowController {
 
     public SubmittedApplication getSelectedApplication() {
         int i = list.getSelectionModel().getSelectedIndex();
-        return applications.get(i);
+        return applicantInterface.getSubmittedApplications().get(i);
     }
 
     public void reviseApplication(){

@@ -308,7 +308,8 @@ public class NewApplicationController {
                 newApp.setApplicationID(application.getApplicationID());
 
             //Submit the new application to the database
-            Storage.getInstance().submitApplication(newApp, Authenticator.getInstance().getUsername());
+            ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
+            boolean success = applicantInterface.submitApplication(newApp);
 
             //Go back to homepage
             main.loadHomepage();
