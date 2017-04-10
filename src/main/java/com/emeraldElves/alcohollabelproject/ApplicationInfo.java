@@ -9,6 +9,15 @@ public class ApplicationInfo {
     private Date submissionDate;
     private ManufacturerInfo manufacturer;
     private AlcoholInfo submittedAlcohol;
+    //private ApplicationType appType;
+    private String extraInfo;
+
+    public ApplicationInfo(Date submissionDate, ManufacturerInfo manufacturer, AlcoholInfo submittedAlcohol, String extraInfo) {
+        this.submissionDate = submissionDate;
+        this.manufacturer = manufacturer;
+        this.submittedAlcohol = submittedAlcohol;
+        this.extraInfo = extraInfo;
+    }
 
     public ApplicationInfo(Date sub, ManufacturerInfo man, AlcoholInfo alc){
         submissionDate = sub;
@@ -26,5 +35,9 @@ public class ApplicationInfo {
 
     public AlcoholInfo getAlcohol(){
         return submittedAlcohol;
+    }
+
+    public String getExtraInfo() {
+        return extraInfo;
     }
 }

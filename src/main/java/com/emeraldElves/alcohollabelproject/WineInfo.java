@@ -12,7 +12,7 @@ public class WineInfo extends AlcoholInfo{
      * @param vintageYear Vintage year of the alcohol
      * @param pH The pH of the alcohol
      */
-    public WineInfo(int alcoholContent, String name, String brandName, ProductSource origin, int vintageYear, double pH){
-        super(alcoholContent, name, brandName, origin, AlcoholType.WINE,  new AlcoholInfo.Wine(pH,vintageYear));
+    public WineInfo(int alcoholContent, String name, String brandName, ProductSource origin, int vintageYear, double pH, String grapeVarietal, String appellation){
+        super(alcoholContent, name, brandName, origin, AlcoholType.WINE,  new AlcoholInfo.Wine(pH,vintageYear,grapeVarietal,appellation));
     }
 }
