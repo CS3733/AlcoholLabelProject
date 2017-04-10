@@ -72,7 +72,8 @@
          </GridPane.margin></Text>
       <GridPane GridPane.columnIndex="1" GridPane.rowIndex="9">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="304.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="125.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -83,8 +84,9 @@
          <children>
             <CheckBox fx:id="certOfApproval" mnemonicParsing="false" text="Certificate of Label Approval" />
             <CheckBox fx:id="certOfExemption" mnemonicParsing="false" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
-            <CheckBox fx:id="distintiveApproval" mnemonicParsing="false" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
+            <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
             <CheckBox fx:id="subAfterRejection" mnemonicParsing="false" text="Resubmission after Rejection" GridPane.rowIndex="3" />
+            <TextField fx:id="distinctiveText" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button fx:id="nextPageBtn" mnemonicParsing="false" onMouseClicked="#nextPage" text="Next Page" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
