@@ -113,5 +113,6 @@
          </padding>
       </Label>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type of Application (Check Applicable Boxes):" wrappingWidth="290.94140625" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label fx:id="appTypeError" GridPane.columnIndex="2" GridPane.rowIndex="8" />
    </children>
 </GridPane>
