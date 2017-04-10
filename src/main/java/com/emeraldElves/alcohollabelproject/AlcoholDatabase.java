@@ -1,5 +1,8 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.IDGenerator.ApplicationIDGenerator;
+import com.emeraldElves.alcohollabelproject.IDGenerator.TimeIDGenerator;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -14,6 +17,7 @@ public class AlcoholDatabase {
 
     private Database db;
     private AuthenticatedUsersDatabase usersDatabase;
+    private ApplicationIDGenerator generator;
 
     /**
      * Creates an AlcoholDatabase
@@ -23,6 +27,7 @@ public class AlcoholDatabase {
     public AlcoholDatabase(Database db) {
         this.db = db;
         usersDatabase = new AuthenticatedUsersDatabase(db);
+        generator = new TimeIDGenerator();
     }
 
     // TODO: finish getMostRecentApproved
@@ -425,7 +430,7 @@ public class AlcoholDatabase {
 
 
     private int generateApplicationID() {
-        return (int) System.currentTimeMillis();
+        return Integer.valueOf(generator.generateID());
     }
 
 }
