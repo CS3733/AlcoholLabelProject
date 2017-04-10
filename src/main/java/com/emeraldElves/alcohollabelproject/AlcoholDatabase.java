@@ -163,7 +163,9 @@ public class AlcoholDatabase {
                         + info.getSubmissionDate().getTime() + ", agentName = '"//no field for expiration date
                         + manInfo.getName() + "', approvalDate = " //agent name
                         + info.getSubmissionDate().getTime() + ", submitterUsername = '"
-                        + username + "'", "applicationID = " + application.getApplicationID());
+                        + username + "', extraInfo = '"
+                        +info.getExtraInfo() + "'", "applicationID = "
+                        + application.getApplicationID());
 
                 db.update("ManufacturerInfo", "authorizedName = '"
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
@@ -179,16 +181,20 @@ public class AlcoholDatabase {
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
-                                    + alcInfo.getAlcoholType().getValue() + ", pH = " //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
-                                    + alcInfo.getWineInfo().pH + ", vintageYear = " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
-                                    + alcInfo.getWineInfo().vintageYear //vintage year: see above comment
+                                    + alcInfo.getAlcoholType().getValue() + ", formula = '"
+                                    + alcInfo.getFormula() + "', pH = "
+                                    + alcInfo.getWineInfo().pH + ", vintageYear = "
+                                    + alcInfo.getWineInfo().vintageYear + ", varietals = '"
+                                    + alcInfo.getWineInfo().grapeVarietal + "', wineAppellation = '"
+                                    + alcInfo.getWineInfo().appellation + "'"
                             , "applicationID = " + application.getApplicationID());
                 } else {
                     db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
-                                    + alcInfo.getAlcoholType().getValue()
+                                    + alcInfo.getAlcoholType().getValue() + ", formula = '"
+                                    + alcInfo.getFormula() + "'"
                             , "applicationID = " + application.getApplicationID());
                 }
             } else {
