@@ -400,7 +400,8 @@ public class AlcoholDatabase {
                 } else {
                     return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
-                            ProductSource.fromInt(alcoholResult.getInt("origin")), type, null);
+                            ProductSource.fromInt(alcoholResult.getInt("origin")), type, null,
+                            alcoholResult.getString("serialNumber"), alcoholResult.getString("formula"));
                 }
 
             }

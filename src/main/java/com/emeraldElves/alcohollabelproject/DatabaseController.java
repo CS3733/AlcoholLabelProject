@@ -76,6 +76,7 @@ public class DatabaseController {
                     new Database.TableField("origin", "INTEGER NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"),
                     new Database.TableField("formula", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("serialNumber", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("pH", "REAL"),
                     new Database.TableField("vintageYear", "INTEGER"),
                     new Database.TableField("varietals", "VARCHAR (255)"),
