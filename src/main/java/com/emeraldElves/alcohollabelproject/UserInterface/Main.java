@@ -22,6 +22,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
+        UISwitcher.getInstance().setStage(primaryStage);
+//        UISwitcher.getInstance().switchToPage(UISwitcher.HOME_PAGE);
         HomeController controller = loader.getController();
         controller.init(this);
         primaryStage.setTitle("Alcohol Label Project");
