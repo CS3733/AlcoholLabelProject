@@ -8,14 +8,12 @@ import java.util.ArrayList;
 public class ApplicationType {
     private boolean labelApproval; //14 a. on application
     private String stateOnly;//14 b. on application
-    private String bottleCapacity;//bottle capacity before closure, 14 c. on application
-    private String resubmissionID;//ttb id after resubmission, 14 d. on application
+    private int bottleCapacity;//bottle capacity before closure, 14 c. on application
 
-    public ApplicationType(boolean labelApproval, String stateOnly, String bottleCapacity, String resubmissionID) {
+    public ApplicationType(boolean labelApproval, String stateOnly, int bottleCapacity) {
         this.labelApproval = labelApproval;
         this.stateOnly = stateOnly;
         this.bottleCapacity = bottleCapacity;
-        this.resubmissionID = resubmissionID;
     }
 
     /**
@@ -28,12 +26,11 @@ public class ApplicationType {
     public ArrayList<String> getApplicationType(){
         String booleanString;
         if(labelApproval) booleanString = "true";
-        else booleanString = "";
+        else booleanString = "false";
         ArrayList<String> temp = new ArrayList<String>();
         temp.add(booleanString);
         temp.add(stateOnly);
-        temp.add(bottleCapacity);
-        temp.add(resubmissionID);
+        temp.add(""+bottleCapacity);
         return temp;
     }
 }

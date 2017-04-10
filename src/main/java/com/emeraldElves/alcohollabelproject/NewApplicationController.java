@@ -90,6 +90,16 @@ public class NewApplicationController {
     TextField extraInfoText;
     @FXML
     Label serialErrorField;
+    @FXML
+    CheckBox certOfApproval;
+    @FXML
+    CheckBox certOfExemption;
+    @FXML
+    CheckBox distinctiveApproval;
+    @FXML
+    CheckBox subAfterRejection;
+    @FXML
+    TextField distinctiveText;//relates to distinctive approval
 
 
 
