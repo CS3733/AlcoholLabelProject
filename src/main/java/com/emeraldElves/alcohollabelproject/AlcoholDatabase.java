@@ -164,7 +164,7 @@ public class AlcoholDatabase {
                         + manInfo.getName() + "', approvalDate = " //agent name
                         + info.getSubmissionDate().getTime() + ", submitterUsername = '"
                         + username + "', extraInfo = '"
-                        +info.getExtraInfo() + "'", "applicationID = "
+                        + info.getExtraInfo() + "'", "applicationID = "
                         + application.getApplicationID());
 
                 db.update("ManufacturerInfo", "authorizedName = '"
@@ -315,9 +315,9 @@ public class AlcoholDatabase {
 
                 AlcoholInfo alcoholInfo = getAlcoholInfoByID(id);
 
-                String extraInfo = submittedResult.getString("extraInfo");
+                //String extraInfo = submittedResult.getString("extraInfo");
 
-                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo, extraInfo);
+                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
