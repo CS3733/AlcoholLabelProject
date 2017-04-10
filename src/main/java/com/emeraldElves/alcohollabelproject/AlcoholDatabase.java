@@ -318,6 +318,7 @@ public class AlcoholDatabase {
                 //String extraInfo = submittedResult.getString("extraInfo");
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
+                        "extra info");
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
