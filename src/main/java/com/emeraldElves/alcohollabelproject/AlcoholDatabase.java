@@ -310,15 +310,16 @@ public class AlcoholDatabase {
                 Applicant applicant = new Applicant(null); // TODO: implement this
                 ApplicationStatus status = ApplicationStatus.fromInt(submittedResult.getInt("status"));
                 String message = submittedResult.getString("statusMsg");
+                String extraInfo = submittedResult.getString("extraInfo");
+
 
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
 
                 AlcoholInfo alcoholInfo = getAlcoholInfoByID(id);
 
-                //String extraInfo = submittedResult.getString("extraInfo");
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
-                        "extra info");
+                        extraInfo);
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
