@@ -315,7 +315,9 @@ public class AlcoholDatabase {
 
                 AlcoholInfo alcoholInfo = getAlcoholInfoByID(id);
 
-                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
+                String extraInfo = submittedResult.getString("extraInfo");
+
+                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo, extraInfo);
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
