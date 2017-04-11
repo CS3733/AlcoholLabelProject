@@ -7,6 +7,7 @@ public class AppState {
 
     private static AppState instance = null;
     public RoundRobin<String> ttbAgents = null;
+    public boolean isInTestingMode = false;
 
     private AppState() {
     }
