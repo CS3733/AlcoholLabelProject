@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-04.10.2017.22.59.51 newApplicationController Logged Click from first page of the new Application
-04.10.2017.22.59.51 newApplicationController second log
-=======
 04.10.2017.23.10.15 newApplicationController Logged Click from first page of the new Application
 04.10.2017.23.10.15 newApplicationController second log
 04.10.2017.23.14.54 newApplicationController Logged Click from first page of the new Application
@@ -39,3 +35,8 @@
 04.11.2017.00.00.44 newApplicationController second log
 04.11.2017.00.00.44 newApplicationController Logged Click from first page of the new Application
 04.11.2017.00.00.44 newApplicationController second log
+=======
+04.11.2017.07.06.38 newApplicationController Logged Click from first page of the new Application
+04.11.2017.07.06.38 newApplicationController second log
+04.11.2017.13.30.26 DATABASE Connected to database: ttbDB
+>>>>>>> refs/remotes/origin/develop
