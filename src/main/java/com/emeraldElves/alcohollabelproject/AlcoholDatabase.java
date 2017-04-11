@@ -319,7 +319,7 @@ public class AlcoholDatabase {
 
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
-                        extraInfo);
+                        extraInfo, new ApplicationType(true, "MA", 1)); //placeholder
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
