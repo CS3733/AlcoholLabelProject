@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import com.emeraldElves.alcohollabelproject.LogManager;
 import org.apache.derby.jdbc.EmbeddedDriver;
 
 import java.sql.*;
@@ -14,6 +15,8 @@ public class Database {
     private Connection connection;
     private boolean connected = false;
     private Statement statement;
+
+    private static final String TAG = "DATABASE";
 
     /**
      * A class representing a database with the given name.
@@ -32,11 +35,15 @@ public class Database {
     public boolean connect() {
         try {
             DriverManager.registerDriver(new EmbeddedDriver());
-            connection = DriverManager.getConnection("jdbc:derby:" + dbName + ";create=true");            connection.setAutoCommit(false);
+            connection = DriverManager.getConnection("jdbc:derby:" + dbName + ";create=true");
+            connection.setAutoCommit(false);
             connection.setAutoCommit(false);
             statement = connection.createStatement();
             connected = true;
+            LogManager.getInstance().logAction(TAG, "Connected to database: " + dbName);
         } catch (SQLException e) {
+            LogManager.getInstance().logAction(TAG, "Could not connect to databaase: " + dbName + "\n" +
+                    e.getMessage());
             e.printStackTrace();
             return false;
         }
