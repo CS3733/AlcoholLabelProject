@@ -43,7 +43,7 @@ public class ImageSubmissionController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Path target = targetDir.resolve(file.getName());// create new path ending with `name` content
+        Path target = targetDir.resolve(String.valueOf(System.currentTimeMillis())+".jpg");// create new path ending with `name` content
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
