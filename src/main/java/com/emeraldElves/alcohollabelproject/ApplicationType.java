@@ -16,6 +16,18 @@ public class ApplicationType {
         this.bottleCapacity = bottleCapacity;
     }
 
+    public boolean isLabelApproval() {
+        return labelApproval;
+    }
+
+    public String getStateOnly() {
+        return stateOnly;
+    }
+
+    public int getBottleCapacity() {
+        return bottleCapacity;
+    }
+    //this method is useless lol
     /**
      * This method returns the application type of the application based on
      * number 14 on the original application

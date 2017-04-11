@@ -116,6 +116,8 @@ public class AlcoholDatabase {
         if (AppState.getInstance().ttbAgents == null) {
             AppState.getInstance().ttbAgents = new RoundRobin<>(usersDatabase.getAllAgents());
         }
+        //making application type
+        ApplicationType appType = application.getApplication().getApplicationType();
 
         //getting all info needed from submitted application into variables
         ApplicationStatus status = application.getStatus();
@@ -164,8 +166,16 @@ public class AlcoholDatabase {
                         + manInfo.getName() + "', approvalDate = " //agent name
                         + info.getSubmissionDate().getTime() + ", submitterUsername = '"
                         + username + "', extraInfo = '"
-                        + info.getExtraInfo() + "'", "applicationID = "
+                        + info.getExtraInfo() + "', labelApproval = "
+                        + appType.isLabelApproval() + ", stateOnly = '"
+                        + appType.getStateOnly() + "', bottleCapacity = "
+                        + appType.getBottleCapacity(), "applicationID = "
                         + application.getApplicationID());
+                /*
+                + appType.isLabelApproval() + ", '"
+                                + appType.getStateOnly() + "', "
+                                + appType.getBottleCapacity()
+                 */
 
                 db.update("ManufacturerInfo", "authorizedName = '"
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
@@ -215,7 +225,10 @@ public class AlcoholDatabase {
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
                                 + assignedAgent + "', '" //TTB username
                                 + username + "', '" //submitter username
-                                + info.getExtraInfo() + "'" //extra info
+                                + info.getExtraInfo() + "', " //extra info
+                                + appType.isLabelApproval() + ", '"
+                                + appType.getStateOnly() + "', "
+                                + appType.getBottleCapacity()
                         //TTBUsername
                         , "SubmittedApplications");
 
@@ -314,7 +327,7 @@ public class AlcoholDatabase {
                 Boolean labelApproval = submittedResult.getBoolean("labelApproval");
                 String stateOnly = submittedResult.getString("stateOnly");
                 int bottleCapacity = submittedResult.getInt("bottleCapacity");
-                
+
 
 
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);

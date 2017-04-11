@@ -41,4 +41,6 @@ public class ApplicationInfo {
     public String getExtraInfo() {
         return extraInfo;
     }
+
+    public ApplicationType getApplicationType(){ return appType;}
 }
