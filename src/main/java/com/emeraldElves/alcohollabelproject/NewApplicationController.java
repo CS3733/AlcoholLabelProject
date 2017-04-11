@@ -1,7 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import javax.xml.soap.Text;
@@ -92,9 +91,21 @@ public class NewApplicationController {
     TextField extraInfoText;
     @FXML
     Label serialErrorField;
+    @FXML
+    CheckBox certOfApproval;
+    @FXML
+    CheckBox certOfExemption;
+    @FXML
+    TextField exemptionText;
+    @FXML
+    CheckBox distinctiveApproval;
+    @FXML
+    TextField distinctiveText;//relates to distinctive approval
 
 
 
+    //Data for application type
+    public ApplicationType appType;
 
     //Initializes and temporarily stores applicant's info
     int repIDNo = -1; //means they didn't enter a rep ID num
@@ -139,10 +150,26 @@ public class NewApplicationController {
     }
 
     public void nextPage(){
-
+        LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
+        LogManager.getInstance().logAction("newApplicationController", "second log");
         Boolean formFilled=false;
         Boolean emailValid=false;
         Boolean phoneValid=false;
+
+        //filling out application type
+        boolean labelApproval;
+        String stateOnly;
+        int bottleCapacity;
+        //14a
+        labelApproval = certOfApproval.isSelected();
+        //14b
+        if(certOfExemption.isSelected()){stateOnly = exemptionText.getText();}
+        else { stateOnly = "";}
+        //14c
+        if(distinctiveApproval.isSelected()){bottleCapacity = Integer.parseInt(distinctiveText.getText());}
+        else{bottleCapacity = -1;}
+
+        appType = new ApplicationType(labelApproval,stateOnly,bottleCapacity);
 
         //errors are printed only if required fields are not filled in
         if(permitNoTextField.getText().isEmpty()) {
@@ -165,7 +192,6 @@ public class NewApplicationController {
         } else{
             emailErrorField.setText("");
         }
-
 
         //check if required fields are filled
         if(!emailAddressField.getText().isEmpty()&&!phoneNumberField.getText().isEmpty()&&
@@ -342,7 +368,7 @@ public class NewApplicationController {
             else{
                 extraInfo = extraInfoText.getText();
             }
-            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,extraInfo);//fix extra info
+            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,extraInfo, appType);
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
             List<SubmittedApplication> appList = new ArrayList<>();

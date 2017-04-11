@@ -82,7 +82,6 @@ public class UpdateBeerAppController {
 
     public void cancelApp() {
         main.loadHomepage(UserType.APPLICANT, Username);
-
     }
 
     public void logout() {

@@ -76,7 +76,7 @@
                       <Insets right="10.0" />
                   </GridPane.margin>
             </Text>
-              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="140.994140625" GridPane.columnIndex="2" GridPane.halignment="LEFT">
+              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="135.994140625" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                   <GridPane.margin>
                       <Insets right="10.0" />
                   </GridPane.margin>

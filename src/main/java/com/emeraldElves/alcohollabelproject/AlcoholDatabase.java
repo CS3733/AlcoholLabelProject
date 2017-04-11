@@ -116,6 +116,8 @@ public class AlcoholDatabase {
         if (AppState.getInstance().ttbAgents == null) {
             AppState.getInstance().ttbAgents = new RoundRobin<>(usersDatabase.getAllAgents());
         }
+        //making application type
+        ApplicationType appType = application.getApplication().getApplicationType();
 
         //getting all info needed from submitted application into variables
         ApplicationStatus status = application.getStatus();
@@ -164,8 +166,12 @@ public class AlcoholDatabase {
                         + manInfo.getName() + "', approvalDate = " //agent name
                         + info.getSubmissionDate().getTime() + ", submitterUsername = '"
                         + username + "', extraInfo = '"
-                        +info.getExtraInfo() + "'", "applicationID = "
+                        + info.getExtraInfo() + "', labelApproval = "
+                        + appType.isLabelApproval() + ", stateOnly = '"
+                        + appType.getStateOnly() + "', bottleCapacity = "
+                        + appType.getBottleCapacity(), "applicationID = "
                         + application.getApplicationID());
+
 
                 db.update("ManufacturerInfo", "authorizedName = '"
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
@@ -182,7 +188,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", formula = '"
-                                    + alcInfo.getFormula() + "', pH = "
+                                    + alcInfo.getFormula() + "', serialNumber = '"
+                                    + alcInfo.getSerialNumber() + "', pH = "
                                     + alcInfo.getWineInfo().pH + ", vintageYear = "
                                     + alcInfo.getWineInfo().vintageYear + ", varietals = '"
                                     + alcInfo.getWineInfo().grapeVarietal + "', wineAppellation = '"
@@ -194,7 +201,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", formula = '"
-                                    + alcInfo.getFormula() + "'"
+                                    + alcInfo.getFormula() + "', serialNumber = '"
+                                    + alcInfo.getSerialNumber() + "'"
                             , "applicationID = " + application.getApplicationID());
                 }
             } else {
@@ -213,7 +221,10 @@ public class AlcoholDatabase {
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
                                 + assignedAgent + "', '" //TTB username
                                 + username + "', '" //submitter username
-                                + info.getExtraInfo() + "'" //extra info
+                                + info.getExtraInfo() + "', " //extra info
+                                + appType.isLabelApproval() + ", '"
+                                + appType.getStateOnly() + "', "
+                                + appType.getBottleCapacity()
                         //TTBUsername
                         , "SubmittedApplications");
 
@@ -245,7 +256,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", '" //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
-                                    + alcInfo.getFormula() + "', " //formula
+                                    + alcInfo.getFormula() + "', '" //formula
+                                    + alcInfo.getSerialNumber() + "', "//serial number
                                     + alcInfo.getWineInfo().pH + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
                                     + alcInfo.getWineInfo().vintageYear + ", '" //vintage year: see above comment
                                     + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
@@ -258,8 +270,9 @@ public class AlcoholDatabase {
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
                                     + alcInfo.getAlcoholType().getValue() + ", '"
-                                    + alcInfo.getFormula() + "'" //formula
-                            , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type, formula)");
+                                    + alcInfo.getFormula() + "', '" //formula
+                                    + alcInfo.getSerialNumber() + "'"
+                            , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type, formula, serialNumber)");
                 }
 
                 if (!worked) {
@@ -306,12 +319,21 @@ public class AlcoholDatabase {
                 Applicant applicant = new Applicant(null); // TODO: implement this
                 ApplicationStatus status = ApplicationStatus.fromInt(submittedResult.getInt("status"));
                 String message = submittedResult.getString("statusMsg");
+                String extraInfo = submittedResult.getString("extraInfo");
+                Boolean labelApproval = submittedResult.getBoolean("labelApproval");
+                String stateOnly = submittedResult.getString("stateOnly");
+                int bottleCapacity = submittedResult.getInt("bottleCapacity");
+
+
 
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
 
                 AlcoholInfo alcoholInfo = getAlcoholInfoByID(id);
 
-                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo);
+
+                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
+                        extraInfo, new ApplicationType(labelApproval,stateOnly,bottleCapacity));
+
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
@@ -400,7 +422,8 @@ public class AlcoholDatabase {
                 } else {
                     return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
-                            ProductSource.fromInt(alcoholResult.getInt("origin")), type, null);
+                            ProductSource.fromInt(alcoholResult.getInt("origin")), type, null,
+                            alcoholResult.getString("serialNumber"), alcoholResult.getString("formula"));
                 }
 
             }
