@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.NewUserController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewUserController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -33,7 +33,7 @@
                      <children>
                         <Group>
                            <children>
-                              <TextField fx:id="usernameField" layoutY="26.0" onAction="#login" prefWidth="200.0" />
+                              <TextField fx:id="usernameField" layoutY="26.0" prefWidth="200.0" />
                               <Label text="Username">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
@@ -48,7 +48,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <PasswordField fx:id="passwordField" layoutY="30.0" onAction="#login" prefWidth="200.0" />
+                              <PasswordField fx:id="passwordField" layoutY="30.0" prefWidth="200.0" />
                            </children>
                         </Group>
                         <Button fx:id="loginBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createTTBAgent" text="Create TTB Agent">
