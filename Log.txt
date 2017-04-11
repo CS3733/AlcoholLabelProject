@@ -1,12 +1,4 @@
-04.10.2017.23.10.15 newApplicationController Logged Click from first page of the new Application
-04.10.2017.23.10.15 newApplicationController second log
-04.10.2017.23.14.54 newApplicationController Logged Click from first page of the new Application
-04.10.2017.23.14.54 newApplicationController second log
-04.10.2017.23.17.08 newApplicationController Logged Click from first page of the new Application
-04.10.2017.23.17.08 newApplicationController second log
-04.10.2017.23.18.16 newApplicationController Logged Click from first page of the new Application
-04.10.2017.23.18.16 newApplicationController second log
->>>>>>> e1e1acee244a4242b18614d6a0ca8cd83c70d113
+
 04.10.2017.23.24.15 newApplicationController Logged Click from first page of the new Application
 04.10.2017.23.24.15 newApplicationController second log
 04.10.2017.23.24.15 newApplicationController Logged Click from first page of the new Application
@@ -35,8 +27,4 @@
 04.11.2017.00.00.44 newApplicationController second log
 04.11.2017.00.00.44 newApplicationController Logged Click from first page of the new Application
 04.11.2017.00.00.44 newApplicationController second log
-=======
-04.11.2017.07.06.38 newApplicationController Logged Click from first page of the new Application
-04.11.2017.07.06.38 newApplicationController second log
-04.11.2017.13.30.26 DATABASE Connected to database: ttbDB
->>>>>>> refs/remotes/origin/develop
+
