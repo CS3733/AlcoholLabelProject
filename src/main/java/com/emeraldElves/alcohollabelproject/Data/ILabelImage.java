@@ -10,7 +10,9 @@ interface ILabelImage {
     //public Image LabelImage(String fileName);
     //public LabelImage ProxyLabelImage(String fileName);
 
-    public Image display();
+    Image display();
+
+    String getFileName();
 
 
 }

@@ -14,7 +14,7 @@ public class SubmittedApplication {
     private Applicant applicant;
     private int applicationID = -1;
     private String ttbMessage = "";
-    private ProxyLabelImage proxyImage;
+    private ILabelImage proxyImage;
     public String getTtbMessage() {
         return ttbMessage;
     }
@@ -67,4 +67,11 @@ public class SubmittedApplication {
         this.applicant = applicant;
     }
 
+    public ILabelImage getImage() {
+        return proxyImage;
+    }
+
+    public void setImage(ILabelImage proxyImage) {
+        this.proxyImage = proxyImage;
+    }
 }
