@@ -1,2 +1,13 @@
+<<<<<<< HEAD
 04.10.2017.22.59.51 newApplicationController Logged Click from first page of the new Application
 04.10.2017.22.59.51 newApplicationController second log
+=======
+04.10.2017.23.10.15 newApplicationController Logged Click from first page of the new Application
+04.10.2017.23.10.15 newApplicationController second log
+04.10.2017.23.14.54 newApplicationController Logged Click from first page of the new Application
+04.10.2017.23.14.54 newApplicationController second log
+04.10.2017.23.17.08 newApplicationController Logged Click from first page of the new Application
+04.10.2017.23.17.08 newApplicationController second log
+04.10.2017.23.18.16 newApplicationController Logged Click from first page of the new Application
+04.10.2017.23.18.16 newApplicationController second log
+>>>>>>> e1e1acee244a4242b18614d6a0ca8cd83c70d113
