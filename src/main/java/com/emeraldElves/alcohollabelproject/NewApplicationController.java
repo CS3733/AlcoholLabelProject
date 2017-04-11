@@ -362,7 +362,7 @@ public class NewApplicationController {
             else{
                 extraInfo = extraInfoText.getText();
             }
-            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,extraInfo);//fix extra info
+            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,extraInfo, appType);
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
             List<SubmittedApplication> appList = new ArrayList<>();
