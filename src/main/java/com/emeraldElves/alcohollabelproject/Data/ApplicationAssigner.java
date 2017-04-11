@@ -1,4 +1,6 @@
-package com.emeraldElves.alcohollabelproject;
+package com.emeraldElves.alcohollabelproject.Data;
+
+import com.emeraldElves.alcohollabelproject.Data.IAssigner;
 
 import java.util.List;
 import java.util.ListIterator;

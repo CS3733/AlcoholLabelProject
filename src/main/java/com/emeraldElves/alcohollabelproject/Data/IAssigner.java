@@ -1,4 +1,4 @@
-package com.emeraldElves.alcohollabelproject.UserInterface;
+package com.emeraldElves.alcohollabelproject.Data;
 
 import java.util.List;
 
