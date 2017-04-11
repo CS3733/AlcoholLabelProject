@@ -1,0 +1,3 @@
+04.11.2017.07.06.38 newApplicationController Logged Click from first page of the new Application
+04.11.2017.07.06.38 newApplicationController second log
+04.11.2017.13.30.26 DATABASE Connected to database: ttbDB
