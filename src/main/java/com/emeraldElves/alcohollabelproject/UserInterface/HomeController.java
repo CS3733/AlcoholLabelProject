@@ -5,6 +5,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
  */
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.COLASearch;
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
@@ -40,11 +41,14 @@ public class HomeController {
     @FXML
     private Label label3;
 
+    private COLASearch search;
+
 
     public HomeController() {
         mostRecentLabels = new ArrayList<>();
         mostRecentSubmissions = new ArrayList<>();
-        submitted = Storage.getInstance().getRecentlyApprovedApplications(4);
+        search = new COLASearch();
+        submitted = search.searchRecentApplications(4);
     }
 
     // TODO: put FXML in correct folder
@@ -88,7 +92,7 @@ public class HomeController {
     }
 
     public void feelingThirsty(){
-        List<SubmittedApplication> applications = Storage.getInstance().getApprovedApplications();
+        List<SubmittedApplication> applications = search.searchApprovedApplications();
         Random random = new Random();
         SubmittedApplication application;
         if (applications.isEmpty()) {

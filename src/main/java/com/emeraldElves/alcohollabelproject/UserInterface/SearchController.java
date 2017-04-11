@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.COLASearch;
 import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
@@ -48,10 +49,10 @@ public class SearchController {
     @FXML
     private Label descriptionLabel;
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
+    private COLASearch search;
 
     public SearchController() {
-
-
+        this.search = new COLASearch();
     }
 
     public void init(Main main, String searchTerm) {
@@ -102,7 +103,7 @@ public class SearchController {
         data.remove(0, data.size());
 
         //Find & add matching applications
-        List<SubmittedApplication> resultsList = Storage.getInstance().getApplicationsByBrandName(searchTerm);
+        List<SubmittedApplication> resultsList = search.searchByBrandName(searchTerm);
                 ;
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
