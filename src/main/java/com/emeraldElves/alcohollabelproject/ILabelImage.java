@@ -7,6 +7,10 @@ import javafx.scene.image.Image;
  */
 interface ILabelImage {
     //public void display();
-    public void LabelImage();
-    public Image ProxyLabelImage();
+    public Image LabelImage(String fileName);
+    public LabelImage ProxyLabelImage(String fileName);
+
+    public void display();
+
+
 }
