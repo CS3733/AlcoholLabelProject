@@ -57,7 +57,7 @@
                            </VBox.margin>
                         </Button>
                         <Button fx:id="loginBtn1" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsApplicant" text="Login as Applicant" />
-                        <Button mnemonicParsing="false" onMouseClicked="#loginAsSuperAgent" text="Login as Super Agent" />
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsSuperAgent" text="Login as Super Agent" />
                      </children>
                      <opaqueInsets>
                         <Insets />

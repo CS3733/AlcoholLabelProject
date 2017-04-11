@@ -88,8 +88,8 @@ public class AuthenticatedUsersDatabase {
         }
     }
     public boolean isValidSuperUser(String userName, String password){
-        if(userName == "JoseWong") {
-            if (password == "password") {
+        if(userName.equals("JoseWong")) {
+            if (password.equals("password")) {
                 return true;
             }
         }
