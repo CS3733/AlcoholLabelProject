@@ -1,11 +1,10 @@
-package com.emeraldElves.alcohollabelproject;
+package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.ApplicantInterface;
+import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import com.emeraldElves.alcohollabelproject.ApplicationStatus;
-import com.emeraldElves.alcohollabelproject.ProductSource;
-import com.emeraldElves.alcohollabelproject.AlcoholType;
-import com.emeraldElves.alcohollabelproject.SubmittedApplication;
 import javafx.scene.control.cell.CheckBoxListCell;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +36,7 @@ public class UpdateSpiritsAppController {
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
     String Username;
-    AlcoholDatabase alcoholDatabase;
+    ApplicantInterface applicant;
 
     //image label changes
     Boolean deletedInfo=false;
@@ -51,7 +50,7 @@ public class UpdateSpiritsAppController {
         this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
         this.Username = Username;
         status = CurrentlyBeingUpdated.getStatus();
-        alcoholDatabase = new AlcoholDatabase(Main.database);
+        applicant= new ApplicantInterface(Authenticator.getInstance().getUsername());
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
     }
 
@@ -75,19 +74,15 @@ public class UpdateSpiritsAppController {
 
     public void updateRejected() {
 //        SubmittedApplication CurrentlyBeingUpdated = null;
-//        if (CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER) {
-//        }
     }
 
     public void updateApproved() {
         //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
-//        if (CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER) {
-//        }
     }
 
     public void submitApp() {
-        AlcoholType alcoholType = AlcoholType.BEER;
+        AlcoholType alcoholType = AlcoholType.OTHER;
 
         if (deleteInfo.isSelected()) {
             deletedInfo = true;
@@ -103,17 +98,19 @@ public class UpdateSpiritsAppController {
         }
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
-        alcoholDatabase.changeAlcoholContent(CurrentlyBeingUpdated, alcoholContent);
+        CurrentlyBeingUpdated.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
+        applicant.updateApplication(CurrentlyBeingUpdated);
 
-        main.loadHomepage(UserType.APPLICANT, Username);
+        main.loadHomepage();
     }
 
     public void cancelApp() {
-        main.loadHomepage(UserType.APPLICANT, Username);
+        main.loadHomepage();
     }
 
     public void logout() {
-        main.loadHomepage(UserType.BASIC, "");
+        Authenticator.getInstance().logout();
+        main.loadHomepage();
     }
 
 }
