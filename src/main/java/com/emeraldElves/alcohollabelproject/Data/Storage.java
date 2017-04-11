@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Log;
 
 import javax.naming.ServiceUnavailableException;
@@ -16,7 +17,10 @@ public class Storage {
     private Database db;
 
     private Storage() {
-        db = initDatabase("ttbDB");
+        if (!AppState.getInstance().isInTestingMode)
+            db = initDatabase("ttbDB");
+        else
+            db = initDatabase("testDB");
         alcoholDB = new AlcoholDatabase(db);
         usersDB = new AuthenticatedUsersDatabase(db);
     }
