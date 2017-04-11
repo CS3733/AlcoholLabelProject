@@ -133,6 +133,7 @@ public class NewApplicationController {
     private Main main;
     private String username;
 
+
     private SubmittedApplication application;
 
 
@@ -401,5 +402,12 @@ public class NewApplicationController {
 
     public void distinctiveChecked(){
         distinctiveText.setDisable(!distinctiveApproval.isSelected());
+    }
+
+    public void hideTheWine(){
+        wineVintageYearField.setDisable(true);
+        pHLevelField.setDisable(true);
+        varietalText.setDisable(true);
+        appellationText.setDisable(true);
     }
 }

@@ -20,16 +20,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.NewApplicationController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.NewApplicationController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.00001525878906" minWidth="10.0" prefWidth="291.66668701171875" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="428.33331298828125" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.3333740234375" minWidth="10.0" prefWidth="303.6666259765625" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="89.33333587646484" minHeight="10.0" prefHeight="86.66666412353516" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="60.33332824707031" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="124.33333587646484" minHeight="10.0" prefHeight="60.66667175292969" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="124.33333587646484" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="159.0" minHeight="0.0" prefHeight="68.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="163.66665649414062" minHeight="10.0" prefHeight="64.66665649414062" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="152.66665649414062" minHeight="10.0" prefHeight="61.333343505859375" vgrow="SOMETIMES" />
@@ -85,8 +85,8 @@
         </rowConstraints>
          <children>
             <CheckBox fx:id="certOfApproval" mnemonicParsing="false" text="Certificate of Label Approval" />
-            <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onMouseClicked="#exemptionChecked" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
-            <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
+            <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onAction="#exemptionChecked" onMouseClicked="#exemptionChecked" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
+            <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
             <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="exemptionText" disable="true" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
