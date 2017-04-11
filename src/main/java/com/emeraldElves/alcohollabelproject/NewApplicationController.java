@@ -1,7 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.util.ArrayList;
@@ -116,7 +115,8 @@ public class NewApplicationController {
     }
 
     public void nextPage(){
-
+        LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
+        LogManager.getInstance().logAction("newApplicationController", "second log");
         Boolean formFilled=false;
         Boolean emailValid=false;
         Boolean phoneValid=false;
