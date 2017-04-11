@@ -20,18 +20,6 @@ public class LabelImage implements ILabelImage {
 
     }
 
-    public void load(){
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg");
-        fileChooser.getExtensionFilters().add(extFilter);
-        file = fileChooser.showOpenDialog(null);
-        Path source = Paths.get((file.getPath()));
-
-
-        Path targetDir = Paths.get("Labels");
-        Path target = targetDir.resolve(fileName);
-        image = new Image(String.valueOf(target));
-    }
 
     public String getFileName() {
         return fileName;
