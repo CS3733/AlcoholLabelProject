@@ -158,6 +158,17 @@ public class Main extends Application {
         }
 
     }
+    public void loadSubmitImages(SubmittedApplication application) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SubmitLabel.fxml"));
+        try {
+            Parent root = loader.load();
+            ImageSubmissionController controller = loader.getController();
+            controller.init(this, application);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void loadWorkflowPage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/workflowController.fxml"));
