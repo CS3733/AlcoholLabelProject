@@ -6,6 +6,7 @@ import com.emeraldElves.alcohollabelproject.ApplicationStatus;
 import com.emeraldElves.alcohollabelproject.ProductSource;
 import com.emeraldElves.alcohollabelproject.AlcoholType;
 import com.emeraldElves.alcohollabelproject.SubmittedApplication;
+import javafx.scene.control.cell.CheckBoxListCell;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -24,11 +25,28 @@ public class UpdateBeerAppController {
     Button submitBtn;
     @FXML
     DatePicker datePicker;
+    @FXML
+    CheckBox deleteInfo;
+    @FXML
+    CheckBox repositionInfo;
+    @FXML
+    CheckBox changeFormat;
+    @FXML
+    CheckBox changeNetContents;
+    @FXML
+    CheckBox changeAlcStatement;
 
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
     String Username;
     AlcoholDatabase alcoholDatabase;
+
+    //image label changes
+    Boolean deletedInfo=false;
+    Boolean repositionedInfo=false;
+    Boolean changedFormatting=false;
+    Boolean changedNetContents=false;
+    Boolean changedAlcStatement=false;
 
 
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username) {
@@ -73,6 +91,22 @@ public class UpdateBeerAppController {
 
     public void submitApp() {
         AlcoholType alcoholType = AlcoholType.BEER;
+
+        if (deleteInfo.isSelected()) {
+            deletedInfo = true;
+        }
+        if (repositionInfo.isSelected()){
+            repositionedInfo=true;
+        }
+        if (changeFormat.isSelected()) {
+            changedFormatting=true;
+        }
+        if (changeNetContents.isSelected()){
+            changedNetContents=true;
+        }
+        if (changeAlcStatement.isSelected()){
+            changedAlcStatement=true;
+        }
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         alcoholDatabase.changeAlcoholContent(CurrentlyBeingUpdated, alcoholContent);

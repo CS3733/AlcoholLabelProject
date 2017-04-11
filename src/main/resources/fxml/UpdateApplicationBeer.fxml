@@ -61,10 +61,10 @@
       <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
       <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
       <Label text="Please select any changes made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
-      <CheckBox mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <CheckBox mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <CheckBox mnemonicParsing="false" text="Deleted non-mandatory information (text, graphics, etc)" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <CheckBox mnemonicParsing="false" text="Repositioned any label information" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <CheckBox mnemonicParsing="false" text="Changed mandatory statement of alcohol statement" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <CheckBox fx:id="changeFormat" mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <CheckBox fx:id="changeNetContents" mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <CheckBox fx:id="deleteInfo" mnemonicParsing="false" text="Deleted non-mandatory information (text, graphics, etc)" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <CheckBox fx:id="repositionInfo" mnemonicParsing="false" text="Repositioned any label information" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <CheckBox fx:id="changeAlcStatement" mnemonicParsing="false" text="Changed mandatory statement of alcohol statement" GridPane.columnIndex="1" GridPane.rowIndex="8" />
    </children>
 </GridPane>
