@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.EmailAddress;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

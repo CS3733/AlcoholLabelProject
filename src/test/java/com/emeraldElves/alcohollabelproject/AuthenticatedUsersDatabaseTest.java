@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.AuthenticatedUsersDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Database;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +21,7 @@ public class AuthenticatedUsersDatabaseTest {
 
     @Before
     public void setup() {
+        /*
         db = new Database("testDB");
         db.connect();
     }
@@ -38,6 +41,7 @@ public class AuthenticatedUsersDatabaseTest {
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"));
             Log.console("Created new table");
             db.insert("'Admin', 'Admin1'", "TTBAgentLogin");
+            db.insert("'Admin2', 'Admin20'", "TTBAgentLogin");
             Log.console("Inserted Admin user");
         } catch (SQLException e) {
             Log.console("Using existing table.");
@@ -47,6 +51,7 @@ public class AuthenticatedUsersDatabaseTest {
         assertFalse(authenticatedUsersDatabase.isValidTTBAgent("Admin", "NotAdmin1"));
         assertFalse(authenticatedUsersDatabase.isValidTTBAgent("NotAdmin", "Admin1"));
         assertFalse(authenticatedUsersDatabase.isValidTTBAgent("NotAdmin", "NotAdmin1"));
+        assertEquals(2, authenticatedUsersDatabase.getAllAgents().size());
     }
 
     @Test
@@ -73,5 +78,6 @@ public class AuthenticatedUsersDatabaseTest {
         assertFalse(authenticatedUsersDatabase.isValidApplicant("Admin", "NotAdmin1"));
         assertFalse(authenticatedUsersDatabase.isValidApplicant("NotAdmin", "Admin1"));
         assertFalse(authenticatedUsersDatabase.isValidApplicant("NotAdmin", "NotAdmin1"));
+    */
     }
 }
