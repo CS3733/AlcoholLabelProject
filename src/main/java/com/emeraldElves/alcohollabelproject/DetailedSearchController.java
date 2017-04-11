@@ -53,8 +53,8 @@ public class DetailedSearchController {
             case WINE:
                 type = "Wine";
                 break;
-            case OTHER:
-                type = "Other";
+            case DISTILLEDSPIRITS:
+                type = "Distilled Spirits";
                 break;
         }
         alcoholType.setText(type);

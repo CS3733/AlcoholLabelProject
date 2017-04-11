@@ -6,7 +6,7 @@ package com.emeraldElves.alcohollabelproject;
 public enum AlcoholType {
     BEER(0),
     WINE(1),
-    OTHER(2);
+    DISTILLEDSPIRITS(2);
 
     private int value;
 
@@ -25,7 +25,7 @@ public enum AlcoholType {
             case 1:
                 return WINE;
             default:
-                return OTHER;
+                return DISTILLEDSPIRITS;
         }
     }
 }
