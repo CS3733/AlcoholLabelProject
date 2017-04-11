@@ -28,3 +28,13 @@
 04.11.2017.00.00.44 newApplicationController Logged Click from first page of the new Application
 04.11.2017.00.00.44 newApplicationController second log
 
+04.11.2017.17.17.58 DATABASE Connected to database: ttbDB
+04.11.2017.17.19.40 newApplicationController Logged Click from first page of the new Application
+04.11.2017.17.19.40 newApplicationController second log
+04.11.2017.17.19.40 newApplicationController Logged Click from first page of the new Application
+04.11.2017.17.19.40 newApplicationController second log
+04.11.2017.18.02.07 DATABASE Connected to database: ttbDB
+04.11.2017.18.02.52 newApplicationController Logged Click from first page of the new Application
+04.11.2017.18.02.52 newApplicationController second log
+04.11.2017.18.02.52 newApplicationController Logged Click from first page of the new Application
+04.11.2017.18.02.52 newApplicationController second log

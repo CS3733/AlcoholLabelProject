@@ -410,4 +410,11 @@ public class NewApplicationController {
         varietalText.setDisable(true);
         appellationText.setDisable(true);
     }
+
+    public void showTheWine(){
+        wineVintageYearField.setDisable(false);
+        pHLevelField.setDisable(false);
+        varietalText.setDisable(false);
+        appellationText.setDisable(false);
+    }
 }
