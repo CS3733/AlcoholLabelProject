@@ -30,8 +30,7 @@ public abstract class ApplicationAssigner {
         ListIterator<String> itr = agentUserNames.listIterator();
         if (lastAssignedAgent == null) { return itr.next(); }
         else {
-            RoundRobinAssigner robin = new RoundRobinAssigner();
-            return robin.assignAgent(agentUserNames, lastAssignedAgent);
+            return assigner.assignAgent(agentUserNames, lastAssignedAgent);
         }
     }
 }
