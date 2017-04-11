@@ -203,7 +203,8 @@ public class AlcoholDatabase {
                         + info.getExtraInfo() + "', labelApproval = "
                         + appType.isLabelApproval() + ", stateOnly = '"
                         + appType.getStateOnly() + "', bottleCapacity = "
-                        + appType.getBottleCapacity(), "applicationID = "
+                        + appType.getBottleCapacity() + ", imageURL = '"
+                        + application.getImage().getFileName() + "'", "applicationID = "
                         + application.getApplicationID());
 
 
@@ -258,7 +259,8 @@ public class AlcoholDatabase {
                                 + info.getExtraInfo() + "', " //extra info
                                 + appType.isLabelApproval() + ", '"
                                 + appType.getStateOnly() + "', "
-                                + appType.getBottleCapacity()
+                                + appType.getBottleCapacity() + ", '"
+                                + application.getImage().getFileName() + "'"
                         //TTBUsername
                         , "SubmittedApplications");
 
@@ -357,6 +359,7 @@ public class AlcoholDatabase {
                 Boolean labelApproval = submittedResult.getBoolean("labelApproval");
                 String stateOnly = submittedResult.getString("stateOnly");
                 int bottleCapacity = submittedResult.getInt("bottleCapacity");
+                String fileName = submittedResult.getString("imageURL");
 
 
 
@@ -369,6 +372,7 @@ public class AlcoholDatabase {
                         extraInfo, new ApplicationType(labelApproval,stateOnly,bottleCapacity));
 
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
+                application.setImage(new ProxyLabelImage(fileName));
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
                 return application;
