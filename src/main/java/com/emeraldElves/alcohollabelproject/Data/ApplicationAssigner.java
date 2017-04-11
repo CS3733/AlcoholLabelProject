@@ -15,8 +15,10 @@ public abstract class ApplicationAssigner {
 
     // constructors
     public ApplicationAssigner(IAssigner assigner, List<String> agentUserNames) {
+        ListIterator<String> itr = agentUserNames.listIterator();
         this.assigner = assigner;
         this.agentUserNames = agentUserNames;
+        this.lastAssignedAgent = itr.next();
     }
     public ApplicationAssigner(IAssigner assigner, List<String> agentUserNames, String lastAssignedAgent) {
         this.assigner = assigner;
@@ -28,11 +30,5 @@ public abstract class ApplicationAssigner {
      * assignAgent() uses round robin to assign an agent
      * @return new agent's username
      */
-    String assignAgent() {
-        ListIterator<String> itr = agentUserNames.listIterator();
-        if (lastAssignedAgent == null) { return itr.next(); }
-        else {
-            return assigner.assignAgent(agentUserNames, lastAssignedAgent);
-        }
-    }
+    String assignAgent() { return assigner.assignAgent(agentUserNames, lastAssignedAgent); }
 }
