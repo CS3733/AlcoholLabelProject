@@ -31,8 +31,7 @@ public abstract class ApplicationAssigner {
         if (lastAssignedAgent == null) { return itr.next(); }
         else {
             RoundRobinAssigner robin = new RoundRobinAssigner();
-            robin.assignAgent(agentUserNames, lastAssignedAgent);
+            return robin.assignAgent(agentUserNames, lastAssignedAgent);
         }
-
     }
 }
