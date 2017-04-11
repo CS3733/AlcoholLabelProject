@@ -10,13 +10,21 @@ public class SubmittedApplication {
     private Applicant applicant;
     private int applicationID = -1;
     private String ttbMessage = "";
-
+    private String proxyImage = "";
     public String getTtbMessage() {
         return ttbMessage;
     }
 
     public void setTtbMessage(String ttbMessage) {
         this.ttbMessage = ttbMessage;
+    }
+
+    public String getProxyImage() {
+        return proxyImage;
+    }
+
+    public void setProxyImage(String proxyImage) {
+        this.proxyImage = proxyImage;
     }
 
     /**

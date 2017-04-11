@@ -17,7 +17,7 @@ import java.nio.file.StandardCopyOption;
  * Created by keionbis on 4/10/17.
  */
 
-public class ImageSubmissionController {
+class ImageSubmissionController implements ILabelImage {
     @FXML
     Button submitLabel;
     @FXML
@@ -29,7 +29,7 @@ public class ImageSubmissionController {
         this.main = main;
         this.application = application;
     }
-    public void submitImage() {
+    public void LabelImage() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -51,6 +51,15 @@ public class ImageSubmissionController {
         imageView.setImage(image);
 
     }
+    public Image ProxyLabelImage(){
+        Path Imagedir = Paths.get("Labels");
+        Path imagepath = Imagedir.resolve(application.getProxyImage());
+        Image image = new Image(String.valueOf(imagepath));
+        return(image);
+    }
+
+
 }
+
 
 
