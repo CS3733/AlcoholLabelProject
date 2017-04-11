@@ -24,6 +24,7 @@ public class Main extends Application {
         controller.init(this);
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.getIcons().add(new Image(("images/logo.png")));
+        root.getStylesheets().add("/style/material.css");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         stage = primaryStage;
@@ -62,6 +63,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Search.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             SearchController controller = loader.getController();
             controller.init(this, searchTerm);
             stage.getScene().setRoot(root);
@@ -74,6 +76,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DetailedSearchPage.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             DetailedSearchController controller = loader.getController();
             controller.init(this, application, searchTerm);
             stage.getScene().setRoot(root);
@@ -86,6 +89,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewUser.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             NewUserController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
@@ -98,6 +102,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             LoginController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
@@ -110,6 +115,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             HomeController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
@@ -126,6 +132,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             NewApplicationController controller = loader.getController();
             controller.init(this, application);
             stage.getScene().setRoot(root);
@@ -138,6 +145,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             NewApplicationController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
@@ -150,6 +158,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             UpdateApplicationController controller = loader.getController();
             controller.init(this, application);
             stage.getScene().setRoot(root);
@@ -162,6 +171,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SubmitLabel.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             ImageSubmissionController controller = loader.getController();
             controller.init(this, application);
             stage.getScene().setRoot(root);
@@ -174,6 +184,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/workflowController.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             WorkflowController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
@@ -190,6 +201,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApplicantWorkflowPage.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             ApplicantWorkflowController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
@@ -202,6 +214,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApprovalPage.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             ApprovalProcessController controller = loader.getController();
             controller.init(this, application);
             stage.getScene().setRoot(root);
