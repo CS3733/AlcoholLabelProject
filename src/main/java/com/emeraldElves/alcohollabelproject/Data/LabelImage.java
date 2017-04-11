@@ -17,6 +17,7 @@ public class LabelImage implements ILabelImage {
     public LabelImage(String fileName) {
         this.fileName = fileName;
 
+
     }
 
     public void load(){
@@ -25,6 +26,7 @@ public class LabelImage implements ILabelImage {
         fileChooser.getExtensionFilters().add(extFilter);
         file = fileChooser.showOpenDialog(null);
         Path source = Paths.get((file.getPath()));
+
 
         Path targetDir = Paths.get("Labels");
         Path target = targetDir.resolve(fileName);
