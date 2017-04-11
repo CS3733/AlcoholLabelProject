@@ -6,9 +6,9 @@ import java.util.List;
  * Created by Joe on 4/9/2017.
  */
 public abstract class ApplicationAssigner {
-    protected static IAssigner assigner;
-    protected List<String> agentUserNames;
-    protected String lastAssignedAgent;
+    private IAssigner assigner;
+    private List<String> agentUserNames;
+    private String lastAssignedAgent;
 
     // constructors
     public ApplicationAssigner(IAssigner assigner, List<String> agentUserNames) {
