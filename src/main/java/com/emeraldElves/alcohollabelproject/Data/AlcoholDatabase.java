@@ -95,7 +95,7 @@ public class AlcoholDatabase {
      * @return A list of approved alcohols containing the name ordered by time approved.
      */
     public List<SubmittedApplication> searchByName(String name) {
-        ResultSet results = db.select("*", "AlcoholInfo", "brandName='" + name + "' OR fancifulName='" + name + "'");
+        ResultSet results = db.select("*", "AlcoholInfo", "UPPER(brandName)  LIKE UPPER('%" + name + "%') OR UPPER(fancifulName) LIKE UPPER('%" + name + "%')");
 
         List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
 
@@ -112,7 +112,7 @@ public class AlcoholDatabase {
      * @return A list of approved alcohols containing the brandName ordered by time approved.
      */
     public List<SubmittedApplication> searchByBrandName(String brandName) {
-        ResultSet results = db.select("*", "AlcoholInfo", "brandName='" + brandName + "'");
+        ResultSet results = db.select("*", "AlcoholInfo", "UPPER(brandName) LIKE UPPER('%" + brandName + "%')");
 
         List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
 
@@ -129,7 +129,7 @@ public class AlcoholDatabase {
      * @return A list of approved alcohols containing the brandName ordered by time approved.
      */
     public List<SubmittedApplication> searchByFancifulName(String fancifulName) {
-        ResultSet results = db.select("*", "AlcoholInfo", "fancifulName='" + fancifulName + "'");
+        ResultSet results = db.select("*", "AlcoholInfo", "UPPER(fancifulName) LIKE UPPER('%" + fancifulName + "%')");
 
         List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
 
