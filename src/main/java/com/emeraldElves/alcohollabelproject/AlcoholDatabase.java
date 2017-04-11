@@ -323,11 +323,8 @@ public class AlcoholDatabase {
 
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
-<<<<<<< HEAD
-                        extraInfo, new ApplicationType(true, "MA", 1)); //placeholder
-=======
                         extraInfo, new ApplicationType(labelApproval,stateOnly,bottleCapacity));
->>>>>>> 739300ffa45c3a7a402c395f795361ef72bbf0ae
+
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
