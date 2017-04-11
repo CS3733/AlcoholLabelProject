@@ -10,7 +10,7 @@ public class SubmittedApplication {
     private Applicant applicant;
     private int applicationID = -1;
     private String ttbMessage = "";
-    private String proxyImage = "";
+    private ProxyLabelImage proxyImage;
     public String getTtbMessage() {
         return ttbMessage;
     }
@@ -19,13 +19,6 @@ public class SubmittedApplication {
         this.ttbMessage = ttbMessage;
     }
 
-    public String getProxyImage() {
-        return proxyImage;
-    }
-
-    public void setProxyImage(String proxyImage) {
-        this.proxyImage = proxyImage;
-    }
 
     /**
      * Creates an application which was submitted.

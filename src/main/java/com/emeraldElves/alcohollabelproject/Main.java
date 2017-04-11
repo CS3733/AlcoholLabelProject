@@ -162,7 +162,7 @@ public class Main extends Application {
         }
 
     }
-    
+
     public void loadWorkflowPage(String username) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/workflowController.fxml"));
         try {
