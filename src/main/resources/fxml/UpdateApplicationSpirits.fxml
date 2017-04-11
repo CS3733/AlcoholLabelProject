@@ -22,14 +22,14 @@
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="58.33332824707031" minHeight="10.0" prefHeight="56.333335876464844" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="41.66667175292969" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="41.66667175292969" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.66666412353516" minHeight="1.0" prefHeight="52.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="133.66666412353516" minHeight="1.0" prefHeight="44.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="206.0" minHeight="10.0" prefHeight="206.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="227.0" minHeight="10.0" prefHeight="227.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="130.0" minHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="43.0" vgrow="SOMETIMES" />
