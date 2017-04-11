@@ -1,0 +1,1 @@
+04.11.2017.16.56.45 DATABASE Connected to database: ttbDB
