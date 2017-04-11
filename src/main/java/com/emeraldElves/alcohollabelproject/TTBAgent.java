@@ -4,6 +4,8 @@ package com.emeraldElves.alcohollabelproject;
  * Created by Joe on 4/2/2017.
  */
 
+import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+
 import java.util.ArrayList;
 
 public class TTBAgent {

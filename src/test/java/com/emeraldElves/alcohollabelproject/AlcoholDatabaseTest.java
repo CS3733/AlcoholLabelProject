@@ -1,10 +1,10 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class AlcoholDatabaseTest {
 
     @Before
     public void setup() throws InterruptedException {
-        if (db != null)
+        /*if (db != null)
             db.close();
         db = DatabaseController.getInstance().initDatabase("testDB");
         try {
@@ -43,7 +43,8 @@ public class AlcoholDatabaseTest {
         ManufacturerInfo man = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
                 new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
 
-        ApplicationInfo appInfo = new ApplicationInfo(subDate, man, alc);
+        ApplicationInfo appInfo = new ApplicationInfo(subDate, man, alc, "extra",
+                new ApplicationType(true,"MA",500));
 
         Applicant applicant = new Applicant(null);
 
@@ -55,12 +56,13 @@ public class AlcoholDatabaseTest {
 
 
         AlcoholInfo alc2 = new AlcoholInfo(5, "name", "brand", ProductSource.DOMESTIC
-                , AlcoholType.WINE, new AlcoholInfo.Wine(1.3, 1998)); //alcohol info for test
+                , AlcoholType.WINE, new AlcoholInfo.Wine(1.3, 1998, "asdf", "asfd")); //alcohol info for test
         Date subDate2 = new Date(2000, 10, 20);
         ManufacturerInfo man2 = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
                 new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
 
-        ApplicationInfo appInfo2 = new ApplicationInfo(subDate2, man2, alc2);
+        ApplicationInfo appInfo2 = new ApplicationInfo(subDate2, man2, alc2, "extra",
+                new ApplicationType(false,"AZ",500));
 
         Applicant applicant2 = new Applicant(null);
 
@@ -111,6 +113,7 @@ public class AlcoholDatabaseTest {
     private void setUpAgents() {
         db.insert("'Admin', 'Admin1'", "TTBAgentLogin");
         db.insert("'Admin2', 'Admin123'", "TTBAgentLogin");
+    */
     }
 
 
