@@ -311,6 +311,10 @@ public class AlcoholDatabase {
                 ApplicationStatus status = ApplicationStatus.fromInt(submittedResult.getInt("status"));
                 String message = submittedResult.getString("statusMsg");
                 String extraInfo = submittedResult.getString("extraInfo");
+                Boolean labelApproval = submittedResult.getBoolean("labelApproval");
+                String stateOnly = submittedResult.getString("stateOnly");
+                int bottleCapacity = submittedResult.getInt("bottleCapacity");
+                
 
 
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
@@ -319,7 +323,7 @@ public class AlcoholDatabase {
 
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
-                        extraInfo);
+                        extraInfo, new ApplicationType(labelApproval,stateOnly,bottleCapacity));
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setApplicationID(id);
                 application.setTtbMessage(message);
