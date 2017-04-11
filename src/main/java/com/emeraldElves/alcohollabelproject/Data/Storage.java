@@ -50,7 +50,11 @@ public class Storage {
                     new Database.TableField("agentName", "VARCHAR (255)"),
                     new Database.TableField("approvalDate", "BIGINT"),
                     new Database.TableField("TTBUsername", "VARCHAR (255)"),
-                    new Database.TableField("submitterUsername", "VARCHAR (255)"));
+                    new Database.TableField("submitterUsername", "VARCHAR (255)"),
+                    new Database.TableField("extraInfo", "VARCHAR (1000)"),
+                    new Database.TableField("labelApproval", "BOOLEAN"),
+                    new Database.TableField("stateOnly", "VARCHAR (2)"),
+                    new Database.TableField("bottleCapacity", "INTEGER"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
@@ -76,9 +80,13 @@ public class Storage {
                     new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),
-                    new Database.TableField("type", "INTEGER NOT NULL"),  //only beer or wine?
+                    new Database.TableField("type", "INTEGER NOT NULL"),
+                    new Database.TableField("formula", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("serialNumber", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("pH", "REAL"),
-                    new Database.TableField("vintageYear", "INTEGER"));
+                    new Database.TableField("vintageYear", "INTEGER"),
+                    new Database.TableField("varietals", "VARCHAR (255)"),
+                    new Database.TableField("wineAppellation", "VARCHAR (255)"));
             Log.console("Created new AlcoholInfo table");
         } catch (SQLException e) {
             Log.console("Used existing AlcoholInfo table");
