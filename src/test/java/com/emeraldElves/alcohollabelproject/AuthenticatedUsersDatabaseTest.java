@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.AuthenticatedUsersDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Database;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +21,7 @@ public class AuthenticatedUsersDatabaseTest {
 
     @Before
     public void setup() {
+        /*
         db = new Database("testDB");
         db.connect();
     }
@@ -75,5 +78,6 @@ public class AuthenticatedUsersDatabaseTest {
         assertFalse(authenticatedUsersDatabase.isValidApplicant("Admin", "NotAdmin1"));
         assertFalse(authenticatedUsersDatabase.isValidApplicant("NotAdmin", "Admin1"));
         assertFalse(authenticatedUsersDatabase.isValidApplicant("NotAdmin", "NotAdmin1"));
+    */
     }
 }
