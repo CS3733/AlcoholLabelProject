@@ -21,8 +21,6 @@ public class NewUserController {
     VBox errorMsg;
 
     private Main main;
-    private UserType userType;
-    private String username;
 
     public NewUserController() {
 
@@ -30,8 +28,6 @@ public class NewUserController {
 
     public void init(Main main) {
         this.main = main;
-        this.username = username;
-        this.userType = userType;
     }
 
     public void createTTBAgent(){
@@ -56,11 +52,7 @@ public class NewUserController {
         }
     }
 
-    public void login(ActionEvent e) {
-
-    }
     public void GoHome(){
-        Authenticator.getInstance().logout();
         main.loadHomepage();
     }
 }
