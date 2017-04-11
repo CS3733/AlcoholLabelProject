@@ -27,7 +27,7 @@ public class ApplicationType {
         String booleanString;
         if(labelApproval) booleanString = "true";
         else booleanString = "false";
-        ArrayList<String> temp = new ArrayList<String>();
+        ArrayList<String> temp = new ArrayList<>();
         temp.add(booleanString);
         temp.add(stateOnly);
         temp.add(""+bottleCapacity);

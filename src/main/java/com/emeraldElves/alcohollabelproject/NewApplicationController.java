@@ -95,14 +95,16 @@ public class NewApplicationController {
     @FXML
     CheckBox certOfExemption;
     @FXML
-    CheckBox distinctiveApproval;
+    TextField exemptionText;
     @FXML
-    CheckBox subAfterRejection;
+    CheckBox distinctiveApproval;
     @FXML
     TextField distinctiveText;//relates to distinctive approval
 
 
 
+    //Data for application type
+    public ApplicationType appType;
 
     //Initializes and temporarily stores applicant's info
     int repIDNo = -1; //means they didn't enter a rep ID num
@@ -152,6 +154,21 @@ public class NewApplicationController {
         Boolean emailValid=false;
         Boolean phoneValid=false;
 
+        //filling out application type
+        boolean labelApproval;
+        String stateOnly;
+        int bottleCapacity;
+        //14a
+        labelApproval = certOfApproval.isSelected();
+        //14b
+        if(certOfExemption.isSelected()){stateOnly = exemptionText.getText();}
+        else { stateOnly = "";}
+        //14c
+        if(distinctiveApproval.isSelected()){bottleCapacity = Integer.parseInt(distinctiveText.getText());}
+        else{bottleCapacity = -1;}
+
+        appType = new ApplicationType(labelApproval,stateOnly,bottleCapacity);
+
         //errors are printed only if required fields are not filled in
         if(permitNoTextField.getText().isEmpty()) {
             permitNoErrorField.setText("Please fill in your permit number.");
@@ -173,7 +190,6 @@ public class NewApplicationController {
         } else{
             emailErrorField.setText("");
         }
-
 
         //check if required fields are filled
         if(!emailAddressField.getText().isEmpty()&&!phoneNumberField.getText().isEmpty()&&
