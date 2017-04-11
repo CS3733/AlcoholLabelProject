@@ -394,4 +394,12 @@ public class NewApplicationController {
     public void logout() {
         main.loadHomepage(UserType.BASIC, "");
     }
+
+    public void exemptionChecked(){
+        exemptionText.setDisable(!certOfExemption.isSelected());
+    }
+
+    public void distinctiveChecked(){
+        distinctiveText.setDisable(!distinctiveApproval.isSelected());
+    }
 }

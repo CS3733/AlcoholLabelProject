@@ -1,0 +1,2 @@
+04.10.2017.22.59.51 newApplicationController Logged Click from first page of the new Application
+04.10.2017.22.59.51 newApplicationController second log

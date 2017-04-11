@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -82,13 +84,13 @@
         </rowConstraints>
          <children>
             <CheckBox fx:id="certOfApproval" mnemonicParsing="false" text="Certificate of Label Approval" />
-            <CheckBox fx:id="certOfExemption" mnemonicParsing="false" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
-            <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
-            <TextField fx:id="distinctiveText" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="exemptionText" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onMouseClicked="#exemptionChecked" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
+            <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
+            <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="exemptionText" disable="true" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="nextPageBtn" mnemonicParsing="false" onMouseClicked="#nextPage" text="Next Page" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
+      <Button fx:id="nextPageBtn" mnemonicParsing="false" onAction="#nextPage" onMouseClicked="#nextPage" text="Next Page" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
       <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.rowIndex="11" />
       <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
       <Label text="Please fill out the following information:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
