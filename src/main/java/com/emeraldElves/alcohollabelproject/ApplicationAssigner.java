@@ -7,7 +7,7 @@ import java.util.ListIterator;
  * Created by Joe on 4/9/2017.
  */
 public abstract class ApplicationAssigner {
-    private IAssigner assigner;
+    protected IAssigner assigner;
     private List<String> agentUserNames;
     private String lastAssignedAgent;
 
