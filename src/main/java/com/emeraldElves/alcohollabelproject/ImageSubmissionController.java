@@ -23,6 +23,12 @@ public class ImageSubmissionController {
     @FXML
     ImageView imageView;
     File file;
+    Main main;
+    SubmittedApplication application;
+    public void init(Main main, SubmittedApplication application) {
+        this.main = main;
+        this.application = application;
+    }
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif");
