@@ -24,20 +24,20 @@ public class LabelImage implements ILabelImage {
     @FXML
     ImageView imageView;
     File file;
+
     Image image;
     String fileName;
     Main main;
+
     SubmittedApplication application;
+
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
     }
 
-    public Image LabelImage(String fileName) {
-
+    public LabelImage(String fileName) {
         this.fileName = fileName;
-        return (image);
-
     }
 
     public void load(){
@@ -60,12 +60,11 @@ public class LabelImage implements ILabelImage {
         }
         Image image = new Image(String.valueOf(target));
         imageView.setImage(image);
-
-
     }
     public LabelImage ProxyLabelImage(String fileName){
         return (null);
     }
+
     public void display()
     {
         Path targetDir = Paths.get("Labels");

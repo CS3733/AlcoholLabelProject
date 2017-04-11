@@ -15,24 +15,24 @@ public class ProxyLabelImage implements ILabelImage {
     ImageView imageView;
     LabelImage realImage;
     String fileName;
-    public LabelImage ProxyLabelImage(String fileName){
+    public  ProxyLabelImage(String fileName){
         this.fileName = fileName;
-        Path Imagedir = Paths.get("Labels");
-        Path imagepath = Imagedir.resolve(fileName);
-        Image image = new Image(String.valueOf(imagepath));
-        return(realImage);
     }
 
     public String getFileName() {
         return fileName;
     }
-    public Image LabelImage(String fileName){
-        return(null);
+
+
+    public void display() {
+        if (realImage == null) { // Lazy Loading
+            realImage = new LabelImage(fileName);
+        }
+        realImage.display();
     }
-    public void display(){
-        Path targetDir = Paths.get("Labels");
-        Path target = targetDir.resolve(fileName);
-        Image image = new Image(String.valueOf(target));
-        imageView.setImage(image);
     }
-}
+
+//    Path Imagedir = Paths.get("Labels");
+//    Path imagepath = Imagedir.resolve(fileName);
+//    Image image = new Image(String.valueOf(imagepath));
+//        return(realImage);
