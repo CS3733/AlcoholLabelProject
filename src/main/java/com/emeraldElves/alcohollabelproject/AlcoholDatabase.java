@@ -171,11 +171,7 @@ public class AlcoholDatabase {
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity(), "applicationID = "
                         + application.getApplicationID());
-                /*
-                + appType.isLabelApproval() + ", '"
-                                + appType.getStateOnly() + "', "
-                                + appType.getBottleCapacity()
-                 */
+
 
                 db.update("ManufacturerInfo", "authorizedName = '"
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???

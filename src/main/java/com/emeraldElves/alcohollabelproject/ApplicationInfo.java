@@ -20,11 +20,6 @@ public class ApplicationInfo {
         this.appType = appType;
     }
 
-    public ApplicationInfo(Date sub, ManufacturerInfo man, AlcoholInfo alc){
-        submissionDate = sub;
-        manufacturer = man;
-        submittedAlcohol = alc;
-    }
 
     public Date getSubmissionDate(){
         return submissionDate;

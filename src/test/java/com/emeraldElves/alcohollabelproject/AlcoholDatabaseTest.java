@@ -43,7 +43,8 @@ public class AlcoholDatabaseTest {
         ManufacturerInfo man = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
                 new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
 
-        ApplicationInfo appInfo = new ApplicationInfo(subDate, man, alc, "extra");
+        ApplicationInfo appInfo = new ApplicationInfo(subDate, man, alc, "extra",
+                new ApplicationType(true,"MA",500));
 
         Applicant applicant = new Applicant(null);
 
@@ -60,7 +61,8 @@ public class AlcoholDatabaseTest {
         ManufacturerInfo man2 = new ManufacturerInfo("dan", "WPI", "Dell-EMC", 69, 96, new PhoneNumber("5088888888"),
                 new EmailAddress("dbmckay@wpi.edu"));//manufacturer info for test
 
-        ApplicationInfo appInfo2 = new ApplicationInfo(subDate2, man2, alc2);
+        ApplicationInfo appInfo2 = new ApplicationInfo(subDate2, man2, alc2, "extra",
+                new ApplicationType(false,"AZ",500));
 
         Applicant applicant2 = new Applicant(null);
 
