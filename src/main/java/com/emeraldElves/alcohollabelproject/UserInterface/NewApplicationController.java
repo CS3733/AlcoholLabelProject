@@ -339,7 +339,7 @@ public class NewApplicationController {
                 alcType = AlcoholType.WINE;
             }
             else if (productType.getSelectedToggle() == spirits) {
-                alcType = AlcoholType.OTHER;
+                alcType = AlcoholType.DISTILLEDSPIRITS;
             }
 
             //sets alc info fields

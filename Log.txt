@@ -1,3 +1,4 @@
 04.11.2017.16.56.45 DATABASE Connected to database: ttbDB
 04.11.2017.17.21.49 DATABASE Connected to database: ttbDB
 04.11.2017.17.22.03 DATABASE Connected to database: ttbDB
+04.11.2017.19.50.11 DATABASE Connected to database: ttbDB
