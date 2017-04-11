@@ -82,7 +82,7 @@ public class UpdateSpiritsAppController {
     }
 
     public void submitApp() {
-        AlcoholType alcoholType = AlcoholType.OTHER;
+        AlcoholType alcoholType = AlcoholType.DISTILLEDSPIRITS;
 
         if (deleteInfo.isSelected()) {
             deletedInfo = true;
