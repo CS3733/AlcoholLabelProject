@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by Joe on 4/9/2017.
@@ -21,8 +22,17 @@ public abstract class ApplicationAssigner {
         this.lastAssignedAgent = lastAssignedAgent;
     }
 
+    /**
+     * assignAgent() uses round robin to assign an agent
+     * @return new agent's username
+     */
     String assignAgent() {
-        String agent = "x";
-        return agent;
+        ListIterator<String> itr = agentUserNames.listIterator();
+        if (lastAssignedAgent == null) { return itr.next(); }
+        else {
+            RoundRobinAssigner robin = new RoundRobinAssigner();
+            robin.assignAgent(agentUserNames, lastAssignedAgent);
+        }
+
     }
 }
