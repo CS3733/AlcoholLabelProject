@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.LoginController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.LoginController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -27,9 +27,9 @@
     <children>
         <Pane prefHeight="542.0" prefWidth="802.0" style="-fx-background-color: DDDDDD;" GridPane.rowIndex="1">
          <children>
-            <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="300.0" prefWidth="250.0">
+            <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="355.0" prefWidth="250.0">
                <center>
-                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="250.0" spacing="10.0" style="-fx-border-color: CCCCCC; -fx-border-width: 5; -fx-background-color: white;" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="294.0" prefWidth="257.0" spacing="10.0" style="-fx-border-color: CCCCCC; -fx-border-width: 5; -fx-background-color: white;" BorderPane.alignment="CENTER">
                      <children>
                         <Group>
                            <children>
@@ -57,6 +57,7 @@
                            </VBox.margin>
                         </Button>
                         <Button fx:id="loginBtn1" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsApplicant" text="Login as Applicant" />
+                        <Button mnemonicParsing="false" onMouseClicked="#loginAsSuperAgent" text="Login as Super Agent" />
                      </children>
                      <opaqueInsets>
                         <Insets />

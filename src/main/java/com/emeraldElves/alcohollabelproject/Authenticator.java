@@ -35,6 +35,8 @@ public class Authenticator {
         return false;
     }
 
+
+
     public void logout() {
         username = "";
         userType = UserType.BASIC;

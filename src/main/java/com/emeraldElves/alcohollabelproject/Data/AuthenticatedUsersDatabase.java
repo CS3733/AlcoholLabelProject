@@ -41,6 +41,7 @@ public class AuthenticatedUsersDatabase {
     }
 
 
+
     public int getRepresentativeID(String username) {
         ResultSet resultSet = db.select("representativeID", "ApplicantLogin", "username = '" + username + "'");
         try {
@@ -86,6 +87,16 @@ public class AuthenticatedUsersDatabase {
             return false;
         }
     }
+    public boolean isValidSuperUser(String userName, String password){
+        if(userName == "JoseWong") {
+            if (password == "password") {
+                return true;
+            }
+        }
+        else
+            return false;
+        return false;
+    }
 
     public boolean isValidAccount(String userName, String password){
         return isValidApplicant(userName, password) || isValidTTBAgent(userName, password);
@@ -98,5 +109,6 @@ public class AuthenticatedUsersDatabase {
             return UserType.APPLICANT;
         return UserType.BASIC;
     }
+
 
 }
