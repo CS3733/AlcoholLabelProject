@@ -161,8 +161,8 @@ public class AlcoholDatabase {
 
         //Image name
         String image;
-        //if(application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
-        if(false)
+        if(application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+        //if(false)
             image = application.getImage().getFileName();
         else{ image = ""; }
 

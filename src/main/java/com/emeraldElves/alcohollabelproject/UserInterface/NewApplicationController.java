@@ -122,6 +122,7 @@ public class NewApplicationController {
 
     //Data for application type
     public ApplicationType appType;
+    ProxyLabelImage proxyLabelImage;
 
     //Initializes and temporarily stores applicant's info
     int repIDNo = -1; //means they didn't enter a rep ID num
@@ -406,6 +407,7 @@ public class NewApplicationController {
             //Create a SubmittedApplication
             SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
             applicant.addSubmittedApp(newApp);
+            newApp.setImage(proxyLabelImage);
 
             if (application != null)
                 newApp.setApplicationID(application.getApplicationID());
@@ -473,7 +475,7 @@ public class NewApplicationController {
         }
         Image image = new Image(target.toUri().toString());
         imageView.setImage(image);
-        ProxyLabelImage proxyLabelImage = new ProxyLabelImage(fileName);
+       proxyLabelImage = new ProxyLabelImage(fileName);
         //application.setImage(proxyLabelImage);
     }
 }
