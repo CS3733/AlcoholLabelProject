@@ -25,7 +25,7 @@ public class MultiRoundRobinAssigner implements IAssigner {
             int pos = roundRobin.find(lastAssignedAgent);
             roundRobin.setPosition(pos);
             roundRobin.next();
-            currentApplicationCount = 0;
+            currentApplicationCount = 1;
             return roundRobin.next();
         }
     }
