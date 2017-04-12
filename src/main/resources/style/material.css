@@ -155,12 +155,12 @@
 }
 
 .button:default {
-	-fx-background-color: -swatch-500;
+	-fx-background-color: -swatch-green;
 	-fx-text-fill: -fx-text-button-colored;
 }
 
 .toggle-button:focused, .button:focused, .button:default:focused {
-	-fx-background-color: -swatch-light-grey;
+	-fx-background-color: -swatch-green;
 }
 
 .toggle-button:focused:selected {
@@ -172,7 +172,7 @@
 
 .toggle-button:armed, .toggle-button:selected, .button:armed, .button:default:armed
 	{
-	-fx-background-color: -swatch-grey;
+	-fx-background-color: -swatch-green;
 	-fx-text-fill: -fx-text-button-colored;
 }
 
