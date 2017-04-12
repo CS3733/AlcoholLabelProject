@@ -9,8 +9,8 @@ public interface IAssigner {
     /**
      * assignAgent(): somehow assigns agent to application
      * @param agentNames
-     * @param lastAssignedAgent
+     * @param nextAgentToAssign
      * @return agent name
      */
-    String assignAgent(List<String> agentNames, String lastAssignedAgent);
+    String assignAgent(List<String> agentNames, String nextAgentToAssign);
 }

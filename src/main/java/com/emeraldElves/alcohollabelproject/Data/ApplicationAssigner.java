@@ -30,5 +30,8 @@ public abstract class ApplicationAssigner {
      * assignAgent() uses round robin to assign an agent
      * @return new agent's username
      */
-    String assignAgent() { return assigner.assignAgent(agentUserNames, lastAssignedAgent); }
+    String assignAgent() {
+        this.lastAssignedAgent = assigner.assignAgent(agentUserNames, lastAssignedAgent);
+        return lastAssignedAgent;
+    }
 }

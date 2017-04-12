@@ -11,7 +11,7 @@ import java.util.List;
 public class SimpleApplicationAssigner extends ApplicationAssigner {
 
     public SimpleApplicationAssigner(List<String> agentUserNames) {
-        super(new RoundRobinAssigner(), agentUserNames);
+        this(agentUserNames, agentUserNames.get(0));
     }
 
     public SimpleApplicationAssigner(List<String> agentUserNames, String lastAssignedAgent) {

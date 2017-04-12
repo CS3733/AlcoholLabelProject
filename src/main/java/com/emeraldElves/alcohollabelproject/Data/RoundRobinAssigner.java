@@ -7,10 +7,12 @@ import java.util.List;
  */
 public class RoundRobinAssigner implements IAssigner {
 
-    public String assignAgent(List<String> agentNames, String lastAssignedAgent) {
-        RoundRobin<String> roundRobin = new RoundRobin(agentNames);
+    public String assignAgent(List<String> agentUserNames, String lastAssignedAgent) {
+        RoundRobin<String> roundRobin = new RoundRobin(agentUserNames);
 
-        while (roundRobin.next() != lastAssignedAgent); // iterative search for agent's name
-        return roundRobin.next(); // search for next agent
+        int pos = roundRobin.find(lastAssignedAgent);
+        roundRobin.setPosition(pos); // set cursor back one
+        roundRobin.next(); // apply next() twice to return correct next string
+        return roundRobin.next();
     }
 }

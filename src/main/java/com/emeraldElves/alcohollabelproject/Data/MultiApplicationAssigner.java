@@ -9,18 +9,15 @@ import java.util.List;
  * Created by Joe on 4/11/2017.
  */
 public class MultiApplicationAssigner extends ApplicationAssigner {
-    int currentApplicationCount = 0;
+    int currentApplicationCount;
     int maxAppsPerAgent;
 
-    public MultiApplicationAssigner(List<String> agentUserNames, int numApps) {
-        super(new RoundRobinAssigner(), agentUserNames);
-        this.maxAppsPerAgent = numApps;
-        if (currentApplicationCount < maxAppsPerAgent) { super.assignAgent(); }
+    public MultiApplicationAssigner(List<String> agentUserNames, int numApps, int currentApplicationCount) {
+        this(agentUserNames, agentUserNames.get(0), numApps, currentApplicationCount);
     }
 
-    public MultiApplicationAssigner(List<String> agentUserNames, String lastAssignedAgent, int numApps) {
-        super(new RoundRobinAssigner(), agentUserNames, lastAssignedAgent);
+    public MultiApplicationAssigner(List<String> agentUserNames, String lastAssignedAgent, int numApps, int currentApplicationCount) {
+        super(new MultiRoundRobinAssigner(currentApplicationCount, numApps), agentUserNames, lastAssignedAgent);
         this.maxAppsPerAgent = numApps;
-        if (currentApplicationCount < maxAppsPerAgent) { super.assignAgent(); }
     }
 }

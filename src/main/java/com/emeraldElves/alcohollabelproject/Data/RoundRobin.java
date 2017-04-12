@@ -31,6 +31,13 @@ public class RoundRobin<T> {
         return values.size();
     }
 
+    public int getPos() {return pos; }
+
+    public int find(T value){
+        pos = values.indexOf(value);
+        return pos;
+    }
+
     public T next() {
         pos %= values.size();
         T value = values.get(pos);
