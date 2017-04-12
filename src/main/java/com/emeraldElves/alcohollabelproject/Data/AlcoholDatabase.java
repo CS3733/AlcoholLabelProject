@@ -159,6 +159,13 @@ public class AlcoholDatabase {
         AlcoholInfo alcInfo = info.getAlcohol();
         ManufacturerInfo manInfo = info.getManufacturer();
 
+        //Image name
+        String image;
+        //if(application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+        if(false)
+            image = application.getImage().getFileName();
+        else{ image = ""; }
+
 
         //
         boolean worked;//whether or not it added stuff to database
@@ -206,7 +213,7 @@ public class AlcoholDatabase {
                         + appType.isLabelApproval() + ", stateOnly = '"
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
-                        + application.getImage().getFileName() + "'", "applicationID = "
+                        + image + "'", "applicationID = "
                         + application.getApplicationID());
 
 

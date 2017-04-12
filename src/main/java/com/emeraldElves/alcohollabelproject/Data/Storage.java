@@ -136,6 +136,8 @@ public class Storage {
             return usersDB.isValidTTBAgent(username, password);
         } else if (usertype == UserType.APPLICANT) {
             return usersDB.isValidApplicant(username, password);
+        }else if(usertype == UserType.SUPERAGENT){
+            return usersDB.isValidSuperUser(username,password);
         }
         return false;
     }
