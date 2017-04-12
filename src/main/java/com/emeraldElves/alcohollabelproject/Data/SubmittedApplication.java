@@ -40,7 +40,7 @@ public class SubmittedApplication {
         this.proxyImage = new ProxyLabelImage("");
 
         ProxyLabelImage proxyImage = new ProxyLabelImage("");
-        
+
     }
 
     public int getApplicationID() {
