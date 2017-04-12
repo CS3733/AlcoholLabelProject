@@ -163,6 +163,8 @@ public class AlcoholDatabase {
         //
         boolean worked;//whether or not it added stuff to database
 
+        String image="";
+
         int appID;
 
         if (application.getApplicationID() == -1) {
@@ -260,7 +262,7 @@ public class AlcoholDatabase {
                                 + appType.isLabelApproval() + ", '"
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
-                                + " '"
+                                + image + "'"
                         //TTBUsername
                         , "SubmittedApplications");
 
