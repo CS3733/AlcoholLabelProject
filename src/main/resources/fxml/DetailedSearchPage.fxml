@@ -59,7 +59,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="company" text="Company" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="content" text="content" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -67,7 +67,7 @@
                   <Label text="Alcohol Type:" />
                   <Label text="Submission Date:" GridPane.rowIndex="1" />
                   <Label text="Origin:" GridPane.rowIndex="2" />
-                  <Label text="Company:" GridPane.rowIndex="3" />
+                  <Label text="Alcohol Content" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <ImageView fx:id="labelView" fitHeight="477.0" fitWidth="450.0" layoutX="506.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
