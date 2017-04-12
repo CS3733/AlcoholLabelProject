@@ -2,8 +2,10 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -56,7 +58,19 @@
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem fx:id="contextSaveBtn" mnemonicParsing="false" onAction="#saveCSV" text="Export Results (CSV)" />
+                        <Menu mnemonicParsing="false" text="Filter">
+                          <items>
+                              <CheckMenuItem fx:id="filterBeers" mnemonicParsing="false" onAction="#filter" text="Hide Beers" />
+                              <CheckMenuItem fx:id="filterWine" mnemonicParsing="false" onAction="#filter" text="Hide Wine" />
+                              <CheckMenuItem fx:id="filterSpirits" mnemonicParsing="false" onAction="#filter" text="Hide Distilled Spirits" />
+                          </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Export">
+                           <items>
+                              <MenuItem disable="true" mnemonicParsing="false" text="XML" />
+                            <MenuItem fx:id="contextSaveBtn" mnemonicParsing="false" onAction="#saveCSV" text="CSV" />
+                           </items>
+                        </Menu>
                     </items>
                   </ContextMenu>
                </contextMenu>
