@@ -311,10 +311,10 @@ public class NewApplicationController {
         } else {
             alcContentErrorField.setText("");
         }
-        if(formulaText.getText().isEmpty()){
+        /*if(formulaText.getText().isEmpty()){
             formulaErrorField.setText("Please fill in the formula");
         }
-        else formulaErrorField.setText("");
+        else */formulaErrorField.setText("");
         if(serialText.getText().isEmpty()){ serialErrorField.setText("Please input a serial number");}
         else serialErrorField.setText("");
 
@@ -348,7 +348,7 @@ public class NewApplicationController {
         if((productType.getSelectedToggle() != null) && (productSource.getSelectedToggle() != null) &&
                 !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
                 (datePicker != null) && !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
-                && !formulaText.getText().isEmpty()){
+                ){
             formFilled=true;
         }
 
@@ -406,6 +406,8 @@ public class NewApplicationController {
 
             //Create a SubmittedApplication
             SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
+            if(application != null)
+                newApp.setApplicationID(application.getApplicationID());
             applicant.addSubmittedApp(newApp);
             newApp.setImage(proxyLabelImage);
 

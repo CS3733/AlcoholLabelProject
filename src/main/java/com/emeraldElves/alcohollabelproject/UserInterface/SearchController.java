@@ -5,24 +5,31 @@ import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Essam on 4/2/2017.
@@ -31,7 +38,8 @@ public class SearchController {
 
     private Main main;
     private String searchTerm;
-
+    private AutoCompletionBinding<String> autoCompletionBinding;
+    private Set<String> possibleSuggestions = new HashSet<>();
     @FXML
     private TextField searchField;
     @FXML
@@ -42,6 +50,10 @@ public class SearchController {
     private TableColumn<SubmittedApplication, String> manufacturerCol;
     @FXML
     private TableColumn<SubmittedApplication, String> brandCol;
+    @FXML
+    private TableColumn<SubmittedApplication, String> typeCol;
+    @FXML
+    private TableColumn<SubmittedApplication, String> contentCol;
     @FXML
     private Button saveBtn;
     @FXML
@@ -60,19 +72,29 @@ public class SearchController {
         this.searchTerm = searchTerm;
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+                DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                 Date date = p.getValue().getApplication().getSubmissionDate();
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
             }
         });
         manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getManufacturer().getCompany()));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName()));
             }
         });
         brandCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName()));
+            }
+        });
+        typeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name()));
+            }
+        });
+        contentCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent())));
             }
         });
         saveBtn.setDisable(data.size() == 0);
@@ -90,20 +112,55 @@ public class SearchController {
             return row;
         });
 
+        List<SubmittedApplication> resultsList = search.searchApprovedApplications();
+        possibleSuggestions.clear();
+        Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
+            @Override
+            public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
+                return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
+            }
+        });
+
+        for(SubmittedApplication application: resultsList){
+            possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
+            possibleSuggestions.add(application.getApplication().getAlcohol().getName());
+        }
+
+        autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
+
+
+        /*searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+
+                autoCompletionBinding.setUserInput(searchField.getText().trim());
+                //search(searchField.getText().trim());
+
+
+            }
+        });*/
+
+        searchField.setText(searchTerm);
         search(searchTerm);
     }
-
     public void search(ActionEvent e) {
-        search(searchField.getText());
+        Platform.runLater(() -> {
+            search(searchField.getText());
+        });
     }
-
+    public void onKeyType(KeyEvent e){
+        //delay is required for .getText() to get the updated field
+        Platform.runLater(() -> {
+            search(searchField.getText());
+        });
+    }
     public void search(String searchTerm) {
         //Remove previous results
         data.remove(0, data.size());
 
         //Find & add matching applications
-        List<SubmittedApplication> resultsList = search.searchByBrandName(searchTerm);
-                ;
+        List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim());
+        ;
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);
