@@ -193,7 +193,7 @@
                 <Insets right="10.0" />
             </GridPane.margin></Text>
         <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
-        <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" styleClass="button-flat" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="16" />
+        <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" styleClass="button-raised" text="Save and continue later" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="16" />
         <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="16" />
         <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="21.0" prefWidth="67.0" styleClass="button-raised" text="Logout" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <GridPane.margin>
