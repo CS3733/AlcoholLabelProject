@@ -96,42 +96,32 @@ public class SearchController {
             });
             return row;
         });
-        GridPane grid = new GridPane();
-        grid.setVgap(10);
-        grid.setHgap(10);
-        grid.setPadding(new Insets(30, 30, 0, 30));
 
-        //
-        // TextField with static auto-complete functionality
-        //
-        //TextField textField = new TextField();
+        List<SubmittedApplication> resultsList = search.searchApprovedApplications();
+        possibleSuggestions.clear();
+        Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
+            @Override
+            public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
+                return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
+            }
+        });
+
+        for(SubmittedApplication application: resultsList){
+            possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
+            possibleSuggestions.add(application.getApplication().getAlcohol().getName());
+        }
 
         autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
 
-        //grid.add(new Label("Auto-complete Text"), 0, 0);
-        //grid.add(textField, 1, 0);
-        GridPane.setHgrow(searchField, Priority.ALWAYS);
+
         searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
-                //autoComplete();
-                //possibleSuggestions.add(newWord);
-                List<SubmittedApplication> resultsList = search.searchByBrandName(searchField.getText().trim());
-                // we dispose the old binding and recreate a new binding
-                possibleSuggestions.clear();
-                Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
-                    @Override
-                    public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
-                        //String strOne[] = lhs.getApplication().getAlcohol().getBrandName().split(" ", 2);
-                        //String arrTwo[] = rhs.getApplication().getAlcohol().getBrandName().split(" ", 2);
 
-                        return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
-                    }
-                });
-                if (autoCompletionBinding != null) {
-                    autoCompletionBinding.dispose();
-                }
-                autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
+                autoCompletionBinding.setUserInput(searchField.getText().trim());
+                search(searchField.getText().trim());
+
+
             }
         });
         
