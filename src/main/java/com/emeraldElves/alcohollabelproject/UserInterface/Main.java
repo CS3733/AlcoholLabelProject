@@ -249,6 +249,17 @@ public class Main extends Application {
         }
     }
 
+    public void loadLabelPage(SubmittedApplication application){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DisplayLabel.fxml"));
+        try {
+            Parent root = loader.load();
+            ApprovalProcessController controller = loader.getController();
+            controller.init(this, application);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }
