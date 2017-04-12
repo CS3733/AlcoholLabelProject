@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
+import com.emeraldElves.alcohollabelproject.TTBAgent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -17,6 +18,7 @@ import java.util.Date;
 public class ApprovalProcessController {
     Main main;
     SubmittedApplication application;
+    private TTBAgentInterface agentInterface;
     @FXML
     Label brandName;
 
@@ -65,6 +67,7 @@ public class ApprovalProcessController {
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
+        agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
         String type = "";
@@ -112,12 +115,14 @@ public class ApprovalProcessController {
     public void Approve() {
         Date date = new Date();
         date.setYear(date.getYear() + 5 - 1900);
-        Storage.getInstance().approveApplication(application, Authenticator.getInstance().getUsername(), date);
+        agentInterface.approveApplication(application,date);
+        //Storage.getInstance().approveApplication(application, Authenticator.getInstance().getUsername(), date);
         main.loadWorkflowPage();
     }
 
     public void Reject() {
-        Storage.getInstance().rejectApplication(application, reason.getText());
+        agentInterface.rejectApplication(application,reason.getText());
+        //Storage.getInstance().rejectApplication(application, reason.getText());
         main.loadWorkflowPage();
     }
 
