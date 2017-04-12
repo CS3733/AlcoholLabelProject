@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SearchController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SearchController">
 <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" />
   </columnConstraints>
@@ -27,7 +27,7 @@
    <children>
       <Pane prefHeight="75.0" prefWidth="802.0">
          <children>
-             <ImageView fitHeight="97.0" fitWidth="804.0" layoutX="-2.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+             <ImageView fitHeight="97.0" fitWidth="1024.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                  <image>
                      <Image url="@../images/ttbmasthead.gif" />
                  </image>
@@ -36,23 +36,20 @@
       </Pane>
       <Pane prefHeight="100.0" prefWidth="817.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
-            <Group layoutX="260.0" layoutY="36.0">
-               <children>
-                  <TextField fx:id="searchField" onAction="#search" promptText="Search..." />
-                  <Button fx:id="searchBtn" layoutX="156.0" mnemonicParsing="false" onAction="#search" text="Search" />
-               </children>
-            </Group>
-            <Button fx:id="saveBtn" layoutX="699.0" layoutY="38.0" mnemonicParsing="false" onAction="#saveCSV" prefHeight="25.0" prefWidth="98.0" text="Export Results" />
-            <Label fx:id="descriptionLabel" alignment="CENTER" layoutY="70.0" prefHeight="20.0" prefWidth="764.0" text="N/A" />
-            <Button layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#goHome" text="Home" />
+            <Group layoutX="260.0" layoutY="36.0" />
+            <Button fx:id="saveBtn" layoutX="912.0" layoutY="30.0" mnemonicParsing="false" onAction="#saveCSV" prefHeight="25.0" prefWidth="98.0" styleClass="button-raised" text="Export Results" />
+            <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="130.0" layoutY="76.0" prefHeight="20.0" prefWidth="764.0" text="N/A" />
+            <Button layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#goHome" styleClass="button-raised" text="Home" />
+            <Button fx:id="searchBtn" layoutX="629.0" layoutY="30.0" mnemonicParsing="false" onAction="#search" styleClass="button-raised" text="Search" />
+            <TextField fx:id="searchField" layoutX="401.0" layoutY="32.0" onAction="#search" prefHeight="36.0" prefWidth="222.0" promptText="Search..." />
          </children></Pane>
       <Pane fx:id="resultsPane" maxHeight="700.0" prefHeight="700.0" prefWidth="815.0" GridPane.rowIndex="2">
          <children>
-            <TableView fx:id="resultsTable" prefHeight="700.0" prefWidth="805.0">
+            <TableView fx:id="resultsTable" prefHeight="700.0" prefWidth="1024.0">
                <columns>
-                  <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="200.0" resizable="false" text="Date" />
-                  <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="307.4383544921875" resizable="false" text="Manufacturer" />
-                  <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="311.0" resizable="false" text="Brand" />
+                  <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="350.0" resizable="false" text="     Date" />
+                  <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="320.0" resizable="false" text="Manufacturer" />
+                  <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="500.0" resizable="false" text="Brand" />
                </columns>
                <contextMenu>
                   <ContextMenu>
