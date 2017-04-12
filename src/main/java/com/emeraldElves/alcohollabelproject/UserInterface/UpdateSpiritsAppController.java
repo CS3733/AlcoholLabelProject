@@ -106,7 +106,6 @@ public class UpdateSpiritsAppController {
             case NEEDSCORRECTIONS:
                 break;
         }
-
     }
 
     public void updateRejected() {
