@@ -52,6 +52,16 @@ public class LoginController {
             errorMsg.setVisible(true);
         }
     }
+    public void loginAsSuperAgent() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        if (Authenticator.getInstance().login(UserType.SUPERAGENT, username, password)) {
+            errorMsg.setVisible(false);
+            main.loadHomepage();
+        } else {
+            errorMsg.setVisible(true);
+        }
+    }
 
     public void login(ActionEvent e) {
         String username = usernameField.getText();

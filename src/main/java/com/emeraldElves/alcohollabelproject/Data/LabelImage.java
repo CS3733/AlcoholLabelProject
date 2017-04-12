@@ -21,6 +21,7 @@ public class LabelImage implements ILabelImage {
         image = new Image(target.toUri().toString());
     }
 
+
     public String getFileName() {
         return fileName;
     }

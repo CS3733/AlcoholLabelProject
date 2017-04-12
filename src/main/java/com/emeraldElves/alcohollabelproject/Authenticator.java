@@ -35,6 +35,8 @@ public class Authenticator {
         return false;
     }
 
+
+
     public void logout() {
         username = "";
         userType = UserType.BASIC;
@@ -50,6 +52,9 @@ public class Authenticator {
 
     public boolean isApplicantLoggedIn() {
         return userType == UserType.APPLICANT;
+    }
+    public boolean isSuperAgentLoggedIn() {
+        return userType == UserType.SUPERAGENT;
     }
 
     public UserType getUserType() {

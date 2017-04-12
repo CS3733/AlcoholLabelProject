@@ -1,17 +1,16 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.*;
+import com.emeraldElves.alcohollabelproject.Applicant;
+import com.emeraldElves.alcohollabelproject.ApplicantInterface;
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
+import com.emeraldElves.alcohollabelproject.LogManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.shape.Path;
-import javafx.stage.FileChooser;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.awt.*;
+import javafx.stage.FileChooser;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -158,9 +157,9 @@ public class NewApplicationController {
         this.application = application;
         repIDNoTextField.setText(String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
         permitNoTextField.setText(String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
-        addressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress()));
-        phoneNumberField.setText(String.valueOf(application.getApplication().getManufacturer().getPhoneNumber()));
-        emailAddressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress()));
+        addressField.setText(String.valueOf(application.getApplication().getManufacturer().getPhysicalAddress()));
+        phoneNumberField.setText(String.valueOf(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber()));
+        emailAddressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress()));
     }
 
 
@@ -172,7 +171,7 @@ public class NewApplicationController {
     public void nextPage(){
 
         LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
-        LogManager.getInstance().logAction("newApplicationController", "second log");
+
         Boolean formFilled=false;
         Boolean emailValid=false;
         Boolean phoneValid=false;
