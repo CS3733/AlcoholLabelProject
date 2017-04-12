@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="296.6666564941406" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="424.0" />
@@ -192,5 +192,7 @@
       <Label fx:id="varietalErrorField" GridPane.columnIndex="2" GridPane.rowIndex="10" />
       <Label fx:id="dateErrorField" GridPane.columnIndex="2" GridPane.rowIndex="13" />
       <Label fx:id="serialErrorField" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+      <Button fx:id="submitLabel" mnemonicParsing="false" onMouseClicked="#submitImage" text="Submit Label Image" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+      <ImageView fx:id="imageView" fitHeight="54.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="13" />
     </children>
 </GridPane>

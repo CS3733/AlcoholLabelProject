@@ -4,7 +4,19 @@ import com.emeraldElves.alcohollabelproject.*;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.shape.Path;
+import javafx.stage.FileChooser;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -100,6 +112,10 @@ public class NewApplicationController {
     CheckBox distinctiveApproval;
     @FXML
     TextField distinctiveText;//relates to distinctive approval
+    @FXML
+    Button submitLabel;
+    @FXML
+    ImageView imageView;
 
 
 
@@ -426,5 +442,29 @@ public class NewApplicationController {
         pHLevelField.setDisable(false);
         varietalText.setDisable(false);
         appellationText.setDisable(false);
+    }
+
+    public void submitImage() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(null);
+        java.nio.file.Path source = Paths.get((file.getPath()));
+        java.nio.file.Path targetDir = Paths.get("Labels");
+        try {
+            Files.createDirectories(targetDir);//in case target directory didn't exist
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        java.nio.file.Path target = targetDir.resolve(file.getName());// create new path ending with `name` content
+        try {
+            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        LogManager.getInstance().logAction(NewApplicationController.class.getName(), target.toString());
+        Image image = new Image(target.toString());
+        imageView.setImage(image);
+
     }
 }
