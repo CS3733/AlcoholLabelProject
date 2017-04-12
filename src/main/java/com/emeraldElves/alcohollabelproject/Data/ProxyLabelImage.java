@@ -26,8 +26,3 @@ public class ProxyLabelImage implements ILabelImage {
     }
 
     }
-
-//    Path Imagedir = Paths.get("Labels");
-//    Path imagepath = Imagedir.resolve(fileName);
-//    Image image = new Image(String.valueOf(imagepath));
-//        return(realImage);

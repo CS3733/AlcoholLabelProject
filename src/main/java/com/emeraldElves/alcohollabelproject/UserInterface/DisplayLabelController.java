@@ -13,7 +13,7 @@ import java.nio.file.Paths;
  */
 public class DisplayLabelController {
     @FXML
-    ImageView LabelView;
+    ImageView labelView;
     Main main;
     Image image;
     SubmittedApplication application;
@@ -23,7 +23,7 @@ public class DisplayLabelController {
        Path targetDir = Paths.get("Labels");
        Path target = targetDir.resolve(application.getproxyImage().getFileName());
         Image image = new Image(target.toUri().toString());
-        LabelView.setImage(image);
+        labelView.setImage(image);
     }
     public void back()
     {

@@ -454,7 +454,7 @@ public class NewApplicationController {
 
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg","*jpeg","*png");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(null);
         java.nio.file.Path source = Paths.get((file.getPath()));
@@ -464,7 +464,8 @@ public class NewApplicationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
+        String fileName = (System.currentTimeMillis() + ".jpeg");
+        java.nio.file.Path target = targetDir.resolve(fileName);// create new path ending with `name` content
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
@@ -472,6 +473,7 @@ public class NewApplicationController {
         }
         Image image = new Image(target.toUri().toString());
         imageView.setImage(image);
-
+        ProxyLabelImage proxyLabelImage = new ProxyLabelImage(fileName);
+        //application.setImage(proxyLabelImage);
     }
 }
