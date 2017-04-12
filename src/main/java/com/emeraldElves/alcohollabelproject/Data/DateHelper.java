@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class DateHelper {
 
-    public static Date getDate(int year, int month, int day) {
+    public static Date getDate(int day, int month, int year) {
         Calendar calendar = new Calendar.Builder()
                 .setDate(year, month, day)
                 .build();

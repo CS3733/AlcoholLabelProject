@@ -85,7 +85,6 @@ public class ApprovalProcessController {
         alcoholType.setText(type);
         DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-//        date.setYear(date.getYear() - 1900);
         submissionDate.setText("Submission date: " + dateFormat.format(date));
         applicationID.setText("Application ID: " + String.valueOf(application.getApplicationID()));
         company.setText("Company: " + application.getApplication().getManufacturer().getCompany());
@@ -147,5 +146,8 @@ public class ApprovalProcessController {
 
     public void MoveToNextApp() {
 
+    }
+    public void viewLabel(){
+        //main.loadLabelPage(application.)
     }
 }
