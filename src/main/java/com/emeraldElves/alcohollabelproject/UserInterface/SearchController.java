@@ -1,7 +1,10 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.COLASearch;
-import com.emeraldElves.alcohollabelproject.Data.*;
+import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
+import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -57,13 +60,6 @@ public class SearchController {
     private MenuItem contextSaveBtn;
     @FXML
     private Label descriptionLabel;
-    @FXML
-    private CheckMenuItem filterBeers;
-    @FXML
-    private CheckMenuItem filterWine;
-    @FXML
-    private CheckMenuItem filterSpirits;
-
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
     private COLASearch search;
 
@@ -93,18 +89,7 @@ public class SearchController {
         });
         typeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                String alcoholName = p.getValue().getApplication().getAlcohol().getAlcoholType().name();
-                switch (alcoholName){
-                    case "DISTILLEDSPIRITS":
-                        return new ReadOnlyObjectWrapper<String>("Distilled Spirit");
-                    case "WINE":
-                        return new ReadOnlyObjectWrapper<String>("Wine");
-                    case "BEER":
-                        return new ReadOnlyObjectWrapper<String>("Beer");
-                    default:
-                        return new ReadOnlyObjectWrapper<String>("N/A");
-                }
-
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name()));
             }
         });
         contentCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
@@ -127,7 +112,21 @@ public class SearchController {
             return row;
         });
 
-        //autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
+        List<SubmittedApplication> resultsList = search.searchApprovedApplications();
+        possibleSuggestions.clear();
+        Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
+            @Override
+            public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
+                return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
+            }
+        });
+
+        for(SubmittedApplication application: resultsList){
+            possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
+            possibleSuggestions.add(application.getApplication().getAlcohol().getName());
+        }
+
+        autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
 
 
         /*searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -140,7 +139,7 @@ public class SearchController {
 
             }
         });*/
-        refreshSuggestions();
+
         searchField.setText(searchTerm);
         search(searchTerm);
     }
@@ -153,9 +152,6 @@ public class SearchController {
         //delay is required for .getText() to get the updated field
         Platform.runLater(() -> {
             search(searchField.getText());
-
-
-
         });
     }
     public void search(String searchTerm) {
@@ -164,54 +160,18 @@ public class SearchController {
 
         //Find & add matching applications
         List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim());
-        filterList(resultsList);
+        ;
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);
         saveBtn.setDisable(data.size() == 0);
         contextSaveBtn.setDisable(data.size() == 0);
     }
-    private void refreshSuggestions(){
-        List<SubmittedApplication> resultsList = search.searchApprovedApplications();
-        filterList(resultsList);
-        possibleSuggestions.clear();
-        /*
-        Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
-            @Override
-            public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
-                return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
-            }
-        });
-        */
-        for(SubmittedApplication application: resultsList){
-            possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
-            possibleSuggestions.add(application.getApplication().getAlcohol().getName());
-        }
 
-        if (autoCompletionBinding != null){
-            autoCompletionBinding.dispose();
-        }
-        autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
-    }
-    public void filter(ActionEvent e){
-        Platform.runLater(() -> {
-            refreshSuggestions();
-            search(e);
-
-
-
-        });
-
-    }
     public void goHome() {
         main.loadHomepage();
     }
 
-    private void filterList(List<SubmittedApplication> appList){
-        appList.removeIf(p -> (filterBeers.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER));
-        appList.removeIf(p -> (filterWine.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE));
-        appList.removeIf(p -> (filterSpirits.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS));
-    }
     public void saveCSV(ActionEvent e) {
 
 
