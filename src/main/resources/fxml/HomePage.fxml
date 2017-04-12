@@ -22,7 +22,7 @@
       <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="644.0" prefWidth="1024.0" GridPane.rowIndex="2">
+        <Pane prefHeight="624.0" prefWidth="1024.0" GridPane.rowIndex="2">
             <children>
             <TextField fx:id="searchbox" layoutX="341.0" layoutY="19.0" prefHeight="36.0" prefWidth="360.0" promptText="Search..." />
             <Button layoutX="726.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" styleClass="button-raised" text="Search" />
