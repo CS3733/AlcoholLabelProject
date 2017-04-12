@@ -132,7 +132,7 @@
 .button-raised {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 		1);
-	-fx-background-color: #319b54;/*rgb(209, 209, 209);*/
+	-fx-background-color: -swatch-green;/*rgb(209, 209, 209);*/
 }
 
 .button-flat {
