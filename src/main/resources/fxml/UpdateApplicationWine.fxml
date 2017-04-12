@@ -21,30 +21,30 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="105.33332824707031" minHeight="1.0" prefHeight="3.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="36.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="129.33334350585938" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="27.999984741210938" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="37.66667175292969" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="243.0" minHeight="10.0" prefHeight="33.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="32.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="105.33332824707031" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="23.666664123535156" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="24.333328247070312" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="23.66668701171875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="243.0" minHeight="10.0" prefHeight="28.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="32.33331298828125" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="220.0" minHeight="1.0" prefHeight="34.33331298828125" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="127.33334350585938" minHeight="10.0" prefHeight="32.000030517578125" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.33331298828125" minHeight="10.0" prefHeight="30.66668701171875" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="139.33334350585938" minHeight="10.0" prefHeight="34.6666259765625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="23.3333740234375" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="38.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="62.6666259765625" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="26.666656494140625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="26.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="26.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="220.0" minHeight="1.0" prefHeight="33.333343505859375" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="127.33334350585938" minHeight="10.0" prefHeight="40.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="39.66668701171875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="133.33331298828125" minHeight="10.0" prefHeight="40.66668701171875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="139.33334350585938" minHeight="10.0" prefHeight="39.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="34.66668701171875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="45.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="62.6666259765625" minHeight="10.0" prefHeight="42.66668701171875" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" styleClass="button-raised" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <ImageView fitHeight="87.0" fitWidth="720.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
          <image>
             <Image url="@../images/ttbmasthead.gif" />
@@ -76,8 +76,8 @@
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="21" />
-      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="21" />
+      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="21" />
+      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="21" />
       <Label text="Please select any changes made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
       <Label text="Appellation:" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
          <padding>
@@ -98,7 +98,7 @@
       <CheckBox fx:id="changeProduced" mnemonicParsing="false" text="Changed &quot;produced&quot; statement to &quot;blended/vinted/cellared/etc&quot;" GridPane.columnIndex="1" GridPane.rowIndex="11" />
       <CheckBox fx:id="changeSugar" mnemonicParsing="false" text="Changed stated amount of sugar" GridPane.columnIndex="1" GridPane.rowIndex="12" />
       <CheckBox mnemonicParsing="false" onAction="#addDeleteBondedWinery" text="Added/deleted bonded winery or taxpaid wine bottling house #" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-      <Button fx:id="uploadImage" mnemonicParsing="false" onMouseClicked="#uploadImage" text="Upload Label Image" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button fx:id="uploadImage" mnemonicParsing="false" onMouseClicked="#uploadImage" prefHeight="29.0" prefWidth="151.0" styleClass="button-raised" text="Upload Label Image" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <ImageView fx:id="imageView" fitHeight="126.0" fitWidth="431.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
    </children>
 </GridPane>
