@@ -61,7 +61,7 @@ public class ApprovalProcessController {
     Label alcoholContent;
 
     @FXML
-            Label applicationID;
+    Label applicationID;
 
 
     public void init(Main main, SubmittedApplication application) {

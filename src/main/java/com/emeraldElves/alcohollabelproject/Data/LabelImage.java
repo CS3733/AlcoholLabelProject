@@ -19,6 +19,7 @@ public class LabelImage implements ILabelImage {
         Path targetDir = Paths.get("Labels");
         Path target = targetDir.resolve(fileName);
         image = new Image(target.toUri().toString());
+
     }
 
 
