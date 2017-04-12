@@ -39,9 +39,10 @@
 	-swatch-300: #64BEF6;
 	-swatch-400: #42A5F5;
 	-swatch-500: #2196F3;
+	-swatch-green: #319b54;
 	/*default text */
 	-fx-text-base-color: rgb(100.0, 100.0, 100.0);
-	-fx-text-button-normal: -swatch-500;
+	-fx-text-button-normal: white;/*-swatch-500;*/
 	-fx-text-button-colored: rgb(255.0, 255.0, 255.0);
 	-fx-text-button-text: rgb(100.0, 100.0, 100.0);
 	-fx-text-title-color: rgb(45.0, 45.0, 45.0);
@@ -131,7 +132,7 @@
 .button-raised {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 		1);
-	-fx-background-color: rgb(250, 250, 250);
+	-fx-background-color: #319b54;/*rgb(209, 209, 209);*/
 }
 
 .button-flat {

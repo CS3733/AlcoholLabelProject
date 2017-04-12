@@ -44,35 +44,35 @@
                     <children>
                         <Label fx:id="label0" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                             <font>
-                                <Font size="36.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                         <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                             <font>
-                                <Font size="36.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                         <Label fx:id="label2" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                             <font>
-                                <Font size="36.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                         <Label fx:id="label3" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                             <font>
-                                <Font size="36.0" />
+                                <Font size="24.0" />
                             </font>
                         </Label>
                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="802.0" text="Recently Approved Beverages" />
                     </children>
                 </GridPane>
-                <Button fx:id="logButton" layoutX="698.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" text="Login" />
             <Button fx:id="utility" layoutX="644.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="121.0" text="test">
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
             </Button>
             <Button layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onMouseClicked="#createNewUser" text="Create new user" />
-            <Button layoutX="270.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" text="I'm Feeling Thirsty" />
+            <Button layoutX="239.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" text="I'm Feeling Thirsty" />
+                <Button fx:id="logButton" layoutX="696.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" text="Login" />
             </children>
         </Pane>
       <Pane>

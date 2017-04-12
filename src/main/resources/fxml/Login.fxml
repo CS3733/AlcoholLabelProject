@@ -25,11 +25,11 @@
       <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="542.0" prefWidth="802.0" style="-fx-background-color: DDDDDD;" GridPane.rowIndex="1">
+        <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
          <children>
             <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="300.0" prefWidth="250.0">
                <center>
-                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="250.0" spacing="10.0" style="-fx-border-color: CCCCCC; -fx-border-width: 5; -fx-background-color: white;" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="250.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
                         <Group>
                            <children>
@@ -51,12 +51,12 @@
                               <PasswordField fx:id="passwordField" layoutY="30.0" onAction="#login" prefWidth="200.0" />
                            </children>
                         </Group>
-                        <Button fx:id="loginBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsAgent" text="Login as TTB Agent">
+                        <Button fx:id="loginBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsAgent" styleClass="button-raised" text="Login as TTB Agent">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="loginBtn1" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsApplicant" text="Login as Applicant" />
+                        <Button fx:id="loginBtn1" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsApplicant" styleClass="button-raised" text="Login as Applicant" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -75,7 +75,7 @@
                   </VBox>
                </top>
             </BorderPane>
-            <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#GoHome" text="Home" />
+            <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
          </children>
         </Pane>
       <Pane>
