@@ -2,3 +2,22 @@
 04.11.2017.17.21.49 DATABASE Connected to database: ttbDB
 04.11.2017.17.22.03 DATABASE Connected to database: ttbDB
 04.11.2017.19.50.11 DATABASE Connected to database: ttbDB
+04.11.2017.20.13.00 DATABASE Connected to database: ttbDB
+04.11.2017.20.15.15 DATABASE Connected to database: ttbDB
+04.11.2017.20.17.36 newApplicationController Logged Click from first page of the new Application
+04.11.2017.20.17.36 newApplicationController second log
+04.11.2017.20.36.11 DATABASE Connected to database: ttbDB
+04.11.2017.20.37.56 newApplicationController Logged Click from first page of the new Application
+04.11.2017.20.37.56 newApplicationController second log
+04.11.2017.20.41.08 DATABASE Could not connect to databaase: ttbDB
+Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoader@2a139a55, see the next exception for details.
+04.11.2017.20.41.18 DATABASE Could not connect to databaase: ttbDB
+Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoader@2a139a55, see the next exception for details.
+04.11.2017.20.41.59 DATABASE Could not connect to databaase: ttbDB
+Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoader@2a139a55, see the next exception for details.
+04.11.2017.20.42.16 DATABASE Connected to database: ttbDB
+04.11.2017.20.42.49 newApplicationController Logged Click from first page of the new Application
+04.11.2017.20.42.49 newApplicationController second log
+04.11.2017.20.51.58 DATABASE Could not connect to databaase: ttbDB
+Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoader@2a139a55, see the next exception for details.
+04.11.2017.20.52.08 DATABASE Connected to database: ttbDB

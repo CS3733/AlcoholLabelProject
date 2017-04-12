@@ -260,7 +260,7 @@ public class AlcoholDatabase {
                                 + appType.isLabelApproval() + ", '"
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
-                                + application.getImage().getFileName() + "'"
+                                + " '"
                         //TTBUsername
                         , "SubmittedApplications");
 
