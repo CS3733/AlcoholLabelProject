@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.DetailedSearchController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.DetailedSearchController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -19,44 +19,63 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
+        <Pane prefHeight="644.0" prefWidth="1024.0" GridPane.rowIndex="1">
          <children>
-            <Label fx:id="brandName" layoutX="14.0" layoutY="185.0" text="Brand Name">
+            <Label fx:id="brandName" layoutX="268.0" layoutY="30.0" prefHeight="35.0" prefWidth="366.0" text="Brand Name">
                <font>
-                  <Font size="24.0" />
+                  <Font size="30.0" />
                </font>
             </Label>
-            <Label fx:id="fancifulName" layoutX="18.0" layoutY="291.0" text="Fanciful name">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="alcoholType" alignment="CENTER" contentDisplay="CENTER" layoutX="382.0" layoutY="190.0" text="Alcohol type" textAlignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="submissionDate" layoutX="651.0" layoutY="188.0" text="Submission date">
+            <Label fx:id="fancifulName" layoutX="277.0" layoutY="86.0" prefHeight="20.0" prefWidth="278.0" text="Fanciful name">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="company" layoutX="673.0" layoutY="291.0" text="Company">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="origin" layoutX="372.0" layoutY="292.0" text="Origin">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Button layoutX="38.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#GoHome" text="Home" />
+            <Button layoutX="80.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
+            <GridPane layoutX="107.0" layoutY="153.0" prefHeight="386.0" prefWidth="420.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.33334350585938" minWidth="10.0" prefWidth="216.66665649414062" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="113.33334350585938" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="108.33334350585938" minHeight="10.0" prefHeight="108.33334350585938" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="139.66665649414062" minHeight="10.0" prefHeight="103.66665649414062" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="146.66668701171875" minHeight="10.0" prefHeight="94.33334350585938" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="126.66668701171875" minHeight="10.0" prefHeight="92.33331298828125" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="alcoholType" alignment="CENTER" contentDisplay="CENTER" text="Alcohol type" textAlignment="CENTER" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="submissionDate" prefHeight="20.0" prefWidth="170.0" text="Submission date" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="origin" text="Origin" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="content" text="content" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Alcohol Type:" />
+                  <Label text="Submission Date:" GridPane.rowIndex="1" />
+                  <Label text="Origin:" GridPane.rowIndex="2" />
+                  <Label text="Alcohol Content" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <ImageView fx:id="labelView" fitHeight="477.0" fitWidth="450.0" layoutX="506.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
          </children>
         </Pane>
-        <Pane>
+        <Pane prefHeight="124.0" prefWidth="1024.0">
             <children>
-                <ImageView fitHeight="181.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="125.0" fitWidth="1028.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ttbmasthead.gif" />
                     </image>

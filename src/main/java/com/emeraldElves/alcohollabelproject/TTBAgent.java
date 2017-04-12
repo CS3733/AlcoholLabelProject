@@ -4,12 +4,15 @@ package com.emeraldElves.alcohollabelproject;
  * Created by Joe on 4/2/2017.
  */
 
+import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class TTBAgent {
     private String name;
     private int governmentID;
-    private ArrayList currentApps;
+    private List<SubmittedApplication> currentApps;
 
     public TTBAgent(String name, int governmentID) {
         name = this.name;
@@ -37,7 +40,11 @@ public class TTBAgent {
      * getCurrentApplications(): get list of applications TTB agent is currently working on
      * @return ArrayList of current applications
      */
-    ArrayList<SubmittedApplication> getCurrentApplications() {
+    public List<SubmittedApplication> getCurrentApplications() {
         return currentApps;
+    }
+
+    public void setCurrentApps(List<SubmittedApplication> currentApps) {
+        this.currentApps = currentApps;
     }
 }
