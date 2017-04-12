@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -8,6 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -24,9 +27,9 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.3333740234375" minWidth="10.0" prefWidth="303.6666259765625" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="89.33333587646484" minHeight="10.0" prefHeight="86.66666412353516" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="60.33332824707031" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="124.33333587646484" minHeight="10.0" prefHeight="60.66667175292969" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="124.33333587646484" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="159.0" minHeight="0.0" prefHeight="68.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="163.66665649414062" minHeight="10.0" prefHeight="64.66665649414062" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="152.66665649414062" minHeight="10.0" prefHeight="61.333343505859375" vgrow="SOMETIMES" />
@@ -82,13 +85,13 @@
         </rowConstraints>
          <children>
             <CheckBox fx:id="certOfApproval" mnemonicParsing="false" text="Certificate of Label Approval" />
-            <CheckBox fx:id="certOfExemption" mnemonicParsing="false" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
-            <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
-            <TextField fx:id="distinctiveText" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="exemptionText" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onAction="#exemptionChecked" onMouseClicked="#exemptionChecked" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
+            <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
+            <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="exemptionText" disable="true" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="nextPageBtn" mnemonicParsing="false" onMouseClicked="#nextPage" text="Next Page" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
+      <Button fx:id="nextPageBtn" mnemonicParsing="false" onAction="#nextPage" onMouseClicked="#nextPage" text="Next Page" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
       <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.rowIndex="11" />
       <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
       <Label text="Please fill out the following information:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />

@@ -35,7 +35,12 @@ public class SubmittedApplication {
         this.application = application;
         this.status = status;
         this.applicant = applicant;
-        proxyImage = new ProxyLabelImage("");
+
+
+        this.proxyImage = new ProxyLabelImage("");
+
+        ProxyLabelImage proxyImage = new ProxyLabelImage("");
+        
     }
 
     public int getApplicationID() {
@@ -57,6 +62,7 @@ public class SubmittedApplication {
     public Applicant getApplicant() {
         return applicant;
     }
+    public ILabelImage getproxyImage(){return proxyImage;}
 
     public void setApplication(ApplicationInfo application) {
         this.application = application;

@@ -1,8 +1,0 @@
-04.11.2017.16.56.45 DATABASE Connected to database: ttbDB
-04.11.2017.17.21.49 DATABASE Connected to database: ttbDB
-04.11.2017.17.22.03 DATABASE Connected to database: ttbDB
-04.11.2017.19.20.57 DATABASE Connected to database: ttbDB
-04.11.2017.19.22.29 DATABASE Connected to database: ttbDB
-04.11.2017.19.23.50 newApplicationController Logged Click from first page of the new Application
-04.11.2017.19.23.50 newApplicationController second log
-04.11.2017.19.29.00 DATABASE Connected to database: ttbDB

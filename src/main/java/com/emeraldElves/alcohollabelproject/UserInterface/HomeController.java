@@ -29,6 +29,8 @@ public class HomeController {
     @FXML
     private Button utility;
     @FXML
+    private  Button CreateUser;
+    @FXML
     private TextField searchbox;
     @FXML
     private Button logButton;
@@ -77,6 +79,9 @@ public class HomeController {
                 Authenticator.getInstance().logout();
                 main.loadHomepage();
                 break;
+            case SUPERAGENT:
+                Authenticator.getInstance().logout();
+                main.loadHomepage();
             case BASIC:
                 main.loadLoginPage();
                 break;
@@ -136,17 +141,25 @@ public class HomeController {
             }
         }
         switch (Authenticator.getInstance().getUserType()) {
+            case SUPERAGENT:
+                CreateUser.setVisible(true);
+                utility.setVisible(false);
+                logButton.setText("Log Out");
+                break;
             case TTBAGENT:
+                CreateUser.setVisible(false);
                 utility.setVisible(true);
                 utility.setText("Applications");
                 logButton.setText("Log Out");
                 break;
             case APPLICANT:
+                CreateUser.setVisible(false);
                 utility.setVisible(true);
                 utility.setText("Applications");
                 logButton.setText("Log Out");
                 break;
             default:
+                CreateUser.setVisible(false);
                 utility.setVisible(false);
                 logButton.setText("Log In");
                 break;

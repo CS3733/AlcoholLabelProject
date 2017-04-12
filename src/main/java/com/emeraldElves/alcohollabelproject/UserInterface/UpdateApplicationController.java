@@ -14,6 +14,10 @@ public class UpdateApplicationController {
 
     public ApplicationStatus status;//get status from database
     @FXML
+    TextField grapeVarietalField;
+    @FXML
+    TextField AppellationField;
+    @FXML
     TextField alcoholContentField;
     @FXML
     TextField wineVintageYearField;
@@ -62,6 +66,7 @@ public class UpdateApplicationController {
     }
 
     public void updateRejected() {
+
         //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
         if (CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
@@ -72,6 +77,11 @@ public class UpdateApplicationController {
     }
 
     public void updateApproved() {
+
+        alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
+        wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID()));
+        phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().pH));
+
         //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
 
@@ -87,6 +97,7 @@ public class UpdateApplicationController {
         AlcoholType alcoholType = alcoholInfo.getAlcoholType();
         double pH;
         int vintageYear;
+
         if(alcoholType == AlcoholType.WINE) {
             pH = Double.parseDouble(phLevelField.getText());
             vintageYear = Integer.parseInt(wineVintageYearField.getText());

@@ -70,9 +70,9 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </Button>
-            <Button layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onMouseClicked="#createNewUser" text="Create new user" />
-            <Button layoutX="239.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" styleClass="button-raised" text="I'm Feeling Thirsty" />
-                <Button fx:id="logButton" layoutX="696.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" styleClass="button-raised" text="Login" />
+
+            <Button fx:id="CreateUser" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onMouseClicked="#createNewUser" text="Create new user" />
+            <Button layoutX="270.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" text="I'm Feeling Thirsty" />
             </children>
         </Pane>
       <Pane>
