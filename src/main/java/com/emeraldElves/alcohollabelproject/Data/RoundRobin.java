@@ -1,4 +1,4 @@
-package com.emeraldElves.alcohollabelproject;
+package com.emeraldElves.alcohollabelproject.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,13 @@ public class RoundRobin<T> {
 
     public int size() {
         return values.size();
+    }
+
+    public int getPos() {return pos; }
+
+    public int find(T value){
+        pos = values.indexOf(value);
+        return pos;
     }
 
     public T next() {
