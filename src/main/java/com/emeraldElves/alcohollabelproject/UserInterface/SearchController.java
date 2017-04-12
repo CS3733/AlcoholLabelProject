@@ -10,19 +10,25 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Essam on 4/2/2017.
@@ -31,7 +37,8 @@ public class SearchController {
 
     private Main main;
     private String searchTerm;
-
+    private AutoCompletionBinding<String> autoCompletionBinding;
+    private Set<String> possibleSuggestions = new HashSet<>();
     @FXML
     private TextField searchField;
     @FXML
@@ -89,10 +96,48 @@ public class SearchController {
             });
             return row;
         });
+        GridPane grid = new GridPane();
+        grid.setVgap(10);
+        grid.setHgap(10);
+        grid.setPadding(new Insets(30, 30, 0, 30));
 
+        //
+        // TextField with static auto-complete functionality
+        //
+        //TextField textField = new TextField();
+
+        autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
+
+        //grid.add(new Label("Auto-complete Text"), 0, 0);
+        //grid.add(textField, 1, 0);
+        GridPane.setHgrow(searchField, Priority.ALWAYS);
+        searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                //autoComplete();
+                //possibleSuggestions.add(newWord);
+                List<SubmittedApplication> resultsList = search.searchByBrandName(searchField.getText().trim());
+                // we dispose the old binding and recreate a new binding
+                possibleSuggestions.clear();
+                Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
+                    @Override
+                    public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
+                        //String strOne[] = lhs.getApplication().getAlcohol().getBrandName().split(" ", 2);
+                        //String arrTwo[] = rhs.getApplication().getAlcohol().getBrandName().split(" ", 2);
+
+                        return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
+                    }
+                });
+                if (autoCompletionBinding != null) {
+                    autoCompletionBinding.dispose();
+                }
+                autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
+            }
+        });
+        
+        //main.stage.
         search(searchTerm);
     }
-
     public void search(ActionEvent e) {
         search(searchField.getText());
     }
@@ -102,8 +147,8 @@ public class SearchController {
         data.remove(0, data.size());
 
         //Find & add matching applications
-        List<SubmittedApplication> resultsList = search.searchByBrandName(searchTerm);
-                ;
+        List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim());
+        ;
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);
