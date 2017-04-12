@@ -57,6 +57,8 @@ public class UpdateSpiritsAppController {
     Boolean changedFormatting=false;
     Boolean changedNetContents=false;
 
+    ProxyLabelImage proxyLabelImage;
+
 
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username) {
         this.main = main;
@@ -79,13 +81,15 @@ public class UpdateSpiritsAppController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
+        String fileName = (System.currentTimeMillis() + ".jpeg");
+        java.nio.file.Path target = targetDir.resolve(fileName);// create new path ending with `name` content
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
         Image image = new Image(target.toUri().toString());
+        proxyLabelImage = new ProxyLabelImage(fileName);
         imageView.setImage(image);
     }
 
@@ -133,7 +137,10 @@ public class UpdateSpiritsAppController {
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         CurrentlyBeingUpdated.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
+        if(proxyLabelImage != null)
+            CurrentlyBeingUpdated.setImage(proxyLabelImage);
         applicant.updateApplication(CurrentlyBeingUpdated);
+
 
         main.loadHomepage();
     }

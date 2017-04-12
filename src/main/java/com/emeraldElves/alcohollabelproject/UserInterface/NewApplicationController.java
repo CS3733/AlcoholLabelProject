@@ -406,6 +406,8 @@ public class NewApplicationController {
 
             //Create a SubmittedApplication
             SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
+            if(application != null)
+                newApp.setApplicationID(application.getApplicationID());
             applicant.addSubmittedApp(newApp);
             newApp.setImage(proxyLabelImage);
 
