@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -45,22 +46,26 @@
          </children></Pane>
       <Pane fx:id="resultsPane" maxHeight="700.0" prefHeight="700.0" prefWidth="815.0" GridPane.rowIndex="2">
          <children>
-            <TableView fx:id="resultsTable" prefHeight="700.0" prefWidth="1024.0">
-               <columns>
-                  <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="     Date" />
-                  <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Brand" />
-                   <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Fanciful" />
-                   <TableColumn fx:id="typeCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Type" />
-                   <TableColumn fx:id="contentCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Alcohol Content" />
-               </columns>
-               <contextMenu>
-                  <ContextMenu>
-                    <items>
-                      <MenuItem fx:id="contextSaveBtn" mnemonicParsing="false" onAction="#saveCSV" text="Export Results (CSV)" />
-                    </items>
-                  </ContextMenu>
-               </contextMenu>
-            </TableView>
+            <ScrollPane prefHeight="597.0" prefWidth="1024.0">
+               <content>
+                  <TableView fx:id="resultsTable" prefHeight="698.0" prefWidth="1004.0">
+                     <columns>
+                        <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="     Date" />
+                        <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Brand" />
+                         <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Fanciful" />
+                         <TableColumn fx:id="typeCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Type" />
+                         <TableColumn fx:id="contentCol" maxWidth="1.7976931348623157E308" minWidth="165.0" prefWidth="165.0" resizable="false" text="Alcohol Content" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="contextSaveBtn" mnemonicParsing="false" onAction="#saveCSV" text="Export Results (CSV)" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
+               </content>
+            </ScrollPane>
          </children>
       </Pane>
    </children>
