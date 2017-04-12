@@ -195,8 +195,7 @@ public class AlcoholDatabase {
         }*/
 
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
-
-
+        
         try {
             if (resultsSubmitted.next()) {
                 db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
