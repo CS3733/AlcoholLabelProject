@@ -50,6 +50,10 @@ public class SearchController {
     @FXML
     private TableColumn<SubmittedApplication, String> brandCol;
     @FXML
+    private TableColumn<SubmittedApplication, String> typeCol;
+    @FXML
+    private TableColumn<SubmittedApplication, String> contentCol;
+    @FXML
     private Button saveBtn;
     @FXML
     private MenuItem contextSaveBtn;
@@ -67,19 +71,29 @@ public class SearchController {
         this.searchTerm = searchTerm;
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+                DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                 Date date = p.getValue().getApplication().getSubmissionDate();
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
             }
         });
         manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getManufacturer().getCompany()));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName()));
             }
         });
         brandCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName()));
+            }
+        });
+        typeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name()));
+            }
+        });
+        contentCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent())));
             }
         });
         saveBtn.setDisable(data.size() == 0);
