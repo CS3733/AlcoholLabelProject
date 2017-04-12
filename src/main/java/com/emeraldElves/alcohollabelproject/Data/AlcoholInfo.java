@@ -6,16 +6,16 @@ package com.emeraldElves.alcohollabelproject.Data;
 public class AlcoholInfo {
 
     private int alcoholContent;
-    private String fancifulname;
+    private String fancifulName;
     private String brandName;
     private ProductSource origin;
     private String serialNumber;
     private String formula;
 
 
-    public AlcoholInfo(int alcoholContent, String fancifulname, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo, String serialNumber, String formula) {
+    public AlcoholInfo(int alcoholContent, String fancifulName, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo, String serialNumber, String formula) {
         this.alcoholContent = alcoholContent;
-        this.fancifulname = fancifulname;
+        this.fancifulName = fancifulName;
         this.brandName = brandName;
         this.origin = origin;
         this.alcoholType = alcoholType;
@@ -34,6 +34,7 @@ public class AlcoholInfo {
 
     private AlcoholType alcoholType;
     private Wine wineInfo;
+
 
     public static class Wine{
         public double pH;
@@ -63,7 +64,7 @@ public class AlcoholInfo {
      */
     public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo) {
         this.alcoholContent = alcoholContent;
-        this.fancifulname = name;
+        this.fancifulName = name;
         this.brandName = brandName;
         this.origin = origin;
         this.alcoholType = alcoholType;
@@ -93,7 +94,7 @@ public class AlcoholInfo {
      * @return the alcohol name as a String
      */
     public String getName() {
-        return this.fancifulname;
+        return this.fancifulName;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -147,12 +148,36 @@ public class Main extends Application {
     }
 
     public void loadUpdateApplicationPage(SubmittedApplication application) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
+        FXMLLoader loader=null;
+        if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.BEER){
+            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationBeer.fxml"));
+        } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.WINE){
+            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationWine.fxml"));
+        } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.DISTILLEDSPIRITS) {
+            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationSpirits.fxml"));
+        } else {
+            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
+        }
+
         try {
             Parent root = loader.load();
-            UpdateApplicationController controller = loader.getController();
-            controller.init(this, application);
-            stage.getScene().setRoot(root);
+            if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.BEER){
+                UpdateBeerAppController controller = loader.getController();
+                controller.init(this, application,"");
+                stage.getScene().setRoot(root);
+            } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.WINE){
+                UpdateWineAppController controller = loader.getController();
+                controller.init(this, application,"");
+                stage.getScene().setRoot(root);
+            } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.DISTILLEDSPIRITS) {
+                UpdateSpiritsAppController controller = loader.getController();
+                controller.init(this, application,"");
+                stage.getScene().setRoot(root);
+            } else{
+                UpdateApplicationController controller = loader.getController();
+                controller.init(this, application);
+                stage.getScene().setRoot(root);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
