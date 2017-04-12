@@ -65,7 +65,7 @@
                      </font>
                   </Label>
                   <Label text="Alcohol Type:" />
-                  <Label text="Submission Type:" GridPane.rowIndex="1" />
+                  <Label text="Submission Date:" GridPane.rowIndex="1" />
                   <Label text="Origin:" GridPane.rowIndex="2" />
                   <Label text="Company:" GridPane.rowIndex="3" />
                </children>
