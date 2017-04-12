@@ -88,7 +88,7 @@
       </GridPane>
       <Button fx:id="nextPageBtn" mnemonicParsing="false" onAction="#nextPage" onMouseClicked="#nextPage" styleClass="button-raised" text="Next Page" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
       <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-      <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+      <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" styleClass="button-raised" text="Save and continue later" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
       <Label text="Please fill out the following information:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label fx:id="error1" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <Label fx:id="permitNoErrorField" GridPane.columnIndex="2" GridPane.rowIndex="4">
