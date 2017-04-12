@@ -9,7 +9,15 @@ import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -36,13 +44,16 @@ public class UpdateWineAppController {
     @FXML
     CheckBox changeNetContents;
     @FXML
-    CheckBox changeVarietalAppell;
-    @FXML
     CheckBox changeProduced;
     @FXML
     CheckBox changeSugar;
     @FXML
     CheckBox addDeleteBondedWinery;
+    @FXML
+    Button uploadImage;
+    @FXML
+    ImageView imageView;
+
 
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
@@ -54,7 +65,6 @@ public class UpdateWineAppController {
     Boolean repositionedInfo=false;
     Boolean changedFormatting=false;
     Boolean changedNetContents=false;
-    Boolean changedVarietalAppell=false;
     Boolean changedProduced=false;
     Boolean changedSugar=false;
     Boolean addedDeletedBondedWinery=false;
@@ -68,7 +78,30 @@ public class UpdateWineAppController {
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
     }
 
-    public void ApplicationStatuschecker() {
+    public void uploadImage() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(null);
+        java.nio.file.Path source = Paths.get((file.getPath()));
+        java.nio.file.Path targetDir = Paths.get("Labels");
+        try {
+            Files.createDirectories(targetDir);//in case target directory didn't exist
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
+        try {
+            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image image = new Image(target.toUri().toString());
+        imageView.setImage(image);
+    }
+
+    public void ApplicationStatusChecker() {
+
         switch (status) {
             case REJECTED:
                 updateRejected();
@@ -108,9 +141,6 @@ public class UpdateWineAppController {
         }
         if (changeNetContents.isSelected()){
             changedNetContents=true;
-        }
-        if (changeVarietalAppell.isSelected()){
-            changedVarietalAppell=true;
         }
         if (changeProduced.isSelected()){
             changedProduced=true;

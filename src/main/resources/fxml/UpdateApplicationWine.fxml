@@ -24,23 +24,23 @@
       <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="105.33332824707031" minHeight="1.0" prefHeight="3.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="243.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="36.666656494140625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="129.33334350585938" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="27.999984741210938" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="37.66667175292969" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="243.0" minHeight="10.0" prefHeight="33.666656494140625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="32.666656494140625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="220.0" minHeight="1.0" prefHeight="41.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="127.33334350585938" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.33331298828125" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="139.33334350585938" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="41.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="32.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="220.0" minHeight="1.0" prefHeight="34.33331298828125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="127.33334350585938" minHeight="10.0" prefHeight="32.000030517578125" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="133.33331298828125" minHeight="10.0" prefHeight="30.66668701171875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="139.33334350585938" minHeight="10.0" prefHeight="34.6666259765625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="23.3333740234375" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="38.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="62.6666259765625" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
@@ -78,7 +78,7 @@
          </GridPane.margin></Text>
       <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="21" />
       <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="21" />
-      <Label text="Please select any changes made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+      <Label text="Please select any changes made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
       <Label text="Appellation:" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
          <padding>
             <Insets right="10.0" />
@@ -91,13 +91,14 @@
       </Label>
       <TextField fx:id="grapeVarietalField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
       <TextField fx:id="AppellationField" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-      <CheckBox fx:id="deleteInfo" mnemonicParsing="false" text="Deleted non-mandatory information (text, graphics, etc)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <CheckBox fx:id="repositionInfo" mnemonicParsing="false" text="Repositioned any label information" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <CheckBox fx:id="changeFormatting" mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <CheckBox fx:id="changeNetContents" mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <CheckBox fx:id="changeVarietalAppell" mnemonicParsing="false" text="Changed grape varietal and appellation" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <CheckBox fx:id="changeProduced" mnemonicParsing="false" text="Changed &quot;produced&quot; statement to &quot;blended/vinted/cellared/etc&quot;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <CheckBox fx:id="changeSugar" mnemonicParsing="false" text="Changed stated amount of sugar" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-      <CheckBox mnemonicParsing="false" onAction="#addDeleteBondedWinery" text="Added/deleted bonded winery or taxpaid wine bottling house #" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <CheckBox fx:id="deleteInfo" mnemonicParsing="false" text="Deleted non-mandatory information (text, graphics, etc)" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <CheckBox fx:id="repositionInfo" mnemonicParsing="false" text="Repositioned any label information" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <CheckBox fx:id="changeFormatting" mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <CheckBox fx:id="changeNetContents" mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <CheckBox fx:id="changeProduced" mnemonicParsing="false" text="Changed &quot;produced&quot; statement to &quot;blended/vinted/cellared/etc&quot;" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <CheckBox fx:id="changeSugar" mnemonicParsing="false" text="Changed stated amount of sugar" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <CheckBox mnemonicParsing="false" onAction="#addDeleteBondedWinery" text="Added/deleted bonded winery or taxpaid wine bottling house #" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <Button fx:id="uploadImage" mnemonicParsing="false" onMouseClicked="#uploadImage" text="Upload Label Image" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <ImageView fx:id="imageView" fitHeight="126.0" fitWidth="431.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
    </children>
 </GridPane>

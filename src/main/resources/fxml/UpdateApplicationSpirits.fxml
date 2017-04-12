@@ -21,9 +21,8 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="62.333335876464844" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="36.66667175292969" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="62.333335876464844" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="56.33332824707031" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="217.0" minHeight="10.0" prefHeight="152.6666717529297" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="217.0" minHeight="1.0" prefHeight="43.0" vgrow="SOMETIMES" />
@@ -44,30 +43,30 @@
             <Image url="@../images/ttbmasthead.gif" />
          </image>
       </ImageView>
-      <Label text="  Welcome, [ApplicantName]." GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-      <TextField fx:id="signatureField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Signature:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="14">
+      <Label text="  Welcome, [ApplicantName]." GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+      <TextField fx:id="signatureField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Signature:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="13">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-      <Text layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="13">
+      <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Text layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Content:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Content:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
-      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="15" />
-      <Label text="Please select any changes that were made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
-      <CheckBox fx:id="changeFormat" mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <CheckBox fx:id="changeNetContents" mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <CheckBox fx:id="deleteInfo" mnemonicParsing="false" text="Deleted non-mandatory information (text, graphics, etc)" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <CheckBox fx:id="repositionInfo" mnemonicParsing="false" text="Repositioned any label information" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <ImageView fx:id="imageView" fitHeight="161.0" fitWidth="435.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Button fx:id="uploadImage" mnemonicParsing="false" onMouseClicked="#uploadImage" text="Upload Label Image" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="14" />
+      <Label text="Please select any changes that were made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
+      <CheckBox fx:id="changeFormat" mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <CheckBox fx:id="changeNetContents" mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <CheckBox fx:id="deleteInfo" mnemonicParsing="false" text="Deleted non-mandatory information (text, graphics, etc)" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <CheckBox fx:id="repositionInfo" mnemonicParsing="false" text="Repositioned any label information" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <ImageView fx:id="imageView" fitHeight="161.0" fitWidth="435.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button fx:id="uploadImage" mnemonicParsing="false" onMouseClicked="#uploadImage" text="Upload Label Image" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>

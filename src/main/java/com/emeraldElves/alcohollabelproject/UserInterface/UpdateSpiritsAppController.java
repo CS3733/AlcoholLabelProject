@@ -46,8 +46,6 @@ public class UpdateSpiritsAppController {
     @FXML
     ImageView imageView;
 
-    File file;
-
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
     String Username;
