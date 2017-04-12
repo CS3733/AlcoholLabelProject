@@ -165,7 +165,8 @@ public class NewApplicationController {
 
 
     public void init(Main main){
-        //init(main, null);
+//        init(main, null);
+        this.main = main;
     }
 
     public void nextPage(){
@@ -448,7 +449,7 @@ public class NewApplicationController {
 
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(null);
         java.nio.file.Path source = Paths.get((file.getPath()));
@@ -458,14 +459,13 @@ public class NewApplicationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        java.nio.file.Path target = targetDir.resolve(file.getName());// create new path ending with `name` content
+        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LogManager.getInstance().logAction(NewApplicationController.class.getName(), target.toString());
-        Image image = new Image(target.toString());
+        Image image = new Image(target.toUri().toString());
         imageView.setImage(image);
 
     }
