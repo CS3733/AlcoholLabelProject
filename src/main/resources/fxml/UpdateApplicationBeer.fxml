@@ -59,7 +59,7 @@
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" prefWidth="68.0" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
       <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="14" />
       <Label text="Please select any changes that were made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
       <CheckBox fx:id="changeFormat" mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="7" />
