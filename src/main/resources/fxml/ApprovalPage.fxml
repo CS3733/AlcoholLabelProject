@@ -52,7 +52,7 @@
                         <Label text="Origin" />
                         <Label text="Alcohol Content" />
                         <Label text="Submission Date:" />
-                        <Label text="Company:" />
+                        <Label text="Company:" visible="false" />
                      </children>
                   </VBox>
                   <VBox prefHeight="140.0" prefWidth="178.0">
@@ -75,7 +75,7 @@
                                     <Font size="14.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="company" text="Company">
+                            <Label fx:id="company" text="Company" visible="false">
                                 <font>
                                     <Font size="14.0" />
                                 </font>
@@ -110,7 +110,6 @@
                   <Label fx:id="emailAddress" text="Email Address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-          <Button layoutX="14.0" layoutY="408.0" mnemonicParsing="false" text="Button" />
             <ButtonBar layoutX="546.0" layoutY="478.0" prefHeight="40.0" prefWidth="191.0">
               <buttons>
                   <Button mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" />
