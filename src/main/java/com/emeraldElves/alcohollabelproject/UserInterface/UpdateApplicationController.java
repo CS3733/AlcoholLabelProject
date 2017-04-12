@@ -62,6 +62,7 @@ public class UpdateApplicationController {
     }
 
     public void updateRejected() {
+
         //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
         if (CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
@@ -72,6 +73,11 @@ public class UpdateApplicationController {
     }
 
     public void updateApproved() {
+
+        alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
+        wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getManufacturer().getRepresentativeID()));
+        phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().pH));
+
         //SubmittedApplication CurrentlyBeingUpdated = null;
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
 
