@@ -9,6 +9,7 @@ import javafx.scene.control.TextArea;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -83,8 +84,9 @@ public class ApprovalProcessController {
                 break;
         }
         alcoholType.setText(type);
-        DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         Date date = application.getApplication().getSubmissionDate();
+        System.out.println(date);
         submissionDate.setText( dateFormat.format(date));
         applicationID.setText( String.valueOf(application.getApplicationID()));
         company.setText(application.getApplication().getManufacturer().getCompany());
@@ -114,7 +116,9 @@ public class ApprovalProcessController {
 
     public void Approve() {
         Date date = new Date();
-        date.setYear(date.getYear() + 5 - 1900);
+        date = new Calendar.Builder()
+                .setDate(date.getYear() + 5, date.getMonth(), date.getDay())
+                .build().getTime();
         agentInterface.approveApplication(application,date);
         //Storage.getInstance().approveApplication(application, Authenticator.getInstance().getUsername(), date);
         main.loadWorkflowPage();

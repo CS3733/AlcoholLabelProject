@@ -10,15 +10,16 @@ import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 
-import java.util.List;
-
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class HomeController {
     public ArrayList<Label> mostRecentLabels;
@@ -139,6 +140,34 @@ public class HomeController {
                     });
                     break;
             }
+            List<SubmittedApplication> resultsList = search.searchApprovedApplications();
+
+            AutoCompletionBinding<String> autoCompletionBinding;
+            Set<String> possibleSuggestions = new HashSet<>();
+            possibleSuggestions.clear();
+            Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
+                @Override
+                public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
+                    return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
+                }
+            });
+
+            for(SubmittedApplication application: resultsList){
+                possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
+                possibleSuggestions.add(application.getApplication().getAlcohol().getName());
+            }
+
+            autoCompletionBinding = TextFields.bindAutoCompletion(searchbox, possibleSuggestions);
+
+
+            searchbox.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent ke) {
+
+                    autoCompletionBinding.setUserInput(searchbox.getText().trim());
+
+                }
+            });
         }
         switch (Authenticator.getInstance().getUserType()) {
             case SUPERAGENT:

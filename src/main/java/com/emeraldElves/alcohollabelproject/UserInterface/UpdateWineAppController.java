@@ -2,10 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
-import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
-import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
+import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
@@ -69,6 +66,8 @@ public class UpdateWineAppController {
     Boolean changedSugar=false;
     Boolean addedDeletedBondedWinery=false;
 
+    ProxyLabelImage proxyLabelImage;
+
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username) {
         this.main = main;
         this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
@@ -90,13 +89,15 @@ public class UpdateWineAppController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
+        String fileName = (System.currentTimeMillis() + ".jpeg");
+        java.nio.file.Path target = targetDir.resolve(fileName);// create new path ending with `name` content
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
         Image image = new Image(target.toUri().toString());
+        proxyLabelImage = new ProxyLabelImage(fileName);
         imageView.setImage(image);
     }
 
@@ -154,7 +155,10 @@ public class UpdateWineAppController {
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         CurrentlyBeingUpdated.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
+        if(proxyLabelImage != null)
+            CurrentlyBeingUpdated.setImage(proxyLabelImage);
         applicant.updateApplication(CurrentlyBeingUpdated);
+
 
         main.loadHomepage();
     }
