@@ -26,7 +26,7 @@ public class Main extends Application {
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.getIcons().add(new Image(("images/logo.png")));
         root.getStylesheets().add("/style/material.css");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root,1024,768));
         primaryStage.show();
         stage = primaryStage;
     }
