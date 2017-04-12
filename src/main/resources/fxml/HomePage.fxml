@@ -66,7 +66,7 @@
                </padding>
             </Button>
 
-            <Button fx:id="CreateUser" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onMouseClicked="#createNewUser" text="Create new user" />
+            <Button fx:id="CreateUser" layoutX="28.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#createNewUser" styleClass="button-raised" text="Create new user" />
             <Button layoutX="167.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" styleClass="button-raised" text="I'm Feeling Thirsty" />
             <Button fx:id="logButton" layoutX="672.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#loadLog" styleClass="button-raised" text="Login" />
             </children>
