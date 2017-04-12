@@ -1,10 +1,21 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.*;
+import com.emeraldElves.alcohollabelproject.Applicant;
+import com.emeraldElves.alcohollabelproject.ApplicantInterface;
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
+import com.emeraldElves.alcohollabelproject.LogManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -100,6 +111,10 @@ public class NewApplicationController {
     CheckBox distinctiveApproval;
     @FXML
     TextField distinctiveText;//relates to distinctive approval
+    @FXML
+    Button submitLabel;
+    @FXML
+    ImageView imageView;
 
 
 
@@ -133,22 +148,30 @@ public class NewApplicationController {
 
     private Main main;
 
+
     private SubmittedApplication application;
 
 
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
+        repIDNoTextField.setText(String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
+        permitNoTextField.setText(String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
+        addressField.setText(String.valueOf(application.getApplication().getManufacturer().getPhysicalAddress()));
+        phoneNumberField.setText(String.valueOf(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber()));
+        emailAddressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress()));
     }
 
 
     public void init(Main main){
-        init(main, null);
+//        init(main, null);
+        this.main = main;
     }
 
     public void nextPage(){
+
         LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
-        LogManager.getInstance().logAction("newApplicationController", "second log");
+
         Boolean formFilled=false;
         Boolean emailValid=false;
         Boolean phoneValid=false;
@@ -236,6 +259,12 @@ public class NewApplicationController {
 
             //form is now filled in so go to page 2 of label application
             Main.loadFXML("/fxml/newApplicationPage2.fxml", this);
+            if(application != null) {
+                alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
+                brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
+                alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+                formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
+            }
         }
     }
 
@@ -393,5 +422,50 @@ public class NewApplicationController {
     public void logout() {
         Authenticator.getInstance().logout();
         main.loadHomepage();
+    }
+
+    public void exemptionChecked(){
+        exemptionText.setDisable(!certOfExemption.isSelected());
+    }
+
+    public void distinctiveChecked(){
+        distinctiveText.setDisable(!distinctiveApproval.isSelected());
+    }
+
+    public void hideTheWine(){
+        wineVintageYearField.setDisable(true);
+        pHLevelField.setDisable(true);
+        varietalText.setDisable(true);
+        appellationText.setDisable(true);
+    }
+
+    public void showTheWine(){
+        wineVintageYearField.setDisable(false);
+        pHLevelField.setDisable(false);
+        varietalText.setDisable(false);
+        appellationText.setDisable(false);
+    }
+
+    public void submitImage() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(null);
+        java.nio.file.Path source = Paths.get((file.getPath()));
+        java.nio.file.Path targetDir = Paths.get("Labels");
+        try {
+            Files.createDirectories(targetDir);//in case target directory didn't exist
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
+        try {
+            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image image = new Image(target.toUri().toString());
+        imageView.setImage(image);
+
     }
 }
