@@ -47,11 +47,11 @@
          <children>
             <TableView fx:id="resultsTable" prefHeight="700.0" prefWidth="1024.0">
                <columns>
-                  <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="200.0" resizable="false" text="     Date" />
-                  <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="200.0" resizable="false" text="Brand" />
-                   <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="200.0" resizable="false" text="Fanciful" />
-                   <TableColumn fx:id="typeCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="200.0" resizable="false" text="Type" />
-                   <TableColumn fx:id="contentCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="200.0" resizable="false" text="Alcohol Content" />
+                  <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="     Date" />
+                  <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Brand" />
+                   <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Fanciful" />
+                   <TableColumn fx:id="typeCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Type" />
+                   <TableColumn fx:id="contentCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Alcohol Content" />
                </columns>
                <contextMenu>
                   <ContextMenu>
