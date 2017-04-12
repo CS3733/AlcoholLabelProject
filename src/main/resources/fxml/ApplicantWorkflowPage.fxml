@@ -17,7 +17,7 @@
             <Image url="@../images/ttbmasthead.gif" />
          </image>
       </ImageView>
-      <Button layoutX="32.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
+      <Button layoutX="62.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
       <Button layoutX="462.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#MakeNewApplication" styleClass="button-raised" text="Submit new application" />
       <Button layoutX="702.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#reviseApplication" styleClass="button-raised" text="Revise Application" />
       <HBox layoutX="62.0" layoutY="250.0" prefHeight="500.0" prefWidth="900.0">
