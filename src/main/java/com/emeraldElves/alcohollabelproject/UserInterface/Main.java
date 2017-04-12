@@ -26,7 +26,7 @@ public class Main extends Application {
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.getIcons().add(new Image(("images/logo.png")));
         root.getStylesheets().add("/style/material.css");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root,1024,768));
         primaryStage.show();
         stage = primaryStage;
     }
@@ -249,6 +249,17 @@ public class Main extends Application {
         }
     }
 
+    public void loadLabelPage(SubmittedApplication application){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DisplayLabel.fxml"));
+        try {
+            Parent root = loader.load();
+            ApprovalProcessController controller = loader.getController();
+            controller.init(this, application);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }

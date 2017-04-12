@@ -19,13 +19,14 @@
     <rowConstraints>
         <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
+        <Pane prefHeight="644.0" prefWidth="1024.0" GridPane.rowIndex="2">
             <children>
-            <TextField fx:id="searchbox" layoutX="341.0" layoutY="19.0" prefHeight="36.0" prefWidth="166.0" promptText="Search..." />
-            <Button layoutX="521.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" styleClass="button-raised" text="Search" />
-                <GridPane layoutX="1.0" layoutY="125.0" prefHeight="365.0" prefWidth="802.0">
+            <TextField fx:id="searchbox" layoutX="341.0" layoutY="19.0" prefHeight="36.0" prefWidth="360.0" promptText="Search..." />
+            <Button layoutX="726.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" styleClass="button-raised" text="Search" />
+                <GridPane layoutX="98.0" layoutY="140.0" prefHeight="395.0" prefWidth="838.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -60,20 +61,20 @@
                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="802.0" text="Recently Approved Beverages" />
                     </children>
                 </GridPane>
-            <Button fx:id="utility" layoutX="644.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="121.0" styleClass="button-raised" text="test">
+            <Button fx:id="utility" layoutX="852.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="121.0" styleClass="button-raised" text="test">
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
             </Button>
 
-            <Button fx:id="CreateUser" layoutX="28.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#createNewUser" styleClass="button-raised" text="Create new user" />
+            <Button fx:id="CreateUser" layoutX="51.0" layoutY="556.0" mnemonicParsing="false" onMouseClicked="#createNewUser" styleClass="button-raised" text="Create new user" />
             <Button layoutX="167.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" styleClass="button-raised" text="I'm Feeling Thirsty" />
-            <Button fx:id="logButton" layoutX="672.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#loadLog" styleClass="button-raised" text="Login" />
+            <Button fx:id="logButton" layoutX="884.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" styleClass="button-raised" text="Login" />
             </children>
         </Pane>
-      <Pane>
+      <Pane prefHeight="124.0" prefWidth="1024.0">
          <children>
-            <ImageView fitHeight="181.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="144.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/ttbmasthead.gif" />
                </image>
