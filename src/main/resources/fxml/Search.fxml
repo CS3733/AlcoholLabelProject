@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SearchController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SearchController">
 <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" />
   </columnConstraints>
@@ -37,7 +37,7 @@
       <Pane prefHeight="100.0" prefWidth="817.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
             <Group layoutX="260.0" layoutY="36.0" />
-            <Button fx:id="saveBtn" layoutX="912.0" layoutY="30.0" mnemonicParsing="false" onAction="#saveCSV" prefHeight="25.0" prefWidth="98.0" styleClass="button-raised" text="Export Results" />
+            <Button fx:id="saveBtn" layoutX="882.0" layoutY="30.0" mnemonicParsing="false" onAction="#saveCSV" prefHeight="40.0" prefWidth="128.0" styleClass="button-raised" text="Export Results" />
             <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="130.0" layoutY="76.0" prefHeight="20.0" prefWidth="764.0" text="N/A" />
             <Button layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#goHome" styleClass="button-raised" text="Home" />
             <Button fx:id="searchBtn" layoutX="629.0" layoutY="30.0" mnemonicParsing="false" onAction="#search" styleClass="button-raised" text="Search" />
