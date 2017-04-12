@@ -14,16 +14,19 @@ public class TTBAgentInterface {
     private String username;
 
     public TTBAgentInterface(String username){
-        agent = new TTBAgent(username, (int)Math.random());
+        agent = new TTBAgent(username, (int)Math.random());//TODO 
         storage = Storage.getInstance();
+        agent.setCurrentApps(storage.getAssignedApplications(username));
         this.username = username;
     }
 
     public boolean approveApplication(SubmittedApplication application, Date expirationDate){
+        agent.getCurrentApplications().remove(application);
         return storage.approveApplication(application, username, expirationDate);
     }
 
     public boolean rejectApplication(SubmittedApplication application, String reason){
+        agent.getCurrentApplications().remove(application);
         return storage.rejectApplication(application,reason);
     }
 
