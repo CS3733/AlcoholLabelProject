@@ -14,6 +14,10 @@ public class UpdateApplicationController {
 
     public ApplicationStatus status;//get status from database
     @FXML
+    TextField grapeVarietalField;
+    @FXML
+    TextField AppellationField;
+    @FXML
     TextField alcoholContentField;
     @FXML
     TextField wineVintageYearField;
@@ -93,6 +97,7 @@ public class UpdateApplicationController {
         AlcoholType alcoholType = alcoholInfo.getAlcoholType();
         double pH;
         int vintageYear;
+
         if(alcoholType == AlcoholType.WINE) {
             pH = Double.parseDouble(phLevelField.getText());
             vintageYear = Integer.parseInt(wineVintageYearField.getText());
