@@ -170,11 +170,6 @@ public class AlcoholDatabase {
         //
         boolean worked;//whether or not it added stuff to database
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> develop
         int appID;
 
         if (application.getApplicationID() == -1) {
