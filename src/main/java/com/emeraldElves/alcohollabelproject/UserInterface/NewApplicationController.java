@@ -140,6 +140,11 @@ public class NewApplicationController {
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
+        repIDNoTextField.setText(String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
+        permitNoTextField.setText(String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
+        addressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress()));
+        phoneNumberField.setText(String.valueOf(application.getApplication().getManufacturer().getPhoneNumber()));
+        emailAddressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress()));
     }
 
 
@@ -148,6 +153,7 @@ public class NewApplicationController {
     }
 
     public void nextPage(){
+
         LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
         LogManager.getInstance().logAction("newApplicationController", "second log");
         Boolean formFilled=false;
@@ -237,6 +243,10 @@ public class NewApplicationController {
 
             //form is now filled in so go to page 2 of label application
             Main.loadFXML("/fxml/newApplicationPage2.fxml", this);
+            alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
+            brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
+            alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+            formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
         }
     }
 
