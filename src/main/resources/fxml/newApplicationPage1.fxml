@@ -14,8 +14,8 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewApplicationController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.00001525878906" minWidth="10.0" prefWidth="291.66668701171875" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="428.33331298828125" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.00001525878906" minWidth="10.0" prefWidth="269.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="451.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.3333740234375" minWidth="10.0" prefWidth="303.6666259765625" />
   </columnConstraints>
   <rowConstraints>
@@ -33,7 +33,10 @@
       <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="64.66668701171875" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" styleClass="button-raised" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" styleClass="button-raised" text="Logout" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="20.0" />
+         </GridPane.margin></Button>
       <ImageView fitHeight="91.0" fitWidth="1024.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
          <image>
             <Image url="@../images/ttbmasthead.gif" />
@@ -65,7 +68,7 @@
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="9">
+      <GridPane prefHeight="108.0" prefWidth="382.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="316.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="113.0" />
@@ -77,7 +80,7 @@
         </rowConstraints>
          <children>
             <CheckBox fx:id="certOfApproval" mnemonicParsing="false" text="Certificate of Label Approval" />
-            <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onAction="#exemptionChecked" onMouseClicked="#exemptionChecked" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
+            <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onAction="#exemptionChecked" onMouseClicked="#exemptionChecked" prefHeight="40.0" prefWidth="337.0" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
             <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
             <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="exemptionText" disable="true" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
