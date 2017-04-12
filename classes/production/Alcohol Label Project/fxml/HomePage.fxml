@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -23,8 +24,12 @@
     <children>
         <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
             <children>
-            <TextField fx:id="searchbox" layoutX="341.0" layoutY="19.0" prefHeight="36.0" prefWidth="166.0" promptText="Search..." />
-            <Button layoutX="521.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" styleClass="button-raised" text="Search" />
+            <Group layoutX="401.0" layoutY="16.0">
+               <children>
+                  <TextField fx:id="searchbox" layoutY="3.0" promptText="Search..." />
+                  <Button layoutX="186.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" styleClass="button-raised" text="Search" />
+               </children>
+            </Group>
                 <GridPane layoutX="1.0" layoutY="125.0" prefHeight="365.0" prefWidth="802.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,9 +71,8 @@
                </padding>
             </Button>
 
-            <Button fx:id="CreateUser" layoutX="28.0" layoutY="476.0" mnemonicParsing="false" onMouseClicked="#createNewUser" styleClass="button-raised" text="Create new user" />
-            <Button layoutX="167.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" styleClass="button-raised" text="I'm Feeling Thirsty" />
-            <Button fx:id="logButton" layoutX="672.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#loadLog" styleClass="button-raised" text="Login" />
+            <Button fx:id="CreateUser" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onMouseClicked="#createNewUser" text="Create new user" />
+            <Button layoutX="270.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" text="I'm Feeling Thirsty" />
             </children>
         </Pane>
       <Pane>
