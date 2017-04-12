@@ -169,8 +169,7 @@ public class AlcoholDatabase {
 
         //
         boolean worked;//whether or not it added stuff to database
-
-        String image="";
+        
 
         int appID;
 

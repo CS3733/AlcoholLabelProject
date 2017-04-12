@@ -61,6 +61,7 @@ public class SubmittedApplication {
     public Applicant getApplicant() {
         return applicant;
     }
+    public ILabelImage getproxyImage(){return proxyImage;}
 
     public void setApplication(ApplicationInfo application) {
         this.application = application;
