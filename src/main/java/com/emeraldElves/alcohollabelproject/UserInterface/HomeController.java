@@ -79,6 +79,9 @@ public class HomeController {
                 Authenticator.getInstance().logout();
                 main.loadHomepage();
                 break;
+            case SUPERAGENT:
+                Authenticator.getInstance().logout();
+                main.loadHomepage();
             case BASIC:
                 main.loadLoginPage();
                 break;
@@ -140,6 +143,8 @@ public class HomeController {
         switch (Authenticator.getInstance().getUserType()) {
             case SUPERAGENT:
                 CreateUser.setVisible(true);
+                utility.setVisible(false);
+                logButton.setText("Log Out");
                 break;
             case TTBAGENT:
                 CreateUser.setVisible(false);

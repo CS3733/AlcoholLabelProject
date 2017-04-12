@@ -62,7 +62,6 @@ public class SearchController {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
                 DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
                 Date date = p.getValue().getApplication().getSubmissionDate();
-                date.setYear(date.getYear() - 1900);
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
             }
         });
