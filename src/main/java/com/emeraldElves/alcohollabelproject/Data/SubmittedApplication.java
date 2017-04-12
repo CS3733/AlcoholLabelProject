@@ -35,11 +35,11 @@ public class SubmittedApplication {
         this.application = application;
         this.status = status;
         this.applicant = applicant;
-<<<<<<< HEAD
+
         this.proxyImage = new ProxyLabelImage("");
-=======
+
         ProxyLabelImage proxyImage = new ProxyLabelImage("");
->>>>>>> develop
+
     }
 
     public int getApplicationID() {

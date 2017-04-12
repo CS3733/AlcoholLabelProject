@@ -142,4 +142,7 @@ public class ApprovalProcessController {
     public void MoveToNextApp() {
 
     }
+    public void viewLabel(){
+       // main.loadLabelPage(application.)
+    }
 }
