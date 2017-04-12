@@ -83,6 +83,7 @@ public class HomeController {
             case SUPERAGENT:
                 Authenticator.getInstance().logout();
                 main.loadHomepage();
+                break;
             case BASIC:
                 main.loadLoginPage();
                 break;

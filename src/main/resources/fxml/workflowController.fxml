@@ -42,7 +42,7 @@
         </ImageView>
         <Button mnemonicParsing="false" styleClass="button-raised" text="View Completed Applications" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="BOTTOM" />
         <Label text="Assigned Applications:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-        <Label text="Welcome, [TTBAgentName]." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+        <Label text="Welcome, [TTBAgentName]." visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
         <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
         <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
         <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
