@@ -115,25 +115,25 @@ public class HomeController {
         for (int i = 0; i < submitted.size(); i++) {
             switch (i) {
                 case 0:
-                    label0.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "    -    " + submitted.get(i).getApplication().getAlcohol().getName());
+                    label0.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
                     label0.setOnMouseClicked(event -> {
                         main.loadDetailedSearchPage(submitted.get(0), submitted.get(0).getApplication().getAlcohol().getBrandName());
                     });
                     break;
                 case 1:
-                    label1.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "    -    " + submitted.get(i).getApplication().getAlcohol().getName());
+                    label1.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
                     label1.setOnMouseClicked(event -> {
                         main.loadDetailedSearchPage(submitted.get(1), submitted.get(1).getApplication().getAlcohol().getBrandName());
                     });
                     break;
                 case 2:
-                    label2.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "    -    " + submitted.get(i).getApplication().getAlcohol().getName());
+                    label2.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
                     label2.setOnMouseClicked(event -> {
                         main.loadDetailedSearchPage(submitted.get(2), submitted.get(2).getApplication().getAlcohol().getBrandName());
                     });
                     break;
                 case 3:
-                    label3.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "    -    " + submitted.get(i).getApplication().getAlcohol().getName());
+                    label3.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
                     label3.setOnMouseClicked(event -> {
                         main.loadDetailedSearchPage(submitted.get(3), submitted.get(3).getApplication().getAlcohol().getBrandName());
                     });

@@ -36,7 +36,7 @@ public class AlcoholDatabase {
      * @return A list of the most recently approved applications ordered from most recent to least recent.
      */
     public List<SubmittedApplication> getMostRecentApproved(int numApplications) {
-        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "submissionTime ASC");
+        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "approvalDate DESC");
         return getApplicationsFromResultSet(results, numApplications);
     }
 
