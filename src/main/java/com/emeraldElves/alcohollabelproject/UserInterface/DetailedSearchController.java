@@ -37,7 +37,7 @@ public class DetailedSearchController {
     Label submissionDate;
 
     @FXML
-    Label company;
+    Label content;
 
     @FXML
     Label origin;
@@ -69,7 +69,7 @@ public class DetailedSearchController {
         DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         Date date = application.getApplication().getSubmissionDate();
         submissionDate.setText(dateFormat.format(date));
-        company.setText(application.getApplication().getManufacturer().getCompany());
+        content.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent())+"%");
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {
             case IMPORTED:
