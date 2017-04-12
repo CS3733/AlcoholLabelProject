@@ -165,7 +165,7 @@ public class NewApplicationController {
 
 
     public void init(Main main){
-        init(main, null);
+        //init(main, null);
     }
 
     public void nextPage(){
@@ -259,10 +259,12 @@ public class NewApplicationController {
 
             //form is now filled in so go to page 2 of label application
             Main.loadFXML("/fxml/newApplicationPage2.fxml", this);
-            alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
-            brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
-            alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
-            formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
+            if(application != null) {
+                alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
+                brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
+                alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+                formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
+            }
         }
     }
 
