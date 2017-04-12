@@ -142,6 +142,7 @@ public class Main extends Application {
         }
     }
 
+
     public void loadNewApplicationPage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
         try {
@@ -253,6 +254,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DisplayLabel.fxml"));
         try {
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             ApprovalProcessController controller = loader.getController();
             controller.init(this, application);
             stage.getScene().setRoot(root);
