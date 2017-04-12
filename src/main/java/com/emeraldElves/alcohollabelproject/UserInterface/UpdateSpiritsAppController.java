@@ -71,23 +71,23 @@ public class UpdateSpiritsAppController {
 
     public void uploadImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg");
         fileChooser.getExtensionFilters().add(extFilter);
-        file = fileChooser.showOpenDialog(null);
-        Path source = Paths.get((file.getPath()));
-        Path targetDir = Paths.get("Labels");
+        File file = fileChooser.showOpenDialog(null);
+        java.nio.file.Path source = Paths.get((file.getPath()));
+        java.nio.file.Path targetDir = Paths.get("Labels");
         try {
             Files.createDirectories(targetDir);//in case target directory didn't exist
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Path target = targetDir.resolve(file.getName());// create new path ending with `name` content
+        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image image = new Image(String.valueOf(target));
+        Image image = new Image(target.toUri().toString());
         imageView.setImage(image);
     }
 
