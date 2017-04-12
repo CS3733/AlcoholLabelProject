@@ -39,7 +39,7 @@ public class TTBAgent {
      * getCurrentApplications(): get list of applications TTB agent is currently working on
      * @return ArrayList of current applications
      */
-    ArrayList<SubmittedApplication> getCurrentApplications() {
+    public ArrayList<SubmittedApplication> getCurrentApplications() {
         return currentApps;
     }
 }
