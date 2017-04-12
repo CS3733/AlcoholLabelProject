@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateSpiritsAppController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateSpiritsAppController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.3333435058594" minWidth="10.0" prefWidth="285.3333435058594" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="434.6666564941406" />
@@ -37,8 +37,8 @@
       <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-      <ImageView fitHeight="87.0" fitWidth="720.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" styleClass="button-raised" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+      <ImageView fitHeight="87.0" fitWidth="1024.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
          <image>
             <Image url="@../images/ttbmasthead.gif" />
          </image>
@@ -59,14 +59,14 @@
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
-      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="14" />
+      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="14" />
       <Label text="Please select any changes that were made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
       <CheckBox fx:id="changeFormat" mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="8" />
       <CheckBox fx:id="changeNetContents" mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <CheckBox fx:id="deleteInfo" mnemonicParsing="false" text="Deleted non-mandatory information (text, graphics, etc)" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <CheckBox fx:id="repositionInfo" mnemonicParsing="false" text="Repositioned any label information" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <ImageView fx:id="imageView" fitHeight="161.0" fitWidth="435.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Button fx:id="uploadImage" mnemonicParsing="false" onMouseClicked="#uploadImage" text="Upload Label Image" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button fx:id="uploadImage" mnemonicParsing="false" onMouseClicked="#uploadImage" styleClass="button-raised" text="Upload Label Image" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>
