@@ -34,6 +34,8 @@ public class NewApplicationController {
     @FXML
     RadioButton wine;
     @FXML
+    RadioButton spirits;
+    @FXML
     TextField alcoholName;
     @FXML
     TextField brandNameField;
@@ -280,6 +282,7 @@ public class NewApplicationController {
         ToggleGroup productType = new ToggleGroup();
         beer.setToggleGroup(productType);
         wine.setToggleGroup(productType);
+        spirits.setToggleGroup(productType);
 
         //product source group
         ToggleGroup productSource = new ToggleGroup();
@@ -293,7 +296,7 @@ public class NewApplicationController {
             pSourceErrorField.setText("");
         }
         if(productType.getSelectedToggle() == null) {
-            pTypeErrorField.setText("Please select whether the alcohol is a beer or wine.");
+            pTypeErrorField.setText("Please select whether the alcohol is a malt beverage, wine, or distilled spirits.");
         } else{
             pTypeErrorField.setText("");
         }
@@ -357,12 +360,15 @@ public class NewApplicationController {
                 pSource = ProductSource.IMPORTED;
             }
 
-            //Checking if the product is a beer or wine by checking the product source radio button group
+            //Checking if the product is a beer, wine or spirits by checking the product source radio button group
             if (productType.getSelectedToggle() == beer) {
                 alcType = AlcoholType.BEER;
             }
             else if (productType.getSelectedToggle() == wine) {
                 alcType = AlcoholType.WINE;
+            }
+            else if (productType.getSelectedToggle() == spirits) {
+                alcType = AlcoholType.DISTILLEDSPIRITS;
             }
 
             //sets alc info fields

@@ -14,7 +14,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="296.6666564941406" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="424.0" />
@@ -72,22 +74,22 @@
             <GridPane.margin>
                 <Insets right="10.0" />
             </GridPane.margin></Text>
-        <GridPane onMouseClicked="#hideTheWine" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <GridPane prefHeight="33.0" prefWidth="422.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="162.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="119.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="141.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <RadioButton fx:id="beer" mnemonicParsing="false" onAction="#hideTheWine" onMouseClicked="#hideTheWine" text="Beer" GridPane.rowIndex="1">
+                <RadioButton fx:id="beer" mnemonicParsing="false" text="Malt beverages">
                <toggleGroup>
                         <ToggleGroup fx:id="ProductTypeGroup" />
                </toggleGroup></RadioButton>
-                <RadioButton fx:id="wine" mnemonicParsing="false" onAction="#showTheWine" onMouseClicked="#showTheWine" text="Wine" toggleGroup="$ProductTypeGroup" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <RadioButton fx:id="wine" mnemonicParsing="false" prefWidth="104.0" text="Wine" toggleGroup="$ProductTypeGroup" GridPane.columnIndex="1" />
+            <RadioButton fx:id="spirits" mnemonicParsing="false" prefHeight="18.0" prefWidth="119.0" text="Distilled Spirits" toggleGroup="$ProductTypeGroup" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
             </children>
         </GridPane>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fanciful Name (if any):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
