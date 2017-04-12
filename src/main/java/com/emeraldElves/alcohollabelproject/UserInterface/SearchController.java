@@ -5,6 +5,7 @@ import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -128,24 +129,31 @@ public class SearchController {
         autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
 
 
-        searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        /*searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
 
                 autoCompletionBinding.setUserInput(searchField.getText().trim());
-                search(searchField.getText().trim());
+                //search(searchField.getText().trim());
 
 
             }
-        });
-        
-        //main.stage.
+        });*/
+
+        searchField.setText(searchTerm);
         search(searchTerm);
     }
     public void search(ActionEvent e) {
-        search(searchField.getText());
+        Platform.runLater(() -> {
+            search(searchField.getText());
+        });
     }
-
+    public void onKeyType(KeyEvent e){
+        //delay is required for .getText() to get the updated field
+        Platform.runLater(() -> {
+            search(searchField.getText());
+        });
+    }
     public void search(String searchTerm) {
         //Remove previous results
         data.remove(0, data.size());
