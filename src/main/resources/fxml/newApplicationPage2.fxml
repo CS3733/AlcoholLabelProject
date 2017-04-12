@@ -128,12 +128,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <RadioButton fx:id="wine" mnemonicParsing="false" prefWidth="104.0" text="Wine" GridPane.columnIndex="1">
-                    <toggleGroup>
+                <RadioButton fx:id="beer" mnemonicParsing="false" text="Malt beverages">
+               <toggleGroup>
                         <ToggleGroup fx:id="ProductTypeGroup" />
-                    </toggleGroup></RadioButton>
-                <RadioButton fx:id="beer" mnemonicParsing="false" text="Malt beverages" toggleGroup="$ProductTypeGroup" />
-            <RadioButton fx:id="spirits" mnemonicParsing="false" prefHeight="18.0" prefWidth="119.0" text="Distilled Spirits" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+               </toggleGroup></RadioButton>
+                <RadioButton fx:id="wine" mnemonicParsing="false" prefWidth="104.0" text="Wine" toggleGroup="$ProductTypeGroup" GridPane.columnIndex="1" />
+            <RadioButton fx:id="spirits" mnemonicParsing="false" prefHeight="18.0" prefWidth="119.0" text="Distilled Spirits" toggleGroup="$ProductTypeGroup" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
             </children>
         </GridPane>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fanciful Name (if any):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="5">

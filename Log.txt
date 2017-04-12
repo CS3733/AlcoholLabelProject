@@ -21,3 +21,8 @@ Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoa
 04.11.2017.20.51.58 DATABASE Could not connect to databaase: ttbDB
 Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoader@2a139a55, see the next exception for details.
 04.11.2017.20.52.08 DATABASE Connected to database: ttbDB
+04.11.2017.21.02.13 DATABASE Connected to database: ttbDB
+04.11.2017.21.02.35 newApplicationController Logged Click from first page of the new Application
+04.11.2017.21.02.35 newApplicationController second log
+04.11.2017.21.03.03 newApplicationController Logged Click from first page of the new Application
+04.11.2017.21.03.03 newApplicationController second log
