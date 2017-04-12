@@ -21,3 +21,29 @@ Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoa
 04.11.2017.19.02.17 DATABASE Connected to database: ttbDB
 04.11.2017.19.03.28 DATABASE Connected to database: ttbDB
 04.11.2017.19.08.04 DATABASE Connected to database: ttbDB
+04.11.2017.19.39.30 DATABASE Connected to database: ttbDB
+04.11.2017.19.40.02 DATABASE Connected to database: ttbDB
+04.11.2017.19.40.42 DATABASE Connected to database: ttbDB
+04.11.2017.19.41.34 DATABASE Connected to database: ttbDB
+04.11.2017.19.42.57 DATABASE Connected to database: ttbDB
+04.11.2017.19.44.02 newApplicationController Logged Click from first page of the new Application
+04.11.2017.19.44.02 newApplicationController second log
+04.11.2017.19.46.15 DATABASE Connected to database: ttbDB
+04.11.2017.19.47.37 newApplicationController Logged Click from first page of the new Application
+04.11.2017.19.47.37 newApplicationController second log
+04.11.2017.19.49.39 DATABASE Connected to database: ttbDB
+04.11.2017.19.54.45 DATABASE Could not connect to databaase: ttbDB
+Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoader@4554617c, see the next exception for details.
+04.11.2017.19.55.29 DATABASE Could not connect to databaase: ttbDB
+Failed to start database 'ttbDB' with class loader sun.misc.Launcher$AppClassLoader@4554617c, see the next exception for details.
+04.11.2017.20.02.08 DATABASE Connected to database: ttbDB
+04.11.2017.20.03.15 newApplicationController Logged Click from first page of the new Application
+04.11.2017.20.03.15 newApplicationController second log
+04.11.2017.20.06.17 newApplicationController Logged Click from first page of the new Application
+04.11.2017.20.06.17 newApplicationController second log
+04.11.2017.20.07.06 DATABASE Connected to database: ttbDB
+04.11.2017.20.07.35 newApplicationController Logged Click from first page of the new Application
+04.11.2017.20.07.35 newApplicationController second log
+04.11.2017.20.09.41 DATABASE Connected to database: ttbDB
+04.11.2017.20.10.05 newApplicationController Logged Click from first page of the new Application
+04.11.2017.20.10.05 newApplicationController second log

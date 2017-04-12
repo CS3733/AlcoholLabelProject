@@ -56,9 +56,8 @@ public class DetailedSearchController {
                 break;
         }
         alcoholType.setText(type);
-        DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-        date.setYear(date.getYear() - 1900);
         submissionDate.setText(dateFormat.format(date));
         company.setText(application.getApplication().getManufacturer().getCompany());
         String productSource = "";

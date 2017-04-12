@@ -351,7 +351,7 @@ public class NewApplicationController {
                     permitNo, applicantPhone, applicantEmail);
 
             //creates and sets the date value
-            Date newDate = java.sql.Date.valueOf(datePicker.getValue());
+            Date newDate =DateHelper.getDate(datePicker.getValue().getDayOfMonth(),datePicker.getValue().getMonthValue() - 1,datePicker.getValue().getYear());
 
             // Creates a new application info and sets data
             if(extraInfoText.getText().isEmpty()){
