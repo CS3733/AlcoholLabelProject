@@ -85,9 +85,9 @@ public class ApprovalProcessController {
         alcoholType.setText(type);
         DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-        submissionDate.setText("Submission date: " + dateFormat.format(date));
-        applicationID.setText("Application ID: " + String.valueOf(application.getApplicationID()));
-        company.setText("Company: " + application.getApplication().getManufacturer().getCompany());
+        submissionDate.setText( dateFormat.format(date));
+        applicationID.setText( String.valueOf(application.getApplicationID()));
+        company.setText(application.getApplication().getManufacturer().getCompany());
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {
             case IMPORTED:
@@ -97,14 +97,14 @@ public class ApprovalProcessController {
                 productSource = "Domestic";
                 break;
         }
-        origin.setText("Source: " + productSource);
-        applicantID.setText("Representative ID: " + String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
-        authorizedName.setText("Authorized name: " + application.getApplication().getManufacturer().getName());
-        physicalAddress.setText("Physical Address: " + application.getApplication().getManufacturer().getPhysicalAddress());
-        permitNum.setText("Permit number: " + String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
-        phoneNum.setText("Phone number: " + application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
-        emailAddress.setText("Email address: " + application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
-        alcoholContent.setText("Alcohol content: " + String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+        origin.setText( productSource);
+        applicantID.setText( String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
+        authorizedName.setText( application.getApplication().getManufacturer().getName());
+        physicalAddress.setText( application.getApplication().getManufacturer().getPhysicalAddress());
+        permitNum.setText( String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
+        phoneNum.setText(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
+        emailAddress.setText( application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
+        alcoholContent.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
     }
 
     public void GoHome() {
