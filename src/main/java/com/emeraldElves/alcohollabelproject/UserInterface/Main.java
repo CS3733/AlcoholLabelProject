@@ -4,6 +4,7 @@ import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -30,6 +31,17 @@ public class Main extends Application {
         primaryStage.show();
         stage = primaryStage;
     }
+
+
+    public void printPage(){
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if(job != null){
+            job.showPrintDialog(stage);
+            job.printPage(stage.getScene().getRoot());
+            job.endJob();
+        }
+    }
+
 
     /**
      * Load an FXML file and set the stage to the new UI.
