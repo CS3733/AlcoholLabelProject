@@ -148,6 +148,10 @@ public class ApprovalProcessController {
         main.loadWorkflowPage();
     }
 
+    public void printPage(){
+        main.printPage();
+    }
+
     public void MoveToNextApp() {
 
     }
