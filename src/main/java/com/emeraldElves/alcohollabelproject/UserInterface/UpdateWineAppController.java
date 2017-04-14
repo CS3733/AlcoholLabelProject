@@ -130,8 +130,8 @@ public class UpdateWineAppController {
 
     public void submitApp() {
         AlcoholType alcoholType = AlcoholType.BEER;
-
-        if (deleteInfo.isSelected()) {
+// commented these out
+       /* if (deleteInfo.isSelected()) {
             deletedInfo = true;
         }
         if (repositionInfo.isSelected()){
@@ -152,7 +152,7 @@ public class UpdateWineAppController {
         if (addDeleteBondedWinery.isSelected()){
             addedDeletedBondedWinery=true;
         }
-
+*/
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         CurrentlyBeingUpdated.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
         if(proxyLabelImage != null)
