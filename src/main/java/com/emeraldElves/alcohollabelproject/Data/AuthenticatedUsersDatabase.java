@@ -114,23 +114,21 @@ public class AuthenticatedUsersDatabase {
 
     /**
      * Adds a potential user to database to be accepted/rejected by superagent
-     * @param username username of potential agent
-     * @param password password of potential agent
-     * @param userType type of potential agent
+     * @param user the potential user to bee added
      * @return Whether or not it added the potential user to database successfully
      */
-    public boolean addPotentialUser(String username, String password, UserType userType){
+    public boolean addPotentialUser(PotentialUser user){
         boolean worked;
         // I dont think i need to check database, because you cant update if its already in queue
         try{
-            worked = db.insert("'" + username + "', '"
-                    + password + "', "
-                    + userType, "NewApplicant");
+            worked = db.insert("'" + user.getUsername() + "', '"
+                    + user.getPassword() + "', "
+                    + user.getUserType().getValue(), "NewApplicant");
             if(!worked){ throw new SQLException("Failed to add user");}
         }
         catch(SQLException e){
             e.printStackTrace();
-            return false;
+            return false;//dont think this is the right way to do it
         }
 
         return true;

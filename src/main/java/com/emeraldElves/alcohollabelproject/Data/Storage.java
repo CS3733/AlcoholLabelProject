@@ -142,8 +142,8 @@ public class Storage {
         }
     }
 
-    public boolean applyForUser(String username, String password, UserType userType){
-        usersDB.addPotentialUser(username,password,userType);
+    public boolean applyForUser(PotentialUser user){
+        usersDB.addPotentialUser(user.getUsername(),user.getPassword(),user.getUserType());
         //call superuserworkflow controller
         return true;
     }
