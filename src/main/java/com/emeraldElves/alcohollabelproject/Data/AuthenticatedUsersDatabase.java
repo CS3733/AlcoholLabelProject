@@ -1,7 +1,11 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.Log;
+import com.emeraldElves.alcohollabelproject.Data.UserType;
 
+import com.emeraldElves.alcohollabelproject.*;
+
+import javax.jws.soap.SOAPBinding;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -132,6 +136,25 @@ public class AuthenticatedUsersDatabase {
         }
 
         return true;
+    }
+
+    public List<PotentialUser> getPotentialUsers(){
+        ResultSet resultSet = db.select("*", "NewApplicant");
+        List<PotentialUser> users = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                int usertype = resultSet.getInt("type");
+                UserType useType = UserType.fromInt(usertype);
+
+                users.add(new PotentialUser(username, password, useType));
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return users;
     }
 
 

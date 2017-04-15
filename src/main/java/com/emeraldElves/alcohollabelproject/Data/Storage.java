@@ -143,10 +143,12 @@ public class Storage {
     }
 
     public boolean applyForUser(PotentialUser user){
-        usersDB.addPotentialUser(user.getUsername(),user.getPassword(),user.getUserType());
+        usersDB.addPotentialUser(user);
         //call superuserworkflow controller
         return true;
     }
+
+    public List<PotentialUser> getPotentialUsers(){ return usersDB.getPotentialUsers();  }
 
     public boolean isValidUser(UserType usertype, String username, String password) {
         if (usertype == UserType.TTBAGENT) {
