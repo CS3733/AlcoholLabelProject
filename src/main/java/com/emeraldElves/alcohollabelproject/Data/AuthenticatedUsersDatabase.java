@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import com.emeraldElves.alcohollabelproject.Log;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -108,6 +110,30 @@ public class AuthenticatedUsersDatabase {
         if(isValidApplicant(userName, password))
             return UserType.APPLICANT;
         return UserType.BASIC;
+    }
+
+    /**
+     * Adds a potential user to database to be accepted/rejected by superagent
+     * @param username username of potential agent
+     * @param password password of potential agent
+     * @param userType type of potential agent
+     * @return Whether or not it added the potential user to database successfully
+     */
+    public boolean addPotentialUser(String username, String password, UserType userType){
+        boolean worked;
+        // I dont think i need to check database, because you cant update if its already in queue
+        try{
+            worked = db.insert("'" + username + "', '"
+                    + password + "', "
+                    + userType, "NewApplicant");
+            if(!worked){ throw new SQLException("Failed to add user");}
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 
 
