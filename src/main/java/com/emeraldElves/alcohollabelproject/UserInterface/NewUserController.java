@@ -1,14 +1,13 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-
 /**
  * Created by Essam on 4/4/2017.
  */
@@ -19,6 +18,8 @@ public class NewUserController {
     PasswordField passwordField;
     @FXML
     VBox errorMsg;
+    @FXML
+    Label typeLabel;
 
     private Main main;
 
@@ -33,7 +34,8 @@ public class NewUserController {
     public void createTTBAgent(){
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if(Storage.getInstance().createUser(UserType.TTBAGENT, username, password)){
+        UserType userType = UserType.fromInt(Integer.parseInt(typeLabel.getText()));
+        if(Storage.getInstance().applyForUser(new PotentialUser(username, password, userType) )){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {

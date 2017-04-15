@@ -1,7 +1,5 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
-import javax.jws.soap.SOAPBinding;
-
 /**
  * Created by Kylec on 4/4/2017.
  */
@@ -27,11 +25,13 @@ public enum UserType {
                 return TTBAGENT;
             case 1:
                 return APPLICANT;
+
             case 2:
                 return BASIC;
             case 3:
                 return SUPERAGENT;
-            default: return BASIC;
+            default:
+                return BASIC;
         }
     }
 }
