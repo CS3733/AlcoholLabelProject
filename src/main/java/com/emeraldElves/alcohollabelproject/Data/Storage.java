@@ -101,8 +101,8 @@ public class Storage {
             database.createTable("NewApplicant",
                     new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
-                    new Database.TableField("type", "INTEGER NOT NULL") //0 Man, 1 TTB
-            Log.console("Created new NewApplicant table"));
+                    new Database.TableField("type", "INTEGER NOT NULL")); //0 Man, 1 TTB
+            Log.console("Created new NewApplicant table");
         }
         catch (SQLException e){
             Log.console("Used existing NewApplicant table");
