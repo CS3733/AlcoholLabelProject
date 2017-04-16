@@ -5,10 +5,10 @@ import com.emeraldElves.alcohollabelproject.COLASearch;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.application.Platform;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import javafx.application.Platform;
 import com.emeraldElves.alcohollabelproject.SearchObserver;
 import com.emeraldElves.alcohollabelproject.SearchSubject;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
-import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -78,44 +77,15 @@ public class SearchController {
     public void init(Main main, String searchTerm) {
         this.main = main;
         this.searchTerm = searchTerm;
-        dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-                Date date = p.getValue().getApplication().getSubmissionDate();
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
-            }
+        dateCol.setCellValueFactory(p -> {
+            DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+            Date date = p.getValue().getApplication().getSubmissionDate();
+            return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
         });
-        manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName()));
-            }
-        });
-        brandCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName()));
-            }
-        });
-        typeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                String alcoholName = p.getValue().getApplication().getAlcohol().getAlcoholType().name();
-                switch (alcoholName){
-                    case "DISTILLEDSPIRITS":
-                        return new ReadOnlyObjectWrapper<String>("Distilled Spirit");
-                    case "WINE":
-                        return new ReadOnlyObjectWrapper<String>("Wine");
-                    case "BEER":
-                        return new ReadOnlyObjectWrapper<String>("Beer");
-                    default:
-                        return new ReadOnlyObjectWrapper<String>("N/A");
-                }
-
-            }
-        });
-        contentCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent())));
-            }
-        });
+        manufacturerCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName())));
+        brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
+        typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name())));
+        contentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent()))));
         saveBtn.setDisable(data.size() == 0);
         descriptionLabel.setVisible(false);
         contextSaveBtn.setDisable(data.size() == 0);
@@ -131,13 +101,9 @@ public class SearchController {
             return row;
         });
 
-
-        //autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
-
-
-        /*searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent ke) {
+        List<SubmittedApplication> resultsList = search.searchApprovedApplications();
+        possibleSuggestions.clear();
+        resultsList.sort((lhs, rhs) -> lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName()));
 
                 autoCompletionBinding.setUserInput(searchField.getText().trim());
                 //search(searchField.getText().trim());

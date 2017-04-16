@@ -2,7 +2,6 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.TTBAgent;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
@@ -121,7 +120,6 @@ public class ApprovalProcessController {
         ApplicationStatusChanger changer = new ApplicationStatusChanger();
         changer.changeStatus(new ApproveCommand(application, true));
         changer.commitUpdates();
-        //Storage.getInstance().approveApplication(application, Authenticator.getInstance().getUsername(), date);
         main.loadWorkflowPage();
     }
 
