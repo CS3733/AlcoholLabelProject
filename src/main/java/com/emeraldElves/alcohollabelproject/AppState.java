@@ -1,7 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
 import com.emeraldElves.alcohollabelproject.Data.ApplicationAssigner;
-import com.emeraldElves.alcohollabelproject.Data.RoundRobin;
 
 /**
  * Created by Kylec on 4/3/2017.

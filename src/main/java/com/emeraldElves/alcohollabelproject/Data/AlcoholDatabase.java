@@ -55,8 +55,8 @@ public class AlcoholDatabase {
             while (results.next() && ids.size() < numApplications) {
                 ids.add(results.getInt("applicationID"));
             }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
+            for (Integer id : ids) {
+                applications.add(getApplicationByID(id));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,8 +79,8 @@ public class AlcoholDatabase {
             while (results.next()) {
                 ids.add(results.getInt("applicationID"));
             }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
+            for (Integer id : ids) {
+                applications.add(getApplicationByID(id));
             }
         } catch (SQLException e) {
             e.printStackTrace();

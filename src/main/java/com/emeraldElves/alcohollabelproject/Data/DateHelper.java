@@ -14,8 +14,7 @@ public class DateHelper {
         Calendar calendar = new Calendar.Builder()
                 .setDate(year, month, day)
                 .build();
-        Date date = calendar.getTime();
-        return date;
+        return calendar.getTime();
     }
 
     public static String dateToString(Date date) {
