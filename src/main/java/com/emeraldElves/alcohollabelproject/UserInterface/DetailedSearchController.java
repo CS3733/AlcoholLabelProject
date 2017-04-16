@@ -86,6 +86,11 @@ public class DetailedSearchController {
 
     }
 
+
+    public void printPage(){
+        main.printPage();
+    }
+
     public void GoHome() {
         main.loadHomepage();
     }
