@@ -138,6 +138,10 @@ public class AuthenticatedUsersDatabase {
         return true;
     }
 
+    /**
+     *
+     * @return all potential users in the NewApplicant table
+     */
     public List<PotentialUser> getPotentialUsers(){
         ResultSet resultSet = db.select("*", "NewApplicant");
         List<PotentialUser> users = new ArrayList<>();
