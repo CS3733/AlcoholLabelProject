@@ -1,20 +1,18 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.COLASearch;
-import com.emeraldElves.alcohollabelproject.Data.*;
-import javafx.application.Platform;
+import com.emeraldElves.alcohollabelproject.Data.DateHelper;
+import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.SearchObserver;
+import com.emeraldElves.alcohollabelproject.SearchSubject;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -58,8 +56,12 @@ public class SearchController {
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
     private COLASearch search;
 
+    private SearchSubject searchTermSubject;
+
     public SearchController() {
         this.search = new COLASearch();
+        searchTermSubject = new SearchSubject();
+        new SearchObserver(searchTermSubject, data);
     }
 
     public void init(Main main, String searchTerm) {
@@ -115,48 +117,27 @@ public class SearchController {
             }
         });
 
-        for(SubmittedApplication application: resultsList){
+        for (SubmittedApplication application : resultsList) {
             possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
             possibleSuggestions.add(application.getApplication().getAlcohol().getName());
         }
 
         autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
-
-
-        /*searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent ke) {
-
-                autoCompletionBinding.setUserInput(searchField.getText().trim());
-                //search(searchField.getText().trim());
-
-
-            }
-        });*/
-
         searchField.setText(searchTerm);
-        search(searchTerm);
+        notifyObservers();
     }
-    public void search(ActionEvent e) {
-        Platform.runLater(() -> {
-            search(searchField.getText());
-        });
-    }
-    public void onKeyType(KeyEvent e){
-        //delay is required for .getText() to get the updated field
-        Platform.runLater(() -> {
-            search(searchField.getText());
-        });
-    }
-    public void search(String searchTerm) {
-        //Remove previous results
-        data.remove(0, data.size());
 
-        //Find & add matching applications
-        List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim());
-        ;
-        data.addAll(resultsList); //change to resultsList
-        descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
+    public void search(ActionEvent e) {
+        notifyObservers();
+    }
+
+    public void onKeyType(KeyEvent e) {
+        notifyObservers();
+    }
+
+    private void notifyObservers() {
+        searchTermSubject.setSearchTerm(searchField.getText());
+        descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchField.getText() + "\"");
         descriptionLabel.setVisible(true);
         saveBtn.setDisable(data.size() == 0);
         contextSaveBtn.setDisable(data.size() == 0);
