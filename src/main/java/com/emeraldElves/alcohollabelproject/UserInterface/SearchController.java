@@ -1,23 +1,16 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.COLASearch;
-import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
-import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -70,33 +63,15 @@ public class SearchController {
     public void init(Main main, String searchTerm) {
         this.main = main;
         this.searchTerm = searchTerm;
-        dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-                Date date = p.getValue().getApplication().getSubmissionDate();
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
-            }
+        dateCol.setCellValueFactory(p -> {
+            DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+            Date date = p.getValue().getApplication().getSubmissionDate();
+            return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
         });
-        manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName()));
-            }
-        });
-        brandCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName()));
-            }
-        });
-        typeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name()));
-            }
-        });
-        contentCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent())));
-            }
-        });
+        manufacturerCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName())));
+        brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
+        typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name())));
+        contentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent()))));
         saveBtn.setDisable(data.size() == 0);
         descriptionLabel.setVisible(false);
         contextSaveBtn.setDisable(data.size() == 0);
@@ -114,12 +89,7 @@ public class SearchController {
 
         List<SubmittedApplication> resultsList = search.searchApprovedApplications();
         possibleSuggestions.clear();
-        Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
-            @Override
-            public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
-                return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
-            }
-        });
+        resultsList.sort((lhs, rhs) -> lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName()));
 
         for(SubmittedApplication application: resultsList){
             possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
@@ -144,15 +114,11 @@ public class SearchController {
         search(searchTerm);
     }
     public void search(ActionEvent e) {
-        Platform.runLater(() -> {
-            search(searchField.getText());
-        });
+        Platform.runLater(() -> search(searchField.getText()));
     }
     public void onKeyType(KeyEvent e){
         //delay is required for .getText() to get the updated field
-        Platform.runLater(() -> {
-            search(searchField.getText());
-        });
+        Platform.runLater(() -> search(searchField.getText()));
     }
     public void search(String searchTerm) {
         //Remove previous results
@@ -160,7 +126,6 @@ public class SearchController {
 
         //Find & add matching applications
         List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim());
-        ;
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);

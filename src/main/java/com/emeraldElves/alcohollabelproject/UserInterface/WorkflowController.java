@@ -5,10 +5,8 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
  */
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
-import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.util.List;
@@ -85,25 +83,15 @@ public class WorkflowController {
 
         // load application values into labels on FXML
         id1.setText(ids[0]);
-        id1.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[0]);
-        });
+        id1.setOnMouseClicked(e -> main.loadApprovalProcessController(submittedApps[0]));
         id2.setText(ids[1]);
-        id2.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[1]);
-        });
+        id2.setOnMouseClicked(e -> main.loadApprovalProcessController(submittedApps[1]));
         id3.setText(ids[2]);
-        id3.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[2]);
-        });
+        id3.setOnMouseClicked(e -> main.loadApprovalProcessController(submittedApps[2]));
         id4.setText(ids[3]);
-        id4.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[3]);
-        });
+        id4.setOnMouseClicked(e -> main.loadApprovalProcessController(submittedApps[3]));
         id5.setText(ids[4]);
-        id5.setOnMouseClicked(e -> {
-            main.loadApprovalProcessController(submittedApps[4]);
-        });
+        id5.setOnMouseClicked(e -> main.loadApprovalProcessController(submittedApps[4]));
         fanciful1.setText(appNames[0]);
         fanciful2.setText(appNames[1]);
         fanciful3.setText(appNames[2]);
@@ -136,8 +124,7 @@ public class WorkflowController {
      */
     public void queryDatabase(String ttbUsername) {
         List<SubmittedApplication> list = Storage.getInstance().getAssignedApplications(ttbUsername);
-        for (ListIterator<SubmittedApplication> itr = list.listIterator(); itr.hasNext(); ) {
-            SubmittedApplication current = itr.next();
+        for (SubmittedApplication current : list) {
             submittedApps[i] = current;
             ids[i] = String.valueOf(current.getApplicationID());
             appBrandNames[i] = current.getApplication().getAlcohol().getBrandName();
@@ -146,7 +133,6 @@ public class WorkflowController {
             // format date into string
             SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
             Date currentDate = current.getApplication().getSubmissionDate();
-            currentDate.setYear(currentDate.getYear() - 1900);
             dates[i] = dateFormat.format(currentDate);
             i++;
         }

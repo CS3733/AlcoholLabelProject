@@ -3,7 +3,6 @@ package com.emeraldElves.alcohollabelproject.Data;
 import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Log;
 
-import javax.naming.ServiceUnavailableException;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;

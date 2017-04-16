@@ -41,7 +41,7 @@ public class Main extends Application {
         FXMLLoader root = null;
         try {
             root = new FXMLLoader(Main.class.getResource(path));
-            stage.getScene().setRoot((Parent) root.load());
+            stage.getScene().setRoot(root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class Main extends Application {
         try {
             root = new FXMLLoader(Main.class.getResource(path));
             root.setController(controller);
-            stage.getScene().setRoot((Parent) root.load());
+            stage.getScene().setRoot(root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }

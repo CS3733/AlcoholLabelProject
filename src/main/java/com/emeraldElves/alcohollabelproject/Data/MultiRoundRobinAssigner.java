@@ -15,7 +15,7 @@ public class MultiRoundRobinAssigner implements IAssigner {
     }
 
     public String assignAgent(List<String> agentUserNames, String lastAssignedAgent) {
-        RoundRobin<String> roundRobin = new RoundRobin(agentUserNames);
+        RoundRobin<String> roundRobin = new RoundRobin<>(agentUserNames);
 
         if (currentApplicationCount < maxAppsPerAgent) {
             currentApplicationCount++;

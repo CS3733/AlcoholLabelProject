@@ -2,7 +2,6 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.TTBAgent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -117,7 +116,7 @@ public class ApprovalProcessController {
     public void Approve() {
         Date date = new Date();
         date = new Calendar.Builder()
-                .setDate(date.getYear() + 5, date.getMonth(), date.getDay())
+                .setDate(date.getYear() + 1, date.getMonth(), date.getDay())
                 .build().getTime();
         agentInterface.approveApplication(application,date);
         //Storage.getInstance().approveApplication(application, Authenticator.getInstance().getUsername(), date);

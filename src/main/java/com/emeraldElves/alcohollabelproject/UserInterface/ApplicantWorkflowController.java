@@ -2,10 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
-import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
-import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.collections.FXCollections;
 
 import javafx.collections.ObservableList;

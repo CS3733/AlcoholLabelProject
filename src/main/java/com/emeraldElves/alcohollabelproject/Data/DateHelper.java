@@ -12,7 +12,6 @@ public class DateHelper {
         Calendar calendar = new Calendar.Builder()
                 .setDate(year, month, day)
                 .build();
-        Date date = calendar.getTime();
-        return date;
+        return calendar.getTime();
     }
 }
