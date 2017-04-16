@@ -70,6 +70,7 @@ public class UpdateBeerAppController {
         status = CurrentlyBeingUpdated.getStatus();
         applicant= new ApplicantInterface(Authenticator.getInstance().getUsername());
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
+        datePicker.setValue(LocalDate.now());
     }
 
     public void uploadImage() {
