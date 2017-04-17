@@ -118,6 +118,7 @@ public class SearchController {
             return row;
         });
 
+        /*
         List<SubmittedApplication> resultsList = search.searchApprovedApplications();
         possibleSuggestions.clear();
         resultsList.sort((lhs, rhs) -> lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName()));
@@ -130,11 +131,12 @@ public class SearchController {
         //});
         refreshSuggestions();
         searchField.setText(searchTerm);
-        notifyObservers();
+        search(searchTerm);
     }
 
     public void search(ActionEvent e) {
-        notifyObservers();
+//        notifyObservers();
+        Platform.runLater(() -> search(searchField.getText()));
     }
 
     public void onKeyType(KeyEvent e){
