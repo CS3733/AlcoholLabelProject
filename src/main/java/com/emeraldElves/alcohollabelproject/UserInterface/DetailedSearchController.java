@@ -1,7 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -85,6 +84,11 @@ public class DetailedSearchController {
         Image image = new Image(target.toUri().toString());
         labelView.setImage(image);
 
+    }
+
+
+    public void printPage(){
+        main.printPage();
     }
 
     public void GoHome() {
