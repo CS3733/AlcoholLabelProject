@@ -403,6 +403,7 @@ public class AlcoholDatabase {
 
     public boolean approveApplication(SubmittedApplication application, String agentUsername, Date expirationDate) {
         application.setStatus(ApplicationStatus.APPROVED);
+        //TODO: Fix expiration date
         return db.update("SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue() + ", TTBUsername = '" + agentUsername + "', approvalDate = " +
                 +(new Date().getTime()) + ", expirationDate = " + expirationDate.getTime(), "applicationID = " + application.getApplicationID());
     }
