@@ -151,7 +151,7 @@ public class Main extends Application {
     }
 
     public void loadNewApplicationPage(SubmittedApplication application) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
@@ -165,7 +165,7 @@ public class Main extends Application {
 
 
     public void loadNewApplicationPage() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
