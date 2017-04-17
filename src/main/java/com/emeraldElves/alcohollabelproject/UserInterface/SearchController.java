@@ -127,7 +127,7 @@ public class SearchController {
 
 
             }
-        });
+        //});
         refreshSuggestions();
         searchField.setText(searchTerm);
         notifyObservers();
