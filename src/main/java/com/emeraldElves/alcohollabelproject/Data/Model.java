@@ -26,7 +26,7 @@ public class Model <T extends Entity> {
         if (entities.size() == 0) return null;
         return entities.get(0);
     }
-    public static String escapeSQL(String s){
+    private static String escapeSQL(String s){
         int length = s.length();
         int newLength = length;
         // first check for characters that might
