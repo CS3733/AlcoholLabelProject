@@ -119,38 +119,35 @@ public class NewApplicationController {
     ImageView imageView;
 
 
-
     //Data for application type
     public ApplicationType appType;
     ProxyLabelImage proxyLabelImage;
 
     //Initializes and temporarily stores applicant's info
-    int repIDNo = -1; //means they didn't enter a rep ID num
-    int permitNo = 0;
-    String physicalAddress= null;
-    EmailAddress applicantEmail = null;
-    PhoneNumber applicantPhone = null;
+    private int repIDNo = -1; //means they didn't enter a rep ID num
+    private int permitNo = 0;
+    private String physicalAddress= null;
+    private EmailAddress applicantEmail = null;
+    private PhoneNumber applicantPhone = null;
 
     //Stores the manufacturer's info
-    ManufacturerInfo appManInfo = null;
+    public ManufacturerInfo appManInfo = null;
 
     //Initializes and temporarily stores data fields for alc info
-    ProductSource pSource = null;
-    AlcoholType alcType = null;
-    String alcName = null;
-    String brandName = null;
-    int alcContent = 0;
-    AlcoholInfo.Wine wineType = null; //null if type is beer (this doesn't get edited)
-
-    //Stores the alcohol info from the form
-    AlcoholInfo appAlcoholInfo = null;
-
+    private ProductSource pSource = null;
+    private AlcoholType alcType = null;
+    private String alcName = null;
+    private String brandName = null;
+    private int alcContent = 0;
+    private AlcoholInfo.Wine wineType = null; //null if type is not wine
     private String formula;
     private String serialNum;
     private String extraInfo;
 
-    private Main main;
+    //Stores the alcohol info from the form
+    public AlcoholInfo appAlcoholInfo = null;
 
+    private Main main;
 
     private SubmittedApplication application;
 
@@ -164,7 +161,6 @@ public class NewApplicationController {
         phoneNumberField.setText(String.valueOf(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber()));
         emailAddressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress()));
     }
-
 
     public void init(Main main){
 //        init(main, null);
@@ -227,6 +223,7 @@ public class NewApplicationController {
             applicantEmail = new EmailAddress(emailAddressField.getText()); //get text from the email address field
             if(applicantEmail.isValid()) {
                 emailValid = true;
+                emailErrorField.setText("");
             }
             else emailErrorField.setText("Please fill in a valid email address.");
         }
@@ -236,6 +233,7 @@ public class NewApplicationController {
             applicantPhone = new PhoneNumber(phoneNumberField.getText()); //get text from phone num field
             if(applicantPhone.isValid()) {
                 phoneValid=true;
+                phoneNumErrorField.setText("");
             }
             else phoneNumErrorField.setText("Please fill in a valid phone number.");
         }
