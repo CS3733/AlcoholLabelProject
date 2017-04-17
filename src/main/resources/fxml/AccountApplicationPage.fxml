@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApprovalProcessController">
+<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.AccountApprovalProcessController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -80,7 +80,7 @@
                   <Label fx:id="vintageYear" />
                </children>
             </HBox>
-            <GridPane layoutX="516.0" layoutY="92.0" prefHeight="226.0" prefWidth="443.0">
+            <GridPane layoutX="516.0" layoutY="92.0" prefHeight="226.0" prefWidth="442.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -90,7 +90,6 @@
                 <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="121.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label prefHeight="20.0" prefWidth="101.0" text="" visible="false" />
@@ -99,10 +98,8 @@
                   <Label fx:id="physicalAddress" prefHeight="85.0" prefWidth="177.0" text="physicalAddress" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label prefHeight="20.0" prefWidth="123.0" text="Permit No:" GridPane.rowIndex="2" />
                   <Label fx:id="permitNo" text="Permit No" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label prefHeight="20.0" prefWidth="121.0" text="Mobile Phone Number" GridPane.rowIndex="3" />
-                  <Label fx:id="phoneNum" text="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label prefHeight="20.0" prefWidth="124.0" text="Email Address:" GridPane.rowIndex="4" />
-                  <Label fx:id="emailAddress" text="Email Address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label prefHeight="20.0" prefWidth="124.0" text="Email Address:" GridPane.rowIndex="3" />
+                  <Label fx:id="emailAddress" text="Email Address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <ButtonBar layoutX="775.0" layoutY="556.0" prefHeight="40.0" prefWidth="191.0">
