@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+
 import java.util.*;
 
 /**
@@ -194,10 +195,6 @@ public class SearchController {
 
         });
 
-    }
-
-    public void goHome() {
-        main.loadHomepage();
     }
 
     private void filterList(List<SubmittedApplication> appList) {
