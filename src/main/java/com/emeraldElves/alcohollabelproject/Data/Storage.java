@@ -13,7 +13,7 @@ import java.util.List;
 public class Storage {
     private AlcoholDatabase alcoholDB;
     private AuthenticatedUsersDatabase usersDB;
-    private Database db;
+    public Database db;
 
     private Storage() {
         if (!AppState.getInstance().isInTestingMode)
