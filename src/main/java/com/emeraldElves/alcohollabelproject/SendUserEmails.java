@@ -17,7 +17,7 @@ import java.util.Properties;
 
 public class SendUserEmails {
     SubmittedApplication application;
-    public void SendEmails(SubmittedApplication application){
+    public static void SendEmails(SubmittedApplication application){
         this.application = application;
 
         Properties props = new Properties();
