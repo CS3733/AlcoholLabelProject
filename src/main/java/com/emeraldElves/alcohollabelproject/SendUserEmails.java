@@ -1,69 +1,59 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.UserInterface.Main;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+
+
+
 
 /**
  * Created by keionbis on 4/15/17.
  */
 
 public class SendUserEmails {
-    Main main;
     SubmittedApplication application;
-    public void init(Main main, SubmittedApplication application){
-        this.main = main;
+    public void SendEmails(SubmittedApplication application){
         this.application = application;
-    }
-    public void SendEmails(){
-        // Recipient's email ID needs to be mentioned.
-        String to = (application.getApplication().getManufacturer().getEmailAddress().toString());
 
-        // Sender's email ID needs to be mentioned
-        String from = "cs3733TeamE@gmail.com";
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
 
-        // Assuming you are sending email from localhost
-        String host = "localhost";
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("cs3733teame@gmail.com","EmeraldElvesD17");
+                    }
+                });
 
-        // Get system properties
-        Properties properties = System.getProperties();
+        try {
 
-        // Setup mail server
-        properties.setProperty("mail.smtp.host", host);
-
-        // Get the default Session object.
-        Session session = Session.getDefaultInstance(properties);
-
-        try{
-            // Create a default MimeMessage object.
-            MimeMessage message = new MimeMessage(session);
-
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
-
-            // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress(to));
-
-            // Set Subject: header field
-            message.setSubject("This is the Subject Line!");
-
-            // Now set the actual message
-            message.setText("This is actual message");
-
-            // Send message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("cs3733teame@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(application.getApplication().getManufacturer().getEmailAddress().toString()));
+            message.setSubject("Update to your recent application status");
+            if(application.getStatus() == ApplicationStatus.REJECTED) {
+                message.setText("Your application for" + application.getApplication().getAlcohol().getName().toString() + "has been " + application.getStatus() + "for the reason " + application.getStatus().getMessage());
+            }
+            else if (application.getStatus() == ApplicationStatus.APPROVED){
+                message.setText("Your application for" + application.getApplication().getAlcohol().getName().toString() + "has been " + application.getStatus());
+            }
             Transport.send(message);
-            System.out.println("Sent message successfully....");
-        }catch (MessagingException mex) {
-            mex.printStackTrace();
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
         }
     }
-
 }
