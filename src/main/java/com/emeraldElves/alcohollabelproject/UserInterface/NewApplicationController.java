@@ -271,7 +271,6 @@ public class NewApplicationController {
         }
     }
 
-
     public void submitApp() {
 
         //Creates a database to store the alcohol information from form
@@ -311,10 +310,10 @@ public class NewApplicationController {
         } else {
             alcContentErrorField.setText("");
         }
-        /*if(formulaText.getText().isEmpty()){
-            formulaErrorField.setText("Please fill in the formula");
-        }
-        else */formulaErrorField.setText("");
+//        if(formulaText.getText().isEmpty()){
+//            formulaErrorField.setText("Please fill in the formula");
+//        }
+//        else formulaErrorField.setText("");
         if(serialText.getText().isEmpty()){ serialErrorField.setText("Please input a serial number");}
         else serialErrorField.setText("");
 
@@ -376,8 +375,10 @@ public class NewApplicationController {
             alcName = alcoholName.getText();
             brandName = brandNameField.getText();
             alcContent = Integer.parseInt(alcoholContentField.getText()); //CHECK IF INTEGER
-            formula = formulaText.getText();
             serialNum = serialText.getText();
+            if(formulaText.getText().isEmpty()){
+                formula = " ";
+            } else formula = formulaText.getText();
 
             //sets the alcohol info
             appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType,"123", formula);//fix serial number
@@ -387,15 +388,14 @@ public class NewApplicationController {
                     permitNo, applicantPhone, applicantEmail);
 
             //creates and sets the date value
-            Date newDate =DateHelper.getDate(datePicker.getValue().getDayOfMonth(),datePicker.getValue().getMonthValue() - 1,datePicker.getValue().getYear());
+            Date newDate= DateHelper.getDate(datePicker.getValue().getDayOfMonth(),datePicker.getValue().getMonthValue() - 1,datePicker.getValue().getYear());
 
             // Creates a new application info and sets data
             if(extraInfoText.getText().isEmpty()){
                 extraInfo = " ";
             }
-            else{
-                extraInfo = extraInfoText.getText();
-            }
+            else extraInfo = extraInfoText.getText();
+
             ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo,extraInfo, appType);
 
             //!!!!!placeholder for applicant's submitted applications!!!!!
