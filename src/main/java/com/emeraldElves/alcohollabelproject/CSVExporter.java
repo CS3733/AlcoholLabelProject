@@ -10,6 +10,6 @@ import java.util.List;
  */
 public class CSVExporter extends UserCharExporter {
     public CSVExporter(){
-        super(',');
+        super(',', "csv");
     }
 }

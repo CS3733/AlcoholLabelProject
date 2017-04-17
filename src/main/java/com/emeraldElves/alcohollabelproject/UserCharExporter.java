@@ -11,10 +11,13 @@ import java.util.List;
  */
 public class UserCharExporter implements IExporter {
     char delim;
-    public UserCharExporter (char delim){
+    String fileExt;
+    public UserCharExporter (char delim, String fileExt){
         //TODO: Make sure the delim isn't \r, \n or double quotes.
         this.delim = delim;
+        this.fileExt = fileExt;
     }
+    public String getFileExt(){return this.fileExt;}
     private String escapeStr(String str){
         //All values are turned to quoted strings to allow support for using delimiters such as , or .
         if (str == null) return "";
