@@ -5,6 +5,8 @@ import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import com.emeraldElves.alcohollabelproject.LogManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
