@@ -21,6 +21,7 @@ import org.controlsfx.control.textfield.TextFields;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.JDBCType;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -175,6 +176,14 @@ public class SearchController {
 
     }
     public void goHome() {
+        Schema LoginSchema = new Schema("TTBAgentLogin",
+                new Attribute("username", JDBCType.VARCHAR),
+                new Attribute("password", JDBCType.VARCHAR)
+        );
+        Model<Entity> LoginModel = new Model(LoginSchema);
+        Entities<Entity> logins = LoginModel.find(new HashMap<String, String>());
+        System.out.println("WARNING REMOVE THIS");
+        System.out.println(logins.size());
         main.loadHomepage();
     }
 

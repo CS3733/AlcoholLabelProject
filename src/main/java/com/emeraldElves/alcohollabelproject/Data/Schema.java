@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import com.emeraldElves.alcohollabelproject.Attribute;
+
 import java.sql.JDBCType;
 import java.util.*;
 
@@ -9,11 +11,11 @@ import java.util.*;
 public class Schema {
     private final Map<String, JDBCType> attributes = new HashMap<String, JDBCType>();
     private String tblName;
-    public Schema(String tblName){
+    public Schema(String tblName, Attribute... attrs){
         this.tblName = tblName;
-        /*for (Attribute attr : attributes) {
-            this.attributes.put(attr.getName(), attr);
-        }*/
+        for (Attribute attr : attrs) {
+            this.attributes.put(attr.getName(), attr.getType());
+        }
     }
     public String getName(){return this.tblName;}
     public JDBCType getAttributeType(String attrName){

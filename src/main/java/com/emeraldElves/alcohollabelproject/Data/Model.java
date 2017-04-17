@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class Model <T extends Entity> {
     private Schema schema;
-    private Database db;
     public Model(Schema schema){
         this.schema = schema;
 
@@ -88,11 +87,12 @@ public class Model <T extends Entity> {
 
             }
         }
-        String valuesStr = String.join(" AND ", conditionList);
+        String valuesStr = "1=1";//String.join(" AND ", conditionList);
+
         ResultSet rs = Storage.getInstance().db.select("*", getSchema().getName(), valuesStr);
         try {
             while (rs.next()) {
-                T entity = (T)new Entity(this);
+                Entity entity = new Entity(this);
                 for (String propName : schema.getAttributes().keySet()){
                     JDBCType propType = schema.getAttributeType(propName);
 
@@ -109,12 +109,16 @@ public class Model <T extends Entity> {
                         case DOUBLE:
                             entity.set(propName, rs.getDouble(propName));
                             break;
+                        case BOOLEAN:
+                            entity.set(propName, rs.getBoolean(propName));
+                            break;
                         default:
+                            System.err.println("Error. Unrecognized property type:" + propType);
                             break;
                     }
 
                 }
-                entities.add(entity);
+                entities.add((T)entity);
             }
             return entities;
         }
