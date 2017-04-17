@@ -121,12 +121,16 @@ public class NewApplicationController {
     ComboBox pTypeSelect;
     @FXML
     ComboBox pSourceSelect;
+    @FXML
+    //ComboBox pStateSelect;
 
     //Options for the comboBox fields
     ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
+    ObservableList<String> typeList = FXCollections.observableArrayList("Malt Beverages", "Wine", "Distilled Spirits");
+    //ObservableList<String> stateList = FXCollections.observableArrayList("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL",
+    //"IN","IA","KS","KY","LA","ME","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","MD","MA","MI","MN","MS","MO","PA","RI","SC",
+    //"SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");
     
-    ObservableList<String> typeList = FXCollections.observableArrayList("Malt Bevrages", "Wine", "Distilled Spirits");
-
     //Data for application type
     public ApplicationType appType;
     ProxyLabelImage proxyLabelImage;
@@ -173,6 +177,7 @@ public class NewApplicationController {
         pTypeSelect.setItems(typeList);
         pSourceSelect.setValue("Source");
         pSourceSelect.setItems(sourceList);
+        //pStatesList
     }
 
     public void init(Main main){
