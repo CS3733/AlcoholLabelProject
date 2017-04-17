@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -86,10 +84,8 @@ public class ApprovalProcessController {
                 break;
         }
         alcoholType.setText(type);
-        DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-        System.out.println(date);
-        submissionDate.setText( dateFormat.format(date));
+        submissionDate.setText( DateHelper.dateToString(date));
         applicationID.setText( String.valueOf(application.getApplicationID()));
         company.setText(application.getApplication().getManufacturer().getCompany());
         String productSource = "";
