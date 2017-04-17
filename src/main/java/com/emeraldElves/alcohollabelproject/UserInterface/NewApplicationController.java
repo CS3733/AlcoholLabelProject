@@ -117,7 +117,15 @@ public class NewApplicationController {
     Button submitLabel;
     @FXML
     ImageView imageView;
+    @FXML
+    ComboBox pTypeSelect;
+    @FXML
+    ComboBox pSourceSelect;
 
+    //Options for the comboBox fields
+    ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
+    
+    ObservableList<String> typeList = FXCollections.observableArrayList("Malt Bevrages", "Wine", "Distilled Spirits");
 
     //Data for application type
     public ApplicationType appType;
@@ -160,6 +168,11 @@ public class NewApplicationController {
         addressField.setText(String.valueOf(application.getApplication().getManufacturer().getPhysicalAddress()));
         phoneNumberField.setText(String.valueOf(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber()));
         emailAddressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress()));
+       
+        pTypeSelect.setValue("Type");
+        pTypeSelect.setItems(typeList);
+        pSourceSelect.setValue("Source");
+        pSourceSelect.setItems(sourceList);
     }
 
     public void init(Main main){
@@ -478,4 +491,5 @@ public class NewApplicationController {
        proxyLabelImage = new ProxyLabelImage(fileName);
         //application.setImage(proxyLabelImage);
     }
+   
 }
