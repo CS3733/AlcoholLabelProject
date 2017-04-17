@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -15,40 +16,46 @@
 <?import javafx.scene.text.Text?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../style/material.css" />
+    </stylesheets>
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="296.6666564941406" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="422.3333435058594" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.66668701171875" minWidth="10.0" prefWidth="307.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="270.6666564941406" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="474.66668701171875" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.66668701171875" minWidth="10.0" prefWidth="279.33331298828125" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="93.33332824707031" minHeight="10.0" prefHeight="86.66666412353516" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="52.333335876464844" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="133.66666412353516" minHeight="1.0" prefHeight="58.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="59.33332824707031" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="157.33334350585938" minHeight="10.0" prefHeight="50.666656494140625" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="127.33334350585938" minHeight="10.0" prefHeight="52.66668701171875" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="133.66665649414062" minHeight="10.0" prefHeight="56.666656494140625" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="54.333343505859375" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="133.33331298828125" minHeight="10.0" prefHeight="54.666656494140625" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="139.33334350585938" minHeight="10.0" prefHeight="57.333343505859375" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="46.3333740234375" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="50.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="62.6666259765625" minHeight="10.0" prefHeight="51.33331298828125" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="62.6666259765625" minHeight="10.0" prefHeight="48.66668701171875" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="93.33332824707031" minHeight="10.0" prefHeight="87.66666412353516" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="27.333335876464844" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="133.66666412353516" minHeight="1.0" prefHeight="28.666671752929688" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="133.66666412353516" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="157.33334350585938" minHeight="10.0" prefHeight="41.66668701171875" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="104.66668701171875" minHeight="10.0" prefHeight="38.666656494140625" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="89.0" minHeight="10.0" prefHeight="41.333343505859375" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="85.66665649414062" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="46.33331298828125" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="95.33331298828125" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="17.3333740234375" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="52.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="76.66668701171875" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="77.33331298828125" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="67.6666259765625" minHeight="10.0" prefHeight="57.33331298828125" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <ImageView fitHeight="87.0" fitWidth="720.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+        <ImageView fitHeight="87.0" fitWidth="1025.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
             <image>
                 <Image url="@../images/ttbmasthead.gif" />
             </image>
         </ImageView>
         <Label fx:id="welcomeApplicantLabel" text="  Welcome, [ApplicantName]." GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
         <Label text="Please fill out the following information:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Source:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Source:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
             <GridPane.margin>
                 <Insets right="10.0" />
             </GridPane.margin></Text>
-        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -67,73 +74,140 @@
                 <RadioButton fx:id="domestic" mnemonicParsing="false" text="Domestic" toggleGroup="$ProductSourceGroup" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
         </GridPane>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Type:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Type:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
             <GridPane.margin>
                 <Insets right="10.0" />
             </GridPane.margin></Text>
-        <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <GridPane prefHeight="33.0" prefWidth="422.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="162.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="119.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="141.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <RadioButton fx:id="wine" mnemonicParsing="false" text="Wine" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <toggleGroup>
+                <RadioButton fx:id="beer" mnemonicParsing="false" onAction="#hideTheWine" onMouseClicked="#hideTheWine" text="Malt beverages">
+               <toggleGroup>
                         <ToggleGroup fx:id="ProductTypeGroup" />
-                    </toggleGroup></RadioButton>
-                <RadioButton fx:id="beer" mnemonicParsing="false" text="Beer" toggleGroup="$ProductTypeGroup" GridPane.rowIndex="1" />
+               </toggleGroup></RadioButton>
+                <RadioButton fx:id="wine" mnemonicParsing="false" onAction="#showTheWine" onMouseClicked="#showTheWine" prefWidth="104.0" text="Wine" toggleGroup="$ProductTypeGroup" GridPane.columnIndex="1" />
+            <RadioButton fx:id="spirits" mnemonicParsing="false" onAction="#hideTheWine" onMouseClicked="#hideTheWine" prefHeight="40.0" prefWidth="183.0" text="Distilled Spirits" toggleGroup="$ProductTypeGroup" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
             </children>
         </GridPane>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fanciful Name (if any):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fanciful Name (if any):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
             <GridPane.margin>
                 <Insets right="10.0" />
             </GridPane.margin></Text>
-        <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Name:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+        <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand Name:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
             <GridPane.margin>
                 <Insets right="10.0" />
             </GridPane.margin></Text>
-        <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Content:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+        <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Content:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
             <GridPane.margin>
                 <Insets right="10.0" />
             </GridPane.margin></Text>
-        <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage Year (wine only):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+      <Label fx:id="signatureErrorField" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+        <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label prefHeight="17.0" prefWidth="65.0" text="Formula:" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+      <TextField fx:id="formulaText" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Serial Number:" wrappingWidth="101.89306640625" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
+      <GridPane prefHeight="38.0" prefWidth="475.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="30.0" prefWidth="212.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.6666259765625" minWidth="30.0" prefWidth="54.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="30.0" prefWidth="208.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="14.33331298828125" minHeight="0.0" prefHeight="7.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage Year (Wine Only):" textAlignment="RIGHT" wrappingWidth="160.66079711914062" GridPane.halignment="LEFT">
+                  <GridPane.margin>
+                      <Insets bottom="20.0" />
+                  </GridPane.margin>
+            </Text>
+              <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="34.0" prefWidth="144.0" GridPane.rowIndex="1" />
+              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="187.994140625" GridPane.columnIndex="2" GridPane.halignment="LEFT">
+                  <GridPane.margin>
+                      <Insets bottom="20.0" right="10.0" />
+                  </GridPane.margin>
+            </Text>
+              <TextField fx:id="pHLevelField" disable="true" prefHeight="59.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="13">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="30.0" prefWidth="180.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="30.0" prefWidth="180.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Varietal(s) (Wine Only):" GridPane.halignment="LEFT">
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin></Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appellation (Wine Only):" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin></Text>
+            <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1" />
+            <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Label fx:id="formulaErrorField" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Extra Info:" wrappingWidth="74.3974609375" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+      <TextField fx:id="extraInfoText" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="15">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="30.0" prefWidth="180.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="15.0" prefWidth="180.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+              <TextField fx:id="signatureField" GridPane.rowIndex="1" />
+              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="35.994140625" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                  <GridPane.margin>
+                      <Insets right="10.0" />
+                  </GridPane.margin>
+            </Text>
+              <DatePicker fx:id="datePicker" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Signature:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
             <GridPane.margin>
                 <Insets right="10.0" />
             </GridPane.margin></Text>
-        <TextField fx:id="wineVintageYearField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (wine only):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
-            <GridPane.margin>
-                <Insets right="10.0" />
-            </GridPane.margin></Text>
-        <TextField fx:id="pHLevelField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-        <Text layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
-            <GridPane.margin>
-                <Insets right="10.0" />
-            </GridPane.margin></Text>
-        <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Signature:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
-            <GridPane.margin>
-                <Insets right="10.0" />
-            </GridPane.margin></Text>
-        <TextField fx:id="signatureField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-        <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
-        <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" text="Save and continue later" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
-        <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
-        <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-        <Label fx:id="error2" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Label fx:id="pSourceErrorField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Label fx:id="pTypeErrorField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Label fx:id="brandNameErrorField" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-      <Label fx:id="alcContentErrorField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-      <Label fx:id="dateErrorField" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-      <Label fx:id="signatureErrorField" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+        <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
+        <Button fx:id="saveApplication" mnemonicParsing="false" onMouseClicked="#saveApp" styleClass="button-raised" text="Save and continue later" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="16" />
+        <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="16" />
+        <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="21.0" prefWidth="67.0" styleClass="button-raised" text="Logout" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="25.0" />
+         </GridPane.margin></Button>
+        <Label fx:id="error2" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Label fx:id="pSourceErrorField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Label fx:id="pTypeErrorField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Label fx:id="brandNameErrorField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Label fx:id="alcContentErrorField" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+      <Label fx:id="varietalErrorField" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+      <Label fx:id="dateErrorField" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+      <Label fx:id="serialErrorField" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+      <Button fx:id="submitLabel" mnemonicParsing="false" onMouseClicked="#submitImage" styleClass="button-raised" text="Submit Label Image" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <ImageView fx:id="imageView" fitHeight="97.0" fitWidth="266.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
     </children>
 </GridPane>
