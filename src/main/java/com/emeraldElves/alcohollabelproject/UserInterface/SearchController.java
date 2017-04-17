@@ -132,6 +132,7 @@ public class SearchController {
 
             //}
         //});
+        */
         refreshSuggestions();
         searchField.setText(searchTerm);
         search(searchTerm);
