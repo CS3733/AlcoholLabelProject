@@ -1,13 +1,11 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.COLASearch;
+import com.emeraldElves.alcohollabelproject.*;
 
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.application.Platform;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Platform;
-import com.emeraldElves.alcohollabelproject.SearchObserver;
-import com.emeraldElves.alcohollabelproject.SearchSubject;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -187,49 +185,7 @@ public class SearchController {
     }
     public void saveCSV(ActionEvent e) {
 
-
-        FileChooser fileChooser = new FileChooser();
-
-        fileChooser.setTitle("Save Results");
-        fileChooser.setInitialFileName("results.csv");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
-
-
-        File file = fileChooser.showSaveDialog(Main.stage);
-        if (file != null) {
-            try {
-                FileWriter fileWriter = new FileWriter(file);
-
-                /*
-                 * This is a weird way of getting column names, but this way columns names are
-                 * always printed out correctly and in the order the user arranged them.
-                 */
-
-                //write out column names
-                for (int colId = 0; colId < resultsTable.getColumns().size(); colId++) {
-                    TableColumn<SubmittedApplication, ?> col = resultsTable.getColumns().get(colId);
-
-                    if (colId > 0) fileWriter.write(",");
-
-                    fileWriter.write(StringEscapeUtils.escapeCsv(col.getText()));
-                }
-                fileWriter.write("\r\n");
-
-                for (int rowId = 0; rowId < data.size(); rowId++) {
-                    //for each row, write out column values
-                    for (int colId = 0; colId < resultsTable.getColumns().size(); colId++) {
-                        TableColumn<SubmittedApplication, ?> col = resultsTable.getColumns().get(colId);
-                        if (colId > 0) fileWriter.write(",");
-                        fileWriter.write(StringEscapeUtils.escapeCsv((String) col.getCellObservableValue(rowId).getValue()));
-                    }
-                    fileWriter.write("\r\n");
-                }
-
-                fileWriter.close();
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+        ApplicationExporter exporter = new ApplicationExporter(new CSVExporter());
+        exporter.export(data);
     }
 }
