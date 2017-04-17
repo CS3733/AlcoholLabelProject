@@ -10,10 +10,16 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewApplicationController">
-  <columnConstraints>
+
+    <stylesheets>
+        <URL value="@../style/material.css" />
+    </stylesheets>
+
+    <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.00001525878906" minWidth="10.0" prefWidth="269.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="451.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.3333740234375" minWidth="10.0" prefWidth="303.6666259765625" />
@@ -43,8 +49,11 @@
          </image>
       </ImageView>
       <Label text="  Welcome, [ApplicantName]." GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-      <TextField fx:id="repIDNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField fx:id="permitNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="repIDNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="permitNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
          <GridPane.margin>
@@ -127,5 +136,10 @@
             <Label fx:id="distinctiveError" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <TextField stylesheets="@../style/material.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
    </children>
 </GridPane>
