@@ -23,9 +23,9 @@ public class ApplicationExporter {
         FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Save Results");
-        fileChooser.setInitialFileName("results.csv");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
-        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Comma Seperated Values", "*.csv"));
+        fileChooser.setInitialFileName("results."+serializer.getFileExt());
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Delimiter-seperated Values", "*."+serializer.getFileExt()));
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Delimiter-seperated Values", "*."+serializer.getFileExt()));
 
 
         File file = fileChooser.showSaveDialog(Main.stage);

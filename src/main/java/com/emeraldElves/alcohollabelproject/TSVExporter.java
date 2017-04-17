@@ -5,6 +5,6 @@ package com.emeraldElves.alcohollabelproject;
  */
 public class TSVExporter extends UserCharExporter {
     public TSVExporter(){
-        super('\t');
+        super('\t', "tsv");
     }
 }
