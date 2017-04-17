@@ -14,12 +14,12 @@ import java.util.List;
  * Created by Essam on 4/17/2017.
  */
 public class ApplicationExporter {
-    IExporter exporter;
-    public ApplicationExporter(IExporter exporter){
-        this.exporter = exporter;
+    IExporter serializer;
+    public ApplicationExporter(IExporter serializer){
+        this.serializer = serializer;
     }
     public boolean export(List<SubmittedApplication> apps){
-        String encoded_str = exporter.encode(apps);
+        String encoded_str = serializer.encode(apps);
         FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Save Results");
@@ -34,9 +34,9 @@ public class ApplicationExporter {
         }
 
         try {
-            //do stuff here
-
             FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(encoded_str);
+            fileWriter.close();
             return true;
         }
         catch(IOException e) {
