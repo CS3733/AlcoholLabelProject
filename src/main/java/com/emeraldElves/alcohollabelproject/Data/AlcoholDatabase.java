@@ -36,7 +36,7 @@ public class AlcoholDatabase {
      * @return A list of the most recently approved applications ordered from most recent to least recent.
      */
     public List<SubmittedApplication> getMostRecentApproved(int numApplications) {
-        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "submissionTime ASC");
+        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "approvalDate DESC");
         return getApplicationsFromResultSet(results, numApplications);
     }
 
@@ -55,8 +55,8 @@ public class AlcoholDatabase {
             while (results.next() && ids.size() < numApplications) {
                 ids.add(results.getInt("applicationID"));
             }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
+            for (Integer id : ids) {
+                applications.add(getApplicationByID(id));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,8 +79,8 @@ public class AlcoholDatabase {
             while (results.next()) {
                 ids.add(results.getInt("applicationID"));
             }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
+            for (Integer id : ids) {
+                applications.add(getApplicationByID(id));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -148,7 +148,7 @@ public class AlcoholDatabase {
     public boolean submitApplication(SubmittedApplication application, String username) {
 
         if (AppState.getInstance().ttbAgents == null) {
-            AppState.getInstance().ttbAgents = new RoundRobin<>(usersDatabase.getAllAgents());
+            AppState.getInstance().ttbAgents = new MultiApplicationAssigner(usersDatabase.getAllAgents(), 10, 0);
         }
         //making application type
         ApplicationType appType = application.getApplication().getApplicationType();
@@ -161,8 +161,8 @@ public class AlcoholDatabase {
 
         //Image name
         String image;
-        //if(application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
-        if(false)
+        if(application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+        //if(false)
             image = application.getImage().getFileName();
         else{ image = ""; }
 
@@ -247,9 +247,7 @@ public class AlcoholDatabase {
                             , "applicationID = " + application.getApplicationID());
                 }
             } else {
-                String assignedAgent = "";
-                if (AppState.getInstance().ttbAgents.size() != 0)
-                    assignedAgent = AppState.getInstance().ttbAgents.next();
+                String assignedAgent = AppState.getInstance().ttbAgents.assignAgent();
                 //not in table, need to add to all 3 tables
                 //SubmittedApplications
                 worked = db.insert(appID + ", " //application id

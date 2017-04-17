@@ -13,17 +13,17 @@ import java.nio.file.Paths;
  */
 public class DisplayLabelController {
     @FXML
-    ImageView LabelView;
+    ImageView labelView;
     Main main;
     Image image;
     SubmittedApplication application;
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
-       Path targetDir = Paths.get("Labels");
-       Path target = targetDir.resolve(application.getproxyImage().getFileName());
+        Path targetDir = Paths.get("Labels");
+        Path target = targetDir.resolve(application.getproxyImage().getFileName());
         Image image = new Image(target.toUri().toString());
-        LabelView.setImage(image);
+        labelView.setImage(image);
     }
     public void back()
     {

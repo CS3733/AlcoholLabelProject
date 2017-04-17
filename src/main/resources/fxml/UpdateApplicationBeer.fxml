@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateBeerAppController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateBeerAppController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.3333435058594" minWidth="10.0" prefWidth="285.3333435058594" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="434.6666564941406" />
@@ -23,44 +23,46 @@
       <RowConstraints maxHeight="92.00000190734863" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="140.66666412353516" minHeight="10.0" prefHeight="50.33332824707031" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="158.6666717529297" minHeight="10.0" prefHeight="42.66667175292969" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="249.66665649414062" minHeight="10.0" prefHeight="160.3333282470703" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="247.66665649414062" minHeight="1.0" prefHeight="39.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="248.3333282470703" minHeight="10.0" prefHeight="43.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="256.00001525878906" minHeight="10.0" prefHeight="45.66667175292969" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="272.0000305175781" minHeight="10.0" prefHeight="39.33332824707031" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="261.66668701171875" minHeight="10.0" prefHeight="44.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="252.0" minHeight="10.0" prefHeight="31.33331298828125" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="223.0" minHeight="8.3333740234375" prefHeight="8.3333740234375" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="130.0" minHeight="0.0" prefHeight="41.6666259765625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="42.3333740234375" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="36.3333740234375" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="63.6666259765625" minHeight="10.0" prefHeight="55.6666259765625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="249.66665649414062" minHeight="10.0" prefHeight="130.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="247.66665649414062" minHeight="1.0" prefHeight="41.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="248.3333282470703" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="256.00001525878906" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="272.0000305175781" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="261.66668701171875" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="252.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="130.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="34.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" styleClass="button-raised" text="Logout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" styleClass="button-raised" text="Logout" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="20.0" />
+         </GridPane.margin></Button>
       <ImageView fitHeight="91.0" fitWidth="1027.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
          <image>
             <Image url="@../images/ttbmasthead.gif" />
          </image>
       </ImageView>
       <Label text="  Welcome, [ApplicantName]." GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-      <TextField fx:id="signatureField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Signature:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="13">
+      <TextField fx:id="signatureField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Signature:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-      <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Text layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
+      <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <Text layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Content (optional):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Content (optional):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin></Text>
-      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" prefWidth="68.0" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
-      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="14" />
+      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" prefWidth="68.0" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
+      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
       <Label text="Please select any changes that were made to the new label:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
       <CheckBox fx:id="changeFormat" mnemonicParsing="false" text="Changed color, proportions, text font and size, formatting, etc" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <CheckBox fx:id="changeNetContents" mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="8" />

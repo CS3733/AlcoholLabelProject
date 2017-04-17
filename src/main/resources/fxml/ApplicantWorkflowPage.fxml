@@ -10,9 +10,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApplicantWorkflowController">
    <children>
-      <Text layoutX="336.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Application to update " />
-      <Button fx:id="UpdateApplications" layoutX="177.0" layoutY="164.0" mnemonicParsing="false" onMousePressed="#ApplicationWorkflow" styleClass="button-raised" text="Update these applications" />
-      <ImageView fitHeight="114.0" fitWidth="726.0" pickOnBounds="true" preserveRatio="true">
+      <Text layoutX="333.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Application to update " visible="false" />
+      <Button fx:id="UpdateApplications" layoutX="177.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#ApplicationWorkflow" styleClass="button-raised" text="Update these applications" />
+      <ImageView fitHeight="124.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ttbmasthead.gif" />
          </image>

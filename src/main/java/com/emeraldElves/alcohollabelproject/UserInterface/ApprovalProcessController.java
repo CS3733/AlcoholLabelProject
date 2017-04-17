@@ -2,13 +2,16 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.TTBAgent;
+import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
+import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
+import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -61,7 +64,7 @@ public class ApprovalProcessController {
     Label alcoholContent;
 
     @FXML
-            Label applicationID;
+    Label applicationID;
 
 
     public void init(Main main, SubmittedApplication application) {
@@ -83,11 +86,12 @@ public class ApprovalProcessController {
                 break;
         }
         alcoholType.setText(type);
-        DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-        submissionDate.setText("Submission date: " + dateFormat.format(date));
-        applicationID.setText("Application ID: " + String.valueOf(application.getApplicationID()));
-        company.setText("Company: " + application.getApplication().getManufacturer().getCompany());
+        System.out.println(date);
+        submissionDate.setText( dateFormat.format(date));
+        applicationID.setText( String.valueOf(application.getApplicationID()));
+        company.setText(application.getApplication().getManufacturer().getCompany());
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {
             case IMPORTED:
@@ -97,14 +101,14 @@ public class ApprovalProcessController {
                 productSource = "Domestic";
                 break;
         }
-        origin.setText("Source: " + productSource);
-        applicantID.setText("Representative ID: " + String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
-        authorizedName.setText("Authorized name: " + application.getApplication().getManufacturer().getName());
-        physicalAddress.setText("Physical Address: " + application.getApplication().getManufacturer().getPhysicalAddress());
-        permitNum.setText("Permit number: " + String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
-        phoneNum.setText("Phone number: " + application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
-        emailAddress.setText("Email address: " + application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
-        alcoholContent.setText("Alcohol content: " + String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+        origin.setText( productSource);
+        applicantID.setText( String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
+        authorizedName.setText( application.getApplication().getManufacturer().getName());
+        physicalAddress.setText( application.getApplication().getManufacturer().getPhysicalAddress());
+        permitNum.setText( String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
+        phoneNum.setText(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
+        emailAddress.setText( application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
+        alcoholContent.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
     }
 
     public void GoHome() {
@@ -113,15 +117,16 @@ public class ApprovalProcessController {
     }
 
     public void Approve() {
-        Date date = new Date();
-        date.setYear(date.getYear() + 5 - 1900);
-        agentInterface.approveApplication(application,date);
-        //Storage.getInstance().approveApplication(application, Authenticator.getInstance().getUsername(), date);
+        ApplicationStatusChanger changer = new ApplicationStatusChanger();
+        changer.changeStatus(new ApproveCommand(application, true));
+        changer.commitUpdates();
         main.loadWorkflowPage();
     }
 
     public void Reject() {
-        agentInterface.rejectApplication(application,reason.getText());
+        ApplicationStatusChanger changer = new ApplicationStatusChanger();
+        changer.changeStatus(new RejectCommand(application, reason.getText()));
+        changer.commitUpdates();
         //Storage.getInstance().rejectApplication(application, reason.getText());
         main.loadWorkflowPage();
     }
@@ -142,6 +147,10 @@ public class ApprovalProcessController {
         application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
         main.loadWorkflowPage();
+    }
+
+    public void printPage(){
+        main.printPage();
     }
 
     public void MoveToNextApp() {

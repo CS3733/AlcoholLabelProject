@@ -2,13 +2,9 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
-import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
-import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
+import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -18,10 +14,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
-import java.time.Instant;
 
 public class UpdateBeerAppController {
 
@@ -64,6 +56,8 @@ public class UpdateBeerAppController {
     Boolean changedAlcStatement=false;
 
 
+    ProxyLabelImage proxyLabelImage;
+
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated, String Username) {
         this.main = main;
         this.CurrentlyBeingUpdated = CurrentlyBeingUpdated;
@@ -85,13 +79,15 @@ public class UpdateBeerAppController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
+        String fileName = (System.currentTimeMillis() + ".jpeg");
+        java.nio.file.Path target = targetDir.resolve(fileName);// create new path ending with `name` content
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
         Image image = new Image(target.toUri().toString());
+        proxyLabelImage = new ProxyLabelImage(fileName);
         imageView.setImage(image);
     }
 
@@ -140,6 +136,9 @@ public class UpdateBeerAppController {
         if (changeAlcStatement.isSelected()){
             changedAlcStatement=true;
         }
+
+        if(proxyLabelImage != null)
+            CurrentlyBeingUpdated.setImage(proxyLabelImage);
 
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         CurrentlyBeingUpdated.getApplication().getAlcohol().setAlcoholContent(alcoholContent);

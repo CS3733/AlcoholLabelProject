@@ -122,6 +122,7 @@ public class NewApplicationController {
 
     //Data for application type
     public ApplicationType appType;
+    ProxyLabelImage proxyLabelImage;
 
     //Initializes and temporarily stores applicant's info
     int repIDNo = -1; //means they didn't enter a rep ID num
@@ -310,10 +311,10 @@ public class NewApplicationController {
         } else {
             alcContentErrorField.setText("");
         }
-        if(formulaText.getText().isEmpty()){
+        /*if(formulaText.getText().isEmpty()){
             formulaErrorField.setText("Please fill in the formula");
         }
-        else formulaErrorField.setText("");
+        else */formulaErrorField.setText("");
         if(serialText.getText().isEmpty()){ serialErrorField.setText("Please input a serial number");}
         else serialErrorField.setText("");
 
@@ -347,7 +348,7 @@ public class NewApplicationController {
         if((productType.getSelectedToggle() != null) && (productSource.getSelectedToggle() != null) &&
                 !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
                 (datePicker != null) && !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
-                && !formulaText.getText().isEmpty()){
+                ){
             formFilled=true;
         }
 
@@ -405,7 +406,10 @@ public class NewApplicationController {
 
             //Create a SubmittedApplication
             SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
+            if(application != null)
+                newApp.setApplicationID(application.getApplicationID());
             applicant.addSubmittedApp(newApp);
+            newApp.setImage(proxyLabelImage);
 
             if (application != null)
                 newApp.setApplicationID(application.getApplicationID());
@@ -454,7 +458,7 @@ public class NewApplicationController {
 
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg","*jpeg","*png");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(null);
         java.nio.file.Path source = Paths.get((file.getPath()));
@@ -464,7 +468,8 @@ public class NewApplicationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        java.nio.file.Path target = targetDir.resolve(System.currentTimeMillis() + ".jpeg");// create new path ending with `name` content
+        String fileName = (System.currentTimeMillis() + ".jpeg");
+        java.nio.file.Path target = targetDir.resolve(fileName);// create new path ending with `name` content
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
@@ -472,6 +477,7 @@ public class NewApplicationController {
         }
         Image image = new Image(target.toUri().toString());
         imageView.setImage(image);
-
+       proxyLabelImage = new ProxyLabelImage(fileName);
+        //application.setImage(proxyLabelImage);
     }
 }
