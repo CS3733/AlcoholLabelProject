@@ -126,7 +126,7 @@ public class SearchController {
                 //search(searchField.getText().trim());
 
 
-            }
+            //}
         //});
         refreshSuggestions();
         searchField.setText(searchTerm);
