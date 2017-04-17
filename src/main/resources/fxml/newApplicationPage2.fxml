@@ -18,11 +18,12 @@
 
 
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../style/material.css" />
+    </stylesheets>
    <content>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0">
-          <stylesheets>
-              <URL value="@../style/material.css" />
-          </stylesheets>
+
           <columnConstraints>
               <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="270.6666564941406" />
               <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="474.66668701171875" />
