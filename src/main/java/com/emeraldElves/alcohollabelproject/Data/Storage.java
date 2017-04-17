@@ -135,11 +135,12 @@ public class Storage {
         return alcoholDB.rejectApplication(application, reason);
     }
 
-    public boolean createUser(UserType usertype, String username, String password) {
-        if (usertype == UserType.TTBAGENT) {
-            return db.insert("'" + username + "', '" + password + "'", "TTBAgentLogin");
+    public boolean createUser(PotentialUser user) {
+        if (user.getUserType() == UserType.TTBAGENT) {
+            return db.insert("'" + user.getUsername()
+                    + "', '" + user.getPassword() + "'", "TTBAgentLogin");
         } else {
-            return db.insert("'" + username + "', '" + password + "'", "ApplicantLogin");
+            return db.insert("'" + user.getUsername() + "', '" + user.getPassword() + "'", "ApplicantLogin");
         }
     }
 
