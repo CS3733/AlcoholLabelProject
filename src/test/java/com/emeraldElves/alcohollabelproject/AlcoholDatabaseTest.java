@@ -2,13 +2,6 @@ package com.emeraldElves.alcohollabelproject;
 
 import com.emeraldElves.alcohollabelproject.Data.*;
 import org.junit.Before;
-import org.junit.Test;
-
-import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by elijaheldredge on 3/31/17.

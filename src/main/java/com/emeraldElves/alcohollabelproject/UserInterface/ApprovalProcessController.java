@@ -2,7 +2,9 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.TTBAgent;
+import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
+import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
+import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -115,17 +117,16 @@ public class ApprovalProcessController {
     }
 
     public void Approve() {
-        Date date = new Date();
-        date = new Calendar.Builder()
-                .setDate(date.getYear() + 5, date.getMonth(), date.getDay())
-                .build().getTime();
-        agentInterface.approveApplication(application,date);
-        //Storage.getInstance().approveApplication(application, Authenticator.getInstance().getUsername(), date);
+        ApplicationStatusChanger changer = new ApplicationStatusChanger();
+        changer.changeStatus(new ApproveCommand(application, true));
+        changer.commitUpdates();
         main.loadWorkflowPage();
     }
 
     public void Reject() {
-        agentInterface.rejectApplication(application,reason.getText());
+        ApplicationStatusChanger changer = new ApplicationStatusChanger();
+        changer.changeStatus(new RejectCommand(application, reason.getText()));
+        changer.commitUpdates();
         //Storage.getInstance().rejectApplication(application, reason.getText());
         main.loadWorkflowPage();
     }
@@ -146,6 +147,10 @@ public class ApprovalProcessController {
         application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
         main.loadWorkflowPage();
+    }
+
+    public void printPage(){
+        main.printPage();
     }
 
     public void MoveToNextApp() {

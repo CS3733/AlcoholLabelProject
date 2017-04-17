@@ -1,7 +1,6 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.Data.ApplicationAssigner;
-import com.emeraldElves.alcohollabelproject.Data.RoundRobinAssigner;
 
 import java.util.List;
 
