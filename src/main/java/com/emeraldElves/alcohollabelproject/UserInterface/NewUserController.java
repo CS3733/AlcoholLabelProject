@@ -1,8 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
-import com.emeraldElves.alcohollabelproject.Data.Storage;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
+import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -16,6 +14,14 @@ public class NewUserController {
     TextField usernameField;
     @FXML
     PasswordField passwordField;
+    @FXML
+    TextField IDNum;
+    @FXML
+    TextField Name;
+    @FXML
+    TextField emailAddress;
+    @FXML
+    TextField phoneNumber;
     @FXML
     VBox errorMsg;
     @FXML
@@ -34,8 +40,12 @@ public class NewUserController {
     public void createTTBAgent(){
         String username = usernameField.getText();
         String password = passwordField.getText();
+        String FullName = Name.getText();
         UserType userType = UserType.fromInt(Integer.parseInt(typeLabel.getText()));
-        if(Storage.getInstance().applyForUser(new PotentialUser(username, password, userType) )){
+        int IDnum = Integer.parseInt(IDNum.getText());
+        EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
+        PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,username,IDnum,Email, PhoneNumber, userType,password))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
@@ -46,7 +56,12 @@ public class NewUserController {
     public void createApplicant(){
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if (Storage.getInstance().createUser(UserType.APPLICANT, username, password)) {
+        UserType userType = UserType.fromInt(Integer.parseInt(typeLabel.getText()));
+        String FullName = Name.getText();
+        int IDnum = Integer.parseInt(IDNum.getText());
+        EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
+        PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,username,IDnum,Email, PhoneNumber, userType,password))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {

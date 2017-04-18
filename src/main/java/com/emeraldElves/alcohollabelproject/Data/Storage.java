@@ -3,8 +3,6 @@ package com.emeraldElves.alcohollabelproject.Data;
 import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Log;
 
-import javax.naming.ServiceUnavailableException;
-import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -137,10 +135,10 @@ public class Storage {
 
     public boolean createUser(PotentialUser user) {
         if (user.getUserType() == UserType.TTBAGENT) {
-            return db.insert("'" + user.getUsername()
+            return db.insert("'" + user.getUserName()
                     + "', '" + user.getPassword() + "'", "TTBAgentLogin");
         } else {
-            return db.insert("'" + user.getUsername() + "', '" + user.getPassword() + "'", "ApplicantLogin");
+            return db.insert("'" + user.getUserName() + "', '" + user.getPassword() + "'", "ApplicantLogin");
         }
     }
 

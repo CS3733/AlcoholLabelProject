@@ -5,25 +5,47 @@ package com.emeraldElves.alcohollabelproject.Data;
  */
 public class PotentialUser {
     //TODO: add fields that are added to account stuff
-    private String username;
-    private String password;
+    private String Name, UserName,Password;
+    private int IDnum;
+    private EmailAddress email;
+    private PhoneNumber phoneNumber;
     private UserType userType;
 
-    public PotentialUser(String username, String password, UserType userType) {
-        this.username = username;
-        this.password = password;
+    public PotentialUser(String Name, String UserName, int IDnum, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password) {
+        this.Name = Name;
+        this.UserName = UserName;
+        this.IDnum = IDnum;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
         this.userType = userType;
+        this.Password = Password;
     }
 
-    public String getUsername() {
-        return username;
+    public EmailAddress getEmail() {
+        return email;
     }
 
-    public String getPassword() {
-        return password;
+    public int getIDnum() {
+        return IDnum;
+    }
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getUserName() {
+        return UserName;
     }
 
     public UserType getUserType() {
         return userType;
+    }
+
+    public String getPassword() {
+        return Password;
     }
 }

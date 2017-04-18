@@ -10,12 +10,30 @@ import java.util.List;
  */
 public class SuperUserWorkflowController {
     List<PotentialUser> users;
+    PotentialUser UserforApproval;
     Main main;
+
     public void init(Main main){
         this.main = main;
         //get all from current potential user database
         users = Storage.getInstance().getPotentialUsers();
+        UserforApproval = null;
         //add to displayed table, copy from search functionality
+    }
+
+    public void Approve() {
+        Storage.getInstance().createUser(UserforApproval);
+        
+
+    }
+
+    public void Reject() {
+
+    }
+
+
+    public void printPage(){
+        main.printPage();
     }
 
     //on click, load detailed user page
