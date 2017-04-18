@@ -13,11 +13,9 @@ import javafx.scene.layout.VBox;
  */
 public class NewUserController {
     @FXML
-    TextField usernameField;
-    @FXML
     PasswordField passwordField;
     @FXML
-    TextField IDNum;
+    TextField representativeID;
     @FXML
     TextField Name;
     @FXML
@@ -27,9 +25,11 @@ public class NewUserController {
     @FXML
     VBox errorMsg;
     @FXML
-    Label typeLabel;
-    @FXML
     DatePicker date;
+    @FXML
+    TextField permitNumText;
+    @FXML
+    TextField addressText;
 
     private Main main;
 
@@ -42,15 +42,19 @@ public class NewUserController {
     }
 
     public void createTTBAgent(){
-        String username = usernameField.getText();
+        //Setting all the fields for the new potential user
         String password = passwordField.getText();
         String FullName = Name.getText();
-        UserType userType = UserType.fromInt(Integer.parseInt(typeLabel.getText()));
-        int IDnum = Integer.parseInt(IDNum.getText());
+        UserType userType = UserType.TTBAGENT;
+        int repID = Integer.parseInt(representativeID.getText());//representative ID
         java.util.Date newDate =DateHelper.getDate(date.getValue().getDayOfMonth(),date.getValue().getMonthValue() - 1,date.getValue().getYear());
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,username,IDnum,Email, PhoneNumber, userType,password, newDate))){
+        int permitNum = Integer.parseInt(permitNumText.getText());
+        String address = addressText.getText();
+        
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
+                password, newDate, -1, address))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
@@ -59,15 +63,19 @@ public class NewUserController {
     }
 
     public void createApplicant(){
-        String username = usernameField.getText();
+        //Setting all the fields for the new potential user
         String password = passwordField.getText();
-        UserType userType = UserType.fromInt(Integer.parseInt(typeLabel.getText()));
         String FullName = Name.getText();
-        int IDnum = Integer.parseInt(IDNum.getText());
+        UserType userType = UserType.APPLICANT;
+        int repID = Integer.parseInt(representativeID.getText());//representative ID
         java.util.Date newDate =DateHelper.getDate(date.getValue().getDayOfMonth(),date.getValue().getMonthValue() - 1,date.getValue().getYear());
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,username,IDnum,Email, PhoneNumber, userType,password, newDate))){
+        int permitNum = Integer.parseInt(permitNumText.getText());
+        String address = addressText.getText();
+
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
+                password, newDate, permitNum, address))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
