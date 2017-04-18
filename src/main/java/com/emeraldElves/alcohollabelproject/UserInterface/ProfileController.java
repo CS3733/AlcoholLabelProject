@@ -21,21 +21,21 @@ public class ProfileController {
 
     private Main main;
 
-    private String representativeID;
-    private String permitNum;
+    private int representativeID;
+    private int permitNum;
     private String address;
     private String phoneNum;
     private String emailAddress;
 
     public ProfileController() {
-        representativeID = "";
-        permitNum = "";
+        representativeID = 0;
+        permitNum = 0;
         address = "";
         phoneNum = "";
         emailAddress = "";
     }
 
-    public ProfileController(String representativeID, String permitNum, String address, String phoneNum, String emailAddress) {
+    public ProfileController(int representativeID, int permitNum, String address, String phoneNum, String emailAddress) {
         this.representativeID = representativeID;
         this.permitNum = permitNum;
         this.address = address;
@@ -51,10 +51,10 @@ public class ProfileController {
 
     // functions - simply modify fields when user changes them
     public void modifyRepresentativeID() {
-        representativeID = representativeIDField.getText();
+        representativeID = Integer.valueOf(representativeIDField.getText());
     }
     public void modifyPermitNum() {
-        permitNum = permitNumField.getText();
+        permitNum = Integer.valueOf(permitNumField.getText());
     }
     public void modifyAddress() {
         address = addressField.getText();
