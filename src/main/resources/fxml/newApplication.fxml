@@ -236,7 +236,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="appType" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="appTypeCombo" prefWidth="150.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>
