@@ -18,7 +18,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -390,7 +392,7 @@ public class NewApplicationController {
 
             //Gets text from the email address field and stores it as a PhoneNumber
             applicantPhone = new PhoneNumber(phoneNumberField.getText());
-
+            
 
             //radio buttons are grouped in the following groups:
             //product type group
