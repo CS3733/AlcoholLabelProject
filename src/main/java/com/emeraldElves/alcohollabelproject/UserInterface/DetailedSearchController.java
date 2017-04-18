@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import jdk.nashorn.internal.runtime.logging.Logger;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,6 +44,16 @@ public class DetailedSearchController {
     @FXML
     ImageView labelView;
 
+    @FXML
+    Label status;
+
+    @FXML
+    Label email;
+    @FXML
+    Label phone;
+    @FXML
+    Label address;
+
 
 
     public void init(Main main, SubmittedApplication application, String searchTerm) {
@@ -54,19 +65,19 @@ public class DetailedSearchController {
         String type = "";
         switch (application.getApplication().getAlcohol().getAlcoholType()) {
             case BEER:
-                type = "Beer";
+                type = "BEER";
                 break;
             case WINE:
-                type = "Wine";
+                type = "WINE";
                 break;
             case DISTILLEDSPIRITS:
-                type = "Distilled Spirits";
+                type = "DISTILLED SPIRITS";
                 break;
         }
         alcoholType.setText(type);
         Date date = application.getApplication().getSubmissionDate();
-        submissionDate.setText(DateHelper.dateToString(date));
-        content.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent())+"%");
+        submissionDate.setText("Submitted " + DateHelper.dateToString(date));
+        content.setText("Alcohol content: " + String.valueOf(application.getApplication().getAlcohol().getAlcoholContent())+"%");
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {
             case IMPORTED:
@@ -76,12 +87,13 @@ public class DetailedSearchController {
                 productSource = "Domestic";
                 break;
         }
-        origin.setText(productSource);
-        Path targetDir = Paths.get("Labels");
-        Path target = targetDir.resolve(application.getproxyImage().getFileName());
-        Image image = new Image(target.toUri().toString());
-        labelView.setImage(image);
-
+        origin.setText("Origin: " + productSource);
+        status.setText(application.getStatus().toString());
+        labelView.setImage(application.getImage().display());
+        ImageUtils.centerImage(labelView);
+        email.setText("Email: " + application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
+        phone.setText("Phone: " + application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
+        address.setText(application.getApplication().getManufacturer().getPhysicalAddress());
     }
 
 
@@ -89,8 +101,8 @@ public class DetailedSearchController {
         main.printPage();
     }
 
-    public void GoHome() {
-        main.loadHomepage();
+    public void export(){
+        // Exporter
     }
 
 
