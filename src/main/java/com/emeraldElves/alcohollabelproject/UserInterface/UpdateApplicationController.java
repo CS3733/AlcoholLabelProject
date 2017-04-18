@@ -6,8 +6,6 @@ import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.time.LocalDate;
-
 /**
  * Created by Keion Bisland on 4/2/2017.
  */
@@ -47,7 +45,6 @@ public class UpdateApplicationController {
             wineVintageYearField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().vintageYear));
             phLevelField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getWineInfo().pH));
         }
-        datePicker.setValue(LocalDate.now());
     }
 
     public void ApplicationStatuschecker() {

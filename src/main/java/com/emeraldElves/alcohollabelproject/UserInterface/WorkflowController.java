@@ -5,10 +5,10 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
  */
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
-import com.emeraldElves.alcohollabelproject.Data.*;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
+import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Date;
@@ -58,21 +58,21 @@ public class WorkflowController {
     Label date5;
 
 
+
     // TODO: array sizes are currently arbitrary; possibly change to ArrayList<> in the future
     public SubmittedApplication[] submittedApps = new SubmittedApplication[50];
     public String[] ids = new String[50];
     public String[] appBrandNames = new String[50];
     public String[] appNames = new String[50];
     public String[] dates = new String[50];
+    public String pattern = "MM/dd/yyyy";
     public int i = 0;
 
     // for init
     Main main;
 
-    /**
-     * public void init()
+    /** public void init()
      * Initializes the FXML page
-     *
      * @param main
      */
     public void init(Main main) {
@@ -109,19 +109,17 @@ public class WorkflowController {
         date5.setText(dates[4]);
     }
 
-    public void logout() {
+    public void logout(){
         Authenticator.getInstance().logout();
         main.loadHomepage();
     }
 
-    public void goHome() {
+    public void goHome(){
         main.loadHomepage();
     }
 
-    /**
-     * queryDatabase()
+    /** queryDatabase()
      * Queries database for queued associated applications; stores them in arrays
-     *
      * @param ttbUsername
      */
     public void queryDatabase(String ttbUsername) {
@@ -133,33 +131,29 @@ public class WorkflowController {
             appNames[i] = current.getApplication().getAlcohol().getName();
 
             // format date into string
+            SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
             Date currentDate = current.getApplication().getSubmissionDate();
-            dates[i] = DateHelper.dateToString(currentDate);
+            dates[i] = dateFormat.format(currentDate);
             i++;
         }
     }
 
-    /**
-     * linkToApplication1(), linkToApplication2(), etc.
+    /** linkToApplication1(), linkToApplication2(), etc.
      * Links to the workflowActionController page for the associated function
      */
     // TODO: make all of these one function
     public void linkToApplication1() {
         main.loadWorkflowActionsPage(submittedApps[0]);
     }
-
     public void linkToApplication2() {
         main.loadWorkflowActionsPage(submittedApps[1]);
     }
-
     public void linkToApplication3() {
         main.loadWorkflowActionsPage(submittedApps[2]);
     }
-
     public void linkToApplication4() {
         main.loadWorkflowActionsPage(submittedApps[3]);
     }
-
     public void linkToApplication5() {
         main.loadWorkflowActionsPage(submittedApps[4]);
     }

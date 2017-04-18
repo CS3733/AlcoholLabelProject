@@ -1,6 +1,5 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,6 +8,8 @@ import javafx.scene.image.ImageView;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -64,8 +65,9 @@ public class DetailedSearchController {
                 break;
         }
         alcoholType.setText(type);
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-        submissionDate.setText(DateHelper.dateToString(date));
+        submissionDate.setText(dateFormat.format(date));
         content.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent())+"%");
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {

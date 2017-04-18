@@ -58,8 +58,7 @@ public class Storage {
                     new Database.TableField("labelApproval", "BOOLEAN"),
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
-                    new Database.TableField("imageURL", "VARCHAR (255)"),
-                    new Database.TableField("qualifications", "VARCHAR (10000)"));
+                    new Database.TableField("imageURL", "VARCHAR (255)"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");

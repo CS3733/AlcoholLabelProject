@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 
 public class UpdateWineAppController {
 
@@ -71,7 +70,6 @@ public class UpdateWineAppController {
         status = CurrentlyBeingUpdated.getStatus();
         applicant= new ApplicantInterface(Authenticator.getInstance().getUsername());
         alcoholContentField.setText(String.valueOf(CurrentlyBeingUpdated.getApplication().getAlcohol().getAlcoholContent()));
-        datePicker.setValue(LocalDate.now());
     }
 
     public void uploadImage() {
