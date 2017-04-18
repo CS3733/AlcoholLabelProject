@@ -90,8 +90,6 @@ public class NewApplicationController {
     @FXML
     Label varietalErrorField;
     @FXML
-    Label formulaErrorField;
-    @FXML
     TextField serialText;
     @FXML
     TextField extraInfoText;
@@ -115,15 +113,15 @@ public class NewApplicationController {
     ComboBox pTypeSelect;
     @FXML
     ComboBox pSourceSelect;
-    //@FXML
-    //ComboBox pStateSelect;
+    @FXML
+    ComboBox stateSelect;
 
     //Options for the comboBox fields
     ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
     ObservableList<String> typeList = FXCollections.observableArrayList("Malt Beverages", "Wine", "Distilled Spirits");
-    //ObservableList<String> stateList = FXCollections.observableArrayList("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL",
-    //"IN","IA","KS","KY","LA","ME","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","MD","MA","MI","MN","MS","MO","PA","RI","SC",
-    //"SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");
+    ObservableList<String> stateList = FXCollections.observableArrayList("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL",
+            "IN","IA","KS","KY","LA","ME","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","MD","MA","MI","MN","MS","MO","PA","RI","SC",
+            "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");
     
     //Data for application type
     public ApplicationType appType;
@@ -170,6 +168,8 @@ public class NewApplicationController {
         alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
         formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
 
+        stateSelect.setValue("State Abb.");
+        stateSelect.setItems(stateList);
         pTypeSelect.setValue("Select a product type");
         pTypeSelect.setItems(typeList);
         pSourceSelect.setValue("Select a product source");
@@ -189,6 +189,8 @@ public class NewApplicationController {
 //        init(main, null);
         this.main = main;
 
+        stateSelect.setValue("State Abb.");
+        stateSelect.setItems(stateList);
         pTypeSelect.setValue("Select a product type");
         pTypeSelect.setItems(typeList);
         pSourceSelect.setValue("Select a product source");
@@ -217,7 +219,9 @@ public class NewApplicationController {
         labelApproval = certOfApproval.isSelected();
         //14b
         if (certOfExemption.isSelected()) {
-            stateOnly = exemptionText.getText();
+            if(!stateSelect.getValue().equals("State Abb."))
+                stateOnly = (String)stateSelect.getValue();
+            else stateOnly = "";
         } else {
             stateOnly = "";
         }
@@ -371,7 +375,7 @@ public class NewApplicationController {
     }
 
     public void exemptionChecked(){
-        exemptionText.setDisable(!certOfExemption.isSelected());
+        stateSelect.setDisable(!certOfExemption.isSelected());
     }
 
     public void distinctiveChecked(){
