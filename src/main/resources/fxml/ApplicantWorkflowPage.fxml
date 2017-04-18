@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,6 +29,7 @@
          </children>
       </HBox>
       <fx:include source="toolbar.fxml" />
+      <Label layoutX="333.0" layoutY="132.0" text="Right click an application to update, revise, or view it." />
      
    </children>
 </AnchorPane>
