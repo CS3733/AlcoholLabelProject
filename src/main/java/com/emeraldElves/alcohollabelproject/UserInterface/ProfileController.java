@@ -21,11 +21,29 @@ public class ProfileController {
 
     private Main main;
 
-    private String representativeID = "";
-    private String permitNum = "";
-    private String address = "";
-    private String phoneNum = "";
-    private String emailAddress = "";
+    private String representativeID;
+    private String permitNum;
+    private String address;
+    private String phoneNum;
+    private String emailAddress;
+
+    public ProfileController() {
+        representativeID = "";
+        permitNum = "";
+        address = "";
+        phoneNum = "";
+        emailAddress = "";
+    }
+
+    public ProfileController(String representativeID, String permitNum, String address, String phoneNum, String emailAddress) {
+        this.representativeID = representativeID;
+        this.permitNum = permitNum;
+        this.address = address;
+        this.phoneNum = phoneNum;
+        this.emailAddress = emailAddress;
+    }
+
+    // note: default field value is empty string ("")
 
     public void init(Main main) {
         this.main = main;
