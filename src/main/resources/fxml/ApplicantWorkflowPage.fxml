@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
@@ -11,20 +12,24 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApplicantWorkflowController">
    <children>
       <Text layoutX="333.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Application to update " visible="false" />
-      <Button fx:id="UpdateApplications" layoutX="177.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#ApplicationWorkflow" styleClass="button-raised" text="Update these applications" />
-      <ImageView fitHeight="124.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/ttbmasthead.gif" />
-         </image>
-      </ImageView>
-      <Button layoutX="62.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
-      <Button layoutX="462.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#MakeNewApplication" styleClass="button-raised" text="Submit new application" />
-      <Button layoutX="702.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#reviseApplication" styleClass="button-raised" text="Revise Application" />
-      <HBox layoutX="62.0" layoutY="250.0" prefHeight="500.0" prefWidth="900.0">
+      <Button layoutX="62.0" layoutY="122.0" mnemonicParsing="false" onMouseClicked="#MakeNewApplication" styleClass="button-raised" text="SUBMIT NEW APPLICATION" />
+      <HBox layoutX="62.0" layoutY="200.0" prefHeight="541.0" prefWidth="900.0">
          <children>
-            <ListView fx:id="list" prefHeight="500.0" prefWidth="941.0" />
+            <ListView fx:id="list" prefHeight="511.0" prefWidth="900.0">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#ApplicationWorkflow" text="Update" />
+                        <MenuItem mnemonicParsing="false" onAction="#reviseApplication" text="Revise" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewApplication" text="View" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </ListView>
          </children>
       </HBox>
+      <fx:include source="toolbar.fxml" />
+      <Label layoutX="333.0" layoutY="132.0" text="Right click an application to update, revise, or view it." />
      
    </children>
 </AnchorPane>

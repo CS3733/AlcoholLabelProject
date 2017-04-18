@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -18,8 +19,6 @@ import java.util.List;
  */
 
 public class ApplicantWorkflowController {
-    @FXML
-    Button UpdateApplications;
     Main main;
     private ApplicantInterface applicantInterface;
 
@@ -30,7 +29,15 @@ public class ApplicantWorkflowController {
         this.main = main;
         applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
         List<String> applicationNames = new ArrayList<>();
-        for (SubmittedApplication application : applicantInterface.getSubmittedApplications()) {
+        List<SubmittedApplication> applications = applicantInterface.getSubmittedApplications();
+        applications.sort((a, b) -> {
+            if (a.getStatus() == b.getStatus()) {
+                return a.getApplicationID() - b.getApplicationID();
+            } else {
+                return a.getStatus().ordinal() - b.getStatus().ordinal();
+            }
+        });
+        for (SubmittedApplication application : applications) {
             String name = "";
             name += application.getApplication().getAlcohol().getBrandName();
             switch (application.getStatus()) {
@@ -55,7 +62,11 @@ public class ApplicantWorkflowController {
         return applicantInterface.getSubmittedApplications().get(i);
     }
 
-    public void reviseApplication(){
+    public void viewApplication(){
+        main.loadDetailedSearchPage(getSelectedApplication(), "");
+    }
+
+    public void reviseApplication() {
         main.loadNewApplicationPage(getSelectedApplication());
     }
 

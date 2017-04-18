@@ -35,6 +35,16 @@ public class PhoneNumber {
         return phoneNumber;
     }
 
+    public String getFormattedNumber() {
+        String number = phoneNumber;
+        if (number.length() == 10) {
+            number = number.substring(0, 3) + "-" + number.substring(3, 6) + "-" + number.substring(6);
+        } else {
+            number = number.charAt(0) + "-" + number.substring(1, 4) + "-" + number.substring(4, 7) + "-" + number.substring(7);
+        }
+        return number;
+    }
+
 
     /**
      * Extract the phone number from a string.
