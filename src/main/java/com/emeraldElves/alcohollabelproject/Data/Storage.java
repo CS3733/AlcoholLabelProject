@@ -140,24 +140,12 @@ public class Storage {
 
     public boolean createUser(PotentialUser user) {
         if (user.getUserType() == UserType.TTBAGENT) {
-            return db.insert("'" + user.getName()
-                    + "', '" + user.getPassword() + "', "
-                    + user.getUserType().getValue() + ", "
-                    + user.getRepresentativeID() + ", "
-                    + user.getPermitNum() + ", '"
-                    + user.getAddress() + "', '"
-                    + user.getPhoneNumber().getPhoneNumber() + "', '"
-                    + user.getEmail().getEmailAddress() + "'"
+            return db.insert("'" + user.getEmail().getEmailAddress()
+                    + "', '" + user.getPassword() + "'"
                     , "TTBAgentLogin");
         } else {
-            return db.insert("'" + user.getName()
-                            + "', '" + user.getPassword() + "', "
-                            + user.getUserType().getValue() + ", "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
-                            + user.getAddress() + "', '"
-                            + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+            return db.insert("'" + user.getEmail().getEmailAddress()
+                            + "', '" + user.getPassword() + "'"
                     , "ApplicantLogin");
         }
     }
