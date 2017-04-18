@@ -6,6 +6,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -90,8 +91,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <RadioButton fx:id="applicantBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeApplicant" text="Applicant Account" />
-                        <RadioButton fx:id="agentBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeAgent" text="TTB Agent Account" GridPane.columnIndex="1" />
+                        <RadioButton fx:id="applicantBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeApplicant" text="Applicant Account">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="accountType" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="agentBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeAgent" text="TTB Agent Account" toggleGroup="$accountType" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>
