@@ -5,6 +5,8 @@ import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import com.emeraldElves.alcohollabelproject.LogManager;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,29 +20,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class NewApplicationController {
     @FXML
-    ComboBox applicationType;
-    @FXML
     TextField repIDNoTextField;
     @FXML
     TextField permitNoTextField;
-    @FXML
-    RadioButton international;
-    @FXML
-    RadioButton domestic;
-    @FXML
-    RadioButton beer;
-    @FXML
-    RadioButton wine;
-    @FXML
-    RadioButton spirits;
     @FXML
     TextField alcoholName;
     @FXML
@@ -127,7 +115,7 @@ public class NewApplicationController {
     ComboBox pTypeSelect;
     @FXML
     ComboBox pSourceSelect;
-    @FXML
+    //@FXML
     //ComboBox pStateSelect;
 
     //Options for the comboBox fields
@@ -144,7 +132,7 @@ public class NewApplicationController {
     //Initializes and temporarily stores applicant's info
     private int repIDNo = -1; //means they didn't enter a rep ID num
     private int permitNo = 0;
-    private String physicalAddress= null;
+    private String physicalAddress = null;
     private EmailAddress applicantEmail = null;
     private PhoneNumber applicantPhone = null;
 
@@ -169,7 +157,6 @@ public class NewApplicationController {
 
     private SubmittedApplication application;
 
-
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
@@ -182,129 +169,46 @@ public class NewApplicationController {
         brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
         alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
         formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
-       
-        pTypeSelect.setValue("Type");
+
+        pTypeSelect.setValue("Select a product type");
         pTypeSelect.setItems(typeList);
-        pSourceSelect.setValue("Source");
+        pSourceSelect.setValue("Select a product source");
         pSourceSelect.setItems(sourceList);
 
-        applicationType.getItems().addAll("Certificate of Label Approval", "Certificate of Exemption from Label Approval", "Distinctive Liqour Bottle Approval");
-        //pStatesList
+        pTypeSelect.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String oldVal, String newVal) {
+                if(pTypeSelect.getValue().equals("Wine")){
+                    showTheWine();
+                } else hideTheWine();
+            }
+        });
     }
+
 
     public void init(Main main){
 //        init(main, null);
         this.main = main;
-    }
 
-//    public void nextPage(){
-//
-//        LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
-//
-//        Boolean formFilled=false;
-//        Boolean emailValid=false;
-//        Boolean phoneValid=false;
-//
-//        //filling out application type
-//        boolean labelApproval;
-//        String stateOnly;
-//        int bottleCapacity;
-//        //14a
-//        labelApproval = certOfApproval.isSelected();
-//        //14b
-//        if(certOfExemption.isSelected()){stateOnly = exemptionText.getText();}
-//        else { stateOnly = "";}
-//        //14c
-//        if(distinctiveApproval.isSelected()){bottleCapacity = Integer.parseInt(distinctiveText.getText());}
-//        else{bottleCapacity = -1;}
-//
-//        appType = new ApplicationType(labelApproval,stateOnly,bottleCapacity);
-//
-//        //errors are printed only if required fields are not filled in
-//        if(permitNoTextField.getText().isEmpty()) {
-//            permitNoErrorField.setText("Please fill in your permit number.");
-//        } else{
-//            permitNoErrorField.setText("");
-//        }
-//        if(addressField.getText().isEmpty()) {
-//            addressErrorField.setText("Please fill in the physical address of your company.");
-//        } else{
-//            addressErrorField.setText("");
-//        }
-//        if(phoneNumberField.getText().isEmpty()) {
-//            phoneNumErrorField.setText("Please fill in the contact number.");
-//        } else{
-//            phoneNumErrorField.setText("");
-//        }
-//        if(emailAddressField.getText().isEmpty()) {
-//            emailErrorField.setText("Please fill in the contact email.");
-//        } else{
-//            emailErrorField.setText("");
-//        }
-//
-//        //check if required fields are filled
-//        if(!emailAddressField.getText().isEmpty()&&!phoneNumberField.getText().isEmpty()&&
-//                !addressField.getText().isEmpty()&&!permitNoTextField.getText().isEmpty()){
-//            formFilled=true;
-//        }
-//
-//        //check if email field is valid
-//        if(!emailAddressField.getText().isEmpty()){
-//            applicantEmail = new EmailAddress(emailAddressField.getText()); //get text from the email address field
-//            if(applicantEmail.isValid()) {
-//                emailValid = true;
-//                emailErrorField.setText("");
-//            }
-//            else emailErrorField.setText("Please fill in a valid email address.");
-//        }
-//
-//        //check if phone number field is valid
-//        if(!phoneNumberField.getText().isEmpty()){
-//            applicantPhone = new PhoneNumber(phoneNumberField.getText()); //get text from phone num field
-//            if(applicantPhone.isValid()) {
-//                phoneValid=true;
-//                phoneNumErrorField.setText("");
-//            }
-//            else phoneNumErrorField.setText("Please fill in a valid phone number.");
-//        }
-//
-//        if(formFilled && emailValid && phoneValid) { //Store the applicant information now that the form is filled
-//
-//            //NEED TO CHECK IF THIS IS ACTUALLY AN INT!!!
-//            if(!repIDNoTextField.getText().isEmpty()) {
-//                repIDNo=Integer.parseInt(repIDNoTextField.getText().trim());
-//            } else{
-//                repIDNo=0;
-//            }
-//            //Parses text from permit number field and stores it as an int
-//            permitNo=Integer.parseInt(permitNoTextField.getText()); //CHECK INT!!!
-//
-//            //Gets text from email address field and stores it as a string
-//            physicalAddress=addressField.getText();
-//
-//            //Gets text from the email address field and stores it as an EmailAddress
-//            applicantEmail = new EmailAddress(emailAddressField.getText());
-//
-//            //Gets text from the email address field and stores it as a PhoneNumber
-//            applicantPhone = new PhoneNumber(phoneNumberField.getText());
-//
-//            //form is now filled in so go to page 2 of label application
-//            Main.loadFXML("/fxml/newApplicationPage2.fxml", this);
-//            if(application != null) {
-//                alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
-//                brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
-//                alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
-//                formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
-//            }
-//        }
-//    }
+        pTypeSelect.setValue("Select a product type");
+        pTypeSelect.setItems(typeList);
+        pSourceSelect.setValue("Select a product source");
+        pSourceSelect.setItems(sourceList);
+
+        pTypeSelect.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String oldVal, String newVal) {
+                if(pTypeSelect.getValue().equals("Wine")){
+                    showTheWine();
+                } else hideTheWine();
+            }
+        });
+    }
 
     public void submitApp() {
         LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
 
         Boolean formFilled = false;
-        Boolean emailValid = false;
-        Boolean phoneValid = false;
 
         //filling out application type
         boolean labelApproval;
@@ -327,92 +231,15 @@ public class NewApplicationController {
 
         appType = new ApplicationType(labelApproval, stateOnly, bottleCapacity);
 
-        //errors are printed only if required fields are not filled in
-        if (permitNoTextField.getText().isEmpty()) {
-            permitNoErrorField.setText("Please fill in your permit number.");
-        } else {
-            permitNoErrorField.setText("");
-        }
-        if (addressField.getText().isEmpty()) {
-            addressErrorField.setText("Please fill in the physical address of your company.");
-        } else {
-            addressErrorField.setText("");
-        }
-        if (phoneNumberField.getText().isEmpty()) {
-            phoneNumErrorField.setText("Please fill in the contact number.");
-        } else {
-            phoneNumErrorField.setText("");
-        }
-        if (emailAddressField.getText().isEmpty()) {
-            emailErrorField.setText("Please fill in the contact email.");
-        } else {
-            emailErrorField.setText("");
-        }
-
-        //check if required fields are filled
-        if (!emailAddressField.getText().isEmpty() && !phoneNumberField.getText().isEmpty() &&
-                !addressField.getText().isEmpty() && !permitNoTextField.getText().isEmpty()) {
-            formFilled = true;
-        }
-
-        //check if email field is valid
-        if (!emailAddressField.getText().isEmpty()) {
-            applicantEmail = new EmailAddress(emailAddressField.getText()); //get text from the email address field
-            if (applicantEmail.isValid()) {
-                emailValid = true;
-                emailErrorField.setText("");
-            } else emailErrorField.setText("Please fill in a valid email address.");
-        }
-
-        //check if phone number field is valid
-        if (!phoneNumberField.getText().isEmpty()) {
-            applicantPhone = new PhoneNumber(phoneNumberField.getText()); //get text from phone num field
-            if (applicantPhone.isValid()) {
-                phoneValid = true;
-                phoneNumErrorField.setText("");
-            } else phoneNumErrorField.setText("Please fill in a valid phone number.");
-        }
-
-        if (formFilled && emailValid && phoneValid) { //Store the applicant information now that the form is filled
-
-            //NEED TO CHECK IF THIS IS ACTUALLY AN INT!!!
-            if (!repIDNoTextField.getText().isEmpty()) {
-                repIDNo = Integer.parseInt(repIDNoTextField.getText().trim());
-            } else {
-                repIDNo = 0;
-            }
-            //Parses text from permit number field and stores it as an int
-            permitNo = Integer.parseInt(permitNoTextField.getText()); //CHECK INT!!!
-
-            //Gets text from email address field and stores it as a string
-            physicalAddress = addressField.getText();
-
-            //Gets text from the email address field and stores it as an EmailAddress
-            applicantEmail = new EmailAddress(emailAddressField.getText());
-
-            //Gets text from the email address field and stores it as a PhoneNumber
-            applicantPhone = new PhoneNumber(phoneNumberField.getText());
-
-            //radio buttons are grouped in the following groups:
-            //product type group
-            ToggleGroup productType = new ToggleGroup();
-            beer.setToggleGroup(productType);
-            wine.setToggleGroup(productType);
-            spirits.setToggleGroup(productType);
-
-            //product source group
-            ToggleGroup productSource = new ToggleGroup();
-            international.setToggleGroup(productSource);
-            domestic.setToggleGroup(productSource);
 
             //errors are printed only if required fields are not filled in
-            if (productSource.getSelectedToggle() == null) {
-                pSourceErrorField.setText("Please select whether the alcohol is imported or domestic.");
+            if (pSourceSelect.getValue().equals("Select a product source")) {
+                pSourceErrorField.setText("Please select the alcohol source.");
             } else {
                 pSourceErrorField.setText("");
             }
-            if (productType.getSelectedToggle() == null) {
-                pTypeErrorField.setText("Please select whether the alcohol is a malt beverage, wine, or distilled spirits.");
+            if (pTypeSelect.getValue().equals("Select a product type")) {
+                pTypeErrorField.setText("Please select the alcohol type.");
             } else {
                 pTypeErrorField.setText("");
             }
@@ -422,19 +249,19 @@ public class NewApplicationController {
                 brandNameErrorField.setText("");
             }
             if (alcoholContentField.getText().isEmpty()) {
-                alcContentErrorField.setText("Please fill in the alcohol % of the beverage.");
+                alcContentErrorField.setText("Please fill in the alcohol percentage.");
             } else {
                 alcContentErrorField.setText("");
             }
-//        if(formulaText.getText().isEmpty()){
-//            formulaErrorField.setText("Please fill in the formula");
-//        }
-//        else formulaErrorField.setText("");
             if (serialText.getText().isEmpty()) {
                 serialErrorField.setText("Please input a serial number");
-            } else serialErrorField.setText("");
+            } else {
+                serialErrorField.setText("");
+            }
 
-            if (productType.getSelectedToggle() == wine) {
+            if (pTypeSelect.getValue().equals("Wine")) {
+                //enable wine fields!!!!!
+
                 int vintageYr = 0;
                 double pH = 0.0;
                 String varietal = "";
@@ -449,19 +276,20 @@ public class NewApplicationController {
                 if (!appellationText.getText().isEmpty()) appellationText.getText();
                 wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
             }
-            if (datePicker == null) { //this doesn't work for now
-                dateErrorField.setText("Please select the date.");
-            } else {
-                dateErrorField.setText("");
-            }
-            if (signatureField.getText().isEmpty()) {
-                signatureErrorField.setText("Please fill in the signature field.");
-            } else {
-                signatureErrorField.setText("");
-            }
+
+//            if (signatureField.getText().isEmpty()) {
+//                signatureErrorField.setText("Please fill in the signature field.");
+//            } else if (datePicker == null){ //this doesn't work for now
+//                signatureErrorField.setText("");
+//                dateErrorField.setText("Please select the date.");
+//            } else {
+//                signatureErrorField.setText("");
+//                dateErrorField.setText("");
+//            }
 
             //check if required fields are filled in
-            if ((productType.getSelectedToggle() != null) && (productSource.getSelectedToggle() != null) &&
+            if ((!pTypeSelect.getValue().equals("Select a product type")) &&
+                    (!pSourceSelect.getValue().equals("Select a product source")) &&
                     !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
                     (datePicker != null) && !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
                     ) {
@@ -469,19 +297,19 @@ public class NewApplicationController {
             }
 
             if (formFilled) {
-                //Checking if the product is domestic or imported by checking the product source radio button group
-                if (productSource.getSelectedToggle() == domestic) {
+                //Checking if the product is domestic or imported
+                if (pSourceSelect.getValue().equals("Domestic")) {
                     pSource = ProductSource.DOMESTIC;
-                } else if (productSource.getSelectedToggle() == international) {
+                } else if (pSourceSelect.getValue().equals("Imported")) {
                     pSource = ProductSource.IMPORTED;
                 }
 
-                //Checking if the product is a beer, wine or spirits by checking the product source radio button group
-                if (productType.getSelectedToggle() == beer) {
+                //Checking if the product is a beer, wine or spirits
+                if (pTypeSelect.getValue().equals("Beer")) {
                     alcType = AlcoholType.BEER;
-                } else if (productType.getSelectedToggle() == wine) {
+                } else if (pTypeSelect.getValue().equals("Wine")) {
                     alcType = AlcoholType.WINE;
-                } else if (productType.getSelectedToggle() == spirits) {
+                } else if (pTypeSelect.getValue().equals("Distilled Spirits")) {
                     alcType = AlcoholType.DISTILLEDSPIRITS;
                 }
 
@@ -531,14 +359,11 @@ public class NewApplicationController {
                 ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
                 boolean success = applicantInterface.submitApplication(newApp);
 
-                //Go back to homepage
                 main.loadHomepage();
             }
         }
-    }
 
     public void cancelApp() {
-        //Go back to homepage
         main.loadHomepage();
     }
     public void saveApp() {
