@@ -186,6 +186,7 @@ public class SearchController {
             autoCompletionBinding.dispose();
         }
         autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
+        autoCompletionBinding.setPrefWidth(583);
     }
     public void filter(ActionEvent e){
         Platform.runLater(() -> {

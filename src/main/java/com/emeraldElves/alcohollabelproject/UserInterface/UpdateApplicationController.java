@@ -121,7 +121,7 @@ public class UpdateApplicationController {
     }
 
     public void cancelApp() {
-        main.loadHomepage();
+        main.loadApplicantWorkflowPage();
 
     }
 
