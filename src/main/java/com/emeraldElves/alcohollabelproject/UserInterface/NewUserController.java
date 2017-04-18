@@ -8,6 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+import java.util.Date;
+
 /**
  * Created by Essam on 4/4/2017.
  */
@@ -25,13 +27,12 @@ public class NewUserController {
     @FXML
     VBox errorMsg;
     @FXML
-    DatePicker date;
-    @FXML
     TextField permitNumText;
     @FXML
     TextField addressText;
 
     private Main main;
+    private int userTypeInt = -1;
 
     public NewUserController() {
 
@@ -41,20 +42,34 @@ public class NewUserController {
         this.main = main;
     }
 
-    public void createTTBAgent(){
+    public void setUserTypeAgent(){
+        userTypeInt = 0;
+    }
+
+    public void setUserTypeApplicant(){
+        userTypeInt = 1;
+    }
+
+    public void createPotentialUser(){
         //Setting all the fields for the new potential user
         String password = passwordField.getText();
         String FullName = Name.getText();
-        UserType userType = UserType.TTBAGENT;
+        UserType userType = UserType.fromInt(userTypeInt);
         int repID = Integer.parseInt(representativeID.getText());//representative ID
-        java.util.Date newDate =DateHelper.getDate(date.getValue().getDayOfMonth(),date.getValue().getMonthValue() - 1,date.getValue().getYear());
+        java.util.Date newDate = new Date();
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        int permitNum = Integer.parseInt(permitNumText.getText());
+        int permitNum;
+        if(permitNumText.isDisabled()){
+            permitNum = -1;
+        }
+        else{
+            permitNum = Integer.parseInt(permitNumText.getText());//check if field is not null
+        }
         String address = addressText.getText();
-        
+
         if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
-                password, newDate, -1, address))){
+                password, newDate, permitNum, address))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
@@ -62,6 +77,8 @@ public class NewUserController {
         }
     }
 
+
+    //shouldn't be needed anymore
     public void createApplicant(){
         //Setting all the fields for the new potential user
         String password = passwordField.getText();
