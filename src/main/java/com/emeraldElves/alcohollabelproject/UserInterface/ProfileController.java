@@ -9,15 +9,42 @@ import javafx.scene.control.TextField;
 public class ProfileController {
     // FXML
     @FXML
-    TextField representativeID;
+    TextField representativeIDField;
     @FXML
-    TextField permitNum;
+    TextField permitNumField;
     @FXML
-    TextField address;
+    TextField addressField;
     @FXML
-    TextField phoneNum;
+    TextField phoneNumField;
     @FXML
-    TextField emailAddress;
+    TextField emailAddressField;
 
-    
+    private Main main;
+
+    private String representativeID = "";
+    private String permitNum = "";
+    private String address = "";
+    private String phoneNum = "";
+    private String emailAddress = "";
+
+    public void init(Main main) {
+        this.main = main;
+    }
+
+    // functions - simply modify fields when user changes them
+    public void modifyRepresentativeID() {
+        representativeID = representativeIDField.getText();
+    }
+    public void modifyPermitNum() {
+        permitNum = permitNumField.getText();
+    }
+    public void modifyAddress() {
+        address = addressField.getText();
+    }
+    public void modifyPhoneNum() {
+        phoneNum = phoneNumField.getText();
+    }
+    public void modifyEmailAddress() {
+        emailAddress = emailAddressField.getText();
+    }
 }
