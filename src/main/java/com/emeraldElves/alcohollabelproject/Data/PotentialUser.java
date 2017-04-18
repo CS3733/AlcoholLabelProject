@@ -7,31 +7,37 @@ import java.util.Date;
  */
 public class PotentialUser {
     //TODO: add fields that are added to account stuff
-    private String Name, UserName,Password;
-    private int IDnum;
+    private String Name, UserName,Password, address;
+    private int representativeID, permitNum;
     private EmailAddress email;
     private PhoneNumber phoneNumber;
     private UserType userType;
     private Date date;
 
-    public PotentialUser(String Name, String UserName, int IDnum, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date) {
+    public PotentialUser(String Name, String UserName, int representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
+    int permitNum, String address) {
         this.Name = Name;
         this.UserName = UserName;
-        this.IDnum = IDnum;
+        this.representativeID = representativeID;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.userType = userType;
         this.Password = Password;
         this.date = date;
+        this.address = address;
+        this.permitNum = permitNum;
+
     }
 
     public EmailAddress getEmail() {
         return email;
     }
 
-    public int getIDnum() {
-        return IDnum;
+    public int getRepresentativeID() {
+        return representativeID;
     }
+
+    public int getPermitNum(){ return permitNum; }
 
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
@@ -56,4 +62,6 @@ public class PotentialUser {
     public Date getDate() {
         return date;
     }
+
+    public String getAddress(){ return address; }
 }
