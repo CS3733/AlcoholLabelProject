@@ -9,6 +9,7 @@ import javax.jws.soap.SOAPBinding;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -132,7 +133,8 @@ public class AuthenticatedUsersDatabase {
                             + user.getPermitNum() + ", '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+                            + user.getEmail().getEmailAddress() + "', "
+                            + user.getDate()
                     , "NewApplicant");
             if(!worked){ throw new SQLException("Failed to add user");}
         }
@@ -153,12 +155,22 @@ public class AuthenticatedUsersDatabase {
         List<PotentialUser> users = new ArrayList<>();
         try {
             while (resultSet.next()) {
-                String username = resultSet.getString("username");
+                //Adding all stuff from database to new PotentialUser object
+                String name = resultSet.getString("name");
                 String password = resultSet.getString("password");
                 int usertype = resultSet.getInt("type");
                 UserType useType = UserType.fromInt(usertype);
-                //fix this lol
-                //users.add(new PotentialUser(username, password, useType));
+                int representativeID = resultSet.getInt("representativeID");
+                String emailString = resultSet.getString("email");
+                EmailAddress email = new EmailAddress(emailString);
+                String phoneNumberString = resultSet.getString("phoneNumber");
+                PhoneNumber phoneNumber = new PhoneNumber(phoneNumberString);
+                Date date = new Date(resultSet.getLong("date"));
+                int permitNum = resultSet.getInt("permitNum");
+                String address = resultSet.getString("address");
+
+                users.add(new PotentialUser(name, representativeID, email, phoneNumber,
+                         useType, password, date, permitNum, address));
             }
         }
         catch(SQLException e){

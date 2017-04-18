@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject.Data;
 import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Log;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -105,7 +106,8 @@ public class Storage {
                     new Database.TableField("permitNum", "INTEGER NOT NULL"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("date", "BIGINT"));
             Log.console("Created new NewApplicant table");
         }
         catch (SQLException e){
