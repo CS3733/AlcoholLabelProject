@@ -216,7 +216,8 @@ public class AlcoholDatabase {
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
                         + image + "'", "applicationID = "
-                        + application.getApplicationID());
+                        + application.getApplicationID() + ", qualifications = '"
+                        + info.getQualifications() + "'");
 
 
                 db.update("ManufacturerInfo", "authorizedName = '"
@@ -269,7 +270,8 @@ public class AlcoholDatabase {
                                 + appType.isLabelApproval() + ", '"
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
-                                + image + "'"
+                                + image + "', '"
+                                + info.getQualifications() + "'"
                         //TTBUsername
                         , "SubmittedApplications");
 
