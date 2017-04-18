@@ -16,8 +16,26 @@ public class SubmittedUserApplication {
         this.IDnum = IDnum;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
 
+    public EmailAddress getEmail() {
+        return email;
+    }
 
+    public int getIDnum() {
+        return IDnum;
+    }
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getUserName() {
+        return UserName;
     }
 
 }
