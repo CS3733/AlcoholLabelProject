@@ -26,8 +26,6 @@ import java.util.List;
 
 public class NewApplicationController {
     @FXML
-    ComboBox applicationType;
-    @FXML
     TextField repIDNoTextField;
     @FXML
     TextField permitNoTextField;
@@ -169,6 +167,7 @@ public class NewApplicationController {
 
     private SubmittedApplication application;
 
+    final ComboBox getAppTypeCombo = new ComboBox();
 
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
@@ -182,19 +181,18 @@ public class NewApplicationController {
         brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
         alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
         formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
-       
-        pTypeSelect.setValue("Type");
-        pTypeSelect.setItems(typeList);
-        pSourceSelect.setValue("Source");
-        pSourceSelect.setItems(sourceList);
 
-        applicationType.getItems().addAll("Certificate of Label Approval", "Certificate of Exemption from Label Approval", "Distinctive Liqour Bottle Approval");
         //pStatesList
     }
 
     public void init(Main main){
 //        init(main, null);
         this.main = main;
+        
+        pTypeSelect.setValue("Type");
+        pTypeSelect.setItems(typeList);
+        pSourceSelect.setValue("Source");
+        pSourceSelect.setItems(sourceList);
     }
 
 //    public void nextPage(){
