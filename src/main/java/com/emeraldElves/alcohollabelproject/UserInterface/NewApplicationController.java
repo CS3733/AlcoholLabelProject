@@ -24,6 +24,8 @@ import java.util.List;
 
 public class NewApplicationController {
     @FXML
+    ComboBox applicationType;
+    @FXML
     TextField repIDNoTextField;
     @FXML
     TextField permitNoTextField;
@@ -183,6 +185,8 @@ public class NewApplicationController {
         pTypeSelect.setItems(typeList);
         pSourceSelect.setValue("Source");
         pSourceSelect.setItems(sourceList);
+
+        applicationType.getItems().addAll("Certificate of Label Approval", "Certificate of Exemption from Label Approval", "Distinctive Liqour Bottle Approval");
         //pStatesList
     }
 
