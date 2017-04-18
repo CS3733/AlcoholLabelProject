@@ -47,6 +47,13 @@ public class ProfileController {
 
     public void init(Main main) {
         this.main = main;
+
+        // set text values to current values
+        representativeIDField.setText(Integer.toString(representativeID));
+        permitNumField.setText(Integer.toString(permitNum));
+        addressField.setText(address);
+        phoneNumField.setText(phoneNum);
+        emailAddressField.setText(emailAddress);
     }
 
     // functions - simply modify fields when user changes them
