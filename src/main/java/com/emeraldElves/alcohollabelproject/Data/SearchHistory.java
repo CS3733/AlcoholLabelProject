@@ -11,7 +11,7 @@ public class SearchHistory {
     public void addMostRecentSearch(String searchText){
         searchHistory.push(searchText);
     }
-    
+
     public String getMostRecentSearch(){
         return (String) searchHistory.pop();
     }

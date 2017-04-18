@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class Storage {
     private AlcoholDatabase alcoholDB;
+    private AlcoholDatabase UpdatedAlcoholDB;
     private AuthenticatedUsersDatabase usersDB;
     private Database db;
 
@@ -96,20 +97,35 @@ public class Storage {
         } catch (SQLException e) {
             Log.console("Used existing AlcoholInfo table");
         }
-        try{
-            database.createTable("NewApplicant",
-                    new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"),
-                    new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
-                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
-                    new Database.TableField("address", "VARCHAR (255)"),
-                    new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
-            Log.console("Created new NewApplicant table");
+        try {
+            database.createTable("UpdatedApplicationHistory",
+                    new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
+                    new Database.TableField("status", "INTEGER NOT NULL"),
+                    new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("submissionTime", "BIGINT NOT NULL"),
+                    new Database.TableField("expirationDate", "BIGINT"),
+                    new Database.TableField("agentName", "VARCHAR (255)"),
+                    new Database.TableField("approvalDate", "BIGINT"),
+                    new Database.TableField("TTBUsername", "VARCHAR (255)"),
+                    new Database.TableField("submitterUsername", "VARCHAR (255)"),
+                    new Database.TableField("extraInfo", "VARCHAR (1000)"),
+                    new Database.TableField("labelApproval", "BOOLEAN"),
+                    new Database.TableField("stateOnly", "VARCHAR (2)"),
+                    new Database.TableField("bottleCapacity", "INTEGER"),
+                    new Database.TableField("imageURL", "VARCHAR (255)"),
+                    new Database.TableField("qualifications", "VARCHAR (10000)"));
+            Log.console("Created new SubmittedApplications table");
+        } catch (SQLException e) {
+            Log.console("Used existing SubmittedApplications table");
         }
-        catch (SQLException e){
-            Log.console("Used existing NewApplicant table");
+
+        try {
+            database.createTable("TTBAgentLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
+            Log.console("Created new TTBAgentLogin table");
+        } catch (SQLException e) {
+            Log.console("Used existing TTBAgentLogin table");
         }
 
         return database;
@@ -128,6 +144,9 @@ public class Storage {
 
     public boolean submitApplication(SubmittedApplication application, String username) {
         return alcoholDB.submitApplication(application, username);
+    }
+    public boolean MovetoHistory(SubmittedApplication application, String username) {
+        return UpdatedAlcoholDB.submitApplication(application, username);
     }
 
     public boolean approveApplication(SubmittedApplication application, String agentName, Date expirationDate) {

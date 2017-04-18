@@ -27,6 +27,13 @@ public class ApplicantInterface {
         }
         return submitted;
     }
+    public boolean MoveApplicationtoUpdated(SubmittedApplication application){
+        boolean submitted = storage.MovetoHistory(application,username);
+        if(submitted){
+            applicant.setApplications(storage.getApplicationsByApplicant(username));
+        }
+        return submitted;
+    }
 
     public boolean updateApplication(SubmittedApplication application){
         return submitApplication(application);
