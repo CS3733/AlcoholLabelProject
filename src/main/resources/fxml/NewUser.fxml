@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.NewUserController">
+<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewUserController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -25,44 +25,9 @@
       <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="542.0" prefWidth="802.0" style="-fx-background-color: DDDDDD;" GridPane.rowIndex="1">
+        <Pane prefHeight="644.0" prefWidth="802.0" GridPane.rowIndex="1">
          <children>
             <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="300.0" prefWidth="250.0">
-               <center>
-                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="250.0" spacing="10.0" style="-fx-border-color: CCCCCC; -fx-border-width: 5; -fx-background-color: white;" BorderPane.alignment="CENTER">
-                     <children>
-                        <Group>
-                           <children>
-                              <TextField fx:id="usernameField" layoutY="26.0" onAction="#login" prefWidth="200.0" />
-                              <Label text="Username">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Group>
-                        <Group>
-                           <children>
-                              <Label layoutY="4.0" prefHeight="20.0" prefWidth="74.0" text="Password">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <PasswordField fx:id="passwordField" layoutY="30.0" onAction="#login" prefWidth="200.0" />
-                           </children>
-                        </Group>
-                        <Button fx:id="loginBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createTTBAgent" text="Create TTB Agent">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="loginBtn1" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createApplicant" text="Create Applicant" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </VBox>
-               </center>
                <top>
                   <VBox fx:id="errorMsg" alignment="CENTER" prefHeight="50.0" style="-fx-background-color: ffdce0; -fx-border-color: red;" translateY="-10.0" visible="false" BorderPane.alignment="CENTER">
                      <children>
@@ -75,12 +40,45 @@
                   </VBox>
                </top>
             </BorderPane>
-            <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#GoHome" text="Home" />
+            <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
+            <VBox alignment="CENTER" layoutX="387.0" layoutY="195.0" prefHeight="250.0" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <Group>
+                     <children>
+                        <TextField fx:id="usernameField" layoutY="26.0" prefWidth="200.0" />
+                        <Label text="Username">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label layoutY="4.0" prefHeight="20.0" prefWidth="74.0" text="Password">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="passwordField" layoutY="30.0" prefWidth="200.0" />
+                     </children>
+                  </Group>
+                  <Button fx:id="loginBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createTTBAgent" styleClass="button-raised" text="Create TTB Agent">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="loginBtn1" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createApplicant" styleClass="button-raised" text="Create Applicant" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
          </children>
         </Pane>
-      <Pane>
+      <Pane prefHeight="124.0" prefWidth="1024.0">
          <children>
-            <ImageView fitHeight="181.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="174.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/ttbmasthead.gif" />
                </image>

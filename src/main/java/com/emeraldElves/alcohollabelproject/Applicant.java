@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+
 import java.util.List;
 
 /**

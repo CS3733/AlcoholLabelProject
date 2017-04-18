@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.ApprovalProcessController">
+<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.91" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApprovalProcessController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -20,61 +23,106 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="542.0" prefWidth="802.0" GridPane.rowIndex="1">
+        <Pane prefHeight="644.0" prefWidth="802.0" GridPane.rowIndex="1">
             <children>
-                <Label fx:id="brandName" layoutX="14.0" layoutY="85.0" text="Brand name">
+                <Label fx:id="brandName" layoutX="207.0" layoutY="21.0" prefHeight="35.0" prefWidth="248.0" text="Brand name">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="fancifulName" layoutX="14.0" layoutY="120.0" text="Fanciful name">
+                <Label fx:id="fancifulName" layoutX="207.0" layoutY="65.0" prefHeight="40.0" prefWidth="275.0" text="Fanciful name">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="alcoholType" alignment="CENTER" contentDisplay="CENTER" layoutX="365.0" layoutY="90.0" text="Alcohol type" textAlignment="CENTER">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </Label>
-                <Label fx:id="submissionDate" layoutX="502.0" layoutY="90.0" text="Submission date">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label fx:id="company" layoutX="571.0" layoutY="120.0" text="Company">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <Label fx:id="origin" layoutX="348.0" layoutY="121.0" text="Origin">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Label>
-                <Button layoutX="27.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#GoHome" text="Home" />
-            <Button layoutX="72.0" layoutY="487.0" mnemonicParsing="false" onMouseClicked="#Approve" text="Aprove" />
-            <Button layoutX="176.0" layoutY="488.0" mnemonicParsing="false" onMouseClicked="#Reject" text="Reject" />
-            <Button layoutX="273.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#PendingReview" text="Pending Review" visible="false" />
+                <Button layoutX="27.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
+            <Button layoutX="206.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#PendingReview" styleClass="button-flat" text="Pending Review" visible="false" />
             <Button layoutX="419.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#ApprovedConditionally" text="Approved with conditions" visible="false" />
             <Button layoutX="629.0" layoutY="488.0" mnemonicParsing="false" onMouseClicked="#NeedsCorrections" text="Needs corrections" visible="false" />
-            <Button disable="true" layoutX="604.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#MoveToNextApp" text="View next application" visible="false" />
-            <TextArea fx:id="reason" layoutX="78.0" layoutY="335.0" prefHeight="127.0" prefWidth="659.0" promptText="Reason for choice:" />
-            <Label fx:id="applicationID" layoutX="340.0" layoutY="22.0" text="Application ID" />
-            <Label fx:id="applicantID" layoutX="343.0" layoutY="59.0" text="Applicant ID" />
-            <Label fx:id="authorizedName" layoutX="19.0" layoutY="174.0" text="Submitted by" />
-            <Label fx:id="physicalAddress" layoutX="21.0" layoutY="194.0" text="Address" />
-            <Label fx:id="permitNum" layoutX="19.0" layoutY="212.0" text="Permit No" />
-            <Label fx:id="phoneNum" layoutX="17.0" layoutY="234.0" text="Phone Number" />
-            <Label fx:id="emailAddress" layoutX="17.0" layoutY="254.0" text="Email Address" />
-            <Label fx:id="alcoholContent" layoutX="345.0" layoutY="165.0" text="Alcohol Content" />
+            <Button disable="true" layoutX="604.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#MoveToNextApp" styleClass="button-raised" text="View next application" visible="false" />
+            <TextArea fx:id="reason" layoutX="43.0" layoutY="334.0" prefHeight="206.0" prefWidth="922.0" promptText="Reason for choice:" />
             <Label fx:id="pH" layoutX="671.0" layoutY="186.0" />
-            <Label fx:id="vintageYear" layoutX="706.0" layoutY="254.0" />
+            <HBox layoutX="47.0" layoutY="161.0" prefHeight="140.0" prefWidth="299.0">
+               <children>
+                  <VBox prefHeight="140.0" prefWidth="123.0">
+                     <children>
+                        <Label text="Application ID:" />
+                        <Label text="Applicant ID" />
+                        <Label text="Alcohol Type:" />
+                        <Label text="Origin" />
+                        <Label text="Alcohol Content" />
+                        <Label text="Submission Date:" />
+                        <Label text="Company:" visible="false" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="140.0" prefWidth="178.0">
+                     <children>
+                        <Label fx:id="applicationID" text="Application ID" />
+                        <Label fx:id="applicantID" text="Applicant ID" />
+                            <Label fx:id="alcoholType" alignment="CENTER" contentDisplay="CENTER" text="Alcohol type" textAlignment="CENTER">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="origin" text="Origin">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Label>
+                        <Label fx:id="alcoholContent" text="Alcohol Content" />
+                            <Label fx:id="submissionDate" text="Submission date">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="company" text="Company" visible="false">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Label>
+                     </children>
+                  </VBox>
+                  <Label fx:id="vintageYear" />
+               </children>
+            </HBox>
+            <GridPane layoutX="516.0" layoutY="92.0" prefHeight="226.0" prefWidth="443.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="121.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="20.0" prefWidth="101.0" text="Submitted By:" visible="false" />
+                  <Label fx:id="authorizedName" text="Submitted by" visible="false" GridPane.columnIndex="1" />
+                  <Label prefHeight="37.0" prefWidth="98.0" text="Address:" GridPane.rowIndex="1" />
+                  <Label fx:id="physicalAddress" prefHeight="85.0" prefWidth="177.0" text="fdsafdfdsfdsafjsadfldsaf;ljds;lfds;ljafjdsa" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="20.0" prefWidth="123.0" text="Permit No:" GridPane.rowIndex="2" />
+                  <Label fx:id="permitNum" text="Permit No" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label prefHeight="20.0" prefWidth="121.0" text="Phone #:" GridPane.rowIndex="3" />
+                  <Label fx:id="phoneNum" text="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label prefHeight="20.0" prefWidth="124.0" text="Email Address:" GridPane.rowIndex="4" />
+                  <Label fx:id="emailAddress" text="Email Address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <ButtonBar layoutX="775.0" layoutY="556.0" prefHeight="40.0" prefWidth="191.0">
+              <buttons>
+                  <Button mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" />
+                  <Button mnemonicParsing="false" onMouseClicked="#Reject" styleClass="button-raised" text="Reject" />
+              </buttons>
+            </ButtonBar>
+            <Button layoutX="870.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#viewLabel" styleClass="button-raised" text="View Label" />
+            <Button layoutX="790.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#printPage" styleClass="button-raised" text="Print" />
             </children>
         </Pane>
-        <Pane>
+        <Pane prefHeight="124.0" prefWidth="1024.0">
             <children>
-                <ImageView fitHeight="181.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="140.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ttbmasthead.gif" />
                     </image>

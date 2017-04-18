@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.LoginController">
+<GridPane alignment="center" hgap="10" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.LoginController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -25,11 +26,22 @@
       <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="542.0" prefWidth="802.0" style="-fx-background-color: DDDDDD;" GridPane.rowIndex="1">
+        <Pane prefHeight="624.0" prefWidth="1024.0" GridPane.rowIndex="1">
          <children>
-            <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="300.0" prefWidth="250.0">
+            <BorderPane layoutX="394.0" layoutY="62.0" prefHeight="355.0" prefWidth="250.0">
+               <top>
+                  <VBox fx:id="errorMsg" alignment="CENTER" prefHeight="50.0" translateY="-10.0" visible="false" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Incorrect username or password." VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </top>
                <center>
-                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="250.0" spacing="10.0" style="-fx-border-color: CCCCCC; -fx-border-width: 5; -fx-background-color: white;" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="294.0" prefWidth="257.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
                         <Group>
                            <children>
@@ -51,36 +63,26 @@
                               <PasswordField fx:id="passwordField" layoutY="30.0" onAction="#login" prefWidth="200.0" />
                            </children>
                         </Group>
-                        <Button fx:id="loginBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsAgent" text="Login as TTB Agent">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="loginBtn1" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsApplicant" text="Login as Applicant" />
                      </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </VBox>
                </center>
-               <top>
-                  <VBox fx:id="errorMsg" alignment="CENTER" prefHeight="50.0" style="-fx-background-color: ffdce0; -fx-border-color: red;" translateY="-10.0" visible="false" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label text="Incorrect username or password." VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
-               </top>
             </BorderPane>
-            <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#GoHome" text="Home" />
+            <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
+            <ButtonBar layoutX="237.0" layoutY="417.0" prefHeight="40.0" prefWidth="538.0">
+              <buttons>
+                  <Button fx:id="loginBtn1" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsApplicant" prefHeight="40.0" prefWidth="182.0" styleClass="button-raised" text="Login as Applicant" />
+                  <Button contentDisplay="CENTER" minWidth="39.0" mnemonicParsing="false" onMouseClicked="#loginAsSuperAgent" prefHeight="40.0" prefWidth="178.0" styleClass="button-raised" text="Login as Super Agent" />
+                  <Button fx:id="loginBtn" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#loginAsAgent" styleClass="button-raised" text="Login as TTB Agent" />
+              </buttons>
+            </ButtonBar>
          </children>
         </Pane>
       <Pane>
          <children>
-            <ImageView fitHeight="181.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="144.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/ttbmasthead.gif" />
                </image>
