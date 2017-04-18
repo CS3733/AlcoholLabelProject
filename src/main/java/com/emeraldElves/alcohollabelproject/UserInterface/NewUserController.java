@@ -83,6 +83,7 @@ public class NewUserController {
 
 
     //shouldn't be needed anymore
+    /*
     public void createApplicant(){
         //Setting all the fields for the new potential user
         String password = passwordField.getText();
@@ -103,6 +104,7 @@ public class NewUserController {
             errorMsg.setVisible(true);
         }
     }
+    */
 
     public void GoHome(){
         main.loadHomepage();
