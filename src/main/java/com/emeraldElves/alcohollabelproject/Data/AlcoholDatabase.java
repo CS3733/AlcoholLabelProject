@@ -481,6 +481,30 @@ public class AlcoholDatabase {
         }
         return null;
     }
+    private AlcoholInfo getHistoricalAlcoholInfoByID(int applicationID) {
+        ResultSet alcoholResult = db.select("*", "HistoricalAlcoholInfo", "applicationID = " + applicationID);
+        try {
+            if (alcoholResult.next()) {
+                AlcoholType type = AlcoholType.fromInt(alcoholResult.getInt("type"));
+                if (type == AlcoholType.WINE) {
+                    return new WineInfo(alcoholResult.getInt("alcoholContent"),
+                            alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
+                            ProductSource.fromInt(alcoholResult.getInt("origin")),
+                            alcoholResult.getInt("vintageYear"), (double) alcoholResult.getFloat("pH"),
+                            alcoholResult.getString("varietals"), alcoholResult.getString("wineAppellation"));
+                } else {
+                    return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
+                            alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
+                            ProductSource.fromInt(alcoholResult.getInt("origin")), type, null,
+                            alcoholResult.getString("serialNumber"), alcoholResult.getString("formula"));
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     private ManufacturerInfo getManufacturerInfoByID(int applicationID) {
         ResultSet results = db.select("*", "ManufacturerInfo", "applicationID = " + applicationID);
@@ -515,6 +539,42 @@ public class AlcoholDatabase {
     public List<SubmittedApplication> getApproved() {
         ResultSet results = db.select("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue());
         return getApplicationsFromResultSet(results);
+    }
+    private SubmittedApplication getHistoricalApplicationbyID(int id) {
+        ResultSet submittedResult = db.select("*", "UpdatedApplicationHistory", "applicationID = " + id);
+
+        try {
+            if (submittedResult.next()) {
+                Date subDate = new Date(submittedResult.getLong("submissionTime"));
+
+                Applicant applicant = new Applicant(null); // TODO: implement this
+                ApplicationStatus status = ApplicationStatus.fromInt(submittedResult.getInt("status"));
+                String message = submittedResult.getString("statusMsg");
+                String extraInfo = submittedResult.getString("extraInfo");
+                Boolean labelApproval = submittedResult.getBoolean("labelApproval");
+                String stateOnly = submittedResult.getString("stateOnly");
+                int bottleCapacity = submittedResult.getInt("bottleCapacity");
+                String fileName = submittedResult.getString("imageURL");
+
+
+                ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
+
+                AlcoholInfo alcoholInfo = getHistoricalAlcoholInfoByID(id);
+
+
+                ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
+                        extraInfo, new ApplicationType(labelApproval, stateOnly, bottleCapacity));
+
+                SubmittedApplication application = new SubmittedApplication(info, status, applicant);
+                application.setImage(new ProxyLabelImage(fileName));
+                application.setApplicationID(id);
+                application.setTtbMessage(message);
+                return application;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

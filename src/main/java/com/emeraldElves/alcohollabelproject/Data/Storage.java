@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class Storage {
     private AlcoholDatabase alcoholDB;
-    private AlcoholDatabase UpdatedAlcoholDB;
     private AuthenticatedUsersDatabase usersDB;
     private Database db;
 
@@ -98,6 +97,24 @@ public class Storage {
             Log.console("Used existing AlcoholInfo table");
         }
         try {
+            database.createTable("HistoricalAlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
+                    new Database.TableField("fancifulName", "VARCHAR (255)"),
+                    new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("origin", "INTEGER NOT NULL"),
+                    new Database.TableField("type", "INTEGER NOT NULL"),
+                    new Database.TableField("formula", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("serialNumber", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("pH", "REAL"),
+                    new Database.TableField("vintageYear", "INTEGER"),
+                    new Database.TableField("varietals", "VARCHAR (255)"),
+                    new Database.TableField("wineAppellation", "VARCHAR (255)"));
+            Log.console("Created new AlcoholInfo table");
+        } catch (SQLException e) {
+            Log.console("Used existing AlcoholInfo table");
+        }
+
+        try {
             database.createTable("UpdatedApplicationHistory",
                     new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("applicantID", "INTEGER NOT NULL"),
@@ -146,7 +163,7 @@ public class Storage {
         return alcoholDB.submitApplication(application, username);
     }
     public boolean MovetoHistory(SubmittedApplication application, String username) {
-        return UpdatedAlcoholDB.submitApplication(application, username);
+        return alcoholDB.submitApplication(application, username);
     }
 
     public boolean approveApplication(SubmittedApplication application, String agentName, Date expirationDate) {
@@ -230,6 +247,7 @@ public class Storage {
     public List<SubmittedApplication> getAssignedApplications(String agentName) {
         return alcoholDB.getAssignedApplications(agentName);
     }
+
 
 
 }
