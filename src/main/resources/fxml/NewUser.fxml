@@ -42,9 +42,10 @@
                </top>
             </BorderPane>
             <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
-            <GridPane layoutX="224.0" layoutY="-1.0" prefHeight="610.0" prefWidth="580.0">
+            <GridPane layoutX="257.0" layoutY="-3.0" prefHeight="612.0" prefWidth="758.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="493.3333740234375" minWidth="10.0" prefWidth="477.3333740234375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="393.6666259765625" minWidth="10.0" prefWidth="321.6666259765625" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="129.6666717529297" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
@@ -82,10 +83,10 @@
                   <Label text="Address" GridPane.rowIndex="5" GridPane.valignment="TOP" />
                   <TextField fx:id="Name" GridPane.rowIndex="1" />
                   <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                  <GridPane prefHeight="73.0" prefWidth="580.0">
+                  <GridPane prefHeight="98.0" prefWidth="458.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.66665649414062" minWidth="10.0" prefWidth="243.66665649414062" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.66668701171875" minWidth="10.0" prefWidth="213.33334350585938" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -98,6 +99,31 @@
                         <RadioButton fx:id="agentBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeAgent" text="TTB Agent Account" toggleGroup="$accountType" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
+                  <Label fx:id="accountError" GridPane.columnIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="emailError" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="phoneNumError" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="permitNumError" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="repIDError" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
                </children>
             </GridPane>
          </children>
