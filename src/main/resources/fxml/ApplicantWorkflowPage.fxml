@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
@@ -14,7 +16,15 @@
       <Button layoutX="162.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#reviseApplication" styleClass="button-raised" text="REVISE" />
       <HBox layoutX="62.0" layoutY="250.0" prefHeight="500.0" prefWidth="900.0">
          <children>
-            <ListView fx:id="list" prefHeight="525.0" prefWidth="900.0" />
+            <ListView fx:id="list" prefHeight="525.0" prefWidth="900.0">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#ApplicationWorkflow" text="Update" />
+                        <MenuItem mnemonicParsing="false" onAction="#reviseApplication" text="Revise" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu></ListView>
          </children>
       </HBox>
       <fx:include source="toolbar.fxml" />
