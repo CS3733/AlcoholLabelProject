@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -123,7 +122,6 @@ public class ApprovalProcessController {
         ApplicationStatusChanger changer = new ApplicationStatusChanger();
         changer.changeStatus(new RejectCommand(application, reason.getText()));
         changer.commitUpdates();
-        //Storage.getInstance().rejectApplication(application, reason.getText());
         main.loadWorkflowPage();
     }
 
