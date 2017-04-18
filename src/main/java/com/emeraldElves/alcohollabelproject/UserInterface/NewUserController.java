@@ -2,10 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.util.Date;
@@ -30,6 +27,10 @@ public class NewUserController {
     TextField permitNumText;
     @FXML
     TextField addressText;
+    @FXML
+    RadioButton applicantBtn;
+    @FXML
+    RadioButton agentBtn;
 
     private Main main;
     private int userTypeInt = -1;
@@ -40,6 +41,9 @@ public class NewUserController {
 
     public void init(Main main) {
         this.main = main;
+        ToggleGroup accountType = new ToggleGroup();
+        applicantBtn.setToggleGroup(accountType);
+        agentBtn.setToggleGroup(accountType);
     }
 
     public void setUserTypeAgent(){
