@@ -25,6 +25,7 @@ public class Main extends Application {
         Parent root = loader.load();
         UISwitcher.getInstance().setStage(primaryStage);
 //        UISwitcher.getInstance().switchToPage(UISwitcher.HOME_PAGE);
+        primaryStage.setResizable(false);
         HomeController controller = loader.getController();
         controller.init(this);
         primaryStage.setTitle("Alcohol Label Project");
@@ -230,11 +231,11 @@ public class Main extends Application {
     }
 
     public void loadWorkflowPage() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/workflowController.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TTBWorkflowPage.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            WorkflowController controller = loader.getController();
+            TTBWorkflowController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
