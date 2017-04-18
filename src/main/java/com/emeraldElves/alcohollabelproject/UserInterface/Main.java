@@ -283,6 +283,20 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    public void loadProfilePage(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProfilePage.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            ProfileController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

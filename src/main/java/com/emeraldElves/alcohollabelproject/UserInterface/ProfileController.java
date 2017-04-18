@@ -1,7 +1,9 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import com.emeraldElves.alcohollabelproject.Authenticator;
 
 /**
  * Created by Joe on 4/18/2017.
@@ -20,27 +22,20 @@ public class ProfileController {
     TextField emailAddressField;
 
     private Main main;
+    private ApplicantInterface applicant;
 
+    private String emailAddress;
     private int representativeID;
     private int permitNum;
     private String address;
     private String phoneNum;
-    private String emailAddress;
 
     public ProfileController() {
-        representativeID = 0;
-        permitNum = 0;
-        address = "";
-        phoneNum = "";
-        emailAddress = "";
-    }
-
-    public ProfileController(int representativeID, int permitNum, String address, String phoneNum, String emailAddress) {
-        this.representativeID = representativeID;
-        this.permitNum = permitNum;
-        this.address = address;
-        this.phoneNum = phoneNum;
-        this.emailAddress = emailAddress;
+        emailAddress = applicant.getApplicant().getEmailAddress;
+        representativeID = applicant.getApplicant().getRepresentativeID();
+        permitNum = applicant.getApplicant().getPermitNum();
+        address = applicant.getApplicant().getAddress();
+        phoneNum = applicant.getApplicant().getPhoneNum();
     }
 
     // note: default field value is empty string ("")
