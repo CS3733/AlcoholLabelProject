@@ -231,7 +231,6 @@ public class NewApplicationController {
 
         appType = new ApplicationType(labelApproval, stateOnly, bottleCapacity);
 
-
             //errors are printed only if required fields are not filled in
             if (pSourceSelect.getValue().equals("Select a product source")) {
                 pSourceErrorField.setText("Please select the alcohol source.");
@@ -260,8 +259,6 @@ public class NewApplicationController {
             }
 
             if (pTypeSelect.getValue().equals("Wine")) {
-                //enable wine fields!!!!!
-
                 int vintageYr = 0;
                 double pH = 0.0;
                 String varietal = "";
