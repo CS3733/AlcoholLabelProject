@@ -13,21 +13,21 @@ public class SuperUserWorkflowController {
     PotentialUser UserforApproval;
     Main main;
 
-    public void init(Main main){
+    public void init(Main main,PotentialUser UserforApproval){
         this.main = main;
         //get all from current potential user database
         users = Storage.getInstance().getPotentialUsers();
-        UserforApproval = null;
+        this.UserforApproval = UserforApproval;
         //add to displayed table, copy from search functionality
     }
 
     public void Approve() {
         Storage.getInstance().createUser(UserforApproval);
-
+        Storage.getInstance().deleteUser(UserforApproval);
     }
 
     public void Reject() {
-
+        Storage.getInstance().deleteUser(UserforApproval);
     }
 
 

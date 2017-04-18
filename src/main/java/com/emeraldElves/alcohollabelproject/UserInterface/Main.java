@@ -284,13 +284,13 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    public void loadAccountApplicationPage(PotentialUser potentialUser){
+    public void loadSuperUserWorkflowController(PotentialUser potentialUser){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AccountApplicationPage"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            NewUserApplicationDisplayController controller = loader.getController();
-            //controller.init(this, potentialUser);
+            SuperUserWorkflowController controller = loader.getController();
+            controller.init(this, potentialUser);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
