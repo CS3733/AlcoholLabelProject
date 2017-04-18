@@ -53,6 +53,9 @@ public class ToolbarController implements Initializable {
             case APPLICANT:
                 main.loadApplicantWorkflowPage();
                 break;
+            case SUPERAGENT:
+                main.loadNewUserPage();
+                break;
         }
     }
 
@@ -62,7 +65,7 @@ public class ToolbarController implements Initializable {
         switch (Authenticator.getInstance().getUserType()) {
             case SUPERAGENT:
                 utility.setVisible(true);
-                utility.setText("POTENTIAL USERS");
+                utility.setText("CREATE USERS");
                 logButton.setText("LOG OUT");
                 break;
             case TTBAGENT:

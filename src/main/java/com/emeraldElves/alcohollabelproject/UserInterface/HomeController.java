@@ -92,23 +92,6 @@ public class HomeController {
         submitted = search.searchRecentApplications(4);
     }
 
-    // TODO: put FXML in correct folder
-
-    /**
-     * Loads homepage
-     */
-    public void utilityButton() {
-
-    }
-
-    public void loadLog() {
-
-    }
-
-    public void createNewUser(){
-        main.loadNewUserPage();
-    }
-
     public void searchDatabase() {
         main.loadSearchPage(searchbox.getText());
     }
