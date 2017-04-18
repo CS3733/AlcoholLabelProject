@@ -17,6 +17,8 @@ public class ToolbarController implements Initializable {
     private Button utility;
     @FXML
     private Button logButton;
+    @FXML
+    private Button extraButton;
 
     private Main main;
 
@@ -59,26 +61,41 @@ public class ToolbarController implements Initializable {
         }
     }
 
+    public void extraFunction() {
+        switch (Authenticator.getInstance().getUserType()) {
+            case TTBAGENT:
+                main.loadProfilePage("placeholder");
+                break;
+            case APPLICANT:
+                main.loadProfilePage("placeholder");
+                break;
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         main = UISwitcher.getInstance().getMain();
         switch (Authenticator.getInstance().getUserType()) {
             case SUPERAGENT:
+                extraButton.setVisible(false);
                 utility.setVisible(true);
                 utility.setText("CREATE USERS");
                 logButton.setText("LOG OUT");
                 break;
             case TTBAGENT:
+                extraButton.setVisible(true);
                 utility.setVisible(true);
                 utility.setText("APPLICATIONS");
                 logButton.setText("LOG OUT");
                 break;
             case APPLICANT:
+                extraButton.setVisible(true);
                 utility.setVisible(true);
                 utility.setText("MY APPLICATIONS");
                 logButton.setText("LOG OUT");
                 break;
             default:
+                extraButton.setVisible(false);
                 utility.setVisible(false);
                 logButton.setText("LOGIN");
                 break;
