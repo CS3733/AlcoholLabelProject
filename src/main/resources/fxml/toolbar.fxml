@@ -9,8 +9,13 @@
 <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ToolbarController">
    <children>
       <Label layoutX="32.0" layoutY="31.0" onMouseClicked="#goHome" text="EMERALD ELVES COLA" />
-      <Button fx:id="logButton" layoutX="896.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#loadLog" prefWidth="96.0" style="-fx-background-color: -swatch-green; -fx-font-size: 18;" text="LOGIN" />
-      <Button fx:id="utility" layoutX="703.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="193.0" style="-fx-background-color: -swatch-green; -fx-font-size: 18;" text="MY APPLICATIONS">
+      <Button fx:id="logButton" layoutX="896.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#loadLog" prefWidth="96.0" style="-fx-background-color: -swatch-green; -fx-font-size: 18;" text="LOGIN" />
+      <Button fx:id="utility" layoutX="703.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="193.0" style="-fx-background-color: -swatch-green; -fx-font-size: 18;" text="MY APPLICATIONS">
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </Button>
+      <Button fx:id="extraButton" layoutX="571.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#extraFunction" prefHeight="32.0" prefWidth="132.0" style="-fx-background-color: -swatch-green; -fx-font-size: 18;" text="PROFILE">
          <padding>
             <Insets left="10.0" right="10.0" />
          </padding>
