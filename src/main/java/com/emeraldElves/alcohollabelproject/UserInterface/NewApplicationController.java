@@ -185,7 +185,6 @@ public class NewApplicationController {
         });
     }
 
-
     public void init(Main main){
 //        init(main, null);
         this.main = main;
