@@ -4,12 +4,7 @@ import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import jdk.nashorn.internal.runtime.logging.Logger;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Date;
 
 /**
@@ -53,6 +48,8 @@ public class DetailedSearchController {
     Label phone;
     @FXML
     Label address;
+    @FXML
+    Label ttbID;
 
 
 
@@ -77,7 +74,7 @@ public class DetailedSearchController {
         alcoholType.setText(type);
         Date date = application.getApplication().getSubmissionDate();
         submissionDate.setText("Submitted " + DateHelper.dateToString(date));
-        content.setText("Alcohol content: " + String.valueOf(application.getApplication().getAlcohol().getAlcoholContent())+"%");
+        content.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent())+"%");
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {
             case IMPORTED:
@@ -87,12 +84,13 @@ public class DetailedSearchController {
                 productSource = "Domestic";
                 break;
         }
-        origin.setText("Origin: " + productSource);
+        origin.setText(productSource);
+        ttbID.setText(String.valueOf(application.getApplicationID()));
         status.setText(application.getStatus().toString());
         labelView.setImage(application.getImage().display());
         ImageUtils.centerImage(labelView);
-        email.setText("Email: " + application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
-        phone.setText("Phone: " + application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
+        email.setText(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
+        phone.setText(application.getApplication().getManufacturer().getPhoneNumber().getFormattedNumber());
         address.setText(application.getApplication().getManufacturer().getPhysicalAddress());
     }
 
