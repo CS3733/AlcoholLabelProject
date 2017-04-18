@@ -4,13 +4,16 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.COLASearch;
+import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import impl.org.controlsfx.skin.AutoCompletePopup;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -24,6 +27,55 @@ public class HomeController {
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
     public List<SubmittedApplication> submitted;
 
+
+    // Alcohol 1
+    @FXML
+    private AnchorPane alc1;
+    @FXML
+    private Label brand1;
+    @FXML
+    private Label fanciful1;
+    @FXML
+    private Label content1;
+    @FXML
+    private Label date1;
+
+    // Alcohol 2
+    @FXML
+    private AnchorPane alc2;
+    @FXML
+    private Label brand2;
+    @FXML
+    private Label fanciful2;
+    @FXML
+    private Label content2;
+    @FXML
+    private Label date2;
+
+    // Alcohol 3
+    @FXML
+    private AnchorPane alc3;
+    @FXML
+    private Label brand3;
+    @FXML
+    private Label fanciful3;
+    @FXML
+    private Label content3;
+    @FXML
+    private Label date3;
+
+    // Alcohol 4
+    @FXML
+    private AnchorPane alc4;
+    @FXML
+    private Label brand4;
+    @FXML
+    private Label fanciful4;
+    @FXML
+    private Label content4;
+    @FXML
+    private Label date4;
+
     private Main main;
     @FXML
     private Button utility;
@@ -33,14 +85,6 @@ public class HomeController {
     private TextField searchbox;
     @FXML
     private Button logButton;
-    @FXML
-    private Label label0;
-    @FXML
-    private Label label1;
-    @FXML
-    private Label label2;
-    @FXML
-    private Label label3;
 
     private COLASearch search;
 
@@ -113,22 +157,35 @@ public class HomeController {
     public void init(Main main) {
         this.main = main;
         for (int i = 0; i < submitted.size(); i++) {
+            SubmittedApplication recentApplication = submitted.get(i);
             switch (i) {
                 case 0:
-                    label0.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
-                    label0.setOnMouseClicked(event -> main.loadDetailedSearchPage(submitted.get(0), submitted.get(0).getApplication().getAlcohol().getBrandName()));
+                    alc1.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
+                    brand1.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
+                    fanciful1.setText(recentApplication.getApplication().getAlcohol().getName());
+                    content1.setText(recentApplication.getApplication().getAlcohol().getAlcoholContent() + "%");
+                    date1.setText(DateHelper.dateToString(recentApplication.getApplication().getSubmissionDate()));
                     break;
                 case 1:
-                    label1.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
-                    label1.setOnMouseClicked(event -> main.loadDetailedSearchPage(submitted.get(1), submitted.get(1).getApplication().getAlcohol().getBrandName()));
+                    alc2.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
+                    brand2.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
+                    fanciful2.setText(recentApplication.getApplication().getAlcohol().getName());
+                    content2.setText(recentApplication.getApplication().getAlcohol().getAlcoholContent() + "%");
+                    date2.setText(DateHelper.dateToString(recentApplication.getApplication().getSubmissionDate()));
                     break;
                 case 2:
-                    label2.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
-                    label2.setOnMouseClicked(event -> main.loadDetailedSearchPage(submitted.get(2), submitted.get(2).getApplication().getAlcohol().getBrandName()));
+                    alc3.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
+                    brand3.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
+                    fanciful3.setText(recentApplication.getApplication().getAlcohol().getName());
+                    content3.setText(recentApplication.getApplication().getAlcohol().getAlcoholContent() + "%");
+                    date3.setText(DateHelper.dateToString(recentApplication.getApplication().getSubmissionDate()));
                     break;
                 case 3:
-                    label3.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
-                    label3.setOnMouseClicked(event -> main.loadDetailedSearchPage(submitted.get(3), submitted.get(3).getApplication().getAlcohol().getBrandName()));
+                    alc4.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
+                    brand4.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
+                    fanciful4.setText(recentApplication.getApplication().getAlcohol().getName());
+                    content4.setText(recentApplication.getApplication().getAlcohol().getAlcoholContent() + "%");
+                    date4.setText(DateHelper.dateToString(recentApplication.getApplication().getSubmissionDate()));
                     break;
             }
             List<SubmittedApplication> resultsList = search.searchApprovedApplications();
@@ -144,7 +201,7 @@ public class HomeController {
             }
 
             autoCompletionBinding = TextFields.bindAutoCompletion(searchbox, possibleSuggestions);
-
+            autoCompletionBinding.setPrefWidth(472);
 
             searchbox.setOnKeyPressed(ke -> autoCompletionBinding.setUserInput(searchbox.getText().trim()));
         }

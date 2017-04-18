@@ -29,6 +29,7 @@ public class Main extends Application {
         primaryStage.setTitle("Alcohol Label Project");
         primaryStage.getIcons().add(new Image(("images/logo.png")));
         root.getStylesheets().add("/style/material.css");
+        root.getStylesheets().add("/style/mainSearch.css");
         primaryStage.setScene(new Scene(root,1024,768));
         primaryStage.show();
         stage = primaryStage;
@@ -138,6 +139,7 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
+            root.getStylesheets().add("/style/mainSearch.css");
             HomeController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);

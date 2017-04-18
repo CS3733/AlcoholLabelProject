@@ -137,7 +137,9 @@
 
 .button-flat {
 	-fx-effect: null;
-	-fx-background-color: transparent;
+	-fx-background-color: -swatch-green;
+	-fx-border-radius: 0;
+	-fx-text-fill: white;
 }
 
 .toggle-button, .button {
@@ -711,6 +713,23 @@
 	-fx-border-width: 0 0 2 0;
 	-fx-prompt-text-fill: derive(-dark, 50.0%);
 	-fx-highlight-fill: rgb(94.0, 203.0, 234.0);
+}
+
+.recent-alcohol {
+   -fx-border-width: 0 0 2 0 !important;
+   -fx-border-color: -swatch-grey;
+}
+
+.search-box {
+   -fx-min-height: 56;
+   -fx-pref-header: 56;
+   -fx-border-width: 0 0 0 0;
+   -fx-background-color: rgb(255.0, 255.0, 255.0);
+   	-fx-background-radius: 4.0;
+   	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,
+   		1.5);
+   	-fx-padding: 16 16 16 16;
+   	-fx-font-size: 24;
 }
 
 .text-area .text, .text-field>*>.text {
