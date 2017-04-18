@@ -14,7 +14,7 @@ public class TTBAgentInterface {
     private String username;
 
     public TTBAgentInterface(String username){
-        agent = new TTBAgent(username, (int)Math.random());//TODO fix id
+        agent = new TTBAgent(username, (int)Math.random()*10000);//TODO fix id
         storage = Storage.getInstance();
         agent.setCurrentApps(storage.getAssignedApplications(username));
         this.username = username;

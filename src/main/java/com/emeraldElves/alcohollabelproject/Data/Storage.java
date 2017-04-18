@@ -96,6 +96,21 @@ public class Storage {
         } catch (SQLException e) {
             Log.console("Used existing AlcoholInfo table");
         }
+        try{
+            database.createTable("NewApplicant",
+                    new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("password", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
+                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("address", "VARCHAR (255)"),
+                    new Database.TableField("phoneNumber", "VARCHAR (255)"),
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+            Log.console("Created new NewApplicant table");
+        }
+        catch (SQLException e){
+            Log.console("Used existing NewApplicant table");
+        }
 
         return database;
     }
@@ -123,13 +138,40 @@ public class Storage {
         return alcoholDB.rejectApplication(application, reason);
     }
 
-    public boolean createUser(UserType usertype, String username, String password) {
-        if (usertype == UserType.TTBAGENT) {
-            return db.insert("'" + username + "', '" + password + "'", "TTBAgentLogin");
+    public boolean createUser(PotentialUser user) {
+        if (user.getUserType() == UserType.TTBAGENT) {
+            return db.insert("'" + user.getName()
+                    + "', '" + user.getPassword() + "', "
+                    + user.getUserType().getValue() + ", "
+                    + user.getRepresentativeID() + ", "
+                    + user.getPermitNum() + ", '"
+                    + user.getAddress() + "', '"
+                    + user.getPhoneNumber().getPhoneNumber() + "', '"
+                    + user.getEmail().getEmailAddress() + "'"
+                    , "TTBAgentLogin");
         } else {
-            return db.insert("'" + username + "', '" + password + "'", "ApplicantLogin");
+            return db.insert("'" + user.getName()
+                            + "', '" + user.getPassword() + "', "
+                            + user.getUserType().getValue() + ", "
+                            + user.getRepresentativeID() + ", "
+                            + user.getPermitNum() + ", '"
+                            + user.getAddress() + "', '"
+                            + user.getPhoneNumber().getPhoneNumber() + "', '"
+                            + user.getEmail().getEmailAddress() + "'"
+                    , "ApplicantLogin");
         }
     }
+    public void deleteUser(PotentialUser potentialUser) {
+        db.delete("NewApplicant",potentialUser.getEmail().getEmailAddress());
+    }
+
+    public boolean applyForUser(PotentialUser user){
+        usersDB.addPotentialUser(user);
+        //call superuserworkflow controller
+        return true;
+    }
+
+    public List<PotentialUser> getPotentialUsers(){ return usersDB.getPotentialUsers();  }
 
     public boolean isValidUser(UserType usertype, String username, String password) {
         if (usertype == UserType.TTBAGENT) {

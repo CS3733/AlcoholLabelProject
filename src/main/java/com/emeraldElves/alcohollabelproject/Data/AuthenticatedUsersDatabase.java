@@ -1,5 +1,11 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import com.emeraldElves.alcohollabelproject.Log;
+import com.emeraldElves.alcohollabelproject.Data.UserType;
+
+import com.emeraldElves.alcohollabelproject.*;
+
+import javax.jws.soap.SOAPBinding;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -108,6 +114,51 @@ public class AuthenticatedUsersDatabase {
         if(isValidApplicant(userName, password))
             return UserType.APPLICANT;
         return UserType.BASIC;
+    }
+
+    /**
+     * Adds a potential user to database to be accepted/rejected by superagent
+     * @param user the potential user to bee added
+     * @return Whether or not it added the potential user to database successfully
+     */
+    public boolean addPotentialUser(PotentialUser user){
+        boolean worked;
+        // I dont think i need to check database, because you cant update if its already in queue
+        try{
+            worked = db.insert("'" + user.getUsername() + "', '"
+                    + user.getPassword() + "', "
+                    + user.getUserType().getValue(), "NewApplicant");
+            if(!worked){ throw new SQLException("Failed to add user");}
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            return false;//dont think this is the right way to do it
+        }
+
+        return true;
+    }
+
+    /**
+     *
+     * @return all potential users in the NewApplicant table
+     */
+    public List<PotentialUser> getPotentialUsers(){
+        ResultSet resultSet = db.select("*", "NewApplicant");
+        List<PotentialUser> users = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                int usertype = resultSet.getInt("type");
+                UserType useType = UserType.fromInt(usertype);
+
+                users.add(new PotentialUser(username, password, useType));
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return users;
     }
 
 

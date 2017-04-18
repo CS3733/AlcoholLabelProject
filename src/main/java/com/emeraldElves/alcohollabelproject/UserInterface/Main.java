@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
+import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -278,6 +279,18 @@ public class Main extends Application {
             root.getStylesheets().add("/style/material.css");
             DisplayLabelController controller = loader.getController();
             controller.init(this, application);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void loadSuperUserWorkflowController(PotentialUser potentialUser){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AccountApplicationPage"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            SuperUserWorkflowController controller = loader.getController();
+            controller.init(this, potentialUser);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
