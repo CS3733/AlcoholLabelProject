@@ -151,25 +151,26 @@ public class HomeController {
         switch (Authenticator.getInstance().getUserType()) {
             case SUPERAGENT:
                 CreateUser.setVisible(true);
-                utility.setVisible(false);
-                logButton.setText("Log Out");
+                utility.setVisible(true);
+                utility.setText("POTENTIAL USERS");
+                logButton.setText("LOG OUT");
                 break;
             case TTBAGENT:
                 CreateUser.setVisible(false);
                 utility.setVisible(true);
-                utility.setText("Applications");
-                logButton.setText("Log Out");
+                utility.setText("APPLICATIONS");
+                logButton.setText("LOG OUT");
                 break;
             case APPLICANT:
                 CreateUser.setVisible(false);
                 utility.setVisible(true);
-                utility.setText("Applications");
-                logButton.setText("Log Out");
+                utility.setText("MY APPLICATIONS");
+                logButton.setText("LOG OUT");
                 break;
             default:
                 CreateUser.setVisible(false);
                 utility.setVisible(false);
-                logButton.setText("Log In");
+                logButton.setText("LOGIN");
                 break;
         }
 

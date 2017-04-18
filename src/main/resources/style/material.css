@@ -59,7 +59,7 @@
 	-swatch-grey: rgb(200.0, 200.0, 200.0);
 	-swatch-dark-grey: rgb(150.0, 150.0, 150.0);
 	-swatch-light-grey: rgb(230.0, 230.0, 230.0);
-	-swatch-toolbar: rgb(245.0, 245.0, 245.0);
+	-swatch-toolbar: -swatch-green;
 	-swatch-toolbar-selected: rgb(215.0, 215.0, 215.0);
 	/* 
      Modena colors
@@ -750,7 +750,7 @@
 }
 
 .tool-bar .label {
-	-fx-font-size: 18;
+	-fx-font-size: 24;
 }
 
 .tool-bar .combo-box-base, .menu-bar .combo-base {
@@ -758,10 +758,9 @@
 }
 
 .tool-bar .button, .tool-bar .toggle-button {
-	-fx-background-color: -swatch-toolbar;
+	-fx-background-color: -swatch-green;
 	-fx-text-fill: -fx-text-base-color;
 	-fx-pref-height: 42;
-	-fx-pref-width: 42;
 	-fx-min-height: 42;
 	-fx-min-width: 42;
 	-fx-padding: 0;
