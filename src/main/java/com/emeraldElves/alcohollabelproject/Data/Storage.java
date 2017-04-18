@@ -98,9 +98,14 @@ public class Storage {
         }
         try{
             database.createTable("NewApplicant",
-                    new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
-                    new Database.TableField("type", "INTEGER NOT NULL")); //0 Man, 1 TTB
+                    new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
+                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("address", "VARCHAR (255)"),
+                    new Database.TableField("phoneNumber", "VARCHAR (255)"),
+                    new Database.TableField("email", "VARCHAR (255)"));
             Log.console("Created new NewApplicant table");
         }
         catch (SQLException e){
