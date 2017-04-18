@@ -11,20 +11,20 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApplicantWorkflowController">
    <children>
       <Text layoutX="333.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Application to update " visible="false" />
-      <Button fx:id="UpdateApplications" layoutX="62.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#ApplicationWorkflow" styleClass="button-raised" text="UPDATE" />
-      <Button layoutX="253.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#MakeNewApplication" styleClass="button-raised" text="SUBMIT NEW APPLICATION" />
-      <Button layoutX="162.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#reviseApplication" styleClass="button-raised" text="REVISE" />
-      <HBox layoutX="62.0" layoutY="250.0" prefHeight="500.0" prefWidth="900.0">
+      <Button layoutX="62.0" layoutY="122.0" mnemonicParsing="false" onMouseClicked="#MakeNewApplication" styleClass="button-raised" text="SUBMIT NEW APPLICATION" />
+      <HBox layoutX="62.0" layoutY="200.0" prefHeight="541.0" prefWidth="900.0">
          <children>
-            <ListView fx:id="list" prefHeight="525.0" prefWidth="900.0">
+            <ListView fx:id="list" prefHeight="511.0" prefWidth="900.0">
                <contextMenu>
                   <ContextMenu>
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#ApplicationWorkflow" text="Update" />
                         <MenuItem mnemonicParsing="false" onAction="#reviseApplication" text="Revise" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewApplication" text="View" />
                     </items>
                   </ContextMenu>
-               </contextMenu></ListView>
+               </contextMenu>
+            </ListView>
          </children>
       </HBox>
       <fx:include source="toolbar.fxml" />
