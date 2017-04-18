@@ -126,6 +126,7 @@ public class AuthenticatedUsersDatabase {
         boolean worked;
         // I dont think i need to check database, because you cant update if its already in queue
         try{
+
             worked = db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
                             + user.getUserType().getValue() + ", "
@@ -136,6 +137,11 @@ public class AuthenticatedUsersDatabase {
                             + user.getEmail().getEmailAddress() + "', "
                             + user.getDate()
                     , "NewApplicant");
+
+            worked = db.insert("'" + user.getName() + "', '"
+                    + user.getPassword() + "', "
+                    + user.getUserType().getValue(), "NewApplicant");
+
             if(!worked){ throw new SQLException("Failed to add user");}
         }
         catch(SQLException e){
@@ -155,10 +161,15 @@ public class AuthenticatedUsersDatabase {
         List<PotentialUser> users = new ArrayList<>();
         try {
             while (resultSet.next()) {
+
                 //Adding all stuff from database to new PotentialUser object
                 String name = resultSet.getString("name");
+
+                EmailAddress username = new EmailAddress(resultSet.getString("username"));
+
                 String password = resultSet.getString("password");
                 int usertype = resultSet.getInt("type");
+                PhoneNumber phoneNumber = new PhoneNumber(resultSet.getInt("PhoneNumber"));
                 UserType useType = UserType.fromInt(usertype);
                 int representativeID = resultSet.getInt("representativeID");
                 String emailString = resultSet.getString("email");
