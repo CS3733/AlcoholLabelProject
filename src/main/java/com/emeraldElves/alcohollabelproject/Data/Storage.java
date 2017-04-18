@@ -105,7 +105,7 @@ public class Storage {
                     new Database.TableField("permitNum", "INTEGER NOT NULL"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                    new Database.TableField("email", "VARCHAR (255)"));
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
             Log.console("Created new NewApplicant table");
         }
         catch (SQLException e){
@@ -140,14 +140,29 @@ public class Storage {
 
     public boolean createUser(PotentialUser user) {
         if (user.getUserType() == UserType.TTBAGENT) {
-            return db.insert("'" + user.getUserName()
-                    + "', '" + user.getPassword() + "'", "TTBAgentLogin");
+            return db.insert("'" + user.getName()
+                    + "', '" + user.getPassword() + "', "
+                    + user.getUserType().getValue() + ", "
+                    + user.getRepresentativeID() + ", "
+                    + user.getPermitNum() + ", '"
+                    + user.getAddress() + "', '"
+                    + user.getPhoneNumber().getPhoneNumber() + "', '"
+                    + user.getEmail().getEmailAddress() + "'"
+                    , "TTBAgentLogin");
         } else {
-            return db.insert("'" + user.getUserName() + "', '" + user.getPassword() + "'", "ApplicantLogin");
+            return db.insert("'" + user.getName()
+                            + "', '" + user.getPassword() + "', "
+                            + user.getUserType().getValue() + ", "
+                            + user.getRepresentativeID() + ", "
+                            + user.getPermitNum() + ", '"
+                            + user.getAddress() + "', '"
+                            + user.getPhoneNumber().getPhoneNumber() + "', '"
+                            + user.getEmail().getEmailAddress() + "'"
+                    , "ApplicantLogin");
         }
     }
     public void deleteUser(PotentialUser potentialUser) {
-        db.delete("NewApplicant",potentialUser.getUserName());
+        db.delete("NewApplicant",potentialUser.getEmail().getEmailAddress());
     }
 
     public boolean applyForUser(PotentialUser user){
