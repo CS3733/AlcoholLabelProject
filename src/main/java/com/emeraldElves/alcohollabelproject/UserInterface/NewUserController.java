@@ -31,6 +31,16 @@ public class NewUserController {
     RadioButton applicantBtn;
     @FXML
     RadioButton agentBtn;
+    @FXML
+    Label accountError;
+    @FXML
+    Label emailError;
+    @FXML
+    Label phoneNumError;
+    @FXML
+    Label permitNumError;
+    @FXML
+    Label repIDError;
 
     private Main main;
     private int userTypeInt = -1;
@@ -57,8 +67,11 @@ public class NewUserController {
     }
 
     public void createPotentialUser(){
+        accountError.setText("");
+        emailError.setText("");
+        phoneNumError.setText("");
         if(!(applicantBtn.isSelected() || agentBtn.isSelected())) {
-            //TODO: Have error labels
+            accountError.setText("You need to select an account type");
             return;
         }
         //Setting all the fields for the new potential user
@@ -69,6 +82,14 @@ public class NewUserController {
         java.util.Date newDate = new Date();
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
+        if(!PhoneNumber.isValid()){
+            phoneNumError.setText("Enter a valid phone number");
+            return;
+        }
+        if(!Email.isValid()){
+            emailError.setText("Enter a valid email address");
+            return;
+        }
         int permitNum;
         if(permitNumText.isDisabled()){
             permitNum = -1;
