@@ -393,7 +393,6 @@ public class NewApplicationController {
             //Gets text from the email address field and stores it as a PhoneNumber
             applicantPhone = new PhoneNumber(phoneNumberField.getText());
 
-
             //radio buttons are grouped in the following groups:
             //product type group
             ToggleGroup productType = new ToggleGroup();
