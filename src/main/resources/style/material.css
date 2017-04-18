@@ -34,11 +34,11 @@
  ******************************************************************************/
 .root {
 	/* Swatch Colors - Blue*/
-	-swatch-100: #BBDEFB;
-	-swatch-200: #90CAF9;
-	-swatch-300: #64BEF6;
-	-swatch-400: #42A5F5;
-	-swatch-500: #2196F3;
+	-swatch-100: #319b54;
+	-swatch-200: #319b54;
+	-swatch-300: #319b54;
+	-swatch-400: #319b54;
+	-swatch-500: #319b54;
 	-swatch-green: #319b54;
 	/*default text */
 	-fx-text-base-color: rgb(100.0, 100.0, 100.0);
@@ -53,7 +53,7 @@
 	-fx-background-color: whitesmoke; //-light
 	/*default font */
 	-fx-font-family: 'Roboto Medium';
-	-fx-font-size: 14.0px;
+	-fx-font-size: 16.0px;
 	-fx-disabled-opacity: 0.6;
 	/*default colors */
 	-swatch-grey: rgb(200.0, 200.0, 200.0);
@@ -72,11 +72,11 @@
      * first color in -fx-background-color for the "focused" pseudo-class. Also
      * typically used with insets of -1.4 to provide a glowing effect.
      */
-	-fx-focus-color: -swatch-400;
-	-fx-faint-focus-color: -swatch-200;
+	-fx-focus-color: -swatch-green;
+	-fx-faint-focus-color: -swatch-green;
 	/* A bright blue for highlighting/accenting objects.  For example: selected
      * text; selected items in menus, lists, trees, and tables; progress bars */
-	-fx-accent: -swatch-400;
+	-fx-accent: -swatch-green;
 	-fx-dark-text-color: white;
 }
 
