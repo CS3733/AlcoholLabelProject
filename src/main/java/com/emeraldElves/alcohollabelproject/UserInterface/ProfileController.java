@@ -31,6 +31,8 @@ public class ProfileController {
     private String phoneNum;
 
     public ProfileController() {
+        String username = Authenticator.getInstance().getUsername();
+        applicant = new ApplicantInterface(username);
         emailAddress = applicant.getApplicant().getEmailAddress;
         representativeID = applicant.getApplicant().getRepresentativeID();
         permitNum = applicant.getApplicant().getPermitNum();

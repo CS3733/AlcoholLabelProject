@@ -28,4 +28,6 @@ public class Applicant {
     public void addSubmittedApp(SubmittedApplication submittedApp) {
         this.applications.add(submittedApp);
     }
+
+
 }
