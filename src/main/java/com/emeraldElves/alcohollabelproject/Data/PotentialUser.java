@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import java.util.Date;
+
 /**
  * Created by Dan on 4/15/2017.
  */
@@ -10,8 +12,9 @@ public class PotentialUser {
     private EmailAddress email;
     private PhoneNumber phoneNumber;
     private UserType userType;
+    private Date date;
 
-    public PotentialUser(String Name, String UserName, int IDnum, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password) {
+    public PotentialUser(String Name, String UserName, int IDnum, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date) {
         this.Name = Name;
         this.UserName = UserName;
         this.IDnum = IDnum;
@@ -19,6 +22,7 @@ public class PotentialUser {
         this.phoneNumber = phoneNumber;
         this.userType = userType;
         this.Password = Password;
+        this.date = date;
     }
 
     public EmailAddress getEmail() {
@@ -47,5 +51,9 @@ public class PotentialUser {
 
     public String getPassword() {
         return Password;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

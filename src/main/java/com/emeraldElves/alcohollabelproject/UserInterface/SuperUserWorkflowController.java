@@ -23,8 +23,6 @@ public class SuperUserWorkflowController {
 
     public void Approve() {
         Storage.getInstance().createUser(UserforApproval);
-        
-
     }
 
     public void Reject() {
