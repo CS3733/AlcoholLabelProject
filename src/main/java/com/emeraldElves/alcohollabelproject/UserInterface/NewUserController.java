@@ -48,13 +48,19 @@ public class NewUserController {
 
     public void setUserTypeAgent(){
         userTypeInt = 0;
+        permitNumText.setDisable(true);
     }
 
     public void setUserTypeApplicant(){
         userTypeInt = 1;
+        permitNumText.setDisable(false);
     }
 
     public void createPotentialUser(){
+        if(!(applicantBtn.isSelected() || agentBtn.isSelected())) {
+            //TODO: Have error labels
+            return;
+        }
         //Setting all the fields for the new potential user
         String password = passwordField.getText();
         String FullName = Name.getText();
