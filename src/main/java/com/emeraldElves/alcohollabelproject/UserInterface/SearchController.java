@@ -1,14 +1,14 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.COLASearch;
-
-import com.emeraldElves.alcohollabelproject.Data.*;
-import javafx.application.Platform;
+import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
+import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Platform;
 import com.emeraldElves.alcohollabelproject.SearchObserver;
 import com.emeraldElves.alcohollabelproject.SearchSubject;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -23,8 +24,6 @@ import org.controlsfx.control.textfield.TextFields;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -77,10 +76,31 @@ public class SearchController {
     public void init(Main main, String searchTerm) {
         this.main = main;
         this.searchTerm = searchTerm;
-        dateCol.setCellValueFactory(p -> {
-            DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-            Date date = p.getValue().getApplication().getSubmissionDate();
-            return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
+        dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                Date date = p.getValue().getApplication().getSubmissionDate();
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(DateHelper.dateToString(date)));
+            }
+        });
+        manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName()));
+            }
+        });
+        brandCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName()));
+            }
+        });
+        typeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name()));
+            }
+        });
+        contentCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent())));
+            }
         });
         manufacturerCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName())));
         brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
@@ -110,8 +130,9 @@ public class SearchController {
                 //search(searchField.getText().trim());
 
 
-            }
-        });*/
+            //}
+        //});
+        */
         refreshSuggestions();
         searchField.setText(searchTerm);
         search(searchTerm);
