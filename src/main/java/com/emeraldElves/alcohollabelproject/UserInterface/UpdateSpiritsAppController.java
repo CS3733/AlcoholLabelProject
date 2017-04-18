@@ -142,7 +142,7 @@ public class UpdateSpiritsAppController {
     }
 
     public void cancelApp() {
-        main.loadHomepage();
+        main.loadApplicantWorkflowPage();
     }
 
     public void logout() {

@@ -150,7 +150,7 @@ public class UpdateBeerAppController {
     }
 
     public void cancelApp() {
-        main.loadHomepage();
+        main.loadApplicantWorkflowPage();
     }
 
     public void logout() {
