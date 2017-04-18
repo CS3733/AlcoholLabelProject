@@ -141,6 +141,9 @@ public class Storage {
             return db.insert("'" + user.getUserName() + "', '" + user.getPassword() + "'", "ApplicantLogin");
         }
     }
+    public void deleteUser(PotentialUser potentialUser) {
+        db.delete("NewApplicant",potentialUser.getUserName());
+    }
 
     public boolean applyForUser(PotentialUser user){
         usersDB.addPotentialUser(user);
