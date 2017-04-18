@@ -18,9 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -182,6 +180,10 @@ public class NewApplicationController {
         alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
         formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
 
+        pTypeSelect.setValue("Type");
+        pTypeSelect.setItems(typeList);
+        pSourceSelect.setValue("Source");
+        pSourceSelect.setItems(sourceList);
         //pStatesList
     }
 
@@ -391,26 +393,13 @@ public class NewApplicationController {
             //Gets text from the email address field and stores it as a PhoneNumber
             applicantPhone = new PhoneNumber(phoneNumberField.getText());
 
-
-            //radio buttons are grouped in the following groups:
-            //product type group
-            ToggleGroup productType = new ToggleGroup();
-            beer.setToggleGroup(productType);
-            wine.setToggleGroup(productType);
-            spirits.setToggleGroup(productType);
-
-            //product source group
-            ToggleGroup productSource = new ToggleGroup();
-            international.setToggleGroup(productSource);
-            domestic.setToggleGroup(productSource);
-
             //errors are printed only if required fields are not filled in
-            if (productSource.getSelectedToggle() == null) {
+            if (pSourceSelect.getValue() == null) {
                 pSourceErrorField.setText("Please select whether the alcohol is imported or domestic.");
             } else {
                 pSourceErrorField.setText("");
             }
-            if (productType.getSelectedToggle() == null) {
+            if (pTypeSelect.getValue() == null) {
                 pTypeErrorField.setText("Please select whether the alcohol is a malt beverage, wine, or distilled spirits.");
             } else {
                 pTypeErrorField.setText("");
@@ -433,7 +422,7 @@ public class NewApplicationController {
                 serialErrorField.setText("Please input a serial number");
             } else serialErrorField.setText("");
 
-            if (productType.getSelectedToggle() == wine) {
+            if (pTypeSelect.getValue() == "Wine") {
                 int vintageYr = 0;
                 double pH = 0.0;
                 String varietal = "";
@@ -460,7 +449,7 @@ public class NewApplicationController {
             }
 
             //check if required fields are filled in
-            if ((productType.getSelectedToggle() != null) && (productSource.getSelectedToggle() != null) &&
+            if ((pSourceSelect.getValue() != null) && (pTypeSelect.getValue() != null) &&
                     !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
                     (datePicker != null) && !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
                     ) {
@@ -469,18 +458,18 @@ public class NewApplicationController {
 
             if (formFilled) {
                 //Checking if the product is domestic or imported by checking the product source radio button group
-                if (productSource.getSelectedToggle() == domestic) {
+                if (pSourceSelect.getValue() == "Domestic") {
                     pSource = ProductSource.DOMESTIC;
-                } else if (productSource.getSelectedToggle() == international) {
+                } else if (pSourceSelect.getValue() == "Imported") {
                     pSource = ProductSource.IMPORTED;
                 }
 
                 //Checking if the product is a beer, wine or spirits by checking the product source radio button group
-                if (productType.getSelectedToggle() == beer) {
+                if (pTypeSelect.getValue() == "Malt Beverages") {
                     alcType = AlcoholType.BEER;
-                } else if (productType.getSelectedToggle() == wine) {
+                } else if (pTypeSelect.getValue() == "Wine") {
                     alcType = AlcoholType.WINE;
-                } else if (productType.getSelectedToggle() == spirits) {
+                } else if (pTypeSelect.getValue() == "Distilled Spirits") {
                     alcType = AlcoholType.DISTILLEDSPIRITS;
                 }
 
