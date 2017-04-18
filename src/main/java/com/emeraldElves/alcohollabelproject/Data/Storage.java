@@ -3,7 +3,6 @@ package com.emeraldElves.alcohollabelproject.Data;
 import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Log;
 
-import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -29,18 +28,36 @@ public class Storage {
         Database database = new Database(dbName);
         database.connect();
         try {
-            database.createTable("TTBAgentLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
+                    database.createTable("TTBAgentLogin",
+                            new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
+                            new Database.TableField("password", "VARCHAR (255) NOT NULL"),
+                            new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
+                            new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                            new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                            new Database.TableField("address", "VARCHAR (255)"),
+                            new Database.TableField("phoneNumber", "VARCHAR (255)"),
+                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                            new Database.TableField("date", "BIGINT"));
             Log.console("Created new TTBAgentLogin table");
-        } catch (SQLException e) {
+        }
+        catch (SQLException e){
             Log.console("Used existing TTBAgentLogin table");
         }
 
-        try {
-            database.createTable("ApplicantLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
-            Log.console("Created new ApplicantLogin table");
-        } catch (SQLException e) {
+        try{
+            database.createTable("ApplicantLogin",
+                    new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("password", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
+                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("address", "VARCHAR (255)"),
+                    new Database.TableField("phoneNumber", "VARCHAR (255)"),
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("date", "BIGINT"));
+            Log.console("Created new TTBAgentLogin table");
+        }
+        catch (SQLException e){
             Log.console("Used existing ApplicantLogin table");
         }
 
