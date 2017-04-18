@@ -82,13 +82,7 @@
         </Pane>
       <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <children>
-            <Label layoutX="32.0" layoutY="31.0" text="EMERALD ELVES COLA" />
-            <Button fx:id="logButton" layoutX="896.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#loadLog" prefWidth="96.0" style="-fx-background-color: -swatch-green; -fx-font-size: 18;" text="LOGIN" />
-            <Button fx:id="utility" layoutX="703.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="193.0" style="-fx-background-color: -swatch-green; -fx-font-size: 18;" text="MY APPLICATIONS">
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </Button>
+            <fx:include source="toolbar.fxml" />
          </children>
          <styleClass>
             <String fx:value="tool-bar" />

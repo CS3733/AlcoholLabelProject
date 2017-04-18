@@ -77,14 +77,10 @@ public class HomeController {
     private Label date4;
 
     private Main main;
-    @FXML
-    private Button utility;
-    @FXML
-    private  Button CreateUser;
+
     @FXML
     private TextField searchbox;
-    @FXML
-    private Button logButton;
+
 
     private COLASearch search;
 
@@ -102,34 +98,11 @@ public class HomeController {
      * Loads homepage
      */
     public void utilityButton() {
-        switch (Authenticator.getInstance().getUserType()) {
-            case TTBAGENT:
-                main.loadWorkflowPage();
-                break;
-            case APPLICANT:
-                main.loadApplicantWorkflowPage();
-                break;
-        }
+
     }
 
     public void loadLog() {
-        switch (Authenticator.getInstance().getUserType()) {
-            case TTBAGENT:
-                Authenticator.getInstance().logout();
-                main.loadHomepage();
-                break;
-            case APPLICANT:
-                Authenticator.getInstance().logout();
-                main.loadHomepage();
-                break;
-            case SUPERAGENT:
-                Authenticator.getInstance().logout();
-                main.loadHomepage();
-                break;
-            case BASIC:
-                main.loadLoginPage();
-                break;
-        }
+
     }
 
     public void createNewUser(){
@@ -205,31 +178,7 @@ public class HomeController {
 
             searchbox.setOnKeyPressed(ke -> autoCompletionBinding.setUserInput(searchbox.getText().trim()));
         }
-        switch (Authenticator.getInstance().getUserType()) {
-            case SUPERAGENT:
-                CreateUser.setVisible(true);
-                utility.setVisible(true);
-                utility.setText("POTENTIAL USERS");
-                logButton.setText("LOG OUT");
-                break;
-            case TTBAGENT:
-                CreateUser.setVisible(false);
-                utility.setVisible(true);
-                utility.setText("APPLICATIONS");
-                logButton.setText("LOG OUT");
-                break;
-            case APPLICANT:
-                CreateUser.setVisible(false);
-                utility.setVisible(true);
-                utility.setText("MY APPLICATIONS");
-                logButton.setText("LOG OUT");
-                break;
-            default:
-                CreateUser.setVisible(false);
-                utility.setVisible(false);
-                logButton.setText("LOGIN");
-                break;
-        }
+
 
 
     }

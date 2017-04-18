@@ -720,6 +720,10 @@
    -fx-border-color: -swatch-grey;
 }
 
+.auto-complete-popup {
+    -fx-translate-y: 28;
+}
+
 .search-box {
    -fx-min-height: 56;
    -fx-pref-header: 56;
