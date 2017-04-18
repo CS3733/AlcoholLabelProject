@@ -1,11 +1,5 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
-import com.emeraldElves.alcohollabelproject.Log;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
-
-import com.emeraldElves.alcohollabelproject.*;
-
-import javax.jws.soap.SOAPBinding;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -164,12 +158,9 @@ public class AuthenticatedUsersDatabase {
 
                 //Adding all stuff from database to new PotentialUser object
                 String name = resultSet.getString("name");
-
-                EmailAddress username = new EmailAddress(resultSet.getString("username"));
-
+                String username = (resultSet.getString("username"));
                 String password = resultSet.getString("password");
                 int usertype = resultSet.getInt("type");
-                PhoneNumber phoneNumber = new PhoneNumber(resultSet.getInt("PhoneNumber"));
                 UserType useType = UserType.fromInt(usertype);
                 int representativeID = resultSet.getInt("representativeID");
                 String emailString = resultSet.getString("email");

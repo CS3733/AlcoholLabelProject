@@ -63,7 +63,7 @@ public class NewUserApplicationDisplayController {
         });
         userNameCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PotentialUser, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<PotentialUser, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getUserName()));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().toString()));
             }
         });
         userTypeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PotentialUser, String>, ObservableValue<String>>() {
@@ -73,20 +73,20 @@ public class NewUserApplicationDisplayController {
         });
         idNumCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PotentialUser, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<PotentialUser, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getIDnum())));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getPermitNum())));
             }
         });
         nameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getName())));
-        userNameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getUserName())));
+        userNameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().toString())));
         userTypeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getUserType().toString())));
-        idNumCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getIDnum()))));
+        idNumCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getPermitNum()))));
         resultsTable.setItems(data);
         resultsTable.setRowFactory(tv -> {
             TableRow<PotentialUser> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     PotentialUser rowData = row.getItem();
-                    main.loadAccountApplicationPage(rowData);
+                    main.loadSuperUserWorkflowController(rowData);
                 }
             });
             return row;
