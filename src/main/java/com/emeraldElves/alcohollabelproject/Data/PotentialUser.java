@@ -7,17 +7,16 @@ import java.util.Date;
  */
 public class PotentialUser {
     //TODO: add fields that are added to account stuff
-    private String Name, UserName,Password, address;
+    private String Name,Password, address;//username is now same as email address
     private int representativeID, permitNum;
     private EmailAddress email;
     private PhoneNumber phoneNumber;
     private UserType userType;
     private Date date;
 
-    public PotentialUser(String Name, String UserName, int representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
+    public PotentialUser(String Name, int representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
     int permitNum, String address) {
         this.Name = Name;
-        this.UserName = UserName;
         this.representativeID = representativeID;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -45,10 +44,6 @@ public class PotentialUser {
 
     public String getName() {
         return Name;
-    }
-
-    public String getUserName() {
-        return UserName;
     }
 
     public UserType getUserType() {
