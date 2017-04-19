@@ -33,15 +33,15 @@ public class ToolbarController implements Initializable {
         switch (Authenticator.getInstance().getUserType()) {
             case TTBAGENT:
                 Authenticator.getInstance().logout();
-                main.loadHomepage();
+                goHome();
                 break;
             case APPLICANT:
                 Authenticator.getInstance().logout();
-                main.loadHomepage();
+                goHome();
                 break;
             case SUPERAGENT:
                 Authenticator.getInstance().logout();
-                main.loadHomepage();
+                goHome();
                 break;
             case BASIC:
                 main.loadLoginPage();
