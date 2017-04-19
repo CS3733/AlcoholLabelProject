@@ -156,7 +156,6 @@ public class NewApplicationController {
 //        username= Authenticator.getInstance().getUsername();
 //        applicant = new ApplicantInterface(username);
 //        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(applicant.getApplicant().getName()) + ".");
-//
 //        emailAddress = applicant.getApplicant().getEmailAddress();
 //        permitNum = applicant.getApplicant().getPermitNum();
 //        address = applicant.getApplicant().getAddress();
