@@ -238,6 +238,7 @@ public class Database {
         }
     }
 
+
     /**
      * Close the database.
      *
