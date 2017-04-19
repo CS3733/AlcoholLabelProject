@@ -13,4 +13,11 @@ public class BackStackData {
         this.PrevScreen = PrevScreen;
     }
 
+    public Controller getPreviousController() {
+        return PreviousController;
+    }
+
+    public String getPrevScreen() {
+        return PrevScreen;
+    }
 }

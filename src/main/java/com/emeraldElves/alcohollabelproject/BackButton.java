@@ -8,12 +8,13 @@ import java.util.Stack;
  * Created by keionbis on 4/15/17.
  */
 public class BackButton {
-    public Stack History = new Stack();
+    public static Stack History = new Stack();
+
     public void AddToHistory(BackStackData prevControllerData){
         History.push(prevControllerData);
 
     }
-    public BackStackData GetFromHistory(){
+    public static BackStackData GetFromHistory(){
         return (BackStackData) History.pop();
     }
 }

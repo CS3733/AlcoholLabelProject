@@ -1,6 +1,8 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.BackButton;
+import com.emeraldElves.alcohollabelproject.Data.BackStackData;
 import com.emeraldElves.alcohollabelproject.LogManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +32,40 @@ public class ToolbarController implements Initializable {
 
     public void goBack(){
         LogManager.getInstance().logAction("ToolbarController", "Going back");
+
+
+        BackStackData previousScreen = BackButton.GetFromHistory();
+        switch (previousScreen.getPreviousController().toString()){
+            case "HOME":
+                break;
+            case "APPLICANTWORKFLOW":
+                break;
+            case "APPROVALPROCESS":
+                break;
+            case "DETAILEDSEARCH":
+                break;
+            case "IMAGESUBMISSION":
+                break;
+            case "LOGIN":
+                break;
+            case "NEWAPPLICATION":
+                break;
+            case "":
+                break;
+
+        }
+
+
+
+//        try {
+//            Parent root = loader.load();
+//            root.getStylesheets().add("/style/material.css");
+//            ApprovalProcessController controller = loader.getController();
+//            controller.init(this, application);
+//            stage.getScene().setRoot(root);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void loadLog() {
@@ -106,4 +142,6 @@ public class ToolbarController implements Initializable {
                 break;
         }
     }
+
+
 }
