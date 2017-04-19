@@ -77,4 +77,8 @@ public class ProfileController {
         emailAddress = emailAddressField.getText();
         applicant.getApplicant().setEmailAddress();
     }
+
+    public void returnHome() {
+        main.loadHomepage();
+    }
 }
