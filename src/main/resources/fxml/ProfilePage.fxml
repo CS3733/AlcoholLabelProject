@@ -60,11 +60,11 @@
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField GridPane.columnIndex="2" />
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <TextField onKeyPressed="#modifyEmailAddress" GridPane.columnIndex="2" />
+                  <TextField onKeyPressed="#modifyRepresentitiveID" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField onKeyPressed="#modifyPermitNum" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField onKeyPressed="#modifyAddress" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField onKeyPressed="#modifyPhoneNum" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <Label layoutX="62.0" layoutY="49.0" prefHeight="34.0" prefWidth="765.0" text="As a manufacturer, you can update your user information if you need.">

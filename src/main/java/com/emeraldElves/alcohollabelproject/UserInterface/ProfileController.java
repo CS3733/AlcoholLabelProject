@@ -31,19 +31,21 @@ public class ProfileController {
     private String phoneNum;
 
     public ProfileController() {
-        String username = Authenticator.getInstance().getUsername();
-        applicant = new ApplicantInterface(username);
-        emailAddress = applicant.getApplicant().getEmailAddress;
-        representativeID = applicant.getApplicant().getRepresentativeID();
-        permitNum = applicant.getApplicant().getPermitNum();
-        address = applicant.getApplicant().getAddress();
-        phoneNum = applicant.getApplicant().getPhoneNum();
+
     }
 
     // note: default field value is empty string ("")
 
     public void init(Main main) {
         this.main = main;
+
+        String emailAddress = Authenticator.getInstance().getUsername();
+        applicant = new ApplicantInterface(emailAddress);
+        emailAddress = applicant.getApplicant().getEmailAddress();
+        representativeID = applicant.getApplicant().getRepresentativeID();
+        permitNum = applicant.getApplicant().getPermitNum();
+        address = applicant.getApplicant().getAddress();
+        phoneNum = applicant.getApplicant().getPhoneNum();
 
         // set text values to current values
         representativeIDField.setText(Integer.toString(representativeID));
@@ -56,17 +58,22 @@ public class ProfileController {
     // functions - simply modify fields when user changes them
     public void modifyRepresentativeID() {
         representativeID = Integer.valueOf(representativeIDField.getText());
+        applicant.getApplicant().setRepresentativeID();
     }
     public void modifyPermitNum() {
         permitNum = Integer.valueOf(permitNumField.getText());
+        applicant.getApplicant().setPermitNum();
     }
     public void modifyAddress() {
         address = addressField.getText();
+        applicant.getApplicant().setAddress();
     }
     public void modifyPhoneNum() {
         phoneNum = phoneNumField.getText();
+        applicant.getApplicant().setPhoneNum();
     }
     public void modifyEmailAddress() {
         emailAddress = emailAddressField.getText();
+        applicant.getApplicant().setEmailAddress();
     }
 }

@@ -42,6 +42,10 @@ public class HomeController {
     @FXML
     private Label label3;
 
+    // delete this
+    @FXML
+    private Button goToProfile;
+
     private COLASearch search;
 
 
