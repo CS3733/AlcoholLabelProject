@@ -28,4 +28,16 @@ public class Applicant {
     public void addSubmittedApp(SubmittedApplication submittedApp) {
         this.applications.add(submittedApp);
     }
+
+    public String getEmailAddress() { return ""; }
+    public int getRepresentativeID() { return 0; }
+    public int getPermitNum() { return 0; }
+    public String getAddress() { return ""; }
+    public String getPhoneNum() { return ""; }
+
+    public void setEmailAddress() {}
+    public void setRepresentativeID() {}
+    public void setPermitNum() {}
+    public void setAddress() {}
+    public void setPhoneNum() {}
 }

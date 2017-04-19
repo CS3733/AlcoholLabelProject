@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -268,6 +270,7 @@ public class NewApplicationController {
                 alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
                 formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
             }
+            datePicker.setValue(LocalDate.now());
         }
     }
 

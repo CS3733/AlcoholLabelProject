@@ -29,7 +29,6 @@ public class LogManager {
         }
         catch (IOException e) {
             System.out.println("unable to create file");
-            return;
         }
     }
     public void logAction(String classTag, String specialMessage) {
