@@ -229,5 +229,9 @@ public class Storage {
         return alcoholDB.getAssignedApplications(agentName);
     }
 
+    public List<String> getAllTTBUsernames(){
+        return usersDB.getAllTTBUsernames();
+    }
+
 
 }

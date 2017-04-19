@@ -312,6 +312,19 @@ public class Main extends Application {
         }
     }
 
+    public void loadSuperagentViewAllApplicationsController(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentViewAllApplications.fxml"));
+        try{
+            Parent root = loader.load();
+            SuperagentViewAllApplicationsController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
     public void loadNewUserApplicationDisplayController(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentWorkflowPage.fxml"));
