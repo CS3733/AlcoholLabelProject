@@ -2,16 +2,14 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.collections.FXCollections;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -71,7 +69,9 @@ public class ApplicantWorkflowController {
     }
 
     public void ApplicationWorkflow() {
-        main.loadUpdateApplicationPage(getSelectedApplication());
+        if(getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {
+            main.loadUpdateApplicationPage(getSelectedApplication());
+        }
     }
 
     public void GoHome() {

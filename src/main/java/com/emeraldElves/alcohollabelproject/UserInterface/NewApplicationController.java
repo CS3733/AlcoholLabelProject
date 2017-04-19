@@ -165,15 +165,6 @@ public class NewApplicationController {
         phoneNumberField.setText((phoneNum.getPhoneNumber()));
         emailAddressField.setText((emailAddress.getEmailAddress()));
 
-//        example manufacturer info
-//        ManufacturerInfo manInfo= new ManufacturerInfo("Bob", "1 Institute Rd", "", 1234, 1111, new PhoneNumber("9789789788"), new EmailAddress("test@test.com"));
-//        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(manInfo.getName()) + ".");
-//        repIDNoTextField.setText(String.valueOf(manInfo.getRepresentativeID()));
-//        permitNoTextField.setText(String.valueOf(manInfo.getPermitNum()));
-//        addressField.setText(String.valueOf(manInfo.getPhysicalAddress()));
-//        phoneNumberField.setText(String.valueOf(manInfo.getPhoneNumber().getPhoneNumber()));
-//        emailAddressField.setText(String.valueOf(manInfo.getEmailAddress().getEmailAddress()));
-
         datePicker.setValue(LocalDate.now());
         stateSelect.setValue("State Abb.");
         stateSelect.setItems(stateList);
@@ -333,6 +324,11 @@ public class NewApplicationController {
                         permitNum, phoneNum, emailAddress);
                 //sets the date value
                 Date newDate = DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
+
+                //creates a new ManufacturerInfo
+                appManInfo= new ManufacturerInfo(applicant.getApplicant().getName(), applicant.getApplicant().getAddressFromDB(username),
+                        "company", applicant.getApplicant().getRepresentativeIDFromDB(username), applicant.getApplicant().getPermitNumFromDB(username),
+                        new PhoneNumber(applicant.getApplicant().getPhoneNum()), new EmailAddress( applicant.getApplicant().getEmailAddress()));
 
                 ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo, extraInfo, appType);
 
