@@ -225,6 +225,20 @@ public class Database {
         }
     }
 
+    public boolean delete(String tableName, String where) {
+        if (!connected)
+            return false;
+        try {
+            statement.execute("DELETE FROM " + tableName + " WHERE " + where);
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     /**
      * Close the database.
      *

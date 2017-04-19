@@ -18,7 +18,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -274,7 +273,6 @@ public class NewApplicationController {
         }
     }
 
-
     public void submitApp() {
 
         //Creates a database to store the alcohol information from form
@@ -428,7 +426,7 @@ public class NewApplicationController {
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadHomepage();
+        main.loadApplicantWorkflowPage();
     }
     public void saveApp() {
     }

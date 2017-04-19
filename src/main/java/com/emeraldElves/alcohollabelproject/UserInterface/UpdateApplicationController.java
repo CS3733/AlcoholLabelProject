@@ -110,7 +110,7 @@ public class UpdateApplicationController {
 
             applicantInterface.submitApplication(CurrentlyBeingUpdated);
         }
-
+        CurrentlyBeingUpdated.getApplication().setSubmissionDate(DateHelper.getDate(datePicker.getValue().getDayOfMonth(),datePicker.getValue().getMonthValue() - 1,datePicker.getValue().getYear()));
         int alcoholContent = Integer.parseInt(alcoholContentField.getText());
         alcoholInfo.setAlcoholContent(alcoholContent);
 
@@ -121,7 +121,7 @@ public class UpdateApplicationController {
     }
 
     public void cancelApp() {
-        main.loadHomepage();
+        main.loadApplicantWorkflowPage();
 
     }
 
