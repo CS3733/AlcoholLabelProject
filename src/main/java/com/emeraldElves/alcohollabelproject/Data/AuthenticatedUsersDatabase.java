@@ -204,44 +204,16 @@ public class AuthenticatedUsersDatabase {
         }
         return users;
     }
-    public PotentialUser getUserFromEmail(String email){
-        ResultSet resultSet = db.select("*", "NewApplicant", "name = " + email);
-        try {
-            while (resultSet.next()) {
-
-                //Adding all stuff from database to new PotentialUser object
-                String name = resultSet.getString("name");
-                String password = resultSet.getString("password");
-                int usertype = resultSet.getInt("type");
-                UserType useType = UserType.fromInt(usertype);
-                int representativeID = resultSet.getInt("representativeID");
-                String emailString = resultSet.getString("email");
-                EmailAddress email1 = new EmailAddress(emailString);
-                String phoneNumberString = resultSet.getString("phoneNumber");
-                PhoneNumber phoneNumber = new PhoneNumber(phoneNumberString);
-                Date date = new Date(resultSet.getLong("date"));
-                int permitNum = resultSet.getInt("permitNum");
-                String address = resultSet.getString("address");
-
-                return(new PotentialUser(name, representativeID, email1, phoneNumber,
-                        useType, password, date, permitNum, address));
-            }
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public Applicant getUserFromEmail(String email){
-        ResultSet resultSet = db.select("*", "ManufacturerInfo", "emailAddress = '" + email + "'");
+        ResultSet resultSet = db.select("*", "ApplicantLogin", "email = '" + email + "'");
         try {
             while (resultSet.next()) {
                 //Adding all stuff from database to new Applicant object
                 int representativeID = resultSet.getInt("representativeID");
                 int permitNum = resultSet.getInt("permitNum");
-                String address = resultSet.getString("physicalAddress");
-                String phoneNum = resultSet.getString("phoneNum");
+                String address = resultSet.getString("address");
+                String phoneNum = resultSet.getString("phoneNumber");
 
                 return(new Applicant(email, representativeID, permitNum, address,
                         phoneNum));
