@@ -1,12 +1,13 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
  * Created by Kylec on 4/18/2017.
  */
-public class ImageUtils {
+public class ImageUtils implements Controller {
 
     public static void centerImage(ImageView imageView){
         Image img = imageView.getImage();

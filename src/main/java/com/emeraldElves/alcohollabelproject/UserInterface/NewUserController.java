@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.layout.VBox;
 /**
  * Created by Essam on 4/4/2017.
  */
-public class NewUserController {
+public class NewUserController implements Controller {
     @FXML
     TextField usernameField;
     @FXML

@@ -15,7 +15,7 @@ import java.util.Date;
  * Created by keionbis on 4/5/17.
  */
 
-public class ApprovalProcessController {
+public class ApprovalProcessController implements Controller {
     Main main;
     SubmittedApplication application;
     private TTBAgentInterface agentInterface;

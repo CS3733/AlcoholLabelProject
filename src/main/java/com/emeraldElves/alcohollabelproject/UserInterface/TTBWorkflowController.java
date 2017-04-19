@@ -1,18 +1,17 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.TTBAgentInterface;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.Date;
@@ -21,7 +20,7 @@ import java.util.List;
 /**
  * Created by Kylec on 4/18/2017.
  */
-public class TTBWorkflowController {
+public class TTBWorkflowController implements Controller {
 
     @FXML
     private TableView<SubmittedApplication> resultsTable;

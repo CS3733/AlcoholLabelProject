@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import java.util.Date;
 /**
  * Created by Kylec on 4/4/2017.
  */
-public class DetailedSearchController {
+public class DetailedSearchController implements Controller {
     
 
     private Main main;

@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -11,7 +12,7 @@ import java.nio.file.Paths;
 /**
  * Created by keionbis on 4/11/17.
  */
-public class DisplayLabelController {
+public class DisplayLabelController implements Controller {
     @FXML
     ImageView labelView;
     Main main;

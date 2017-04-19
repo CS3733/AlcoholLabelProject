@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
-public class UpdateSpiritsAppController {
+public class UpdateSpiritsAppController implements Controller {
 
     public ApplicationStatus status;//get status from database
 

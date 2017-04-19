@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.Map;
 /**
  * Created by Kyle on 4/7/2017.
  */
-public class Bundle {
+public class Bundle implements Controller {
 
     private Map<String, Object> data;
 

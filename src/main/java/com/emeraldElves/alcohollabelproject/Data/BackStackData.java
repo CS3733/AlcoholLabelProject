@@ -1,17 +1,15 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
-import com.emeraldElves.alcohollabelproject.UserInterface.Bundle;
-
 /**
  * Created by keionbis on 4/17/17.
  */
 public class BackStackData {
 
-        private Bundle PreviousBundle;
+        private Controller PreviousController;
         private String PrevScreen;
 
-    public BackStackData(Bundle PrevousBundle, String PrevScreen) {
-        this.PreviousBundle = PrevousBundle;
+    public BackStackData(Controller PreviousController, String PrevScreen) {
+        this.PreviousController = PreviousController;
         this.PrevScreen = PrevScreen;
     }
 

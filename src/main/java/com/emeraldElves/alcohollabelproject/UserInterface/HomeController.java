@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 
 import com.emeraldElves.alcohollabelproject.COLASearch;
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import java.util.*;
 /**
  * Created by Harry and Joe on 4/2/2017.
  */
-public class HomeController {
+public class HomeController implements Controller {
     public ArrayList<Label> mostRecentLabels;
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
     public List<SubmittedApplication> submitted;

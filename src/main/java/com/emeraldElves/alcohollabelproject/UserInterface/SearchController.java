@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.COLASearch;
 import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Platform;
@@ -29,7 +30,7 @@ import java.util.*;
 /**
  * Created by Essam on 4/2/2017.
  */
-public class SearchController {
+public class SearchController implements Controller {
 
     private Main main;
     private String searchTerm;

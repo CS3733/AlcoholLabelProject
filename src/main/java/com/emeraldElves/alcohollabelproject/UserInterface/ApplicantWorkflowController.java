@@ -2,23 +2,21 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.collections.FXCollections;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
  * Created by keionbis on 4/4/17.
  */
 
-public class ApplicantWorkflowController {
+public class ApplicantWorkflowController implements Controller {
     Main main;
     private ApplicantInterface applicantInterface;
 

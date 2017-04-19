@@ -16,7 +16,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
-public class UpdateBeerAppController {
+public class UpdateBeerAppController implements Controller
+{
 
     public ApplicationStatus status;//get status from database
     @FXML

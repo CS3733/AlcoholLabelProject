@@ -1,13 +1,14 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.UserInterface.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +20,7 @@ import java.nio.file.StandardCopyOption;
  * Created by keionbis on 4/10/17.
  */
 
-public class ImageSubmissionController {
+public class ImageSubmissionController implements Controller {
     @FXML
     Button submitLabel;
     @FXML

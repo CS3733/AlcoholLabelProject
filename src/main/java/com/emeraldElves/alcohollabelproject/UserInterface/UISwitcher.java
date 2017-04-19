@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
@@ -9,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by Kylec on 4/10/2017.
  */
-public class UISwitcher {
+public class UISwitcher implements Controller {
 
     public static String SEARCH_PAGE = "/fxml/Search.fxml";
     public static String DETAILED_SEARCH_PAGE = "/fxml/DetailedSearchPage.fxml";
