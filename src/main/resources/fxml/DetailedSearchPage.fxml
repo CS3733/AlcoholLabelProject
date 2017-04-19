@@ -11,11 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
 <GridPane alignment="center" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.DetailedSearchController">
-=======
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.DetailedSearchController">
->>>>>>> refs/remotes/origin/master
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -95,10 +91,6 @@
                   <Label fx:id="ttbID" prefHeight="27.0" prefWidth="227.0" style="-fx-font-size: 16;" text="ttbID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-<<<<<<< HEAD
-=======
-            <ImageView fx:id="labelView" fitHeight="477.0" fitWidth="450.0" layoutX="506.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
->>>>>>> refs/remotes/origin/master
          </children>
         </Pane>
         <Pane prefHeight="118.0" prefWidth="1024.0" />

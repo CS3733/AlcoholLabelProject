@@ -1,8 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
-import com.emeraldElves.alcohollabelproject.Data.AuthenticatedUsersDatabase;
-import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

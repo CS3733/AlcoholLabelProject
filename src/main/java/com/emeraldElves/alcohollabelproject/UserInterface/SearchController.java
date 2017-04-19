@@ -1,36 +1,20 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.COLASearch;
-<<<<<<< HEAD
 import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.*;
 
 import javafx.application.Platform;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-=======
-import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
-import com.emeraldElves.alcohollabelproject.Data.Storage;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
-import javafx.application.Platform;
->>>>>>> refs/remotes/origin/master
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-<<<<<<< HEAD
-=======
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.stage.FileChooser;
->>>>>>> refs/remotes/origin/master
 import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -38,14 +22,6 @@ import org.controlsfx.control.textfield.TextFields;
 import javafx.scene.control.TextInputDialog;
 
 
-<<<<<<< HEAD
-=======
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
->>>>>>> refs/remotes/origin/master
 import java.util.*;
 
 /**
@@ -77,11 +53,22 @@ public class SearchController {
     private MenuItem contextSaveBtn;
     @FXML
     private Label descriptionLabel;
+    @FXML
+    private CheckMenuItem filterBeers;
+    @FXML
+    private CheckMenuItem filterWine;
+    @FXML
+    private CheckMenuItem filterSpirits;
+
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
     private COLASearch search;
 
+    private SearchSubject searchTermSubject;
+
     public SearchController() {
         this.search = new COLASearch();
+        searchTermSubject = new SearchSubject();
+        new SearchObserver(searchTermSubject, data);
     }
 
     public void init(Main main, String searchTerm) {
@@ -89,9 +76,8 @@ public class SearchController {
         this.searchTerm = searchTerm;
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                 Date date = p.getValue().getApplication().getSubmissionDate();
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(dateFormat.format(date)));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(DateHelper.dateToString(date)));
             }
         });
         manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
@@ -114,6 +100,10 @@ public class SearchController {
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent())));
             }
         });
+        manufacturerCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName())));
+        brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
+        typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name())));
+        contentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent()))));
         saveBtn.setDisable(data.size() == 0);
         descriptionLabel.setVisible(false);
         contextSaveBtn.setDisable(data.size() == 0);
@@ -129,43 +119,27 @@ public class SearchController {
             return row;
         });
 
+        /*
         List<SubmittedApplication> resultsList = search.searchApprovedApplications();
         possibleSuggestions.clear();
-        Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
-            @Override
-            public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
-                return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
-            }
-        });
-
-        for(SubmittedApplication application: resultsList){
-            possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
-            possibleSuggestions.add(application.getApplication().getAlcohol().getName());
-        }
-
-        autoCompletionBinding = TextFields.bindAutoCompletion(searchField, possibleSuggestions);
-
-
-        /*searchField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent ke) {
+        resultsList.sort((lhs, rhs) -> lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName()));
 
                 autoCompletionBinding.setUserInput(searchField.getText().trim());
                 //search(searchField.getText().trim());
 
 
-            }
-        });*/
-
+            //}
+        //});
+        */
+        refreshSuggestions();
         searchField.setText(searchTerm);
         search(searchTerm);
     }
+
     public void search(ActionEvent e) {
-        Platform.runLater(() -> {
-            search(searchField.getText());
-        });
+//        notifyObservers();
+        Platform.runLater(() -> search(searchField.getText()));
     }
-<<<<<<< HEAD
 
     public void onKeyType(KeyEvent e) {
         //delay is required for .getText() to get the updated field
@@ -173,12 +147,6 @@ public class SearchController {
             search(searchField.getText());
 
 
-=======
-    public void onKeyType(KeyEvent e){
-        //delay is required for .getText() to get the updated field
-        Platform.runLater(() -> {
-            search(searchField.getText());
->>>>>>> refs/remotes/origin/master
         });
     }
 
@@ -188,14 +156,13 @@ public class SearchController {
 
         //Find & add matching applications
         List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim());
-        ;
+        filterList(resultsList);
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);
         saveBtn.setDisable(data.size() == 0);
         contextSaveBtn.setDisable(data.size() == 0);
     }
-<<<<<<< HEAD
 
     private void refreshSuggestions() {
         List<SubmittedApplication> resultsList = search.searchApprovedApplications();
@@ -236,14 +203,6 @@ public class SearchController {
         appList.removeIf(p -> (filterWine.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE));
         appList.removeIf(p -> (filterSpirits.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS));
     }
-=======
-
-    public void goHome() {
-        main.loadHomepage();
-    }
-
-    public void saveCSV(ActionEvent e) {
->>>>>>> refs/remotes/origin/master
 
     public void saveTSV(ActionEvent e) {
 
