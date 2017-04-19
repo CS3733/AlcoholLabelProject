@@ -203,6 +203,27 @@ public class SearchController {
         appList.removeIf(p -> (filterSpirits.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS));
     }
 
+    public void saveTSV(ActionEvent e) {
+
+        ApplicationExporter exporter = new ApplicationExporter(new TSVExporter());
+        exporter.export(data);
+    }
+
+    public void saveUserChar(ActionEvent e) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Data Exporter");
+        dialog.setHeaderText("Enter a character.");
+        dialog.setContentText("Please enter a character to separate data:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(name -> {
+            ApplicationExporter exporter = new ApplicationExporter(new UserCharExporter(name.charAt(0), "txt"));
+            exporter.export(data);
+        });
+
+
+    }
+
     public void saveCSV(ActionEvent e) {
 
         ApplicationExporter exporter = new ApplicationExporter(new CSVExporter());
