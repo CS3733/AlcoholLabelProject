@@ -126,6 +126,7 @@ public class Main extends Application {
     public void loadLoginPage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         try {
+            ToolbarController.onLoginPage=true;
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
             LoginController controller = loader.getController();
