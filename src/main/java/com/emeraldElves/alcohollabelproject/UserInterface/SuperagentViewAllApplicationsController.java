@@ -1,6 +1,5 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
@@ -35,7 +34,7 @@ public class SuperagentViewAllApplicationsController {
     @FXML
     private TableColumn<SubmittedApplication, String> appIDCol;
     @FXML
-    private TableColumn<String, String> agentCol;
+    private TableColumn<SubmittedApplication, String> agentCol;
 
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
     private TTBAgentInterface agentInterface;
@@ -58,7 +57,7 @@ public class SuperagentViewAllApplicationsController {
         brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
         typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name())));
         appIDCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplicationID()))));
-        agentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue()))));
+        agentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getTtbAgentName())));
         resultsTable.setItems(data);
         resultsTable.setRowFactory(tv -> {
             TableRow<SubmittedApplication> row = new TableRow<>();
@@ -76,6 +75,9 @@ public class SuperagentViewAllApplicationsController {
         for(String strang : names){
             agentInterface = new TTBAgentInterface(strang);
             List<SubmittedApplication> resultsList = agentInterface.getAssignedApplications();
+            for(SubmittedApplication temp : resultsList){
+                temp.setTtbAgentName(strang);
+            }
             data.addAll(resultsList);
         }
 
