@@ -170,7 +170,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
         try {
             Parent root = loader.load();
-          //  root.getStylesheets().add("/style/material.css");
+            root.getStylesheets().add("/style/material.css");
             NewApplicationController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
