@@ -155,27 +155,13 @@ public class UpdateApprovedAppController {
 
     private SubmittedApplication application;
 
-    public void init(Main main){
+    public void init(Main main, SubmittedApplication application) {
         this.main = main;
-
-//        username= Authenticator.getInstance().getUsername();
-//        applicant = new ApplicantInterface(username);
-//        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(applicant.getApplicant().getName()) + ".");
-//
-//        emailAddress = applicant.getApplicant().getEmailAddress();
-//        permitNum = applicant.getApplicant().getPermitNum();
-//        address = applicant.getApplicant().getAddress();
-//        phoneNum = applicant.getApplicant().getPhoneNum();
-//        representativeID = applicant.getApplicant().getRepresentativeID();
-//        repIDNoTextField.setText(String.valueOf(representativeID));
-//        permitNoTextField.setText(String.valueOf(permitNum));
-//        addressField.setText(String.valueOf(address));
-//        phoneNumberField.setText(String.valueOf(phoneNum));
-//        emailAddressField.setText(String.valueOf(emailAddress));
-
-//        example manufacturer info
-        ManufacturerInfo manInfo= new ManufacturerInfo("Bob", "1 Institute Rd", "", 1234, 1111, new PhoneNumber("9789789788"), new EmailAddress("test@test.com"));
-        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(manInfo.getName()) + ".");
+        this.application = application;
+        username= Authenticator.getInstance().getUsername();
+        applicant = new ApplicantInterface(username);
+        ManufacturerInfo manInfo= new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), applicant.getApplicant().getAddressFromDB(username), "", applicant.getApplicant().getRepresentativeIDFromDB(username), applicant.getApplicant().getPermitNumFromDB(username), new PhoneNumber(applicant.getApplicant().getPhoneNum()), new EmailAddress(applicant.getApplicant().getEmailAddress()));
+        welcomeApplicantLabel.setText("Welcome, " + (manInfo.getName()) + ".");
         repIDNoTextField.setText(String.valueOf(manInfo.getRepresentativeID()));
         permitNoTextField.setText(String.valueOf(manInfo.getPermitNum()));
         addressField.setText(String.valueOf(manInfo.getPhysicalAddress()));
@@ -188,12 +174,6 @@ public class UpdateApprovedAppController {
         pSourceSelect.setItems(sourceList);
         pTypeSelect.setValue("Select a product type");
         pTypeSelect.setItems(typeList);
-
-    }
-
-    public void init(Main main, SubmittedApplication application) {
-        init(main);
-        this.application = application;
 
         if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
             pSourceSelect.setValue("Domestic");
@@ -344,7 +324,12 @@ public class UpdateApprovedAppController {
                 if (application != null)
                     application.setApplicationID(application.getApplicationID());
                 applicant.addSubmittedApp(application);
-                application.setImage(proxyLabelImage);
+                if(proxyLabelImage!= null) {
+                    application.setImage(proxyLabelImage);
+                }
+                else{
+                    application.setImage(new ProxyLabelImage(""));
+                }
 
                 if (application != null)
                     application.setApplicationID(application.getApplicationID());
