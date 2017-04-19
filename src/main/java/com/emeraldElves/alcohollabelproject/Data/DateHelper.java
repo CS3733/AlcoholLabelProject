@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -12,7 +14,11 @@ public class DateHelper {
         Calendar calendar = new Calendar.Builder()
                 .setDate(year, month, day)
                 .build();
-        Date date = calendar.getTime();
-        return date;
+        return calendar.getTime();
+    }
+
+    public static String dateToString(Date date) {
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, YYYY");
+        return dateFormat.format(date);
     }
 }

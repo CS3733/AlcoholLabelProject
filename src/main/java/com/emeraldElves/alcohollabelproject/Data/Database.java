@@ -100,8 +100,8 @@ public class Database {
      * @return True if the values were inserted without error.
      */
     public boolean insert(String values, String tableName) {
-        if (!connected)
-            return false;
+//        if (!connected)
+//            return false;
         try {
             statement.execute("INSERT INTO " + tableName + " VALUES ( " + values + " )");
             connection.commit();
@@ -224,6 +224,20 @@ public class Database {
             return false;
         }
     }
+
+    public boolean delete(String tableName, String where) {
+        if (!connected)
+            return false;
+        try {
+            statement.execute("DELETE FROM " + tableName + " WHERE " + where);
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     /**
      * Close the database.

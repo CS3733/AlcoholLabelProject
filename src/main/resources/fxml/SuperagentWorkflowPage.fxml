@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewUserApplicationDisplayController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="112.0" minHeight="75.0" prefHeight="102.0" />
+        <RowConstraints maxHeight="695.0" minHeight="663.0" prefHeight="673.0" />
+    </rowConstraints>
+    <children>
+        <Pane fx:id="resultsPane" maxHeight="700.0" prefHeight="700.0" prefWidth="815.0" GridPane.rowIndex="1">
+            <children>
+                <TableView fx:id="resultsTable" prefHeight="700.0" prefWidth="1024.0">
+                    <columns>
+                        <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Date" />
+                        <TableColumn fx:id="nameCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Name" />
+                        <TableColumn fx:id="userNameCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="User Name" />
+                        <TableColumn fx:id="userTypeCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="User type" />
+                        <TableColumn fx:id="idNumberCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="ID Number" />
+                    </columns>
+                </TableView>
+            </children>
+        </Pane>
+      <fx:include source="toolbar.fxml" />
+      <fx:include source="toolbar.fxml" />
+    </children>
+</GridPane>

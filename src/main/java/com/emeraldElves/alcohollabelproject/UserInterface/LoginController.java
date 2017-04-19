@@ -1,8 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
-import com.emeraldElves.alcohollabelproject.Data.AuthenticatedUsersDatabase;
-import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,57 +27,23 @@ public class LoginController {
 
     public void init(Main main) {
         this.main = main;
-    }
-
-    public void loginAsAgent() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        if (Authenticator.getInstance().login(UserType.TTBAGENT, username, password)) {
-            errorMsg.setVisible(false);
-            main.loadHomepage();
-        } else {
-            errorMsg.setVisible(true);
-        }
-    }
-
-    public void loginAsApplicant() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        if (Authenticator.getInstance().login(UserType.APPLICANT, username, password)) {
-            errorMsg.setVisible(false);
-            main.loadHomepage();
-        } else {
-            errorMsg.setVisible(true);
-        }
-    }
-    public void loginAsSuperAgent() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        if (Authenticator.getInstance().login(UserType.SUPERAGENT, username, password)) {
-            errorMsg.setVisible(false);
-            main.loadHomepage();
-        } else {
-            errorMsg.setVisible(true);
-        }
+        ToolbarController.onLoginPage=true;
     }
 
     public void login(ActionEvent e) {
         String username = usernameField.getText();
         String password = passwordField.getText();
-//        if (Storage.getInstance().isValidUser()) {
-//            errorMsg.setVisible(false);
-//            if (authDb.isValidApplicant(username, password)) {
-//                main.loadHomepage(UserType.APPLICANT, username);
-//            }
-//            if (authDb.isValidTTBAgent(username, password)) {
-//                main.loadHomepage(UserType.TTBAGENT, username);
-//            }
-//        } else {
-//            errorMsg.setVisible(true);
-//        }
-    }
-
-    public void GoHome() {
-        main.loadHomepage();
+        if (Authenticator.getInstance().login(UserType.SUPERAGENT, username, password)) {
+            errorMsg.setVisible(false);
+            main.loadHomepage();
+        } else if(Authenticator.getInstance().login(UserType.APPLICANT, username, password)){
+            errorMsg.setVisible(false);
+            main.loadHomepage();
+        } else if (Authenticator.getInstance().login(UserType.TTBAGENT, username, password)){
+            errorMsg.setVisible(false);
+            main.loadHomepage();
+        } else {
+            errorMsg.setVisible(true);
+        }
     }
 }

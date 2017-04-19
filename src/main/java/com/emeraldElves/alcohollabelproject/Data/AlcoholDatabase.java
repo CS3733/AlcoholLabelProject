@@ -1,12 +1,16 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
-import com.emeraldElves.alcohollabelproject.*;
+import com.emeraldElves.alcohollabelproject.AppState;
+import com.emeraldElves.alcohollabelproject.Applicant;
+import com.emeraldElves.alcohollabelproject.IDGenerator.ApplicationIDGenerator;
+import com.emeraldElves.alcohollabelproject.IDGenerator.TTBIDGenerator;
+import com.emeraldElves.alcohollabelproject.Log;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -16,6 +20,7 @@ public class AlcoholDatabase {
 
     private Database db;
     private AuthenticatedUsersDatabase usersDatabase;
+    private ApplicationIDGenerator generator;
 
     /**
      * Creates an AlcoholDatabase
@@ -25,6 +30,24 @@ public class AlcoholDatabase {
     public AlcoholDatabase(Database db) {
         this.db = db;
         usersDatabase = new AuthenticatedUsersDatabase(db);
+        generator = new TTBIDGenerator(getAppCount());
+    }
+
+    private int getAppCount() {
+        ResultSet resultSet = db.select("*", "IDGenerator", "id=1");
+        try {
+            if (resultSet.next()) {
+                return resultSet.getInt("appCount");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private void incrementAppCount() {
+        int appCount = getAppCount() + 1;
+        db.update("IDGenerator", "appCount = " + String.valueOf(appCount), "id=1");
     }
 
     // TODO: finish getMostRecentApproved
@@ -38,6 +61,11 @@ public class AlcoholDatabase {
     public List<SubmittedApplication> getMostRecentApproved(int numApplications) {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "approvalDate DESC");
         return getApplicationsFromResultSet(results, numApplications);
+    }
+
+
+    public boolean removeApplication(SubmittedApplication application) {
+        return db.delete("SubmittedApplications", "applicationID = " + application.getApplicationID());
     }
 
     /**
@@ -55,8 +83,8 @@ public class AlcoholDatabase {
             while (results.next() && ids.size() < numApplications) {
                 ids.add(results.getInt("applicationID"));
             }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
+            for (Integer id : ids) {
+                applications.add(getApplicationByID(id));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,8 +107,8 @@ public class AlcoholDatabase {
             while (results.next()) {
                 ids.add(results.getInt("applicationID"));
             }
-            for (int i = 0; i < ids.size(); i++) {
-                applications.add(getApplicationByID(ids.get(i)));
+            for (Integer id : ids) {
+                applications.add(getApplicationByID(id));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,6 +116,7 @@ public class AlcoholDatabase {
 
         return applications;
     }
+
     /**
      * Search by the brand or fanciful name of alcohol.
      *
@@ -105,6 +134,7 @@ public class AlcoholDatabase {
         }
         return applications;
     }
+
     /**
      * Search by the brand name of alcohol.
      *
@@ -122,6 +152,7 @@ public class AlcoholDatabase {
         }
         return applications;
     }
+
     /**
      * Search by the fanciful name of alcohol.
      *
@@ -139,6 +170,7 @@ public class AlcoholDatabase {
         }
         return applications;
     }
+
     /**
      * Submit an application for review.
      *
@@ -161,10 +193,12 @@ public class AlcoholDatabase {
 
         //Image name
         String image;
-        if(application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
-        //if(false)
+        if (application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+            //if(false)
             image = application.getImage().getFileName();
-        else{ image = ""; }
+        else {
+            image = "";
+        }
 
 
         //
@@ -195,7 +229,7 @@ public class AlcoholDatabase {
         }*/
 
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
-        
+
         try {
             if (resultsSubmitted.next()) {
                 db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
@@ -210,7 +244,8 @@ public class AlcoholDatabase {
                         + appType.isLabelApproval() + ", stateOnly = '"
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
-                        + image + "'", "applicationID = "
+                        + image + "', qualifications = '"
+                        + info.getQualifications() + "'", "applicationID = "
                         + application.getApplicationID());
 
 
@@ -264,7 +299,8 @@ public class AlcoholDatabase {
                                 + appType.isLabelApproval() + ", '"
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
-                                + image + "'"
+                                + image + "', '"
+                                + info.getQualifications() + "'"
                         //TTBUsername
                         , "SubmittedApplications");
 
@@ -366,14 +402,13 @@ public class AlcoholDatabase {
                 String fileName = submittedResult.getString("imageURL");
 
 
-
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
 
                 AlcoholInfo alcoholInfo = getAlcoholInfoByID(id);
 
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
-                        extraInfo, new ApplicationType(labelApproval,stateOnly,bottleCapacity));
+                        extraInfo, new ApplicationType(labelApproval, stateOnly, bottleCapacity));
 
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setImage(new ProxyLabelImage(fileName));
@@ -403,8 +438,10 @@ public class AlcoholDatabase {
 
     public boolean approveApplication(SubmittedApplication application, String agentUsername, Date expirationDate) {
         application.setStatus(ApplicationStatus.APPROVED);
+        //TODO: Fix expiration date, should be set by agent when approving application
         return db.update("SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue() + ", TTBUsername = '" + agentUsername + "', approvalDate = " +
-                +(new Date().getTime()) + ", expirationDate = " + expirationDate.getTime(), "applicationID = " + application.getApplicationID());
+                +(new Date().getTime()) + ", expirationDate = " + expirationDate.getTime()
+                + ", qualifications = '" + application.getApplication().getQualifications() + "'", "applicationID = " + application.getApplicationID());
     }
 
     public boolean rejectApplication(SubmittedApplication application, String message) {
@@ -502,7 +539,8 @@ public class AlcoholDatabase {
 
 
     private int generateApplicationID() {
-        return (int) System.currentTimeMillis();
+        incrementAppCount();
+        return Integer.valueOf(generator.generateID());
     }
 
     public List<SubmittedApplication> getApproved() {

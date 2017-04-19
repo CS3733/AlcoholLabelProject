@@ -1,16 +1,10 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -45,6 +39,18 @@ public class DetailedSearchController {
     @FXML
     ImageView labelView;
 
+    @FXML
+    Label status;
+
+    @FXML
+    Label email;
+    @FXML
+    Label phone;
+    @FXML
+    Label address;
+    @FXML
+    Label ttbID;
+
 
 
     public void init(Main main, SubmittedApplication application, String searchTerm) {
@@ -56,19 +62,18 @@ public class DetailedSearchController {
         String type = "";
         switch (application.getApplication().getAlcohol().getAlcoholType()) {
             case BEER:
-                type = "Beer";
+                type = "BEER";
                 break;
             case WINE:
-                type = "Wine";
+                type = "WINE";
                 break;
             case DISTILLEDSPIRITS:
-                type = "Distilled Spirits";
+                type = "DISTILLED SPIRITS";
                 break;
         }
         alcoholType.setText(type);
-        DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-        submissionDate.setText(dateFormat.format(date));
+        submissionDate.setText("Submitted " + DateHelper.dateToString(date));
         content.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent())+"%");
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {
@@ -80,15 +85,22 @@ public class DetailedSearchController {
                 break;
         }
         origin.setText(productSource);
-        Path targetDir = Paths.get("Labels");
-        Path target = targetDir.resolve(application.getproxyImage().getFileName());
-        Image image = new Image(target.toUri().toString());
-        labelView.setImage(image);
-
+        ttbID.setText(String.valueOf(application.getApplicationID()));
+        status.setText(application.getStatus().toString());
+        labelView.setImage(application.getImage().display());
+        ImageUtils.centerImage(labelView);
+        email.setText(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
+        phone.setText(application.getApplication().getManufacturer().getPhoneNumber().getFormattedNumber());
+        address.setText(application.getApplication().getManufacturer().getPhysicalAddress());
     }
 
-    public void GoHome() {
-        main.loadHomepage();
+
+    public void printPage(){
+        main.printPage();
+    }
+
+    public void export(){
+        // Exporter
     }
 
 

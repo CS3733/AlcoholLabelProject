@@ -1,12 +1,15 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
+import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.print.PageLayout;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,10 +20,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        UISwitcher.getInstance().setMain(this);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         Parent root = loader.load();
         UISwitcher.getInstance().setStage(primaryStage);
 //        UISwitcher.getInstance().switchToPage(UISwitcher.HOME_PAGE);
+//        primaryStage.setResizable(false);
         HomeController controller = loader.getController();
         controller.init(this);
         primaryStage.setTitle("Alcohol Label Project");
@@ -30,6 +35,24 @@ public class Main extends Application {
         primaryStage.show();
         stage = primaryStage;
     }
+
+
+    public void printPage(){
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if(job != null){
+            job.showPrintDialog(stage);
+            PageLayout pageLayout = job.getPrinter().getDefaultPageLayout();
+            double scaleX = pageLayout.getPrintableWidth() / stage.getWidth();
+            double scaleY = pageLayout.getPrintableHeight() / stage.getHeight();
+            double minimumScale = Math.min(scaleX, scaleY);
+            Scale scale = new Scale(minimumScale, minimumScale);
+            stage.getScene().getRoot().getTransforms().add(scale);
+            job.printPage(stage.getScene().getRoot());
+            job.endJob();
+            stage.getScene().getRoot().getTransforms().add(new Scale(1/minimumScale, 1/minimumScale));
+        }
+    }
+
 
     /**
      * Load an FXML file and set the stage to the new UI.
@@ -41,7 +64,7 @@ public class Main extends Application {
         FXMLLoader root = null;
         try {
             root = new FXMLLoader(Main.class.getResource(path));
-            stage.getScene().setRoot((Parent) root.load());
+            stage.getScene().setRoot(root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,11 +76,26 @@ public class Main extends Application {
         try {
             root = new FXMLLoader(Main.class.getResource(path));
             root.setController(controller);
-            stage.getScene().setRoot((Parent) root.load());
+            stage.getScene().setRoot(root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void loadProfilePage(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProfilePage.fxml"));
+        System.out.println("fxml loaded");
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            ProfileController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("other stuff happened");
     }
 
     public void loadSearchPage(String searchTerm) {
@@ -102,6 +140,7 @@ public class Main extends Application {
     public void loadLoginPage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         try {
+            ToolbarController.onLoginPage=true;
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
             LoginController controller = loader.getController();
@@ -115,6 +154,7 @@ public class Main extends Application {
     public void loadHomepage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         try {
+            ToolbarController.onLoginPage=false;
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
             HomeController controller = loader.getController();
@@ -125,12 +165,8 @@ public class Main extends Application {
         }
     }
 
-    public void loadProfilePage(String username) {
-
-    }
-
     public void loadNewApplicationPage(SubmittedApplication application) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
@@ -142,9 +178,19 @@ public class Main extends Application {
         }
     }
 
+    public void loadAboutPage() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AboutPage.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void loadNewApplicationPage() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
@@ -157,43 +203,51 @@ public class Main extends Application {
     }
 
     public void loadUpdateApplicationPage(SubmittedApplication application) {
-        FXMLLoader loader=null;
-        if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.BEER){
-            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationBeer.fxml"));
-        } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.WINE){
-            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationWine.fxml"));
-        } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.DISTILLEDSPIRITS) {
-            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationSpirits.fxml"));
-        } else {
-            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
-        }
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/updateApprovedApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.BEER){
-                UpdateBeerAppController controller = loader.getController();
-                controller.init(this, application,"");
-                stage.getScene().setRoot(root);
-            } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.WINE){
-                UpdateWineAppController controller = loader.getController();
-                controller.init(this, application,"");
-                stage.getScene().setRoot(root);
-            } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.DISTILLEDSPIRITS) {
-                UpdateSpiritsAppController controller = loader.getController();
-                controller.init(this, application,"");
-                stage.getScene().setRoot(root);
-            } else{
-                UpdateApplicationController controller = loader.getController();
-                controller.init(this, application);
-                stage.getScene().setRoot(root);
-            }
-
+            UpdateApprovedAppController controller = loader.getController();
+            controller.init(this, application);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+//        if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.BEER){
+//            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationBeer.fxml"));
+//        } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.WINE){
+//            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationWine.fxml"));
+//        } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.DISTILLEDSPIRITS) {
+//            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationSpirits.fxml"));
+//        } else {
+//            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
+//        }
+//        try {
+//            Parent root = loader.load();
+//            root.getStylesheets().add("/style/material.css");
+//            if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.BEER){
+//                UpdateBeerAppController controller = loader.getController();
+//                controller.init(this, application,"");
+//                stage.getScene().setRoot(root);
+//            } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.WINE){
+//                UpdateWineAppController controller = loader.getController();
+//                controller.init(this, application,"");
+//                stage.getScene().setRoot(root);
+//            } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.DISTILLEDSPIRITS) {
+//                UpdateSpiritsAppController controller = loader.getController();
+//                controller.init(this, application,"");
+//                stage.getScene().setRoot(root);
+//            } else{
+//                UpdateApplicationController controller = loader.getController();
+//                controller.init(this, application);
+//                stage.getScene().setRoot(root);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
+
     public void loadSubmitImages(SubmittedApplication application) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SubmitLabel.fxml"));
         try {
@@ -208,11 +262,11 @@ public class Main extends Application {
     }
 
     public void loadWorkflowPage() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/workflowController.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TTBWorkflowPage.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            WorkflowController controller = loader.getController();
+            TTBWorkflowController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
@@ -262,7 +316,50 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    public void loadSuperUserWorkflowController(PotentialUser potentialUser) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AccountApplicationPage.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            SuperUserWorkflowController controller = loader.getController();
+            controller.init(this, potentialUser);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadSuperagentViewAllApplicationsController(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentViewAllApplications.fxml"));
+        try{
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            SuperagentViewAllApplicationsController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public void loadNewUserApplicationDisplayController(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentWorkflowPage.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            NewUserApplicationDisplayController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
