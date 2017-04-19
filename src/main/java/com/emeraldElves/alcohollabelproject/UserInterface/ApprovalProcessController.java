@@ -43,6 +43,8 @@ public class ApprovalProcessController {
 
     @FXML
     TextArea reason;
+    @FXML
+    TextArea qualifications;
 
     @FXML
     Label authorizedName;
@@ -113,9 +115,12 @@ public class ApprovalProcessController {
     }
 
     public void Approve() {
+        application.getApplication().setQualifications(qualifications.getText());//sets qualifications
+        //need to update in database now
         ApplicationStatusChanger changer = new ApplicationStatusChanger();
         changer.changeStatus(new ApproveCommand(application, true));
         changer.commitUpdates();
+        //Storage.getInstance().submitApplication(application,);
         main.loadWorkflowPage();
 
     }
