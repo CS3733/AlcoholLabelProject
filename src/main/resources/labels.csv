@@ -1,3 +1,6 @@
-brand,fanciful,alcoholContent,origin,type,serialNo,vintageYear,appellation,address,phoneNo,email,img
-Test,Test,10,0,b,123456,,,Here,5555555555,t@t.com,/resources/images/logo.png
-wyatt,bahm,,,,,,,,,,
+brand,fanciful,alcoholContent,origin,type,serialNo,vintageYear,appellation,address,phoneNo,email,img,,,,,,
+Test,Test,10,0,b,123456,,,Here,5555555555,t@t.com,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,/resources/images/logo.png

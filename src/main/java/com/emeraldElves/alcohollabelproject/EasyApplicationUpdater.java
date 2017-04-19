@@ -35,7 +35,7 @@ public class EasyApplicationUpdater {
             String address = reader.getString("address", i);
             PhoneNumber phoneNo = new PhoneNumber(reader.getString("phoneNo", i));
             EmailAddress email = new EmailAddress(reader.getString("email", i));
-            String img = reader.getString("img", i);
+//            String img = reader.getString("img", i);
 
 
             ManufacturerInfo manufacturerInfo = new ManufacturerInfo("Test", address, "company", (int) (Math.random() * 10000), (int)(Math.random() * 10000), phoneNo, email);
@@ -53,7 +53,7 @@ public class EasyApplicationUpdater {
 
             SubmittedApplication application = new SubmittedApplication(applicationInfo, ApplicationStatus.PENDINGREVIEW, null);
 
-            application.setImage(new ProxyLabelImage(img));
+           // application.setImage(new ProxyLabelImage(img));
 
             application.getApplication().setQualifications("");
 
