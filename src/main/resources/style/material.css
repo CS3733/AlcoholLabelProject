@@ -53,7 +53,7 @@
 	-fx-background-color: whitesmoke; //-light
 	/*default font */
 	-fx-font-family: 'Roboto Medium';
-	-fx-font-size: 16.0px;
+	-fx-font-size: 14.0px;
 	-fx-disabled-opacity: 0.6;
 	/*default colors */
 	-swatch-grey: rgb(200.0, 200.0, 200.0);
