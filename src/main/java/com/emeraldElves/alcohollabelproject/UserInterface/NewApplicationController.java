@@ -79,8 +79,6 @@ public class NewApplicationController {
     @FXML
     Label alcContentErrorField;
     @FXML
-    Label dateErrorField;
-    @FXML
     Label signatureErrorField;
     @FXML
     TextField varietalText;
@@ -100,8 +98,6 @@ public class NewApplicationController {
     CheckBox certOfApproval;
     @FXML
     CheckBox certOfExemption;
-    @FXML
-    TextField exemptionText;
     @FXML
     CheckBox distinctiveApproval;
     @FXML
@@ -136,23 +132,19 @@ public class NewApplicationController {
     private String address;
     private PhoneNumber phoneNum;
     private int representativeID;
+    private ManufacturerInfo appManInfo = null;
 
-    //Stores the manufacturer's info
-    public ManufacturerInfo appManInfo = null;
-
-    //Initializes and temporarily stores data fields for alc info
-    private ProductSource pSource = null;
-    private AlcoholType alcType = null;
-    private String alcName = null;
-    private String brandName = null;
-    private int alcContent = 0;
+    //Alcohol info
+    private ProductSource pSource;
+    private AlcoholType alcType;
+    private String alcName;
+    private String brandName;
+    private int alcContent;
     private AlcoholInfo.Wine wineType = null; //null if type is not wine
     private String formula;
     private String serialNum;
     private String extraInfo;
-
-    //Stores the alcohol info from the form
-    public AlcoholInfo appAlcoholInfo = null;
+    private AlcoholInfo appAlcoholInfo = null;
 
     private Main main;
 
@@ -160,16 +152,23 @@ public class NewApplicationController {
 
     public void init(Main main){
         this.main = main;
-        
+
 //        username= Authenticator.getInstance().getUsername();
 //        applicant = new ApplicantInterface(username);
 //        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(applicant.getApplicant().getName()) + ".");
+//
 //        emailAddress = applicant.getApplicant().getEmailAddress();
 //        permitNum = applicant.getApplicant().getPermitNum();
 //        address = applicant.getApplicant().getAddress();
 //        phoneNum = applicant.getApplicant().getPhoneNum();
 //        representativeID = applicant.getApplicant().getRepresentativeID();
+        repIDNoTextField.setText(String.valueOf(representativeID));
+        permitNoTextField.setText(String.valueOf(permitNum));
+        addressField.setText(String.valueOf(address));
+        phoneNumberField.setText(String.valueOf(phoneNum));
+        emailAddressField.setText(String.valueOf(emailAddress));
 
+//        example manufacturer info
 //        ManufacturerInfo manInfo= new ManufacturerInfo("Bob", "1 Institute Rd", "", 1234, 1111, new PhoneNumber("9789789788"), new EmailAddress("test@test.com"));
 //        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(manInfo.getName()) + ".");
 //        repIDNoTextField.setText(String.valueOf(manInfo.getRepresentativeID()));
@@ -211,6 +210,7 @@ public class NewApplicationController {
         LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
 
         Boolean formFilled = false;
+        Boolean fieldsValid = false;
 
         //filling out application type
         boolean labelApproval;
@@ -253,11 +253,15 @@ public class NewApplicationController {
             }
             if (alcoholContentField.getText().isEmpty()) {
                 alcContentErrorField.setText("Please fill in the alcohol percentage.");
+            } else if(!isInt(alcoholContentField)){
+                alcContentErrorField.setText("Please enter a valid number.");
             } else {
                 alcContentErrorField.setText("");
             }
             if (serialText.getText().isEmpty()) {
                 serialErrorField.setText("Please input a serial number");
+            } else if(!isInt(serialText)){
+                serialErrorField.setText("Please enter a valid number.");
             } else {
                 serialErrorField.setText("");
             }
@@ -271,12 +275,16 @@ public class NewApplicationController {
             if ((!pTypeSelect.getValue().equals("Select a product type")) &&
                     (!pSourceSelect.getValue().equals("Select a product source")) &&
                     !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
-                    !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
-                    ) {
+                    !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()) {
                 formFilled = true;
             }
 
-            if (formFilled) {
+            //check if fields are valid
+            if(isInt(alcoholContentField)&&isInt(serialText)){
+                    fieldsValid=true;
+            }
+
+            if (formFilled && fieldsValid) {
 
                 if (pTypeSelect.getValue().equals("Wine")) {
                     int vintageYr = 0;
@@ -366,6 +374,16 @@ public class NewApplicationController {
     public void logout() {
         Authenticator.getInstance().logout();
         main.loadHomepage();
+    }
+
+    public boolean isInt(TextField txt){
+        try {
+            Integer.parseInt(txt.getText());
+            return true;
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
     }
 
     public void exemptionChecked(){
