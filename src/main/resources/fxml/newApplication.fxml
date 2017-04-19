@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -95,17 +96,38 @@
                      <children>
                         <ComboBox fx:id="pTypeSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product type of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                         <ComboBox fx:id="pSourceSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product source of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-                        <Label text="Product Type:" GridPane.rowIndex="1" />
-                        <Label text="Product Source:" />
+                        <Label text="Product Type:" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="Tyoe of alcohol. e.g. Wine" />
+                           </tooltip></Label>
+                        <Label text="Product Source:">
+                           <tooltip>
+                              <Tooltip text="Where the product came from. e.g. Domestic" />
+                           </tooltip></Label>
                      </children>
                   </GridPane>
-                  <Label text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
-                  <Label text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+                  <Label text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="13">
+                     <tooltip>
+                        <Tooltip text="Specific name of your alcohol, not the brand name!" />
+                     </tooltip></Label>
+                  <Label text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="14">
+                     <tooltip>
+                        <Tooltip text="The company that made your beverage. e.g. Budweiser" />
+                     </tooltip></Label>
                   <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                   <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-                  <Label text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
-                  <Label text="Formula: " GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
-                  <Label text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="17" />
+                  <Label text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="15">
+                     <tooltip>
+                        <Tooltip text="Percent Alcohol in your beverage" />
+                     </tooltip></Label>
+                  <Label text="Formula: " GridPane.halignment="RIGHT" GridPane.rowIndex="16">
+                     <tooltip>
+                        <Tooltip text="What makes up your Alcohol" />
+                     </tooltip></Label>
+                  <Label text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="17">
+                     <tooltip>
+                        <Tooltip text="Serial Number specific to your alcohol" />
+                     </tooltip></Label>
                   <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="15" />
                   <TextField fx:id="formulaText" GridPane.columnIndex="1" GridPane.rowIndex="16" />
                   <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="17" />
@@ -125,13 +147,19 @@
                               <Insets />
                            </GridPane.margin>
                         </Text>
-                        <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1" />
+                        <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="When your Wine was developed" />
+                           </tooltip></TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="146.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Text>
-                        <TextField fx:id="pHLevelField" disable="true" prefHeight="59.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="pHLevelField" disable="true" prefHeight="59.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="Acidity of your Wine" />
+                           </tooltip></TextField>
                      </children>
                   </GridPane>
                   <GridPane prefHeight="40.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="20">
@@ -156,10 +184,16 @@
                            </GridPane.margin>
                         </Text>
                         <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1" />
-                        <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="Where the grapes of your wine was picked" />
+                           </tooltip></TextField>
                      </children>
                   </GridPane>
-                  <Label text="Extra info: " GridPane.halignment="RIGHT" GridPane.rowIndex="22" />
+                  <Label text="Extra info: " GridPane.halignment="RIGHT" GridPane.rowIndex="22">
+                     <tooltip>
+                        <Tooltip text="Any extra information you want to include!" />
+                     </tooltip></Label>
                   <TextField fx:id="extraInfoText" GridPane.columnIndex="1" GridPane.rowIndex="22" />
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="26">
                     <columnConstraints>
@@ -179,10 +213,13 @@
                               <Insets right="5.0" />
                            </GridPane.margin>
                         </Text>
-                        <DatePicker fx:id="datePicker" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="datePicker" maxHeight="30.0" minHeight="35.0" prefHeight="30.0" prefWidth="144.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Label text="Signature: " GridPane.halignment="RIGHT" GridPane.rowIndex="26" />
+                  <Label text="Signature: " GridPane.halignment="RIGHT" GridPane.rowIndex="26">
+                     <tooltip>
+                        <Tooltip text="Electronic Signature" />
+                     </tooltip></Label>
                   <Button fx:id="submitLabel" mnemonicParsing="false" onMouseClicked="#submitImage" styleClass="button-raised" text="Upload Label Image" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="24" GridPane.valignment="CENTER" />
                   <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="27" GridPane.valignment="TOP" />
                   <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="27" GridPane.valignment="TOP" />
