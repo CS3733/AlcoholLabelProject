@@ -12,6 +12,7 @@ public class Applicant {
 
     private List<SubmittedApplication> applications;
     private String email;
+    private String name;
     private int representativeID = 0;
     private int permitNum = 0;
     private String address = "";
@@ -29,8 +30,9 @@ public class Applicant {
     /**
      * Creates applicant with fields
      */
-    public Applicant(String email, int representativeID, int permitNum, String address, String phoneNum) {
+    public Applicant(String email, String name, int representativeID, int permitNum, String address, String phoneNum) {
         this.email = email;
+        this.name = name;
         this.representativeID = representativeID;
         this.permitNum = permitNum;
         this.address = address;
@@ -45,6 +47,10 @@ public class Applicant {
     }
     public void addSubmittedApp(SubmittedApplication submittedApp) {
         this.applications.add(submittedApp);
+    }
+
+    public String getName() {
+        return name;
     }
 
     private Storage storage = Storage.getInstance();

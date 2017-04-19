@@ -153,13 +153,13 @@ public class NewApplicationController {
     public void init(Main main){
         this.main = main;
 
-//        username= Authenticator.getInstance().getUsername();
-//        applicant = new ApplicantInterface(username);
-//        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(applicant.getApplicant().getName()) + ".");
-//        emailAddress = applicant.getApplicant().getEmailAddress();
-//        permitNum = applicant.getApplicant().getPermitNum();
-//        address = applicant.getApplicant().getAddress();
-//        phoneNum = applicant.getApplicant().getPhoneNum();
+        username= Authenticator.getInstance().getUsername();
+        applicant = new ApplicantInterface(username);
+        welcomeApplicantLabel.setText("Welcome, " + applicant.getApplicant().getName() + ".");
+        emailAddress = new EmailAddress(applicant.getApplicant().getEmailAddress());
+        permitNum = applicant.getApplicant().getPermitNum();
+        address = applicant.getApplicant().getAddress();
+        phoneNum = new PhoneNumber(applicant.getApplicant().getPhoneNum());
         representativeID = applicant.getApplicant().getRepresentativeID();
         repIDNoTextField.setText(String.valueOf(representativeID));
         permitNoTextField.setText(String.valueOf(permitNum));

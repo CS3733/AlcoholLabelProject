@@ -209,12 +209,13 @@ public class AuthenticatedUsersDatabase {
         try {
             while (resultSet.next()) {
                 //Adding all stuff from database to new Applicant object
+                String name = resultSet.getString("name");
                 int representativeID = resultSet.getInt("representativeID");
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
                 String phoneNum = resultSet.getString("phoneNumber");
 
-                return(new Applicant(email, representativeID, permitNum, address,
+                return(new Applicant(email, name, representativeID, permitNum, address,
                         phoneNum));
             }
         }
