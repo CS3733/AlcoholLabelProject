@@ -45,7 +45,7 @@ public class AlcoholDatabase {
         return 0;
     }
 
-    private void incrementAppCount() {
+    private void incrementAppCount(){
         int appCount = getAppCount() + 1;
         db.update("IDGenerator", "appCount = " + String.valueOf(appCount), "id=1");
     }
@@ -64,7 +64,7 @@ public class AlcoholDatabase {
     }
 
 
-    public boolean removeApplication(SubmittedApplication application) {
+    public boolean removeApplication(SubmittedApplication application){
         return db.delete("SubmittedApplications", "applicationID = " + application.getApplicationID());
     }
 
@@ -244,9 +244,9 @@ public class AlcoholDatabase {
                         + appType.isLabelApproval() + ", stateOnly = '"
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
-                        + image + "', qualifications = '"
-                        + info.getQualifications() + "'", "applicationID = "
-                        + application.getApplicationID());
+                        + image + "'", "applicationID = "
+                        + application.getApplicationID() + ", qualifications = '"
+                        + info.getQualifications() + "'");
 
 
                 db.update("ManufacturerInfo", "authorizedName = '"
