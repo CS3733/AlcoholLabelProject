@@ -92,8 +92,8 @@ public class NewUserApplicationDisplayController {
             TableRow<PotentialUser> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    String rowData = row.getItem().getEmail().getEmailAddress();
-                    main.loadSuperUserWorkflowController(Storage.getInstance().getUserFromEmail(rowData));
+                    PotentialUser rowData = row.getItem();
+                    main.loadSuperUserWorkflowController(rowData);
                 }
             });
             return row;
