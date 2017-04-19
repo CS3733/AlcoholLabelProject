@@ -135,7 +135,7 @@ public class NewApplicationController {
     private int permitNum;
     private String address;
     private PhoneNumber phoneNum;
-    private int representativeID = -1; //means they didn't enter a rep ID num
+    private int representativeID;
 
     //Stores the manufacturer's info
     public ManufacturerInfo appManInfo = null;
@@ -160,21 +160,23 @@ public class NewApplicationController {
 
     public void init(Main main){
         this.main = main;
+        
 //        username= Authenticator.getInstance().getUsername();
 //        applicant = new ApplicantInterface(username);
+//        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(applicant.getApplicant().getName()) + ".");
 //        emailAddress = applicant.getApplicant().getEmailAddress();
 //        permitNum = applicant.getApplicant().getPermitNum();
 //        address = applicant.getApplicant().getAddress();
 //        phoneNum = applicant.getApplicant().getPhoneNum();
 //        representativeID = applicant.getApplicant().getRepresentativeID();
 
-        ManufacturerInfo manInfo= new ManufacturerInfo("Bob", "1 Institute Rd", "", 1234, 1111, new PhoneNumber("9789789788"), new EmailAddress("test@test.com"));
-        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(manInfo.getName()) + ".");
-        repIDNoTextField.setText(String.valueOf(manInfo.getRepresentativeID()));
-        permitNoTextField.setText(String.valueOf(manInfo.getPermitNum()));
-        addressField.setText(String.valueOf(manInfo.getPhysicalAddress()));
-        phoneNumberField.setText(String.valueOf(manInfo.getPhoneNumber().getPhoneNumber()));
-        emailAddressField.setText(String.valueOf(manInfo.getEmailAddress().getEmailAddress()));
+//        ManufacturerInfo manInfo= new ManufacturerInfo("Bob", "1 Institute Rd", "", 1234, 1111, new PhoneNumber("9789789788"), new EmailAddress("test@test.com"));
+//        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(manInfo.getName()) + ".");
+//        repIDNoTextField.setText(String.valueOf(manInfo.getRepresentativeID()));
+//        permitNoTextField.setText(String.valueOf(manInfo.getPermitNum()));
+//        addressField.setText(String.valueOf(manInfo.getPhysicalAddress()));
+//        phoneNumberField.setText(String.valueOf(manInfo.getPhoneNumber().getPhoneNumber()));
+//        emailAddressField.setText(String.valueOf(manInfo.getEmailAddress().getEmailAddress()));
 
         datePicker.setValue(LocalDate.now());
         stateSelect.setValue("State Abb.");
