@@ -78,23 +78,23 @@
                      <children>
                         <CheckBox fx:id="certOfApproval" mnemonicParsing="false" text="Certificate of Label Approval" />
                         <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
-                        <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onAction="#exemptionChecked" onKeyPressed="#exemptionChecked" onMouseClicked="#exemptionChecked" prefHeight="40.0" prefWidth="337.0" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onAction="#exemptionChecked" onKeyPressed="#exemptionChecked" onMouseClicked="#exemptionChecked" prefHeight="40.0" prefWidth="346.0" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
                         <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ComboBox fx:id="stateSelect" disable="true" prefHeight="47.0" prefWidth="129.0" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="11">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="186.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.0" minWidth="10.0" prefWidth="285.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="162.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="339.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ComboBox fx:id="pTypeSelect" prefHeight="27.0" prefWidth="270.0" promptText="Select a product type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="pSourceSelect" prefHeight="27.0" prefWidth="270.0" promptText="Select a product source" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="pTypeSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product type of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="pSourceSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product source of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                         <Label text="Product Type:" GridPane.rowIndex="1" />
                         <Label text="Product Source:" />
                      </children>
@@ -112,21 +112,21 @@
                   <GridPane prefHeight="161.0" prefWidth="471.0" GridPane.columnIndex="1" GridPane.rowIndex="19">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.66665649414062" minWidth="30.0" prefWidth="205.66665649414062" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="19.0" prefWidth="80.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.66668701171875" minWidth="30.0" prefWidth="215.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="19.0" prefWidth="73.33331298828125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.66668701171875" minWidth="30.0" prefWidth="221.66668701171875" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="14.33331298828125" minHeight="0.0" prefHeight="7.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage Year (Wine Only):" textAlignment="RIGHT" wrappingWidth="199.32748413085938" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage Year (Wine Only):" textAlignment="RIGHT" wrappingWidth="169.99417114257812" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Text>
                         <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="170.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="146.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
@@ -137,20 +137,20 @@
                   <GridPane prefHeight="40.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="20">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="30.0" prefWidth="204.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.66668701171875" minWidth="30.0" prefWidth="87.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.6666259765625" minWidth="30.0" prefWidth="208.6666259765625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.66668701171875" minWidth="30.0" prefWidth="75.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.66668701171875" minWidth="30.0" prefWidth="223.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Varietal(s) (Wine Only):" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Varietal(s) (Wine Only):" wrappingWidth="170.15072631835938" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appellation (Wine Only):" GridPane.columnIndex="2" GridPane.valignment="BOTTOM">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appellation (Wine Only):" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
