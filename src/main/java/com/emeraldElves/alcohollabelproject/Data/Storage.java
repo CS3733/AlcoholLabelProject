@@ -242,5 +242,6 @@ public class Storage {
 
     }
 
+    public void modifyApplicant(String email, )
 
 }

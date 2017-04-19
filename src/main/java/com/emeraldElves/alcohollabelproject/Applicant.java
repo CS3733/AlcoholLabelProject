@@ -92,9 +92,12 @@ public class Applicant {
     public String getAddress() { return address; }
     public String getPhoneNum() { return phoneNum; }
 
+    // setter functions - set to DB
     public void setEmailAddress() {}
-    public void setRepresentativeID() {}
-    public void setPermitNum() {}
-    public void setAddress() {}
-    public void setPhoneNum() {}
+    public void setRepresentativeID(String email, int representativeID) {
+
+    }
+    public void setPermitNum(String email, int permitNum) {}
+    public void setAddress(String email, String address) {}
+    public void setPhoneNum(String email, String phoneNum) {}
 }

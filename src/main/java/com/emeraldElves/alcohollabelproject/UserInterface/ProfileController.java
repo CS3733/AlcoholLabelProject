@@ -40,7 +40,7 @@ public class ProfileController {
     public void init(Main main) {
         this.main = main;
 
-        String emailAddress = Authenticator.getInstance().getUsername();
+        emailAddress = Authenticator.getInstance().getUsername();
         applicant = new ApplicantInterface(emailAddress);
         representativeID = applicant.getApplicant().getRepresentativeIDFromDB(emailAddress);
         Log.console(representativeID);
@@ -59,19 +59,19 @@ public class ProfileController {
     // functions - simply modify fields when user changes them
     public void modifyRepresentativeID() {
         representativeID = Integer.valueOf(representativeIDField.getText());
-        applicant.getApplicant().setRepresentativeID();
+        applicant.getApplicant().setRepresentativeID(emailAddress, representativeID);
     }
     public void modifyPermitNum() {
         permitNum = Integer.valueOf(permitNumField.getText());
-        applicant.getApplicant().setPermitNum();
+        applicant.getApplicant().setPermitNum(emailAddress, permitNum);
     }
     public void modifyAddress() {
         address = addressField.getText();
-        applicant.getApplicant().setAddress();
+        applicant.getApplicant().setAddress(emailAddress, address);
     }
     public void modifyPhoneNum() {
         phoneNum = phoneNumField.getText();
-        applicant.getApplicant().setPhoneNum();
+        applicant.getApplicant().setPhoneNum(emailAddress, phoneNum);
     }
     public void modifyEmailAddress() {
         emailAddress = emailAddressField.getText();
