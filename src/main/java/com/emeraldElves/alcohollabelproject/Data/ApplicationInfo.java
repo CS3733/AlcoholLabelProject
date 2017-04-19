@@ -43,4 +43,8 @@ public class ApplicationInfo {
     public String getQualifications(){ return qualifications;}
 
     public void setQualifications(String qualifications){ this.qualifications = qualifications;}
+
+    public void setSubmissionDate(Date submissionDate) {
+        this.submissionDate = submissionDate;
+    }
 }

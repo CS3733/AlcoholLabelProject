@@ -28,6 +28,7 @@ public class LoginController implements Controller {
 
     public void init(Main main) {
         this.main = main;
+        ToolbarController.onLoginPage=true;
     }
 
     public void login(ActionEvent e) {
