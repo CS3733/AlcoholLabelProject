@@ -55,8 +55,8 @@ public class AlcoholDatabase {
             while (results.next() && ids.size() < numApplications) {
                 ids.add(results.getInt("applicationID"));
             }
-            for (Integer id : ids) {
-                applications.add(getApplicationByID(id));
+            for (int i = 0; i < ids.size(); i++) {
+                applications.add(getApplicationByID(ids.get(i)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,8 +79,8 @@ public class AlcoholDatabase {
             while (results.next()) {
                 ids.add(results.getInt("applicationID"));
             }
-            for (Integer id : ids) {
-                applications.add(getApplicationByID(id));
+            for (int i = 0; i < ids.size(); i++) {
+                applications.add(getApplicationByID(ids.get(i)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -403,10 +403,8 @@ public class AlcoholDatabase {
 
     public boolean approveApplication(SubmittedApplication application, String agentUsername, Date expirationDate) {
         application.setStatus(ApplicationStatus.APPROVED);
-        //TODO: Fix expiration date, should be set by agent when approving application
         return db.update("SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue() + ", TTBUsername = '" + agentUsername + "', approvalDate = " +
-                +(new Date().getTime()) + ", expirationDate = " + expirationDate.getTime()
-                + ", qualifications = '" + application.getApplication().getQualifications() + "'", "applicationID = " + application.getApplicationID());
+                +(new Date().getTime()) + ", expirationDate = " + expirationDate.getTime(), "applicationID = " + application.getApplicationID());
     }
 
     public boolean rejectApplication(SubmittedApplication application, String message) {
