@@ -302,12 +302,12 @@ public class Main extends Application {
     }
 
 
-    public void loadTTBWorkflowController(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TTBWorkflowPage.fxml"));
+    public void loadNewUserApplicationDisplayController(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentWorkflowPage.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            TTBWorkflowController controller = loader.getController();
+            NewUserApplicationDisplayController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
         } catch (IOException e) {

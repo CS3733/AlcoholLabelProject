@@ -39,7 +39,7 @@ public class NewUserApplicationDisplayController {
     @FXML
     private TableColumn<PotentialUser, String> userTypeCol;
     @FXML
-    private TableColumn<PotentialUser, String> appIDCol;
+    private TableColumn<PotentialUser, String> idNumberCol;
 
 
     private ObservableList<PotentialUser> data = FXCollections.observableArrayList();
@@ -71,7 +71,7 @@ public class NewUserApplicationDisplayController {
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getUserType().toString()));
             }
         });
-        appIDCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PotentialUser, String>, ObservableValue<String>>() {
+        idNumberCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PotentialUser, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<PotentialUser, String> p) {
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getPermitNum())));
             }
@@ -79,7 +79,7 @@ public class NewUserApplicationDisplayController {
         nameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getName())));
         userNameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().toString())));
         userTypeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getUserType().toString())));
-        appIDCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getPermitNum()))));
+        idNumberCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getPermitNum()))));
         resultsTable.setItems(data);
         resultsTable.setRowFactory(tv -> {
             TableRow<PotentialUser> row = new TableRow<>();

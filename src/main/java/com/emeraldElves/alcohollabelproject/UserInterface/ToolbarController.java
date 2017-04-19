@@ -58,7 +58,7 @@ public class ToolbarController implements Initializable {
                 main.loadApplicantWorkflowPage();
                 break;
             case SUPERAGENT:
-                main.loadTTBWorkflowController();
+                main.loadNewUserApplicationDisplayController();
                 break;
             case BASIC:
                 utility.setVisible(true);
