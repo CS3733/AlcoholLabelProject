@@ -22,8 +22,10 @@ public class ToolbarController implements Initializable {
 
     private Main main;
 
+    public static boolean onLoginPage = false;
 
     public void goHome() {
+        onLoginPage = false;
         main.loadHomepage();
     }
 
@@ -99,6 +101,9 @@ public class ToolbarController implements Initializable {
                 utility.setVisible(false);
                 logButton.setText("LOGIN");
                 break;
+        }
+        if (onLoginPage) {
+            logButton.setVisible(false);
         }
     }
 }
