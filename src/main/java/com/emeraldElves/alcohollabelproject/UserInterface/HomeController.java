@@ -1,10 +1,12 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.COLASearch;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -85,6 +87,10 @@ public class HomeController {
     private TextField searchbox;
 
 
+    // delete this
+    @FXML
+    private Button goToProfile;
+
     private COLASearch search;
 
 
@@ -94,6 +100,52 @@ public class HomeController {
         search = new COLASearch();
         submitted = search.searchRecentApplications(4);
     }
+
+
+    // TODO: put FXML in correct folder
+
+    /**
+     * Loads homepage
+     */
+    public void utilityButton() {
+        switch (Authenticator.getInstance().getUserType()) {
+            case TTBAGENT:
+                main.loadWorkflowPage();
+                break;
+            case APPLICANT:
+                main.loadApplicantWorkflowPage();
+                break;
+        }
+    }
+
+    public void loadLog() {
+        switch (Authenticator.getInstance().getUserType()) {
+            case TTBAGENT:
+                Authenticator.getInstance().logout();
+                main.loadHomepage();
+                break;
+            case APPLICANT:
+                Authenticator.getInstance().logout();
+                main.loadHomepage();
+                break;
+            case SUPERAGENT:
+                Authenticator.getInstance().logout();
+                main.loadHomepage();
+                break;
+            case BASIC:
+                main.loadLoginPage();
+                break;
+        }
+    }
+
+    public void loadProfile() {
+        main.loadProfilePage();
+    }
+
+    public void createNewUser(){
+        main.loadNewUserPage();
+    }
+
 
     public void searchDatabase() {
         main.loadSearchPage(searchbox.getText());

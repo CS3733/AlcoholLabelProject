@@ -70,10 +70,10 @@ public class ToolbarController implements Initializable {
     public void extraFunction() {
         switch (Authenticator.getInstance().getUserType()) {
             case TTBAGENT:
-                main.loadProfilePage("placeholder");
+                main.loadProfilePage();
                 break;
             case APPLICANT:
-                main.loadProfilePage("placeholder");
+                main.loadProfilePage();
                 break;
         }
     }
