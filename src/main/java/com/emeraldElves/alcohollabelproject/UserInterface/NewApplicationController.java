@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -127,12 +128,14 @@ public class NewApplicationController {
     public ApplicationType appType;
     ProxyLabelImage proxyLabelImage;
 
-    //Initializes and temporarily stores applicant's info
-    private int repIDNo = -1; //means they didn't enter a rep ID num
-    private int permitNo = 0;
-    private String physicalAddress = null;
-    private EmailAddress applicantEmail = null;
-    private PhoneNumber applicantPhone = null;
+    //Applicant's info
+    private String username;
+    private ApplicantInterface applicant;
+    private EmailAddress emailAddress;
+    private int permitNum;
+    private String address;
+    private PhoneNumber phoneNum;
+    private int representativeID = -1; //means they didn't enter a rep ID num
 
     //Stores the manufacturer's info
     public ManufacturerInfo appManInfo = null;
@@ -155,26 +158,31 @@ public class NewApplicationController {
 
     private SubmittedApplication application;
 
-    public void init(Main main, SubmittedApplication application) {
+    public void init(Main main){
         this.main = main;
-        this.application = application;
-        repIDNoTextField.setText(String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
-        permitNoTextField.setText(String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
-        addressField.setText(String.valueOf(application.getApplication().getManufacturer().getPhysicalAddress()));
-        phoneNumberField.setText(String.valueOf(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber()));
-        emailAddressField.setText(String.valueOf(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress()));
-        alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
-        brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
-        alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
-        formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
+//        username= Authenticator.getInstance().getUsername();
+//        applicant = new ApplicantInterface(username);
+//        emailAddress = applicant.getApplicant().getEmailAddress();
+//        permitNum = applicant.getApplicant().getPermitNum();
+//        address = applicant.getApplicant().getAddress();
+//        phoneNum = applicant.getApplicant().getPhoneNum();
+//        representativeID = applicant.getApplicant().getRepresentativeID();
 
+        ManufacturerInfo manInfo= new ManufacturerInfo("Bob", "1 Institute Rd", "", 1234, 1111, new PhoneNumber("9789789788"), new EmailAddress("test@test.com"));
+        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(manInfo.getName()) + ".");
+        repIDNoTextField.setText(String.valueOf(manInfo.getRepresentativeID()));
+        permitNoTextField.setText(String.valueOf(manInfo.getPermitNum()));
+        addressField.setText(String.valueOf(manInfo.getPhysicalAddress()));
+        phoneNumberField.setText(String.valueOf(manInfo.getPhoneNumber().getPhoneNumber()));
+        emailAddressField.setText(String.valueOf(manInfo.getEmailAddress().getEmailAddress()));
+
+        datePicker.setValue(LocalDate.now());
         stateSelect.setValue("State Abb.");
         stateSelect.setItems(stateList);
-        pTypeSelect.setValue("Select a product type");
-        pTypeSelect.setItems(typeList);
         pSourceSelect.setValue("Select a product source");
         pSourceSelect.setItems(sourceList);
-
+        pTypeSelect.setValue("Select a product type");
+        pTypeSelect.setItems(typeList);
         pTypeSelect.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String oldVal, String newVal) {
@@ -185,25 +193,16 @@ public class NewApplicationController {
         });
     }
 
-    public void init(Main main){
-//        init(main, null);
-        this.main = main;
+    public void init(Main main, SubmittedApplication application) {
+        init(main);
+        this.application = application;
 
-        stateSelect.setValue("State Abb.");
-        stateSelect.setItems(stateList);
-        pTypeSelect.setValue("Select a product type");
-        pTypeSelect.setItems(typeList);
-        pSourceSelect.setValue("Select a product source");
-        pSourceSelect.setItems(sourceList);
-
-        pTypeSelect.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue ov, String oldVal, String newVal) {
-                if(pTypeSelect.getValue().equals("Wine")){
-                    showTheWine();
-                } else hideTheWine();
-            }
-        });
+        alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
+        brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
+        alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+        formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
+        serialText.setText(String.valueOf(application.getApplication().getAlcohol().getSerialNumber()));
+        extraInfoText.setText(String.valueOf(application.getApplication().getExtraInfo()));
     }
 
     public void submitApp() {
@@ -260,43 +259,39 @@ public class NewApplicationController {
             } else {
                 serialErrorField.setText("");
             }
-
-            if (pTypeSelect.getValue().equals("Wine")) {
-                int vintageYr = 0;
-                double pH = 0.0;
-                String varietal = "";
-                String appellation = "";
-                if (!wineVintageYearField.getText().isEmpty()) {
-                    vintageYr = Integer.parseInt(wineVintageYearField.getText()); //CHECK IF INPUT INTEGER!
-                }
-                if (!pHLevelField.getText().isEmpty()) {
-                    pH = Double.parseDouble(pHLevelField.getText()); //CHECK IF INPUT INTEGER!
-                }
-                if (!varietalText.getText().isEmpty()) varietal = varietalText.getText();
-                if (!appellationText.getText().isEmpty()) appellationText.getText();
-                wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
+            if (signatureField.getText().isEmpty()) {
+                signatureErrorField.setText("Please fill in the signature field.");
+            } else {
+                signatureErrorField.setText("");
             }
-
-//            if (signatureField.getText().isEmpty()) {
-//                signatureErrorField.setText("Please fill in the signature field.");
-//            } else if (datePicker == null){ //this doesn't work for now
-//                signatureErrorField.setText("");
-//                dateErrorField.setText("Please select the date.");
-//            } else {
-//                signatureErrorField.setText("");
-//                dateErrorField.setText("");
-//            }
 
             //check if required fields are filled in
             if ((!pTypeSelect.getValue().equals("Select a product type")) &&
                     (!pSourceSelect.getValue().equals("Select a product source")) &&
                     !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
-                    (datePicker != null) && !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
+                    !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()
                     ) {
                 formFilled = true;
             }
 
             if (formFilled) {
+
+                if (pTypeSelect.getValue().equals("Wine")) {
+                    int vintageYr = 0;
+                    double pH = 0.0;
+                    String varietal = "";
+                    String appellation = "";
+                    if (!wineVintageYearField.getText().isEmpty())
+                        vintageYr = Integer.parseInt(wineVintageYearField.getText()); //CHECK IF INPUT INTEGER!
+                    if (!pHLevelField.getText().isEmpty())
+                        pH = Double.parseDouble(pHLevelField.getText()); //CHECK IF INPUT INTEGER!
+                    if (!varietalText.getText().isEmpty())
+                        varietal = varietalText.getText();
+                    if (!appellationText.getText().isEmpty())
+                        appellationText.getText();
+                    wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
+                }
+
                 //Checking if the product is domestic or imported
                 if (pSourceSelect.getValue().equals("Domestic")) {
                     pSource = ProductSource.DOMESTIC;
@@ -321,21 +316,15 @@ public class NewApplicationController {
                 if (formulaText.getText().isEmpty()) {
                     formula = " ";
                 } else formula = formulaText.getText();
-
-                //sets the alcohol info
-                appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, "123", formula);//fix serial number
-
-                //creates a new ManufacturerInfo
-                this.appManInfo = new ManufacturerInfo("Name Person", physicalAddress, "company", repIDNo,
-                        permitNo, applicantPhone, applicantEmail);
-
-                //creates and sets the date value
-                Date newDate = DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
-
-                // Creates a new application info and sets data
                 if (extraInfoText.getText().isEmpty()) {
                     extraInfo = " ";
                 } else extraInfo = extraInfoText.getText();
+
+                //sets the alcohol info
+                appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
+
+                //sets the date value
+                Date newDate = DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
 
                 ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo, extraInfo, appType);
 
@@ -366,9 +355,11 @@ public class NewApplicationController {
     public void cancelApp() {
         main.loadHomepage();
     }
+
     public void saveApp() {
 
     }
+
     public void logout() {
         Authenticator.getInstance().logout();
         main.loadHomepage();

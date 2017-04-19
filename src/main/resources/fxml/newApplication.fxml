@@ -47,18 +47,18 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="366.0" minHeight="0.0" prefHeight="58.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="882.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="97.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="22.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="937.0" minHeight="2.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="38.666656494140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="48.333343505859375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="42.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="44.666656494140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="19.33331298828125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="882.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="101.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="18.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="90.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="2.0" prefHeight="4.66668701171875" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
@@ -76,7 +76,7 @@
                 <RowConstraints maxHeight="951.0" minHeight="6.0" prefHeight="51.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Welcome, [Applicant]" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                  <Label fx:id="welcomeApplicantLabel" text="Welcome, [Applicant]" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                   <Label text="Type of Application (Check applicable boxes): " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
                   <GridPane prefHeight="148.0" prefWidth="503.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                     <columnConstraints>
@@ -267,14 +267,14 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <TextField fx:id="repIDNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="repIDNoTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Representative ID (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                  <TextField fx:id="permitNoTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="permitNoTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Permit number: " GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                  <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="addressField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Address: " GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                  <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="emailAddressField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="phoneNumberField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="emailAddressField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Phone Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                   <Label text="Email Address: " GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
                   <Label fx:id="signatureErrorField" GridPane.columnIndex="2" GridPane.rowIndex="26">
@@ -282,6 +282,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
+                  <Label text="To edit the following information, please go to your 'Profile' page." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>
