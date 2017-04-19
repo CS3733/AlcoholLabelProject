@@ -83,9 +83,10 @@ public class ToolbarController implements Initializable {
         main = UISwitcher.getInstance().getMain();
         switch (Authenticator.getInstance().getUserType()) {
             case SUPERAGENT:
-                extraButton.setVisible(false);
+                extraButton.setVisible(true);
+                extraButton.setText("REVIEW ALL APPLICATIONS");
                 utility.setVisible(true);
-                utility.setText("CREATE USERS");
+                utility.setText("REVIEW POTENTIAL USERS");
                 logButton.setText("LOG OUT");
                 break;
             case TTBAGENT:
