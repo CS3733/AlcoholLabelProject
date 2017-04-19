@@ -22,10 +22,12 @@ public class SuperUserWorkflowController {
     public void Approve() {
         Storage.getInstance().createUser(UserforApproval);
         Storage.getInstance().deleteUser(UserforApproval);
+        main.loadNewUserApplicationDisplayController();
     }
 
     public void Reject() {
         Storage.getInstance().deleteUser(UserforApproval);
+        main.loadNewUserApplicationDisplayController();
     }
 
 
