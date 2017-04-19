@@ -228,8 +228,9 @@ public class Storage {
     }
 
 
-    public List<String> getAllTTBUsernames(){
+    public List<String> getAllTTBUsernames() {
         return usersDB.getAllTTBUsernames();
+    }
 
     public Applicant getUserFromEmail(String email) {
         Applicant applicant = usersDB.getUserFromEmail(email);
