@@ -161,7 +161,7 @@ public class UpdateWineAppController {
     }
 
     public void cancelApp() {
-        main.loadHomepage();
+        main.loadApplicantWorkflowPage();
     }
 
     public void logout() {
