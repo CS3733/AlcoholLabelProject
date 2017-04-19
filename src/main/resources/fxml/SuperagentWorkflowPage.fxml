@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewUserApplicationDisplayController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="75.0" prefHeight="75.0" />
+        <RowConstraints minHeight="100.0" prefHeight="100.0" />
+        <RowConstraints minHeight="700.0" prefHeight="700.0" />
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="75.0" prefWidth="802.0">
+            <children>
+                <ImageView fitHeight="97.0" fitWidth="1024.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                    <image>
+                        <Image url="@../images/ttbmasthead.gif" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <Pane prefHeight="100.0" prefWidth="817.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+            <children>
+                <Group layoutX="260.0" layoutY="36.0" />
+                <Button layoutX="14.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#goHome" styleClass="button-raised" text="Home" />
+            </children></Pane>
+        <Pane fx:id="resultsPane" maxHeight="700.0" prefHeight="700.0" prefWidth="815.0" GridPane.rowIndex="2">
+            <children>
+                <TableView fx:id="resultsTable" prefHeight="700.0" prefWidth="1024.0">
+                    <columns>
+                        <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Date" />
+                        <TableColumn fx:id="nameCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Name" />
+                        <TableColumn fx:id="userNameCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="User Name" />
+                        <TableColumn fx:id="userTypeCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="User type" />
+                        <TableColumn fx:id="idNumberCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="ID Number" />
+                    </columns>
+                </TableView>
+            </children>
+        </Pane>
+    </children>
+</GridPane>

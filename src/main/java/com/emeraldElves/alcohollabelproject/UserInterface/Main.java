@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
+import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -81,6 +82,21 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    public void loadProfilePage(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProfilePage.fxml"));
+        System.out.println("fxml loaded");
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            ProfileController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("other stuff happened");
     }
 
     public void loadSearchPage(String searchTerm) {
@@ -283,20 +299,31 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
-    public void loadProfilePage(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProfilePage.fxml"));
-        System.out.println("fxml loaded");
+    public void loadSuperUserWorkflowController(PotentialUser potentialUser) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AccountApplicationPage.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            ProfileController controller = loader.getController();
+            SuperUserWorkflowController controller = loader.getController();
+            controller.init(this, potentialUser);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void loadNewUserApplicationDisplayController(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentWorkflowPage.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            NewUserApplicationDisplayController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("other stuff happened");
     }
 
     public static void main(String[] args) {
