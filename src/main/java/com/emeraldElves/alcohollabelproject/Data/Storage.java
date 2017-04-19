@@ -169,7 +169,7 @@ public class Storage {
     }
 
     public void deleteUser(PotentialUser potentialUser) {
-        db.delete("NewApplicant","email = " + potentialUser.getEmail().getEmailAddress());
+        db.delete("NewApplicant","name = " + potentialUser.getName());
     }
     public PotentialUser getUserFromEmail(String email){
        return usersDB.getUserFromEmail(email);

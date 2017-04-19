@@ -203,7 +203,7 @@ public class AuthenticatedUsersDatabase {
         return users;
     }
     public PotentialUser getUserFromEmail(String email){
-        ResultSet resultSet = db.select("*", "NewApplicant", "email = " + email);
+        ResultSet resultSet = db.select("*", "NewApplicant", "name = " + email);
         try {
             while (resultSet.next()) {
 

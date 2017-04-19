@@ -21,7 +21,7 @@ public class SuperUserWorkflowController {
 
     public void Approve() {
         Storage.getInstance().createUser(UserforApproval);
-       // Storage.getInstance().deleteUser(UserforApproval);
+        Storage.getInstance().deleteUser(UserforApproval);
     }
 
     public void Reject() {
