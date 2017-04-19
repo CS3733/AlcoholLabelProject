@@ -333,6 +333,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentViewAllApplications.fxml"));
         try{
             Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
             SuperagentViewAllApplicationsController controller = loader.getController();
             controller.init(this);
             stage.getScene().setRoot(root);
