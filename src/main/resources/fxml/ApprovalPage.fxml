@@ -4,8 +4,6 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.91" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApprovalProcessController">
+<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApprovalProcessController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -25,6 +23,8 @@
     <children>
         <Pane prefHeight="644.0" prefWidth="802.0" GridPane.rowIndex="1">
             <children>
+            <TextArea layoutX="269.0" layoutY="557.0" prefHeight="48.0" prefWidth="200.0" promptText="OR:" />
+            <TextArea layoutX="40.0" layoutY="447.0" prefHeight="85.0" prefWidth="929.0" promptText="Qualifications:" />
                 <Label fx:id="brandName" layoutX="207.0" layoutY="21.0" prefHeight="35.0" prefWidth="248.0" text="Brand name">
                     <font>
                         <Font size="24.0" />
@@ -40,7 +40,7 @@
             <Button layoutX="419.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#ApprovedConditionally" text="Approved with conditions" visible="false" />
             <Button layoutX="629.0" layoutY="488.0" mnemonicParsing="false" onMouseClicked="#NeedsCorrections" text="Needs corrections" visible="false" />
             <Button disable="true" layoutX="604.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#MoveToNextApp" styleClass="button-raised" text="View next application" visible="false" />
-            <TextArea fx:id="reason" layoutX="43.0" layoutY="334.0" prefHeight="206.0" prefWidth="922.0" promptText="Reason for choice:" />
+            <TextArea fx:id="reason" layoutX="43.0" layoutY="334.0" prefHeight="99.0" prefWidth="922.0" promptText="Reason for choice:" />
             <Label fx:id="pH" layoutX="671.0" layoutY="186.0" />
             <HBox layoutX="47.0" layoutY="161.0" prefHeight="140.0" prefWidth="299.0">
                <children>
@@ -118,16 +118,10 @@
             </ButtonBar>
             <Button layoutX="870.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#viewLabel" styleClass="button-raised" text="View Label" />
             <Button layoutX="790.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#printPage" styleClass="button-raised" text="Print" />
+            <TextArea layoutX="40.0" layoutY="556.0" prefHeight="35.0" prefWidth="200.0" promptText="CT:" />
             </children>
         </Pane>
-        <Pane prefHeight="124.0" prefWidth="1024.0">
-            <children>
-                <ImageView fitHeight="140.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/ttbmasthead.gif" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
+        <Pane prefHeight="124.0" prefWidth="1024.0" />
+      <fx:include source="toolbar.fxml" />
     </children>
 </GridPane>
