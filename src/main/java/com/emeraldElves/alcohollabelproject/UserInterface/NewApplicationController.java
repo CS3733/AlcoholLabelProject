@@ -307,7 +307,7 @@ public class NewApplicationController {
                 }
 
                 //Checking if the product is a beer, wine or spirits
-                if (pTypeSelect.getValue().equals("Beer")) {
+                if (pTypeSelect.getValue().equals("Malt Beverages") ){
                     alcType = AlcoholType.BEER;
                 } else if (pTypeSelect.getValue().equals("Wine")) {
                     alcType = AlcoholType.WINE;

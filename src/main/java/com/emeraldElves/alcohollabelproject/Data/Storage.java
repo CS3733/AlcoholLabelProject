@@ -69,6 +69,7 @@ public class Storage {
         }
 
         try {
+            database.dropTable("SubmittedApplications");
             database.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("applicantID", "INTEGER NOT NULL"),
                     new Database.TableField("status", "INTEGER NOT NULL"),
@@ -84,8 +85,7 @@ public class Storage {
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
                     new Database.TableField("imageURL", "VARCHAR (255)"),
-                    new Database.TableField("qualifications", "VARCHAR (10000)"),
-                    new Database.TableField("TTBID", "INTEGER UNIQUE NOT NULL"));
+                    new Database.TableField("qualifications", "VARCHAR (10000)"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
