@@ -225,6 +225,10 @@ public class AuthenticatedUsersDatabase {
         return null;
     }
 
+    public void setRepIDFromEmail(int repID, String email) {
+        db.update("ApplicantLogin", "representativeID = " + repID, "email = '" + email + "'");
+    }
+
     public List<String> getAllTTBUsernames(){
         List<String> names = new ArrayList<String>();
         ResultSet resultSet = db.select("*", "TTBAgentLogin");
