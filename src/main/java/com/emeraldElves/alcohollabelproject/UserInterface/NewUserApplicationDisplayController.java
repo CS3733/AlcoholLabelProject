@@ -86,7 +86,7 @@ public class NewUserApplicationDisplayController {
         nameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getName())));
         userNameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().getEmailAddress())));
         userTypeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getUserType().toString())));
-        idNumberCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getPermitNum()))));
+        idNumberCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getRepresentativeID()))));
         resultsTable.setItems(data);
         resultsTable.setRowFactory(tv -> {
             TableRow<PotentialUser> row = new TableRow<>();
