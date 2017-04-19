@@ -287,8 +287,8 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    public void loadSuperUserWorkflowController(PotentialUser potentialUser){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AccountApplicationPage"));
+    public void loadSuperUserWorkflowController(PotentialUser potentialUser) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AccountApplicationPage.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
@@ -298,6 +298,21 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadNewUserApplicationDisplayController(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentWorkflowPage.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            NewUserApplicationDisplayController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
     public static void main(String[] args) {
         launch(args);

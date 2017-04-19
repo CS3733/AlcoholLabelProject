@@ -151,13 +151,13 @@ public class AuthenticatedUsersDatabase {
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', "
-                            + user.getDate()
+                            + user.getDate().getTime()
                     , "NewApplicant");
-
+            /*
             worked = db.insert("'" + user.getName() + "', '"
                     + user.getPassword() + "', "
                     + user.getUserType().getValue(), "NewApplicant");
-
+            */
             if(!worked){ throw new SQLException("Failed to add user");}
         }
         catch(SQLException e){

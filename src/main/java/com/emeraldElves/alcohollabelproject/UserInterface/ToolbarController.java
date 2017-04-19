@@ -58,6 +58,10 @@ public class ToolbarController implements Initializable {
                 main.loadApplicantWorkflowPage();
                 break;
             case SUPERAGENT:
+                main.loadNewUserApplicationDisplayController();
+                break;
+            case BASIC:
+                utility.setVisible(true);
                 main.loadNewUserPage();
                 break;
         }
@@ -98,7 +102,8 @@ public class ToolbarController implements Initializable {
                 break;
             default:
                 extraButton.setVisible(false);
-                utility.setVisible(false);
+                utility.setVisible(true);
+                utility.setText("APPLY FOR ACCOUNT");
                 logButton.setText("LOGIN");
                 break;
         }
