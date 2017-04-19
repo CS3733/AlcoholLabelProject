@@ -84,7 +84,8 @@ public class Storage {
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
                     new Database.TableField("imageURL", "VARCHAR (255)"),
-                    new Database.TableField("qualifications", "VARCHAR (10000)"));
+                    new Database.TableField("qualifications", "VARCHAR (10000)"),
+                    new Database.TableField("TTBID", "INTEGER UNIQUE NOT NULL"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
@@ -171,9 +172,6 @@ public class Storage {
     public void deleteUser(PotentialUser potentialUser) {
         db.delete("NewApplicant","email = '" + potentialUser.getEmail().getEmailAddress() + "'");
     }
-//    public PotentialUser getUserFromEmail(String email){
-//       return usersDB.getUserFromEmail(email);
-//    }
 
     public boolean applyForUser(PotentialUser user){
         usersDB.addPotentialUser(user);
@@ -237,8 +235,7 @@ public class Storage {
     public Applicant getUserFromEmail(String email) {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
-
-        else return new Applicant(email,"", 0, 0, "", "");
+        else return new Applicant(email, 0, 0, "", "");
 
     }
 
