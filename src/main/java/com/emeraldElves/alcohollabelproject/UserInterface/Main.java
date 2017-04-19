@@ -84,6 +84,21 @@ public class Main extends Application {
 
     }
 
+    public void loadProfilePage(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProfilePage.fxml"));
+        System.out.println("fxml loaded");
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            ProfileController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("other stuff happened");
+    }
+
     public void loadSearchPage(String searchTerm) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Search.fxml"));
         try {
