@@ -34,11 +34,11 @@
  ******************************************************************************/
 .root {
 	/* Swatch Colors - Blue*/
-	-swatch-100: #BBDEFB;
-	-swatch-200: #90CAF9;
-	-swatch-300: #64BEF6;
-	-swatch-400: #42A5F5;
-	-swatch-500: #2196F3;
+	-swatch-100: #319b54;
+	-swatch-200: #319b54;
+	-swatch-300: #319b54;
+	-swatch-400: #319b54;
+	-swatch-500: #319b54;
 	-swatch-green: #319b54;
 	/*default text */
 	-fx-text-base-color: rgb(100.0, 100.0, 100.0);
@@ -59,7 +59,7 @@
 	-swatch-grey: rgb(200.0, 200.0, 200.0);
 	-swatch-dark-grey: rgb(150.0, 150.0, 150.0);
 	-swatch-light-grey: rgb(230.0, 230.0, 230.0);
-	-swatch-toolbar: rgb(245.0, 245.0, 245.0);
+	-swatch-toolbar: -swatch-green;
 	-swatch-toolbar-selected: rgb(215.0, 215.0, 215.0);
 	/* 
      Modena colors
@@ -72,11 +72,11 @@
      * first color in -fx-background-color for the "focused" pseudo-class. Also
      * typically used with insets of -1.4 to provide a glowing effect.
      */
-	-fx-focus-color: -swatch-400;
-	-fx-faint-focus-color: -swatch-200;
+	-fx-focus-color: -swatch-green;
+	-fx-faint-focus-color: -swatch-green;
 	/* A bright blue for highlighting/accenting objects.  For example: selected
      * text; selected items in menus, lists, trees, and tables; progress bars */
-	-fx-accent: -swatch-400;
+	-fx-accent: -swatch-green;
 	-fx-dark-text-color: white;
 }
 
@@ -135,9 +135,25 @@
 	-fx-background-color: -swatch-green;/*rgb(209, 209, 209);*/
 }
 
+.fab {
+   -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
+   		1);
+   	-fx-background-color: -swatch-green;/*rgb(209, 209, 209);*/
+   	-fx-border-radius: 56 !important;
+    -fx-background-radius: 56 !important;
+    -fx-min-height: 56;
+    -fx-pref-height: 56;
+    -fx-max-height: 56;
+    -fx-min-width: 56;
+    -fx-pref-width: 56;
+    -fx-max-width: 56;
+}
+
 .button-flat {
 	-fx-effect: null;
-	-fx-background-color: transparent;
+	-fx-background-color: -swatch-green;
+	-fx-border-radius: 0;
+	-fx-text-fill: white;
 }
 
 .toggle-button, .button {
@@ -713,6 +729,27 @@
 	-fx-highlight-fill: rgb(94.0, 203.0, 234.0);
 }
 
+.recent-alcohol {
+   -fx-border-width: 0 0 2 0 !important;
+   -fx-border-color: -swatch-grey;
+}
+
+.auto-complete-popup {
+    -fx-translate-y: 28;
+}
+
+.search-box {
+   -fx-min-height: 56;
+   -fx-pref-header: 56;
+   -fx-border-width: 0 0 0 0;
+   -fx-background-color: rgb(255.0, 255.0, 255.0);
+   	-fx-background-radius: 4.0;
+   	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,
+   		1.5);
+   	-fx-padding: 16 16 16 16;
+   	-fx-font-size: 18;
+}
+
 .text-area .text, .text-field>*>.text {
 	-fx-effect: null;
 	-fx-fill: -dark;
@@ -750,7 +787,7 @@
 }
 
 .tool-bar .label {
-	-fx-font-size: 18;
+	-fx-font-size: 24;
 }
 
 .tool-bar .combo-box-base, .menu-bar .combo-base {
@@ -758,10 +795,9 @@
 }
 
 .tool-bar .button, .tool-bar .toggle-button {
-	-fx-background-color: -swatch-toolbar;
+	-fx-background-color: -swatch-green;
 	-fx-text-fill: -fx-text-base-color;
 	-fx-pref-height: 42;
-	-fx-pref-width: 42;
 	-fx-min-height: 42;
 	-fx-min-width: 42;
 	-fx-padding: 0;
