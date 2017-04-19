@@ -25,7 +25,7 @@ public class Main extends Application {
         Parent root = loader.load();
         UISwitcher.getInstance().setStage(primaryStage);
 //        UISwitcher.getInstance().switchToPage(UISwitcher.HOME_PAGE);
-        primaryStage.setResizable(false);
+//        primaryStage.setResizable(false);
         HomeController controller = loader.getController();
         controller.init(this);
         primaryStage.setTitle("Alcohol Label Project");
@@ -125,6 +125,7 @@ public class Main extends Application {
     public void loadLoginPage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         try {
+            ToolbarController.onLoginPage=true;
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
             LoginController controller = loader.getController();

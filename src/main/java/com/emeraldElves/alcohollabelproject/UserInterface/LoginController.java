@@ -27,6 +27,7 @@ public class LoginController {
 
     public void init(Main main) {
         this.main = main;
+        ToolbarController.onLoginPage=true;
     }
 
     public void login(ActionEvent e) {
