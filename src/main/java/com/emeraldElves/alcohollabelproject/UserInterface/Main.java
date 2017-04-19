@@ -150,10 +150,6 @@ public class Main extends Application {
         }
     }
 
-    public void loadProfilePage(String username) {
-
-    }
-
     public void loadNewApplicationPage(SubmittedApplication application) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));
         try {
