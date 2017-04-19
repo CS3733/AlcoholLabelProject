@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.LogManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,6 +26,10 @@ public class ToolbarController implements Initializable {
 
     public void goHome() {
         main.loadHomepage();
+    }
+
+    public void goBack(){
+        LogManager.getInstance().logAction("ToolbarController", "Going back");
     }
 
     public void loadLog() {
