@@ -8,7 +8,7 @@ import java.util.List;
 public class RoundRobinAssigner implements IAssigner {
 
     public String assignAgent(List<String> agentUserNames, String lastAssignedAgent) {
-        RoundRobin<String> roundRobin = new RoundRobin<>(agentUserNames);
+        RoundRobin<String> roundRobin = new RoundRobin(agentUserNames);
 
         int pos = roundRobin.find(lastAssignedAgent);
         roundRobin.setPosition(pos); // set cursor back one

@@ -99,7 +99,7 @@
       <CheckBox fx:id="changeNetContents" mnemonicParsing="false" text="Changed net contents statement" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <CheckBox fx:id="changeProduced" mnemonicParsing="false" text="Changed &quot;produced&quot; statement to &quot;blended/vinted/cellared/etc&quot;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
       <CheckBox fx:id="changeSugar" mnemonicParsing="false" text="Changed stated amount of sugar" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-      <CheckBox mnemonicParsing="false"  text="Added/deleted bonded winery or taxpaid wine bottling house #" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <CheckBox mnemonicParsing="false" onAction="#addDeleteBondedWinery" text="Added/deleted bonded winery or taxpaid wine bottling house #" GridPane.columnIndex="1" GridPane.rowIndex="12" />
       <Button fx:id="uploadImage" mnemonicParsing="false" onMouseClicked="#uploadImage" prefHeight="29.0" prefWidth="151.0" styleClass="button-raised" text="Upload Label Image" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
 </GridPane>
