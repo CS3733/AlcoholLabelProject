@@ -25,7 +25,7 @@ public class Main extends Application {
         Parent root = loader.load();
         UISwitcher.getInstance().setStage(primaryStage);
 //        UISwitcher.getInstance().switchToPage(UISwitcher.HOME_PAGE);
-        primaryStage.setResizable(false);
+//        primaryStage.setResizable(false);
         HomeController controller = loader.getController();
         controller.init(this);
         primaryStage.setTitle("Alcohol Label Project");
