@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 /**
  * Created by keionbis on 4/10/17.
  */
-interface ILabelImage {
+public interface ILabelImage {
 
     //public Image LabelImage(String fileName);
     //public LabelImage ProxyLabelImage(String fileName);

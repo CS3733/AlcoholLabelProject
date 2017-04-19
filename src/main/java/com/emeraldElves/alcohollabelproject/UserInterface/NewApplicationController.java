@@ -353,7 +353,8 @@ public class NewApplicationController {
         }
 
     public void cancelApp() {
-        main.loadHomepage();
+        //Go back to homepage
+        main.loadApplicantWorkflowPage();
     }
 
     public void saveApp() {
