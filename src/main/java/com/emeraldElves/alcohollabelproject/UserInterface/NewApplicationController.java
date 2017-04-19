@@ -347,7 +347,12 @@ public class NewApplicationController {
                 if (application != null)
                     newApp.setApplicationID(application.getApplicationID());
                 applicant.addSubmittedApp(newApp);
-                newApp.setImage(proxyLabelImage);
+                if(proxyLabelImage!= null) {
+                    newApp.setImage(proxyLabelImage);
+                }
+                else{
+                    newApp.setImage(new ProxyLabelImage(""));
+                }
 
                 if (application != null)
                     newApp.setApplicationID(application.getApplicationID());
