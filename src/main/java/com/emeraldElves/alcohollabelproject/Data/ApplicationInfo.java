@@ -52,3 +52,5 @@ public class ApplicationInfo {
         this.extraInfo = extraInfo;
     }
 }
+
+

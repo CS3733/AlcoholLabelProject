@@ -319,7 +319,7 @@ public class UpdateApprovedAppController {
                 extraInfo = " ";
             } else extraInfo = extraInfoText.getText();
 
-            application.getApplication().getAlcohol().setFormula(formula);
+            //application.getApplication().getAlcohol().setFormula(formula);
             application.getApplication().setExtraInfo(extraInfo);
             application.getApplication().getAlcohol().setAlcoholContent(alcContent);
 
