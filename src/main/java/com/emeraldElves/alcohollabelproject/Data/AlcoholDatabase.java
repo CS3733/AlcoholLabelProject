@@ -1,16 +1,16 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
-import com.emeraldElves.alcohollabelproject.*;
-
+import com.emeraldElves.alcohollabelproject.AppState;
+import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.IDGenerator.ApplicationIDGenerator;
 import com.emeraldElves.alcohollabelproject.IDGenerator.TTBIDGenerator;
-import com.emeraldElves.alcohollabelproject.IDGenerator.TimeIDGenerator;
+import com.emeraldElves.alcohollabelproject.Log;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -300,7 +300,7 @@ public class AlcoholDatabase {
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
                                 + image + "', '"
-                                + info.getQualifications() + "', 234"//Fix this please: Needs TTBID
+                                + info.getQualifications() + "'"
                         //TTBUsername
                         , "SubmittedApplications");
 

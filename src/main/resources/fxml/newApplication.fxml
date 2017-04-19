@@ -108,52 +108,28 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="13">
-                     <tooltip>
-                        <Tooltip text="Specific name of your alcohol, not the brand name!" />
-                     </tooltip>
-                  </Label>
-                  <Label text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="14">
-                     <tooltip>
-                        <Tooltip text="The company that made your beverage. e.g. Budweiser" />
-                     </tooltip>
-                  </Label>
+                  <Label text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
+                  <Label text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
                   <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="13">
                      <tooltip>
-                        <Tooltip text="This is a name that may be used in addition to a brand name to further identify a product and is required for malt beverage and distilled spirit specialty products that must be labeled with a statement of composition.  It is optional for other products." wrapText="true" />
+                        <Tooltip maxWidth="400.0" text="This is a name that may be used in addition to a brand name to further identify a product and is required for malt beverage and distilled spirit specialty products that must be labeled with a statement of composition.  It is optional for other products." wrapText="true" />
                      </tooltip>
                   </TextField>
                   <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="14">
                      <tooltip>
-                        <Tooltip text="This is the name under which a product is sold.  If the product is not sold under a brand name, the name of the bottler, packer or importer becomes the brand name." wrapText="true" />
+                        <Tooltip maxWidth="400.0" text="This is the name under which a product is sold.  If the product is not sold under a brand name, the name of the bottler, packer or importer becomes the brand name." wrapText="true" />
                      </tooltip>
                   </TextField>
-                  <Label text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="15">
-                     <tooltip>
-                        <Tooltip text="Percent Alcohol in your beverage" />
-                     </tooltip>
-                  </Label>
-                  <Label text="Formula: " GridPane.halignment="RIGHT" GridPane.rowIndex="16">
-                     <tooltip>
-                        <Tooltip text="What makes up your Alcohol" />
-                     </tooltip>
-                  </Label>
-                  <Label text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="17">
-                     <tooltip>
-                        <Tooltip text="Serial Number specific to your alcohol" />
-                     </tooltip>
-                  </Label>
+                  <Label text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
+                  <Label text="Formula: " GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
+                  <Label text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="17" />
                   <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="15">
                      <tooltip>
-                        <Tooltip text="An accurate statement of the alcohol content must appear on the brand label of all wine and distilled spirits products.  This statement is optional for malt beverages, but if shown must be in the correct format." />
+                        <Tooltip prefWidth="400.0" text="An accurate statement of the alcohol content must appear on the brand label of all wine and distilled spirits products.  This statement is optional for malt beverages, but if shown must be in the correct format." wrapText="true" />
                      </tooltip>
                   </TextField>
                   <TextField fx:id="formulaText" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-                  <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="17">
-                     <tooltip>
-                        <Tooltip text="An accurate statement of the alcohol content must appear on the brand label of all wine and distilled spirits products.  This statement is optional for malt beverages, but if shown must be in the correct format." wrapText="true" />
-                     </tooltip>
-                  </TextField>
+                  <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="17" />
                   <GridPane prefHeight="161.0" prefWidth="471.0" GridPane.columnIndex="1" GridPane.rowIndex="19">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.66665649414062" minWidth="30.0" prefWidth="205.66665649414062" />
@@ -172,7 +148,7 @@
                         </Text>
                         <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1">
                            <tooltip>
-                              <Tooltip text="A vintage date indicates the year in which the grapes used to make the wine were harvested.  Please supply the vintage date of the wine if one appears on the label.A vintage date may be used on the label if not less than 95 percent of the wine is produced from grapes grown in that year and must be labeled with an appellation smaller than a country." />
+                              <Tooltip prefWidth="400.0" text="A vintage date indicates the year in which the grapes used to make the wine were harvested.  Please supply the vintage date of the wine if one appears on the label.A vintage date may be used on the label if not less than 95 percent of the wine is produced from grapes grown in that year and must be labeled with an appellation smaller than a country." wrapText="true" />
                            </tooltip>
                         </TextField>
                         <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="138.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
@@ -180,11 +156,7 @@
                               <Insets />
                            </GridPane.margin>
                         </Text>
-                        <TextField fx:id="pHLevelField" disable="true" prefHeight="59.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <tooltip>
-                              <Tooltip text="Acidity of your Wine" />
-                           </tooltip>
-                        </TextField>
+                        <TextField fx:id="pHLevelField" disable="true" prefHeight="59.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane prefHeight="40.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="20">
@@ -210,21 +182,17 @@
                         </Text>
                         <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1">
                            <tooltip>
-                              <Tooltip text="This must specify each grape varietal (if any) that appears on a wine label" />
+                              <Tooltip prefWidth="400.0" text="This must specify each grape varietal (if any) that appears on a wine label" wrapText="true" />
                            </tooltip>
                         </TextField>
                         <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <tooltip>
-                              <Tooltip text="An appellation indicates the origin of the grapes used to make the wine.  Please supply the appellation of origin if it appears on the label" />
+                              <Tooltip prefWidth="400.0" text="An appellation indicates the origin of the grapes used to make the wine.  Please supply the appellation of origin if it appears on the label" wrapText="true" />
                            </tooltip>
                         </TextField>
                      </children>
                   </GridPane>
-                  <Label text="Extra info: " GridPane.halignment="RIGHT" GridPane.rowIndex="22">
-                     <tooltip>
-                        <Tooltip text="Any extra information you want to include!" />
-                     </tooltip>
-                  </Label>
+                  <Label text="Extra info: " GridPane.halignment="RIGHT" GridPane.rowIndex="22" />
                   <TextField fx:id="extraInfoText" GridPane.columnIndex="1" GridPane.rowIndex="22" />
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="26">
                      <columnConstraints>
