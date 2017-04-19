@@ -179,6 +179,16 @@ public class Main extends Application {
         }
     }
 
+    public void loadAboutPage() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AboutPage.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void loadNewApplicationPage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplicationPage1.fxml"));

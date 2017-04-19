@@ -81,7 +81,7 @@
                     </children>
                 </GridPane>
             <Button layoutX="751.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" prefHeight="56.0" prefWidth="186.0" styleClass="button-raised" text="I'M FEELING THIRSTY" />
-            <Button layoutX="948.0" layoutY="611.0" mnemonicParsing="false" onMouseClicked="#aboutProject" styleClass="button-raised" text="About" visible="false" />
+            <Button layoutX="948.0" layoutY="611.0" mnemonicParsing="false" onMouseClicked="#aboutProject" styleClass="button-raised" text="About" />
             </children>
         </Pane>
       <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;" GridPane.halignment="CENTER" GridPane.valignment="TOP">
