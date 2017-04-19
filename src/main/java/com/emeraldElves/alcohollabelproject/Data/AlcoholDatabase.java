@@ -384,7 +384,7 @@ public class AlcoholDatabase {
         ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.PENDINGREVIEW.getValue(), "submissionTime ASC");
         return getApplicationsFromResultSet(results, numApplications);
     }
-
+    
     private SubmittedApplication getApplicationByID(int id) {
         ResultSet submittedResult = db.select("*", "SubmittedApplications", "applicationID = " + id);
 
