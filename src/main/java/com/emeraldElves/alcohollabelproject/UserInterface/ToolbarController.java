@@ -59,6 +59,10 @@ public class ToolbarController implements Initializable {
                 main.loadApplicantWorkflowPage();
                 break;
             case SUPERAGENT:
+                main.loadNewUserApplicationDisplayController();
+                break;
+            case BASIC:
+                utility.setVisible(true);
                 main.loadNewUserPage();
                 break;
         }
@@ -75,9 +79,10 @@ public class ToolbarController implements Initializable {
         main = UISwitcher.getInstance().getMain();
         switch (Authenticator.getInstance().getUserType()) {
             case SUPERAGENT:
-                extraButton.setVisible(false);
+                extraButton.setVisible(true);
+                extraButton.setText("REVIEW ALL APPLICATIONS");
                 utility.setVisible(true);
-                utility.setText("CREATE USERS");
+                utility.setText("REVIEW POTENTIAL USERS");
                 logButton.setText("LOG OUT");
                 break;
             case TTBAGENT:
@@ -94,7 +99,8 @@ public class ToolbarController implements Initializable {
                 break;
             default:
                 extraButton.setVisible(false);
-                utility.setVisible(false);
+                utility.setVisible(true);
+                utility.setText("APPLY FOR ACCOUNT");
                 logButton.setText("LOGIN");
                 break;
         }
