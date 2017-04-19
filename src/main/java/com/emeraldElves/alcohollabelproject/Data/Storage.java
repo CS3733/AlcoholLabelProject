@@ -242,6 +242,19 @@ public class Storage {
 
     }
 
-    public void modifyApplicant(String email, )
+    public void modifyRepresentativeID(String email, int repID) {
+        usersDB.setRepIDFromEmail(repID, email);
+    }
+    public void modifypermitNum(String email, int permitNum) {
 
+    }
+    public void modifyAddress(String email, String address) {
+
+    }
+    public void modifyphoneNum(String email, String phoneNum) {
+
+    }
+    public void modifyName(String email, String name) {
+
+    }
 }

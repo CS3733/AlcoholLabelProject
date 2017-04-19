@@ -95,9 +95,10 @@ public class Applicant {
     // setter functions - set to DB
     public void setEmailAddress() {}
     public void setRepresentativeID(String email, int representativeID) {
-
+        storage.modifyRepresentativeID(email, representativeID);
     }
     public void setPermitNum(String email, int permitNum) {}
     public void setAddress(String email, String address) {}
     public void setPhoneNum(String email, String phoneNum) {}
+    public void setName(String email, String name) {}
 }
