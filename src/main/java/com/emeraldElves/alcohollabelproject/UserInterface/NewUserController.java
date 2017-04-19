@@ -1,6 +1,13 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+<<<<<<< HEAD
 import com.emeraldElves.alcohollabelproject.Data.*;
+=======
+import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
+import com.emeraldElves.alcohollabelproject.Data.UserType;
+import javafx.event.ActionEvent;
+>>>>>>> refs/remotes/origin/master
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;

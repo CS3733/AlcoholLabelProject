@@ -1,10 +1,24 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+<<<<<<< HEAD
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.COLASearch;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+=======
+/**
+ * Created by Harry and Joe on 4/2/2017.
+ */
+
+import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.COLASearch;
+import com.emeraldElves.alcohollabelproject.Data.AlcoholDatabase;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
+import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Data.UserType;
+import javafx.event.EventHandler;
+>>>>>>> refs/remotes/origin/master
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,9 +30,6 @@ import org.controlsfx.control.textfield.TextFields;
 
 import java.util.*;
 
-/**
- * Created by Harry and Joe on 4/2/2017.
- */
 public class HomeController {
     public ArrayList<Label> mostRecentLabels;
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
@@ -87,10 +98,6 @@ public class HomeController {
     private TextField searchbox;
 
 
-    // delete this
-    @FXML
-    private Button goToProfile;
-
     private COLASearch search;
 
 
@@ -138,10 +145,6 @@ public class HomeController {
         }
     }
 
-    public void loadProfile() {
-        main.loadProfilePage();
-    }
-
     public void createNewUser(){
         main.loadNewUserPage();
     }
@@ -171,6 +174,7 @@ public class HomeController {
             SubmittedApplication recentApplication = submitted.get(i);
             switch (i) {
                 case 0:
+<<<<<<< HEAD
                     alc1.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
                     brand1.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
                     fanciful1.setText(recentApplication.getApplication().getAlcohol().getName());
@@ -205,6 +209,30 @@ public class HomeController {
                     date4.setText(DateHelper.dateToString(recentApplication.getApplication().getSubmissionDate()));
                     image4.setImage(recentApplication.getImage().display());
                     ImageUtils.centerImage(image4);
+=======
+                    label0.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
+                    label0.setOnMouseClicked(event -> {
+                        main.loadDetailedSearchPage(submitted.get(0), submitted.get(0).getApplication().getAlcohol().getBrandName());
+                    });
+                    break;
+                case 1:
+                    label1.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
+                    label1.setOnMouseClicked(event -> {
+                        main.loadDetailedSearchPage(submitted.get(1), submitted.get(1).getApplication().getAlcohol().getBrandName());
+                    });
+                    break;
+                case 2:
+                    label2.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
+                    label2.setOnMouseClicked(event -> {
+                        main.loadDetailedSearchPage(submitted.get(2), submitted.get(2).getApplication().getAlcohol().getBrandName());
+                    });
+                    break;
+                case 3:
+                    label3.setText(submitted.get(i).getApplication().getAlcohol().getBrandName() + "     " + submitted.get(i).getApplication().getAlcohol().getName());
+                    label3.setOnMouseClicked(event -> {
+                        main.loadDetailedSearchPage(submitted.get(3), submitted.get(3).getApplication().getAlcohol().getBrandName());
+                    });
+>>>>>>> refs/remotes/origin/master
                     break;
             }
             List<SubmittedApplication> resultsList = search.searchApprovedApplications();
@@ -212,7 +240,12 @@ public class HomeController {
             AutoCompletionBinding<String> autoCompletionBinding;
             Set<String> possibleSuggestions = new HashSet<>();
             possibleSuggestions.clear();
-            resultsList.sort((lhs, rhs) -> lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName()));
+            Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
+                @Override
+                public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
+                    return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
+                }
+            });
 
             for (SubmittedApplication application : resultsList) {
                 possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
@@ -222,7 +255,14 @@ public class HomeController {
             autoCompletionBinding = TextFields.bindAutoCompletion(searchbox, possibleSuggestions);
             autoCompletionBinding.setPrefWidth(472);
 
-            searchbox.setOnKeyPressed(ke -> autoCompletionBinding.setUserInput(searchbox.getText().trim()));
+            searchbox.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent ke) {
+
+                    autoCompletionBinding.setUserInput(searchbox.getText().trim());
+
+                }
+            });
         }
 
 

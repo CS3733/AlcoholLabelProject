@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject.Data;
 import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Log;
 
+import javax.naming.ServiceUnavailableException;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -82,9 +83,13 @@ public class Storage {
                     new Database.TableField("labelApproval", "BOOLEAN"),
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
+<<<<<<< HEAD
                     new Database.TableField("imageURL", "VARCHAR (255)"),
                     new Database.TableField("qualifications", "VARCHAR (10000)"),
                     new Database.TableField("TTBID", "INTEGER UNIQUE NOT NULL"));
+=======
+                    new Database.TableField("imageURL", "VARCHAR (255)"));
+>>>>>>> refs/remotes/origin/master
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
