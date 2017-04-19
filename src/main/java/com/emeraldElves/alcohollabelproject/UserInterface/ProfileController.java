@@ -41,11 +41,10 @@ public class ProfileController {
 
         String emailAddress = Authenticator.getInstance().getUsername();
         applicant = new ApplicantInterface(emailAddress);
-        emailAddress = applicant.getApplicant().getEmailAddress();
-        representativeID = applicant.getApplicant().getRepresentativeID();
-        permitNum = applicant.getApplicant().getPermitNum();
-        address = applicant.getApplicant().getAddress();
-        phoneNum = applicant.getApplicant().getPhoneNum();
+        representativeID = applicant.getApplicant().getRepresentativeIDFromDB(emailAddress);
+        permitNum = applicant.getApplicant().getPermitNumFromDB(emailAddress);
+        address = applicant.getApplicant().getAddressFromDB(emailAddress);
+        phoneNum = applicant.getApplicant().getPhoneNumFromDB(emailAddress);
 
         // set text values to current values
         representativeIDField.setText(Integer.toString(representativeID));

@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.AppState;
+import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.Log;
 
 import java.sql.SQLException;
@@ -227,6 +228,12 @@ public class Storage {
 
     public List<SubmittedApplication> getAssignedApplications(String agentName) {
         return alcoholDB.getAssignedApplications(agentName);
+    }
+
+    public Applicant getUserFromEmail(String email) {
+        Applicant applicant = usersDB.getUserFromEmail(email);
+        if (applicant != null) { return applicant; }
+        else return new Applicant(email, 0, 0, "", "");
     }
 
 

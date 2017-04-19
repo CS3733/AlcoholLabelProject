@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import com.emeraldElves.alcohollabelproject.Applicant;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -231,5 +233,23 @@ public class AuthenticatedUsersDatabase {
         return null;
     }
 
+    public Applicant getUserFromEmail(String email){
+        ResultSet resultSet = db.select("*", "ManufacturerInfo", "emailAddress = '" + email + "'");
+        try {
+            while (resultSet.next()) {
+                //Adding all stuff from database to new Applicant object
+                int representativeID = resultSet.getInt("representativeID");
+                int permitNum = resultSet.getInt("permitNum");
+                String address = resultSet.getString("physicalAddress");
+                String phoneNum = resultSet.getString("phoneNum");
 
+                return(new Applicant(email, representativeID, permitNum, address,
+                        phoneNum));
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
