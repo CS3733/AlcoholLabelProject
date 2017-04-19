@@ -92,6 +92,10 @@ public class HomeController {
         }
     }
 
+    public void loadProfile() {
+        main.loadProfilePage();
+    }
+
     public void createNewUser(){
         main.loadNewUserPage();
     }

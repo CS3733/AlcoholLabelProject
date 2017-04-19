@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -23,8 +22,6 @@
     <children>
         <Pane prefHeight="624.0" prefWidth="1024.0" GridPane.rowIndex="2">
             <children>
-
-                <Button fx:id="CreateUser" layoutX="51.0" layoutY="556.0" mnemonicParsing="false" onMouseClicked="#createNewUser" styleClass="button-raised" text="Create new user" />
             <GridPane layoutX="115.0" layoutY="126.0" prefHeight="308.0" prefWidth="319.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="134.0" />
@@ -60,11 +57,11 @@
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>
-                  <TextField onKeyPressed="#modifyEmailAddress" GridPane.columnIndex="2" />
-                  <TextField onKeyPressed="#modifyRepresentitiveID" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <TextField onKeyPressed="#modifyPermitNum" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField onKeyPressed="#modifyAddress" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <TextField onKeyPressed="#modifyPhoneNum" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <TextField fx:id="emailAddressField" onKeyPressed="#modifyEmailAddress" GridPane.columnIndex="2" />
+                  <TextField fx:id="representativeIDField" onKeyPressed="#modifyRepresentativeID" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="permitNumField" onKeyPressed="#modifyPermitNum" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="addressField" onKeyPressed="#modifyAddress" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="phoneNumField" onKeyPressed="#modifyPhoneNum" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <Label layoutX="62.0" layoutY="49.0" prefHeight="34.0" prefWidth="765.0" text="As a manufacturer, you can update your user information if you need.">
