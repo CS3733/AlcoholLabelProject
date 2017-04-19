@@ -34,7 +34,7 @@
  ******************************************************************************/
 .root {
 	/* Swatch Colors - Blue*/
-	-swatch-100: #7EE8A1;
+	-swatch-100: #319b54;
 	-swatch-200: #319b54;
 	-swatch-300: #319b54;
 	-swatch-400: #319b54;
@@ -72,11 +72,11 @@
      * first color in -fx-background-color for the "focused" pseudo-class. Also
      * typically used with insets of -1.4 to provide a glowing effect.
      */
-	-fx-focus-color: #7EE8A1;
-	-fx-faint-focus-color: #7EE8A1;
+	-fx-focus-color: -swatch-green;
+	-fx-faint-focus-color: -swatch-green;
 	/* A bright blue for highlighting/accenting objects.  For example: selected
      * text; selected items in menus, lists, trees, and tables; progress bars */
-	-fx-accent: #7EE8A1;
+	-fx-accent: -swatch-green;
 	-fx-dark-text-color: white;
 }
 
