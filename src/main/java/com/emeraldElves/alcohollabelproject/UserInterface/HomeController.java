@@ -93,7 +93,9 @@ public class HomeController {
 
     private COLASearch search;
 
-
+    public void aboutProject(){
+        main.loadAboutPage();
+    }
     public HomeController() {
         mostRecentLabels = new ArrayList<>();
         mostRecentSubmissions = new ArrayList<>();
@@ -107,6 +109,7 @@ public class HomeController {
     /**
      * Loads homepage
      */
+
     public void utilityButton() {
         switch (Authenticator.getInstance().getUserType()) {
             case TTBAGENT:
@@ -224,7 +227,6 @@ public class HomeController {
 
             searchbox.setOnKeyPressed(ke -> autoCompletionBinding.setUserInput(searchbox.getText().trim()));
         }
-
 
     }
 }
