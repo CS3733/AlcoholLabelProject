@@ -160,7 +160,7 @@ public class NewApplicationController {
 //        permitNum = applicant.getApplicant().getPermitNum();
 //        address = applicant.getApplicant().getAddress();
 //        phoneNum = applicant.getApplicant().getPhoneNum();
-//        representativeID = applicant.getApplicant().getRepresentativeID();
+        representativeID = applicant.getApplicant().getRepresentativeID();
         repIDNoTextField.setText(String.valueOf(representativeID));
         permitNoTextField.setText(String.valueOf(permitNum));
         addressField.setText(String.valueOf(address));
