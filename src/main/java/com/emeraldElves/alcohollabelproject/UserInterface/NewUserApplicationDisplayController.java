@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 import com.emeraldElves.alcohollabelproject.COLASearch;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,6 +18,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -41,15 +43,20 @@ public class NewUserApplicationDisplayController {
     @FXML
     private TableColumn<PotentialUser, String> idNumberCol;
 
+    private List<PotentialUser> userList;
 
     private ObservableList<PotentialUser> data = FXCollections.observableArrayList();
     private COLASearch search;
 
 
 
+
     public void init(Main main) {
         this.main = main;
-
+        userList = Storage.getInstance().getPotentialUsers();
+        for(PotentialUser potentialUser: userList){
+            data.add(potentialUser);
+        }
         dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PotentialUser, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<PotentialUser, String> p) {
                 Date date = p.getValue().getDate();
@@ -63,7 +70,7 @@ public class NewUserApplicationDisplayController {
         });
         userNameCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PotentialUser, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<PotentialUser, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().toString()));
+                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().getEmailAddress()));
             }
         });
         userTypeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PotentialUser, String>, ObservableValue<String>>() {
@@ -77,7 +84,7 @@ public class NewUserApplicationDisplayController {
             }
         });
         nameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getName())));
-        userNameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().toString())));
+        userNameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().getEmailAddress())));
         userTypeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getUserType().toString())));
         idNumberCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getPermitNum()))));
         resultsTable.setItems(data);
@@ -85,8 +92,8 @@ public class NewUserApplicationDisplayController {
             TableRow<PotentialUser> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    PotentialUser rowData = row.getItem();
-                    main.loadSuperUserWorkflowController(rowData);
+                    String rowData = row.getItem().getEmail().getEmailAddress();
+                    main.loadSuperUserWorkflowController(Storage.getInstance().getUserFromEmail(rowData));
                 }
             });
             return row;

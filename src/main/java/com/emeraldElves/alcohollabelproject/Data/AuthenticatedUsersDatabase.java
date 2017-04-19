@@ -180,7 +180,7 @@ public class AuthenticatedUsersDatabase {
 
                 //Adding all stuff from database to new PotentialUser object
                 String name = resultSet.getString("name");
-                String username = (resultSet.getString("username"));
+                //String username = (resultSet.getString("email"));
                 String password = resultSet.getString("password");
                 int usertype = resultSet.getInt("type");
                 UserType useType = UserType.fromInt(usertype);
@@ -201,6 +201,34 @@ public class AuthenticatedUsersDatabase {
             e.printStackTrace();
         }
         return users;
+    }
+    public PotentialUser getUserFromEmail(String email){
+        ResultSet resultSet = db.select("*", "NewApplicant", "email = " + email);
+        try {
+            while (resultSet.next()) {
+
+                //Adding all stuff from database to new PotentialUser object
+                String name = resultSet.getString("name");
+                String password = resultSet.getString("password");
+                int usertype = resultSet.getInt("type");
+                UserType useType = UserType.fromInt(usertype);
+                int representativeID = resultSet.getInt("representativeID");
+                String emailString = resultSet.getString("email");
+                EmailAddress email1 = new EmailAddress(emailString);
+                String phoneNumberString = resultSet.getString("phoneNumber");
+                PhoneNumber phoneNumber = new PhoneNumber(phoneNumberString);
+                Date date = new Date(resultSet.getLong("date"));
+                int permitNum = resultSet.getInt("permitNum");
+                String address = resultSet.getString("address");
+
+                return(new PotentialUser(name, representativeID, email1, phoneNumber,
+                        useType, password, date, permitNum, address));
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
