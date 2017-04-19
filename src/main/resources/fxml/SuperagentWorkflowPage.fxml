@@ -2,20 +2,14 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckMenuItem?>
-<?import javafx.scene.control.ContextMenu?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewUserApplicationDisplayController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewUserApplicationDisplayController">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
     </columnConstraints>
@@ -25,15 +19,6 @@
         <RowConstraints minHeight="700.0" prefHeight="700.0" />
     </rowConstraints>
     <children>
-        <Pane prefHeight="75.0" prefWidth="802.0">
-            <children>
-                <ImageView fitHeight="97.0" fitWidth="1024.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-                    <image>
-                        <Image url="@../images/ttbmasthead.gif" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
         <Pane prefHeight="100.0" prefWidth="817.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
             <children>
                 <Group layoutX="260.0" layoutY="36.0" />
@@ -52,5 +37,7 @@
                 </TableView>
             </children>
         </Pane>
+      <fx:include source="toolbar.fxml" />
+      <fx:include source="toolbar.fxml" />
     </children>
 </GridPane>
