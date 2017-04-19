@@ -34,6 +34,8 @@ public class SuperagentViewAllApplicationsController {
     private TableColumn<SubmittedApplication, String> typeCol;
     @FXML
     private TableColumn<SubmittedApplication, String> appIDCol;
+    @FXML
+    private TableColumn<String, String> agentCol;
 
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
     private TTBAgentInterface agentInterface;
@@ -44,6 +46,14 @@ public class SuperagentViewAllApplicationsController {
         this.main = main;
         //list of all ttb agent usernames
         List<String> names = Storage.getInstance().getAllTTBUsernames();
+
+        //Find & add matching applications
+        for(String strang : names){
+            agentInterface = new TTBAgentInterface(strang);
+            List<SubmittedApplication> resultsList = agentInterface.getAssignedApplications();
+            data.addAll(resultsList);
+        }
+
         //agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
         dateCol.setCellValueFactory(p -> {
             Date date = p.getValue().getApplication().getSubmissionDate();
@@ -53,6 +63,7 @@ public class SuperagentViewAllApplicationsController {
         brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
         typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name())));
         appIDCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplicationID()))));
+        agentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue()))));
         resultsTable.setItems(data);
         resultsTable.setRowFactory(tv -> {
             TableRow<SubmittedApplication> row = new TableRow<>();
@@ -66,12 +77,7 @@ public class SuperagentViewAllApplicationsController {
         });
         data.clear();
 
-        //Find & add matching applications
-        for(String strang : names){
-            agentInterface = new TTBAgentInterface(strang);
-            List<SubmittedApplication> resultsList = agentInterface.getAssignedApplications();
-            data.addAll(resultsList);
-        }
+
 
     }
 

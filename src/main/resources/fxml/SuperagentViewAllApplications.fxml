@@ -19,14 +19,16 @@
    <children>
       <TableView fx:id="resultsTable" prefHeight="557.0" prefWidth="1024.0" GridPane.rowIndex="2">
          <columns>
-            <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="     Date Submitted" />
-            <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Brand" />
-            <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Fanciful" />
-            <TableColumn fx:id="typeCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Type" />
-            <TableColumn fx:id="appIDCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Application ID" />
+            <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="170.0" resizable="false" text="     Date Submitted" />
+            <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="170.0" resizable="false" text="Brand" />
+            <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="150.0" resizable="false" text="Fanciful" />
+            <TableColumn fx:id="typeCol" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="150.0" resizable="false" text="Type" />
+            <TableColumn fx:id="appIDCol" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="150.0" resizable="false" text="Application ID" />
+            <TableColumn fx:id="agentCol" prefWidth="150.0" text="Agent" />
          </columns>
       </TableView>
       <Label alignment="CENTER" prefHeight="25.0" prefWidth="1110.0" styleClass="card-title" text="Assigned Applications" GridPane.rowIndex="1" />
+      <fx:include source="toolbar.fxml" />
       <fx:include source="toolbar.fxml" />
       <fx:include source="toolbar.fxml" />
    </children>
