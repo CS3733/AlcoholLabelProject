@@ -45,7 +45,7 @@ public class AlcoholDatabase {
         return 0;
     }
 
-    private void incrementAppCount(){
+    private void incrementAppCount() {
         int appCount = getAppCount() + 1;
         db.update("IDGenerator", "appCount = " + String.valueOf(appCount), "id=1");
     }
@@ -64,7 +64,7 @@ public class AlcoholDatabase {
     }
 
 
-    public boolean removeApplication(SubmittedApplication application){
+    public boolean removeApplication(SubmittedApplication application) {
         return db.delete("SubmittedApplications", "applicationID = " + application.getApplicationID());
     }
 
@@ -244,9 +244,9 @@ public class AlcoholDatabase {
                         + appType.isLabelApproval() + ", stateOnly = '"
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
-                        + image + "'", "applicationID = "
-                        + application.getApplicationID() + ", qualifications = '"
-                        + info.getQualifications() + "'");
+                        + image + "', qualifications = '"
+                        + info.getQualifications() + "'", "applicationID = "
+                        + application.getApplicationID());
 
 
                 db.update("ManufacturerInfo", "authorizedName = '"
@@ -300,7 +300,7 @@ public class AlcoholDatabase {
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
                                 + image + "', '"
-                                + info.getQualifications() + "'"
+                                + info.getQualifications() + "', 234"//Fix this please: Needs TTBID
                         //TTBUsername
                         , "SubmittedApplications");
 

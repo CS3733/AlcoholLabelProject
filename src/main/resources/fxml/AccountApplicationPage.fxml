@@ -3,8 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SuperUserWorkflowController">
+<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SuperUserWorkflowController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -99,14 +97,7 @@
             </ButtonBar>
             </children>
         </Pane>
-        <Pane prefHeight="124.0" prefWidth="1024.0">
-            <children>
-                <ImageView fitHeight="140.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/ttbmasthead.gif" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
+        <Pane prefHeight="124.0" prefWidth="1024.0" />
+      <fx:include source="toolbar.fxml" />
     </children>
 </GridPane>

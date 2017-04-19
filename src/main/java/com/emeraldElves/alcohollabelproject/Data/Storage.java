@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.AppState;
+import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.Log;
 
 import java.sql.SQLException;
@@ -83,8 +84,7 @@ public class Storage {
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
                     new Database.TableField("imageURL", "VARCHAR (255)"),
-                    new Database.TableField("qualifications", "VARCHAR (10000)"),
-                    new Database.TableField("TTBID", "INTEGER UNIQUE NOT NULL"));
+                    new Database.TableField("qualifications", "VARCHAR (10000)"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
@@ -121,7 +121,7 @@ public class Storage {
         } catch (SQLException e) {
             Log.console("Used existing AlcoholInfo table");
         }
-<<<<<<< HEAD
+
         try {
             database.createTable("HistoricalAlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
@@ -161,7 +161,7 @@ public class Storage {
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
-=======
+
         try{
             database.createTable("NewApplicant",
                     new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
@@ -174,7 +174,7 @@ public class Storage {
                     new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
                     new Database.TableField("date", "BIGINT"));
             Log.console("Created new NewApplicant table");
->>>>>>> develop
+
         }
 
         try {
@@ -221,9 +221,9 @@ public class Storage {
     public void deleteUser(PotentialUser potentialUser) {
         db.delete("NewApplicant","email = '" + potentialUser.getEmail().getEmailAddress() + "'");
     }
-    public PotentialUser getUserFromEmail(String email){
-       return usersDB.getUserFromEmail(email);
-    }
+//    public PotentialUser getUserFromEmail(String email){
+//       return usersDB.getUserFromEmail(email);
+//    }
 
     public boolean applyForUser(PotentialUser user){
         usersDB.addPotentialUser(user);
@@ -280,5 +280,20 @@ public class Storage {
     }
 
 
+<<<<<<< HEAD
+=======
+    public List<String> getAllTTBUsernames() {
+        return usersDB.getAllTTBUsernames();
+    }
+
+    public Applicant getUserFromEmail(String email) {
+        Applicant applicant = usersDB.getUserFromEmail(email);
+        if (applicant != null) { return applicant; }
+
+        else return new Applicant(email,"", 0, 0, "", "");
+
+    }
+
+>>>>>>> develop
 
 }

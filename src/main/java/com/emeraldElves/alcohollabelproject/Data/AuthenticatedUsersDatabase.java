@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+import com.emeraldElves.alcohollabelproject.Applicant;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -142,7 +144,6 @@ public class AuthenticatedUsersDatabase {
         boolean worked;
         // I dont think i need to check database, because you cant update if its already in queue
         try{
-
             worked = db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
                             + user.getUserType().getValue() + ", "
@@ -202,33 +203,40 @@ public class AuthenticatedUsersDatabase {
         }
         return users;
     }
-    public PotentialUser getUserFromEmail(String email){
-        ResultSet resultSet = db.select("*", "NewApplicant", "name = " + email);
+
+    public Applicant getUserFromEmail(String email){
+        ResultSet resultSet = db.select("*", "ApplicantLogin", "email = '" + email + "'");
         try {
             while (resultSet.next()) {
-
-                //Adding all stuff from database to new PotentialUser object
+                //Adding all stuff from database to new Applicant object
                 String name = resultSet.getString("name");
-                String password = resultSet.getString("password");
-                int usertype = resultSet.getInt("type");
-                UserType useType = UserType.fromInt(usertype);
                 int representativeID = resultSet.getInt("representativeID");
-                String emailString = resultSet.getString("email");
-                EmailAddress email1 = new EmailAddress(emailString);
-                String phoneNumberString = resultSet.getString("phoneNumber");
-                PhoneNumber phoneNumber = new PhoneNumber(phoneNumberString);
-                Date date = new Date(resultSet.getLong("date"));
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
+                String phoneNum = resultSet.getString("phoneNumber");
 
-                return(new PotentialUser(name, representativeID, email1, phoneNumber,
-                        useType, password, date, permitNum, address));
+                return(new Applicant(email, name, representativeID, permitNum, address,
+                        phoneNum));
             }
         }
         catch(SQLException e){
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<String> getAllTTBUsernames(){
+        List<String> names = new ArrayList<String>();
+        ResultSet resultSet = db.select("*", "TTBAgentLogin");
+        try{
+            while(resultSet.next()){
+                names.add(resultSet.getString("email"));//should work?? change to username maybe
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return names;
     }
 
 
