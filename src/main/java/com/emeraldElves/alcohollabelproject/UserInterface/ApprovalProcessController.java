@@ -6,6 +6,7 @@ import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChan
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -20,56 +21,45 @@ public class ApprovalProcessController {
     Main main;
     SubmittedApplication application;
     private TTBAgentInterface agentInterface;
+
     @FXML
     Label brandName;
-
     @FXML
     Label fancifulName;
-
     @FXML
     Label alcoholType;
-
     @FXML
     Label submissionDate;
-
     @FXML
     Label company;
-
     @FXML
     Label origin;
-
     @FXML
     Label applicantID;
-
     @FXML
     TextArea reason;
-
     @FXML
     Label authorizedName;
-
     @FXML
     Label physicalAddress;
-
     @FXML
     Label permitNum;
-
     @FXML
     Label phoneNum;
     @FXML
     Label emailAddress;
-
     @FXML
     Label alcoholContent;
-
     @FXML
     Label applicationID;
-
     @FXML
     TextField CTField;
-
     @FXML
     TextField OSField;
-
+    @FXML
+    TextArea qualifications;
+    @FXML
+    DatePicker expirationDate;
 
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
