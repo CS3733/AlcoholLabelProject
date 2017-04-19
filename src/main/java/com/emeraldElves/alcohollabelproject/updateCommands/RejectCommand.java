@@ -3,7 +3,7 @@ package com.emeraldElves.alcohollabelproject.updateCommands;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.TTBAgentInterface;
-import com.emeraldElves.alcohollabelproject.LogManager;
+import com.emeraldElves.alcohollabelproject.EmailManager;
 
 /**
  * Created by Kylec on 4/16/2017.
@@ -37,7 +37,7 @@ public class RejectCommand implements StatusUpdateCommand {
     }
 
     private void sendEmail() {
-        LogManager.getInstance().logAction("RejectCommand", "Email sent");
+        EmailManager.getInstance().sendEmail(application);
     }
 
 }

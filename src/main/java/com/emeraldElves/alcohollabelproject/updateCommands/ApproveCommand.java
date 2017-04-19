@@ -3,7 +3,7 @@ package com.emeraldElves.alcohollabelproject.updateCommands;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.TTBAgentInterface;
-import com.emeraldElves.alcohollabelproject.LogManager;
+import com.emeraldElves.alcohollabelproject.EmailManager;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -44,7 +44,7 @@ public class ApproveCommand implements StatusUpdateCommand {
     }
 
     private void sendEmail() {
-        LogManager.getInstance().logAction("ApproveCommand", "Email sent");
+        EmailManager.getInstance().sendEmail(application);
     }
 
 }
