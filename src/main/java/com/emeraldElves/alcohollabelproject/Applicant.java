@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject;
 
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Authenticator;
 
 import java.util.List;
 
@@ -12,7 +13,6 @@ public class Applicant {
 
     private List<SubmittedApplication> applications;
     private String email;
-    private String name;
     private int representativeID = 0;
     private int permitNum = 0;
     private String address = "";
@@ -30,9 +30,8 @@ public class Applicant {
     /**
      * Creates applicant with fields
      */
-    public Applicant(String email, String name, int representativeID, int permitNum, String address, String phoneNum) {
+    public Applicant(String email, int representativeID, int permitNum, String address, String phoneNum) {
         this.email = email;
-        this.name = name;
         this.representativeID = representativeID;
         this.permitNum = permitNum;
         this.address = address;
@@ -49,10 +48,6 @@ public class Applicant {
         this.applications.add(submittedApp);
     }
 
-    public String getName() {
-        return name;
-    }
-
     private Storage storage = Storage.getInstance();
 
     public void getApplicantFields(String email) {
@@ -62,7 +57,6 @@ public class Applicant {
         this.permitNum = fields.getPermitNum();
         this.address = fields.getAddress();
         this.phoneNum = fields.getPhoneNum();
-        this.name = fields.getName();
     }
 
     public String getEmailAddress() {
@@ -79,10 +73,6 @@ public class Applicant {
     public String getAddressFromDB(String email) {
         getApplicantFields(email);
         return this.getAddress();
-    }
-    public String getNamefromDB(String email) {
-        getApplicantFields(email);
-        return this.getName();
     }
     public String getPhoneNumFromDB(String email) { return ""; }
 

@@ -200,13 +200,13 @@
             <Insets right="25.0" />
          </GridPane.margin></Button>
         <Label fx:id="error2" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-      <Label fx:id="pSourceErrorField" text="psource" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Label fx:id="pTypeErrorField" text="ptype" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <Label fx:id="brandNameErrorField" text="brand" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-      <Label fx:id="alcContentErrorField" text="alc content" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-      <Label fx:id="varietalErrorField" text="wine info" GridPane.columnIndex="2" GridPane.rowIndex="11" />
-      <Label fx:id="dateErrorField" text="date/signature?" GridPane.columnIndex="2" GridPane.rowIndex="15" />
-      <Label fx:id="serialErrorField" text="serial num" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+      <Label fx:id="pSourceErrorField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Label fx:id="pTypeErrorField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Label fx:id="brandNameErrorField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Label fx:id="alcContentErrorField" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+      <Label fx:id="varietalErrorField" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+      <Label fx:id="dateErrorField" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+      <Label fx:id="serialErrorField" GridPane.columnIndex="2" GridPane.rowIndex="10" />
       <Button fx:id="submitLabel" mnemonicParsing="false" onMouseClicked="#submitImage" styleClass="button-raised" text="Submit Label Image" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
       <ImageView fx:id="imageView" fitHeight="97.0" fitWidth="266.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
     </children>
