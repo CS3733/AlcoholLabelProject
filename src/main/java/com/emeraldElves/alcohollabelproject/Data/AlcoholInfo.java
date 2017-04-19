@@ -39,6 +39,10 @@ public class AlcoholInfo {
         this.serialNumber = serialNumber;
     }
 
+    public void setFormula(String formula) {
+        this.formula = formula;
+    }
+
 
     public static class Wine{
         public double pH;

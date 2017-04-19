@@ -83,8 +83,7 @@ public class Storage {
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
                     new Database.TableField("imageURL", "VARCHAR (255)"),
-                    new Database.TableField("qualifications", "VARCHAR (10000)"),
-                    new Database.TableField("TTBID", "INTEGER UNIQUE NOT NULL"));
+                    new Database.TableField("qualifications", "VARCHAR (10000)"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
@@ -144,6 +143,16 @@ public class Storage {
 
     public static Storage getInstance() {
         return StorageHolder.instance;
+    }
+
+    public void removeApplications(){
+        try {
+            db.dropTable("SubmittedApplications");
+            initDatabase("ttbDB");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
