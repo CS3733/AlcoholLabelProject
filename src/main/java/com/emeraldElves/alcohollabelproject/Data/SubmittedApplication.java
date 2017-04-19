@@ -1,8 +1,6 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.Applicant;
-import com.emeraldElves.alcohollabelproject.Data.ApplicationInfo;
-import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
 
 /**
  * Represents a submitted application
@@ -15,6 +13,7 @@ public class SubmittedApplication {
     private int applicationID = -1;
     private String ttbMessage = "";
     private ProxyLabelImage proxyImage;
+    private String ttbAgentName = "";
     public String getTtbMessage() {
         return ttbMessage;
     }
@@ -44,6 +43,9 @@ public class SubmittedApplication {
     public int getApplicationID() {
         return applicationID;
     }
+    public void setTtbAgentName(String name){ this.ttbAgentName = name;}
+
+    public String getTtbAgentName(){ return this.ttbAgentName;}
 
     public void setApplicationID(int applicationID) {
         this.applicationID = applicationID;
