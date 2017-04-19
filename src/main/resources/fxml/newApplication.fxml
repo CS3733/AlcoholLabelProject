@@ -78,10 +78,10 @@
                      </rowConstraints>
                      <children>
                         <CheckBox fx:id="certOfApproval" mnemonicParsing="false" text="Certificate of Label Approval" />
-                        <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
                         <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onAction="#exemptionChecked" onKeyPressed="#exemptionChecked" onMouseClicked="#exemptionChecked" prefHeight="40.0" prefWidth="346.0" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
-                        <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
                         <ComboBox fx:id="stateSelect" disable="true" prefHeight="47.0" prefWidth="129.0" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="11">
@@ -94,8 +94,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ComboBox fx:id="pTypeSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product type of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                         <ComboBox fx:id="pSourceSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product source of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                        <ComboBox fx:id="pTypeSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product type of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                         <Label text="Product Type:" GridPane.rowIndex="1">
                            <tooltip>
                               <Tooltip text="Tyoe of alcohol. e.g. Wine" />
