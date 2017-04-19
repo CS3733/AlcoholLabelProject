@@ -47,4 +47,8 @@ public class ApplicationInfo {
     public void setSubmissionDate(Date submissionDate) {
         this.submissionDate = submissionDate;
     }
+
+    public void setExtraInfo(String extraInfo) {
+        this.extraInfo = extraInfo;
+    }
 }

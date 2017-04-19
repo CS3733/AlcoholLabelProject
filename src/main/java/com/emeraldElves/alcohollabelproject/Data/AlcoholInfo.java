@@ -35,6 +35,10 @@ public class AlcoholInfo {
     private AlcoholType alcoholType;
     private Wine wineInfo;
 
+    public void setFormula(String formula) {
+        this.formula = formula;
+    }
+
 
     public static class Wine{
         public double pH;

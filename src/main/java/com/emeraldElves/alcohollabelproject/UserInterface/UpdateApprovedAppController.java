@@ -261,8 +261,8 @@ public class UpdateApprovedAppController {
     public void submitApp() {
         LogManager.getInstance().logAction("UpdateApprovedAppController", "Logged Click from first page of update Application");
 
-        Boolean formFilled = false;
-        Boolean fieldsValid = false;
+        boolean formFilled = false;
+        boolean fieldsValid = false;
 
 
             if (alcoholContentField.getText().isEmpty()) {
@@ -319,6 +319,11 @@ public class UpdateApprovedAppController {
                     extraInfo = " ";
                 } else extraInfo = extraInfoText.getText();
 
+                application.getApplication().getAlcohol().setFormula(formula);
+                application.getApplication().setExtraInfo(extraInfo);
+                application.getApplication().getAlcohol().setAlcoholContent(alcContent);
+
+
                 //sets the alcohol info
                 appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
 
@@ -334,18 +339,19 @@ public class UpdateApprovedAppController {
                 Applicant applicant = new Applicant(appList);
 
                 //Create a SubmittedApplication
-                SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant);
+//                application.
+//                SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant);
                 if (application != null)
-                    newApp.setApplicationID(application.getApplicationID());
-                applicant.addSubmittedApp(newApp);
-                newApp.setImage(proxyLabelImage);
+                    application.setApplicationID(application.getApplicationID());
+                applicant.addSubmittedApp(application);
+                application.setImage(proxyLabelImage);
 
                 if (application != null)
-                    newApp.setApplicationID(application.getApplicationID());
+                    application.setApplicationID(application.getApplicationID());
 
                 //Submit the new application to the database
                 ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
-                boolean success = applicantInterface.submitApplication(newApp);
+                boolean success = applicantInterface.submitApplication(application);
 
                 main.loadHomepage();
             }

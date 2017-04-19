@@ -69,7 +69,6 @@ public class Storage {
         }
 
         try {
-            database.dropTable("SubmittedApplications");
             database.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("applicantID", "INTEGER NOT NULL"),
                     new Database.TableField("status", "INTEGER NOT NULL"),
