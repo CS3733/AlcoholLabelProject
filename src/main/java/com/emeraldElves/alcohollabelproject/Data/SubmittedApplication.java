@@ -15,6 +15,8 @@ public class SubmittedApplication {
     private int applicationID = -1;
     private String ttbMessage = "";
     private ProxyLabelImage proxyImage;
+    private String ttbAgentName = "";
+
     public String getTtbMessage() {
         return ttbMessage;
     }
@@ -40,6 +42,10 @@ public class SubmittedApplication {
         
 
     }
+
+    public void setTtbAgentName(String name){ this.ttbAgentName = name;}
+
+    public String getTtbAgentName(){ return this.ttbAgentName;}
 
     public int getApplicationID() {
         return applicationID;
