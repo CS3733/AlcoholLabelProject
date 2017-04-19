@@ -4,12 +4,9 @@ import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.print.PageLayout;
-import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,24 +31,6 @@ public class Main extends Application {
         stage = primaryStage;
     }
 
-
-    public void printPage(){
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if(job != null){
-            job.showPrintDialog(stage);
-            PageLayout pageLayout = job.getPrinter().getDefaultPageLayout();
-            double scaleX = pageLayout.getPrintableWidth() / stage.getWidth();
-            double scaleY = pageLayout.getPrintableHeight() / stage.getHeight();
-            double minimumScale = Math.min(scaleX, scaleY);
-            Scale scale = new Scale(minimumScale, minimumScale);
-            stage.getScene().getRoot().getTransforms().add(scale);
-            job.printPage(stage.getScene().getRoot());
-            job.endJob();
-            stage.getScene().getRoot().getTransforms().add(new Scale(1/minimumScale, 1/minimumScale));
-        }
-    }
-
-
     /**
      * Load an FXML file and set the stage to the new UI.
      *
@@ -62,7 +41,7 @@ public class Main extends Application {
         FXMLLoader root = null;
         try {
             root = new FXMLLoader(Main.class.getResource(path));
-            stage.getScene().setRoot(root.load());
+            stage.getScene().setRoot((Parent) root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,7 +53,7 @@ public class Main extends Application {
         try {
             root = new FXMLLoader(Main.class.getResource(path));
             root.setController(controller);
-            stage.getScene().setRoot(root.load());
+            stage.getScene().setRoot((Parent) root.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -283,22 +262,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
-    public void loadProfilePage(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProfilePage.fxml"));
-        System.out.println("fxml loaded");
-        try {
-            Parent root = loader.load();
-            root.getStylesheets().add("/style/material.css");
-            ProfileController controller = loader.getController();
-            controller.init(this);
-            stage.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("other stuff happened");
-    }
-
     public static void main(String[] args) {
         launch(args);
     }

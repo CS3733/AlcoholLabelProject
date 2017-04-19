@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.HomeController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.HomeController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -70,7 +70,6 @@
             <Button fx:id="CreateUser" layoutX="51.0" layoutY="556.0" mnemonicParsing="false" onMouseClicked="#createNewUser" styleClass="button-raised" text="Create new user" />
             <Button layoutX="167.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" styleClass="button-raised" text="I'm Feeling Thirsty" />
             <Button fx:id="logButton" layoutX="884.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" styleClass="button-raised" text="Login" />
-            <Button layoutX="98.0" layoutY="95.0" mnemonicParsing="false" onMouseClicked="#loadProfile" text="Profile" />
             </children>
         </Pane>
       <Pane prefHeight="124.0" prefWidth="1024.0">

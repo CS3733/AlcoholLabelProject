@@ -17,7 +17,7 @@ public class TTBAgent {
     public TTBAgent(String name, int governmentID) {
         name = this.name;
         governmentID = this.governmentID;
-        currentApps = new ArrayList<>();
+        currentApps = new ArrayList<SubmittedApplication>();
     }
 
     /*
