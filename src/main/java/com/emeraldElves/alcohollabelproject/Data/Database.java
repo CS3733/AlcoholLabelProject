@@ -100,8 +100,8 @@ public class Database {
      * @return True if the values were inserted without error.
      */
     public boolean insert(String values, String tableName) {
-        if (!connected)
-            return false;
+//        if (!connected)
+//            return false;
         try {
             statement.execute("INSERT INTO " + tableName + " VALUES ( " + values + " )");
             connection.commit();

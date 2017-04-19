@@ -1,10 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Applicant;
-import com.emeraldElves.alcohollabelproject.ApplicantInterface;
-import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.*;
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.LogManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -155,17 +152,18 @@ public class NewApplicationController {
 
         username= Authenticator.getInstance().getUsername();
         applicant = new ApplicantInterface(username);
-        welcomeApplicantLabel.setText("Welcome, " + applicant.getApplicant().getName() + ".");
+        Log.console(username);
+        welcomeApplicantLabel.setText("Welcome, " + applicant.getApplicant().getNamefromDB(username) + ".");
         emailAddress = new EmailAddress(applicant.getApplicant().getEmailAddress());
-        permitNum = applicant.getApplicant().getPermitNum();
+        permitNum = applicant.getApplicant().getPermitNumFromDB(username);
         address = applicant.getApplicant().getAddress();
         phoneNum = new PhoneNumber(applicant.getApplicant().getPhoneNum());
         representativeID = applicant.getApplicant().getRepresentativeID();
         repIDNoTextField.setText(String.valueOf(representativeID));
         permitNoTextField.setText(String.valueOf(permitNum));
         addressField.setText(String.valueOf(address));
-        phoneNumberField.setText(String.valueOf(phoneNum));
-        emailAddressField.setText(String.valueOf(emailAddress));
+        phoneNumberField.setText((phoneNum.getPhoneNumber()));
+        emailAddressField.setText((emailAddress.getEmailAddress()));
 
 //        example manufacturer info
 //        ManufacturerInfo manInfo= new ManufacturerInfo("Bob", "1 Institute Rd", "", 1234, 1111, new PhoneNumber("9789789788"), new EmailAddress("test@test.com"));
@@ -331,7 +329,8 @@ public class NewApplicationController {
 
                 //sets the alcohol info
                 appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
-
+                this.appManInfo= new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
+                        permitNum, phoneNum, emailAddress);
                 //sets the date value
                 Date newDate = DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
 

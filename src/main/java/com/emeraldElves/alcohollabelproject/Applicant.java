@@ -62,6 +62,7 @@ public class Applicant {
         this.permitNum = fields.getPermitNum();
         this.address = fields.getAddress();
         this.phoneNum = fields.getPhoneNum();
+        this.name = fields.getName();
     }
 
     public String getEmailAddress() {
@@ -78,6 +79,10 @@ public class Applicant {
     public String getAddressFromDB(String email) {
         getApplicantFields(email);
         return this.getAddress();
+    }
+    public String getNamefromDB(String email) {
+        getApplicantFields(email);
+        return this.getName();
     }
     public String getPhoneNumFromDB(String email) { return ""; }
 
