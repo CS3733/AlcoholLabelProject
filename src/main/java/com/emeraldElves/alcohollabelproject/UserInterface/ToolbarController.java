@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
+import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -68,13 +69,8 @@ public class ToolbarController implements Initializable {
     }
 
     public void extraFunction() {
-        switch (Authenticator.getInstance().getUserType()) {
-            case TTBAGENT:
-                main.loadProfilePage();
-                break;
-            case APPLICANT:
-                main.loadProfilePage();
-                break;
+        if (Authenticator.getInstance().getUserType() == UserType.APPLICANT) {
+            main.loadProfilePage();
         }
     }
 
@@ -90,7 +86,7 @@ public class ToolbarController implements Initializable {
                 logButton.setText("LOG OUT");
                 break;
             case TTBAGENT:
-                extraButton.setVisible(true);
+                extraButton.setVisible(false);
                 utility.setVisible(true);
                 utility.setText("APPLICATIONS");
                 logButton.setText("LOG OUT");

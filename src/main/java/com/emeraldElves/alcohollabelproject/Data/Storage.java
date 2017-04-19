@@ -27,6 +27,16 @@ public class Storage {
     private Database initDatabase(String dbName) {
         Database database = new Database(dbName);
         database.connect();
+
+        try {
+            database.createTable("IDGenerator", new Database.TableField("id", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("appCount", "INTEGER NOT NULL"));
+            database.insert("1, 0", "IDGenerator");
+            Log.console("Created new IDGenerator table");
+        } catch (SQLException e) {
+            Log.console("Used existing IDGenerator table");
+        }
+
         try {
                     database.createTable("TTBAgentLogin",
                             new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
