@@ -139,6 +139,7 @@ public class Main extends Application {
     public void loadHomepage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomePage.fxml"));
         try {
+            ToolbarController.onLoginPage=false;
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
             HomeController controller = loader.getController();
