@@ -113,7 +113,7 @@ public class AuthenticatedUsersDatabase {
     }
 
     public Applicant getUserFromEmail(String email){
-        ResultSet resultSet = db.select("*", "ManufacturerInfo", "emailAddress = " + email);
+        ResultSet resultSet = db.select("*", "ManufacturerInfo", "emailAddress = '" + email + "'");
         try {
             while (resultSet.next()) {
 

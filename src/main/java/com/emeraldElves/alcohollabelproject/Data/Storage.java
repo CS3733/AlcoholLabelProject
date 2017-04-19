@@ -173,7 +173,8 @@ public class Storage {
 
     public Applicant getUserFromEmail(String email) {
         Applicant applicant = usersDB.getUserFromEmail(email);
-        return applicant;
+        if (applicant != null) { return applicant; }
+        else return new Applicant(email, 0, 0, "", "");
     }
 
 

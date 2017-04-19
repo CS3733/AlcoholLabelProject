@@ -13,10 +13,10 @@ public class Applicant {
 
     private List<SubmittedApplication> applications;
     private String email;
-    private int representativeID;
-    private int permitNum;
-    private String address;
-    private String phoneNum;
+    private int representativeID = 0;
+    private int permitNum = 0;
+    private String address = "";
+    private String phoneNum = "";
 
     /**
      * Creates an Applicant with the given applications.
@@ -52,7 +52,7 @@ public class Applicant {
 
     public void getApplicantFields(String email) {
         Applicant fields = storage.getUserFromEmail(email);
-        this.email = fields.getEmailAddress();
+        this.email = email;
         this.representativeID = fields.getRepresentativeID();
         this.permitNum = fields.getPermitNum();
         this.address = fields.getAddress();
