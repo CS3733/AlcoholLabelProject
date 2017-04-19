@@ -96,6 +96,7 @@ public class UpdateApplicationController {
     }
 
     public void submitApp() {
+        Storage.getInstance().MovetoHistory(CurrentlyBeingUpdated, CurrentlyBeingUpdated.getApplicant().getEmailAddress());
         AlcoholInfo alcoholInfo = CurrentlyBeingUpdated.getApplication().getAlcohol();
         AlcoholType alcoholType = alcoholInfo.getAlcoholType();
         double pH;
