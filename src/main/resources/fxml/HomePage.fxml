@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -26,10 +25,7 @@
         <Pane prefHeight="675.0" prefWidth="1024.0" GridPane.rowIndex="2">
             <children>
             <TextField fx:id="searchbox" layoutX="93.0" layoutY="49.0" prefHeight="36.0" prefWidth="575.0" promptText="Search..." styleClass="search-box" />
-            <Button layoutX="565.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" prefHeight="56.0" prefWidth="103.0" style="-fx-border-radius: 0;" styleClass="button-flat" text="SEARCH">
-               <tooltip>
-                  <Tooltip text="This will search the database" />
-               </tooltip></Button>
+            <Button layoutX="565.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" prefHeight="56.0" prefWidth="103.0" style="-fx-border-radius: 0;" styleClass="button-flat" text="SEARCH" />
                 <GridPane layoutX="93.0" layoutY="204.0" prefHeight="407.0" prefWidth="838.0" styleClass="card">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
