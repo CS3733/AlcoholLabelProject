@@ -19,6 +19,7 @@ import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+import javafx.scene.control.TextInputDialog;
 
 
 import java.util.*;
