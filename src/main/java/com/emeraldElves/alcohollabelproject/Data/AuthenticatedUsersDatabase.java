@@ -43,7 +43,7 @@ public class AuthenticatedUsersDatabase {
 
     public boolean createUser(PotentialUser user){
         if (user.getUserType() == UserType.TTBAGENT) {
-            return db.insert("'" + user.getEmail().getEmailAddress()
+            return db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
                             + user.getRepresentativeID() + ", "
                             + user.getPermitNum() + ", '"
@@ -52,7 +52,7 @@ public class AuthenticatedUsersDatabase {
                             + user.getEmail().getEmailAddress() + "'"
                     , "TTBAgentLogin");
         } else { // type is Applicant
-            return db.insert("'" + user.getEmail().getEmailAddress()
+            return db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
                             + user.getRepresentativeID() + ", "
                             + user.getPermitNum() + ", '"

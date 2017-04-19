@@ -155,7 +155,7 @@ public class Storage {
     }
 
     public boolean createUser(PotentialUser user) {
-        return usersDB.createUser(PotentialUser user);
+        return usersDB.createUser(user);
     }
     public void deleteUser(PotentialUser potentialUser) {
         db.delete("NewApplicant",potentialUser.getEmail().getEmailAddress());
