@@ -11,6 +11,7 @@ public class ApplicationInfo {
     private AlcoholInfo submittedAlcohol;
     private ApplicationType appType;
     private String extraInfo;
+    private String qualifications = ""; //Only used by TTB agents
 
     public ApplicationInfo(Date submissionDate, ManufacturerInfo manufacturer, AlcoholInfo submittedAlcohol, String extraInfo, ApplicationType appType) {
         this.submissionDate = submissionDate;
@@ -46,5 +47,4 @@ public class ApplicationInfo {
     public void setSubmissionDate(Date submissionDate) {
         this.submissionDate = submissionDate;
     }
-
 }

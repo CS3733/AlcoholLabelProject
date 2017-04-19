@@ -12,11 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<<<<<<< HEAD
 <GridPane alignment="center" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.HomeController">
-=======
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.HomeController">
->>>>>>> refs/remotes/origin/master
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -84,19 +80,7 @@
                   </AnchorPane>
                     </children>
                 </GridPane>
-<<<<<<< HEAD
             <Button layoutX="751.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" prefHeight="56.0" prefWidth="186.0" styleClass="button-raised" text="I'M FEELING THIRSTY" />
-=======
-            <Button fx:id="utility" layoutX="852.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="121.0" styleClass="button-raised" text="test">
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </Button>
-
-            <Button fx:id="CreateUser" layoutX="51.0" layoutY="556.0" mnemonicParsing="false" onMouseClicked="#createNewUser" styleClass="button-raised" text="Create new user" />
-            <Button layoutX="167.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" styleClass="button-raised" text="I'm Feeling Thirsty" />
-            <Button fx:id="logButton" layoutX="884.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" styleClass="button-raised" text="Login" />
->>>>>>> refs/remotes/origin/master
             </children>
         </Pane>
       <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;" GridPane.halignment="CENTER" GridPane.valignment="TOP">

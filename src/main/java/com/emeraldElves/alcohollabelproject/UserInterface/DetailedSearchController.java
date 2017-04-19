@@ -1,18 +1,10 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.UserType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-<<<<<<< HEAD
-=======
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
->>>>>>> refs/remotes/origin/master
 import java.util.Date;
 
 /**
@@ -80,13 +72,8 @@ public class DetailedSearchController {
                 break;
         }
         alcoholType.setText(type);
-        DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         Date date = application.getApplication().getSubmissionDate();
-<<<<<<< HEAD
         submissionDate.setText("Submitted " + DateHelper.dateToString(date));
-=======
-        submissionDate.setText(dateFormat.format(date));
->>>>>>> refs/remotes/origin/master
         content.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent())+"%");
         String productSource = "";
         switch (application.getApplication().getAlcohol().getOrigin()) {
@@ -107,7 +94,6 @@ public class DetailedSearchController {
         address.setText(application.getApplication().getManufacturer().getPhysicalAddress());
     }
 
-<<<<<<< HEAD
 
     public void printPage(){
         main.printPage();
@@ -115,10 +101,6 @@ public class DetailedSearchController {
 
     public void export(){
         // Exporter
-=======
-    public void GoHome() {
-        main.loadHomepage();
->>>>>>> refs/remotes/origin/master
     }
 
 
