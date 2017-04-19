@@ -31,13 +31,11 @@ public class Storage {
                     database.createTable("TTBAgentLogin",
                             new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                             new Database.TableField("password", "VARCHAR (255) NOT NULL"),
-                            new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
                             new Database.TableField("representativeID", "INTEGER NOT NULL"),
                             new Database.TableField("permitNum", "INTEGER NOT NULL"),
                             new Database.TableField("address", "VARCHAR (255)"),
                             new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
-                            new Database.TableField("date", "BIGINT"));
+                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
             Log.console("Created new TTBAgentLogin table");
         }
         catch (SQLException e){
@@ -48,14 +46,12 @@ public class Storage {
             database.createTable("ApplicantLogin",
                     new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
-                    new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
                     new Database.TableField("permitNum", "INTEGER NOT NULL"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("date", "BIGINT"));
-            Log.console("Created new TTBAgentLogin table");
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+            Log.console("Created new ApplicantLogin table");
         }
         catch (SQLException e){
             Log.console("Used existing ApplicantLogin table");
@@ -159,15 +155,7 @@ public class Storage {
     }
 
     public boolean createUser(PotentialUser user) {
-        if (user.getUserType() == UserType.TTBAGENT) {
-            return db.insert("'" + user.getEmail().getEmailAddress()
-                    + "', '" + user.getPassword() + "'"
-                    , "TTBAgentLogin");
-        } else {
-            return db.insert("'" + user.getEmail().getEmailAddress()
-                            + "', '" + user.getPassword() + "'"
-                    , "ApplicantLogin");
-        }
+        return usersDB.createUser(PotentialUser user);
     }
     public void deleteUser(PotentialUser potentialUser) {
         db.delete("NewApplicant",potentialUser.getEmail().getEmailAddress());
@@ -181,6 +169,13 @@ public class Storage {
 
     public List<PotentialUser> getPotentialUsers(){ return usersDB.getPotentialUsers();  }
 
+    /**
+     *
+     * @param usertype The type of user
+     * @param username The email of the user
+     * @param password The password of the user
+     * @return Whether or not it is a valid user
+     */
     public boolean isValidUser(UserType usertype, String username, String password) {
         if (usertype == UserType.TTBAGENT) {
             return usersDB.isValidTTBAgent(username, password);

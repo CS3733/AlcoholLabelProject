@@ -29,7 +29,7 @@ public class AuthenticatedUsersDatabase {
      * @return True if the TTB agent is valid, False otherwise
      */
     public boolean isValidTTBAgent(String userName, String password) {
-        ResultSet results = db.select("*", "TTBAgentLogin", "username = '" + userName +
+        ResultSet results = db.select("*", "TTBAgentLogin", "email = '" + userName +
                 "' AND  password = '" + password + "'");
         if (results == null)
             return false;
@@ -38,6 +38,28 @@ public class AuthenticatedUsersDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public boolean createUser(PotentialUser user){
+        if (user.getUserType() == UserType.TTBAGENT) {
+            return db.insert("'" + user.getEmail().getEmailAddress()
+                            + "', '" + user.getPassword() + "', "
+                            + user.getRepresentativeID() + ", "
+                            + user.getPermitNum() + ", '"
+                            + user.getAddress() + "', '"
+                            + user.getPhoneNumber().getPhoneNumber() + "', '"
+                            + user.getEmail().getEmailAddress() + "'"
+                    , "TTBAgentLogin");
+        } else { // type is Applicant
+            return db.insert("'" + user.getEmail().getEmailAddress()
+                            + "', '" + user.getPassword() + "', "
+                            + user.getRepresentativeID() + ", "
+                            + user.getPermitNum() + ", '"
+                            + user.getAddress() + "', '"
+                            + user.getPhoneNumber().getPhoneNumber() + "', '"
+                            + user.getEmail().getEmailAddress() + "'"
+                    , "ApplicantLogin");
         }
     }
 
@@ -56,11 +78,11 @@ public class AuthenticatedUsersDatabase {
     }
 
     public List<String> getAllAgents() {
-        ResultSet resultSet = db.select("username", "TTBAgentLogin");
+        ResultSet resultSet = db.select("email", "TTBAgentLogin");
         List<String> agents = new ArrayList<>();
         try {
             while (resultSet.next()) {
-                agents.add(resultSet.getString("username"));
+                agents.add(resultSet.getString("email"));
             }
             return agents;
         } catch (Exception e) {
@@ -72,12 +94,12 @@ public class AuthenticatedUsersDatabase {
     /**
      * Checks if Applicant login is valid.
      *
-     * @param userName The username of the applicant
+     * @param email The email of the applicant
      * @param password The password of the applicant
      * @return True if the applicant login is valid, False otherwise
      */
-    public boolean isValidApplicant(String userName, String password) {
-        ResultSet results = db.select("*", "ApplicantLogin", "username = '" + userName +
+    public boolean isValidApplicant(String email, String password) {
+        ResultSet results = db.select("*", "ApplicantLogin", "email = '" + email +
                 "' AND  password = '" + password + "'");
         if (results == null)
             return false;
