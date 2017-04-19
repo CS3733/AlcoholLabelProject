@@ -10,7 +10,7 @@
 <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ToolbarController">
    <children>
       <Label layoutX="31.0" layoutY="-1.0" onMouseClicked="#goHome" prefHeight="96.0" prefWidth="263.0" text="EMERALD ELVES COLA" />
-      <HBox layoutX="550.0" layoutY="22.0" prefHeight="40.0" prefWidth="460.0">
+      <HBox layoutX="550.0" layoutY="26.0" prefHeight="40.0" prefWidth="460.0">
          <children>
             <Button fx:id="extraButton" mnemonicParsing="false" onMouseClicked="#extraFunction" prefHeight="51.0" prefWidth="132.0" style="-fx-background-color: -swatch-green; -fx-font-size: 18;" text="PROFILE">
                <padding>

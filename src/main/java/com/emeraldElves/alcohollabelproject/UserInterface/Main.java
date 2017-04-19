@@ -150,10 +150,6 @@ public class Main extends Application {
         }
     }
 
-    public void loadProfilePage(String username) {
-
-    }
-
     public void loadNewApplicationPage(SubmittedApplication application) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
         try {
@@ -287,6 +283,22 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    public void loadProfilePage(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProfilePage.fxml"));
+        System.out.println("fxml loaded");
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            ProfileController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("other stuff happened");
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

@@ -60,8 +60,9 @@
                                 </Menu>
                                 <Menu mnemonicParsing="false" text="Export">
                                     <items>
-                                        <MenuItem disable="true" mnemonicParsing="false" text="XML" />
+                                        <MenuItem mnemonicParsing="false" onAction="#saveTSV" text="TSV" />
                                         <MenuItem fx:id="contextSaveBtn" mnemonicParsing="false" onAction="#saveCSV" text="CSV" />
+                              <MenuItem mnemonicParsing="false" onAction="#saveUserChar" text="Custom Separator" />
                                     </items>
                                 </Menu>
                             </items>
