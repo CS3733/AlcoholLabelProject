@@ -224,4 +224,20 @@ public class AuthenticatedUsersDatabase {
         }
         return null;
     }
+
+    public List<String> getAllTTBUsernames(){
+        List<String> names = new ArrayList<String>();
+        ResultSet resultSet = db.select("*", "TTBAgentLogin");
+        try{
+            while(resultSet.next()){
+                names.add(resultSet.getString("email"));//should work?? change to username maybe
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return names;
+    }
+
+
 }

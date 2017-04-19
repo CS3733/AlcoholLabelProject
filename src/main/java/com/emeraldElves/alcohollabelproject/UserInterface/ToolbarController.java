@@ -72,6 +72,9 @@ public class ToolbarController implements Initializable {
         if (Authenticator.getInstance().getUserType() == UserType.APPLICANT) {
             main.loadProfilePage();
         }
+        if (Authenticator.getInstance().getUserType() == UserType.SUPERAGENT){
+            main.loadSuperagentViewAllApplicationsController();
+        }
     }
 
     @Override

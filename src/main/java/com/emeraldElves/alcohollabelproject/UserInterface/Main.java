@@ -178,6 +178,16 @@ public class Main extends Application {
         }
     }
 
+    public void loadAboutPage() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AboutPage.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void loadNewApplicationPage() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
@@ -315,6 +325,19 @@ public class Main extends Application {
             controller.init(this, potentialUser);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadSuperagentViewAllApplicationsController(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SuperagentViewAllApplications.fxml"));
+        try{
+            Parent root = loader.load();
+            SuperagentViewAllApplicationsController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
+        }
+        catch (IOException e){
             e.printStackTrace();
         }
     }

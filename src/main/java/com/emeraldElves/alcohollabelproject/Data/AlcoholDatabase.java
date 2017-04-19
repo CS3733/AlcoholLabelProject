@@ -300,7 +300,7 @@ public class AlcoholDatabase {
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
                                 + image + "', '"
-                                + info.getQualifications() + "'"
+                                + info.getQualifications() + "', 234"//Fix this please: Needs TTBID
                         //TTBUsername
                         , "SubmittedApplications");
 

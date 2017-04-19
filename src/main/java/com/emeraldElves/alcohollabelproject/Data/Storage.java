@@ -229,10 +229,17 @@ public class Storage {
         return alcoholDB.getAssignedApplications(agentName);
     }
 
+
+    public List<String> getAllTTBUsernames() {
+        return usersDB.getAllTTBUsernames();
+    }
+
     public Applicant getUserFromEmail(String email) {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
+
         else return new Applicant(email,"", 0, 0, "", "");
+
     }
 
 
