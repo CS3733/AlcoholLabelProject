@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Dan on 4/15/2017.
  */
 public class PotentialUser {
-    //TODO: add fields that are added to account stuff
+    //TODO: compare by email, not name
     private String Name,Password, address;//username is now same as email address
     private int representativeID, permitNum;
     private EmailAddress email;

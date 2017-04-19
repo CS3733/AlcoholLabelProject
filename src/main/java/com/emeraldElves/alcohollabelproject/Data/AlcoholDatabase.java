@@ -2,6 +2,10 @@ package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.*;
 
+import com.emeraldElves.alcohollabelproject.IDGenerator.ApplicationIDGenerator;
+import com.emeraldElves.alcohollabelproject.IDGenerator.TTBIDGenerator;
+import com.emeraldElves.alcohollabelproject.IDGenerator.TimeIDGenerator;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -16,6 +20,7 @@ public class AlcoholDatabase {
 
     private Database db;
     private AuthenticatedUsersDatabase usersDatabase;
+    private ApplicationIDGenerator generator;
 
     /**
      * Creates an AlcoholDatabase
@@ -25,6 +30,24 @@ public class AlcoholDatabase {
     public AlcoholDatabase(Database db) {
         this.db = db;
         usersDatabase = new AuthenticatedUsersDatabase(db);
+        generator = new TTBIDGenerator(getAppCount());
+    }
+
+    private int getAppCount() {
+        ResultSet resultSet = db.select("*", "IDGenerator", "id=1");
+        try {
+            if (resultSet.next()) {
+                return resultSet.getInt("appCount");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private void incrementAppCount(){
+        int appCount = getAppCount() + 1;
+        db.update("IDGenerator", "appCount = " + String.valueOf(appCount), "id=1");
     }
 
     // TODO: finish getMostRecentApproved
@@ -93,6 +116,7 @@ public class AlcoholDatabase {
 
         return applications;
     }
+
     /**
      * Search by the brand or fanciful name of alcohol.
      *
@@ -110,6 +134,7 @@ public class AlcoholDatabase {
         }
         return applications;
     }
+
     /**
      * Search by the brand name of alcohol.
      *
@@ -127,6 +152,7 @@ public class AlcoholDatabase {
         }
         return applications;
     }
+
     /**
      * Search by the fanciful name of alcohol.
      *
@@ -144,6 +170,7 @@ public class AlcoholDatabase {
         }
         return applications;
     }
+
     /**
      * Submit an application for review.
      *
@@ -166,10 +193,12 @@ public class AlcoholDatabase {
 
         //Image name
         String image;
-        if(application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
-        //if(false)
+        if (application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+            //if(false)
             image = application.getImage().getFileName();
-        else{ image = ""; }
+        else {
+            image = "";
+        }
 
 
         //
@@ -200,7 +229,7 @@ public class AlcoholDatabase {
         }*/
 
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
-        
+
         try {
             if (resultsSubmitted.next()) {
                 db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
@@ -216,7 +245,8 @@ public class AlcoholDatabase {
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
                         + image + "'", "applicationID = "
-                        + application.getApplicationID());
+                        + application.getApplicationID() + ", qualifications = '"
+                        + info.getQualifications() + "'");
 
 
                 db.update("ManufacturerInfo", "authorizedName = '"
@@ -269,7 +299,8 @@ public class AlcoholDatabase {
                                 + appType.isLabelApproval() + ", '"
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
-                                + image + "'"
+                                + image + "', '"
+                                + info.getQualifications() + "'"
                         //TTBUsername
                         , "SubmittedApplications");
 
@@ -371,14 +402,13 @@ public class AlcoholDatabase {
                 String fileName = submittedResult.getString("imageURL");
 
 
-
                 ManufacturerInfo manufacturerInfo = getManufacturerInfoByID(id);
 
                 AlcoholInfo alcoholInfo = getAlcoholInfoByID(id);
 
 
                 ApplicationInfo info = new ApplicationInfo(subDate, manufacturerInfo, alcoholInfo,
-                        extraInfo, new ApplicationType(labelApproval,stateOnly,bottleCapacity));
+                        extraInfo, new ApplicationType(labelApproval, stateOnly, bottleCapacity));
 
                 SubmittedApplication application = new SubmittedApplication(info, status, applicant);
                 application.setImage(new ProxyLabelImage(fileName));
@@ -533,7 +563,8 @@ public class AlcoholDatabase {
 
 
     private int generateApplicationID() {
-        return (int) System.currentTimeMillis();
+        incrementAppCount();
+        return Integer.valueOf(generator.generateID());
     }
 
     public List<SubmittedApplication> getApproved() {

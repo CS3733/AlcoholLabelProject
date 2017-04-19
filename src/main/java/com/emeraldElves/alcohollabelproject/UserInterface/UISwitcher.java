@@ -21,6 +21,7 @@ public class UISwitcher {
     public static String WORKFLOW_PAGE = "/fxml/workflowController.fxml";
     public static String WORKFLOW_ACTIONS_PAGE = "/fxml/ApprovalPage.fxml";
     public static String APPLICANT_WORKFLOW_PAGE = "/fxml/ApplicantWorkflowPage.fxml";
+    private Main main;
 
 
     private static UISwitcher instance;
@@ -32,6 +33,14 @@ public class UISwitcher {
         return instance;
     }
 
+
+    public void setMain(Main main){
+        this.main = main;
+    }
+
+    public Main getMain(){
+        return main;
+    }
 
     public void setStage(Stage stage){
         this.stage = stage;

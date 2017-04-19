@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.HomeController">
+<GridPane alignment="center" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.HomeController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
+        <RowConstraints minHeight="96.0" />
       <RowConstraints />
       <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="624.0" prefWidth="1024.0" GridPane.rowIndex="2">
+        <Pane prefHeight="675.0" prefWidth="1024.0" GridPane.rowIndex="2">
             <children>
-            <TextField fx:id="searchbox" layoutX="341.0" layoutY="19.0" prefHeight="36.0" prefWidth="360.0" promptText="Search..." />
-            <Button layoutX="726.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" styleClass="button-raised" text="Search" />
-                <GridPane layoutX="98.0" layoutY="140.0" prefHeight="395.0" prefWidth="838.0">
+            <TextField fx:id="searchbox" layoutX="93.0" layoutY="49.0" prefHeight="36.0" prefWidth="575.0" promptText="Search..." styleClass="search-box" />
+            <Button layoutX="565.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#searchDatabase" prefHeight="56.0" prefWidth="103.0" style="-fx-border-radius: 0;" styleClass="button-flat" text="SEARCH" />
+                <GridPane layoutX="93.0" layoutY="204.0" prefHeight="407.0" prefWidth="838.0" styleClass="card">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -38,48 +38,59 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label fx:id="label0" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                            <font>
-                                <Font size="24.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                            <font>
-                                <Font size="24.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="label2" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                            <font>
-                                <Font size="24.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="label3" alignment="CENTER" contentDisplay="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-                            <font>
-                                <Font size="24.0" />
-                            </font>
-                        </Label>
-                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="802.0" text="Recently Approved Beverages" />
+                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="802.0" style="-fx-border-width: 1;" styleClass="card-title" text="RECENTLY APPROVED BEVERAGES">
+                     <GridPane.margin>
+                        <Insets bottom="16.0" />
+                     </GridPane.margin></Label>
+                  <AnchorPane fx:id="alc1" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 2 0 2 0 !important;" styleClass="recent-alcohol" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="brand1" layoutX="90.0" layoutY="15.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="BRAND NAME" />
+                        <Label fx:id="fanciful1" layoutX="90.0" layoutY="40.0" text="Fanciful Name" />
+                        <Label fx:id="date1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="664.0" layoutY="19.0" prefHeight="20.0" prefWidth="132.0" text="MMM dd, YYYY" textAlignment="RIGHT" />
+                        <Label fx:id="content1" alignment="CENTER_RIGHT" layoutX="730.0" layoutY="41.0" prefHeight="20.0" prefWidth="61.0" text="XX %" />
+                        <ImageView fx:id="image1" fitHeight="60.0" fitWidth="60.0" layoutX="8.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="alc2" prefHeight="200.0" prefWidth="200.0" styleClass="recent-alcohol" GridPane.rowIndex="2">
+                     <children>
+                        <Label fx:id="brand2" layoutX="90.0" layoutY="15.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="BRAND NAME" />
+                        <Label fx:id="fanciful2" layoutX="90.0" layoutY="40.0" text="Fanciful Name" />
+                        <Label fx:id="date2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="664.0" layoutY="19.0" prefHeight="20.0" prefWidth="132.0" text="MMM dd, YYYY" textAlignment="RIGHT" />
+                        <Label fx:id="content2" alignment="CENTER_RIGHT" layoutX="730.0" layoutY="41.0" prefHeight="20.0" prefWidth="61.0" text="XX %" />
+                        <ImageView fx:id="image2" fitHeight="60.0" fitWidth="60.0" layoutX="8.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="alc3" prefHeight="200.0" prefWidth="200.0" styleClass="recent-alcohol" GridPane.rowIndex="3">
+                     <children>
+                        <Label fx:id="brand3" layoutX="90.0" layoutY="15.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="BRAND NAME" />
+                        <Label fx:id="fanciful3" layoutX="90.0" layoutY="40.0" text="Fanciful Name" />
+                        <Label fx:id="date3" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="664.0" layoutY="19.0" prefHeight="20.0" prefWidth="132.0" text="MMM dd, YYYY" textAlignment="RIGHT" />
+                        <Label fx:id="content3" alignment="CENTER_RIGHT" layoutX="730.0" layoutY="41.0" prefHeight="20.0" prefWidth="61.0" text="XX %" />
+                        <ImageView fx:id="image3" fitHeight="60.0" fitWidth="60.0" layoutX="8.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="alc4" prefHeight="55.0" prefWidth="806.0" style="-fx-border-width: 0 !important;" styleClass="recent-alcohol" GridPane.rowIndex="4">
+                     <children>
+                        <Label fx:id="brand4" layoutX="90.0" layoutY="15.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="BRAND NAME" />
+                        <Label fx:id="fanciful4" layoutX="90.0" layoutY="40.0" text="Fanciful Name" />
+                        <Label fx:id="date4" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="664.0" layoutY="19.0" prefHeight="20.0" prefWidth="132.0" text="MMM dd, YYYY" textAlignment="RIGHT" />
+                        <Label fx:id="content4" alignment="CENTER_RIGHT" layoutX="730.0" layoutY="41.0" prefHeight="20.0" prefWidth="61.0" text="XX %" />
+                        <ImageView fx:id="image4" fitHeight="60.0" fitWidth="60.0" layoutX="8.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
                     </children>
                 </GridPane>
-            <Button fx:id="utility" layoutX="852.0" layoutY="94.0" mnemonicParsing="false" onMouseClicked="#utilityButton" prefHeight="32.0" prefWidth="121.0" styleClass="button-raised" text="test">
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </Button>
-
-            <Button fx:id="CreateUser" layoutX="51.0" layoutY="556.0" mnemonicParsing="false" onMouseClicked="#createNewUser" styleClass="button-raised" text="Create new user" />
-            <Button layoutX="167.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" styleClass="button-raised" text="I'm Feeling Thirsty" />
-            <Button fx:id="logButton" layoutX="884.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#loadLog" styleClass="button-raised" text="Login" />
+            <Button layoutX="751.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#feelingThirsty" prefHeight="56.0" prefWidth="186.0" styleClass="button-raised" text="I'M FEELING THIRSTY" />
             </children>
         </Pane>
-      <Pane prefHeight="124.0" prefWidth="1024.0">
+      <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <children>
-            <ImageView fitHeight="144.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/ttbmasthead.gif" />
-               </image>
-            </ImageView>
+            <fx:include source="toolbar.fxml" />
          </children>
+         <styleClass>
+            <String fx:value="tool-bar" />
+            <String fx:value="toolbar-colored" />
+         </styleClass>
       </Pane>
     </children>
 </GridPane>

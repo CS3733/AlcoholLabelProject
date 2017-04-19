@@ -2,22 +2,19 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+
+import java.util.Date;
 
 /**
  * Created by Essam on 4/4/2017.
  */
 public class NewUserController {
     @FXML
-    TextField usernameField;
-    @FXML
     PasswordField passwordField;
     @FXML
-    TextField IDNum;
+    TextField representativeID;
     @FXML
     TextField Name;
     @FXML
@@ -27,11 +24,26 @@ public class NewUserController {
     @FXML
     VBox errorMsg;
     @FXML
-    Label typeLabel;
+    TextField permitNumText;
     @FXML
-    DatePicker date;
+    TextField addressText;
+    @FXML
+    RadioButton applicantBtn;
+    @FXML
+    RadioButton agentBtn;
+    @FXML
+    Label accountError;
+    @FXML
+    Label emailError;
+    @FXML
+    Label phoneNumError;
+    @FXML
+    Label permitNumError;
+    @FXML
+    Label repIDError;
 
     private Main main;
+    private int userTypeInt = -1;
 
     public NewUserController() {
 
@@ -39,18 +51,56 @@ public class NewUserController {
 
     public void init(Main main) {
         this.main = main;
+        ToggleGroup accountType = new ToggleGroup();
+        applicantBtn.setToggleGroup(accountType);
+        agentBtn.setToggleGroup(accountType);
     }
 
-    public void createTTBAgent(){
-        String username = usernameField.getText();
+    public void setUserTypeAgent(){
+        userTypeInt = 0;
+        permitNumText.setDisable(true);
+    }
+
+    public void setUserTypeApplicant(){
+        userTypeInt = 1;
+        permitNumText.setDisable(false);
+    }
+
+    public void createPotentialUser(){
+        accountError.setText("");
+        emailError.setText("");
+        phoneNumError.setText("");
+        if(!(applicantBtn.isSelected() || agentBtn.isSelected())) {
+            accountError.setText("You need to select an account type");
+            return;
+        }
+        //Setting all the fields for the new potential user
         String password = passwordField.getText();
         String FullName = Name.getText();
-        UserType userType = UserType.fromInt(Integer.parseInt(typeLabel.getText()));
-        int IDnum = Integer.parseInt(IDNum.getText());
-        java.util.Date newDate =DateHelper.getDate(date.getValue().getDayOfMonth(),date.getValue().getMonthValue() - 1,date.getValue().getYear());
+        UserType userType = UserType.fromInt(userTypeInt);
+        int repID = Integer.parseInt(representativeID.getText());//representative ID
+        java.util.Date newDate = new Date();
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,username,IDnum,Email, PhoneNumber, userType,password, newDate))){
+        if(!PhoneNumber.isValid()){
+            phoneNumError.setText("Enter a valid phone number");
+            return;
+        }
+        if(!Email.isValid()){
+            emailError.setText("Enter a valid email address");
+            return;
+        }
+        int permitNum;
+        if(permitNumText.isDisabled()){
+            permitNum = -1;
+        }
+        else{
+            permitNum = Integer.parseInt(permitNumText.getText());//check if field is not null
+        }
+        String address = addressText.getText();
+
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
+                password, newDate, permitNum, address))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
@@ -58,22 +108,30 @@ public class NewUserController {
         }
     }
 
+
+    //shouldn't be needed anymore
+    /*
     public void createApplicant(){
-        String username = usernameField.getText();
+        //Setting all the fields for the new potential user
         String password = passwordField.getText();
-        UserType userType = UserType.fromInt(Integer.parseInt(typeLabel.getText()));
         String FullName = Name.getText();
-        int IDnum = Integer.parseInt(IDNum.getText());
+        UserType userType = UserType.APPLICANT;
+        int repID = Integer.parseInt(representativeID.getText());//representative ID
         java.util.Date newDate =DateHelper.getDate(date.getValue().getDayOfMonth(),date.getValue().getMonthValue() - 1,date.getValue().getYear());
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,username,IDnum,Email, PhoneNumber, userType,password, newDate))){
+        int permitNum = Integer.parseInt(permitNumText.getText());
+        String address = addressText.getText();
+
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
+                password, newDate, permitNum, address))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
         }
     }
+    */
 
     public void GoHome(){
         main.loadHomepage();

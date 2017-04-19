@@ -20,6 +20,10 @@ public class ApplicantInterface {
         applicant = new Applicant(storage.getApplicationsByApplicant(username));
     }
 
+    public Applicant getApplicant() {
+        return applicant;
+    }
+
     public boolean submitApplication(SubmittedApplication application){
         boolean submitted = storage.submitApplication(application, username);
         if(submitted){

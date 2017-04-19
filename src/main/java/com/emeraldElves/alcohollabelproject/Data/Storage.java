@@ -27,19 +27,43 @@ public class Storage {
     private Database initDatabase(String dbName) {
         Database database = new Database(dbName);
         database.connect();
+
         try {
-            database.createTable("TTBAgentLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
-            Log.console("Created new TTBAgentLogin table");
+            database.createTable("IDGenerator", new Database.TableField("id", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("appCount", "INTEGER NOT NULL"));
+            database.insert("1, 0", "IDGenerator");
+            Log.console("Created new IDGenerator table");
         } catch (SQLException e) {
-            Log.console("Used existing TTBAgentLogin table");
+            Log.console("Used existing IDGenerator table");
         }
 
         try {
-            database.createTable("ApplicantLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("password", "VARCHAR (255) NOT NULL"));
+                    database.createTable("TTBAgentLogin",
+                            new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
+                            new Database.TableField("password", "VARCHAR (255) NOT NULL"),
+                            new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                            new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                            new Database.TableField("address", "VARCHAR (255)"),
+                            new Database.TableField("phoneNumber", "VARCHAR (255)"),
+                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+            Log.console("Created new TTBAgentLogin table");
+        }
+        catch (SQLException e){
+            Log.console("Used existing TTBAgentLogin table");
+        }
+
+        try{
+            database.createTable("ApplicantLogin",
+                    new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("password", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("address", "VARCHAR (255)"),
+                    new Database.TableField("phoneNumber", "VARCHAR (255)"),
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
             Log.console("Created new ApplicantLogin table");
-        } catch (SQLException e) {
+        }
+        catch (SQLException e){
             Log.console("Used existing ApplicantLogin table");
         }
 
@@ -59,7 +83,8 @@ public class Storage {
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
                     new Database.TableField("imageURL", "VARCHAR (255)"),
-                    new Database.TableField("qualifications", "VARCHAR (10000)"));
+                    new Database.TableField("qualifications", "VARCHAR (10000)"),
+                    new Database.TableField("TTBID", "INTEGER UNIQUE NOT NULL"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
@@ -96,6 +121,7 @@ public class Storage {
         } catch (SQLException e) {
             Log.console("Used existing AlcoholInfo table");
         }
+<<<<<<< HEAD
         try {
             database.createTable("HistoricalAlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
@@ -135,6 +161,20 @@ public class Storage {
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
+=======
+        try{
+            database.createTable("NewApplicant",
+                    new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("password", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
+                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("address", "VARCHAR (255)"),
+                    new Database.TableField("phoneNumber", "VARCHAR (255)"),
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("date", "BIGINT"));
+            Log.console("Created new NewApplicant table");
+>>>>>>> develop
         }
 
         try {
@@ -175,30 +215,14 @@ public class Storage {
     }
 
     public boolean createUser(PotentialUser user) {
-        if (user.getUserType() == UserType.TTBAGENT) {
-            return db.insert("'" + user.getName()
-                    + "', '" + user.getPassword() + "', "
-                    + user.getUserType().getValue() + ", "
-                    + user.getRepresentativeID() + ", "
-                    + user.getPermitNum() + ", '"
-                    + user.getAddress() + "', '"
-                    + user.getPhoneNumber().getPhoneNumber() + "', '"
-                    + user.getEmail().getEmailAddress() + "'"
-                    , "TTBAgentLogin");
-        } else {
-            return db.insert("'" + user.getName()
-                            + "', '" + user.getPassword() + "', "
-                            + user.getUserType().getValue() + ", "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
-                            + user.getAddress() + "', '"
-                            + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
-                    , "ApplicantLogin");
-        }
+        return usersDB.createUser(user);
     }
+
     public void deleteUser(PotentialUser potentialUser) {
-        db.delete("NewApplicant",potentialUser.getEmail().getEmailAddress());
+        db.delete("NewApplicant","email = '" + potentialUser.getEmail().getEmailAddress() + "'");
+    }
+    public PotentialUser getUserFromEmail(String email){
+       return usersDB.getUserFromEmail(email);
     }
 
     public boolean applyForUser(PotentialUser user){
@@ -209,6 +233,13 @@ public class Storage {
 
     public List<PotentialUser> getPotentialUsers(){ return usersDB.getPotentialUsers();  }
 
+    /**
+     *
+     * @param usertype The type of user
+     * @param username The email of the user
+     * @param password The password of the user
+     * @return Whether or not it is a valid user
+     */
     public boolean isValidUser(UserType usertype, String username, String password) {
         if (usertype == UserType.TTBAGENT) {
             return usersDB.isValidTTBAgent(username, password);
