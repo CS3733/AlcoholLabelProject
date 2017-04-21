@@ -59,8 +59,9 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            ApplicantWorkflowController controller = loader.getController();
-            controller.init(this);
+            IController controller = loader.getController();
+            Bundle bundle = new Bundle();
+            controller.init(bundle);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,8 +74,10 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            ApprovalProcessController controller = loader.getController();
-            controller.init(this, application);
+            IController controller = loader.getController();
+            Bundle bundle = new Bundle();
+            bundle.putApplication("app",application);
+            controller.init(bundle);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
@@ -86,8 +89,10 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            SuperUserWorkflowController controller = loader.getController();
-            controller.init(this, potentialUser);
+            IController controller = loader.getController();
+            Bundle bundle = new Bundle();
+            bundle.putPotentialUser("user",potentialUser);
+            controller.init(bundle);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,6 +105,7 @@ public class Main extends Application {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
             DetailedSearchController controller = loader.getController();
+            //only one instance of this
             controller.init(this, application, searchTerm);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
