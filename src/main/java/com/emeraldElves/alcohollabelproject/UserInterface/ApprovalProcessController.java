@@ -67,6 +67,7 @@ public class ApprovalProcessController {
     Label applicationID;
 
 
+
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
@@ -110,7 +111,7 @@ public class ApprovalProcessController {
     }
 
     public void GoHome() {
-        main.loadHomepage();
+        main.loadFXML("/fxml/HomePage.fxml");
 
     }
 
@@ -121,7 +122,7 @@ public class ApprovalProcessController {
         changer.changeStatus(new ApproveCommand(application, true));
         changer.commitUpdates();
         //Storage.getInstance().submitApplication(application,);
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
 
     }
 
@@ -130,25 +131,25 @@ public class ApprovalProcessController {
         changer.changeStatus(new RejectCommand(application, reason.getText(), true));
         changer.commitUpdates();
         //Storage.getInstance().rejectApplication(application, reason.getText());
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void PendingReview() {
         application.setStatus(ApplicationStatus.PENDINGREVIEW);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void ApprovedConditionally() {
         application.setStatus(ApplicationStatus.APPROVEDWITHCONDITIONS);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void NeedsCorrections() {
         application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void printPage(){
@@ -159,6 +160,6 @@ public class ApprovalProcessController {
 
     }
     public void viewLabel(){
-        main.loadLabelPage(application);
+        main.loadFXML("/fxml/DisplayLabel.fxml",application);
     }
 }

@@ -54,34 +54,47 @@ public class Main extends Application {
     }
 
 
-    /**
-     * Load an FXML file and set the stage to the new UI.
-     *
-     * @param path The relative path to the FXML file.
-     */
-
-    public static void loadFXML(String path) {
-        FXMLLoader root = null;
+    public void loadFXML(String fxml){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         try {
-            root = new FXMLLoader(Main.class.getResource(path));
-            stage.getScene().setRoot(root.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void loadFXML(String path, NewApplicationController controller) {
-        FXMLLoader root = null;
-        try {
-            root = new FXMLLoader(Main.class.getResource(path));
-            root.setController(controller);
-            stage.getScene().setRoot(root.load());
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            ApplicantWorkflowController controller = loader.getController();
+            controller.init(this);
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+
+    public void loadFXML(String fxml, SubmittedApplication application){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            ApprovalProcessController controller = loader.getController();
+            controller.init(this, application);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadFXML(String fxml, PotentialUser potentialUser){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            SuperUserWorkflowController controller = loader.getController();
+            controller.init(this, potentialUser);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
 
     public void loadProfilePage(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProfilePage.fxml"));
@@ -290,7 +303,11 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    */
 
+
+
+    /*
     public void loadApprovalProcessController(SubmittedApplication application) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApprovalPage.fxml"));
         try {
@@ -356,7 +373,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
+    */
     public static void main(String[] args) {
         launch(args);
     }
