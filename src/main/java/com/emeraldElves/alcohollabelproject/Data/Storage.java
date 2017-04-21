@@ -200,6 +200,24 @@ public class Storage {
         }
         return false;
     }
+    public void updatePassword(String username, String password){
+        if( usersDB.isValidTTBAgentAccount(username)){
+            usersDB.updatePasswordTTBAgent(password,username);
+        }
+        else if( usersDB.isValidTTBAgentAccount(username)) {
+            usersDB.updatePasswordApplicant(password,username);
+        }
+    }
+
+    public boolean isValidUser( String username) {
+        if( usersDB.isValidTTBAgentAccount(username)){
+            return(true);
+        }
+        else if( usersDB.isValidTTBAgentAccount(username)) {
+            return (true);
+        }
+        return false;
+    }
 
     public List<SubmittedApplication> getRecentlyApprovedApplications(int numApps) {
         return alcoholDB.getMostRecentApproved(numApps);
