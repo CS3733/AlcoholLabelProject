@@ -113,7 +113,7 @@ public class SearchController {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     SubmittedApplication rowData = row.getItem();
-                    main.loadDetailedSearchPage(rowData, searchTerm);
+                    main.loadFXML("/fxml/DetailedSearchPage.fxml",rowData, searchTerm);
                 }
             });
             return row;
