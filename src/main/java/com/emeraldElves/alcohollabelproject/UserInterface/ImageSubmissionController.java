@@ -2,12 +2,12 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.UserInterface.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,9 +33,12 @@ public class ImageSubmissionController {
     }
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.bmp", "*.png", "*.jpg", "*.gif");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files","*.png","*.jpg","*.jpeg","*.gif");
         fileChooser.getExtensionFilters().add(extFilter);
         file = fileChooser.showOpenDialog(null);
+        if (file == null){
+            file = new File("");
+        }
         Path source = Paths.get((file.getPath()));
         Path targetDir = Paths.get("Labels");
         try {
