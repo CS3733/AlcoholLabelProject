@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
+import com.emeraldElves.alcohollabelproject.Data.PhoneNumber;
 import com.emeraldElves.alcohollabelproject.Log;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -29,7 +30,7 @@ public class ProfileController {
     private int representativeID;
     private int permitNum;
     private String address;
-    private String phoneNum;
+    private PhoneNumber phoneNum;
 
     public ProfileController() {
 
@@ -46,13 +47,14 @@ public class ProfileController {
         Log.console(representativeID);
         permitNum = applicant.getApplicant().getPermitNumFromDB(emailAddress);
         address = applicant.getApplicant().getAddressFromDB(emailAddress);
-        phoneNum = applicant.getApplicant().getPhoneNumFromDB(emailAddress);
+        phoneNum = new PhoneNumber(applicant.getApplicant().getPhoneNum());
+        //phoneNum = applicant.getApplicant().getPhoneNumFromDB(emailAddress);
 
         // set text values to current values
         representativeIDField.setText(Integer.toString(representativeID));
         permitNumField.setText(Integer.toString(permitNum));
         addressField.setText(address);
-        phoneNumField.setText(phoneNum);
+        phoneNumField.setText(phoneNum.getPhoneNumber());
         emailAddressField.setText(emailAddress);
     }
 
@@ -70,15 +72,22 @@ public class ProfileController {
         applicant.getApplicant().setAddress(emailAddress, address);
     }
     public void modifyPhoneNum() {
-        phoneNum = phoneNumField.getText();
-        applicant.getApplicant().setPhoneNum(emailAddress, phoneNum);
+        phoneNum = new PhoneNumber(phoneNumField.getText());
+        applicant.getApplicant().setPhoneNum(emailAddress, phoneNum.getPhoneNumber());
     }
     public void modifyEmailAddress() {
         emailAddress = emailAddressField.getText();
         applicant.getApplicant().setEmailAddress();
     }
 
-    public void returnHome() {
+
+    public void returnHome()
+    {
+        modifyRepresentativeID();
+        modifyPermitNum();
+        modifyAddress();
+        modifyPhoneNum();
+        modifyEmailAddress();
         main.loadHomepage();
     }
 }

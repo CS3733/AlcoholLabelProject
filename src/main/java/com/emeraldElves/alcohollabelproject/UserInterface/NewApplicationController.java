@@ -142,7 +142,7 @@ public class NewApplicationController {
     private String serialNum;
     private String extraInfo;
     private AlcoholInfo appAlcoholInfo = null;
-
+    private  File file;
     private Main main;
 
     private SubmittedApplication application;
@@ -199,6 +199,10 @@ public class NewApplicationController {
 
         Boolean formFilled = false;
         Boolean fieldsValid = false;
+
+        //getting and storing the image
+
+
 
         //filling out application type
         boolean labelApproval;
@@ -409,9 +413,18 @@ public class NewApplicationController {
 
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg","*jpeg","*png");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.png", "*.jpg", "*.jpeg", "*.gif");
         fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(null);
+        file = fileChooser.showOpenDialog(null);
+        if (file == null) {
+            file = new File("");
+        }
+        Image image = new Image(file.toURI().toString());
+        imageView.setImage(image);
+
+    }
+
+    public void saveImage(File file){
         java.nio.file.Path source = Paths.get((file.getPath()));
         java.nio.file.Path targetDir = Paths.get("Labels");
         try {
@@ -426,10 +439,7 @@ public class NewApplicationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image image = new Image(target.toUri().toString());
-        imageView.setImage(image);
-       proxyLabelImage = new ProxyLabelImage(fileName);
-        //application.setImage(proxyLabelImage);
+        proxyLabelImage = new ProxyLabelImage(fileName);
     }
    
 }
