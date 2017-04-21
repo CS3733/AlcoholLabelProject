@@ -35,12 +35,12 @@ public class SuperUserWorkflowController {
     public void Approve() {
         Storage.getInstance().createUser(UserforApproval);
         Storage.getInstance().deleteUser(UserforApproval);
-        main.loadNewUserApplicationDisplayController();
+        main.loadFXML("/fxml/SuperagentWorkflowPage.fxml");
     }
 
     public void Reject() {
         Storage.getInstance().deleteUser(UserforApproval);
-        main.loadNewUserApplicationDisplayController();
+        main.loadFXML("/fxml/SuperagentWorkflowPage.fxml");
 
     }
 
@@ -55,7 +55,7 @@ public class SuperUserWorkflowController {
     //on accept, add it the TTB agent / applicant table (method is in storage)
 
 
-    public void goHome(){ main.loadHomepage();}
+    public void goHome(){ main.loadFXML("/fxml/HomePage.fxml");}
 
 
 }

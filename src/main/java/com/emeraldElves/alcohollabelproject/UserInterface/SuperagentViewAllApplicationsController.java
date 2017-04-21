@@ -64,7 +64,7 @@ public class SuperagentViewAllApplicationsController {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     SubmittedApplication rowData = row.getItem();
-                    main.loadApprovalProcessController(rowData);
+                    main.loadFXML("/fxml/ApprovalPage.fxml",rowData);
                 }
             });
             return row;
