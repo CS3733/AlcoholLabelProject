@@ -357,13 +357,13 @@ public class NewApplicationController {
                 ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
                 boolean success = applicantInterface.submitApplication(newApp);
 
-                main.loadHomepage();
+                main.loadFXML("/fxml/HomePage.fxml");
             }
         }
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
     }
 
     public void saveApp() {
@@ -373,7 +373,7 @@ public class NewApplicationController {
 
     public void logout() {
         Authenticator.getInstance().logout();
-        main.loadHomepage();
+        main.loadFXML("/fxml/HomePage.fxml");
     }
 
     public boolean isInt(TextField txt){
