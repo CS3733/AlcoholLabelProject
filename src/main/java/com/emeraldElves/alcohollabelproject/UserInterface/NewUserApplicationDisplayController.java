@@ -93,7 +93,7 @@ public class NewUserApplicationDisplayController {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     PotentialUser rowData = row.getItem();
-                    main.loadSuperUserWorkflowController(rowData);
+                    main.loadFXML("/fxml/AccountApplicationPage.fxml",rowData);
                 }
             });
             return row;
@@ -103,7 +103,7 @@ public class NewUserApplicationDisplayController {
 
 
     public void goHome() {
-        main.loadHomepage();
+        main.loadFXML("/fxml/HomePage.fxml");
     }
 
 }
