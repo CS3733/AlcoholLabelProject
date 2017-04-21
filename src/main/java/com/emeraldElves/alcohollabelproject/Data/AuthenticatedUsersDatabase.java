@@ -134,6 +134,8 @@ public class AuthenticatedUsersDatabase {
             return false;
         }
     }
+
+
     public boolean isValidSuperUser(String userName, String password){
         if(userName.equals("JoseWong")) {
             if (password.equals("password")) {

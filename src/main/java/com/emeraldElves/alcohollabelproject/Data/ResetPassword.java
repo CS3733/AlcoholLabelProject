@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -16,7 +17,7 @@ public class ResetPassword {
     private int minimum = 10000000, maximum = 99999999;
     private Properties props;
     private Session session;
-
+    private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
     public void resetEmail(String accountEmail){
         this.accountEmail = accountEmail;
         if(Authenticator.getInstance().isvalidAccount(accountEmail)){
@@ -32,7 +33,7 @@ public class ResetPassword {
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
-            Storage.getInstance().updatePassword(accountEmail,randomNum);
+            Storage.getInstance().updatePassword(accountEmail,passwordEncryptor.encryptPassword(randomNum));
         }
     }
     private void EmailManager(){

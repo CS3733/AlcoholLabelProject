@@ -200,6 +200,7 @@ public class Storage {
         }
         return false;
     }
+
     public void updatePassword(String username, String password){
         if( usersDB.isValidTTBAgentAccount(username)){
             usersDB.updatePasswordTTBAgent(password,username);
@@ -214,6 +215,16 @@ public class Storage {
             return(true);
         }
         else if( usersDB.isValidTTBAgentAccount(username)) {
+            return (true);
+        }
+        return false;
+    }
+
+    public boolean isValidUser( String username, String password) {
+        if( usersDB.isValidAccount(username, password)){
+            return(true);
+        }
+        else if( usersDB.isValidTTBAgent(username, password)) {
             return (true);
         }
         return false;
