@@ -64,6 +64,7 @@ public class Main extends Application {
             root.getStylesheets().add("/style/material.css");
             IController controller = loader.getController();
             Bundle bundle = new Bundle();
+            bundle.putMain("main",this);
             controller.init(bundle);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
@@ -86,6 +87,7 @@ public class Main extends Application {
             IController controller = loader.getController();
             Bundle bundle = new Bundle();
             bundle.putApplication("app",application);
+            bundle.putMain("main",this);
             controller.init(bundle);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
@@ -106,6 +108,7 @@ public class Main extends Application {
             IController controller = loader.getController();
             Bundle bundle = new Bundle();
             bundle.putPotentialUser("user",potentialUser);
+            bundle.putMain("main",this);
             controller.init(bundle);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
