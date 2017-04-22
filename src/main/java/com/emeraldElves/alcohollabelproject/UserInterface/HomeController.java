@@ -94,7 +94,7 @@ public class HomeController {
     private COLASearch search;
 
     public void aboutProject(){
-        main.loadAboutPage();
+        main.loadFXML("/fxml/AboutPage.fxml");
     }
     public HomeController() {
         mostRecentLabels = new ArrayList<>();
@@ -113,10 +113,10 @@ public class HomeController {
     public void utilityButton() {
         switch (Authenticator.getInstance().getUserType()) {
             case TTBAGENT:
-                main.loadWorkflowPage();
+                main.loadFXML("/fxml/TTBWorkflowPage.fxml");
                 break;
             case APPLICANT:
-                main.loadApplicantWorkflowPage();
+                main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
                 break;
         }
     }
@@ -136,17 +136,17 @@ public class HomeController {
                 main.loadHomepage();
                 break;
             case BASIC:
-                main.loadLoginPage();
+                main.loadFXML("/fxml/Login.fxml");
                 break;
         }
     }
 
     public void loadProfile() {
-        main.loadProfilePage();
+        main.loadFXML("/fxml/ProfilePage.fxml");
     }
 
     public void createNewUser(){
-        main.loadNewUserPage();
+        main.loadFXML("/fxml/NewUser.fxml");
     }
 
 

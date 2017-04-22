@@ -25,6 +25,8 @@ public class Bundle {
 
     public void putMain(String key, Main main){ data.put(key, main);}
 
+    public void putString(String key, String s){ data.put(key, s);}
+
     public SubmittedApplication getApplication(String key) {
         return (SubmittedApplication) data.get(key);
     }
@@ -32,5 +34,7 @@ public class Bundle {
     public PotentialUser getPotentialUser(String key){ return (PotentialUser) data.get(key);}
 
     public Main getMain(String key){ return (Main) data.get(key);}
+
+    public String getString(String key){ return (String) data.get(key);}
 
 }

@@ -36,6 +36,10 @@ public class UpdateApplicationController {
     SubmittedApplication CurrentlyBeingUpdated;
     ApplicantInterface applicantInterface;
 
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getApplication("app"));
+    }
+
 
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated) {
         this.main = main;

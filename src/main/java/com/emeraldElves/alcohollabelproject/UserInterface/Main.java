@@ -73,6 +73,23 @@ public class Main extends Application {
 
     }
 
+    public void loadFXML(String fxml, String searchTerm){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            IController controller = loader.getController();
+            Bundle bundle = new Bundle();
+            bundle.putMain("main",this);
+            bundle.putString("searchTerm", searchTerm);
+            controller.init(bundle);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /**
      * Loads the given fxml file, and inits the controller of the file with a bundle of the
      * application

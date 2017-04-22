@@ -10,12 +10,16 @@ import java.util.List;
 /**
  * Created by Dan on 4/15/2017.
  */
-public class SuperUserWorkflowController {
+public class SuperUserWorkflowController implements IController {
     @FXML
     Label Name, Type, PhoneNumber, RepresentativeID, Email, Date, physicalAddress, permitNo;
     List<PotentialUser> users;
     PotentialUser UserforApproval;
     Main main;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getPotentialUser("user"));
+    }
 
     public void init(Main main,PotentialUser UserforApproval){
         this.main = main;
