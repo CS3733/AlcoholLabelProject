@@ -27,6 +27,6 @@ public class DisplayLabelController {
     }
     public void back()
     {
-        main.loadApprovalProcessController(application);
+        main.loadFXML("/fxml/ApprovalPage.fxml",application);
     }
 }

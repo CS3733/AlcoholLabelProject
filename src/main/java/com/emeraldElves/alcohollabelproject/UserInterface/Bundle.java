@@ -23,10 +23,14 @@ public class Bundle {
 
     public void putPotentialUser(String key, PotentialUser potentialUser){ data.put(key, potentialUser);}
 
+    public void putMain(String key, Main main){ data.put(key, main);}
+
     public SubmittedApplication getApplication(String key) {
         return (SubmittedApplication) data.get(key);
     }
 
     public PotentialUser getPotentialUser(String key){ return (PotentialUser) data.get(key);}
+
+    public Main getMain(String key){ return (Main) data.get(key);}
 
 }

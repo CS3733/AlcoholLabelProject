@@ -359,7 +359,7 @@ public class UpdateApprovedAppController {
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
     }
 
     public void saveApp() {
