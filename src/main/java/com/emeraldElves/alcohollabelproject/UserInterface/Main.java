@@ -53,7 +53,10 @@ public class Main extends Application {
         }
     }
 
-
+    /**
+     * Loads the given fxml file, and inits the controller of the file
+     * @param fxml File to load
+     */
     public void loadFXML(String fxml){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         try {
@@ -69,6 +72,12 @@ public class Main extends Application {
 
     }
 
+    /**
+     * Loads the given fxml file, and inits the controller of the file with a bundle of the
+     * application
+     * @param fxml File to be loaded
+     * @param application Application to be bundled
+     */
     public void loadFXML(String fxml, SubmittedApplication application){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         try {
@@ -84,6 +93,11 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Loads the given fxml file, and inits the controller of the file
+     * @param fxml The fxml file to be loaded
+     * @param potentialUser The potential user to be bundled
+     */
     public void loadFXML(String fxml, PotentialUser potentialUser){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         try {
@@ -99,6 +113,12 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Loads the fxml file when looking at detailed search
+     * @param fxml File to be loaded
+     * @param application Application to be looked at
+     * @param searchTerm Search term to look at
+     */
     public void loadFXML(String fxml, SubmittedApplication application, String searchTerm){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         try {
