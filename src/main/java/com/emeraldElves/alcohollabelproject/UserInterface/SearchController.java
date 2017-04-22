@@ -27,7 +27,7 @@ import java.util.*;
 /**
  * Created by Essam on 4/2/2017.
  */
-public class SearchController {
+public class SearchController implements IController{
 
     private Main main;
     private String searchTerm;
@@ -69,6 +69,10 @@ public class SearchController {
         this.search = new COLASearch();
         searchTermSubject = new SearchSubject();
         new SearchObserver(searchTermSubject, data);
+    }
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getString("searchTerm"));
     }
 
     public void init(Main main, String searchTerm) {

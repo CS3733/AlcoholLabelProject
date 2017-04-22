@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * Created by Harry and Joe on 4/2/2017.
  */
-public class HomeController {
+public class HomeController implements IController {
     public ArrayList<Label> mostRecentLabels;
     public ArrayList<SubmittedApplication> mostRecentSubmissions;
     public List<SubmittedApplication> submitted;
@@ -151,7 +151,7 @@ public class HomeController {
 
 
     public void searchDatabase() {
-        main.loadSearchPage(searchbox.getText());
+        main.loadFXML("/fxml/Search.fxml",searchbox.getText());
     }
 
     public void feelingThirsty() {
@@ -165,7 +165,11 @@ public class HomeController {
             application = applications.get(pos);
         }
         if (application != null)
-            main.loadDetailedSearchPage(application, application.getApplication().getAlcohol().getBrandName());
+            main.loadFXML("/fxml/DetailedSearchPage.fxml", application, application.getApplication().getAlcohol().getBrandName());
+    }
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
     }
 
     public void init(Main main) {
@@ -174,7 +178,7 @@ public class HomeController {
             SubmittedApplication recentApplication = submitted.get(i);
             switch (i) {
                 case 0:
-                    alc1.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
+                    alc1.setOnMouseClicked(event -> main.loadFXML("/fxml/DetailedSearchPage.fxml", recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
                     brand1.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
                     fanciful1.setText(recentApplication.getApplication().getAlcohol().getName());
                     content1.setText(recentApplication.getApplication().getAlcohol().getAlcoholContent() + "%");
@@ -183,7 +187,7 @@ public class HomeController {
                     ImageUtils.centerImage(image1);
                     break;
                 case 1:
-                    alc2.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
+                    alc2.setOnMouseClicked(event -> main.loadFXML("/fxml/DetailedSearchPage.fxml", recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
                     brand2.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
                     fanciful2.setText(recentApplication.getApplication().getAlcohol().getName());
                     content2.setText(recentApplication.getApplication().getAlcohol().getAlcoholContent() + "%");
@@ -192,7 +196,7 @@ public class HomeController {
                     ImageUtils.centerImage(image2);
                     break;
                 case 2:
-                    alc3.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
+                    alc3.setOnMouseClicked(event -> main.loadFXML("/fxml/DetailedSearchPage.fxml", recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
                     brand3.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
                     fanciful3.setText(recentApplication.getApplication().getAlcohol().getName());
                     content3.setText(recentApplication.getApplication().getAlcohol().getAlcoholContent() + "%");
@@ -201,7 +205,7 @@ public class HomeController {
                     ImageUtils.centerImage(image3);
                     break;
                 case 3:
-                    alc4.setOnMouseClicked(event -> main.loadDetailedSearchPage(recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
+                    alc4.setOnMouseClicked(event -> main.loadFXML("/fxml/DetailedSearchPage.fxml", recentApplication, recentApplication.getApplication().getAlcohol().getBrandName()));
                     brand4.setText(recentApplication.getApplication().getAlcohol().getBrandName().toUpperCase());
                     fanciful4.setText(recentApplication.getApplication().getAlcohol().getName());
                     content4.setText(recentApplication.getApplication().getAlcohol().getAlcoholContent() + "%");
