@@ -100,12 +100,12 @@
                   <GridPane layoutX="10.0" layoutY="130.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label text="Keion Bisland" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Interum Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="(Interum) Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="24.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="204.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="28.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="213.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="23.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -117,12 +117,12 @@
                   <GridPane layoutX="266.0" layoutY="130.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
                         <Label text="Daniel McKay" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Interum Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="(Interum) Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="27.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="202.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="27.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="21.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="211.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="24.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -133,13 +133,13 @@
                   </GridPane>
                   <GridPane layoutX="522.0" layoutY="130.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Wyatt Balm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Project Manager" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Joseph Bremner" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Assist. Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="47.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="47.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="26.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="198.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="32.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -158,8 +158,8 @@
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
                   <GridPane GridPane.rowIndex="1">
                      <children>
-                        <Label text="Kyle Corry" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Wyatt Balm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Project Manager" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="47.0" />
@@ -175,8 +175,8 @@
                   </GridPane>
                   <GridPane layoutX="10.0" layoutY="130.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Keion Bisland" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Interum Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Jessie Ying" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Project Owner" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="24.0" />
@@ -192,8 +192,8 @@
                   </GridPane>
                   <GridPane layoutX="266.0" layoutY="130.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Daniel McKay" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Interum Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Elijah Eldredge" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Documentation Analyst" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="27.0" />
@@ -209,8 +209,8 @@
                   </GridPane>
                   <GridPane layoutX="522.0" layoutY="130.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Wyatt Balm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Project Manager" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Essam Al-Mansouri" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="47.0" />
@@ -244,8 +244,8 @@
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
                   <GridPane GridPane.rowIndex="1">
                      <children>
-                        <Label text="Kyle Corry" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Nathan Rose" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="47.0" />
@@ -261,8 +261,8 @@
                   </GridPane>
                   <GridPane layoutX="10.0" layoutY="130.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Keion Bisland" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Interum Lead Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Zhihao Xie" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Software Engineer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="24.0" />
