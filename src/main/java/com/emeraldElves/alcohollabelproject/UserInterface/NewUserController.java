@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by Essam on 4/4/2017.
  */
-public class NewUserController {
+public class NewUserController implements IController {
     @FXML
     PasswordField passwordField;
     @FXML
@@ -58,6 +58,10 @@ public class NewUserController {
     private PasswordStrengthChecker CheckStrength;
     public NewUserController() {
 
+    }
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
     }
 
     public void init(Main main) {

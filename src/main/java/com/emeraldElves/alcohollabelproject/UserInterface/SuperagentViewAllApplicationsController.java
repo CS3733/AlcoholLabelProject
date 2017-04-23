@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Kylec on 4/18/2017.
  */
-public class SuperagentViewAllApplicationsController {
+public class SuperagentViewAllApplicationsController implements IController{
 
     @FXML
     private TableView<SubmittedApplication> resultsTable;
@@ -40,6 +40,10 @@ public class SuperagentViewAllApplicationsController {
     private TTBAgentInterface agentInterface;
 
     private Main main;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
+    }
 
     public void init(Main main) {
         this.main = main;
@@ -64,7 +68,7 @@ public class SuperagentViewAllApplicationsController {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     SubmittedApplication rowData = row.getItem();
-                    main.loadApprovalProcessController(rowData);
+                    main.loadFXML("/fxml/ApprovalPage.fxml",rowData);
                 }
             });
             return row;

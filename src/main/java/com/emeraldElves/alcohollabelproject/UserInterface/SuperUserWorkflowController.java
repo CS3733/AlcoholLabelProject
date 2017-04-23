@@ -14,12 +14,16 @@ import java.util.Properties;
 /**
  * Created by Dan on 4/15/2017.
  */
-public class SuperUserWorkflowController {
+public class SuperUserWorkflowController implements IController {
     @FXML
     Label Name, Type, PhoneNumber, RepresentativeID, Email, Date, physicalAddress, permitNo;
     List<PotentialUser> users;
     PotentialUser UserforApproval;
     Main main;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getPotentialUser("user"));
+    }
 
     public void init(Main main,PotentialUser UserforApproval){
         this.main = main;
@@ -40,14 +44,14 @@ public class SuperUserWorkflowController {
         Storage.getInstance().createUser(UserforApproval);
         SendEmail(UserforApproval.getEmail().getEmailAddress(), "Approved");
         Storage.getInstance().deleteUser(UserforApproval);
-        main.loadNewUserApplicationDisplayController();
-
+        main.loadFXML("/fxml/SuperagentWorkflowPage.fxml");
+        //main.loadNewUserApplicationDisplayController();
     }
 
     public void Reject() {
         SendEmail(UserforApproval.getEmail().getEmailAddress(), "Rejected");
         Storage.getInstance().deleteUser(UserforApproval);
-        main.loadNewUserApplicationDisplayController();
+        main.loadFXML("/fxml/SuperagentWorkflowPage.fxml");
 
     }
 
@@ -62,7 +66,7 @@ public class SuperUserWorkflowController {
     //on accept, add it the TTB agent / applicant table (method is in storage)
 
 
-    public void goHome(){ main.loadHomepage();}
+    public void goHome(){ main.loadFXML("/fxml/HomePage.fxml");}
 
     public static void SendEmail(String Email, String Status){
         Properties props = new Properties();

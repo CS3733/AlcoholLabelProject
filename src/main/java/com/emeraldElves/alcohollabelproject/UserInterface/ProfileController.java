@@ -10,7 +10,7 @@ import com.emeraldElves.alcohollabelproject.Authenticator;
 /**
  * Created by Joe on 4/18/2017.
  */
-public class ProfileController {
+public class ProfileController implements IController {
     // FXML
     @FXML
     TextField representativeIDField;
@@ -34,6 +34,10 @@ public class ProfileController {
 
     public ProfileController() {
 
+    }
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
     }
 
     // note: default field value is empty string ("")
