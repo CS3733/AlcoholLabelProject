@@ -45,7 +45,7 @@ public class SuperUserWorkflowController implements IController {
         SendEmail(UserforApproval.getEmail().getEmailAddress(), "Approved");
         Storage.getInstance().deleteUser(UserforApproval);
         main.loadFXML("/fxml/SuperagentWorkflowPage.fxml");
-        main.loadNewUserApplicationDisplayController();
+        //main.loadNewUserApplicationDisplayController();
     }
 
     public void Reject() {
