@@ -4,6 +4,7 @@ import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.Log;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -136,6 +137,30 @@ public class Storage {
         }
         catch (SQLException e){
             Log.console("Used existing NewApplicant table");
+        }
+
+        try{
+            database.createTable("SavedApplications",
+                new Database.TableField("labelApproval", "BOOLEAN"),
+                new Database.TableField("stateOnly", "VARCHAR (2)"),
+                new Database.TableField("bottleCapacity", "INTEGER"),
+                new Database.TableField("origin", "INTEGER"),//Domestic or Imported
+                new Database.TableField("type", "INTEGER"),//BEER, WINE or SPIRITS
+                new Database.TableField("fancifulName", "VARCHAR (255)"),
+                new Database.TableField("brandName", "VARCHAR (255)"),
+                new Database.TableField("alcoholContent", "INTEGER"),
+                new Database.TableField("formula", "VARCHAR (255)"),
+                new Database.TableField("serialNumber", "VARCHAR (255)"),
+                new Database.TableField("pH", "REAL"),
+                new Database.TableField("vintageYear", "INTEGER"),
+                new Database.TableField("varietals", "VARCHAR (255)"),
+                new Database.TableField("wineAppellation", "VARCHAR (255)"),
+                new Database.TableField("extraInfo", "VARCHAR (255)"),
+                new Database.TableField("imageURL", "VARCHAR (255)"));
+
+        }
+        catch (SQLException e){
+            Log.console("Used existing SavedApplications table");
         }
 
         return database;
