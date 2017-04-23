@@ -156,7 +156,9 @@ public class Storage {
                 new Database.TableField("varietals", "VARCHAR (255)"),
                 new Database.TableField("wineAppellation", "VARCHAR (255)"),
                 new Database.TableField("extraInfo", "VARCHAR (255)"),
-                new Database.TableField("imageURL", "VARCHAR (255)"));
+                new Database.TableField("imageURL", "VARCHAR (255)"),
+                new Database.TableField("submitterUsername", "VARCHAR (255)"),
+                new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"));
 
         }
         catch (SQLException e){

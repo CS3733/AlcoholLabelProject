@@ -362,6 +362,117 @@ public class AlcoholDatabase {
         return true;
     }
 
+    public boolean saveApplication(SavedApplication application, String username) {
+        //making application type
+        ApplicationType appType = application.getApplicationType();
+
+        AlcoholInfo alcInfo = application.getAlcoholInfo();
+
+        //Image name
+        String image;
+        if (application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+            //if(false)
+            image = application.getImage().getFileName();
+        else {
+            image = "";
+        }
+
+
+        //
+        boolean worked;//whether or not it added stuff to database
+
+        int appID;
+
+        if (application.getApplicationID() == -1) {
+            appID = generateApplicationID();
+            application.setApplicationID(appID);
+        } else {
+            appID = application.getApplicationID();
+        }
+        ResultSet resultsSubmitted = db.select("*", "SavedApplications", "applicationID = " + appID);
+
+        try {
+            if (resultsSubmitted.next()) {
+                //ID already exists, so we update saved application in table
+                if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
+                    db.update("SavedApplications",
+                                  "labelApproval = " + appType.isLabelApproval() + ", stateOnly = '"
+                                    + appType.getStateOnly() + "', bottleCapacity = "
+                                    + appType.getBottleCapacity() + ", origin = "
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", fancifulName = '"
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', alcoholContent = " //brand name
+                                    + alcInfo.getAlcoholContent() + ", formula = '"//alcohol content
+                                    + alcInfo.getFormula() + "', serialNumber = '" //formula
+                                    + alcInfo.getSerialNumber() + "', pH = " // serial number
+                                    + alcInfo.getWineInfo().pH + ", vintageYear = " //ph
+                                    + alcInfo.getWineInfo().vintageYear + ", varietals = '" //vintage year
+                                    + alcInfo.getWineInfo().grapeVarietal + "', wineAppellation = '" //varietal
+                                    + alcInfo.getWineInfo().appellation + "', extraInfo = '" // appelation
+                                    + application.getExtraInfo() + "', imageURL = '" //Any extra info on application
+                                    + application.getImage().getFileName() + "', submitterUsername = '" //file location of image
+                                    + username + "', applicationID = " //Username of person who saved application
+                                    + appID // ID of saved application. Will change when submitted
+                            , "applicationID = " + application.getApplicationID());
+                } else {
+                    db.update("SavedApplications",
+                            "labelApproval = " + appType.isLabelApproval() + ", stateOnly = '"
+                                    + appType.getStateOnly() + "', bottleCapacity = "
+                                    + appType.getBottleCapacity() + ", origin = "
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", fancifulName = '"
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', alcoholContent = " //brand name
+                                    + alcInfo.getAlcoholContent() + ", formula = '"//alcohol content
+                                    + alcInfo.getFormula() + "', serialNumber = '" //formula
+                                    + alcInfo.getWineInfo().appellation + "', extraInfo = '" // appelation
+                                    + application.getExtraInfo() + "', imageURL = '" //Any extra info on application
+                                    + application.getImage().getFileName() + "', submitterUsername = '" //file location of image
+                                    + username + "', applicationID = " //Username of person who saved application
+                                    + appID // ID of saved application. Will change when submitted
+                            , "applicationID = " + application.getApplicationID());
+                }
+            }
+            else {
+                //No saved application with that ID, so add to table, not update
+                if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
+                    worked = db.insert(appID + ", "
+                                    + alcInfo.getAlcoholContent() + ", '" //alcohol content
+                                    + alcInfo.getName() + "', '" //fanciful name
+                                    + alcInfo.getBrandName() + "', " //brand name
+                                    + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", '" //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
+                                    + alcInfo.getFormula() + "', '" //formula
+                                    + alcInfo.getSerialNumber() + "', "//serial number
+                                    + alcInfo.getWineInfo().pH + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                                    + alcInfo.getWineInfo().vintageYear + ", '" //vintage year: see above comment
+                                    + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
+                                    + alcInfo.getWineInfo().appellation + "'" //appalation
+                            , "AlcoholInfo");
+                } else {
+                    worked = db.insert(appID + ", "
+                                    + alcInfo.getAlcoholContent() + ", '" //alcohol content
+                                    + alcInfo.getName() + "', '" //fanciful name
+                                    + alcInfo.getBrandName() + "', " //brand name
+                                    + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", '"
+                                    + alcInfo.getFormula() + "', '" //formula
+                                    + alcInfo.getSerialNumber() + "'"
+                            , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type, formula, serialNumber)");
+                }
+
+                if (!worked) {
+                    return false;
+                }//didn't add to table so return false
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
 
     public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID) {
         ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);

@@ -8,13 +8,14 @@ public class SavedApplication {
     private ApplicationType applicationType;
     private AlcoholInfo alcoholInfo;
     private String extraInfo;
-    private String imageURL;
+    private LabelImage image;
+    private int applicationID = -1;
 
-    public SavedApplication(ApplicationType applicationType, AlcoholInfo alcoholInfo, String extraInfo, String imageURL) {
+    public SavedApplication(ApplicationType applicationType, AlcoholInfo alcoholInfo, String extraInfo, LabelImage imageURL) {
         this.applicationType = applicationType;
         this.alcoholInfo = alcoholInfo;
         this.extraInfo = extraInfo;
-        this.imageURL = imageURL;
+        this.image = imageURL;
     }
 
     public ApplicationType getApplicationType() {
@@ -29,7 +30,11 @@ public class SavedApplication {
         return extraInfo;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public LabelImage getImage() {
+        return image;
     }
+
+    public int getApplicationID(){ return applicationID;}
+
+    public void setApplicationID(int id){ applicationID = id;}
 }
