@@ -19,7 +19,7 @@ import java.nio.file.StandardCopyOption;
  * Created by keionbis on 4/10/17.
  */
 
-public class ImageSubmissionController {
+public class ImageSubmissionController implements IController {
     @FXML
     Button submitLabel;
     @FXML
@@ -27,6 +27,11 @@ public class ImageSubmissionController {
     File file;
     Main main;
     SubmittedApplication application;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getApplication("app"));
+    }
+
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;

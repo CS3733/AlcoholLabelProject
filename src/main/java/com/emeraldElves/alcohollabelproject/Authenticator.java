@@ -35,6 +35,16 @@ public class Authenticator {
         return false;
     }
 
+    public boolean isvalidAccount(String username) {
+        if (storage.isValidUser(username)) {
+            this.username = username;
+            return true;
+        }
+        return false;
+    }
+
+
+
 
 
     public void logout() {
