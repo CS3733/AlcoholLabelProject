@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class NewApplicationController {
+public class NewApplicationController implements IController {
     @FXML
     TextField repIDNoTextField;
     @FXML
@@ -146,6 +146,20 @@ public class NewApplicationController {
     private Main main;
 
     private SubmittedApplication application;
+
+    /**
+     * Inits a new application, calling a different init if we have a submitted application
+     * vs if we do not have one.
+     * @param bundle Bundle of info passed to this controller
+     */
+    public void init(Bundle bundle) {
+        if (bundle.getApplication("app") != null) {
+            this.init(bundle.getMain("main"), bundle.getApplication("app"));
+        } else {
+            this.init(bundle.getMain("main"));
+
+        }
+    }
 
     public void init(Main main){
         this.main = main;

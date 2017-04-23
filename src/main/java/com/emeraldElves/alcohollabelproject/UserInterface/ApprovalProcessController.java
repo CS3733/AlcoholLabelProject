@@ -16,7 +16,7 @@ import java.util.Date;
  * Created by keionbis on 4/5/17.
  */
 
-public class ApprovalProcessController {
+public class ApprovalProcessController implements IController {
     Main main;
     SubmittedApplication application;
     private TTBAgentInterface agentInterface;
@@ -66,7 +66,9 @@ public class ApprovalProcessController {
     @FXML
     Label applicationID;
 
-
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getApplication("app"));
+    }
 
     public void init(Main main, SubmittedApplication application) {
         this.main = main;

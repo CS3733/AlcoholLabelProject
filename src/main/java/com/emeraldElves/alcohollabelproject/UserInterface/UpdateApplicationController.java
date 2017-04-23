@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * Created by Keion Bisland on 4/2/2017.
  */
 
-public class UpdateApplicationController {
+public class UpdateApplicationController implements IController{
 
     public ApplicationStatus status;//get status from database
     @FXML

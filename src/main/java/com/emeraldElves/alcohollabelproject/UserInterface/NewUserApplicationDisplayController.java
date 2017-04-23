@@ -24,7 +24,7 @@ import java.util.Set;
 /**
  * Created by keionbis on 4/18/17.
  */
-public class NewUserApplicationDisplayController {
+public class NewUserApplicationDisplayController implements IController {
     private Main main;
 
 
@@ -49,7 +49,9 @@ public class NewUserApplicationDisplayController {
     private COLASearch search;
 
 
-
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
+    }
 
     public void init(Main main) {
         this.main = main;
