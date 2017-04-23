@@ -57,7 +57,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                       <image>
-                          <Image backgroundLoading="true" url="com.emeraldElves.alcohollabelproject/resources/images/wwong.jpg" />
+                          <Image backgroundLoading="true" url="@../images/wwong2.jpg" />
                       </image>
                   </ImageView>
                   <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
