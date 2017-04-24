@@ -11,12 +11,17 @@ import java.nio.file.Paths;
 /**
  * Created by keionbis on 4/11/17.
  */
-public class DisplayLabelController {
+public class DisplayLabelController implements IController {
     @FXML
     ImageView labelView;
     Main main;
     Image image;
     SubmittedApplication application;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getApplication("app"));
+    }
+
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
@@ -27,6 +32,6 @@ public class DisplayLabelController {
     }
     public void back()
     {
-        main.loadApprovalProcessController(application);
+        main.loadFXML("/fxml/ApprovalPage.fxml",application);
     }
 }

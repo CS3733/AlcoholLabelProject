@@ -45,7 +45,7 @@ public class ToolbarController implements Initializable {
                 goHome();
                 break;
             case BASIC:
-                main.loadLoginPage();
+                main.loadFXML("/fxml/Login.fxml");
                 break;
         }
     }
@@ -53,27 +53,27 @@ public class ToolbarController implements Initializable {
     public void utilityButton() {
         switch (Authenticator.getInstance().getUserType()) {
             case TTBAGENT:
-                main.loadWorkflowPage();
+                main.loadFXML("/fxml/TTBWorkflowPage.fxml");
                 break;
             case APPLICANT:
-                main.loadApplicantWorkflowPage();
+                main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
                 break;
             case SUPERAGENT:
-                main.loadNewUserApplicationDisplayController();
+                main.loadFXML("/fxml/SuperagentWorkflowPage.fxml");
                 break;
             case BASIC:
                 utility.setVisible(true);
-                main.loadNewUserPage();
+                main.loadFXML("/fxml/NewUser.fxml");
                 break;
         }
     }
 
     public void extraFunction() {
         if (Authenticator.getInstance().getUserType() == UserType.APPLICANT) {
-            main.loadProfilePage();
+            main.loadFXML("/fxml/ProfilePage.fxml");
         }
         if (Authenticator.getInstance().getUserType() == UserType.SUPERAGENT){
-            main.loadSuperagentViewAllApplicationsController();
+            main.loadFXML("/fxml/SuperagentViewAllApplications.fxml");
         }
     }
 

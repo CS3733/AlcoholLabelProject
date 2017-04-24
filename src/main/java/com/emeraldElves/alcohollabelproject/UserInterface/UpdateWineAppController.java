@@ -161,7 +161,7 @@ public class UpdateWineAppController {
     }
 
     public void cancelApp() {
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
     }
 
     public void logout() {
