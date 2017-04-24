@@ -4,8 +4,10 @@ import com.emeraldElves.alcohollabelproject.Data.*;
 import com.emeraldElves.alcohollabelproject.Log;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-
+import javafx.stage.Popup;
 
 import java.util.Date;
 
@@ -49,6 +51,11 @@ public class NewUserController implements IController {
     Label addressError;
     @FXML
     Label repIDError;
+    @FXML
+    Tooltip passwordHint;
+    @FXML
+    ImageView isValid;
+
     private int repID;
     private Main main;
     private int userTypeInt = -1;
@@ -56,6 +63,7 @@ public class NewUserController implements IController {
     private String password;
     private String address;
     private PasswordStrengthChecker CheckStrength;
+    Image image;
     public NewUserController() {
 
     }
@@ -70,6 +78,8 @@ public class NewUserController implements IController {
         applicantBtn.setToggleGroup(accountType);
         agentBtn.setToggleGroup(accountType);
         CheckStrength = new PasswordStrengthChecker();
+        passwordHint.setText("Password must: Contains atleast 8 Characters \n 1 Uppercase character \n 1 Lowercase character \n A digit \n A symbol");
+
     }
 
     public void setUserTypeAgent(){
@@ -123,8 +133,9 @@ public class NewUserController implements IController {
         }
 
 
-        if(permitNumText.isEditable()&&permitNumText.getText().trim().isEmpty()){
+        if(permitNumText.isEditable()&&permitNumText.getText().trim().isEmpty()&&applicantBtn.isSelected()){
             permitNumError.setText("Enter a valid permit number");
+
             return;
         }
 
@@ -166,7 +177,8 @@ public class NewUserController implements IController {
         password = passwordField.getText();
         permitNum = Integer.parseInt(representativeID.getText());//check if field is not null
         address = addressText.getText();//representative ID
-        repID = Integer.parseInt(permitNumText.getText());//check if field is not null
+
+
         FullName = Name.getText();
 
 
@@ -180,34 +192,19 @@ public class NewUserController implements IController {
         }
     }
 
-
-    //shouldn't be needed anymore
-    /*
-    public void createApplicant(){
-        //Setting all the fields for the new potential user
-        String password = passwordField.getText();
-        String FullName = Name.getText();
-        UserType userType = UserType.APPLICANT;
-        int repID = Integer.parseInt(representativeID.getText());//representative ID
-        java.util.Date newDate =DateHelper.getDate(date.getValue().getDayOfMonth(),date.getValue().getMonthValue() - 1,date.getValue().getYear());
-        EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
-        PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        int permitNum = Integer.parseInt(permitNumText.getText());
-        String address = addressText.getText();
-
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
-                password, newDate, permitNum, address))){
-            errorMsg.setVisible(false);
-            main.loadHomepage();
-        } else {
-            errorMsg.setVisible(true);
-        }
-    }
-    */
-
     public void checkPassword(){
-        if(CheckStrength.isPasswordValid(passwordField.getText())){
-            Log.console("Good");
+        final Popup popup = new Popup();
+        //popup.show();
+        passwordHint.setText("Password must: Contains atleast 8 Characters \n - A Uppercase character \n - A Lowercase character \n - A digit \n - A symbol");
+        for(int i = 0;i<1;i++) {
+            Log.console(passwordField.getText());
+            if (!CheckStrength.isPasswordValid(passwordField.getText())) {
+                image = new Image("/images/X.png");
+                isValid.setImage(image);
+            } else if (CheckStrength.isPasswordValid(passwordField.getText())) {
+                image = new Image("/images/Tick.png");
+                isValid.setImage(image);
+            }
         }
 
     }
