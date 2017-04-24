@@ -293,8 +293,7 @@ public class NewApplicationController {
                 applicant.addSubmittedApp(newApp);
                 if(proxyLabelImage!= null) {
                     newApp.setImage(proxyLabelImage);
-                }
-                else{
+                } else{
                     newApp.setImage(new ProxyLabelImage(""));
                 }
 
