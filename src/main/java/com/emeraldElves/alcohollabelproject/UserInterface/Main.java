@@ -166,7 +166,7 @@ public class Main extends Application {
     }
 
     public void loadNewApplicationPage(SubmittedApplication application) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
@@ -190,7 +190,7 @@ public class Main extends Application {
     }
 
     public void loadNewApplicationPage() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newApplication.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
@@ -203,7 +203,7 @@ public class Main extends Application {
     }
 
     public void loadUpdateApplicationPage(SubmittedApplication application) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/updateApprovedApplication.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApprovedApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
@@ -214,38 +214,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
-//        if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.BEER){
-//            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationBeer.fxml"));
-//        } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.WINE){
-//            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationWine.fxml"));
-//        } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.DISTILLEDSPIRITS) {
-//            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplicationSpirits.fxml"));
-//        } else {
-//            loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
-//        }
-//        try {
-//            Parent root = loader.load();
-//            root.getStylesheets().add("/style/material.css");
-//            if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.BEER){
-//                UpdateBeerAppController controller = loader.getController();
-//                controller.init(this, application,"");
-//                stage.getScene().setRoot(root);
-//            } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.WINE){
-//                UpdateWineAppController controller = loader.getController();
-//                controller.init(this, application,"");
-//                stage.getScene().setRoot(root);
-//            } else if (application.getApplication().getAlcohol().getAlcoholType()== AlcoholType.DISTILLEDSPIRITS) {
-//                UpdateSpiritsAppController controller = loader.getController();
-//                controller.init(this, application,"");
-//                stage.getScene().setRoot(root);
-//            } else{
-//                UpdateApplicationController controller = loader.getController();
-//                controller.init(this, application);
-//                stage.getScene().setRoot(root);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void loadSubmitImages(SubmittedApplication application) {
