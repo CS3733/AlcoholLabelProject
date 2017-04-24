@@ -35,8 +35,7 @@ public class Database {
     public boolean connect() {
         try {
             DriverManager.registerDriver(new EmbeddedDriver());
-            connection = DriverManager.getConnection("jdbc:derby:" + dbName + ";create=true");
-            connection.setAutoCommit(false);
+            connection = DriverManager.getConnection("jdbc:derby:" + dbName + ";create=true;characterEncoding=utf8");
             connection.setAutoCommit(false);
             statement = connection.createStatement();
             connected = true;

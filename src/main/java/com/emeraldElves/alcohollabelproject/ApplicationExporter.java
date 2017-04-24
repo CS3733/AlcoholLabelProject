@@ -18,7 +18,7 @@ public class ApplicationExporter {
     public ApplicationExporter(IExporter serializer){
         this.serializer = serializer;
     }
-    public boolean export(List<SubmittedApplication> apps){
+    public boolean exportToFile(List<SubmittedApplication> apps){
         String encoded_str = serializer.encode(apps);
         FileChooser fileChooser = new FileChooser();
 
@@ -43,9 +43,9 @@ public class ApplicationExporter {
             return false;
         }
     }
-    public boolean export(SubmittedApplication app){
+    public boolean exportToFile(SubmittedApplication app){
         List<SubmittedApplication> apps = new ArrayList<SubmittedApplication>();
         apps.add(app);
-        return export(apps);
+        return exportToFile(apps);
     }
 }

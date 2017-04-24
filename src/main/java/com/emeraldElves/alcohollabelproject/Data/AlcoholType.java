@@ -28,4 +28,17 @@ public enum AlcoholType {
                 return DISTILLEDSPIRITS;
         }
     }
+
+    public String toText(){
+        switch (this){
+            case BEER:
+                return "Beer";
+            case WINE:
+                return "Wine";
+            case DISTILLEDSPIRITS:
+                return "Distilled Spirits";
+            default:
+                return "Unknown Type";
+        }
+    }
 }

@@ -12,9 +12,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -23,6 +27,9 @@ import javafx.scene.control.TextInputDialog;
 
 
 import java.util.*;
+
+import static javafx.stage.PopupWindow.AnchorLocation.CONTENT_BOTTOM_LEFT;
+import static javafx.stage.PopupWindow.AnchorLocation.CONTENT_TOP_RIGHT;
 
 /**
  * Created by Essam on 4/2/2017.
@@ -84,29 +91,9 @@ public class SearchController implements IController{
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(DateHelper.dateToString(date)));
             }
         });
-        manufacturerCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName()));
-            }
-        });
-        brandCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName()));
-            }
-        });
-        typeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name()));
-            }
-        });
-        contentCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent())));
-            }
-        });
         manufacturerCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName())));
         brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
-        typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name())));
+        typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().toText())));
         contentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent()))));
         saveBtn.setDisable(data.size() == 0);
         descriptionLabel.setVisible(false);
@@ -211,19 +198,72 @@ public class SearchController implements IController{
     public void saveTSV(ActionEvent e) {
 
         ApplicationExporter exporter = new ApplicationExporter(new TSVExporter());
-        exporter.export(data);
+        exporter.exportToFile(data);
     }
-
-    public void saveUserChar(ActionEvent e) {
+    public void saveUserChar(ActionEvent ae) {
         TextInputDialog dialog = new TextInputDialog();
+        dialog.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
         dialog.setTitle("Data Exporter");
         dialog.setHeaderText("Enter a character.");
         dialog.setContentText("Please enter a character to separate data:");
 
+        TextField tField = dialog.getEditor();
+        Tooltip customTooltip = new Tooltip();
+        customTooltip.setText("Illegal delimiter character");
+        ((Button)dialog.getDialogPane().lookupButton(ButtonType.OK)).setText("Export");
+
+        customTooltip.setAutoHide(true);
+        customTooltip.setAnchorLocation(CONTENT_BOTTOM_LEFT);
+
+        //System.out.println(tField.getFont().getSize() + tField.getBorder().getOutsets().getLeft() + (tField.getPadding().getLeft()*2) + (tField.getInsets().getLeft()*2));
+        tField.setOnKeyTyped(new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(KeyEvent ke)
+            {
+
+                Platform.runLater(() -> {
+                    tField.setTooltip(null);
+                    customTooltip.hide();
+                    tField.setText(ke.getCharacter());
+
+                    //Read from textbox, not from ke.getCharacter() to avoid Backspace (\\u08) character
+                    String userStr = tField.getText();
+                    tField.setStyle("");
+                    if (userStr.length() == 0){
+                        dialog.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
+                    }
+                    else {
+                        try {
+                            ApplicationExporter exporter = new ApplicationExporter(new UserCharExporter(userStr.charAt(0), "txt"));
+                            dialog.getDialogPane().lookupButton(ButtonType.OK).setDisable(false);
+                        }
+                        catch (IllegalArgumentException e){
+                            Point2D p = tField.localToScene(0.0, 0.0);
+                            tField.setTooltip(customTooltip);
+
+                            customTooltip.show(tField, p.getX()
+                                    + tField.getScene().getX() + tField.getScene().getWindow().getX(), p.getY()
+                                    + tField.getScene().getY() + tField.getScene().getWindow().getY());
+                            dialog.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
+                            tField.setStyle("-fx-focus-color: red;-fx-text-box-border: red;");
+                        }
+                    }
+                });
+            }
+        });
+
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(name -> {
-            ApplicationExporter exporter = new ApplicationExporter(new UserCharExporter(name.charAt(0), "txt"));
-            exporter.export(data);
+        result.ifPresent(userStr -> {
+            try {
+                if (userStr.length() == 1) {
+                    ApplicationExporter exporter = new ApplicationExporter(new UserCharExporter(userStr.charAt(0), "txt"));
+                    exporter.exportToFile(data);
+                }
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("Illegal thingy");
+            }
         });
 
 
@@ -232,6 +272,6 @@ public class SearchController implements IController{
     public void saveCSV(ActionEvent e) {
 
         ApplicationExporter exporter = new ApplicationExporter(new CSVExporter());
-        exporter.export(data);
+        exporter.exportToFile(data);
     }
 }
