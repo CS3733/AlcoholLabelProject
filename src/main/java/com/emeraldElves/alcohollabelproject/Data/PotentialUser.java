@@ -1,5 +1,8 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 import java.util.Date;
 
 /**
@@ -13,7 +16,7 @@ public class PotentialUser {
     private PhoneNumber phoneNumber;
     private UserType userType;
     private Date date;
-
+    private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
     public PotentialUser(String Name, int representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
     int permitNum, String address) {
         this.Name = Name;
@@ -21,6 +24,7 @@ public class PotentialUser {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.userType = userType;
+        this.Password = passwordEncryptor.encryptPassword(Password);
         this.Password = Password;
         this.date = date;
         this.address = address;

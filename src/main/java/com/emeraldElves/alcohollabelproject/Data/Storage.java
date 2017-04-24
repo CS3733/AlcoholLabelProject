@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.AppState;
+import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.Log;
 
 import java.sql.SQLException;
@@ -83,8 +84,7 @@ public class Storage {
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
                     new Database.TableField("imageURL", "VARCHAR (255)"),
-                    new Database.TableField("qualifications", "VARCHAR (10000)"),
-                    new Database.TableField("TTBID", "INTEGER UNIQUE NOT NULL"));
+                    new Database.TableField("qualifications", "VARCHAR (10000)"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
@@ -171,9 +171,9 @@ public class Storage {
     public void deleteUser(PotentialUser potentialUser) {
         db.delete("NewApplicant","email = '" + potentialUser.getEmail().getEmailAddress() + "'");
     }
-    public PotentialUser getUserFromEmail(String email){
-       return usersDB.getUserFromEmail(email);
-    }
+//    public PotentialUser getUserFromEmail(String email){
+//       return usersDB.getUserFromEmail(email);
+//    }
 
     public boolean applyForUser(PotentialUser user){
         usersDB.addPotentialUser(user);
@@ -197,6 +197,35 @@ public class Storage {
             return usersDB.isValidApplicant(username, password);
         }else if(usertype == UserType.SUPERAGENT){
             return usersDB.isValidSuperUser(username,password);
+        }
+        return false;
+    }
+
+    public void updatePassword(String username, String password){
+        if( usersDB.isValidTTBAgentAccount(username)){
+            usersDB.updatePasswordTTBAgent(password,username);
+        }
+        else if( usersDB.isValidTTBAgentAccount(username)) {
+            usersDB.updatePasswordApplicant(password,username);
+        }
+    }
+
+    public boolean isValidUser( String username) {
+        if( usersDB.isValidTTBAgentAccount(username)){
+            return(true);
+        }
+        else if( usersDB.isValidTTBAgentAccount(username)) {
+            return (true);
+        }
+        return false;
+    }
+
+    public boolean isValidUser( String username, String password) {
+        if( usersDB.isValidAccount(username, password)){
+            return(true);
+        }
+        else if( usersDB.isValidTTBAgent(username, password)) {
+            return (true);
         }
         return false;
     }
@@ -230,4 +259,31 @@ public class Storage {
     }
 
 
+    public List<String> getAllTTBUsernames() {
+        return usersDB.getAllTTBUsernames();
+    }
+
+    public Applicant getUserFromEmail(String email) {
+        Applicant applicant = usersDB.getUserFromEmail(email);
+        if (applicant != null) { return applicant; }
+
+        else return new Applicant(email,"", 0, 0, "", "");
+
+    }
+
+    public void modifyRepresentativeID(String email, int repID) {
+        usersDB.setRepIDFromEmail(repID, email);
+    }
+    public void modifypermitNum(String email, int permitNum) {
+
+    }
+    public void modifyAddress(String email, String address) {
+
+    }
+    public void modifyphoneNum(String email, String phoneNum) {
+
+    }
+    public void modifyName(String email, String name) {
+
+    }
 }
