@@ -27,91 +27,33 @@ import java.util.List;
 
 public class UpdateApprovedAppController {
     @FXML
-    TextField repIDNoTextField;
+    private TextField repIDNoTextField, permitNoTextField, alcoholName, brandNameField;
     @FXML
-    TextField permitNoTextField;
+    private TextField addressField, phoneNumberField, emailAddressField, signatureField;
     @FXML
-    TextField alcoholName;
+    private DatePicker datePicker;
     @FXML
-    TextField brandNameField;
-    @FXML
-    TextField addressField;
-    @FXML
-    TextField phoneNumberField;
-    @FXML
-    TextField emailAddressField;
-    @FXML
-    TextField signatureField;
-    @FXML
-    DatePicker datePicker;
-    @FXML
-    TextField alcoholContentField;
-    @FXML
-    TextField wineVintageYearField;
-    @FXML
-    TextField pHLevelField;
+    private TextField alcoholContentField, wineVintageYearField, pHLevelField;
     @FXML
     Label welcomeApplicantLabel;
     @FXML
-    Button saveApplication;
+    private Button submitBtn, saveApplication, cancelApplication, submitLabel;
     @FXML
-    Button cancelApplication;
+    private Label permitNoErrorField, addressErrorField, phoneNumErrorField, emailErrorField;
     @FXML
-    Button nextPageBtn;
+    private Label pSourceErrorField, pTypeErrorField, brandNameErrorField, varietalErrorField, serialErrorField;
     @FXML
-    Button submitBtn;
+    private Label alcContentErrorField, signatureErrorField;
     @FXML
-    Button logoutBtn;
+    private TextField varietalText, appellationText, formulaText, serialText,extraInfoText;
     @FXML
-    Label permitNoErrorField;
+    private CheckBox certOfApproval, certOfExemption, distinctiveApproval;
     @FXML
-    Label addressErrorField;
+    TextField distinctiveText; //relates to distinctive approval
     @FXML
-    Label phoneNumErrorField;
+    private ImageView imageView;
     @FXML
-    Label emailErrorField;
-    @FXML
-    Label pSourceErrorField;
-    @FXML
-    Label pTypeErrorField;
-    @FXML
-    Label brandNameErrorField;
-    @FXML
-    Label alcContentErrorField;
-    @FXML
-    Label signatureErrorField;
-    @FXML
-    TextField varietalText;
-    @FXML
-    TextField appellationText;
-    @FXML
-    TextField formulaText;
-    @FXML
-    Label varietalErrorField;
-    @FXML
-    TextField serialText;
-    @FXML
-    TextField extraInfoText;
-    @FXML
-    Label serialErrorField;
-    @FXML
-    CheckBox certOfApproval;
-    @FXML
-    CheckBox certOfExemption;
-    @FXML
-    CheckBox distinctiveApproval;
-    @FXML
-    TextField distinctiveText;//relates to distinctive approval
-    @FXML
-    Button submitLabel;
-    @FXML
-    ImageView imageView;
-    @FXML
-    ComboBox pTypeSelect;
-    @FXML
-    ComboBox pSourceSelect;
-    @FXML
-    ComboBox allowedUpdatesSelect;
+    private ComboBox pTypeSelect, pSourceSelect, allowedUpdatesSelect;
 
     //Options for the updates comboBox fields
     ObservableList<String> wineUpdatesList = FXCollections.observableArrayList("Delete non-mandatory label information", "Reposition label information", "Change label format (color, font, size of label, etc)",
