@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class NewApplicationController {
+public class NewApplicationController implements IController {
     @FXML
     TextField repIDNoTextField;
     @FXML
@@ -142,10 +142,24 @@ public class NewApplicationController {
     private String serialNum;
     private String extraInfo;
     private AlcoholInfo appAlcoholInfo = null;
-
+    private  File file;
     private Main main;
 
     private SubmittedApplication application;
+
+    /**
+     * Inits a new application, calling a different init if we have a submitted application
+     * vs if we do not have one.
+     * @param bundle Bundle of info passed to this controller
+     */
+    public void init(Bundle bundle) {
+        if (bundle.getApplication("app") != null) {
+            this.init(bundle.getMain("main"), bundle.getApplication("app"));
+        } else {
+            this.init(bundle.getMain("main"));
+
+        }
+    }
 
     public void init(Main main){
         this.main = main;
@@ -186,6 +200,8 @@ public class NewApplicationController {
         init(main);
         this.application = application;
 
+        file = new File("");
+
         alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
         brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
         alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
@@ -200,6 +216,10 @@ public class NewApplicationController {
         Boolean formFilled = false;
         Boolean fieldsValid = false;
 
+        //getting and storing the image
+
+
+        saveImage(file);
         //filling out application type
         boolean labelApproval;
         String stateOnly;
@@ -357,22 +377,23 @@ public class NewApplicationController {
                 ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
                 boolean success = applicantInterface.submitApplication(newApp);
 
-                main.loadHomepage();
+                main.loadFXML("/fxml/HomePage.fxml");
             }
         }
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
     }
 
     public void saveApp() {
+        //TODO: this
 
     }
 
     public void logout() {
         Authenticator.getInstance().logout();
-        main.loadHomepage();
+        main.loadFXML("/fxml/HomePage.fxml");
     }
 
     public boolean isInt(TextField txt){
@@ -409,9 +430,24 @@ public class NewApplicationController {
 
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg","*jpeg","*png");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.png", "*.jpg", "*.jpeg", "*.gif");
         fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(null);
+        file = fileChooser.showOpenDialog(null);
+        Log.console(file);
+        if (file == null) {
+            Log.console(file);
+            file = new File("");
+        }
+        Image image = new Image(file.toURI().toString());
+        imageView.setImage(image);
+
+    }
+
+    public void saveImage(File file){
+        if (file == null) {
+            proxyLabelImage = new ProxyLabelImage("");
+            return;
+        }
         java.nio.file.Path source = Paths.get((file.getPath()));
         java.nio.file.Path targetDir = Paths.get("Labels");
         try {
@@ -426,10 +462,7 @@ public class NewApplicationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image image = new Image(target.toUri().toString());
-        imageView.setImage(image);
-       proxyLabelImage = new ProxyLabelImage(fileName);
-        //application.setImage(proxyLabelImage);
+        proxyLabelImage = new ProxyLabelImage(fileName);
     }
    
 }

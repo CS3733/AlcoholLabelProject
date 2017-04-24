@@ -150,7 +150,7 @@ public class UpdateBeerAppController {
     }
 
     public void cancelApp() {
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
     }
 
     public void logout() {

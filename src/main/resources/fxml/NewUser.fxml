@@ -7,6 +7,8 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -39,7 +41,6 @@
                   </VBox>
                </top>
             </BorderPane>
-            <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#GoHome" styleClass="button-raised" text="Home" />
             <GridPane layoutX="257.0" layoutY="-3.0" prefHeight="624.0" prefWidth="768.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="493.3333740234375" minWidth="10.0" prefWidth="477.3333740234375" />
@@ -63,24 +64,27 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="Name" GridPane.rowIndex="1" />
                   <TextField fx:id="emailAddress" prefWidth="200.0" GridPane.rowIndex="2" />
                   <Label prefHeight="20.0" prefWidth="74.0" text="Password" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordField" prefWidth="200.0" GridPane.rowIndex="3" />
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                  <PasswordField fx:id="passwordField" onAction="#checkPassword" onKeyReleased="#checkPassword" onMouseClicked="#checkPassword" prefWidth="200.0" GridPane.rowIndex="3">
+                     <tooltip>
+                        <Tooltip fx:id="passwordHint" text="Empty Tooltip" />
+                     </tooltip></PasswordField>
                   <Label text="Phone Number" GridPane.rowIndex="4" GridPane.valignment="TOP" />
                   <Label text="Permit No." GridPane.rowIndex="6" GridPane.valignment="TOP" />
                   <Label text="Representative ID" GridPane.rowIndex="7" GridPane.valignment="TOP" />
                   <TextField fx:id="phoneNumber" GridPane.rowIndex="4" />
+                  <TextField fx:id="addressText" GridPane.rowIndex="5" />
                   <TextField fx:id="permitNumText" GridPane.rowIndex="6" />
                   <TextField fx:id="representativeID" GridPane.rowIndex="7" />
-                  <TextField fx:id="addressText" GridPane.rowIndex="5" />
                   <Label text="Address" GridPane.rowIndex="5" GridPane.valignment="TOP" />
-                  <TextField fx:id="Name" GridPane.rowIndex="1" />
                   <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
                   <GridPane prefHeight="98.0" prefWidth="458.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.66665649414062" minWidth="10.0" prefWidth="243.66665649414062" />
@@ -122,6 +126,22 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
+                  <Label fx:id="passwordError" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="addressError" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="nameError" prefWidth="7.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <ImageView fx:id="isValid" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children>

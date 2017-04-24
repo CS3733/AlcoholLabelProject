@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UpdateApprovedAppController {
+public class UpdateApprovedAppController implements IController {
     @FXML
     TextField repIDNoTextField;
     @FXML
@@ -154,6 +154,10 @@ public class UpdateApprovedAppController {
     private Main main;
 
     private SubmittedApplication application;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
+    }
 
     public void init(Main main){
         this.main = main;
@@ -359,7 +363,7 @@ public class UpdateApprovedAppController {
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
     }
 
     public void saveApp() {

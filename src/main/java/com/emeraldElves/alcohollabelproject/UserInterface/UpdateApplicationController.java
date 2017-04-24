@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * Created by Keion Bisland on 4/2/2017.
  */
 
-public class UpdateApplicationController {
+public class UpdateApplicationController implements IController{
 
     public ApplicationStatus status;//get status from database
     @FXML
@@ -35,6 +35,10 @@ public class UpdateApplicationController {
     Main main;
     SubmittedApplication CurrentlyBeingUpdated;
     ApplicantInterface applicantInterface;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getApplication("app"));
+    }
 
 
     public void init(Main main, SubmittedApplication CurrentlyBeingUpdated) {
@@ -121,7 +125,7 @@ public class UpdateApplicationController {
     }
 
     public void cancelApp() {
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
 
     }
 
