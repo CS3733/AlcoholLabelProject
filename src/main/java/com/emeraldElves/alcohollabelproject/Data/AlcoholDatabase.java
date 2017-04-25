@@ -475,10 +475,10 @@ public class AlcoholDatabase {
                                     + alcInfo.getAlcoholContent() + ", '"
                                     + alcInfo.getFormula() + "', '" //formula
                                     + alcInfo.getSerialNumber() + "', "//serial number
-                                    + "" + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
-                                    + "" + ", '" //vintage year: see above comment
-                                    + "" + "', '" //grape vaietal
-                                    + "" + "', '" //appalation
+                                    + " " + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                                    + " " + ", '" //vintage year: see above comment
+                                    + " " + "', '" //grape vaietal
+                                    + " " + "', '" //appalation
                                     + application.getExtraInfo() + "', '"
                                     + application.getImage().getFileName() + "', '"
                                     + username + "', "
