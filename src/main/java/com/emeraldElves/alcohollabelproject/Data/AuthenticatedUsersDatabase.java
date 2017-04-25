@@ -82,7 +82,8 @@ public class AuthenticatedUsersDatabase {
                             + user.getPermitNum() + ", '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+                            + user.getEmail().getEmailAddress() + "', '"
+                            + user.getCompany().getCompany
                     , "ApplicantLogin");
         }
     }
