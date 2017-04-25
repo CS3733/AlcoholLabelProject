@@ -107,7 +107,7 @@ public class Storage {
 
         try {
             database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
+                    new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
                     new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),
@@ -148,7 +148,7 @@ public class Storage {
                 new Database.TableField("type", "INTEGER"),//BEER, WINE or SPIRITS
                 new Database.TableField("fancifulName", "VARCHAR (255)"),
                 new Database.TableField("brandName", "VARCHAR (255)"),
-                new Database.TableField("alcoholContent", "INTEGER"),
+                new Database.TableField("alcoholContent", "DOUBLE"),
                 new Database.TableField("formula", "VARCHAR (255)"),
                 new Database.TableField("serialNumber", "VARCHAR (255)"),
                 new Database.TableField("pH", "REAL"),

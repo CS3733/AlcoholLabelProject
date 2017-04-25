@@ -5,6 +5,7 @@ import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.IDGenerator.ApplicationIDGenerator;
 import com.emeraldElves.alcohollabelproject.IDGenerator.TTBIDGenerator;
 import com.emeraldElves.alcohollabelproject.Log;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -514,9 +515,23 @@ public class AlcoholDatabase {
      * @return List is saved applications the applicant has
      */
     public List<SavedApplication> getSavedApplicationsByApplicant(String username){
-        ResultSet resuls = db.select("*", "SavedApplications", "submitterUsername = '" + username + "'");
+        ResultSet results = db.select("*", "SavedApplications", "submitterUsername = '" + username + "'");
         List<SavedApplication> saveList = new ArrayList<SavedApplication>();
         //TODO fill in save list
+        ApplicationType applicationType;
+        try {
+            Boolean labelApproval = results.getBoolean("labelApproval");
+            String stateOnly = results.getString("stateOnly");
+            String bottleCapacity = results.getString("bottleCapacity");
+            int origin = results.getInt("origin");
+            int type = results.getInt("type");
+            String fancifulName = results.getString("fancifulName");
+            String brandName = results.getString("brandName");
+            double alcoholContent = results.getDouble("alcohol Content");
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
         return saveList;
 
     }

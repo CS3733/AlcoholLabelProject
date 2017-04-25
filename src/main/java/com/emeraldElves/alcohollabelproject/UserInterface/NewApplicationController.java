@@ -136,7 +136,7 @@ public class NewApplicationController implements IController {
     private AlcoholType alcType;
     private String alcName;
     private String brandName;
-    private int alcContent;
+    private double alcContent;
     private AlcoholInfo.Wine wineType = null; //null if type is not wine
     private String formula;
     private String serialNum;
@@ -327,7 +327,7 @@ public class NewApplicationController implements IController {
                 //sets alc info fields
                 alcName = alcoholName.getText();
                 brandName = brandNameField.getText();
-                alcContent = Integer.parseInt(alcoholContentField.getText()); //CHECK IF INTEGER
+                alcContent = Double.parseDouble(alcoholContentField.getText()); //CHECK IF INTEGER
                 serialNum = serialText.getText();
                 if (formulaText.getText().isEmpty()) {
                     formula = " ";
@@ -408,7 +408,7 @@ public class NewApplicationController implements IController {
         //END appType
 
         //alcoholInfo
-        int alcoholContent; // double??
+        double alcoholContent; // double??
         String fanciful;
         String brand;
         ProductSource origin;
@@ -418,7 +418,7 @@ public class NewApplicationController implements IController {
         AlcoholType alcoholType;
         //alcoholContent
         if(alcoholContentField.getText().isEmpty()){ alcoholContent = -1;}
-        else{ alcoholContent = Integer.parseInt(alcoholContentField.getText());}
+        else{ alcoholContent = Double.parseDouble(alcoholContentField.getText());}
         //fanciful
         if(alcoholName.getText().isEmpty()){ fanciful = "";}
         else{ fanciful = alcoholName.getText(); }
