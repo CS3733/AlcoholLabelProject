@@ -161,6 +161,7 @@ public class Storage {
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
+        }
 
         try{
             database.createTable("NewApplicant",
@@ -175,9 +176,11 @@ public class Storage {
                     new Database.TableField("date", "BIGINT"));
             Log.console("Created new NewApplicant table");
 
+        } catch (SQLException e1) {
+            Log.console("Used existing newApplicant table");
         }
 
-        try {
+            try {
             database.createTable("TTBAgentLogin", new Database.TableField("username", "VARCHAR (255) UNIQUE NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"));
             Log.console("Created new TTBAgentLogin table");
