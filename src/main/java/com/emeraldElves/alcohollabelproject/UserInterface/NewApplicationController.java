@@ -201,6 +201,10 @@ public class NewApplicationController implements IController {
     public void init(Main main, SavedApplication savedApplication){
         init(main);
         //TODO set fields to that of saved application
+        ApplicationType applicationType = savedApplication.getApplicationType();
+        AlcoholInfo alcoholInfo = savedApplication.getAlcoholInfo();
+        String extraInfo = savedApplication.getExtraInfo();
+        String imageURL = savedApplication.getImage().getFileName();
     }
 
     public void init(Main main, SubmittedApplication application) {
