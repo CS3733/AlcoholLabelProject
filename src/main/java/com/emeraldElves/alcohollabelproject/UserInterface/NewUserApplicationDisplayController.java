@@ -48,9 +48,6 @@ public class NewUserApplicationDisplayController {
     private ObservableList<PotentialUser> data = FXCollections.observableArrayList();
     private COLASearch search;
 
-
-
-
     public void init(Main main) {
         this.main = main;
         userList = Storage.getInstance().getPotentialUsers();

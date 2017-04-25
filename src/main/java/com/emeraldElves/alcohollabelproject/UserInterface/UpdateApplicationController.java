@@ -1,7 +1,10 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.*;
+import com.emeraldElves.alcohollabelproject.ApplicantInterface;
+import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
+import com.emeraldElves.alcohollabelproject.Log;
+import com.emeraldElves.alcohollabelproject.LogManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,9 +19,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class UpdateApplicationController {
     @FXML
@@ -63,10 +63,10 @@ public class UpdateApplicationController {
     private String username;
     private ApplicantInterface applicant;
     private EmailAddress emailAddress;
-    private int permitNum;
+    private int permitNum; //needs to be a string!!!!
     private String address;
     private PhoneNumber phoneNum;
-    private int representativeID;
+    private int representativeID; //needs to be a string!!!!
 
     //Alcohol info
     private ProductSource pSource;
@@ -227,65 +227,14 @@ public class UpdateApplicationController {
                 wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
             }
 
-            //Checking if the product is domestic or imported
-            if (pSourceSelect.getValue().equals("Domestic")) {
-                pSource = ProductSource.DOMESTIC;
-            } else if (pSourceSelect.getValue().equals("Imported")) {
-                pSource = ProductSource.IMPORTED;
-            }
-
-            //Checking if the product is a beer, wine or spirits
-            if (pTypeSelect.getValue().equals("Malt Beverages") ){
-                alcType = AlcoholType.BEER;
-            } else if (pTypeSelect.getValue().equals("Wine")) {
-                alcType = AlcoholType.WINE;
-            } else if (pTypeSelect.getValue().equals("Distilled Spirits")) {
-                alcType = AlcoholType.DISTILLEDSPIRITS;
-            }
-
-            //sets alc info fields
-            alcName = alcoholName.getText();
-            brandName = brandNameField.getText();
             alcContent = Integer.parseInt(alcoholContentField.getText());
-            serialNum = serialText.getText();
-            if (formulaText.getText().isEmpty()) {
-                formula = " ";
-            } else formula = formulaText.getText();
-            if (extraInfoText.getText().isEmpty()) {
-                extraInfo = " ";
-            } else extraInfo = extraInfoText.getText();
 
-            //creates alcohol info
-            AlcoholInfo appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
 
-            //sets the date value
-            Date newDate = DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
 
-            //creates a new ManufacturerInfo
-            ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
-                    permitNum, phoneNum, emailAddress);
 
-            ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo, extraInfo, appType);
 
-            //!!!!!placeholder for applicant's submitted applications!!!!!
-            List<SubmittedApplication> appList = new ArrayList<>();
-
-            //Create applicant to store in submitted application
-            Applicant applicant = new Applicant(appList);
-
-            //Create a SubmittedApplication
-            SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
-            if (application != null)
-                newApp.setApplicationID(application.getApplicationID());
-            applicant.addSubmittedApp(newApp);
-            if(proxyLabelImage!= null) {
-                newApp.setImage(proxyLabelImage);
-            } else{
-                newApp.setImage(new ProxyLabelImage(""));
-            }
-
-            if (application != null)
-                newApp.setApplicationID(application.getApplicationID());
+//            if (application != null)
+//                newApp.setApplicationID(application.getApplicationID());
 
             //Submit the new application to the database
             //ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
