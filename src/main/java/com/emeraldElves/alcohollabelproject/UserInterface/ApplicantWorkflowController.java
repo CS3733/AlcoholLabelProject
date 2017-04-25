@@ -20,6 +20,7 @@ import java.util.List;
 public class ApplicantWorkflowController implements IController {
     Main main;
     private ApplicantInterface applicantInterface;
+    int numSavedApplications;
 
     @FXML
     ListView<String> list;
@@ -41,12 +42,13 @@ public class ApplicantWorkflowController implements IController {
                 return a.getStatus().ordinal() - b.getStatus().ordinal();
             }
         });
-
+        numSavedApplications = 0;
         for(SavedApplication application : savedApplications){
             String name = "";
             name += (int)(Math.random()*10000);//TODO fix this
             name += " - Saved";
             applicationNames.add(name);
+            numSavedApplications ++;
         }
 
         for (SubmittedApplication application : applications) {
@@ -69,18 +71,31 @@ public class ApplicantWorkflowController implements IController {
         ObservableList<String> items = FXCollections.observableList(applicationNames);
         list.setItems(items);
     }
-
+    // make global variable for number of saved applications
+    // check if its before the thing
     public SubmittedApplication getSelectedApplication() {
         int i = list.getSelectionModel().getSelectedIndex();
-        return applicantInterface.getSubmittedApplications().get(i);
+        //maybe this works
+        return applicantInterface.getSubmittedApplications().get(i - numSavedApplications);
+    }
+
+    public SavedApplication getSelectedSavedApplication() {
+        int i = list.getSelectionModel().getSelectedIndex();
+        return applicantInterface.getSavedApplications().get(i);
     }
 
     public void viewApplication(){
+        //TODO do this for saved application
         main.loadFXML("/fxml/DetailedSearchPage.fxml",getSelectedApplication(), "");
     }
 
     public void reviseApplication() {
-        main.loadFXML("/fxml/newApplication.fxml",getSelectedApplication());
+        if (list.getSelectionModel().getSelectedIndex() < numSavedApplications) {
+            main.loadFXML("/fxml/newApplication.fxml", getSelectedSavedApplication());
+        } else {
+            main.loadFXML("/fxml/newApplication.fxml", getSelectedApplication());
+
+        }
     }
 
     public void ApplicationWorkflow() {

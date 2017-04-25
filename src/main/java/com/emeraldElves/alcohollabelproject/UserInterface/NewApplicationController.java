@@ -155,9 +155,11 @@ public class NewApplicationController implements IController {
     public void init(Bundle bundle) {
         if (bundle.getApplication("app") != null) {
             this.init(bundle.getMain("main"), bundle.getApplication("app"));
-        } else {
+        } else if (bundle.getSavedApplication("saved") != null) {
+            this.init(bundle.getMain("main"), bundle.getSavedApplication("saved"));
+        }
+        else{
             this.init(bundle.getMain("main"));
-
         }
     }
 
@@ -194,6 +196,11 @@ public class NewApplicationController implements IController {
                 } else hideTheWine();
             }
         });
+    }
+
+    public void init(Main main, SavedApplication savedApplication){
+        init(main);
+        //TODO set fields to that of saved application
     }
 
     public void init(Main main, SubmittedApplication application) {
