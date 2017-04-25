@@ -317,11 +317,6 @@ public class NewApplicationController {
 
     }
 
-//    public void logout() {
-//        Authenticator.getInstance().logout();
-//        main.loadHomepage();
-//    }
-
     public boolean isInt(TextField txt){
         try {
             Integer.parseInt(txt.getText());

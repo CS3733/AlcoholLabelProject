@@ -207,7 +207,7 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            UpdateApprovedAppController controller = loader.getController();
+            UpdateApplicationController controller = loader.getController();
             controller.init(this, application);
             stage.getScene().setRoot(root);
         } catch (IOException e) {
