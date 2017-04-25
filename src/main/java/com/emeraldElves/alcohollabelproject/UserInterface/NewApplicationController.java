@@ -416,6 +416,28 @@ public class NewApplicationController implements IController {
         String formula;
         AlcoholInfo.Wine wineInfo;
         AlcoholType alcoholType;
+        //alcoholContent
+        if(alcoholContentField.getText().isEmpty()){ alcoholContent = -1;}
+        else{ alcoholContent = Integer.parseInt(alcoholContentField.getText());}
+        //fanciful
+        if(alcoholName.getText().isEmpty()){ fanciful = "";}
+        else{ fanciful = alcoholName.getText(); }
+        //brand
+        if(brandNameField.getText().isEmpty()){ brand = "";}
+        else{ brand = brandNameField.getText();}
+        //origin
+        if (pSourceSelect.getValue().equals("Domestic")) {
+            origin = ProductSource.DOMESTIC;
+        } else if (pSourceSelect.getValue().equals("Imported")) {
+            origin = ProductSource.IMPORTED;
+        }
+        else{ origin = ProductSource.DOMESTIC;} //default value??
+        //serial number
+        if(serialText.getText().isEmpty()){ serialNumber = "";}
+        else{ serialNumber = serialText.getText(); }
+        //formula
+        if(formulaText.getText().isEmpty()){ formula = "";}
+        else{ formula = formulaText.getText(); }
 
         //Alcohol Type
         //Checking if the product is a beer, wine or spirits
@@ -460,7 +482,21 @@ public class NewApplicationController implements IController {
             varietal = "";
             appellation = "";
         }
+        wineInfo = new AlcoholInfo.Wine(pH,vintageYear,varietal,appellation);
         //END wineInfo
+        alcoholInfo = new AlcoholInfo(alcoholContent,fanciful,brand,origin,alcoholType,wineInfo,serialNumber,formula);
+        //END alcoholInfo
+
+        //extra info
+        if(extraInfoText.getText().isEmpty()){ extraInfo = "";}
+        else{ extraInfo = extraInfoText.getText(); }
+        //END extra info
+        //image
+        //TODO fix image thing
+        image = new LabelImage("AlcoholLabelProject/Labels/1492464137863.jpeg");
+        //END image
+
+        app = new SavedApplication(appType,alcoholInfo,extraInfo,image);
 
         Storage.getInstance().saveApplication(app, username);
     }
