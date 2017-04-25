@@ -24,7 +24,7 @@ public class UpdateApplicationController {
     @FXML
     private Button selectRev;
     @FXML
-    private CheckBox option3, option4, option5, option6, option7, option8, option9, option10, option11, option12;
+    private CheckBox option1, option2, option3, option4, option5, option6, option7, option8, option9, option10, option11, option12;4
     @FXML
     private CheckBox option13, option14, option15, option16, option17, option18, option19, option20, option21, option22, option23;
     @FXML
