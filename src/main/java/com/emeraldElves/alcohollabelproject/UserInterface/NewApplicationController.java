@@ -200,6 +200,8 @@ public class NewApplicationController implements IController {
         init(main);
         this.application = application;
 
+        file = new File("");
+
         alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
         brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
         alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
@@ -217,7 +219,7 @@ public class NewApplicationController implements IController {
         //getting and storing the image
 
 
-
+        saveImage(file);
         //filling out application type
         boolean labelApproval;
         String stateOnly;
@@ -555,7 +557,9 @@ public class NewApplicationController implements IController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.png", "*.jpg", "*.jpeg", "*.gif");
         fileChooser.getExtensionFilters().add(extFilter);
         file = fileChooser.showOpenDialog(null);
+        Log.console(file);
         if (file == null) {
+            Log.console(file);
             file = new File("");
         }
         Image image = new Image(file.toURI().toString());
@@ -564,6 +568,10 @@ public class NewApplicationController implements IController {
     }
 
     public void saveImage(File file){
+        if (file == null) {
+            proxyLabelImage = new ProxyLabelImage("");
+            return;
+        }
         java.nio.file.Path source = Paths.get((file.getPath()));
         java.nio.file.Path targetDir = Paths.get("Labels");
         try {
