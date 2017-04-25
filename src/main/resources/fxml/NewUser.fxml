@@ -147,7 +147,7 @@
                            </padding>
                         </Label>
                         <ImageView fx:id="isValid" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="company" GridPane.rowIndex="8" />
+                        <TextField fx:id="companyField" GridPane.rowIndex="8" />
                         <Label text="Company" GridPane.rowIndex="8" GridPane.valignment="TOP" />
                      </children>
                   </GridPane>
