@@ -291,6 +291,10 @@ public class Storage {
         return alcoholDB.getApplicationsByApplicantUsername(username);
     }
 
+    public List<SavedApplication> getSavedApplicationsByApplicant(String username){
+        return alcoholDB.getSavedApplicationsByApplicant(username);
+    }
+
     public List<SubmittedApplication> getAssignedApplications(String agentName) {
         return alcoholDB.getAssignedApplications(agentName);
     }

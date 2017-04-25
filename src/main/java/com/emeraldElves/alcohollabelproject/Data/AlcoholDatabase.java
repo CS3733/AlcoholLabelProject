@@ -508,6 +508,19 @@ public class AlcoholDatabase {
         return getApplicationsFromResultSet(results);
     }
 
+    /**
+     * Returns a list of saved applications for a given applicant
+     * @param username Username of applicant to get saved applications for
+     * @return List is saved applications the applicant has
+     */
+    public List<SavedApplication> getSavedApplicationsByApplicant(String username){
+        ResultSet resuls = db.select("*", "SavedApplications", "submitterUsername = '" + username + "'");
+        List<SavedApplication> saveList = new ArrayList<SavedApplication>();
+        //TODO fill in save list
+        return saveList;
+
+    }
+
 
     /**
      * Get the most recent unapproved applications.

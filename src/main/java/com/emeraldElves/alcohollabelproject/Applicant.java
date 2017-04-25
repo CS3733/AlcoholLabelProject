@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class Applicant {
 
     private List<SubmittedApplication> applications;
+    private List<SavedApplication> savedApplications;
     private String email;
     private String name;
     private int representativeID = 0;
