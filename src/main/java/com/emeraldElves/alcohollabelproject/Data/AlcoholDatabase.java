@@ -457,15 +457,26 @@ public class AlcoholDatabase {
                                     + appID
                             , "SavedApplications");
                 } else {
-                    worked = db.insert(appID + ", "
-                                    + alcInfo.getAlcoholContent() + ", '" //alcohol content
+                    //not a wine application, so wine fields are not applicable 
+                    worked = db.insert(appType.isLabelApproval() + ", '" // app types
+                                    + appType.getStateOnly() + "', " // app types
+                                    + appType.getBottleCapacity() + ", " // app types
+                                    + alcInfo.getOrigin().getValue() + ", " //origin
+                                    + alcInfo.getAlcoholType().getValue() + ", '" // alcohol type
                                     + alcInfo.getName() + "', '" //fanciful name
                                     + alcInfo.getBrandName() + "', " //brand name
-                                    + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
-                                    + alcInfo.getAlcoholType().getValue() + ", '"
+                                    + alcInfo.getAlcoholContent() + ", '"
                                     + alcInfo.getFormula() + "', '" //formula
-                                    + alcInfo.getSerialNumber() + "'"
-                            , "AlcoholInfo (applicationID, alcoholContent, fancifulName, brandName, origin, type, formula, serialNumber)");
+                                    + alcInfo.getSerialNumber() + "', "//serial number
+                                    + "" + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                                    + "" + ", '" //vintage year: see above comment
+                                    + "" + "', '" //grape vaietal
+                                    + "" + "', '" //appalation
+                                    + application.getExtraInfo() + "', '"
+                                    + application.getImage().getFileName() + "', '"
+                                    + username + "', "
+                                    + appID
+                            , "SavedApplications");
                 }
 
                 if (!worked) {
