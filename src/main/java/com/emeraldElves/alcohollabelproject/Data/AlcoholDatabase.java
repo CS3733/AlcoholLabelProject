@@ -437,19 +437,25 @@ public class AlcoholDatabase {
             else {
                 //No saved application with that ID, so add to table, not update
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    worked = db.insert(appID + ", "
-                                    + alcInfo.getAlcoholContent() + ", '" //alcohol content
+                    worked = db.insert(appType.isLabelApproval() + ", '" // app types
+                                    + appType.getStateOnly() + "', " // app types
+                                    + appType.getBottleCapacity() + ", " // app types
+                                    + alcInfo.getOrigin().getValue() + ", " //origin
+                                    + alcInfo.getAlcoholType().getValue() + ", '" // alcohol type
                                     + alcInfo.getName() + "', '" //fanciful name
                                     + alcInfo.getBrandName() + "', " //brand name
-                                    + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
-                                    + alcInfo.getAlcoholType().getValue() + ", '" //type: I think you said you would sort this out with the 1, 2, 3 label for beer, wine, other........ :)
+                                    + alcInfo.getAlcoholContent() + ", '"
                                     + alcInfo.getFormula() + "', '" //formula
                                     + alcInfo.getSerialNumber() + "', "//serial number
                                     + alcInfo.getWineInfo().pH + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
                                     + alcInfo.getWineInfo().vintageYear + ", '" //vintage year: see above comment
                                     + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
-                                    + alcInfo.getWineInfo().appellation + "'" //appalation
-                            , "AlcoholInfo");
+                                    + alcInfo.getWineInfo().appellation + "', '" //appalation
+                                    + application.getExtraInfo() + "', '"
+                                    + application.getImage().getFileName() + "', '"
+                                    + username + "', "
+                                    + appID
+                            , "SavedApplications");
                 } else {
                     worked = db.insert(appID + ", "
                                     + alcInfo.getAlcoholContent() + ", '" //alcohol content
