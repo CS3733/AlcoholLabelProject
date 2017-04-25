@@ -24,7 +24,7 @@ public class UpdateApplicationController {
     @FXML
     private Button selectRev;
     @FXML
-    private CheckBox option1, option2, option3, option4, option5, option6, option7, option8, option9, option10, option11, option12;4
+    private CheckBox option1, option2, option3, option4, option5, option6, option7, option8, option9, option10, option11, option12;
     @FXML
     private CheckBox option13, option14, option15, option16, option17, option18, option19, option20, option21, option22, option23;
     @FXML
@@ -157,10 +157,99 @@ public class UpdateApplicationController {
     public void nextPage(){
         int selectedUpdateNum=0; //number corresponding to the allowed update
 
-//        if(option1.isSelected()){
-//            submitLabel.setDisable(false);
-//        }
-
+        if(option1.isSelected() || option2.isSelected() || option3.isSelected() || option4.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option5.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option6.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option7.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option8.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option9.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option10.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option11.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option12.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option13.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option14.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option15.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option16.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option17.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option18.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option19.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option20.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option21.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option22.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option23.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option24.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option25.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option26.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option27.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option28.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option29.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option30.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option31.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option32.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option33.isSelected()){
+            submitLabel.setDisable(false);
+        }
+        if(option34.isSelected()){
+            submitLabel.setDisable(false);
+        }
         //go to page 2 of update app
         Main.loadFXML("/fxml/UpdateApplication.fxml");
     }
