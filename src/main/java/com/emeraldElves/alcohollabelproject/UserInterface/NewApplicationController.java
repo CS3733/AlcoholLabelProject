@@ -494,8 +494,13 @@ public class NewApplicationController implements IController {
         else{ extraInfo = extraInfoText.getText(); }
         //END extra info
         //image
-        //TODO fix image thing
-        image = new LabelImage("AlcoholLabelProject/Labels/1492464137863.jpeg");
+        saveImage(file);
+        if(proxyLabelImage!= null) {
+            image = new LabelImage(proxyLabelImage.getFileName());
+        }
+        else{
+            image = new LabelImage("");
+        }
         //END image
 
         app = new SavedApplication(appType,alcoholInfo,extraInfo,image);
