@@ -4,6 +4,8 @@ import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -35,9 +37,16 @@ public class UserCharExporter implements IExporter {
         //String escapedStr = (str.trim().replace("\\", "\\\\").replace("\"","\\\""));//.replaceAll(String.valueOf(delim),"\\\\" + String.valueOf(delim)));
         return "\"" + StringEscapeUtils.escapeJava(str) + "\"";
     }
+    private String dateToStr(Date date){
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        return df.format(date);
+    }
     public String encode(List<SubmittedApplication> apps){
-        String encoded_str = "alcoholcontent"+delim+"fancifulName"+delim+"brandName"+delim+"origin"+delim+"type"+delim+"formula"+delim+"serial"+delim+"pH"+delim+"vintageyear"+delim+"appellation"+delim+"varietals\r\n";
+        String encoded_str = "status"+delim+"submitdate"+delim+"issuedate"+delim+"alcoholcontent"+delim+"fancifulName"+delim+"brandName"+delim+"origin"+delim+"type"+delim+"formula"+delim+"serial"+delim+"qualifications"+delim+"pH"+delim+"vintageyear"+delim+"appellation"+delim+"varietals\r\n";
         for (SubmittedApplication app: apps){
+            encoded_str += String.valueOf(app.getStatus().getValue()) + delim; //status
+            encoded_str += escapeStr(dateToStr(app.getApplication().getSubmissionDate())) + delim; //submission date
+            encoded_str += escapeStr(dateToStr(app.getApplication().getSubmissionDate())) + delim; //approval date
             encoded_str += String.valueOf(app.getApplication().getAlcohol().getAlcoholContent()) + delim; //alcohol content
             encoded_str += escapeStr(app.getApplication().getAlcohol().getName()) + delim; //fanciul
             encoded_str += escapeStr(app.getApplication().getAlcohol().getBrandName()) + delim; //brandname
@@ -45,6 +54,7 @@ public class UserCharExporter implements IExporter {
             encoded_str += escapeStr(app.getApplication().getAlcohol().getAlcoholType().toText()) + delim; //type
             encoded_str += escapeStr(app.getApplication().getAlcohol().getFormula()) + delim; //formula
             encoded_str += escapeStr(app.getApplication().getAlcohol().getSerialNumber()) + delim; //serial
+            encoded_str += escapeStr(app.getApplication().getQualifications()) + delim; //qualifications
             if (app.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
                 encoded_str += String.valueOf(app.getApplication().getAlcohol().getWineInfo().pH) + delim; //ph
                 encoded_str += String.valueOf(app.getApplication().getAlcohol().getWineInfo().vintageYear) + delim; //vintageyear

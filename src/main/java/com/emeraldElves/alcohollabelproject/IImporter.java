@@ -2,6 +2,9 @@ package com.emeraldElves.alcohollabelproject;
 
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.IllegalFormatException;
 import java.util.List;
 
@@ -10,5 +13,5 @@ import java.util.List;
  */
 public interface IImporter {
     //Instead of having encode and encodeAll, we can use only encode with a List of 0 or more items.
-    public List<SubmittedApplication> decode(String encoded) throws IllegalFormatException;
+    public List<SubmittedApplication> decode(InputStream ifstream) throws IllegalFormatException, IOException;
 }

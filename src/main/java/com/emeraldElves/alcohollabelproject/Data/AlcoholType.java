@@ -6,7 +6,8 @@ package com.emeraldElves.alcohollabelproject.Data;
 public enum AlcoholType {
     BEER(0),
     WINE(1),
-    DISTILLEDSPIRITS(2);
+    DISTILLEDSPIRITS(2),
+    UNKNOWN(3);
 
     private int value;
 
@@ -28,6 +29,22 @@ public enum AlcoholType {
                 return DISTILLEDSPIRITS;
         }
     }
+    public static AlcoholType fromString(String str){
+        switch (str.trim().toUpperCase()){
+            case "WINE":
+            case "WINES":
+                return AlcoholType.WINE;
+            case "BEER":
+            case "BEERS":
+                return AlcoholType.BEER;
+            case "DISTILLED SPIRITS":
+            case "DISTILLEDSPIRITS":
+                return AlcoholType.DISTILLEDSPIRITS;
+            default:
+                return AlcoholType.UNKNOWN;
+
+        }
+    }
 
     public String toText(){
         switch (this){
@@ -37,6 +54,7 @@ public enum AlcoholType {
                 return "Wine";
             case DISTILLEDSPIRITS:
                 return "Distilled Spirits";
+            case UNKNOWN:
             default:
                 return "Unknown Type";
         }

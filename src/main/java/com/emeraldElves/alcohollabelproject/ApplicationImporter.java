@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.UserInterface.Main;
 import javafx.stage.FileChooser;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -25,13 +26,14 @@ public class ApplicationImporter {
         fileChooser.setTitle("Import Applications");
         File file = fileChooser.showOpenDialog(Main.stage);
 
-        //redundant, FileInputStream will throw that error if it's null
-        /*if (file == null) {
+        //redundant, readFileToByteArray will throw that error if it's null
+        if (file == null) {
             throw new FileNotFoundException();
-        }*/
+        }
 
-        String encodedStr = IOUtils.toString(new FileInputStream(file));
-        return deserializer.decode(encodedStr);
+        //TODO: Modify to allow reading huge files using FileInputStream?
+        return deserializer.decode(new ByteArrayInputStream(FileUtils.readFileToByteArray(file)));
+
 
     }
 }

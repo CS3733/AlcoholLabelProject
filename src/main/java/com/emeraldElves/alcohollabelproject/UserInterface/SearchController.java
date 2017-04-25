@@ -26,6 +26,7 @@ import org.controlsfx.control.textfield.TextFields;
 import javafx.scene.control.TextInputDialog;
 
 
+import java.io.IOException;
 import java.util.*;
 
 import static javafx.stage.PopupWindow.AnchorLocation.CONTENT_BOTTOM_LEFT;
@@ -201,6 +202,13 @@ public class SearchController implements IController{
         exporter.exportToFile(data);
     }
     public void saveUserChar(ActionEvent ae) {
+        ApplicationImporter ai = new ApplicationImporter(new UserCharImporter(','));
+        try {
+            ai.importFromFile();
+        }
+        catch(IOException e){
+
+        }
         TextInputDialog dialog = new TextInputDialog();
         dialog.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
         dialog.setTitle("Data Exporter");

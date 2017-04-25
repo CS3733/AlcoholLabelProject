@@ -4,6 +4,7 @@ import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.Log;
 
+import java.sql.JDBCType;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +25,65 @@ public class Storage {
         alcoholDB = new AlcoholDatabase(db);
         usersDB = new AuthenticatedUsersDatabase(db);
     }
+    public static Database getDatabaseHandle(){
+        return Storage.getInstance().db;
+    }
+    public static Schema getApplicationSchema(){
+        final Schema appSchema = new Schema("SubmittedApplications",
+                new Attribute("applicantID", JDBCType.INTEGER),
+                new Attribute("status", JDBCType.INTEGER),
+                new Attribute("statusMsg", JDBCType.VARCHAR),
+                new Attribute("submissionTime", JDBCType.BIGINT),
+                new Attribute("expirationDate", JDBCType.BIGINT),
+                new Attribute("agentName", JDBCType.VARCHAR),
+                new Attribute("approvalDate", JDBCType.BIGINT),
+                new Attribute("TTBUsername", JDBCType.VARCHAR),
+                new Attribute("submitterUsername", JDBCType.VARCHAR),
+                new Attribute("extraInfo", JDBCType.VARCHAR),
+                new Attribute("labelApproval", JDBCType.BOOLEAN),
+                new Attribute("stateOnly", JDBCType.VARCHAR),
+                new Attribute("bottleCapacity", JDBCType.INTEGER),
+                new Attribute("imageURL", JDBCType.VARCHAR),
+                new Attribute("qualifications", JDBCType.VARCHAR)
+        );
+        return appSchema;
+    }
+    public static Schema getAlcoholSchema(){
+        final Schema alcoholSchema = new Schema("AlcoholInfo",
+                new Attribute("applicationID", JDBCType.INTEGER),
+                new Attribute("alcoholContent", JDBCType.INTEGER),
+                new Attribute("fancifulName", JDBCType.VARCHAR),
+                new Attribute("brandName", JDBCType.VARCHAR),
+                new Attribute("origin", JDBCType.INTEGER),
+                new Attribute("type", JDBCType.INTEGER),
+                new Attribute("formula", JDBCType.VARCHAR),
+                new Attribute("serialNumber", JDBCType.VARCHAR),
+                new Attribute("pH", JDBCType.REAL),
+                new Attribute("vintageYear", JDBCType.INTEGER),
+                new Attribute("varietals", JDBCType.VARCHAR),
+                new Attribute("wineAppellation", JDBCType.VARCHAR)
+        );
+        return alcoholSchema;
+    }
+    public static Schema getManufacturerSchema(){
+        final Schema manufacturerSchema = new Schema("ManufacturerInfo",
+                new Attribute("applicationID", JDBCType.INTEGER),
+                new Attribute("authorizedName", JDBCType.VARCHAR),
+                new Attribute("physicalAddress", JDBCType.VARCHAR),
+                new Attribute("company", JDBCType.VARCHAR),
+                new Attribute("representativeID", JDBCType.INTEGER),
+                new Attribute("permitNum", JDBCType.INTEGER),
+                new Attribute("phoneNum", JDBCType.VARCHAR),
+                new Attribute("emailAddress", JDBCType.VARCHAR)
+        );
+        return manufacturerSchema;
+    }
+    /*
+    public static AlcoholModel getAlcoholModel(){
+        final AlcoholModel<AlcoholEntity> appModel = new AlcoholModel();
+        return appModel;
+    }
+    */
 
     private Database initDatabase(String dbName) {
         Database database = new Database(dbName);
