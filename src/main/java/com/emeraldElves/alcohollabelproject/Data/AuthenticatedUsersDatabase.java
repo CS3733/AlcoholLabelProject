@@ -238,9 +238,10 @@ public class AuthenticatedUsersDatabase {
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
                 String phoneNum = resultSet.getString("phoneNumber");
+                String company = resultSet.getString("company");
 
                 return(new Applicant(email, name, representativeID, permitNum, address,
-                        phoneNum));
+                        phoneNum, company));
             }
         }
         catch(SQLException e){
