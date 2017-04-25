@@ -5,7 +5,7 @@ import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.IDGenerator.ApplicationIDGenerator;
 import com.emeraldElves.alcohollabelproject.IDGenerator.TTBIDGenerator;
 import com.emeraldElves.alcohollabelproject.Log;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+//import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -529,7 +529,7 @@ public class AlcoholDatabase {
                 int type = results.getInt("type");
                 String fancifulName = results.getString("fancifulName");
                 String brandName = results.getString("brandName");
-                double alcoholContent = results.getDouble("alcohol Content");
+                double alcoholContent = results.getDouble("alcoholContent");
                 String formula = results.getString("formula");
                 String serialNumber = results.getString("serialNumber");
                 Double pH = results.getDouble("pH");

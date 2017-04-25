@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
+import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +33,7 @@ public class ApplicantWorkflowController implements IController {
         applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
         List<String> applicationNames = new ArrayList<>();
         List<SubmittedApplication> applications = applicantInterface.getSubmittedApplications();
+        List<SavedApplication> savedApplications = applicantInterface.getSavedApplications();
         applications.sort((a, b) -> {
             if (a.getStatus() == b.getStatus()) {
                 return a.getApplicationID() - b.getApplicationID();
@@ -39,6 +41,14 @@ public class ApplicantWorkflowController implements IController {
                 return a.getStatus().ordinal() - b.getStatus().ordinal();
             }
         });
+
+        for(SavedApplication application : savedApplications){
+            String name = "";
+            name += (int)(Math.random()*10000);//TODO fix this
+            name += " - Saved";
+            applicationNames.add(name);
+        }
+
         for (SubmittedApplication application : applications) {
             String name = "";
             name += application.getApplication().getAlcohol().getBrandName();
@@ -55,6 +65,7 @@ public class ApplicantWorkflowController implements IController {
             }
             applicationNames.add(name);
         }
+
         ObservableList<String> items = FXCollections.observableList(applicationNames);
         list.setItems(items);
     }

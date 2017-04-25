@@ -506,7 +506,7 @@ public class NewApplicationController implements IController {
         app = new SavedApplication(appType,alcoholInfo,extraInfo,image);
 
         Storage.getInstance().saveApplication(app, username);
-
+        Log.console("Saved Application");
         main.loadHomepage();
     }
 
