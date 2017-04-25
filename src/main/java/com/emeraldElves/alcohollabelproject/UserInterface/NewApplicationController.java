@@ -379,6 +379,92 @@ public class NewApplicationController implements IController {
             }
         }
 
+    /**
+     * Makes the current application into a SavedApplication object and then adds it
+     * to the SavedApplications database
+     */
+    public void saveApplication(){
+        LogManager.getInstance().logAction("newApplicationController", "Save Application has been clicked.");
+        SavedApplication app; // app to be submitted to database
+        //Things to add into SavedApplication
+        ApplicationType appType;
+        AlcoholInfo alcoholInfo;
+        String extraInfo;
+        LabelImage image;
+        //
+        //Time for a ton of isEmpty()
+
+
+
+        //appType
+        boolean labelApproval = certOfApproval.isSelected();
+        String stateOnly;
+        if(certOfExemption.isSelected()){ stateOnly = stateSelect.getAccessibleText();}//Maybe change this
+        else { stateOnly = "";}
+        int bottleCapacity;
+        if(distinctiveApproval.isSelected()){ bottleCapacity = Integer.parseInt(distinctiveText.getText());}
+        else { bottleCapacity = -1;}//know this for future
+        appType = new ApplicationType(labelApproval,stateOnly,bottleCapacity);
+        //END appType
+
+        //alcoholInfo
+        int alcoholContent; // double??
+        String fanciful;
+        String brand;
+        ProductSource origin;
+        String serialNumber;
+        String formula;
+        AlcoholInfo.Wine wineInfo;
+        AlcoholType alcoholType;
+
+        //Alcohol Type
+        //Checking if the product is a beer, wine or spirits
+        if (pTypeSelect.getValue().equals("Malt Beverages") ){
+            alcoholType = AlcoholType.BEER;
+        } else if (pTypeSelect.getValue().equals("Wine")) {
+            alcoholType = AlcoholType.WINE;
+        } else if (pTypeSelect.getValue().equals("Distilled Spirits")) {
+            alcoholType = AlcoholType.DISTILLEDSPIRITS;
+        }
+        else{
+            alcoholType = AlcoholType.BEER; // default to beer I guess
+        }
+        //END Alcohol Type
+
+        //wineInfo
+        double pH;
+        int vintageYear;
+        String varietal;
+        String appellation;
+
+        if(alcoholType == AlcoholType.WINE){
+            //Its wine
+            //pH
+            if(pHLevelField.getText().isEmpty()){ pH = -1;}
+            else { pH = Double.parseDouble(pHLevelField.getText());}
+            //vintageYear
+            if(wineVintageYearField.getText().isEmpty()){ vintageYear = -1;}
+            else{ vintageYear = Integer.parseInt(wineVintageYearField.getText());}
+            //varietal
+            if(varietalText.getText().isEmpty()){ varietal = "";}
+            else{ varietal = varietalText.getText();}
+            //appellation
+            if(appellationText.getText().isEmpty()){ appellation = ""; }
+            else{ appellation = appellationText.getText();}
+        }
+        else{
+            //Its not
+            //These values are never used anyways...
+            pH = -1.0;
+            vintageYear = -1;
+            varietal = "";
+            appellation = "";
+        }
+        //END wineInfo
+
+        Storage.getInstance().saveApplication(app, username);
+    }
+
     public void cancelApp() {
         //Go back to homepage
         main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
