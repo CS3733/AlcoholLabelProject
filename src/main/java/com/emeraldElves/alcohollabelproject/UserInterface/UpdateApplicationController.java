@@ -143,63 +143,38 @@ public class UpdateApplicationController {
 
         disableAllFields();
 
+    }
 
-//        allowedUpdatesSelect.valueProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue ov, String oldVal, String newVal) {
-//                if(allowedUpdatesSelect.getValue().equals("Delete non-mandatory label information")||
-//                        allowedUpdatesSelect.getValue().equals("Reposition label information")||
-//                        allowedUpdatesSelect.getValue().equals("Change label format (color, font, size of label, etc)")||
-//                        allowedUpdatesSelect.getValue().equals("Change the net contents statement")){
-//                    submitLabel.setDisable(false);
-//                } else if(allowedUpdatesSelect.getValue().equals("Edit alcohol content")){
-//                    alcoholContentField.setDisable(false);
-//                    submitLabel.setDisable(false);
-//                } else if(allowedUpdatesSelect.getValue().equals("Edit optional statement of alcohol content on label")){
-//                    submitLabel.setDisable(false);
-//                } else if(allowedUpdatesSelect.getValue().equals("Edit percentages of grape varietals and appellations on label")){
-//                    varietalText.setDisable(false);
-//                    appellationText.setDisable(false);
-//                    submitLabel.setDisable(false);
-//                } else if(allowedUpdatesSelect.getValue().equals("Edit the vintage date on label")){
-//                    wineVintageYearField.setDisable(false);
-//                    submitLabel.setDisable(false);
-//                } else if(allowedUpdatesSelect.getValue().equals("Edit the pH level on label")){
-//                    pHLevelField.setDisable(false);
-//                    submitLabel.setDisable(false);
-//                } else if(allowedUpdatesSelect.getValue().equals("Change 'produced' on label to 'blended' or 'prepared' statement")||
-//                        allowedUpdatesSelect.getValue().equals("Change stated amount of sugar on label")||
-//                        allowedUpdatesSelect.getValue().equals("Edit bonded winery or taxpaid bottling house number on label")){
-//                    submitLabel.setDisable(false);
-//                } else{ //nothing to change
-//                }
-//            }
-//        });
+    public void nextPage(){
+        int selectedUpdateNum=0; //number corresponding to the allowed update
 
+
+        //go to page 2 of update app
+        Main.loadFXML("/fxml/UpdateApplication.fxml");
     }
 
     public void submitApp() {
         LogManager.getInstance().logAction("NewApplicationController", "Logged Click from first page of the new Application");
 
+        submitLabel.setDisable(false);
+        alcoholContentField.setDisable(false);
+        varietalText.setDisable(false);
+        appellationText.setDisable(false);
+        wineVintageYearField.setDisable(false);
+        pHLevelField.setDisable(false);
+
         Boolean formFilled = false;
         Boolean fieldsValid = false;
 
         //errors are printed only if required fields are not filled in
-        if (pSourceSelect.getValue().equals("Select a product source")) {
-            pSourceErrorField.setText("Please select the alcohol source.");
+
+        //malt beverages: don't need alcohol content
+        if(!isInt(alcoholContentField)){
+            alcContentErrorField.setText("Please enter a valid number.");
         } else {
-            pSourceErrorField.setText("");
+            alcContentErrorField.setText("");
         }
-        if (pTypeSelect.getValue().equals("Select a product type")) {
-            pTypeErrorField.setText("Please select the alcohol type.");
-        } else {
-            pTypeErrorField.setText("");
-        }
-        if (brandNameField.getText().isEmpty()) {
-            brandNameErrorField.setText("Please fill in the brand name.");
-        } else {
-            brandNameErrorField.setText("");
-        }
+
         if (alcoholContentField.getText().isEmpty()) {
             alcContentErrorField.setText("Please fill in the alcohol percentage.");
         } else if(!isInt(alcoholContentField)){
@@ -207,11 +182,7 @@ public class UpdateApplicationController {
         } else {
             alcContentErrorField.setText("");
         }
-        if (serialText.getText().isEmpty()) {
-            serialErrorField.setText("Please input a serial number.");
-        } else {
-            serialErrorField.setText("");
-        }
+
         if (signatureField.getText().isEmpty()) {
             signatureErrorField.setText("Please fill in the signature field.");
         } else {
@@ -226,10 +197,7 @@ public class UpdateApplicationController {
         }
 
         //check if required fields are filled in
-        if ((!pTypeSelect.getValue().equals("Select a product type")) &&
-                (!pSourceSelect.getValue().equals("Select a product source")) &&
-                !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
-                !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()) {
+        if (!alcoholContentField.getText().isEmpty() && !signatureField.getText().isEmpty()) {
             formFilled = true;
         }
 
