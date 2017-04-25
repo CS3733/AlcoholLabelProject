@@ -8,11 +8,15 @@ import com.emeraldElves.alcohollabelproject.LogManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,6 +25,14 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
 public class UpdateApplicationController {
+    @FXML
+    private Button selectRev;
+    @FXML
+    private Checkbox option1, option2, option3, option4, option5, option6, option7, option8, option9, option10, option11, option12;
+    @FXML
+    private Checkbox option13, option14, option15, option16, option17, option18, option19, option20, option21, option22, option23;
+    @FXML
+    private Checkbox option24, option25, option26, option27, option28, option29, option30, option31, option32, option33, option34;
     @FXML
     private TextField repIDNoTextField, permitNoTextField, alcoholName, brandNameField;
     @FXML
@@ -142,6 +154,10 @@ public class UpdateApplicationController {
         }
 
         disableAllFields();
+
+//        if(option1.isSelected()){
+//            submitLabel.setDisable(false);
+//        }
 
     }
 
