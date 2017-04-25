@@ -45,7 +45,7 @@ public class ApplicantWorkflowController implements IController {
         numSavedApplications = 0;
         for(SavedApplication application : savedApplications){
             String name = "";
-            name += (int)(Math.random()*10000);//TODO fix this
+            name += application.getApplicationID();
             name += " - Saved";
             applicationNames.add(name);
             numSavedApplications ++;

@@ -545,8 +545,10 @@ public class AlcoholDatabase {
                 alcoholInfo = new AlcoholInfo(alcoholContent,fancifulName,brandName,ProductSource.fromInt(origin),
                         AlcoholType.fromInt(type), new AlcoholInfo.Wine(pH,vintageYear,varietals,wineAppellation),
                         serialNumber,formula);
-
-                saveList.add(new SavedApplication(applicationType,alcoholInfo, extraInfo, new LabelImage(imageURL)));
+                SavedApplication temp = new SavedApplication(applicationType,alcoholInfo, extraInfo, new LabelImage(imageURL));
+                //sets application ID for thing
+                temp.setApplicationID(applicationID);
+                saveList.add(temp);
             }
         }
         catch (SQLException e){
