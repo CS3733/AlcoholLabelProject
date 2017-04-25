@@ -157,97 +157,72 @@ public class UpdateApplicationController {
     public void nextPage(){
         int selectedUpdateNum=0; //number corresponding to the allowed update
 
-        if(option1.isSelected() || option2.isSelected() || option3.isSelected() || option4.isSelected()){
+        if(option1.isSelected() || option2.isSelected() || option3.isSelected() || option4.isSelected()
+                || option6.isSelected() || option8.isSelected() || option9.isSelected() || option14.isSelected()
+                || option15.isSelected() || option26.isSelected() || option27.isSelected() || option28.isSelected()
+                || option29.isSelected() || option30.isSelected() || option31.isSelected() || option23.isSelected()
+                || option34.isSelected()){
             submitLabel.setDisable(false);
         }
         if(option5.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option6.isSelected()){
-            submitLabel.setDisable(false);
+            wineVintageYearField.setDisable(false);
         }
         if(option7.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option8.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option9.isSelected()){
-            submitLabel.setDisable(false);
+            pHLevelField.setDisable(false);
         }
         if(option10.isSelected()){
-            submitLabel.setDisable(false);
+            formulaText.setDisable(false);
         }
         if(option11.isSelected()){
             submitLabel.setDisable(false);
+            alcoholContentField.setDisable(false);
         }
         if(option12.isSelected()){
-            submitLabel.setDisable(false);
+            alcoholContentField.setDisable(false);
         }
         if(option13.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option14.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option15.isSelected()){
-            submitLabel.setDisable(false);
+            alcoholContentField.setDisable(false);
         }
         if(option16.isSelected()){
-            submitLabel.setDisable(false);
+            stateSelect.setDisable(false);
         }
         if(option17.isSelected()){
-            submitLabel.setDisable(false);
+            formulaText.setDisable(false);
         }
         if(option18.isSelected()){
-            submitLabel.setDisable(false);
+            datePicker.setDisable(false);
         }
         if(option19.isSelected()){
-            submitLabel.setDisable(false);
+            alcoholName.setDisable(false);
+            brandNameField.setDisable(false);
+            addressField.setDisable(false);
         }
         if(option20.isSelected()){
-            submitLabel.setDisable(false);
+            alcoholName.setDisable(false);
+            addressField.setDisable(false);
+            brandNameField.setDisable(false);
         }
         if(option21.isSelected()){
-            submitLabel.setDisable(false);
+            alcoholName.setDisable(false);
+            addressField.setDisable(false);
+            brandNameField.setDisable(false);
         }
         if(option22.isSelected()){
             submitLabel.setDisable(false);
-        }
-        if(option23.isSelected()){
-            submitLabel.setDisable(false);
+            extraInfoText.setDisable(false);
         }
         if(option24.isSelected()){
-            submitLabel.setDisable(false);
+            addressField.setDisable(false);
         }
         if(option25.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option26.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option27.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option28.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option29.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option30.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option31.isSelected()){
-            submitLabel.setDisable(false);
+            repIDNoTextField.setDisable(false);
         }
         if(option32.isSelected()){
+            formulaText.setDisable(false);
             submitLabel.setDisable(false);
         }
         if(option33.isSelected()){
-            submitLabel.setDisable(false);
-        }
-        if(option34.isSelected()){
+            extraInfoText.setDisable(false);
             submitLabel.setDisable(false);
         }
         //go to page 2 of update app
