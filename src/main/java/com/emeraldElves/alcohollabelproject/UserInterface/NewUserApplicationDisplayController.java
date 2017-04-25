@@ -24,7 +24,7 @@ import java.util.Set;
 /**
  * Created by keionbis on 4/18/17.
  */
-public class NewUserApplicationDisplayController {
+public class NewUserApplicationDisplayController implements IController {
     private Main main;
 
 
@@ -49,7 +49,9 @@ public class NewUserApplicationDisplayController {
     private COLASearch search;
 
 
-
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
+    }
 
     public void init(Main main) {
         this.main = main;
@@ -86,14 +88,14 @@ public class NewUserApplicationDisplayController {
         nameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getName())));
         userNameCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getEmail().getEmailAddress())));
         userTypeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getUserType().toString())));
-        idNumberCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getPermitNum()))));
+        idNumberCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getRepresentativeID()))));
         resultsTable.setItems(data);
         resultsTable.setRowFactory(tv -> {
             TableRow<PotentialUser> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     PotentialUser rowData = row.getItem();
-                    main.loadSuperUserWorkflowController(rowData);
+                    main.loadFXML("/fxml/AccountApplicationPage.fxml",rowData);
                 }
             });
             return row;
@@ -103,7 +105,7 @@ public class NewUserApplicationDisplayController {
 
 
     public void goHome() {
-        main.loadHomepage();
+        main.loadFXML("/fxml/HomePage.fxml");
     }
 
 }

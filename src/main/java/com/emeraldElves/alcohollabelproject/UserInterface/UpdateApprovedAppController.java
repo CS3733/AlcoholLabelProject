@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UpdateApprovedAppController {
+public class UpdateApprovedAppController implements IController {
     @FXML
     TextField repIDNoTextField;
     @FXML
@@ -155,13 +155,31 @@ public class UpdateApprovedAppController {
 
     private SubmittedApplication application;
 
-    public void init(Main main, SubmittedApplication application) {
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
+    }
+
+    public void init(Main main){
         this.main = main;
-        this.application = application;
-        username= Authenticator.getInstance().getUsername();
-        applicant = new ApplicantInterface(username);
-        ManufacturerInfo manInfo= new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), applicant.getApplicant().getAddressFromDB(username), "", applicant.getApplicant().getRepresentativeIDFromDB(username), applicant.getApplicant().getPermitNumFromDB(username), new PhoneNumber(applicant.getApplicant().getPhoneNum()), new EmailAddress(applicant.getApplicant().getEmailAddress()));
-        welcomeApplicantLabel.setText("Welcome, " + (manInfo.getName()) + ".");
+
+//        username= Authenticator.getInstance().getUsername();
+//        applicant = new ApplicantInterface(username);
+//        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(applicant.getApplicant().getName()) + ".");
+//
+//        emailAddress = applicant.getApplicant().getEmailAddress();
+//        permitNum = applicant.getApplicant().getPermitNum();
+//        address = applicant.getApplicant().getAddress();
+//        phoneNum = applicant.getApplicant().getPhoneNum();
+//        representativeID = applicant.getApplicant().getRepresentativeID();
+//        repIDNoTextField.setText(String.valueOf(representativeID));
+//        permitNoTextField.setText(String.valueOf(permitNum));
+//        addressField.setText(String.valueOf(address));
+//        phoneNumberField.setText(String.valueOf(phoneNum));
+//        emailAddressField.setText(String.valueOf(emailAddress));
+
+//        example manufacturer info
+        ManufacturerInfo manInfo= new ManufacturerInfo("Bob", "1 Institute Rd", "", 1234, 1111, new PhoneNumber("9789789788"), new EmailAddress("test@test.com"));
+        welcomeApplicantLabel.setText("Welcome, " + String.valueOf(manInfo.getName()) + ".");
         repIDNoTextField.setText(String.valueOf(manInfo.getRepresentativeID()));
         permitNoTextField.setText(String.valueOf(manInfo.getPermitNum()));
         addressField.setText(String.valueOf(manInfo.getPhysicalAddress()));
@@ -174,6 +192,12 @@ public class UpdateApprovedAppController {
         pSourceSelect.setItems(sourceList);
         pTypeSelect.setValue("Select a product type");
         pTypeSelect.setItems(typeList);
+
+    }
+
+    public void init(Main main, SubmittedApplication application) {
+        init(main);
+        this.application = application;
 
         if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
             pSourceSelect.setValue("Domestic");
@@ -245,106 +269,101 @@ public class UpdateApprovedAppController {
         boolean fieldsValid = false;
 
 
-            if (alcoholContentField.getText().isEmpty()) {
-                alcContentErrorField.setText("Please fill in the alcohol percentage.");
-            } else if(!isInt(alcoholContentField)){
-                alcContentErrorField.setText("Please enter a valid number.");
-            } else {
-                alcContentErrorField.setText("");
-            }
+        if (alcoholContentField.getText().isEmpty()) {
+            alcContentErrorField.setText("Please fill in the alcohol percentage.");
+        } else if(!isInt(alcoholContentField)){
+            alcContentErrorField.setText("Please enter a valid number.");
+        } else {
+            alcContentErrorField.setText("");
+        }
 
-            if (signatureField.getText().isEmpty()) {
-                signatureErrorField.setText("Please fill in the signature field.");
-            } else {
-                signatureErrorField.setText("");
-            }
+        if (signatureField.getText().isEmpty()) {
+            signatureErrorField.setText("Please fill in the signature field.");
+        } else {
+            signatureErrorField.setText("");
+        }
 
-            //check if required fields are filled in
-            if (!signatureField.getText().isEmpty()) {
-                formFilled = true;
-            }
+        //check if required fields are filled in
+        if (!signatureField.getText().isEmpty()) {
+            formFilled = true;
+        }
 
-            //check if fields are valid
-            if(isInt(alcoholContentField)){
-                    fieldsValid=true;
-            }
+        //check if fields are valid
+        if(isInt(alcoholContentField)){
+            fieldsValid=true;
+        }
 
-            if (formFilled && fieldsValid) {
+        if (formFilled && fieldsValid) {
 
-                if (pTypeSelect.getValue().equals("Wine")) {
+            if (pTypeSelect.getValue().equals("Wine")) {
 //                    int vintageYr = 0;
 //                    double pH = 0.0;
 //                    String varietal = "";
 //                    String appellation = "";
-                    if (!wineVintageYearField.getText().isEmpty())
-                        application.getApplication().getAlcohol().getWineInfo().vintageYear = Integer.parseInt(wineVintageYearField.getText()); //CHECK IF INPUT INTEGER!
-                    if (!pHLevelField.getText().isEmpty())
-                        application.getApplication().getAlcohol().getWineInfo().pH = Double.parseDouble(pHLevelField.getText()); //CHECK IF INPUT INTEGER!
-                    if (!varietalText.getText().isEmpty())
-                        application.getApplication().getAlcohol().getWineInfo().grapeVarietal = varietalText.getText();
-                    if (!appellationText.getText().isEmpty())
-                        application.getApplication().getAlcohol().getWineInfo().appellation = appellationText.getText();
-                    //wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
-                }
+                if (!wineVintageYearField.getText().isEmpty())
+                    application.getApplication().getAlcohol().getWineInfo().vintageYear = Integer.parseInt(wineVintageYearField.getText()); //CHECK IF INPUT INTEGER!
+                if (!pHLevelField.getText().isEmpty())
+                    application.getApplication().getAlcohol().getWineInfo().pH = Double.parseDouble(pHLevelField.getText()); //CHECK IF INPUT INTEGER!
+                if (!varietalText.getText().isEmpty())
+                    application.getApplication().getAlcohol().getWineInfo().grapeVarietal = varietalText.getText();
+                if (!appellationText.getText().isEmpty())
+                    application.getApplication().getAlcohol().getWineInfo().appellation = appellationText.getText();
+                //wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
+            }
 
-                //sets alc info fields
-                alcName = alcoholName.getText();
-                brandName = brandNameField.getText();
-                alcContent = Integer.parseInt(alcoholContentField.getText()); //CHECK IF INTEGER
-                serialNum = serialText.getText();
-                if (formulaText.getText().isEmpty()) {
-                    formula = " ";
-                } else formula = formulaText.getText();
-                if (extraInfoText.getText().isEmpty()) {
-                    extraInfo = " ";
-                } else extraInfo = extraInfoText.getText();
+            //sets alc info fields
+            alcName = alcoholName.getText();
+            brandName = brandNameField.getText();
+            alcContent = Integer.parseInt(alcoholContentField.getText()); //CHECK IF INTEGER
+            serialNum = serialText.getText();
+            if (formulaText.getText().isEmpty()) {
+                formula = " ";
+            } else formula = formulaText.getText();
+            if (extraInfoText.getText().isEmpty()) {
+                extraInfo = " ";
+            } else extraInfo = extraInfoText.getText();
 
-                application.getApplication().getAlcohol().setFormula(formula);
-                application.getApplication().setExtraInfo(extraInfo);
-                application.getApplication().getAlcohol().setAlcoholContent(alcContent);
+            //application.getApplication().getAlcohol().setFormula(formula);
+            application.getApplication().setExtraInfo(extraInfo);
+            application.getApplication().getAlcohol().setAlcoholContent(alcContent);
 
 
-                //sets the alcohol info
-                appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
+            //sets the alcohol info
+            appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
 
-                //sets the date value
-                Date newDate = DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
+            //sets the date value
+            Date newDate = DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
 
-                ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo, extraInfo, appType);
+            ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo, extraInfo, appType);
 
-                //!!!!!placeholder for applicant's submitted applications!!!!!
-                List<SubmittedApplication> appList = new ArrayList<>();
+            //!!!!!placeholder for applicant's submitted applications!!!!!
+            List<SubmittedApplication> appList = new ArrayList<>();
 
-                //Create applicant to store in submitted application
-                Applicant applicant = new Applicant(appList);
+            //Create applicant to store in submitted application
+            Applicant applicant = new Applicant(appList);
 
-                //Create a SubmittedApplication
+            //Create a SubmittedApplication
 //                application.
 //                SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant);
-                if (application != null)
-                    application.setApplicationID(application.getApplicationID());
-                applicant.addSubmittedApp(application);
-                if(proxyLabelImage!= null) {
-                    application.setImage(proxyLabelImage);
-                }
-                else{
-                    application.setImage(new ProxyLabelImage(""));
-                }
+            if (application != null)
+                application.setApplicationID(application.getApplicationID());
+            applicant.addSubmittedApp(application);
+            application.setImage(proxyLabelImage);
 
-                if (application != null)
-                    application.setApplicationID(application.getApplicationID());
+            if (application != null)
+                application.setApplicationID(application.getApplicationID());
 
-                //Submit the new application to the database
-                ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
-                boolean success = applicantInterface.submitApplication(application);
+            //Submit the new application to the database
+            ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
+            boolean success = applicantInterface.submitApplication(application);
 
-                main.loadHomepage();
-            }
+            main.loadHomepage();
         }
+    }
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
     }
 
     public void saveApp() {
@@ -387,8 +406,8 @@ public class UpdateApprovedAppController {
         }
         Image image = new Image(target.toUri().toString());
         imageView.setImage(image);
-       proxyLabelImage = new ProxyLabelImage(fileName);
+        proxyLabelImage = new ProxyLabelImage(fileName);
         //application.setImage(proxyLabelImage);
     }
-   
+
 }

@@ -16,7 +16,7 @@ import java.util.Date;
  * Created by keionbis on 4/5/17.
  */
 
-public class ApprovalProcessController {
+public class ApprovalProcessController implements IController {
     Main main;
     SubmittedApplication application;
     private TTBAgentInterface agentInterface;
@@ -43,6 +43,8 @@ public class ApprovalProcessController {
 
     @FXML
     TextArea reason;
+    @FXML
+    TextArea qualifications;
 
     @FXML
     Label authorizedName;
@@ -64,6 +66,9 @@ public class ApprovalProcessController {
     @FXML
     Label applicationID;
 
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getApplication("app"));
+    }
 
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
@@ -108,15 +113,18 @@ public class ApprovalProcessController {
     }
 
     public void GoHome() {
-        main.loadHomepage();
+        main.loadFXML("/fxml/HomePage.fxml");
 
     }
 
     public void Approve() {
+        application.getApplication().setQualifications(qualifications.getText());//sets qualifications
+        //need to update in database now
         ApplicationStatusChanger changer = new ApplicationStatusChanger();
         changer.changeStatus(new ApproveCommand(application, true));
         changer.commitUpdates();
-        main.loadWorkflowPage();
+        //Storage.getInstance().submitApplication(application,);
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
 
     }
 
@@ -125,25 +133,25 @@ public class ApprovalProcessController {
         changer.changeStatus(new RejectCommand(application, reason.getText(), true));
         changer.commitUpdates();
         //Storage.getInstance().rejectApplication(application, reason.getText());
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void PendingReview() {
         application.setStatus(ApplicationStatus.PENDINGREVIEW);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void ApprovedConditionally() {
         application.setStatus(ApplicationStatus.APPROVEDWITHCONDITIONS);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void NeedsCorrections() {
         application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
-        main.loadWorkflowPage();
+        main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void printPage(){
@@ -154,6 +162,6 @@ public class ApprovalProcessController {
 
     }
     public void viewLabel(){
-        main.loadLabelPage(application);
+        main.loadFXML("/fxml/DisplayLabel.fxml",application);
     }
 }
