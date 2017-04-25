@@ -239,7 +239,7 @@
                   </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                       <image>
-                          <Image backgroundLoading="true" url="@../images/wwong2.jpg" />
+                          <Image backgroundLoading="true" url="@../images/no-image.gif" />
                       </image>
                   </ImageView>
                   <GridPane GridPane.rowIndex="1">
@@ -341,6 +341,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                      <image>
+                      <Image backgroundLoading="true" url="@../images/no-image.gif" />
+                  </image>
+               </ImageView>
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
