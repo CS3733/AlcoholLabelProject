@@ -362,6 +362,13 @@ public class AlcoholDatabase {
         return true;
     }
 
+    /**
+     * Saves an application in the SavedApplications database. This application is able to be
+     * loaded up again by the same person who saved it.
+     * @param application The application to save
+     * @param username The username of the person who saved the application
+     * @return Whether or not the application was saved successfully
+     */
     public boolean saveApplication(SavedApplication application, String username) {
         //making application type
         ApplicationType appType = application.getApplicationType();
@@ -457,7 +464,7 @@ public class AlcoholDatabase {
                                     + appID
                             , "SavedApplications");
                 } else {
-                    //not a wine application, so wine fields are not applicable 
+                    //not a wine application, so wine fields are not applicable
                     worked = db.insert(appType.isLabelApproval() + ", '" // app types
                                     + appType.getStateOnly() + "', " // app types
                                     + appType.getBottleCapacity() + ", " // app types

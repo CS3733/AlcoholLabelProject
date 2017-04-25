@@ -211,6 +211,16 @@ public class Storage {
     public List<PotentialUser> getPotentialUsers(){ return usersDB.getPotentialUsers();  }
 
     /**
+     * calls the saveApplication function in the alcohol database
+     * @param application The application to save
+     * @param username The username of the person saving the application
+     * @return Whether or not the application was successfully saved
+     */
+    public boolean saveApplication(SavedApplication application, String username){
+        return alcoholDB.saveApplication(application,username);
+    }
+
+    /**
      *
      * @param usertype The type of user
      * @param username The email of the user
