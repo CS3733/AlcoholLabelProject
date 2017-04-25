@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.ApplicationType;
 import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
@@ -29,6 +30,11 @@ public class Applicant {
         this.applications = applications;
     }
 
+    public Applicant(List<SubmittedApplication> applications, List<SavedApplication> saves){
+        this.applications = applications;
+        this.savedApplications = saves;
+    }
+
     /**
      * Creates applicant with fields
      */
@@ -44,6 +50,7 @@ public class Applicant {
     public List<SubmittedApplication> getApplications() {
         return applications;
     }
+    public List<SavedApplication> getSavedApplications(){ return savedApplications; }
     public void setApplications(List<SubmittedApplication> subApps) {
         this.applications = subApps;
     }
