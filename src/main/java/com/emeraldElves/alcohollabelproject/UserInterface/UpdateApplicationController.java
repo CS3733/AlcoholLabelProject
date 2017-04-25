@@ -155,15 +155,15 @@ public class UpdateApplicationController {
 
         disableAllFields();
 
-//        if(option1.isSelected()){
-//            submitLabel.setDisable(false);
-//        }
 
     }
 
     public void nextPage(){
         int selectedUpdateNum=0; //number corresponding to the allowed update
 
+//        if(option1.isSelected()){
+//            submitLabel.setDisable(false);
+//        }
 
         //go to page 2 of update app
         Main.loadFXML("/fxml/UpdateApplication.fxml");
