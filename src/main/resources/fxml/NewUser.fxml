@@ -58,6 +58,7 @@
                 <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+                  <TextField fx:id="Name" GridPane.rowIndex="1" />
                   <Label text="Email" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -70,17 +71,16 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="passwordField" prefWidth="200.0" GridPane.rowIndex="3" />
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
                   <Label text="Phone Number" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-                  <Label text="Permit No." GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                  <Label text="Representative ID" GridPane.rowIndex="7" GridPane.valignment="TOP" />
                   <TextField fx:id="phoneNumber" GridPane.rowIndex="4" />
-                  <TextField fx:id="permitNumText" GridPane.rowIndex="6" />
-                  <TextField fx:id="representativeID" GridPane.rowIndex="7" />
-                  <TextField fx:id="addressText" GridPane.rowIndex="5" />
                   <Label text="Address" GridPane.rowIndex="5" GridPane.valignment="TOP" />
-                  <TextField fx:id="Name" GridPane.rowIndex="1" />
+                  <TextField fx:id="addressText" GridPane.rowIndex="5" />
+                  <Label text="Permit No." GridPane.rowIndex="6" GridPane.valignment="TOP" />
+                  <TextField fx:id="permitNumText" GridPane.rowIndex="6" />
+                  <Label text="Representative ID" GridPane.rowIndex="7" GridPane.valignment="TOP" />
+                  <TextField fx:id="representativeID" GridPane.rowIndex="7" />
                   <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
                   <GridPane prefHeight="98.0" prefWidth="458.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.66665649414062" minWidth="10.0" prefWidth="243.66665649414062" />

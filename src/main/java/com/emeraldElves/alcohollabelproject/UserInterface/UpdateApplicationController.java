@@ -232,13 +232,6 @@ public class UpdateApplicationController {
     public void submitApp() {
         LogManager.getInstance().logAction("NewApplicationController", "Logged Click from first page of the new Application");
 
-        submitLabel.setDisable(false);
-        alcoholContentField.setDisable(false);
-        varietalText.setDisable(false);
-        appellationText.setDisable(false);
-        wineVintageYearField.setDisable(false);
-        pHLevelField.setDisable(false);
-
         Boolean formFilled = false;
         Boolean fieldsValid = false;
 
@@ -276,6 +269,7 @@ public class UpdateApplicationController {
         if (!alcoholContentField.getText().isEmpty() && !signatureField.getText().isEmpty()) {
             formFilled = true;
         }
+
 
         //check if fields are valid
         if(isInt(alcoholContentField)) {
