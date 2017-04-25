@@ -93,8 +93,8 @@ public class Applicant {
     public String getPhoneNum() { return phoneNum; }
 
     public void setEmailAddress() {}
-    public void setRepresentativeID() {}
-    public void setPermitNum() {}
-    public void setAddress() {}
-    public void setPhoneNum() {}
+    public void setRepresentativeID(String emailAddress, int representativeID) {}
+    public void setPermitNum(String emailAddress, int permitNum) {}
+    public void setAddress(String emailAddress, String address) {}
+    public void setPhoneNum(String emailAddress, String phoneNumber) {}
 }

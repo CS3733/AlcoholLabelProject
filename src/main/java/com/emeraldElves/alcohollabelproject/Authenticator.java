@@ -22,6 +22,15 @@ public class Authenticator {
         return AuthenticatorHolder.instance;
     }
 
+    public boolean isvalidAccount(String accountEmail) {
+        if (storage.isValidUser(username)) {
+            this.username = username;
+            return true;
+        }
+        return false;
+    }
+
+
     private static class AuthenticatorHolder {
         public static final Authenticator instance = new Authenticator();
     }
