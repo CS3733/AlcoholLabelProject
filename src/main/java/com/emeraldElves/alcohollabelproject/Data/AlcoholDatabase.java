@@ -519,19 +519,41 @@ public class AlcoholDatabase {
         List<SavedApplication> saveList = new ArrayList<SavedApplication>();
         //TODO fill in save list
         ApplicationType applicationType;
+        AlcoholInfo alcoholInfo;
         try {
-            Boolean labelApproval = results.getBoolean("labelApproval");
-            String stateOnly = results.getString("stateOnly");
-            String bottleCapacity = results.getString("bottleCapacity");
-            int origin = results.getInt("origin");
-            int type = results.getInt("type");
-            String fancifulName = results.getString("fancifulName");
-            String brandName = results.getString("brandName");
-            double alcoholContent = results.getDouble("alcohol Content");
+            while (results.next()) {
+                Boolean labelApproval = results.getBoolean("labelApproval");
+                String stateOnly = results.getString("stateOnly");
+                int bottleCapacity = results.getInt("bottleCapacity");
+                int origin = results.getInt("origin");
+                int type = results.getInt("type");
+                String fancifulName = results.getString("fancifulName");
+                String brandName = results.getString("brandName");
+                double alcoholContent = results.getDouble("alcohol Content");
+                String formula = results.getString("formula");
+                String serialNumber = results.getString("serialNumber");
+                Double pH = results.getDouble("pH");
+                int vintageYear = results.getInt("vintageYear");
+                String varietals = results.getString("varietals");
+                String wineAppellation = results.getString("wineAppellation");
+                String extraInfo = results.getString("extraInfo");
+                String imageURL = results.getString("imageURL");
+                String submitterUsername = results.getString("submitterUsername");
+                int applicationID = results.getInt("applicationID");
+
+                applicationType = new ApplicationType(labelApproval,stateOnly,bottleCapacity);
+                alcoholInfo = new AlcoholInfo(alcoholContent,fancifulName,brandName,ProductSource.fromInt(origin),
+                        AlcoholType.fromInt(type), new AlcoholInfo.Wine(pH,vintageYear,varietals,wineAppellation),
+                        serialNumber,formula);
+
+                saveList.add(new SavedApplication(applicationType,alcoholInfo, extraInfo, new LabelImage(imageURL)));
+            }
         }
-        catch(SQLException e){
+        catch (SQLException e){
             e.printStackTrace();
         }
+
+
         return saveList;
 
     }
