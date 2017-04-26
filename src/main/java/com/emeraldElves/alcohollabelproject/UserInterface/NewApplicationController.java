@@ -205,6 +205,18 @@ public class NewApplicationController implements IController {
         AlcoholInfo alcoholInfo = savedApplication.getAlcoholInfo();
         String extraInfo = savedApplication.getExtraInfo();
         String imageURL = savedApplication.getImage().getFileName();
+        //fanciful name
+        alcoholName.setText(alcoholInfo.getName());
+        //brand name
+        brandNameField.setText(alcoholInfo.getBrandName());
+        //Alcohol Content
+        alcoholContentField.setText("" + alcoholInfo.getAlcoholContent());
+        //formula
+        formulaText.setText(alcoholInfo.getFormula());
+        //serial number
+        serialText.setText(alcoholInfo.getSerialNumber());
+        //extra info
+        extraInfoText.setText(extraInfo);
     }
 
     public void init(Main main, SubmittedApplication application) {
