@@ -29,7 +29,7 @@ public class TTBAgentInterface {
         agent.getCurrentApplications().remove(application);
         return storage.rejectApplication(application,reason);
     }
-
+    //update in database look at reject application/ accept application
     public boolean addApplication(SubmittedApplication application){
         return agent.getCurrentApplications().add(application);
     }

@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import com.emeraldElves.alcohollabelproject.EmailManager;
+import com.emeraldElves.alcohollabelproject.Log;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
@@ -102,13 +103,6 @@ public class ApprovalProcessController implements IController {
             assignUserBox.setValue("Select a user");
             assignUserBox.setItems(assignUser);
         }
-        //sets listener for combo box
-        assignUserBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue ov, String oldVal, String newVal) {
-                assignToUser();
-            }
-        });
 
         agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
@@ -160,6 +154,8 @@ public class ApprovalProcessController implements IController {
         TTBAgentInterface agent = new TTBAgentInterface(userToAssign); // user to assign to
 
         currentUser = new TTBAgentInterface(application.getTtbAgentName());
+
+        Log.console(application.getTtbAgentName());
 
         currentUser.removeApplication(application);
 
