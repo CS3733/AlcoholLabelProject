@@ -205,18 +205,54 @@ public class NewApplicationController implements IController {
         AlcoholInfo alcoholInfo = savedApplication.getAlcoholInfo();
         String extraInfo = savedApplication.getExtraInfo();
         String imageURL = savedApplication.getImage().getFileName();
+
+        //imported or domestic
+        if(alcoholInfo.getOrigin() == ProductSource.DOMESTIC){
+            pSourceSelect.setValue("Domestic");
+        }
+        else{
+            pSourceSelect.setValue("Imported");//right now default value, should change
+        }
+        //Alcohol Type
+        //Need to make default case
+        if(alcoholInfo.getAlcoholType() == AlcoholType.BEER){
+            pTypeSelect.setValue("Malt Beverages");
+        }
+        else if(alcoholInfo.getAlcoholType() == AlcoholType.WINE){
+            pTypeSelect.setValue("Wine");
+        }
+        else{
+            pTypeSelect.setValue("Distilled Spirits");
+        }
         //fanciful name
         alcoholName.setText(alcoholInfo.getName());
         //brand name
         brandNameField.setText(alcoholInfo.getBrandName());
         //Alcohol Content
-        alcoholContentField.setText("" + alcoholInfo.getAlcoholContent());
+        if(alcoholInfo.getAlcoholContent() != -1) {
+            alcoholContentField.setText("" + alcoholInfo.getAlcoholContent());
+        }
         //formula
         formulaText.setText(alcoholInfo.getFormula());
         //serial number
         serialText.setText(alcoholInfo.getSerialNumber());
         //extra info
         extraInfoText.setText(extraInfo);
+        //Wine info things
+        if(alcoholInfo.getAlcoholType() == AlcoholType.WINE){
+            //Vintage Year
+            if(alcoholInfo.getWineInfo().vintageYear != -1){
+                wineVintageYearField.setText("" + alcoholInfo.getWineInfo().vintageYear);
+            }
+            //pH
+            if(alcoholInfo.getWineInfo().pH != -1.0){
+                pHLevelField.setText("" + alcoholInfo.getWineInfo().pH);
+            }
+            //varietals
+            varietalText.setText(alcoholInfo.getWineInfo().grapeVarietal);
+            //appellation
+            appellationText.setText(alcoholInfo.getWineInfo().appellation);
+        }
     }
 
     public void init(Main main, SubmittedApplication application) {
@@ -487,7 +523,7 @@ public class NewApplicationController implements IController {
         if(alcoholType == AlcoholType.WINE){
             //Its wine
             //pH
-            if(pHLevelField.getText().isEmpty()){ pH = -1;}
+            if(pHLevelField.getText().isEmpty()){ pH = -1.0;}
             else { pH = Double.parseDouble(pHLevelField.getText());}
             //vintageYear
             if(wineVintageYearField.getText().isEmpty()){ vintageYear = -1;}
