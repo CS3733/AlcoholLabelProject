@@ -203,7 +203,7 @@ public class Main extends Application {
     }
 
     public void loadUpdateApplicationPage(SubmittedApplication application) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApprovedApplication.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateOptions.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
