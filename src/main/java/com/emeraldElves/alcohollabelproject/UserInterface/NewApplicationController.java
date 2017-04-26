@@ -200,11 +200,26 @@ public class NewApplicationController implements IController {
 
     public void init(Main main, SavedApplication savedApplication){
         init(main);
-        //TODO set fields to that of saved application
+        //TODO set fields of application type and image
         ApplicationType applicationType = savedApplication.getApplicationType();
         AlcoholInfo alcoholInfo = savedApplication.getAlcoholInfo();
         String extraInfo = savedApplication.getExtraInfo();
         String imageURL = savedApplication.getImage().getFileName();
+
+        //Application Type
+        if(applicationType.isLabelApproval()){
+            certOfApproval.setSelected(true);
+        }
+        if(!applicationType.getStateOnly().equals("")){
+            certOfExemption.setSelected(true);
+            stateSelect.setValue(applicationType.getStateOnly());
+            stateSelect.setDisable(false);
+        }
+        if(applicationType.getBottleCapacity() != -1){
+            distinctiveApproval.setSelected(true);
+            distinctiveText.setText("" + applicationType.getBottleCapacity());
+            distinctiveText.setDisable(false);
+        }
 
         //imported or domestic
         if(alcoholInfo.getOrigin() == ProductSource.DOMESTIC){
@@ -252,6 +267,12 @@ public class NewApplicationController implements IController {
             varietalText.setText(alcoholInfo.getWineInfo().grapeVarietal);
             //appellation
             appellationText.setText(alcoholInfo.getWineInfo().appellation);
+        }
+        //Image
+        if(!imageView.equals("")) {
+            File file = new File(imageURL);
+            Image tempImage = new Image(file.toURI().toString());
+            imageView.setImage(tempImage);
         }
     }
 
@@ -460,7 +481,7 @@ public class NewApplicationController implements IController {
         //appType
         boolean labelApproval = certOfApproval.isSelected();
         String stateOnly;
-        if(certOfExemption.isSelected()){ stateOnly = stateSelect.getAccessibleText();}//Maybe change this
+        if(certOfExemption.isSelected()){ stateOnly = stateSelect.getValue().toString();}//Maybe change this
         else { stateOnly = "";}
         int bottleCapacity;
         if(distinctiveApproval.isSelected()){ bottleCapacity = Integer.parseInt(distinctiveText.getText());}
@@ -560,6 +581,7 @@ public class NewApplicationController implements IController {
         else{
             image = new LabelImage("");
         }
+        Log.console(image);
         //END image
 
         app = new SavedApplication(appType,alcoholInfo,extraInfo,image);
