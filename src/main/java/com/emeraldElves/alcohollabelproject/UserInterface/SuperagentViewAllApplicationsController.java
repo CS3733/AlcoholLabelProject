@@ -43,9 +43,10 @@ public class SuperagentViewAllApplicationsController implements IController{
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
     private TTBAgentInterface agentInterface;
 
+
     private ObservableList<String> appTypeString = FXCollections.observableArrayList("Approved", "Pending Review", "Rejected");
 
-    
+
     private Main main;
 
     public void init(Bundle bundle){
