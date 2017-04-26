@@ -1,18 +1,18 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Data.DateHelper;
-import com.emeraldElves.alcohollabelproject.Data.Storage;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.TTBAgentInterface;
+import com.emeraldElves.alcohollabelproject.Data.*;
+import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +35,8 @@ public class SuperagentViewAllApplicationsController implements IController{
     private TableColumn<SubmittedApplication, String> appIDCol;
     @FXML
     private TableColumn<SubmittedApplication, String> agentCol;
+    @FXML
+    ComboBox appTypeBox;
 
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
     private TTBAgentInterface agentInterface;
@@ -50,7 +52,17 @@ public class SuperagentViewAllApplicationsController implements IController{
         this.main = main;
         //list of all ttb agent usernames
         List<String> names = Storage.getInstance().getAllTTBUsernames();
-
+        ApplicationStatus applicationStatus;
+        if(appTypeBox.getValue().toString().equals("Approved")){
+            applicationStatus = ApplicationStatus.APPROVED;
+        }
+        else if(appTypeBox.getValue().toString().equals("Pending Review")){
+            applicationStatus = ApplicationStatus.PENDINGREVIEW;
+        }
+        else{
+            //Rejected
+            applicationStatus = ApplicationStatus.REJECTED;
+        }
 
 
         //agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
@@ -75,16 +87,20 @@ public class SuperagentViewAllApplicationsController implements IController{
             return row;
         });
         data.clear();
-
+        List<SubmittedApplication> actualListToAdd = new ArrayList<>();
         //Find & add matching applications
         for(String strang : names){
             agentInterface = new TTBAgentInterface(strang);
             List<SubmittedApplication> resultsList = agentInterface.getAssignedApplications();
             for(SubmittedApplication temp : resultsList){
                 temp.setTtbAgentName(strang);
+                if(temp.getStatus() == applicationStatus){
+                    actualListToAdd.add(temp);
+                }
             }
-            data.addAll(resultsList);
+            //data.addAll(actualListToAdd);
         }
+        data.addAll(actualListToAdd);
 
 
 
