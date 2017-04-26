@@ -11,6 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -74,6 +75,10 @@ public class ApprovalProcessController implements IController {
     Label applicationID;
     @FXML
     ComboBox assignUserBox;
+    @FXML
+    Button assignButton;
+    @FXML
+    Label assignErrorField;
 
     ObservableList<String> assignUser = FXCollections.observableArrayList();
 
@@ -88,6 +93,8 @@ public class ApprovalProcessController implements IController {
         if(Authenticator.getInstance().getUserType() == UserType.SUPERAGENT){
             assignUserBox.setVisible(true);
             assignUserBox.setDisable(false);
+            assignButton.setVisible(true);
+            assignButton.setDisable(false);
             //add all users to combo box
             List<String> userList = new ArrayList<>();
             userList = Storage.getInstance().getAllTTBUsernames();
@@ -99,7 +106,7 @@ public class ApprovalProcessController implements IController {
         assignUserBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String oldVal, String newVal) {
-
+                assignToUser();
             }
         });
 
@@ -140,6 +147,26 @@ public class ApprovalProcessController implements IController {
         phoneNum.setText(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
         emailAddress.setText( application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
         alcoholContent.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+    }
+
+    public void assignToUser(){
+        String userToAssign;
+        TTBAgentInterface currentUser;
+        userToAssign = assignUserBox.getValue().toString();
+        if(userToAssign.equals("Select a user")){
+            assignErrorField.setText("Select a user");
+            return;
+        }
+        TTBAgentInterface agent = new TTBAgentInterface(userToAssign); // user to assign to
+
+        currentUser = new TTBAgentInterface(application.getTtbAgentName());
+
+        currentUser.removeApplication(application);
+
+        agent.addApplication(application);
+
+        main.loadFXML("/fxml/SuperagentViewAllApplications.fxml");
+
     }
 
     public void GoHome() {

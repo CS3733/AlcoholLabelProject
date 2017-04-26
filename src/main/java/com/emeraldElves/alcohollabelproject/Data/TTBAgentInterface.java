@@ -30,6 +30,14 @@ public class TTBAgentInterface {
         return storage.rejectApplication(application,reason);
     }
 
+    public boolean addApplication(SubmittedApplication application){
+        return agent.getCurrentApplications().add(application);
+    }
+
+    public boolean removeApplication(SubmittedApplication application){
+        return agent.getCurrentApplications().remove(application);
+    }
+
     public List<SubmittedApplication> getAssignedApplications(){
         return agent.getCurrentApplications();
     }
