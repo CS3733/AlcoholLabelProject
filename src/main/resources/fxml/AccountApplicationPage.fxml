@@ -20,7 +20,7 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane fx:id="company" prefHeight="644.0" prefWidth="802.0" GridPane.rowIndex="1">
+        <Pane prefHeight="644.0" prefWidth="802.0" GridPane.rowIndex="1">
             <children>
                 <Label fx:id="brandName" layoutX="207.0" layoutY="21.0" prefHeight="35.0" prefWidth="248.0" text="User Name">
                     <font>
@@ -88,7 +88,7 @@
                   <Label prefHeight="37.0" prefWidth="98.0" text="Address:" GridPane.rowIndex="1" />
                   <Label fx:id="physicalAddress" prefHeight="85.0" prefWidth="177.0" text="physicalAddress" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Company:" GridPane.rowIndex="2" />
-                  <Label text="company" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="company" text="company" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <ButtonBar layoutX="775.0" layoutY="556.0" prefHeight="40.0" prefWidth="191.0">
