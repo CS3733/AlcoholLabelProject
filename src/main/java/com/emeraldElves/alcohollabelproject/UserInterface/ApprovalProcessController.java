@@ -6,7 +6,10 @@ import com.emeraldElves.alcohollabelproject.EmailManager;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
@@ -65,6 +68,8 @@ public class ApprovalProcessController implements IController {
 
     @FXML
     Label applicationID;
+    @FXML
+    ComboBox assignUserBox;
 
     public void init(Bundle bundle){
         this.init(bundle.getMain("main"), bundle.getApplication("app"));
@@ -73,6 +78,19 @@ public class ApprovalProcessController implements IController {
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
+        //Checks if super user
+        if(Authenticator.getInstance().getUserType() == UserType.SUPERAGENT){
+            assignUserBox.setVisible(true);
+            assignUserBox.setDisable(false);
+        }
+        //sets listener for combo box
+        assignUserBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String oldVal, String newVal) {
+                
+            }
+        });
+
         agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
