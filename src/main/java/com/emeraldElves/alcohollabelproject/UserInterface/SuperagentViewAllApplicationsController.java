@@ -3,6 +3,8 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -55,6 +57,17 @@ public class SuperagentViewAllApplicationsController implements IController {
 
     public void init(Main main) {
         this.main = main;
+
+        appTypeBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String oldVal, String newVal) {
+                changeList();
+            }
+        });
+
+
+
+
         //list of all ttb agent usernames
         List<String> names = Storage.getInstance().getAllTTBUsernames();
         ApplicationStatus applicationStatus;
@@ -118,6 +131,6 @@ public class SuperagentViewAllApplicationsController implements IController {
 
 
     public void changeList() {
-        
+        init(main);
     }
 }
