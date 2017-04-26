@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Kylec on 4/18/2017.
  */
-public class SuperagentViewAllApplicationsController implements IController{
+public class SuperagentViewAllApplicationsController implements IController {
 
     @FXML
     private TableView<SubmittedApplication> resultsTable;
@@ -49,7 +49,7 @@ public class SuperagentViewAllApplicationsController implements IController{
 
     private Main main;
 
-    public void init(Bundle bundle){
+    public void init(Bundle bundle) {
         this.init(bundle.getMain("main"));
     }
 
@@ -58,22 +58,19 @@ public class SuperagentViewAllApplicationsController implements IController{
         //list of all ttb agent usernames
         List<String> names = Storage.getInstance().getAllTTBUsernames();
         ApplicationStatus applicationStatus;
-        if(doneInit == 0){
+        if (doneInit == 0) {
             appTypeBox.setValue("Select Application Status");
             appTypeBox.setItems(appTypeString);
             doneInit = 1;
         }
 
-        if(appTypeBox.getValue().toString().equals("Approved")){
+        if (appTypeBox.getValue().toString().equals("Approved")) {
             applicationStatus = ApplicationStatus.APPROVED;
-        }
-        else if(appTypeBox.getValue().toString().equals("Pending Review")){
+        } else if (appTypeBox.getValue().toString().equals("Pending Review")) {
             applicationStatus = ApplicationStatus.PENDINGREVIEW;
-        }
-        else if(appTypeBox.getValue().toString().equals("Rejected")){
+        } else if (appTypeBox.getValue().toString().equals("Rejected")) {
             applicationStatus = ApplicationStatus.REJECTED;
-        }
-        else{
+        } else {
             applicationStatus = ApplicationStatus.APPROVEDWITHCONDITIONS;//means all
         }
 
@@ -94,7 +91,7 @@ public class SuperagentViewAllApplicationsController implements IController{
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     SubmittedApplication rowData = row.getItem();
-                    main.loadFXML("/fxml/ApprovalPage.fxml",rowData);
+                    main.loadFXML("/fxml/ApprovalPage.fxml", rowData);
                 }
             });
             return row;
@@ -102,16 +99,16 @@ public class SuperagentViewAllApplicationsController implements IController{
         data.clear();
         List<SubmittedApplication> actualListToAdd = new ArrayList<>();
         //Find & add matching applications
-        for(String strang : names){
+        for (String strang : names) {
             agentInterface = new TTBAgentInterface(strang);
             List<SubmittedApplication> resultsList = agentInterface.getAssignedApplications();
-            for(SubmittedApplication temp : resultsList){
+            for (SubmittedApplication temp : resultsList) {
                 temp.setTtbAgentName(strang);
-                if(temp.getStatus() == applicationStatus){
+                if (temp.getStatus() == applicationStatus) {
                     actualListToAdd.add(temp);
                 }
             }
-            if(applicationStatus == ApplicationStatus.APPROVEDWITHCONDITIONS){
+            if (applicationStatus == ApplicationStatus.APPROVEDWITHCONDITIONS) {
                 data.addAll(actualListToAdd);//add all
             }
 
@@ -119,4 +116,8 @@ public class SuperagentViewAllApplicationsController implements IController{
         data.addAll(actualListToAdd);
     }
 
+
+    public void changeList() {
+        
+    }
 }
