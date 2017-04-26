@@ -277,16 +277,9 @@ public class Storage {
     public void modifyRepresentativeID(String email, int repID) {
         usersDB.setRepIDFromEmail(repID, email);
     }
-    public void modifypermitNum(String email, int permitNum) {
-
-    }
-    public void modifyAddress(String email, String address) {
-
-    }
-    public void modifyphoneNum(String email, String phoneNum) {
-
-    }
-    public void modifyName(String email, String name) {
-
-    }
+    public void modifypermitNum(String email, int permitNum) { usersDB.setPermitNumFromEmail(permitNum, email); }
+    public void modifyAddress(String email, String address) { usersDB.setAddressFromEmail(address, email); }
+    public void modifyphoneNum(String email, String phoneNum) { usersDB.setPhoneNumFromEmail(phoneNum, email); }
+    public void modifyName(String email, String name) { usersDB.setNameFromEmail(name, email); }
+    public void modifyCompany(String email, String company) { usersDB.setCompanyFromEmail(company, email); }
 }

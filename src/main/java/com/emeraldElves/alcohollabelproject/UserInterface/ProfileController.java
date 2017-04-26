@@ -22,6 +22,8 @@ public class ProfileController implements IController {
     TextField phoneNumField;
     @FXML
     TextField emailAddressField;
+    @FXML
+    TextField companyField;
 
     private Main main;
     private ApplicantInterface applicant;
@@ -31,6 +33,7 @@ public class ProfileController implements IController {
     private int permitNum;
     private String address;
     private PhoneNumber phoneNum;
+    private String company;
 
     public ProfileController() {
 
@@ -52,6 +55,7 @@ public class ProfileController implements IController {
         permitNum = applicant.getApplicant().getPermitNumFromDB(emailAddress);
         address = applicant.getApplicant().getAddressFromDB(emailAddress);
         phoneNum = new PhoneNumber(applicant.getApplicant().getPhoneNum());
+        company = applicant.getApplicant().getCompanyFromDB(emailAddress);
         //phoneNum = applicant.getApplicant().getPhoneNumFromDB(emailAddress);
 
         // set text values to current values
@@ -60,6 +64,7 @@ public class ProfileController implements IController {
         addressField.setText(address);
         phoneNumField.setText(phoneNum.getPhoneNumber());
         emailAddressField.setText(emailAddress);
+        companyField.setText(emailAddress);
     }
 
     // functions - simply modify fields when user changes them
@@ -79,11 +84,14 @@ public class ProfileController implements IController {
         phoneNum = new PhoneNumber(phoneNumField.getText());
         applicant.getApplicant().setPhoneNum(emailAddress, phoneNum.getPhoneNumber());
     }
-    public void modifyEmailAddress() {
+    public void modifyEmailAddress() { // this should never be used actually
         emailAddress = emailAddressField.getText();
         applicant.getApplicant().setEmailAddress();
     }
-
+    public void modifyCompany() {
+        company = companyField.getText();
+        applicant.getApplicant().setCompany(emailAddress, company);
+    }
 
     public void returnHome() {
         modifyRepresentativeID();
@@ -91,6 +99,7 @@ public class ProfileController implements IController {
         modifyAddress();
         modifyPhoneNum();
         modifyEmailAddress();
+        modifyCompany();
         main.loadHomepage();
     }
 }

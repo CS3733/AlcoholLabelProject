@@ -108,8 +108,20 @@ public class Applicant {
     public void setRepresentativeID(String email, int representativeID) {
         storage.modifyRepresentativeID(email, representativeID);
     }
-    public void setPermitNum(String email, int permitNum) {}
-    public void setAddress(String email, String address) {}
-    public void setPhoneNum(String email, String phoneNum) {}
-    public void setName(String email, String name) {}
+    public void setPermitNum(String email, int permitNum) {
+        storage.modifypermitNum(email, permitNum);
+    }
+    public void setAddress(String email, String address) {
+        storage.modifyAddress(email, address);
+    }
+    public void setPhoneNum(String email, String phoneNum) {
+        storage.modifyphoneNum(email, phoneNum);
+    }
+    public void setName(String email, String name) {
+        storage.modifyName(email, name);
+    }
+    public void setCompany(String email, String company) {
+        storage.modifyCompany(email, company);
+    }
+
 }
