@@ -113,6 +113,7 @@ public class SuperagentViewAllApplicationsController implements IController {
         List<SubmittedApplication> actualListToAdd = new ArrayList<>();
         //Find & add matching applications
         for (String strang : names) {
+            //check database not agents
             agentInterface = new TTBAgentInterface(strang);
             List<SubmittedApplication> resultsList = agentInterface.getAssignedApplications();
             for (SubmittedApplication temp : resultsList) {
