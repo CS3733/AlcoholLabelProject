@@ -44,7 +44,7 @@ public class SuperagentViewAllApplicationsController implements IController{
     private TTBAgentInterface agentInterface;
 
 
-    private ObservableList<String> appTypeString = FXCollections.observableArrayList("Approved", "Pending Review", "Rejected");
+    private ObservableList<String> appTypeString = FXCollections.observableArrayList("Approved", "Pending Review", "Rejected", "All");
 
 
     private Main main;
@@ -59,7 +59,7 @@ public class SuperagentViewAllApplicationsController implements IController{
         List<String> names = Storage.getInstance().getAllTTBUsernames();
         ApplicationStatus applicationStatus;
         if(doneInit == 0){
-            appTypeBox.setValue("Approved");
+            appTypeBox.setValue("Select Application Status");
             appTypeBox.setItems(appTypeString);
             doneInit = 1;
         }
@@ -70,9 +70,11 @@ public class SuperagentViewAllApplicationsController implements IController{
         else if(appTypeBox.getValue().toString().equals("Pending Review")){
             applicationStatus = ApplicationStatus.PENDINGREVIEW;
         }
-        else{
-            //Rejected
+        else if(appTypeBox.getValue().toString().equals("Rejected")){
             applicationStatus = ApplicationStatus.REJECTED;
+        }
+        else{
+            applicationStatus = ApplicationStatus.APPROVEDWITHCONDITIONS;//means all
         }
 
 
@@ -109,7 +111,10 @@ public class SuperagentViewAllApplicationsController implements IController{
                     actualListToAdd.add(temp);
                 }
             }
-            //data.addAll(actualListToAdd);
+            if(applicationStatus == ApplicationStatus.APPROVEDWITHCONDITIONS){
+                data.addAll(actualListToAdd);//add all
+            }
+
         }
         data.addAll(actualListToAdd);
     }
