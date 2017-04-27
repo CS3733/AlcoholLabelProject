@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
 import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Log;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.print.PageLayout;
@@ -63,6 +64,7 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
+            Log.console(loader.getController());
             IController controller = loader.getController();
             Bundle bundle = new Bundle();
             bundle.putMain("main",this);
