@@ -1,7 +1,6 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
-import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Data.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.print.PageLayout;
@@ -12,7 +11,11 @@ import javafx.scene.image.Image;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.io.IOException;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -167,7 +170,28 @@ public class Main extends Application {
         }
     }
 
+
     public static void main(String[] args) {
+        ApplicantEntity applicant = new ApplicantEntity();
+        applicant.setUsername("applicant11");
+        applicant.setPassword("password");
+        IOManager.save(applicant);
+
+        AgentEntity agent = new AgentEntity();
+        //agent.setGovernmentId(555);
+        agent.setUsername("applicant22");
+        agent.setPassword("password");
+        IOManager.save(agent);
+
+        ApplicationEntity app = new ApplicationEntity();
+        app.setAgent(agent);
+        app.setApplicant(applicant);
+        app.setStatus(ApplicationStatus.APPROVED);
+        app.setDomestic(false);
+        app.setSerialNumber("XX");
+        app.setBrandName("CORONA");
+        IOManager.save(app);
+
         launch(args);
     }
 

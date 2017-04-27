@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by Kylec on 4/10/2017.
@@ -46,7 +47,7 @@ public class UISwitcher {
         this.stage = stage;
     }
 
-    public void switchToPage(String page, Bundle data){
+    public void switchToPage(String page, Map<String, Object> data){
         if(stage == null)
             return;
         FXMLLoader loader = new FXMLLoader(getClass().getResource(page));

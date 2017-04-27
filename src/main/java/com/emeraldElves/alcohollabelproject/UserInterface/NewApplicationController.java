@@ -357,7 +357,7 @@ public class NewApplicationController implements IController {
                 Applicant applicant = new Applicant(appList);
 
                 //Create a SubmittedApplication
-                SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PENDINGREVIEW, applicant);
+                SubmittedApplication newApp = new SubmittedApplication(appInfo, ApplicationStatus.PROCESSING, applicant);
                 if (application != null)
                     newApp.setApplicationID(application.getApplicationID());
                 applicant.addSubmittedApp(newApp);

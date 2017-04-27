@@ -1,6 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Data.BaseEntity;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -24,7 +24,7 @@ public class ExcelImporter implements IImporter {
         return "\"" + escapedStr + "\"";
     }
     //throws IllegalFormatException if format isn't as expected with selected delim
-    public List<SubmittedApplication> decode(InputStream fstream) throws IllegalFormatException {
-        return new ArrayList<SubmittedApplication>();
+    public List<BaseEntity> decode(InputStream fstream) throws IllegalFormatException {
+        return new ArrayList<BaseEntity>();
     }
 }

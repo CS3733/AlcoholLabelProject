@@ -107,11 +107,11 @@ public class UpdateWineAppController {
             case APPROVED:
                 updateApproved();
                 break;
-            case PENDINGREVIEW:
+            case P:
                 break;
-            case APPROVEDWITHCONDITIONS:
+            case APPROVED_WITH_CONDITION:
                 break;
-            case NEEDSCORRECTIONS:
+            case NEEDS_CORRECTIONS:
                 break;
         }
     }

@@ -1,7 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.ApplicationEntity;
 import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -42,19 +42,19 @@ public class EmailManager {
         private static final EmailManager instance = new EmailManager();
     }
 
-    public void sendEmail(SubmittedApplication application) {
+    public void sendEmail(ApplicationEntity application) {
 
         try {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("cs3733teame@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress()));
+                    InternetAddress.parse(application.getApplicant().getEmailAddress()));
             message.setSubject("Update to your recent application status");
             if (application.getStatus() == ApplicationStatus.REJECTED) {
-                message.setText("Your application for " + application.getApplication().getAlcohol().getName() + " has been " + application.getStatus() + "for the reason " + application.getStatus().getMessage());
+                message.setText("Your application for " + application.getBrandName() + " has been " + application.getStatus() + "for the reason " + application.getStatus().toString());
             } else if (application.getStatus() == ApplicationStatus.APPROVED) {
-                message.setText("Your application for " + application.getApplication().getAlcohol().getName() + " has been " + application.getStatus());
+                message.setText("Your application for " + application.getBrandName() + " has been " + application.getStatus());
             }
             Transport.send(message);
 

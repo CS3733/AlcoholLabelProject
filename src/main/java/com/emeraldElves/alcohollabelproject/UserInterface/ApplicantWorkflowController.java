@@ -49,7 +49,7 @@ public class ApplicantWorkflowController implements IController {
                 case REJECTED:
                     name += " - Rejected: " + application.getTtbMessage();
                     break;
-                case PENDINGREVIEW:
+                case PROCESSING:
                     name += " - Pending Review";
                     break;
             }

@@ -1,8 +1,6 @@
 package com.emeraldElves.alcohollabelproject.updateCommands;
 
-import com.emeraldElves.alcohollabelproject.Authenticator;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.TTBAgentInterface;
+import com.emeraldElves.alcohollabelproject.Data.ApplicationEntity;
 import com.emeraldElves.alcohollabelproject.EmailManager;
 
 import java.util.Calendar;
@@ -11,22 +9,13 @@ import java.util.Date;
 /**
  * Created by Kylec on 4/16/2017.
  */
-public class ApproveCommand implements StatusUpdateCommand {
-
-    private SubmittedApplication application;
-    private boolean sendEmail;
-    private TTBAgentInterface agent;
-
-    public ApproveCommand(SubmittedApplication application, boolean sendEmail) {
-        this.application = application;
-        this.sendEmail = sendEmail;
-        agent = new TTBAgentInterface(Authenticator.getInstance().getUsername());
+public class ApproveCommand extends ApplicationCommand {
+    public ApproveCommand(ApplicationEntity application){
+        super(application);
     }
-
-    public ApproveCommand(SubmittedApplication application) {
-        this(application, false);
+    public ApproveCommand(ApplicationEntity application, Boolean sendEmail){
+        super(application, sendEmail);
     }
-
     @Override
     public void execute() {
 
@@ -35,7 +24,7 @@ public class ApproveCommand implements StatusUpdateCommand {
 
         Date expDate = calendar.getTime();
 
-        boolean approved = agent.approveApplication(application, expDate);
+        boolean approved = true;//agent.approveApplication(application, expDate); //TODO: Refactor
 
         if (approved && sendEmail) {
             sendEmail();

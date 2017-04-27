@@ -9,7 +9,7 @@ import java.nio.file.Paths;
  * Created by keionbis on 4/10/17.
  */
 
-public class LabelImage implements ILabelImage {
+public class LabelImage {
     private Image image;
     private String fileName;
 
@@ -19,7 +19,6 @@ public class LabelImage implements ILabelImage {
         Path targetDir = Paths.get("Labels");
         Path target = targetDir.resolve(fileName);
         image = new Image(target.toUri().toString());
-
     }
 
 

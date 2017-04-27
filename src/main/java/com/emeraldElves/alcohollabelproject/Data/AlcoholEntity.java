@@ -1,14 +1,12 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
-import java.sql.JDBCType;
-
 /**
  * Created by Essam on 4/9/2017.
  */
-public class AlcoholEntity extends Entity {
+public class AlcoholEntity extends BaseEntity {
     public AlcoholEntity(){
-        super(new AlcoholModel());
     }
+    /*
     public void setApplicationId(int id){
         this.set("applicationID", id);
     }
@@ -38,5 +36,5 @@ public class AlcoholEntity extends Entity {
     public int getVintageYear(){return Integer.parseInt(this.get("vintageYear"));}
     public String getVarietals(){return this.get("varietals");}
     public String getWineAppellation(){return this.get("wineAppellation");}
-
+    */
 }

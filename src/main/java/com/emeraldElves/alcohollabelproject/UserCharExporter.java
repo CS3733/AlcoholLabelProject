@@ -1,7 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
-import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Data.BaseEntity;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.text.SimpleDateFormat;
@@ -16,8 +15,6 @@ public class UserCharExporter implements IExporter {
     char delim;
     String fileExt;
     public UserCharExporter (char delim, String fileExt) throws IllegalArgumentException {
-        //TODO: Make sure the delim isn't \r, \n or double quotes.
-
         //Null characters not allowed as a delimiter in a string. We would need to write and read files as binary to be able to support that.
         //Quotes not allowed because we can't properly differentiate between a quote used as a delimiter and a quote used to start/end a string
         //Dots & integers not allowed because they exist in decimal numbers which are unquoted. I'm not sure why removing the quotes is a requirement for final iteration.
@@ -41,10 +38,10 @@ public class UserCharExporter implements IExporter {
         SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         return df.format(date);
     }
-    public String encode(List<SubmittedApplication> apps){
+    public String encode(List<BaseEntity> apps){
         String encoded_str = "status"+delim+"submitdate"+delim+"issuedate"+delim+"alcoholcontent"+delim+"fancifulName"+delim+"brandName"+delim+"origin"+delim+"type"+delim+"formula"+delim+"serial"+delim+"qualifications"+delim+"pH"+delim+"vintageyear"+delim+"appellation"+delim+"varietals\r\n";
-        for (SubmittedApplication app: apps){
-            encoded_str += String.valueOf(app.getStatus().getValue()) + delim; //status
+        /*for (SubmittedApplication app: apps){
+            encoded_str += String.valueOf(app.getStatus().ordinal()) + delim; //status
             encoded_str += escapeStr(dateToStr(app.getApplication().getSubmissionDate())) + delim; //submission date
             encoded_str += escapeStr(dateToStr(app.getApplication().getSubmissionDate())) + delim; //approval date
             encoded_str += String.valueOf(app.getApplication().getAlcohol().getAlcoholContent()) + delim; //alcohol content
@@ -65,7 +62,7 @@ public class UserCharExporter implements IExporter {
                 encoded_str += String.valueOf(delim) + String.valueOf(delim) + String.valueOf(delim);
             }
             encoded_str += "\r\n";
-        }
+        }*/
         //System.out.println(escapeStr("\"Hello \r\n\","));
         return encoded_str;
     }

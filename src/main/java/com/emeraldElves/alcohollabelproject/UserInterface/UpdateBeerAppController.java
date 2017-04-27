@@ -101,11 +101,11 @@ public class UpdateBeerAppController {
             case APPROVED:
                 updateApproved();
                 break;
-            case PENDINGREVIEW:
+            case PROCESSING:
                 break;
-            case APPROVEDWITHCONDITIONS:
+            case APPROVED_WITH_CONDITION:
                 break;
-            case NEEDSCORRECTIONS:
+            case NEEDS_CORRECTIONS:
                 break;
         }
 

@@ -3,7 +3,6 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Data.TTBAgentInterface;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +36,7 @@ public class SuperagentViewAllApplicationsController implements IController{
     private TableColumn<SubmittedApplication, String> agentCol;
 
     private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
-    private TTBAgentInterface agentInterface;
+    //private TTBAgentInterface agentInterface;
 
     private Main main;
 

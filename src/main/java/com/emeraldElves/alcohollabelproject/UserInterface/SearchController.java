@@ -1,12 +1,10 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.COLASearch;
-import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
-import com.emeraldElves.alcohollabelproject.Data.DateHelper;
+import com.emeraldElves.alcohollabelproject.Data.*;
 import com.emeraldElves.alcohollabelproject.*;
 
 import javafx.application.Platform;
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -24,6 +22,9 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import javafx.scene.control.TextInputDialog;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 
 import java.io.IOException;
@@ -44,17 +45,17 @@ public class SearchController implements IController{
     @FXML
     private TextField searchField;
     @FXML
-    private TableView<SubmittedApplication> resultsTable;
+    private TableView<ApplicationEntity> resultsTable;
     @FXML
-    private TableColumn<SubmittedApplication, String> dateCol;
+    private TableColumn<ApplicationEntity, String> dateCol;
     @FXML
-    private TableColumn<SubmittedApplication, String> manufacturerCol;
+    private TableColumn<ApplicationEntity, String> manufacturerCol;
     @FXML
-    private TableColumn<SubmittedApplication, String> brandCol;
+    private TableColumn<ApplicationEntity, String> brandCol;
     @FXML
-    private TableColumn<SubmittedApplication, String> typeCol;
+    private TableColumn<ApplicationEntity, String> typeCol;
     @FXML
-    private TableColumn<SubmittedApplication, String> contentCol;
+    private TableColumn<ApplicationEntity, String> contentCol;
     @FXML
     private Button saveBtn;
     @FXML
@@ -68,44 +69,42 @@ public class SearchController implements IController{
     @FXML
     private CheckMenuItem filterSpirits;
 
-    private ObservableList<SubmittedApplication> data = FXCollections.observableArrayList();
+    private ObservableList<ApplicationEntity> data = FXCollections.observableArrayList();
     private COLASearch search;
 
     private SearchSubject searchTermSubject;
 
     public SearchController() {
-        this.search = new COLASearch();
-        searchTermSubject = new SearchSubject();
-        new SearchObserver(searchTermSubject, data);
     }
 
     public void init(Bundle bundle){
-        this.init(bundle.getMain("main"), bundle.getString("searchTerm"));
+
+        this.init((Main)bundle.get("main"), (String)bundle.get("searchTerm"));
     }
 
     public void init(Main main, String searchTerm) {
         this.main = main;
         this.searchTerm = searchTerm;
-        dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SubmittedApplication, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<SubmittedApplication, String> p) {
-                Date date = p.getValue().getApplication().getSubmissionDate();
+        dateCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ApplicationEntity, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<ApplicationEntity, String> p) {
+                Date date = p.getValue().getSubmissionDate();
                 return new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(DateHelper.dateToString(date)));
             }
         });
-        manufacturerCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getName())));
-        brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
-        typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().toText())));
-        contentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent()))));
+        manufacturerCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getFancifulName())));
+        brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getBrandName())));
+        typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getAlcoholType().toString())));
+        contentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getAlcoholContent()))));
         saveBtn.setDisable(data.size() == 0);
         descriptionLabel.setVisible(false);
         contextSaveBtn.setDisable(data.size() == 0);
         resultsTable.setItems(data);
         resultsTable.setRowFactory(tv -> {
-            TableRow<SubmittedApplication> row = new TableRow<>();
+            TableRow<ApplicationEntity> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    SubmittedApplication rowData = row.getItem();
-                    main.loadFXML("/fxml/DetailedSearchPage.fxml",rowData, searchTerm);
+                    ApplicationEntity rowData = row.getItem();
+                    //main.loadFXML("/fxml/DetailedSearchPage.fxml", rowData, searchTerm);
                 }
             });
             return row;
@@ -144,10 +143,9 @@ public class SearchController implements IController{
 
     public void search(String searchTerm) {
         //Remove previous results
+        this.searchTerm = searchTerm;
         data.remove(0, data.size());
-
-        //Find & add matching applications
-        List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim());
+        List<ApplicationEntity> resultsList = IOManager.list(ApplicationEntity.class);//search.searchByName(searchTerm.trim());
         filterList(resultsList);
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
@@ -157,21 +155,19 @@ public class SearchController implements IController{
     }
 
     private void refreshSuggestions() {
-        List<SubmittedApplication> resultsList = search.searchApprovedApplications();
+        DetachedCriteria criteria = DetachedCriteria.forClass(ApplicationEntity.class);
+        criteria.add(Restrictions.disjunction()
+                .add(Restrictions.like("brandName", "%"+searchTerm+"%").ignoreCase())
+                .add(Restrictions.like("fancifulName", "%"+searchTerm+"%").ignoreCase()));
+        criteria.add(Restrictions.eq("status", 3));
+        List<ApplicationEntity> resultsList = IOManager.find(ApplicationEntity.class, criteria);
         filterList(resultsList);
         possibleSuggestions.clear();
-        /*
-        Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
-            @Override
-            public int compare(SubmittedApplication lhs, SubmittedApplication rhs) {
-                return lhs.getApplication().getAlcohol().getBrandName().compareToIgnoreCase(rhs.getApplication().getAlcohol().getBrandName());
-            }
-        });
-        */
-        for (SubmittedApplication application : resultsList) {
-            possibleSuggestions.add(application.getApplication().getAlcohol().getBrandName());
-            possibleSuggestions.add(application.getApplication().getAlcohol().getName());
+        for (ApplicationEntity application : resultsList) {
+            possibleSuggestions.add(application.getBrandName());
+            possibleSuggestions.add(application.getFancifulName());
         }
+
 
         if (autoCompletionBinding != null) {
             autoCompletionBinding.dispose();
@@ -190,16 +186,15 @@ public class SearchController implements IController{
 
     }
 
-    private void filterList(List<SubmittedApplication> appList) {
-        appList.removeIf(p -> (filterBeers.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER));
-        appList.removeIf(p -> (filterWine.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE));
-        appList.removeIf(p -> (filterSpirits.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS));
+    private void filterList(List<ApplicationEntity> appList) {
+        appList.removeIf(p -> (filterBeers.isSelected() && p.getAlcoholType() == AlcoholType.BEER));
+        appList.removeIf(p -> (filterWine.isSelected() && p.getAlcoholType() == AlcoholType.WINE));
+        appList.removeIf(p -> (filterSpirits.isSelected() && p.getAlcoholType() == AlcoholType.DISTILLED_SPIRITS));
     }
 
     public void saveTSV(ActionEvent e) {
-
         ApplicationExporter exporter = new ApplicationExporter(new TSVExporter());
-        exporter.exportToFile(data);
+        //exporter.exportToFile(data);
     }
     public void saveUserChar(ActionEvent ae) {
         ApplicationImporter ai = new ApplicationImporter(new UserCharImporter(','));
@@ -266,7 +261,7 @@ public class SearchController implements IController{
             try {
                 if (userStr.length() == 1) {
                     ApplicationExporter exporter = new ApplicationExporter(new UserCharExporter(userStr.charAt(0), "txt"));
-                    exporter.exportToFile(data);
+                    //exporter.exportToFile(data);
                 }
             }
             catch (IllegalArgumentException e){
@@ -280,6 +275,6 @@ public class SearchController implements IController{
     public void saveCSV(ActionEvent e) {
 
         ApplicationExporter exporter = new ApplicationExporter(new CSVExporter());
-        exporter.exportToFile(data);
+        //exporter.exportToFile(data);
     }
 }

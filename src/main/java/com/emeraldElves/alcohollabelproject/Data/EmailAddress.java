@@ -17,16 +17,18 @@ public class EmailAddress {
         this.emailAddress = emailAddress;
     }
 
-
     /**
      * Determines if email address is valid.
      *
      * @return True if the address is valid.
      */
+    public static boolean isValid(String emailAddress) {
+        Pattern email = Pattern.compile("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$");
+        return email.matcher(emailAddress).matches();
+    }
     public boolean isValid() {
         Pattern email = Pattern.compile("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$");
         return email.matcher(emailAddress).matches();
     }
-
     public String getEmailAddress(){ return emailAddress;}
 }

@@ -18,8 +18,8 @@ import java.util.Date;
 
 public class ApprovalProcessController implements IController {
     Main main;
-    SubmittedApplication application;
-    private TTBAgentInterface agentInterface;
+    ApplicationEntity application;
+    //private TTBAgentInterface agentInterface;
     @FXML
     Label brandName;
 
@@ -67,18 +67,18 @@ public class ApprovalProcessController implements IController {
     Label applicationID;
 
     public void init(Bundle bundle){
-        this.init(bundle.getMain("main"), bundle.getApplication("app"));
+        this.init(bundle.get("main"), bundle.get("app"));
     }
 
-    public void init(Main main, SubmittedApplication application) {
+    public void init(Main main, ApplicationEntity application) {
         this.main = main;
         this.application = application;
         agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
         String type = "";
-        switch (application.getApplication().getAlcohol().getAlcoholType()) {
-            case BEER:
+        switch (application.getAlcoholType()) {
+            case AlcoholType.BEER:
                 type = "Beer";
                 break;
             case WINE:
@@ -137,19 +137,19 @@ public class ApprovalProcessController implements IController {
     }
 
     public void PendingReview() {
-        application.setStatus(ApplicationStatus.PENDINGREVIEW);
+        application.setStatus(ApplicationStatus.PROCESSING);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
         main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void ApprovedConditionally() {
-        application.setStatus(ApplicationStatus.APPROVEDWITHCONDITIONS);
+        application.setStatus(ApplicationStatus.APPROVED_WITH_CONDITION);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
         main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
 
     public void NeedsCorrections() {
-        application.setStatus(ApplicationStatus.NEEDSCORRECTIONS);
+        application.setStatus(ApplicationStatus.NEEDS_CORRECTIONS);
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
         main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }

@@ -1,6 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Data.BaseEntity;
 import com.emeraldElves.alcohollabelproject.UserInterface.Main;
 import javafx.stage.FileChooser;
 import org.apache.commons.io.FileUtils;
@@ -20,7 +20,7 @@ public class ApplicationImporter {
     public ApplicationImporter(IImporter deserializer){
         this.deserializer = deserializer;
     }
-    public List<SubmittedApplication> importFromFile() throws IOException {
+    public List<BaseEntity> importFromFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Import Applications");

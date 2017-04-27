@@ -1,6 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
-import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.Data.ApplicationEntity;
 import javafx.collections.ObservableList;
 
 /**
@@ -9,19 +9,19 @@ import javafx.collections.ObservableList;
 public class SearchObserver {
 
     private SearchSubject subject;
-    private ObservableList<SubmittedApplication> applications;
-    private COLASearch colaSearch;
+    private ObservableList<ApplicationEntity> applications;
+    //private COLASearch colaSearch;
 
-    public SearchObserver(SearchSubject subject, ObservableList<SubmittedApplication> applications) {
+    public SearchObserver(SearchSubject subject, ObservableList<ApplicationEntity> applications) {
         this.subject = subject;
         this.applications = applications;
-        colaSearch = new COLASearch();
+        //colaSearch = new COLASearch();
         this.subject.attachObserver(this);
     }
 
     public void update() {
-        applications.clear();
-        applications.addAll(colaSearch.searchByName(subject.getSearchTerm().trim()));
+        //applications.clear();
+        //applications.addAll(colaSearch.searchByName(subject.getSearchTerm().trim()));
     }
 
 }
