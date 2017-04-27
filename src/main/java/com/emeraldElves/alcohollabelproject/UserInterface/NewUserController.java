@@ -32,6 +32,8 @@ public class NewUserController implements IController {
     @FXML
     TextField addressText;
     @FXML
+    TextField companyField;
+    @FXML
     RadioButton applicantBtn;
     @FXML
     RadioButton agentBtn;
@@ -62,6 +64,7 @@ public class NewUserController implements IController {
     private String FullName;
     private String password;
     private String address;
+    private String company;
     private PasswordStrengthChecker CheckStrength;
     Image image;
     public NewUserController() {
@@ -166,25 +169,32 @@ public class NewUserController implements IController {
             return;
         }
 
+        if (companyField.getText().trim().isEmpty())
+        {
+            nameError.setText("Enter a valid company");
+            return;
+        }
+
 
         //Setting all the fields for the new potential user
 
 
         UserType userType = UserType.fromInt(userTypeInt);
         java.util.Date newDate = new Date();
-         Email  = new EmailAddress(emailAddress.getText().toString());
-         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
+        Email  = new EmailAddress(emailAddress.getText().toString());
+        PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
         password = passwordField.getText();
         permitNum = Integer.parseInt(representativeID.getText());//check if field is not null
         address = addressText.getText();//representative ID
+        company = companyField.getText();
 
 
         FullName = Name.getText();
 
 
 
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
-                password, newDate, permitNum, address))){
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName, repID, Email, PhoneNumber, userType,
+                password, newDate, permitNum, address, company))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
