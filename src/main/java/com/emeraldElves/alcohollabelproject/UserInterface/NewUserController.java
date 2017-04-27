@@ -58,7 +58,8 @@ public class NewUserController implements IController {
     @FXML
     ImageView isValid;
 
-    private int repID;
+    private int repID; //move this to application info
+    String permitNum;
     private Main main;
     private int userTypeInt = -1;
     private String FullName;
@@ -129,10 +130,10 @@ public class NewUserController implements IController {
             return;
         }
 
-        int permitNum;
+
 
         if(permitNumText.isDisabled()){
-            permitNum = -1;
+            permitNum = "";
         }
 
 
@@ -184,7 +185,7 @@ public class NewUserController implements IController {
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
         password = passwordField.getText();
-        permitNum = Integer.parseInt(representativeID.getText());//check if field is not null
+        permitNum = permitNumText.getText();//check if field is not null
         address = addressText.getText();//representative ID
         company = companyField.getText();
 

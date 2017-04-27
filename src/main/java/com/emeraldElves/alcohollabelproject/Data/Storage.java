@@ -43,7 +43,7 @@ public class Storage {
                             new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                             new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                             new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                            new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                            new Database.TableField("permitNum", "VARCHAR (255)"),
                             new Database.TableField("address", "VARCHAR (255)"),
                             new Database.TableField("phoneNumber", "VARCHAR (255)"),
                             new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
@@ -59,7 +59,7 @@ public class Storage {
                     new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
                     new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
@@ -98,7 +98,7 @@ public class Storage {
                     new Database.TableField("physicalAddress", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("company", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("phoneNum", "VARCHAR (255) NOT NULL"), //check with kyle
                     new Database.TableField("emailAddress", "VARCHAR (255) NOT NULL"));
             Log.console("Created new ManufacturerInfo table");
@@ -129,7 +129,7 @@ public class Storage {
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
                     new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
@@ -303,7 +303,8 @@ public class Storage {
     public void modifyRepresentativeID(String email, int repID) {
         usersDB.setRepIDFromEmail(repID, email);
     }
-    public void modifypermitNum(String email, int permitNum) {
+
+    public void modifypermitNum(String email, String permitNum) {
 
     }
     public void modifyAddress(String email, String address) {

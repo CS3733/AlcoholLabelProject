@@ -218,7 +218,7 @@ public class AuthenticatedUsersDatabase {
                 String phoneNumberString = resultSet.getString("phoneNumber");
                 PhoneNumber phoneNumber = new PhoneNumber(phoneNumberString);
                 Date date = new Date(resultSet.getLong("date"));
-                int permitNum = resultSet.getInt("permitNum");
+                String permitNum = resultSet.getString("permitNum");
                 String address = resultSet.getString("address");
                 String company = resultSet.getString("company");
 
