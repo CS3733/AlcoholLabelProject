@@ -2,13 +2,15 @@ package com.emeraldElves.alcohollabelproject;
 
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
+import com.emeraldElves.alcohollabelproject.UserInterface.Bundle;
+import com.emeraldElves.alcohollabelproject.UserInterface.IController;
 
 import java.util.List;
 
 /**
  * Created by Kylec on 4/10/2017.
  */
-public class ApplicantInterface {
+public class ApplicantInterface implements IController {
 
     private Storage storage;
     private Applicant applicant;
@@ -41,4 +43,8 @@ public class ApplicantInterface {
     }
 
 
+    @Override
+    public void init(Bundle data) {
+
+    }
 }

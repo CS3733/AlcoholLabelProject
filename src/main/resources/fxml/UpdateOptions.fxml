@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane prefHeight="1600.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateApplicationController">
+<GridPane prefHeight="1600.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateOptionsController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1024.0" minWidth="1024.0" prefWidth="1024.0" />
    </columnConstraints>
@@ -21,7 +21,7 @@
    <children>
       <ScrollPane prefHeight="1503.0" prefWidth="1005.0" GridPane.rowIndex="1">
          <content>
-            <GridPane prefHeight="1468.0" prefWidth="1006.0">
+            <GridPane prefHeight="1468.0" prefWidth="1006.0" stylesheets="@../style/material.css">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="249.3333282470703" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="619.0" minWidth="10.0" prefWidth="477.66668701171875" />
@@ -91,8 +91,8 @@
                   <CheckBox fx:id="option21" mnemonicParsing="false" text="Add, delete, or change the name, address, and/or trademark of thewholesaler, retailer, or persons for whom the product is imported orbottled." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="22" />
                   <CheckBox fx:id="option22" mnemonicParsing="false" text="Add, delete, or change bottle deposit information, or containerrecycling information or logos." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="23" />
                   <CheckBox fx:id="option23" mnemonicParsing="false" text="Add, delete, or change UPC barcodes and/or 2D mobilebarcodes, e.g., QR codes or Microsoft Tags." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="24" />
-                  <CheckBox fx:id="option24" mnemonicParsing="false" onAction="#exemptionChecked" onKeyPressed="#exemptionChecked" onMouseClicked="#exemptionChecked" prefHeight="40.0" prefWidth="346.0" text="Add, delete, or change a Web site address, phone number, faxnumber, or zip code." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="25" />
-                  <CheckBox fx:id="option25" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Add, delete, or change a lot or batch identification number orother serial numbers." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="26" />
+                  <CheckBox fx:id="option24" mnemonicParsing="false" text="Add, delete, or change a Web site address, phone number, faxnumber, or zip code." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="25" />
+                  <CheckBox fx:id="option25" mnemonicParsing="false" text="Add, delete, or change a lot or batch identification number orother serial numbers." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="26" />
                   <CheckBox fx:id="option26" mnemonicParsing="false" text="Add, delete, or change trademark, copyright symbols (e.g., TM, ©,®), kosher symbols, company logos, and/or social media icons." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="27" />
                   <CheckBox fx:id="option27" mnemonicParsing="false" text="Add, delete, or change optional information about awards or medals,or the signature of the brewer, winemaker, or distiller of the product." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="28" />
                   <CheckBox fx:id="option28" mnemonicParsing="false" text="Add, delete, or change holiday- and/or seasonal-themedgraphics, artwork and/or salutations." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="29" />
@@ -102,8 +102,8 @@
                   <CheckBox fx:id="option32" mnemonicParsing="false" text="Change an approved sulfite statement to any of these options:“Contains Sulfites”, “Contains (a) Sulfiting Agent(s)”, “Contains [nameof specific sulfating agent]”, “Contains Naturally Occurring and AddedSulfites”; or “Contains Naturally Occurring Sulfites.”“Sulphites” may be used in lieu of “Sulfites.”" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="33" />
                   <CheckBox fx:id="option33" mnemonicParsing="false" text="Add, delete, or change information about the number of bottles thatwere “made,” “produced,” “brewed,” or “distilled” in a batch;respectively." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="34" />
                   <CheckBox fx:id="option34" mnemonicParsing="false" text="Add certain instructional statements to the label(s) about how best toconsume or serve the product. Only the statements listed in thecomments section may be added." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="35" />
-                  <Button fx:id="selectRev" mnemonicParsing="false" onMouseClicked="#nextPage" text="Select Revisions" GridPane.columnIndex="2" GridPane.rowIndex="36" />
-                  <Button fx:id="cancelBtn" mnemonicParsing="false" text="Cancel" GridPane.rowIndex="36" />
+                  <Button fx:id="selectRev" mnemonicParsing="false" onMouseClicked="#nextPage" styleClass="button-raised" text="Select Revisions" GridPane.columnIndex="2" GridPane.rowIndex="36" />
+                  <Button fx:id="cancelBtn" mnemonicParsing="false" styleClass="button-raised" text="Cancel" GridPane.rowIndex="36" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please select all the revisions you wish to make" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets />
