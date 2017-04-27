@@ -4,7 +4,6 @@ import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
 import com.emeraldElves.alcohollabelproject.Log;
-import com.emeraldElves.alcohollabelproject.LogManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -59,9 +58,9 @@ public class UpdateApplicationController {
     //Options for the comboBox fields
     private ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
     private ObservableList<String> typeList = FXCollections.observableArrayList("Malt Beverages", "Wine", "Distilled Spirits");
-    private ObservableList<String> stateList = FXCollections.observableArrayList("AL","AK","AZ","AR","CA","CO","CT","DE","DC",
-            "FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH",
-            "OK","OR","MD","MA","MI","MN","MS","MO","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");
+    private ObservableList<String> stateList = FXCollections.observableArrayList("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC",
+            "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
+            "OK", "OR", "MD", "MA", "MI", "MN", "MS", "MO", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY");
 
     //Data for application type
     private ApplicationType appType;
@@ -86,14 +85,22 @@ public class UpdateApplicationController {
     private String formula;
     private String serialNum; //needs to be a string!!!!
     private String extraInfo;
-    private  File file;
+    private File file;
 
     private Main main;
 
     private SubmittedApplication application;
 
-    public void init(Main main){
+    public void init(Main main, SubmittedApplication application) {
+
         this.main = main;
+        this.application = application;
+
+    }
+
+    public void init(Main main) {
+
+        Main.loadFXML("/fxml/UpdateApplication.fxml", this);
 
         username= Authenticator.getInstance().getUsername();
         applicant = new ApplicantInterface(username);
@@ -104,135 +111,128 @@ public class UpdateApplicationController {
         address = applicant.getApplicant().getAddress();
         phoneNum = new PhoneNumber(applicant.getApplicant().getPhoneNum());
         representativeID = applicant.getApplicant().getRepresentativeID();
-        repIDNoTextField.setText(String.valueOf(representativeID));
-        permitNoTextField.setText(String.valueOf(permitNum));
-        addressField.setText(String.valueOf(address));
-        phoneNumberField.setText((phoneNum.getPhoneNumber()));
-        emailAddressField.setText((emailAddress.getEmailAddress()));
+        //repIDNoTextField.setText(Integer.toString(representativeID));
+        //permitNoTextField.setText(String.valueOf(permitNum));
+        //addressField.setText(String.valueOf(address));
+        //phoneNumberField.setText((phoneNum.getPhoneNumber()));
+        //emailAddressField.setText((emailAddress.getEmailAddress()));
 
         datePicker.setValue(LocalDate.now());
         stateSelect.setValue("State Abb.");
         stateSelect.setItems(stateList);
-        pSourceSelect.setValue("Select a product source");
+
+        if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
+            pSourceSelect.setValue("Domestic");
+        } else if (application.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED) {
+            pSourceSelect.setValue("Imported");
+        }
+
         pSourceSelect.setItems(sourceList);
-        pTypeSelect.setValue("Select a product type");
+        switch (application.getApplication().getAlcohol().getAlcoholType()) {
+            case BEER:
+                pTypeSelect.setValue("Malt Beverages");
+                break;
+            case WINE:
+                pTypeSelect.setValue("Wine");
+                break;
+            case DISTILLEDSPIRITS:
+                pTypeSelect.setValue("Distilled Spirits");
+                break;
+        }
         pTypeSelect.setItems(typeList);
-    }
-    public void init(Main main, SubmittedApplication application) {
-        //init(main);
-//        this.application = application;
-//
-//        if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
-//            pSourceSelect.setValue("Domestic");
-//        } else if (application.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED) {
-//            pSourceSelect.setValue("Imported");
-//        }
-//
-//        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER) {
-//            pTypeSelect.setValue("Malt Beverages");
-//        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
-//            pTypeSelect.setValue("Wine");
-//        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS) {
-//            pTypeSelect.setValue("Distilled Spirits");
-//        }
-//
-//        alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
-//        brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
-//        alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
-//        formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
-//        serialText.setText(String.valueOf(application.getApplication().getAlcohol().getSerialNumber()));
-//        extraInfoText.setText(String.valueOf(application.getApplication().getExtraInfo()));
-//        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
-//            wineVintageYearField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().vintageYear));
-//            pHLevelField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().pH));
-//            varietalText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().grapeVarietal));
-//            appellationText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().appellation));
-//        }
-//
-//        disableAllFields();
 
+        alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
+        brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
+        alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+        formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
+        serialText.setText(String.valueOf(application.getApplication().getAlcohol().getSerialNumber()));
+        extraInfoText.setText(String.valueOf(application.getApplication().getExtraInfo()));
+        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
+            wineVintageYearField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().vintageYear));
+            pHLevelField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().pH));
+            varietalText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().grapeVarietal));
+            appellationText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().appellation));
+        }
+        disableAllFields();
     }
 
-    public void nextPage(){
-        int selectedUpdateNum=0; //number corresponding to the allowed update
+    public void nextPage() {
+        init(main);
 
-        if(option1.isSelected() || option2.isSelected() || option3.isSelected() || option4.isSelected()
+        if (option1.isSelected() || option2.isSelected() || option3.isSelected() || option4.isSelected()
                 || option6.isSelected() || option8.isSelected() || option9.isSelected() || option14.isSelected()
                 || option15.isSelected() || option26.isSelected() || option27.isSelected() || option28.isSelected()
                 || option29.isSelected() || option30.isSelected() || option31.isSelected() || option23.isSelected()
-                || option34.isSelected()){
+                || option34.isSelected()) {
             submitLabel.setDisable(false);
         }
-        if(option5.isSelected()){
+        if (option5.isSelected()) {
             wineVintageYearField.setDisable(false);
         }
-        if(option7.isSelected()){
+        if (option7.isSelected()) {
             pHLevelField.setDisable(false);
         }
-        if(option10.isSelected()){
+        if (option10.isSelected()) {
             formulaText.setDisable(false);
         }
-        if(option11.isSelected()){
+        if (option11.isSelected()) {
             submitLabel.setDisable(false);
             alcoholContentField.setDisable(false);
         }
-        if(option12.isSelected()){
+        if (option12.isSelected()) {
             alcoholContentField.setDisable(false);
         }
-        if(option13.isSelected()){
+        if (option13.isSelected()) {
             alcoholContentField.setDisable(false);
         }
-        if(option16.isSelected()){
+        if (option16.isSelected()) {
             stateSelect.setDisable(false);
         }
-        if(option17.isSelected()){
+        if (option17.isSelected()) {
             formulaText.setDisable(false);
         }
-        if(option18.isSelected()){
+        if (option18.isSelected()) {
             datePicker.setDisable(false);
         }
-        if(option19.isSelected()){
+        if (option19.isSelected()) {
             alcoholName.setDisable(false);
             brandNameField.setDisable(false);
             addressField.setDisable(false);
         }
-        if(option20.isSelected()){
+        if (option20.isSelected()) {
             alcoholName.setDisable(false);
             addressField.setDisable(false);
             brandNameField.setDisable(false);
         }
-        if(option21.isSelected()){
+        if (option21.isSelected()) {
             alcoholName.setDisable(false);
             addressField.setDisable(false);
             brandNameField.setDisable(false);
         }
-        if(option22.isSelected()){
+        if (option22.isSelected()) {
             submitLabel.setDisable(false);
             extraInfoText.setDisable(false);
         }
-        if(option24.isSelected()){
+        if (option24.isSelected()) {
             addressField.setDisable(false);
         }
-        if(option25.isSelected()){
+        if (option25.isSelected()) {
             repIDNoTextField.setDisable(false);
         }
-        if(option32.isSelected()){
+        if (option32.isSelected()) {
             formulaText.setDisable(false);
             submitLabel.setDisable(false);
         }
-        if(option33.isSelected()){
+        if (option33.isSelected()) {
             extraInfoText.setDisable(false);
             submitLabel.setDisable(false);
         }
+
         //go to page 2 of update app
-        Main.loadFXML("/fxml/UpdateApplication.fxml");
+
     }
 
     public void submitApp() {
-
-        init(main);
-
-        LogManager.getInstance().logAction("NewApplicationController", "Logged Click from first page of the new Application");
 
         Boolean formFilled = false;
         Boolean fieldsValid = false;
@@ -240,7 +240,7 @@ public class UpdateApplicationController {
         //errors are printed only if required fields are not filled in
 
         //malt beverages: don't need alcohol content
-        if(!isInt(alcoholContentField)){
+        if (!isInt(alcoholContentField)) {
             alcContentErrorField.setText("Please enter a valid number.");
         } else {
             alcContentErrorField.setText("");
@@ -248,7 +248,7 @@ public class UpdateApplicationController {
 
         if (alcoholContentField.getText().isEmpty()) {
             alcContentErrorField.setText("Please fill in the alcohol percentage.");
-        } else if(!isInt(alcoholContentField)){
+        } else if (!isInt(alcoholContentField)) {
             alcContentErrorField.setText("Please enter a valid number.");
         } else {
             alcContentErrorField.setText("");
@@ -260,7 +260,7 @@ public class UpdateApplicationController {
             signatureErrorField.setText("");
         }
         if (pTypeSelect.getValue().equals("Wine")) {
-            if (!isInt(wineVintageYearField)||!isDouble(pHLevelField)) {
+            if (!isInt(wineVintageYearField) || !isDouble(pHLevelField)) {
                 wineNumErrorField.setText("Please enter a valid number.");
             } else {
                 wineNumErrorField.setText("");
@@ -274,7 +274,7 @@ public class UpdateApplicationController {
 
 
         //check if fields are valid
-        if(isInt(alcoholContentField)) {
+        if (isInt(alcoholContentField)) {
             if (pTypeSelect.getValue().equals("Wine")) {
                 if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
                     fieldsValid = true;
@@ -302,22 +302,20 @@ public class UpdateApplicationController {
             alcContent = Integer.parseInt(alcoholContentField.getText());
 
 
-
-
-
 //            if (application != null)
 //                newApp.setApplicationID(application.getApplicationID());
 
             //Submit the new application to the database
             //ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
             //boolean success = applicantInterface.submitApplication(newApp);
-
+            System.out.println("Form deleted");
             main.loadHomepage();
         }
     }
 
     public void cancelApp() {
         //Go back to homepage
+        System.out.println("Check github ;)");
         main.loadApplicantWorkflowPage();
     }
 
@@ -325,25 +323,25 @@ public class UpdateApplicationController {
 
     }
 
-    public boolean isInt(TextField txt){
+    public boolean isInt(TextField txt) {
         try {
             Integer.parseInt(txt.getText());
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    public boolean isDouble(TextField txt){
+    public boolean isDouble(TextField txt) {
         try {
             Double.parseDouble(txt.getText());
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    public void disableAllFields(){
+    public void disableAllFields() {
         pSourceSelect.setDisable(true);
         pTypeSelect.setDisable(true);
         alcoholName.setDisable(true);
@@ -360,17 +358,17 @@ public class UpdateApplicationController {
         }
     }
 
-    public void exemptionChecked(){
+    public void exemptionChecked() {
         stateSelect.setDisable(!certOfExemption.isSelected());
     }
 
-    public void distinctiveChecked(){
+    public void distinctiveChecked() {
         distinctiveText.setDisable(!distinctiveApproval.isSelected());
     }
 
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg","*jpeg","*png");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*jpeg", "*png");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(null);
         java.nio.file.Path source = Paths.get((file.getPath()));
@@ -392,5 +390,6 @@ public class UpdateApplicationController {
         proxyLabelImage = new ProxyLabelImage(fileName);
         //application.setImage(proxyLabelImage);
     }
+
 
 }
