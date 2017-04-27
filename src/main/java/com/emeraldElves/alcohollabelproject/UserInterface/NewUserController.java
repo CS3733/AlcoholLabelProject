@@ -204,7 +204,7 @@ public class NewUserController implements IController {
         final Popup popup = new Popup();
         //popup.show();
         passwordHint.setText("Password must: \n - Contains atleast 8 Characters \n - A Uppercase character \n - A Lowercase character \n - A digit \n - A symbol");
-
+        passwordError.setVisible(false);
             if (!CheckStrength.isPasswordValid(passwordField.getText())) {
                 image = new Image("/images/X.png");
                 isValid.setImage(image);
