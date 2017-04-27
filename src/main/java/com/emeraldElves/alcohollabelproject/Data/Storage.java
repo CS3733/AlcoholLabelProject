@@ -4,6 +4,7 @@ import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.Log;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -108,7 +109,7 @@ public class Storage {
 
         try {
             database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
+                    new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
                     new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),
@@ -141,6 +142,32 @@ public class Storage {
             Log.console("Used existing NewApplicant table");
         }
 
+        try{
+            database.createTable("SavedApplications",
+                new Database.TableField("labelApproval", "BOOLEAN"),
+                new Database.TableField("stateOnly", "VARCHAR (2)"),
+                new Database.TableField("bottleCapacity", "INTEGER"),
+                new Database.TableField("origin", "INTEGER"),//Domestic or Imported
+                new Database.TableField("type", "INTEGER"),//BEER, WINE or SPIRITS
+                new Database.TableField("fancifulName", "VARCHAR (255)"),
+                new Database.TableField("brandName", "VARCHAR (255)"),
+                new Database.TableField("alcoholContent", "DOUBLE"),
+                new Database.TableField("formula", "VARCHAR (255)"),
+                new Database.TableField("serialNumber", "VARCHAR (255)"),
+                new Database.TableField("pH", "REAL"),
+                new Database.TableField("vintageYear", "INTEGER"),
+                new Database.TableField("varietals", "VARCHAR (255)"),
+                new Database.TableField("wineAppellation", "VARCHAR (255)"),
+                new Database.TableField("extraInfo", "VARCHAR (255)"),
+                new Database.TableField("imageURL", "VARCHAR (255)"),
+                new Database.TableField("submitterUsername", "VARCHAR (255)"),
+                new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"));
+
+        }
+        catch (SQLException e){
+            Log.console("Used existing SavedApplications table");
+        }
+
         return database;
     }
 
@@ -165,6 +192,10 @@ public class Storage {
 
     public boolean rejectApplication(SubmittedApplication application, String reason) {
         return alcoholDB.rejectApplication(application, reason);
+    }
+
+    public boolean removeSavedApplication(SavedApplication application){
+        return alcoholDB.removeSavedApplication(application);
     }
 
     /**
@@ -207,6 +238,16 @@ public class Storage {
     }
 
     public List<PotentialUser> getPotentialUsers(){ return usersDB.getPotentialUsers();  }
+
+    /**
+     * calls the saveApplication function in the alcohol database
+     * @param application The application to save
+     * @param username The username of the person saving the application
+     * @return Whether or not the application was successfully saved
+     */
+    public boolean saveApplication(SavedApplication application, String username){
+        return alcoholDB.saveApplication(application,username);
+    }
 
     /**
      *
@@ -277,6 +318,10 @@ public class Storage {
 
     public List<SubmittedApplication> getApplicationsByApplicant(String username) {
         return alcoholDB.getApplicationsByApplicantUsername(username);
+    }
+
+    public List<SavedApplication> getSavedApplicationsByApplicant(String username){
+        return alcoholDB.getSavedApplicationsByApplicant(username);
     }
 
     public List<SubmittedApplication> getAssignedApplications(String agentName) {

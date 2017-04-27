@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
+import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ApplicantWorkflowController implements IController {
     Main main;
     private ApplicantInterface applicantInterface;
+    int numSavedApplications;
 
     @FXML
     ListView<String> list;
@@ -32,6 +34,7 @@ public class ApplicantWorkflowController implements IController {
         applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
         List<String> applicationNames = new ArrayList<>();
         List<SubmittedApplication> applications = applicantInterface.getSubmittedApplications();
+        List<SavedApplication> savedApplications = applicantInterface.getSavedApplications();
         applications.sort((a, b) -> {
             if (a.getStatus() == b.getStatus()) {
                 return a.getApplicationID() - b.getApplicationID();
@@ -39,6 +42,15 @@ public class ApplicantWorkflowController implements IController {
                 return a.getStatus().ordinal() - b.getStatus().ordinal();
             }
         });
+        numSavedApplications = 0;
+        for(SavedApplication application : savedApplications){
+            String name = "";
+            name += application.getApplicationID();
+            name += " - Saved";
+            applicationNames.add(name);
+            numSavedApplications ++;
+        }
+
         for (SubmittedApplication application : applications) {
             String name = "";
             name += application.getApplication().getAlcohol().getBrandName();
@@ -55,13 +67,20 @@ public class ApplicantWorkflowController implements IController {
             }
             applicationNames.add(name);
         }
+
         ObservableList<String> items = FXCollections.observableList(applicationNames);
         list.setItems(items);
     }
 
     public SubmittedApplication getSelectedApplication() {
         int i = list.getSelectionModel().getSelectedIndex();
-        return applicantInterface.getSubmittedApplications().get(i);
+        //maybe this works
+        return applicantInterface.getSubmittedApplications().get(i - numSavedApplications);
+    }
+
+    public SavedApplication getSelectedSavedApplication() {
+        int i = list.getSelectionModel().getSelectedIndex();
+        return applicantInterface.getSavedApplications().get(i);
     }
 
     public void viewApplication(){
@@ -69,7 +88,12 @@ public class ApplicantWorkflowController implements IController {
     }
 
     public void reviseApplication() {
-        main.loadFXML("/fxml/newApplication.fxml",getSelectedApplication());
+        if (list.getSelectionModel().getSelectedIndex() < numSavedApplications) {
+            main.loadFXML("/fxml/newApplication.fxml", getSelectedSavedApplication());
+        } else {
+            main.loadFXML("/fxml/newApplication.fxml", getSelectedApplication());
+
+        }
     }
 
     public void ApplicationWorkflow() {
