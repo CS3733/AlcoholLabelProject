@@ -20,7 +20,7 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
     @FXML
     VBox errorMsg;
     @FXML
-    Label passwordError;
+    Label passwordError, passwordError1;
 
     private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
     private PasswordStrengthChecker checkPassword = new PasswordStrengthChecker();
@@ -42,9 +42,13 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 
                 }
             } else {
-                passwordError.setText("Please Enter a valid Password");
+                passwordError1.setText("Please Enter a valid Password");
                 return;
             }
+        }
+        else{
+            passwordError.setText("Incorrect Password");
+
         }
     }
 

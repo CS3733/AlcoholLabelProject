@@ -84,6 +84,9 @@ public class ProfileController implements IController {
         applicant.getApplicant().setEmailAddress();
     }
 
+    public void updatePassword(){
+        main.loadFXML("/fxml/ChangeUserPassword.fxml");
+    }
 
     public void returnHome()
     {
