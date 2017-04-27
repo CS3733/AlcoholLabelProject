@@ -36,7 +36,7 @@ public class SuperUserWorkflowController implements IController {
         Email.setText(UserforApproval.getEmail().getEmailAddress());
         Date.setText(UserforApproval.getDate().toString());
         physicalAddress.setText(UserforApproval.getAddress());
-        permitNo.setText(String.valueOf(UserforApproval.getPermitNum()));
+        permitNo.setText(UserforApproval.getPermitNum());
         company.setText(UserforApproval.getCompany());
     }
 
