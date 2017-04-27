@@ -1,14 +1,15 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.Log;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
@@ -63,6 +64,7 @@ public class NewUserController implements IController {
     private String password;
     private String address;
     private PasswordStrengthChecker CheckStrength;
+    private StrongPasswordEncryptor EncryptPassword = new StrongPasswordEncryptor();
     Image image;
     public NewUserController() {
 
@@ -78,12 +80,13 @@ public class NewUserController implements IController {
         applicantBtn.setToggleGroup(accountType);
         agentBtn.setToggleGroup(accountType);
         CheckStrength = new PasswordStrengthChecker();
-        passwordHint.setText("Password must: Contains atleast 8 Characters \n 1 Uppercase character \n 1 Lowercase character \n A digit \n A symbol");
+        passwordHint.setText("Password must: \n Contains atleast 8 Characters \n 1 Uppercase character \n 1 Lowercase character \n A digit \n A symbol");
 
     }
 
     public void setUserTypeAgent(){
         userTypeInt = 0;
+        permitNumText.setText("");
         permitNumText.setDisable(true);
     }
 
@@ -92,7 +95,7 @@ public class NewUserController implements IController {
         permitNumText.setDisable(false);
     }
 
-    public void createPotentialUser(){
+    public void createPotentialUser() throws UnsupportedEncodingException {
         accountError.setText("");
         emailError.setText("");
         phoneNumError.setText("");
@@ -115,6 +118,10 @@ public class NewUserController implements IController {
 
 
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
+        if(Storage.getInstance().isValidUser(Email.getEmailAddress())){
+            emailError.setText("There is already an account with this email");
+            return;
+        }
         PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
         if(!PhoneNumber.isValid()){
             phoneNumError.setText("Enter a valid phone number");
@@ -174,8 +181,9 @@ public class NewUserController implements IController {
         java.util.Date newDate = new Date();
          Email  = new EmailAddress(emailAddress.getText().toString());
          PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        password = passwordField.getText();
-        permitNum = Integer.parseInt(representativeID.getText());//check if field is not null
+        password = EncryptPassword.encryptPassword(passwordField.getText());
+        permitNum = Integer.parseInt(permitNumText.getText());//check if field is not null
+        repID = Integer.parseInt(representativeID.getText());
         address = addressText.getText();//representative ID
 
 
@@ -195,9 +203,8 @@ public class NewUserController implements IController {
     public void checkPassword(){
         final Popup popup = new Popup();
         //popup.show();
-        passwordHint.setText("Password must: Contains atleast 8 Characters \n - A Uppercase character \n - A Lowercase character \n - A digit \n - A symbol");
-        for(int i = 0;i<1;i++) {
-            Log.console(passwordField.getText());
+        passwordHint.setText("Password must: \n - Contains atleast 8 Characters \n - A Uppercase character \n - A Lowercase character \n - A digit \n - A symbol");
+        passwordError.setVisible(false);
             if (!CheckStrength.isPasswordValid(passwordField.getText())) {
                 image = new Image("/images/X.png");
                 isValid.setImage(image);
@@ -205,8 +212,6 @@ public class NewUserController implements IController {
                 image = new Image("/images/Tick.png");
                 isValid.setImage(image);
             }
-        }
-
     }
 
     public void GoHome(){
