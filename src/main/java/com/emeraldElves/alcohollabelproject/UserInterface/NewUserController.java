@@ -86,6 +86,7 @@ public class NewUserController implements IController {
 
     public void setUserTypeAgent(){
         userTypeInt = 0;
+        permitNumText.setText("");
         permitNumText.setDisable(true);
     }
 
