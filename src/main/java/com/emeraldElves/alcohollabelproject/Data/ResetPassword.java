@@ -48,7 +48,7 @@ public class ResetPassword {
                 message.setRecipients(Message.RecipientType.TO,
                         InternetAddress.parse(Authenticator.getInstance().getUsername()));
                 message.setSubject("Update to your recent application status");
-                message.setText("Please log in using " + randomNum+
+                message.setText("Please log in using " + randomNum +
                         " as your password");
 
                 Transport.send(message);
@@ -60,7 +60,7 @@ public class ResetPassword {
             }
 
                 Storage.getInstance().updatePassword(accountEmail, passwordEncryptor.encryptPassword(String.valueOf(randomNum)));
-                main.loadFXML("/fxml/HomePage.fxml");
+                main.loadHomepage();
 
         }
     }
