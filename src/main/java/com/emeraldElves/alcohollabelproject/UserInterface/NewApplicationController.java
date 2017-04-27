@@ -274,8 +274,9 @@ public class NewApplicationController implements IController {
             appellationText.setText(alcoholInfo.getWineInfo().appellation);
         }
         //Image
-        if(!imageView.equals("")) {
-            File file = new File(imageURL);
+        if(!imageURL.equals("")) {
+            Log.console("Image path: " + imageURL);
+            File file = new File("Labels/" + imageURL);
             Image tempImage = new Image(file.toURI().toString());
             imageView.setImage(tempImage);
         }
