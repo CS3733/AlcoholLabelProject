@@ -32,7 +32,7 @@ public class AuthenticatedUsersDatabase {
      */
     public boolean isValidTTBAgent(String userName, String password) {
         ResultSet results = db.select("*", "TTBAgentLogin", "email = '" + userName +
-                "' AND  password = '" + password + "'");
+                "'");
         if (results == null)
             return false;
         try {
@@ -43,7 +43,7 @@ public class AuthenticatedUsersDatabase {
         }
     }
     public boolean isValidTTBAgentAccount(String userName) {
-        ResultSet results = db.select("*", "TTBAgentLogin", "email = '" + userName);
+        ResultSet results = db.select("*", "TTBAgentLogin", "email = '" + userName + "'");
         if (results == null)
             return false;
         try {
@@ -54,7 +54,7 @@ public class AuthenticatedUsersDatabase {
         }
     }
     public boolean isValidUserAccount(String userName) {
-        ResultSet results = db.select("*", "ApplicantLogin", "email = '" + userName);
+        ResultSet results = db.select("*", "ApplicantLogin", "email = '" + userName+"'");
         if (results == null)
             return false;
         try {
@@ -62,6 +62,41 @@ public class AuthenticatedUsersDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public String getAgentPassword(String userName){
+        ResultSet results = db.select("password", "TTBAgentLogin", "email = '" + userName+"'");
+
+        if (results == null)
+            return null;
+        try {
+            if(results.next()) {
+                return results.getString("password");
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String getUserPassword(String userName){
+        ResultSet results = db.select("password", "ApplicantLogin", "email = '" + userName+"'");
+
+        if (results == null)
+            return null;
+        try {
+            if(results.next()) {
+                return results.getString("password");
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -124,7 +159,7 @@ public class AuthenticatedUsersDatabase {
      */
     public boolean isValidApplicant(String email, String password) {
         ResultSet results = db.select("*", "ApplicantLogin", "email = '" + email +
-                "' AND  password = '" + password + "'");
+                "'");
         if (results == null)
             return false;
         try {
@@ -254,11 +289,11 @@ public class AuthenticatedUsersDatabase {
     }
 
     public void updatePasswordApplicant(String password, String email) {
-        db.update("ApplicantLogin", "password = " + password, "email = '" + email + "'");
+        db.update("ApplicantLogin", "password = '"+password+"'", "email = '"+email+"'" );
     }
 
     public void updatePasswordTTBAgent(String password, String email) {
-        db.update("TTBAgentLogin", "password = " + password, "email = '" + email + "'");
+        db.update("TTBAgentLogin", "password = '"+password+"'", "email = '"+email+"'" );
     }
 
     public List<String> getAllTTBUsernames(){
@@ -274,6 +309,7 @@ public class AuthenticatedUsersDatabase {
         }
         return names;
     }
+
 
 
 }
