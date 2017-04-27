@@ -150,7 +150,7 @@
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                             <image>
-                                <Image backgroundLoading="true" url="@../images/kyleCorry.jpg" />
+                                <Image backgroundLoading="true" url="@../images/kyleCorryMellons.jpg" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
