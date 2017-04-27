@@ -19,7 +19,7 @@ public class ResetPassword {
     private Properties props;
     private Session session;
     private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-    Main main;
+    Main main = new Main();
 
     public void resetEmail(String accountEmail) {
         this.accountEmail = accountEmail;

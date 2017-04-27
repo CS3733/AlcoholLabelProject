@@ -19,7 +19,7 @@ public class UpdatePasswordController implements IController {
     VBox errorMsg;
 
     private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-    Main main;
+    Main main = new Main();
 
     public void UpdatePassword() {
         this.currentUser = Authenticator.getInstance().getUsername();
