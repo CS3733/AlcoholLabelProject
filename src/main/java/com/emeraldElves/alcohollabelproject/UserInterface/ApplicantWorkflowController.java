@@ -65,7 +65,9 @@ public class ApplicantWorkflowController {
     }
 
     public void reviseApplication() {
-        main.loadNewApplicationPage(getSelectedApplication());
+        if(getSelectedApplication().getStatus() == ApplicationStatus.REJECTED) {
+            main.loadNewApplicationPage(getSelectedApplication());
+        }
     }
 
     public void ApplicationWorkflow() {
