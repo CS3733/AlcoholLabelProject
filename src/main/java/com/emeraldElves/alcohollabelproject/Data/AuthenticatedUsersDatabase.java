@@ -239,7 +239,7 @@ public class AuthenticatedUsersDatabase {
                 //Adding all stuff from database to new Applicant object
                 String name = resultSet.getString("name");
                 int representativeID = resultSet.getInt("representativeID");
-                int permitNum = resultSet.getInt("permitNum");
+                String permitNum = resultSet.getString("permitNum");
                 String address = resultSet.getString("address");
                 String phoneNum = resultSet.getString("phoneNumber");
                 String company = resultSet.getString("company");

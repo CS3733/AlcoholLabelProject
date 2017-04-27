@@ -65,7 +65,7 @@ public class NewApplicationController implements IController {
     private String username;
     private ApplicantInterface applicant;
     private EmailAddress emailAddress;
-    private int permitNum;
+    private String permitNum;
     private String address;
     private PhoneNumber phoneNum;
     private int representativeID;

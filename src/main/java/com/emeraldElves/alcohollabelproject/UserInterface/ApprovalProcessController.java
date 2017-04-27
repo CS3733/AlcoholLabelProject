@@ -2,13 +2,9 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.EmailManager;
-import com.emeraldElves.alcohollabelproject.Log;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -137,7 +133,7 @@ public class ApprovalProcessController implements IController {
         applicantID.setText( String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
         authorizedName.setText( application.getApplication().getManufacturer().getName());
         physicalAddress.setText( application.getApplication().getManufacturer().getPhysicalAddress());
-        permitNum.setText( String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
+        permitNum.setText( application.getApplication().getManufacturer().getPermitNum());
         phoneNum.setText(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
         emailAddress.setText( application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
         alcoholContent.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));

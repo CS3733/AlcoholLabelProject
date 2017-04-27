@@ -14,7 +14,7 @@ public class Applicant {
     private String email;
     private String name;
     private int representativeID = 0;
-    private int permitNum = 0;
+    private String permitNum = "";
     private String address = "";
     private String phoneNum = "";
     private String company = "";
@@ -31,7 +31,7 @@ public class Applicant {
     /**
      * Creates applicant with fields
      */
-    public Applicant(String email, String name, int representativeID, int permitNum, String address, String phoneNum, String company) {
+    public Applicant(String email, String name, int representativeID, String permitNum, String address, String phoneNum, String company) {
         this.email = email;
         this.name = name;
         this.representativeID = representativeID;
@@ -75,7 +75,7 @@ public class Applicant {
         getApplicantFields(email);
         return this.getRepresentativeID();
     }
-    public int getPermitNumFromDB(String email) {
+    public String getPermitNumFromDB(String email) {
         getApplicantFields(email);
         return this.getPermitNum();
     }
@@ -98,7 +98,7 @@ public class Applicant {
 
     // getter functions -- NOT from DB
     public int getRepresentativeID() { return representativeID; }
-    public int getPermitNum() { return permitNum; }
+    public String getPermitNum() { return permitNum; }
     public String getAddress() { return address; }
     public String getPhoneNum() { return phoneNum; }
     public String getCompany() { return company; }
@@ -108,7 +108,7 @@ public class Applicant {
     public void setRepresentativeID(String email, int representativeID) {
         storage.modifyRepresentativeID(email, representativeID);
     }
-    public void setPermitNum(String email, int permitNum) {}
+    public void setPermitNum(String email, String permitNum) {}
     public void setAddress(String email, String address) {}
     public void setPhoneNum(String email, String phoneNum) {}
     public void setName(String email, String name) {}

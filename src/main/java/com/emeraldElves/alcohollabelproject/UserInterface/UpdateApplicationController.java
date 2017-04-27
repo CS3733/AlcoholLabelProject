@@ -67,7 +67,7 @@ public class UpdateApplicationController implements IController{
     private String username;
     private ApplicantInterface applicant;
     private EmailAddress emailAddress;
-    private int permitNum; //needs to be a string!!!!
+    private String permitNum; //needs to be a string!!!!
     private String address;
     private PhoneNumber phoneNum;
     private int representativeID; //needs to be a string!!!!

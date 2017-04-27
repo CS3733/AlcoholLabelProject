@@ -634,7 +634,7 @@ public class AlcoholDatabase {
                 String physicalAddress = results.getString("physicalAddress");
                 String company = results.getString("company");
                 int repID = results.getInt("representativeID");
-                int permitNum = results.getInt("permitNum");
+                String permitNum = results.getString("permitNum");
                 PhoneNumber phoneNumber = new PhoneNumber(results.getString("phoneNum"));
                 EmailAddress emailAddress = new EmailAddress(results.getString("emailAddress"));
                 return new ManufacturerInfo(authorizedName, physicalAddress, company, repID, permitNum, phoneNumber, emailAddress);
