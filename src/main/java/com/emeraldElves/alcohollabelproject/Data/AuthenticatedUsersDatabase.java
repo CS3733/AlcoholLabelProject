@@ -24,7 +24,7 @@ public class AuthenticatedUsersDatabase {
     }
 
     /**
-     * Checks if TTB agent login is valid.
+     * Checks if TTB agent login is vali-d.
      *
      * @param userName The username of the TTB agent
      * @param password The password of the TTB agent

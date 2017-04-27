@@ -67,6 +67,8 @@ public class ProfileController implements IController {
         companyField.setText(emailAddress);
     }
 
+    // TODO: error handling
+
     // functions - simply modify fields when user changes them
     public void modifyRepresentativeID() {
         representativeID = Integer.valueOf(representativeIDField.getText());
