@@ -21,14 +21,14 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
 public class UpdateApplicationController {
-    @FXML
-    private Button selectRev;
-    @FXML
-    private CheckBox option1, option2, option3, option4, option5, option6, option7, option8, option9, option10, option11, option12;
-    @FXML
-    private CheckBox option13, option14, option15, option16, option17, option18, option19, option20, option21, option22, option23;
-    @FXML
-    private CheckBox option24, option25, option26, option27, option28, option29, option30, option31, option32, option33, option34;
+//    @FXML
+//    private Button selectRev;
+//    @FXML
+//    private CheckBox option1, option2, option3, option4, option5, option6, option7, option8, option9, option10, option11, option12;
+//    @FXML
+//    private CheckBox option13, option14, option15, option16, option17, option18, option19, option20, option21, option22, option23;
+//    @FXML
+//    private CheckBox option24, option25, option26, option27, option28, option29, option30, option31, option32, option33, option34;
     @FXML
     private TextField repIDNoTextField, permitNoTextField, alcoholName, brandNameField;
     @FXML
@@ -94,7 +94,16 @@ public class UpdateApplicationController {
 
     public void init(Main main){
         this.main = main;
+    }
 
+    public void init(Main main, SubmittedApplication application) {
+        this.main = main;
+        this.application=application;
+
+        setUpApp();
+    }
+
+    public void setUpApp(){
         username= Authenticator.getInstance().getUsername();
         applicant = new ApplicantInterface(username);
         Log.console(username);
@@ -104,133 +113,90 @@ public class UpdateApplicationController {
         address = applicant.getApplicant().getAddress();
         phoneNum = new PhoneNumber(applicant.getApplicant().getPhoneNum());
         representativeID = applicant.getApplicant().getRepresentativeID();
-        repIDNoTextField.setText(String.valueOf(representativeID));
+        repIDNoTextField.setText(""+representativeID);
         permitNoTextField.setText(String.valueOf(permitNum));
         addressField.setText(String.valueOf(address));
         phoneNumberField.setText((phoneNum.getPhoneNumber()));
         emailAddressField.setText((emailAddress.getEmailAddress()));
 
         datePicker.setValue(LocalDate.now());
-        stateSelect.setValue("State Abb.");
-        stateSelect.setItems(stateList);
-        pSourceSelect.setValue("Select a product source");
-        pSourceSelect.setItems(sourceList);
-        pTypeSelect.setValue("Select a product type");
-        pTypeSelect.setItems(typeList);
-    }
-    public void init(Main main, SubmittedApplication application) {
-        //init(main);
-//        this.application = application;
-//
-//        if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
-//            pSourceSelect.setValue("Domestic");
-//        } else if (application.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED) {
-//            pSourceSelect.setValue("Imported");
-//        }
-//
-//        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER) {
-//            pTypeSelect.setValue("Malt Beverages");
-//        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
-//            pTypeSelect.setValue("Wine");
-//        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS) {
-//            pTypeSelect.setValue("Distilled Spirits");
-//        }
-//
-//        alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
-//        brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
-//        alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
-//        formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
-//        serialText.setText(String.valueOf(application.getApplication().getAlcohol().getSerialNumber()));
-//        extraInfoText.setText(String.valueOf(application.getApplication().getExtraInfo()));
-//        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
-//            wineVintageYearField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().vintageYear));
-//            pHLevelField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().pH));
-//            varietalText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().grapeVarietal));
-//            appellationText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().appellation));
-//        }
-//
-//        disableAllFields();
+//        stateSelect.setValue("State Abb.");
+//        stateSelect.setItems(stateList);
+//        pSourceSelect.setValue("Select a product source");
+//        pSourceSelect.setItems(sourceList);
+//        pTypeSelect.setValue("Select a product type");
+//        pTypeSelect.setItems(typeList);
 
-    }
+        if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
+            pSourceSelect.setValue("Domestic");
+        } else if (application.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED) {
+            pSourceSelect.setValue("Imported");
+        }
 
-    public void nextPage(){
-        int selectedUpdateNum=0; //number corresponding to the allowed update
+        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER) {
+            pTypeSelect.setValue("Malt Beverages");
+        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
+            pTypeSelect.setValue("Wine");
+        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS) {
+            pTypeSelect.setValue("Distilled Spirits");
+        }
 
-        if(option1.isSelected() || option2.isSelected() || option3.isSelected() || option4.isSelected()
-                || option6.isSelected() || option8.isSelected() || option9.isSelected() || option14.isSelected()
-                || option15.isSelected() || option26.isSelected() || option27.isSelected() || option28.isSelected()
-                || option29.isSelected() || option30.isSelected() || option31.isSelected() || option23.isSelected()
-                || option34.isSelected()){
+        alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
+        brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
+        alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+        formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
+        serialText.setText(String.valueOf(application.getApplication().getAlcohol().getSerialNumber()));
+        extraInfoText.setText(String.valueOf(application.getApplication().getExtraInfo()));
+        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
+            wineVintageYearField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().vintageYear));
+            pHLevelField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().pH));
+            varietalText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().grapeVarietal));
+            appellationText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().appellation));
+        }
+
+        disableAllFields();
+
+        if(application.getUpdatesSelected().get("label")==true){
             submitLabel.setDisable(false);
         }
-        if(option5.isSelected()){
+        if(application.getUpdatesSelected().get("alcContent")==true){
+            alcoholContentField.setDisable(false);
+        }
+        if(application.getUpdatesSelected().get("vintYr")==true){
             wineVintageYearField.setDisable(false);
         }
-        if(option7.isSelected()){
+        if(application.getUpdatesSelected().get("pH")==true){
             pHLevelField.setDisable(false);
         }
-        if(option10.isSelected()){
+        if(application.getUpdatesSelected().get("formula")==true){
             formulaText.setDisable(false);
         }
-        if(option11.isSelected()){
-            submitLabel.setDisable(false);
-            alcoholContentField.setDisable(false);
-        }
-        if(option12.isSelected()){
-            alcoholContentField.setDisable(false);
-        }
-        if(option13.isSelected()){
-            alcoholContentField.setDisable(false);
-        }
-        if(option16.isSelected()){
+        if(application.getUpdatesSelected().get("stateSelect")==true){
             stateSelect.setDisable(false);
         }
-        if(option17.isSelected()){
-            formulaText.setDisable(false);
-        }
-        if(option18.isSelected()){
-            datePicker.setDisable(false);
-        }
-        if(option19.isSelected()){
+        if(application.getUpdatesSelected().get("alcoholName")==true){
             alcoholName.setDisable(false);
-            brandNameField.setDisable(false);
-            addressField.setDisable(false);
         }
-        if(option20.isSelected()){
-            alcoholName.setDisable(false);
-            addressField.setDisable(false);
+        if(application.getUpdatesSelected().get("brandName")==true){
             brandNameField.setDisable(false);
         }
-        if(option21.isSelected()){
-            alcoholName.setDisable(false);
+        if(application.getUpdatesSelected().get("address")==true){
             addressField.setDisable(false);
-            brandNameField.setDisable(false);
         }
-        if(option22.isSelected()){
-            submitLabel.setDisable(false);
+        if(application.getUpdatesSelected().get("extraInfo")==true){
             extraInfoText.setDisable(false);
         }
-        if(option24.isSelected()){
-            addressField.setDisable(false);
-        }
-        if(option25.isSelected()){
+        if(application.getUpdatesSelected().get("repID")==true){
             repIDNoTextField.setDisable(false);
         }
-        if(option32.isSelected()){
-            formulaText.setDisable(false);
-            submitLabel.setDisable(false);
+        if(application.getUpdatesSelected().get("date")==true){
+            datePicker.setDisable(false);
         }
-        if(option33.isSelected()){
-            extraInfoText.setDisable(false);
-            submitLabel.setDisable(false);
-        }
-        //go to page 2 of update app
-        Main.loadFXML("/fxml/UpdateApplication.fxml");
+
     }
 
-    public void submitApp() {
 
-        init(main);
+    public void submitApp() {
 
         LogManager.getInstance().logAction("NewApplicationController", "Logged Click from first page of the new Application");
 
@@ -304,13 +270,7 @@ public class UpdateApplicationController {
 
 
 
-
-//            if (application != null)
-//                newApp.setApplicationID(application.getApplicationID());
-
-            //Submit the new application to the database
-            //ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
-            //boolean success = applicantInterface.submitApplication(newApp);
+            boolean success = Storage.getInstance().updateApplication(this.application, this.username);
 
             main.loadHomepage();
         }

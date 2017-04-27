@@ -156,6 +156,10 @@ public class Storage {
         return alcoholDB.submitApplication(application, username);
     }
 
+    public boolean updateApplication(SubmittedApplication application, String username) {
+        return alcoholDB.updateApplication(application, username);
+    }
+
     public boolean approveApplication(SubmittedApplication application, String agentName, Date expirationDate) {
         return alcoholDB.approveApplication(application, agentName, expirationDate);
     }

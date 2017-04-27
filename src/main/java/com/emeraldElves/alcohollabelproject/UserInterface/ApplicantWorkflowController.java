@@ -70,7 +70,7 @@ public class ApplicantWorkflowController {
 
     public void ApplicationWorkflow() {
         if(getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {
-            main.loadUpdateApplicationPage(getSelectedApplication());
+            main.loadUpdateOptionsPage(getSelectedApplication());
         }
     }
 

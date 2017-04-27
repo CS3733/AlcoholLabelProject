@@ -362,6 +362,127 @@ public class AlcoholDatabase {
         return true;
     }
 
+    public boolean updateApplication(SubmittedApplication application, String username) {
+        //making application type
+        ApplicationType appType = application.getApplication().getApplicationType();
+
+        //getting all info needed from submitted application into variables
+        ApplicationStatus status = application.getStatus();
+        ApplicationInfo info = application.getApplication();
+        AlcoholInfo alcInfo = info.getAlcohol();
+        ManufacturerInfo manInfo = info.getManufacturer();
+
+        //Image name
+        String image;
+        if (application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+            //if(false)
+            image = application.getImage().getFileName();
+        else {
+            image = "";
+        }
+
+
+        //
+        boolean worked;//whether or not it added stuff to database
+
+        int appID;
+
+        if (application.getApplicationID() == -1) {
+            appID = generateApplicationID();
+            application.setApplicationID(appID);
+        } else {
+            appID = application.getApplicationID();
+        }
+        /*
+        try {
+            db.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
+                    new Database.TableField("status", "INTEGER NOT NULL"),
+                    new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("submissionTime", "BIGINT NOT NULL"),
+                    new Database.TableField("expirationDate", "BIGINT"),
+                    new Database.TableField("agentName", "VARCHAR (255)"),
+                    new Database.TableField("approvalDate", "BIGINT"),
+                    new Database.TableField("TTBUsername", "VARCHAR (255)"));
+            Log.console("Created new SubmittedApplications table");
+        } catch (SQLException e) {
+            Log.console("Used existing SubmittedApplications table");
+        }*/
+
+        ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
+
+        try {
+            if (resultsSubmitted.next()) {
+                worked = db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
+                        + status.getValue() + ", statusMsg = '" //status
+                        + status.getMessage() + "', submissionTime = " //status message
+                        + info.getSubmissionDate().getTime() + ", expirationDate = " //submission time
+                        + info.getSubmissionDate().getTime() + ", agentName = '"//no field for expiration date
+                        + manInfo.getName() + "', approvalDate = " //agent name
+                        + info.getSubmissionDate().getTime() + ", submitterUsername = '"
+                        + username + "', extraInfo = '"
+                        + info.getExtraInfo() + "', labelApproval = "
+                        + appType.isLabelApproval() + ", stateOnly = '"
+                        + appType.getStateOnly() + "', bottleCapacity = "
+                        + appType.getBottleCapacity() + ", imageURL = '"
+                        + image + "', qualifications = '"
+                        + info.getQualifications() + "'", "applicationID = "
+                        + application.getApplicationID());
+
+                if(!worked){
+                    return false;
+                }
+
+                worked= db.update("ManufacturerInfo", "authorizedName = '"
+                        + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
+                        + manInfo.getPhysicalAddress() + "', company = '" //physical address
+                        + manInfo.getCompany() + "', representativeID = " //company
+                        + manInfo.getRepresentativeID() + ", permitNum = " //representative id
+                        + manInfo.getPermitNum() + ", phoneNum = '"//permit num
+                        + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
+                        + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
+
+                if(!worked){
+                    return false;
+                }
+
+                if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
+                    worked= db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', origin = " //brand name
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", formula = '"
+                                    + alcInfo.getFormula() + "', serialNumber = '"
+                                    + alcInfo.getSerialNumber() + "', pH = "
+                                    + alcInfo.getWineInfo().pH + ", vintageYear = "
+                                    + alcInfo.getWineInfo().vintageYear + ", varietals = '"
+                                    + alcInfo.getWineInfo().grapeVarietal + "', wineAppellation = '"
+                                    + alcInfo.getWineInfo().appellation + "'"
+                            , "applicationID = " + application.getApplicationID());
+                    if(!worked){
+                        return false;
+                    }
+                } else {
+                    worked= db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', origin = " //brand name
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", formula = '"
+                                    + alcInfo.getFormula() + "', serialNumber = '"
+                                    + alcInfo.getSerialNumber() + "'"
+                            , "applicationID = " + application.getApplicationID());
+                    if(!worked){
+                        return false;
+                    }
+                }
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return true;
+    }
+
 
     public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID) {
         ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);

@@ -203,7 +203,7 @@ public class Main extends Application {
     }
 
     public void loadUpdateApplicationPage(SubmittedApplication application) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateOptions.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateApplication.fxml"));
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
@@ -213,7 +213,19 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void loadUpdateOptionsPage(SubmittedApplication application) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateOptions.fxml"));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            UpdateOptionsController controller = loader.getController();
+            controller.init(this, application);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadSubmitImages(SubmittedApplication application) {
