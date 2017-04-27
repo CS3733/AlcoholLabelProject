@@ -69,8 +69,8 @@ public class AuthenticatedUsersDatabase {
         if (user.getUserType() == UserType.TTBAGENT) {
             return db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + user.getRepresentativeID() + ", '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', '"
@@ -79,8 +79,8 @@ public class AuthenticatedUsersDatabase {
         } else { // type is Applicant
             return db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + user.getRepresentativeID() + ", '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', '"
@@ -173,8 +173,8 @@ public class AuthenticatedUsersDatabase {
             worked = db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
                             + user.getUserType().getValue() + ", "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + user.getRepresentativeID() + ", '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', "
