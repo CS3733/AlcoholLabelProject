@@ -112,7 +112,7 @@
             </GridPane>
             <ButtonBar layoutX="661.0" layoutY="556.0" prefHeight="40.0" prefWidth="307.0">
               <buttons>
-                  <Button fx:id="assignButton" mnemonicParsing="false" onMouseClicked="#assignToUser" prefHeight="40.0" prefWidth="94.0" styleClass="button-raised" text="Assign" />
+                  <Button fx:id="assignButton" disable="true" mnemonicParsing="false" onMouseClicked="#assignToUser" prefHeight="40.0" prefWidth="94.0" styleClass="button-raised" text="Assign" visible="false" />
                   <Button mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" />
                   <Button minWidth="62.0" mnemonicParsing="false" onMouseClicked="#Reject" prefHeight="40.0" styleClass="button-raised" text="Reject" />
               </buttons>
@@ -120,7 +120,7 @@
             <Button layoutX="870.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#viewLabel" styleClass="button-raised" text="View Label" />
             <Button layoutX="790.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#printPage" styleClass="button-raised" text="Print" />
             <TextArea layoutX="40.0" layoutY="556.0" prefHeight="35.0" prefWidth="200.0" promptText="CT:" />
-            <ComboBox fx:id="assignUserBox" layoutX="505.0" layoutY="555.0" prefWidth="150.0" />
+            <ComboBox fx:id="assignUserBox" disable="true" layoutX="505.0" layoutY="555.0" prefWidth="150.0" visible="false" />
             <Label fx:id="assignErrorField" layoutX="516.0" layoutY="612.0" />
             </children>
         </Pane>
