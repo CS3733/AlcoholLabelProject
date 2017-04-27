@@ -17,7 +17,6 @@ public class Applicant {
     private int permitNum = 0;
     private String address = "";
     private String phoneNum = "";
-    private String company = "";
 
     /**
      * Creates an Applicant with the given applications.
@@ -31,14 +30,13 @@ public class Applicant {
     /**
      * Creates applicant with fields
      */
-    public Applicant(String email, String name, int representativeID, int permitNum, String address, String phoneNum, String company) {
+    public Applicant(String email, String name, int representativeID, int permitNum, String address, String phoneNum) {
         this.email = email;
         this.name = name;
         this.representativeID = representativeID;
         this.permitNum = permitNum;
         this.address = address;
         this.phoneNum = phoneNum;
-        this.company = company;
     }
 
     public List<SubmittedApplication> getApplications() {
@@ -55,7 +53,7 @@ public class Applicant {
         return name;
     }
 
-        private Storage storage = Storage.getInstance();
+    private Storage storage = Storage.getInstance();
 
     public void getApplicantFields(String email) {
         Applicant fields = storage.getUserFromEmail(email);
@@ -65,7 +63,6 @@ public class Applicant {
         this.address = fields.getAddress();
         this.phoneNum = fields.getPhoneNum();
         this.name = fields.getName();
-        this.company = fields.getCompany();
     }
 
     public String getEmailAddress() {
@@ -87,41 +84,21 @@ public class Applicant {
         getApplicantFields(email);
         return this.getName();
     }
-    public String getPhoneNumFromDB(String email) {
-        getApplicantFields(email);
-        return this.getPhoneNum();
-    }
-    public String getCompanyFromDB(String email) {
-        getApplicantFields(email);
-        return this.getCompany();
-    }
+    public String getPhoneNumFromDB(String email) { return ""; }
 
     // getter functions -- NOT from DB
     public int getRepresentativeID() { return representativeID; }
     public int getPermitNum() { return permitNum; }
     public String getAddress() { return address; }
     public String getPhoneNum() { return phoneNum; }
-    public String getCompany() { return company; }
 
     // setter functions - set to DB
     public void setEmailAddress() {}
     public void setRepresentativeID(String email, int representativeID) {
         storage.modifyRepresentativeID(email, representativeID);
     }
-    public void setPermitNum(String email, int permitNum) {
-        storage.modifypermitNum(email, permitNum);
-    }
-    public void setAddress(String email, String address) {
-        storage.modifyAddress(email, address);
-    }
-    public void setPhoneNum(String email, String phoneNum) {
-        storage.modifyphoneNum(email, phoneNum);
-    }
-    public void setName(String email, String name) {
-        storage.modifyName(email, name);
-    }
-    public void setCompany(String email, String company) {
-        storage.modifyCompany(email, company);
-    }
-
+    public void setPermitNum(String email, int permitNum) {}
+    public void setAddress(String email, String address) {}
+    public void setPhoneNum(String email, String phoneNum) {}
+    public void setName(String email, String name) {}
 }
