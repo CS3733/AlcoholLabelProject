@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.ApplicationType;
+import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
@@ -11,6 +13,7 @@ import java.util.List;
 public class Applicant {
 
     private List<SubmittedApplication> applications;
+    private List<SavedApplication> savedApplications;
     private String email;
     private String name;
     private int representativeID = 0;
@@ -25,6 +28,11 @@ public class Applicant {
      */
     public Applicant(List<SubmittedApplication> applications) {
         this.applications = applications;
+    }
+
+    public Applicant(List<SubmittedApplication> applications, List<SavedApplication> saves){
+        this.applications = applications;
+        this.savedApplications = saves;
     }
 
     /**
@@ -42,6 +50,7 @@ public class Applicant {
     public List<SubmittedApplication> getApplications() {
         return applications;
     }
+    public List<SavedApplication> getSavedApplications(){ return savedApplications; }
     public void setApplications(List<SubmittedApplication> subApps) {
         this.applications = subApps;
     }
