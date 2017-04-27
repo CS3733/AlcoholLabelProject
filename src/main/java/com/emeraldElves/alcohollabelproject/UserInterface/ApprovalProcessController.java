@@ -143,26 +143,21 @@ public class ApprovalProcessController implements IController {
         alcoholContent.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
     }
 
+    /**
+     * Called when the assign button is clicked. This assigns the agent selected to the current
+     * application and then returns to the view all applications screen.
+     */
     public void assignToUser(){
         String userToAssign;
-        TTBAgentInterface currentUser;
         userToAssign = assignUserBox.getValue().toString();
         if(userToAssign.equals("Select a user")){
             assignErrorField.setText("Select a user");
             return;
         }
         TTBAgentInterface agent = new TTBAgentInterface(userToAssign); // user to assign to
-
-        currentUser = new TTBAgentInterface(application.getTtbAgentName());
-
-        Log.console(application.getTtbAgentName());
-
-        currentUser.removeApplication(application);
-
+        //Log.console(application.getTtbAgentName());
         agent.addApplication(application);
-
         main.loadFXML("/fxml/SuperagentViewAllApplications.fxml");
-
     }
 
     public void GoHome() {

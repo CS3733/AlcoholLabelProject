@@ -31,12 +31,15 @@ public class TTBAgentInterface {
     }
     //update in database look at reject application/ accept application
     public boolean addApplication(SubmittedApplication application){
-        return agent.getCurrentApplications().add(application);
+        agent.getCurrentApplications().add(application);
+        return storage.addApplication(application,username);
     }
-
+    /* Dont think i need this cuz i update TTBAgent in add application
     public boolean removeApplication(SubmittedApplication application){
         return agent.getCurrentApplications().remove(application);
+        return storage.removeApplication(application);
     }
+    */
 
     public List<SubmittedApplication> getAssignedApplications(){
         return agent.getCurrentApplications();
