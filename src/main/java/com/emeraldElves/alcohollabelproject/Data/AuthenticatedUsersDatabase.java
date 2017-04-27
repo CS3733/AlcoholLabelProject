@@ -42,6 +42,28 @@ public class AuthenticatedUsersDatabase {
             return false;
         }
     }
+    public boolean isValidTTBAgentAccount(String userName) {
+        ResultSet results = db.select("*", "TTBAgentLogin", "email = '" + userName);
+        if (results == null)
+            return false;
+        try {
+            return results.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean isValidUserAccount(String userName) {
+        ResultSet results = db.select("*", "ApplicantLogin", "email = '" + userName);
+        if (results == null)
+            return false;
+        try {
+            return results.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public boolean createUser(PotentialUser user){
         if (user.getUserType() == UserType.TTBAGENT) {
@@ -51,7 +73,8 @@ public class AuthenticatedUsersDatabase {
                             + user.getPermitNum() + ", '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+                            + user.getEmail().getEmailAddress() + "', '"
+                            + user.getCompany() + "'"
                     , "TTBAgentLogin");
         } else { // type is Applicant
             return db.insert("'" + user.getName()
@@ -60,7 +83,8 @@ public class AuthenticatedUsersDatabase {
                             + user.getPermitNum() + ", '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+                            + user.getEmail().getEmailAddress() + "', '"
+                            + user.getCompany() + "'"
                     , "ApplicantLogin");
         }
     }
@@ -112,6 +136,8 @@ public class AuthenticatedUsersDatabase {
             return false;
         }
     }
+
+
     public boolean isValidSuperUser(String userName, String password){
         if(userName.equals("JoseWong")) {
             if (password.equals("password")) {
@@ -152,7 +178,8 @@ public class AuthenticatedUsersDatabase {
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', "
-                            + user.getDate().getTime()
+                            + user.getDate().getTime() + ", '"
+                            + user.getCompany() + "'"
                     , "NewApplicant");
             /*
             worked = db.insert("'" + user.getName() + "', '"
@@ -193,9 +220,10 @@ public class AuthenticatedUsersDatabase {
                 Date date = new Date(resultSet.getLong("date"));
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
+                String company = resultSet.getString("company");
 
                 users.add(new PotentialUser(name, representativeID, email, phoneNumber,
-                         useType, password, date, permitNum, address));
+                         useType, password, date, permitNum, address, company));
             }
         }
         catch(SQLException e){
@@ -214,9 +242,10 @@ public class AuthenticatedUsersDatabase {
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
                 String phoneNum = resultSet.getString("phoneNumber");
+                String company = resultSet.getString("company");
 
                 return(new Applicant(email, name, representativeID, permitNum, address,
-                        phoneNum));
+                        phoneNum, company));
             }
         }
         catch(SQLException e){
@@ -227,6 +256,14 @@ public class AuthenticatedUsersDatabase {
 
     public void setRepIDFromEmail(int repID, String email) {
         db.update("ApplicantLogin", "representativeID = " + repID, "email = '" + email + "'");
+    }
+
+    public void updatePasswordApplicant(String password, String email) {
+        db.update("ApplicantLogin", "password = " + password, "email = '" + email + "'");
+    }
+
+    public void updatePasswordTTBAgent(String password, String email) {
+        db.update("TTBAgentLogin", "password = " + password, "email = '" + email + "'");
     }
 
     public List<String> getAllTTBUsernames(){

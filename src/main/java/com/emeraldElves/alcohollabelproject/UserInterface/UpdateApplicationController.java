@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
-public class UpdateApplicationController {
+public class UpdateApplicationController implements IController{
 //    @FXML
 //    private Button selectRev;
 //    @FXML
@@ -35,6 +35,8 @@ public class UpdateApplicationController {
     private TextField addressField, phoneNumberField, emailAddressField, signatureField;
     @FXML
     private DatePicker datePicker;
+
+    public ApplicationStatus status;//get status from database
     @FXML
     private TextField alcoholContentField, wineVintageYearField, pHLevelField;
     @FXML
@@ -87,6 +89,10 @@ public class UpdateApplicationController {
     private String serialNum; //needs to be a string!!!!
     private String extraInfo;
     private File file;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"), bundle.getApplication("app"));
+    }
 
     private Main main;
 
@@ -273,12 +279,7 @@ public class UpdateApplicationController {
     }
 
     public void cancelApp() {
-        //Go back to homepage
-        System.out.println("Check github ;)");
-        main.loadApplicantWorkflowPage();
-    }
-
-    public void saveApp() {
+        main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
 
     }
 

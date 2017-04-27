@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 /**
  * Created by Essam on 4/4/2017.
  */
-public class LoginController {
+public class LoginController implements IController {
     @FXML
     TextField usernameField;
     @FXML
@@ -23,6 +23,10 @@ public class LoginController {
 
     public LoginController() {
 
+    }
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
     }
 
     public void init(Main main) {

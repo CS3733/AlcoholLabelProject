@@ -16,12 +16,16 @@ import java.util.List;
  * Created by keionbis on 4/4/17.
  */
 
-public class ApplicantWorkflowController {
+public class ApplicantWorkflowController implements IController {
     Main main;
     private ApplicantInterface applicantInterface;
 
     @FXML
     ListView<String> list;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
+    }
 
     public void init(Main main) {
         this.main = main;
@@ -61,16 +65,16 @@ public class ApplicantWorkflowController {
     }
 
     public void viewApplication(){
-        main.loadDetailedSearchPage(getSelectedApplication(), "");
+        main.loadFXML("/fxml/DetailedSearchPage.fxml",getSelectedApplication(), "");
     }
 
     public void reviseApplication() {
-        main.loadNewApplicationPage(getSelectedApplication());
+        main.loadFXML("/fxml/newApplication.fxml",getSelectedApplication());
     }
 
     public void ApplicationWorkflow() {
         if(getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {
-            main.loadUpdateOptionsPage(getSelectedApplication());
+            main.loadFXML("/fxml/updateApprovedApplication.fxml",getSelectedApplication());
         }
     }
 
@@ -79,6 +83,6 @@ public class ApplicantWorkflowController {
     }
 
     public void MakeNewApplication() {
-        main.loadNewApplicationPage();
+        main.loadFXML("/fxml/newApplication.fxml");
     }
 }

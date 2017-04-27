@@ -46,7 +46,8 @@ public class Storage {
                             new Database.TableField("permitNum", "INTEGER NOT NULL"),
                             new Database.TableField("address", "VARCHAR (255)"),
                             new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                            new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new TTBAgentLogin table");
         }
         catch (SQLException e){
@@ -61,7 +62,8 @@ public class Storage {
                     new Database.TableField("permitNum", "INTEGER NOT NULL"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new ApplicantLogin table");
         }
         catch (SQLException e){
@@ -131,7 +133,8 @@ public class Storage {
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
                     new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("date", "BIGINT"));
+                    new Database.TableField("date", "BIGINT"),
+                    new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new NewApplicant table");
         }
         catch (SQLException e){
@@ -168,6 +171,28 @@ public class Storage {
         return alcoholDB.rejectApplication(application, reason);
     }
 
+    /**
+     * Adds application to the given agent
+     * @param application Application to add
+     * @param agentUsername Agent to get application added to
+     * @return Whether or not application was added succesfully
+     */
+    public boolean addApplication(SubmittedApplication application, String agentUsername){
+        return alcoholDB.addApplication(application, agentUsername);
+    }
+    /*
+    /**
+     * Removes application from given agent
+     * @param application Application to add
+     * @param agentUsername Agent to remove application from
+     * @return Whether or not application was removed successfully
+
+    public boolean removeApplication(SubmittedApplication application, String agentUsername){
+        return alcoholDB.removeApplication(application, agentUsername);
+    }
+    */
+
+
     public boolean createUser(PotentialUser user) {
         return usersDB.createUser(user);
     }
@@ -201,6 +226,35 @@ public class Storage {
             return usersDB.isValidApplicant(username, password);
         }else if(usertype == UserType.SUPERAGENT){
             return usersDB.isValidSuperUser(username,password);
+        }
+        return false;
+    }
+
+    public void updatePassword(String username, String password){
+        if( usersDB.isValidTTBAgentAccount(username)){
+            usersDB.updatePasswordTTBAgent(password,username);
+        }
+        else if( usersDB.isValidTTBAgentAccount(username)) {
+            usersDB.updatePasswordApplicant(password,username);
+        }
+    }
+
+    public boolean isValidUser( String username) {
+        if( usersDB.isValidTTBAgentAccount(username)){
+            return(true);
+        }
+        else if( usersDB.isValidTTBAgentAccount(username)) {
+            return (true);
+        }
+        return false;
+    }
+
+    public boolean isValidUser( String username, String password) {
+        if( usersDB.isValidAccount(username, password)){
+            return(true);
+        }
+        else if( usersDB.isValidTTBAgent(username, password)) {
+            return (true);
         }
         return false;
     }
@@ -242,7 +296,7 @@ public class Storage {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
 
-        else return new Applicant(email,"", 0, 0, "", "");
+        else return new Applicant(email,"", 0, 0, "", "", "");
 
     }
 

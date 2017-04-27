@@ -1,5 +1,8 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
+
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 import java.util.Date;
 
 /**
@@ -7,25 +10,26 @@ import java.util.Date;
  */
 public class PotentialUser {
     //TODO: compare by email, not name
-    private String Name,Password, address;//username is now same as email address
+    private String Name, Password, address, company;//username is now same as email address
     private int representativeID, permitNum;
     private EmailAddress email;
     private PhoneNumber phoneNumber;
     private UserType userType;
     private Date date;
-
+    private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
     public PotentialUser(String Name, int representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
-    int permitNum, String address) {
+    int permitNum, String address, String company) {
         this.Name = Name;
         this.representativeID = representativeID;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.userType = userType;
+        this.Password = passwordEncryptor.encryptPassword(Password);
         this.Password = Password;
         this.date = date;
         this.address = address;
         this.permitNum = permitNum;
-
+        this.company = company;
     }
 
     public EmailAddress getEmail() {
@@ -59,4 +63,6 @@ public class PotentialUser {
     }
 
     public String getAddress(){ return address; }
+
+    public String getCompany() { return company; }
 }
