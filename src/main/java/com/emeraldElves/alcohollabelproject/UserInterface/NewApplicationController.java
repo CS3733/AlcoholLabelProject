@@ -146,6 +146,9 @@ public class NewApplicationController implements IController {
     private Main main;
 
     private SubmittedApplication application;
+    private SavedApplication savedApplication;
+
+    private boolean isSavedApplication = false; // whether or not current application is a saved application
 
     /**
      * Inits a new application, calling a different init if we have a submitted application
@@ -199,8 +202,10 @@ public class NewApplicationController implements IController {
     }
 
     public void init(Main main, SavedApplication savedApplication){
+        isSavedApplication= true;
         init(main);
-        //TODO set fields of application type and image
+        //TODO set field of image
+        this.savedApplication = savedApplication;
         ApplicationType applicationType = savedApplication.getApplicationType();
         AlcoholInfo alcoholInfo = savedApplication.getAlcoholInfo();
         String extraInfo = savedApplication.getExtraInfo();
@@ -456,6 +461,10 @@ public class NewApplicationController implements IController {
                 //Submit the new application to the database
                 ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
                 boolean success = applicantInterface.submitApplication(newApp);
+                if(isSavedApplication){
+                    //delete old saved application after submitting it
+                    Storage.getInstance().removeSavedApplication(savedApplication);
+                }
 
                 main.loadFXML("/fxml/HomePage.fxml");
             }
@@ -467,6 +476,10 @@ public class NewApplicationController implements IController {
      */
     public void saveApplication(){
         LogManager.getInstance().logAction("newApplicationController", "Save Application has been clicked.");
+        if(isSavedApplication){
+            //delete old saved application first
+            Storage.getInstance().removeSavedApplication(savedApplication);
+        }
         SavedApplication app; // app to be submitted to database
         //Things to add into SavedApplication
         ApplicationType appType;

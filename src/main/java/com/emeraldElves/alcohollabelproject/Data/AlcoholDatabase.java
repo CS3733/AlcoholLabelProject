@@ -69,6 +69,10 @@ public class AlcoholDatabase {
         return db.delete("SubmittedApplications", "applicationID = " + application.getApplicationID());
     }
 
+    public boolean removeSavedApplication(SavedApplication application){
+        return db.delete("SavedApplications", "applicationID = " + application.getApplicationID());
+    }
+
     /**
      * Get applications from a {@link ResultSet}
      *

@@ -191,6 +191,10 @@ public class Storage {
         return alcoholDB.rejectApplication(application, reason);
     }
 
+    public boolean removeSavedApplication(SavedApplication application){
+        return alcoholDB.removeSavedApplication(application);
+    }
+
     /**
      * Adds application to the given agent
      * @param application Application to add
