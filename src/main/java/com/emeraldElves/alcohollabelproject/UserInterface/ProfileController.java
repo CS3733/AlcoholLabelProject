@@ -4,6 +4,7 @@ import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Data.PhoneNumber;
 import com.emeraldElves.alcohollabelproject.Log;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 
@@ -21,7 +22,7 @@ public class ProfileController implements IController {
     @FXML
     TextField phoneNumField;
     @FXML
-    TextField emailAddressField;
+    Label emailAddressField;
     @FXML
     TextField companyField;
 
