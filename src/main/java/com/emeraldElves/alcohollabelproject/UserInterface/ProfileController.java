@@ -65,7 +65,7 @@ public class ProfileController implements IController {
         addressField.setText(address);
         phoneNumField.setText(phoneNum.getPhoneNumber());
         emailAddressField.setText(emailAddress);
-        companyField.setText(emailAddress);
+        companyField.setText(company);
     }
 
     // TODO: error handling
