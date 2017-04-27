@@ -73,8 +73,7 @@ public class AuthenticatedUsersDatabase {
                             + user.getPermitNum() + ", '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "', '"
-                            + user.getCompany() + "'"
+                            + user.getEmail().getEmailAddress() + "'"
                     , "TTBAgentLogin");
         } else { // type is Applicant
             return db.insert("'" + user.getName()
@@ -83,8 +82,7 @@ public class AuthenticatedUsersDatabase {
                             + user.getPermitNum() + ", '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "', '"
-                            + user.getCompany() + "'"
+                            + user.getEmail().getEmailAddress() + "'"
                     , "ApplicantLogin");
         }
     }
@@ -178,8 +176,7 @@ public class AuthenticatedUsersDatabase {
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', "
-                            + user.getDate().getTime() + ", '"
-                            + user.getCompany() + "'"
+                            + user.getDate().getTime()
                     , "NewApplicant");
             /*
             worked = db.insert("'" + user.getName() + "', '"
@@ -220,10 +217,9 @@ public class AuthenticatedUsersDatabase {
                 Date date = new Date(resultSet.getLong("date"));
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
-                String company = resultSet.getString("company");
 
                 users.add(new PotentialUser(name, representativeID, email, phoneNumber,
-                         useType, password, date, permitNum, address, company));
+                         useType, password, date, permitNum, address));
             }
         }
         catch(SQLException e){
@@ -242,10 +238,9 @@ public class AuthenticatedUsersDatabase {
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
                 String phoneNum = resultSet.getString("phoneNumber");
-                String company = resultSet.getString("company");
 
                 return(new Applicant(email, name, representativeID, permitNum, address,
-                        phoneNum, company));
+                        phoneNum));
             }
         }
         catch(SQLException e){

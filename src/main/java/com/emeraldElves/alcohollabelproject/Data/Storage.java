@@ -47,8 +47,7 @@ public class Storage {
                             new Database.TableField("permitNum", "INTEGER NOT NULL"),
                             new Database.TableField("address", "VARCHAR (255)"),
                             new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
-                            new Database.TableField("company", "VARCHAR (255)"));
+                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
             Log.console("Created new TTBAgentLogin table");
         }
         catch (SQLException e){
@@ -63,8 +62,7 @@ public class Storage {
                     new Database.TableField("permitNum", "INTEGER NOT NULL"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("company", "VARCHAR (255)"));
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
             Log.console("Created new ApplicantLogin table");
         }
         catch (SQLException e){
@@ -134,8 +132,7 @@ public class Storage {
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
                     new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("date", "BIGINT"),
-                    new Database.TableField("company", "VARCHAR (255)"));
+                    new Database.TableField("date", "BIGINT"));
             Log.console("Created new NewApplicant table");
         }
         catch (SQLException e){
@@ -337,7 +334,7 @@ public class Storage {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
 
-        else return new Applicant(email,"", 0, 0, "", "", "");
+        else return new Applicant(email,"", 0, 0, "", "");
 
     }
 
