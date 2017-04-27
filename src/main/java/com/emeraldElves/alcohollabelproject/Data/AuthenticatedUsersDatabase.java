@@ -24,7 +24,7 @@ public class AuthenticatedUsersDatabase {
     }
 
     /**
-     * Checks if TTB agent login is valid.
+     * Checks if TTB agent login is vali-d.
      *
      * @param userName The username of the TTB agent
      * @param password The password of the TTB agent
@@ -73,7 +73,8 @@ public class AuthenticatedUsersDatabase {
                             + user.getPermitNum() + ", '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+                            + user.getEmail().getEmailAddress() + "', '"
+                            + user.getCompany() + "'"
                     , "TTBAgentLogin");
         } else { // type is Applicant
             return db.insert("'" + user.getName()
@@ -82,7 +83,8 @@ public class AuthenticatedUsersDatabase {
                             + user.getPermitNum() + ", '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+                            + user.getEmail().getEmailAddress() + "', '"
+                            + user.getCompany() + "'"
                     , "ApplicantLogin");
         }
     }
@@ -176,7 +178,8 @@ public class AuthenticatedUsersDatabase {
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', "
-                            + user.getDate().getTime()
+                            + user.getDate().getTime() + ", '"
+                            + user.getCompany() + "'"
                     , "NewApplicant");
             /*
             worked = db.insert("'" + user.getName() + "', '"
@@ -217,9 +220,10 @@ public class AuthenticatedUsersDatabase {
                 Date date = new Date(resultSet.getLong("date"));
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
+                String company = resultSet.getString("company");
 
                 users.add(new PotentialUser(name, representativeID, email, phoneNumber,
-                         useType, password, date, permitNum, address));
+                         useType, password, date, permitNum, address, company));
             }
         }
         catch(SQLException e){
@@ -238,9 +242,10 @@ public class AuthenticatedUsersDatabase {
                 int permitNum = resultSet.getInt("permitNum");
                 String address = resultSet.getString("address");
                 String phoneNum = resultSet.getString("phoneNumber");
+                String company = resultSet.getString("company");
 
                 return(new Applicant(email, name, representativeID, permitNum, address,
-                        phoneNum));
+                        phoneNum, company));
             }
         }
         catch(SQLException e){
@@ -251,6 +256,21 @@ public class AuthenticatedUsersDatabase {
 
     public void setRepIDFromEmail(int repID, String email) {
         db.update("ApplicantLogin", "representativeID = " + repID, "email = '" + email + "'");
+    }
+    public void setPermitNumFromEmail(int permitNum, String email) {
+        db.update("ApplicantLogin", "permitNum = " + permitNum, "email = '" + email + "'");
+    }
+    public void setAddressFromEmail(String address, String email) {
+        db.update("ApplicantLogin", "address = '" + address + "'", "email = '" + email + "'");
+    }
+    public void setPhoneNumFromEmail(String phoneNum, String email) {
+        db.update("ApplicantLogin", "phoneNumber = '" + phoneNum + "'", "email = '" + email + "'");
+    }
+    public void setNameFromEmail(String name, String email) {
+        db.update("ApplicantLogin", "name = '" + name + "'", "email = '" + email + "'");
+    }
+    public void setCompanyFromEmail(String company, String email) {
+        db.update("ApplicantLogin", "company = '" + company + "'", "email = '" + email + "'");
     }
 
     public void updatePasswordApplicant(String password, String email) {

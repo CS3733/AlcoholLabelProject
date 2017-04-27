@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.Tooltip?>
@@ -17,136 +18,144 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewUserController">
-    <columnConstraints>
-        <ColumnConstraints />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-      <RowConstraints />
-    </rowConstraints>
-    <children>
-        <Pane prefHeight="644.0" prefWidth="802.0" GridPane.rowIndex="1">
-         <children>
-            <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="300.0" prefWidth="250.0">
-               <top>
-                  <VBox fx:id="errorMsg" alignment="CENTER" prefHeight="50.0" style="-fx-background-color: ffdce0; -fx-border-color: red;" translateY="-10.0" visible="false" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label text="Username already exists" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
-               </top>
-            </BorderPane>
-            <GridPane layoutX="257.0" layoutY="-3.0" prefHeight="624.0" prefWidth="768.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="493.3333740234375" minWidth="10.0" prefWidth="477.3333740234375" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="393.6666259765625" minWidth="10.0" prefWidth="321.6666259765625" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints maxHeight="129.6666717529297" minHeight="10.0" prefHeight="89.33332824707031" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="141.00001525878906" minHeight="10.0" prefHeight="65.66665649414062" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="148.6666717529297" minHeight="10.0" prefHeight="65.33334350585938" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="157.66665649414062" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="177.66665649414062" minHeight="10.0" prefHeight="71.66665649414062" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="67.33331298828125" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="162.33331298828125" minHeight="10.0" prefHeight="70.66668701171875" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="70.66668701171875" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="55.66668701171875" minHeight="0.0" prefHeight="14.33331298828125" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewUserController">
+   <content>
+      <GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10">
+          <columnConstraints>
+              <ColumnConstraints />
+          </columnConstraints>
+          <rowConstraints>
+              <RowConstraints />
+            <RowConstraints />
+          </rowConstraints>
+          <children>
+              <Pane prefHeight="643.0" prefWidth="1024.0" GridPane.rowIndex="1">
                <children>
-                  <Label text="Email" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="Name" GridPane.rowIndex="1" />
-                  <TextField fx:id="emailAddress" prefWidth="200.0" GridPane.rowIndex="2" />
-                  <Label prefHeight="20.0" prefWidth="74.0" text="Password" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="passwordField" onAction="#checkPassword" onKeyReleased="#checkPassword" onMouseClicked="#checkPassword" prefWidth="200.0" GridPane.rowIndex="3">
-                     <tooltip>
-                        <Tooltip fx:id="passwordHint" text="Empty Tooltip" />
-                     </tooltip></PasswordField>
-                  <Label text="Phone Number" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-                  <Label text="Permit No." GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                  <Label text="Representative ID" GridPane.rowIndex="7" GridPane.valignment="TOP" />
-                  <TextField fx:id="phoneNumber" GridPane.rowIndex="4" />
-                  <TextField fx:id="addressText" GridPane.rowIndex="5" />
-                  <TextField fx:id="permitNumText" GridPane.rowIndex="6" />
-                  <TextField fx:id="representativeID" GridPane.rowIndex="7" />
-                  <Label text="Address" GridPane.rowIndex="5" GridPane.valignment="TOP" />
-                  <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-                  <GridPane prefHeight="98.0" prefWidth="458.0">
+                  <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="300.0" prefWidth="250.0">
+                     <top>
+                        <VBox fx:id="errorMsg" alignment="CENTER" prefHeight="50.0" style="-fx-background-color: ffdce0; -fx-border-color: red;" translateY="-10.0" visible="false" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Username already exists" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+                  <GridPane layoutX="257.0" layoutY="-3.0" prefHeight="624.0" prefWidth="768.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.66665649414062" minWidth="10.0" prefWidth="243.66665649414062" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.66668701171875" minWidth="10.0" prefWidth="213.33334350585938" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="493.3333740234375" minWidth="10.0" prefWidth="477.3333740234375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="393.6666259765625" minWidth="10.0" prefWidth="321.6666259765625" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="129.6666717529297" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="141.00001525878906" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="148.6666717529297" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="157.66665649414062" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="177.66665649414062" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="162.33331298828125" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="79.0" minHeight="0.0" prefHeight="68.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <RadioButton fx:id="applicantBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeApplicant" text="Applicant Account">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="accountType" />
-                           </toggleGroup></RadioButton>
-                        <RadioButton fx:id="agentBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeAgent" text="TTB Agent Account" toggleGroup="$accountType" GridPane.columnIndex="1" />
+                        <Label text="Email" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="Name" GridPane.rowIndex="1" />
+                        <TextField fx:id="emailAddress" prefWidth="200.0" GridPane.rowIndex="2" />
+                        <Label prefHeight="20.0" prefWidth="74.0" text="Password" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="passwordField" onAction="#checkPassword" onKeyReleased="#checkPassword" onMouseClicked="#checkPassword" prefWidth="200.0" GridPane.rowIndex="3">
+                           <tooltip>
+                              <Tooltip fx:id="passwordHint" text="Empty Tooltip" />
+                           </tooltip>
+                        </PasswordField>
+                        <Label text="Phone Number" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+                        <Label text="Permit No." GridPane.rowIndex="6" GridPane.valignment="TOP" />
+                        <Label text="Representative ID" GridPane.rowIndex="7" GridPane.valignment="TOP" />
+                        <TextField fx:id="phoneNumber" GridPane.rowIndex="4" />
+                        <TextField fx:id="addressText" GridPane.rowIndex="5" />
+                        <TextField fx:id="permitNumText" GridPane.rowIndex="6" />
+                        <TextField fx:id="representativeID" GridPane.rowIndex="7" />
+                        <Label text="Address" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+                        <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                        <GridPane prefHeight="0.0" prefWidth="462.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.66665649414062" minWidth="10.0" prefWidth="243.66665649414062" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.66668701171875" minWidth="10.0" prefWidth="213.33334350585938" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <RadioButton fx:id="applicantBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeApplicant" text="Applicant Account">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="accountType" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="agentBtn" mnemonicParsing="false" onMouseClicked="#setUserTypeAgent" text="TTB Agent Account" toggleGroup="$accountType" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                        <Label fx:id="accountError" GridPane.columnIndex="1">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="emailError" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="phoneNumError" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="permitNumError" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="repIDError" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="passwordError" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="addressError" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="nameError" prefWidth="7.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fx:id="isValid" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="companyField" GridPane.rowIndex="8" />
+                        <Label text="Company" GridPane.rowIndex="8" GridPane.valignment="TOP" />
                      </children>
                   </GridPane>
-                  <Label fx:id="accountError" GridPane.columnIndex="1">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="emailError" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="phoneNumError" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="permitNumError" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="repIDError" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="passwordError" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="addressError" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="nameError" prefWidth="7.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <ImageView fx:id="isValid" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
-            </GridPane>
-         </children>
-        </Pane>
-      <Pane prefHeight="124.0" prefWidth="1024.0" />
-      <fx:include source="toolbar.fxml" />
-    </children>
-</GridPane>
+              </Pane>
+            <Pane prefHeight="124.0" prefWidth="1024.0" />
+            <fx:include source="toolbar.fxml" />
+          </children>
+      </GridPane>
+   </content>
+</ScrollPane>
