@@ -372,9 +372,15 @@ public class NewApplicationController implements IController {
                 formFilled = true;
             }
 
-            //check if fields are valid
+            //check if fields are valid]
+            /*
             if(isInt(alcoholContentField)&&isInt(serialText)){
                     fieldsValid=true;
+            }
+            */
+
+            if(isDouble(alcoholContentField) && serialText.getText().length()<7){
+                fieldsValid = true;
             }
 
             if (formFilled && fieldsValid) {
@@ -463,8 +469,9 @@ public class NewApplicationController implements IController {
                 boolean success = applicantInterface.submitApplication(newApp);
                 if(isSavedApplication){
                     //delete old saved application after submitting it
-                    Storage.getInstance().removeSavedApplication(savedApplication);
+                    boolean saveSuccess = Storage.getInstance().removeSavedApplication(savedApplication);
                 }
+                Log.console("Submitted application");
 
                 main.loadFXML("/fxml/HomePage.fxml");
             }
@@ -622,6 +629,16 @@ public class NewApplicationController implements IController {
     public boolean isInt(TextField txt){
         try {
             Integer.parseInt(txt.getText());
+            return true;
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+    public boolean isDouble(TextField txt){
+        try {
+            Double.parseDouble(txt.getText());
             return true;
         }
         catch(NumberFormatException e){
