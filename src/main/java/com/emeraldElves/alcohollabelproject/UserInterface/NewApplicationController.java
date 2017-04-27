@@ -378,9 +378,17 @@ public class NewApplicationController implements IController {
                     fieldsValid=true;
             }
             */
-
-            if(isDouble(alcoholContentField) && serialText.getText().length()<7){
+            //Checking alcohol content field and serial number for validity
+            if(isDouble(alcoholContentField)){
                 fieldsValid = true;
+            }
+            else{
+                alcContentErrorField.setText("Please enter a valid alcohol content");
+                fieldsValid = false;
+            }
+            if(!(serialText.getText().length()<7 && serialText.getText().length()>0)){
+                fieldsValid = false;
+                serialErrorField.setText("Please enter a valid serial number");
             }
 
             if (formFilled && fieldsValid) {
