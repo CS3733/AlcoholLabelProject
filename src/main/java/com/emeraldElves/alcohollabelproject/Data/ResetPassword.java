@@ -60,7 +60,7 @@ public class ResetPassword {
             }
 
                 Storage.getInstance().updatePassword(accountEmail, passwordEncryptor.encryptPassword(String.valueOf(randomNum)));
-                main.loadHomepage();
+                main.loadFXML("/fxml/HomePage.fxml");
 
         }
     }
