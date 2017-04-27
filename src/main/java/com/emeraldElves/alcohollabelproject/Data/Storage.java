@@ -167,6 +167,28 @@ public class Storage {
         return alcoholDB.rejectApplication(application, reason);
     }
 
+    /**
+     * Adds application to the given agent
+     * @param application Application to add
+     * @param agentUsername Agent to get application added to
+     * @return Whether or not application was added succesfully
+     */
+    public boolean addApplication(SubmittedApplication application, String agentUsername){
+        return alcoholDB.addApplication(application, agentUsername);
+    }
+    /*
+    /**
+     * Removes application from given agent
+     * @param application Application to add
+     * @param agentUsername Agent to remove application from
+     * @return Whether or not application was removed successfully
+
+    public boolean removeApplication(SubmittedApplication application, String agentUsername){
+        return alcoholDB.removeApplication(application, agentUsername);
+    }
+    */
+
+
     public boolean createUser(PotentialUser user) {
         return usersDB.createUser(user);
     }
