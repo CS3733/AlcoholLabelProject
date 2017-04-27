@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<GridPane prefHeight="1600.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewApplicationController">
+<GridPane prefHeight="1600.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.NewApplicationController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1024.0" minWidth="1024.0" prefWidth="1024.0" />
    </columnConstraints>
@@ -311,6 +311,7 @@
                      </padding>
                   </Label>
                   <Label text="To edit the following information, please go to your 'Profile' page." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+<<<<<<< HEAD:src/main/resources/fxml/NewApplication.fxml
                   <Label fx:id="wineNumErrorField" GridPane.columnIndex="2" GridPane.rowIndex="19">
                      <opaqueInsets>
                         <Insets />
@@ -319,6 +320,9 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
+=======
+                  <Button mnemonicParsing="false" onMouseClicked="#saveApplication" styleClass="button-raised" text="Save Application" GridPane.rowIndex="27" />
+>>>>>>> develop:src/main/resources/fxml/newApplication.fxml
                </children>
             </GridPane>
          </content>

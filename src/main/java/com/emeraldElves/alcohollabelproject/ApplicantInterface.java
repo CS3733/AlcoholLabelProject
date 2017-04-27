@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.UserInterface.Bundle;
@@ -19,7 +20,7 @@ public class ApplicantInterface implements IController {
     public ApplicantInterface(String username){
         this.username = username;
         storage = Storage.getInstance();
-        applicant = new Applicant(storage.getApplicationsByApplicant(username));
+        applicant = new Applicant(storage.getApplicationsByApplicant(username), storage.getSavedApplicationsByApplicant(username));
     }
 
     public Applicant getApplicant() {
@@ -40,6 +41,10 @@ public class ApplicantInterface implements IController {
 
     public List<SubmittedApplication> getSubmittedApplications(){
         return applicant.getApplications();
+    }
+
+    public List<SavedApplication> getSavedApplications(){
+        return applicant.getSavedApplications();
     }
 
 

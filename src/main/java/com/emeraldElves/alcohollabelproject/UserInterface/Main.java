@@ -1,8 +1,8 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
+import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
-import com.emeraldElves.alcohollabelproject.Log;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.print.PageLayout;
@@ -64,7 +64,6 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
-            Log.console(loader.getController());
             IController controller = loader.getController();
             Bundle bundle = new Bundle();
             bundle.putMain("main",this);
@@ -107,6 +106,27 @@ public class Main extends Application {
             IController controller = loader.getController();
             Bundle bundle = new Bundle();
             bundle.putApplication("app",application);
+            bundle.putMain("main",this);
+            controller.init(bundle);
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * loads fxml that needs a saved application
+     * @param fxml The fxml file to load
+     * @param application The saved application to load
+     */
+    public void loadFXML(String fxml, SavedApplication application){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        try {
+            Parent root = loader.load();
+            root.getStylesheets().add("/style/material.css");
+            IController controller = loader.getController();
+            Bundle bundle = new Bundle();
+            bundle.putSavedApplication("saved",application);
             bundle.putMain("main",this);
             controller.init(bundle);
             stage.getScene().setRoot(root);

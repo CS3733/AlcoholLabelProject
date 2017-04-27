@@ -85,7 +85,8 @@ public class ProfileController implements IController {
     }
 
 
-    public void returnHome() {
+    public void returnHome()
+    {
         modifyRepresentativeID();
         modifyPermitNum();
         modifyAddress();

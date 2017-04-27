@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.ApplicationType;
+import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
@@ -11,13 +13,13 @@ import java.util.List;
 public class Applicant {
 
     private List<SubmittedApplication> applications;
+    private List<SavedApplication> savedApplications;
     private String email;
     private String name;
     private int representativeID = 0;
     private String permitNum = "";
     private String address = "";
     private String phoneNum = "";
-    private String company = "";
 
     /**
      * Creates an Applicant with the given applications.
@@ -28,22 +30,31 @@ public class Applicant {
         this.applications = applications;
     }
 
+    public Applicant(List<SubmittedApplication> applications, List<SavedApplication> saves){
+        this.applications = applications;
+        this.savedApplications = saves;
+    }
+
     /**
      * Creates applicant with fields
      */
+<<<<<<< HEAD
     public Applicant(String email, String name, int representativeID, String permitNum, String address, String phoneNum, String company) {
+=======
+    public Applicant(String email, String name, int representativeID, int permitNum, String address, String phoneNum) {
+>>>>>>> develop
         this.email = email;
         this.name = name;
         this.representativeID = representativeID;
         this.permitNum = permitNum;
         this.address = address;
         this.phoneNum = phoneNum;
-        this.company = company;
     }
 
     public List<SubmittedApplication> getApplications() {
         return applications;
     }
+    public List<SavedApplication> getSavedApplications(){ return savedApplications; }
     public void setApplications(List<SubmittedApplication> subApps) {
         this.applications = subApps;
     }
@@ -55,7 +66,7 @@ public class Applicant {
         return name;
     }
 
-        private Storage storage = Storage.getInstance();
+    private Storage storage = Storage.getInstance();
 
     public void getApplicantFields(String email) {
         Applicant fields = storage.getUserFromEmail(email);
@@ -65,7 +76,6 @@ public class Applicant {
         this.address = fields.getAddress();
         this.phoneNum = fields.getPhoneNum();
         this.name = fields.getName();
-        this.company = fields.getCompany();
     }
 
     public String getEmailAddress() {
@@ -87,21 +97,13 @@ public class Applicant {
         getApplicantFields(email);
         return this.getName();
     }
-    public String getPhoneNumFromDB(String email) {
-        getApplicantFields(email);
-        return this.getPhoneNum();
-    }
-    public String getCompanyFromDB(String email) {
-        getApplicantFields(email);
-        return this.getCompany();
-    }
+    public String getPhoneNumFromDB(String email) { return ""; }
 
     // getter functions -- NOT from DB
     public int getRepresentativeID() { return representativeID; }
     public String getPermitNum() { return permitNum; }
     public String getAddress() { return address; }
     public String getPhoneNum() { return phoneNum; }
-    public String getCompany() { return company; }
 
     // setter functions - set to DB
     public void setEmailAddress() {}
