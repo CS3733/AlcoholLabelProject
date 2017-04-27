@@ -71,8 +71,7 @@ public class ApplicantWorkflowController implements IController {
         ObservableList<String> items = FXCollections.observableList(applicationNames);
         list.setItems(items);
     }
-    // make global variable for number of saved applications
-    // check if its before the thing
+
     public SubmittedApplication getSelectedApplication() {
         int i = list.getSelectionModel().getSelectedIndex();
         //maybe this works
@@ -85,7 +84,6 @@ public class ApplicantWorkflowController implements IController {
     }
 
     public void viewApplication(){
-        //TODO do this for saved application
         main.loadFXML("/fxml/DetailedSearchPage.fxml",getSelectedApplication(), "");
     }
 
