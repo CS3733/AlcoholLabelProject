@@ -18,11 +18,8 @@ public class UpdateOptionsController {
     @FXML
     private CheckBox option24, option25, option26, option27, option28, option29, option30, option31, option32, option33, option34;
 
-
     private Main main;
-
     private SubmittedApplication application;
-
     private ApplicationType appType;
 
     public void init(Main main){
@@ -37,7 +34,7 @@ public class UpdateOptionsController {
 
     public void nextPage(){
 
-        HashMap<String,Boolean> updates=new HashMap<>();
+       HashMap<String,Boolean> updates= new HashMap<>();
         updates.put("label", false);
         updates.put("alcContent", false);
         updates.put("vintYr", false);
@@ -117,13 +114,13 @@ public class UpdateOptionsController {
         application.setUpdatesSelected(updates);
 
         //go to page 2 of update app
-        main.loadUpdateApplicationPage(application);
+        main.loadFXML("fxml/UpdateApplication.fxml", application);
 
     }
 
     public void cancelApp() {
         //Go back to homepage
-        main.loadApplicantWorkflowPage();
+        main.loadFXML("fxml/ApplicantWorkflowPage.fxml");
     }
 
 

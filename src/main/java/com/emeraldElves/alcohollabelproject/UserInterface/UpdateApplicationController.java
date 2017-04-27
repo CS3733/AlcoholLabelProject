@@ -19,24 +19,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class UpdateApplicationController implements IController{
-//    @FXML
-//    private Button selectRev;
-//    @FXML
-//    private CheckBox option1, option2, option3, option4, option5, option6, option7, option8, option9, option10, option11, option12;
-//    @FXML
-//    private CheckBox option13, option14, option15, option16, option17, option18, option19, option20, option21, option22, option23;
-//    @FXML
-//    private CheckBox option24, option25, option26, option27, option28, option29, option30, option31, option32, option33, option34;
+
+    public ApplicationStatus status;//get status from database
+
     @FXML
     private TextField repIDNoTextField, permitNoTextField, alcoholName, brandNameField;
     @FXML
     private TextField addressField, phoneNumberField, emailAddressField, signatureField;
     @FXML
     private DatePicker datePicker;
-
-    public ApplicationStatus status;//get status from database
     @FXML
     private TextField alcoholContentField, wineVintageYearField, pHLevelField;
     @FXML
@@ -197,6 +191,57 @@ public class UpdateApplicationController implements IController{
         }
     }
 
+    public void setUpdatedAppInfo(){
+
+        if (pTypeSelect.getValue().equals("Wine")) {
+            int vintageYr = 0;
+            double pH = 0.0;
+            String varietal = "";
+            String appellation = "";
+            if (!wineVintageYearField.getText().isEmpty())
+                vintageYr = Integer.parseInt(wineVintageYearField.getText());
+            if (!pHLevelField.getText().isEmpty())
+                pH = Double.parseDouble(pHLevelField.getText());
+            if (!varietalText.getText().isEmpty())
+                varietal = varietalText.getText();
+            if (!appellationText.getText().isEmpty())
+                appellation = appellationText.getText();
+            wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
+        }
+
+        if (pSourceSelect.getValue().equals("Domestic")) {
+            pSource = ProductSource.DOMESTIC;
+        } else if (pSourceSelect.getValue().equals("Imported")) {
+            pSource = ProductSource.IMPORTED;
+        }
+
+        if (pTypeSelect.getValue().equals("Malt Beverages") ){
+            alcType = AlcoholType.BEER;
+        } else if (pTypeSelect.getValue().equals("Wine")) {
+            alcType = AlcoholType.WINE;
+        } else if (pTypeSelect.getValue().equals("Distilled Spirits")) {
+            alcType = AlcoholType.DISTILLEDSPIRITS;
+        }
+
+        alcName = alcoholName.getText();
+        brandName = brandNameField.getText();
+        alcContent = Integer.parseInt(alcoholContentField.getText());
+        serialNum = serialText.getText();
+        if (formulaText.getText().isEmpty()) {
+            formula = " ";
+        } else formula = formulaText.getText();
+        if (extraInfoText.getText().isEmpty()) {
+            extraInfo = " ";
+        } else extraInfo = extraInfoText.getText();
+
+        AlcoholInfo appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
+        ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
+                permitNum, phoneNum, emailAddress);
+        Date newDate= DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
+        ApplicationInfo appInfo= new ApplicationInfo(newDate, appManInfo, appAlcoholInfo, extraInfo, appType);
+
+        application = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant.getApplicant());
+    }
 
 
     public void submitApp() {
@@ -252,28 +297,10 @@ public class UpdateApplicationController implements IController{
         }
 
         if (formFilled && fieldsValid) {
-            if (pTypeSelect.getValue().equals("Wine")) {
-                int vintageYr = 0;
-                double pH = 0.0;
-                String varietal = "";
-                String appellation = "";
-                if (!wineVintageYearField.getText().isEmpty())
-                    vintageYr = Integer.parseInt(wineVintageYearField.getText());
-                if (!pHLevelField.getText().isEmpty())
-                    pH = Double.parseDouble(pHLevelField.getText());
-                if (!varietalText.getText().isEmpty())
-                    varietal = varietalText.getText();
-                if (!appellationText.getText().isEmpty())
-                    appellation = appellationText.getText();
-                wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
-            }
 
-            alcContent = Integer.parseInt(alcoholContentField.getText());
-
-
+            setUpdatedAppInfo();
 
             boolean success = Storage.getInstance().updateApplication(this.application, this.username);
-
             main.loadHomepage();
         }
     }

@@ -31,32 +31,7 @@
           <children>
               <Pane prefHeight="643.0" prefWidth="1024.0" GridPane.rowIndex="1">
                <children>
-<<<<<<< HEAD
-                  <TextField fx:id="Name" GridPane.rowIndex="1" />
-                  <Label text="Email" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="emailAddress" prefWidth="200.0" GridPane.rowIndex="2" />
-                  <Label prefHeight="20.0" prefWidth="74.0" text="Password" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="passwordField" prefWidth="200.0" GridPane.rowIndex="3" />
-                  <Label text="Phone Number" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-                  <TextField fx:id="phoneNumber" GridPane.rowIndex="4" />
-                  <Label text="Address" GridPane.rowIndex="5" GridPane.valignment="TOP" />
-                  <TextField fx:id="addressText" GridPane.rowIndex="5" />
-                  <Label text="Permit No." GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                  <TextField fx:id="permitNumText" GridPane.rowIndex="6" />
-                  <Label text="Representative ID" GridPane.rowIndex="7" GridPane.valignment="TOP" />
-                  <TextField fx:id="representativeID" GridPane.rowIndex="7" />
-                  <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-                  <GridPane prefHeight="98.0" prefWidth="458.0">
-=======
+
                   <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="300.0" prefWidth="250.0">
                      <top>
                         <VBox fx:id="errorMsg" alignment="CENTER" prefHeight="50.0" style="-fx-background-color: ffdce0; -fx-border-color: red;" translateY="-10.0" visible="false" BorderPane.alignment="CENTER">
@@ -71,7 +46,6 @@
                      </top>
                   </BorderPane>
                   <GridPane layoutX="257.0" layoutY="-3.0" prefHeight="624.0" prefWidth="768.0">
->>>>>>> develop
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="493.3333740234375" minWidth="10.0" prefWidth="477.3333740234375" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="393.6666259765625" minWidth="10.0" prefWidth="321.6666259765625" />

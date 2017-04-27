@@ -69,6 +69,7 @@ public class NewApplicationController implements IController {
     private String address;
     private PhoneNumber phoneNum;
     private int representativeID;
+    private String company;
 
     //Alcohol info
     private ProductSource pSource;

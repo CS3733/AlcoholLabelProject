@@ -381,8 +381,6 @@ public class AlcoholDatabase {
             image = "";
         }
 
-
-        //
         boolean worked;//whether or not it added stuff to database
 
         int appID;
@@ -393,21 +391,6 @@ public class AlcoholDatabase {
         } else {
             appID = application.getApplicationID();
         }
-        /*
-        try {
-            db.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
-                    new Database.TableField("status", "INTEGER NOT NULL"),
-                    new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
-                    new Database.TableField("submissionTime", "BIGINT NOT NULL"),
-                    new Database.TableField("expirationDate", "BIGINT"),
-                    new Database.TableField("agentName", "VARCHAR (255)"),
-                    new Database.TableField("approvalDate", "BIGINT"),
-                    new Database.TableField("TTBUsername", "VARCHAR (255)"));
-            Log.console("Created new SubmittedApplications table");
-        } catch (SQLException e) {
-            Log.console("Used existing SubmittedApplications table");
-        }*/
 
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
 
