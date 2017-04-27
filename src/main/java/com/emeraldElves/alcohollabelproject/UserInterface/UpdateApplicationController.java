@@ -59,9 +59,9 @@ public class UpdateApplicationController {
     //Options for the comboBox fields
     private ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
     private ObservableList<String> typeList = FXCollections.observableArrayList("Malt Beverages", "Wine", "Distilled Spirits");
-    private ObservableList<String> stateList = FXCollections.observableArrayList("AL","AK","AZ","AR","CA","CO","CT","DE","DC",
-            "FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH",
-            "OK","OR","MD","MA","MI","MN","MS","MO","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");
+    private ObservableList<String> stateList = FXCollections.observableArrayList("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC",
+            "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
+            "OK", "OR", "MD", "MA", "MI", "MN", "MS", "MO", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY");
 
     //Data for application type
     private ApplicationType appType;
@@ -86,15 +86,11 @@ public class UpdateApplicationController {
     private String formula;
     private String serialNum; //needs to be a string!!!!
     private String extraInfo;
-    private  File file;
+    private File file;
 
     private Main main;
 
     private SubmittedApplication application;
-
-    public void init(Main main){
-        this.main = main;
-    }
 
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
@@ -126,6 +122,7 @@ public class UpdateApplicationController {
 //        pSourceSelect.setItems(sourceList);
 //        pTypeSelect.setValue("Select a product type");
 //        pTypeSelect.setItems(typeList);
+
 
         if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
             pSourceSelect.setValue("Domestic");
@@ -192,8 +189,8 @@ public class UpdateApplicationController {
         if(application.getUpdatesSelected().get("date")==true){
             datePicker.setDisable(false);
         }
-
     }
+
 
 
     public void submitApp() {
@@ -206,7 +203,7 @@ public class UpdateApplicationController {
         //errors are printed only if required fields are not filled in
 
         //malt beverages: don't need alcohol content
-        if(!isInt(alcoholContentField)){
+        if (!isInt(alcoholContentField)) {
             alcContentErrorField.setText("Please enter a valid number.");
         } else {
             alcContentErrorField.setText("");
@@ -214,7 +211,7 @@ public class UpdateApplicationController {
 
         if (alcoholContentField.getText().isEmpty()) {
             alcContentErrorField.setText("Please fill in the alcohol percentage.");
-        } else if(!isInt(alcoholContentField)){
+        } else if (!isInt(alcoholContentField)) {
             alcContentErrorField.setText("Please enter a valid number.");
         } else {
             alcContentErrorField.setText("");
@@ -226,7 +223,7 @@ public class UpdateApplicationController {
             signatureErrorField.setText("");
         }
         if (pTypeSelect.getValue().equals("Wine")) {
-            if (!isInt(wineVintageYearField)||!isDouble(pHLevelField)) {
+            if (!isInt(wineVintageYearField) || !isDouble(pHLevelField)) {
                 wineNumErrorField.setText("Please enter a valid number.");
             } else {
                 wineNumErrorField.setText("");
@@ -240,7 +237,7 @@ public class UpdateApplicationController {
 
 
         //check if fields are valid
-        if(isInt(alcoholContentField)) {
+        if (isInt(alcoholContentField)) {
             if (pTypeSelect.getValue().equals("Wine")) {
                 if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
                     fieldsValid = true;
@@ -269,7 +266,6 @@ public class UpdateApplicationController {
 
 
 
-
             boolean success = Storage.getInstance().updateApplication(this.application, this.username);
 
             main.loadHomepage();
@@ -278,6 +274,7 @@ public class UpdateApplicationController {
 
     public void cancelApp() {
         //Go back to homepage
+        System.out.println("Check github ;)");
         main.loadApplicantWorkflowPage();
     }
 
@@ -285,25 +282,25 @@ public class UpdateApplicationController {
 
     }
 
-    public boolean isInt(TextField txt){
+    public boolean isInt(TextField txt) {
         try {
             Integer.parseInt(txt.getText());
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    public boolean isDouble(TextField txt){
+    public boolean isDouble(TextField txt) {
         try {
             Double.parseDouble(txt.getText());
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    public void disableAllFields(){
+    public void disableAllFields() {
         pSourceSelect.setDisable(true);
         pTypeSelect.setDisable(true);
         alcoholName.setDisable(true);
@@ -320,17 +317,17 @@ public class UpdateApplicationController {
         }
     }
 
-    public void exemptionChecked(){
+    public void exemptionChecked() {
         stateSelect.setDisable(!certOfExemption.isSelected());
     }
 
-    public void distinctiveChecked(){
+    public void distinctiveChecked() {
         distinctiveText.setDisable(!distinctiveApproval.isSelected());
     }
 
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg","*jpeg","*png");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*jpeg", "*png");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(null);
         java.nio.file.Path source = Paths.get((file.getPath()));
@@ -352,5 +349,6 @@ public class UpdateApplicationController {
         proxyLabelImage = new ProxyLabelImage(fileName);
         //application.setImage(proxyLabelImage);
     }
+
 
 }
