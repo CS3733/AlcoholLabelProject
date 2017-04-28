@@ -43,6 +43,10 @@ public class LoginController implements IController {
     public void login(ActionEvent e) throws UnsupportedEncodingException {
         String username = usernameField.getText();
         String password = passwordField.getText();
+//        Log.console(Authenticator.getInstance().login(UserType.TTBAGENT, username, password));
+//        Log.console(Storage.getInstance().getAgentPassword(username));
+//        Log.console(EncryptPassword.checkPassword(password,Storage.getInstance().getAgentPassword(username)));
+
         if (Authenticator.getInstance().login(UserType.SUPERAGENT, username, password)) {
             errorMsg.setVisible(false);
             main.loadHomepage();

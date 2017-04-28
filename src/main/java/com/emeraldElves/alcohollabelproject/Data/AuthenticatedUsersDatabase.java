@@ -104,20 +104,22 @@ public class AuthenticatedUsersDatabase {
         if (user.getUserType() == UserType.TTBAGENT) {
             return db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + user.getRepresentativeID() + ", '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+                            + user.getEmail().getEmailAddress() + "', '"
+                            + user.getCompany() + "'"
                     , "TTBAgentLogin");
         } else { // type is Applicant
             return db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + user.getRepresentativeID() + ", '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
-                            + user.getEmail().getEmailAddress() + "'"
+                            + user.getEmail().getEmailAddress() + "', '"
+                            + user.getCompany() + "'"
                     , "ApplicantLogin");
         }
     }
@@ -206,12 +208,13 @@ public class AuthenticatedUsersDatabase {
             worked = db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
                             + user.getUserType().getValue() + ", "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + user.getRepresentativeID() + ", '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', "
-                            + user.getDate().getTime()
+                            + user.getDate().getTime() + ", '"
+                            + user.getCompany() + "'"
                     , "NewApplicant");
             /*
             worked = db.insert("'" + user.getName() + "', '"
@@ -250,11 +253,12 @@ public class AuthenticatedUsersDatabase {
                 String phoneNumberString = resultSet.getString("phoneNumber");
                 PhoneNumber phoneNumber = new PhoneNumber(phoneNumberString);
                 Date date = new Date(resultSet.getLong("date"));
-                int permitNum = resultSet.getInt("permitNum");
+                String permitNum = resultSet.getString("permitNum");
                 String address = resultSet.getString("address");
+                String company = resultSet.getString("company");
 
                 users.add(new PotentialUser(name, representativeID, email, phoneNumber,
-                         useType, password, date, permitNum, address));
+                        useType, password, date, permitNum, address, company));
             }
         }
         catch(SQLException e){
@@ -270,12 +274,13 @@ public class AuthenticatedUsersDatabase {
                 //Adding all stuff from database to new Applicant object
                 String name = resultSet.getString("name");
                 int representativeID = resultSet.getInt("representativeID");
-                int permitNum = resultSet.getInt("permitNum");
+                String permitNum = resultSet.getString("permitNum");
                 String address = resultSet.getString("address");
                 String phoneNum = resultSet.getString("phoneNumber");
+                String company = resultSet.getString("company");
 
                 return(new Applicant(email, name, representativeID, permitNum, address,
-                        phoneNum));
+                        phoneNum, company));
             }
         }
         catch(SQLException e){

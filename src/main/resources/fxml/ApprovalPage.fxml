@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,12 +14,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApprovalProcessController">
+<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApprovalProcessController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="96.0" />
+        <RowConstraints />
         <RowConstraints />
     </rowConstraints>
     <children>
@@ -110,11 +111,10 @@
                   <Label fx:id="emailAddress" text="Email Address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <ButtonBar layoutX="661.0" layoutY="556.0" prefHeight="40.0" prefWidth="307.0">
+            <ButtonBar layoutX="775.0" layoutY="556.0" prefHeight="40.0" prefWidth="191.0">
               <buttons>
-                  <Button fx:id="assignButton" disable="true" mnemonicParsing="false" onMouseClicked="#assignToUser" prefHeight="40.0" prefWidth="94.0" styleClass="button-raised" text="Assign" visible="false" />
                   <Button mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" />
-                  <Button minWidth="62.0" mnemonicParsing="false" onMouseClicked="#Reject" prefHeight="40.0" styleClass="button-raised" text="Reject" />
+                  <Button mnemonicParsing="false" onMouseClicked="#Reject" styleClass="button-raised" text="Reject" />
               </buttons>
             </ButtonBar>
             <Button layoutX="870.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#viewLabel" styleClass="button-raised" text="View Label" />
@@ -122,6 +122,7 @@
             <TextArea layoutX="40.0" layoutY="556.0" prefHeight="35.0" prefWidth="200.0" promptText="CT:" />
             <ComboBox fx:id="assignUserBox" disable="true" layoutX="505.0" layoutY="555.0" prefWidth="150.0" visible="false" />
             <Label fx:id="assignErrorField" layoutX="516.0" layoutY="612.0" />
+            <DatePicker fx:id="ExpoirationDate" layoutX="507.0" layoutY="565.0" promptText="Expiration Date" />
             </children>
         </Pane>
         <Pane prefHeight="124.0" prefWidth="1024.0" />
