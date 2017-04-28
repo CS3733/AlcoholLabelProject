@@ -245,7 +245,8 @@ public class AlcoholDatabase {
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
                         + image + "', qualifications = '"
-                        + info.getQualifications() + "'", "applicationID = "
+                        + info.getQualifications() + "', expirationDate = '"
+                        + info.getExpirationDate()+"'", "applicationID = "
                         + application.getApplicationID());
 
 
@@ -290,7 +291,7 @@ public class AlcoholDatabase {
                                 + status.getValue() + ", '" //status
                                 + status.getMessage() + "', " //status message
                                 + info.getSubmissionDate().getTime() + ", " //submission time
-                                + info.getSubmissionDate().getTime() + ", '"//no field for expiration date
+                                + info.getSubmissionDate().getTime() + ", '"
                                 + manInfo.getName() + "', " //agent name
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
                                 + assignedAgent + "', '" //TTB username
@@ -300,7 +301,8 @@ public class AlcoholDatabase {
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
                                 + image + "', '"
-                                + info.getQualifications() + "'"
+                                + info.getQualifications() + "', '"
+                                + info.getExpirationDate()+"'"
                         //TTBUsername
                         , "SubmittedApplications");
 

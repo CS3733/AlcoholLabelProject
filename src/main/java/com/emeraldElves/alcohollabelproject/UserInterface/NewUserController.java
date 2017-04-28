@@ -196,6 +196,7 @@ public class NewUserController implements IController {
         password = EncryptPassword.encryptPassword(passwordField.getText());
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
+        repID =(Integer.parseInt(representativeID.getText()));
         password = passwordField.getText();
         permitNum = Integer.parseInt(representativeID.getText());//check if field is not null
         address = addressText.getText();//representative ID
