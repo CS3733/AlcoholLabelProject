@@ -24,112 +24,52 @@ import java.util.List;
 
 public class NewApplicationController implements IController {
     @FXML
-    TextField repIDNoTextField;
+    private TextField repIDNoTextField, permitNoTextField, alcoholName, brandNameField;
     @FXML
-    TextField permitNoTextField;
+    private TextField addressField, phoneNumberField, emailAddressField, signatureField;
     @FXML
-    TextField alcoholName;
+    private DatePicker datePicker;
     @FXML
-    TextField brandNameField;
+    private TextField alcoholContentField, wineVintageYearField, pHLevelField;
     @FXML
-    TextField addressField;
+    private Label welcomeApplicantLabel;
     @FXML
-    TextField phoneNumberField;
+    private Button cancelApplication, submitBtn, submitLabel, saveApplication;
     @FXML
-    TextField emailAddressField;
+    private Label pSourceErrorField, pTypeErrorField, brandNameErrorField, alcContentErrorField, signatureErrorField;
     @FXML
-    TextField signatureField;
+    private TextField varietalText, appellationText, formulaText, serialText, extraInfoText;
     @FXML
-    DatePicker datePicker;
+    private Label varietalErrorField, serialErrorField, wineNumErrorField;
     @FXML
-    TextField alcoholContentField;
+    private CheckBox certOfApproval, certOfExemption, distinctiveApproval;
     @FXML
-    TextField wineVintageYearField;
+    private TextField distinctiveText; //relates to distinctive approval
     @FXML
-    TextField pHLevelField;
+    private ImageView imageView;
     @FXML
-    Label welcomeApplicantLabel;
-    @FXML
-    Button saveApplication;
-    @FXML
-    Button cancelApplication;
-    @FXML
-    Button nextPageBtn;
-    @FXML
-    Button submitBtn;
-    @FXML
-    Button logoutBtn;
-    @FXML
-    Label permitNoErrorField;
-    @FXML
-    Label addressErrorField;
-    @FXML
-    Label phoneNumErrorField;
-    @FXML
-    Label emailErrorField;
-    @FXML
-    Label pSourceErrorField;
-    @FXML
-    Label pTypeErrorField;
-    @FXML
-    Label brandNameErrorField;
-    @FXML
-    Label alcContentErrorField;
-    @FXML
-    Label signatureErrorField;
-    @FXML
-    TextField varietalText;
-    @FXML
-    TextField appellationText;
-    @FXML
-    TextField formulaText;
-    @FXML
-    Label varietalErrorField;
-    @FXML
-    TextField serialText;
-    @FXML
-    TextField extraInfoText;
-    @FXML
-    Label serialErrorField;
-    @FXML
-    CheckBox certOfApproval;
-    @FXML
-    CheckBox certOfExemption;
-    @FXML
-    CheckBox distinctiveApproval;
-    @FXML
-    TextField distinctiveText;//relates to distinctive approval
-    @FXML
-    Button submitLabel;
-    @FXML
-    ImageView imageView;
-    @FXML
-    ComboBox pTypeSelect;
-    @FXML
-    ComboBox pSourceSelect;
-    @FXML
-    ComboBox stateSelect;
+    private ComboBox pTypeSelect, pSourceSelect, stateSelect;
 
     //Options for the comboBox fields
-    ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
-    ObservableList<String> typeList = FXCollections.observableArrayList("Malt Beverages", "Wine", "Distilled Spirits");
-    ObservableList<String> stateList = FXCollections.observableArrayList("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL",
-            "IN","IA","KS","KY","LA","ME","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","MD","MA","MI","MN","MS","MO","PA","RI","SC",
-            "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");
+    private ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
+    private ObservableList<String> typeList = FXCollections.observableArrayList("Malt Beverages", "Wine", "Distilled Spirits");
+    private ObservableList<String> stateList = FXCollections.observableArrayList("AL","AK","AZ","AR","CA","CO","CT","DE","DC",
+            "FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH",
+            "OK","OR","MD","MA","MI","MN","MS","MO","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");
     
     //Data for application type
-    public ApplicationType appType;
-    ProxyLabelImage proxyLabelImage;
+    private ApplicationType appType;
+    private ProxyLabelImage proxyLabelImage;
 
     //Applicant's info
     private String username;
     private ApplicantInterface applicant;
     private EmailAddress emailAddress;
-    private int permitNum;
+    private String permitNum;
     private String address;
     private PhoneNumber phoneNum;
     private int representativeID;
-    private ManufacturerInfo appManInfo = null;
+    private String company;
 
     //Alcohol info
     private ProductSource pSource;
@@ -139,10 +79,10 @@ public class NewApplicationController implements IController {
     private double alcContent;
     private AlcoholInfo.Wine wineType = null; //null if type is not wine
     private String formula;
-    private String serialNum;
+    private String serialNum; //needs to be a string!!!!
     private String extraInfo;
-    private AlcoholInfo appAlcoholInfo = null;
     private  File file;
+
     private Main main;
 
     private SubmittedApplication application;
@@ -297,14 +237,12 @@ public class NewApplicationController implements IController {
     }
 
     public void submitApp() {
-        LogManager.getInstance().logAction("newApplicationController", "Logged Click from first page of the new Application");
+        LogManager.getInstance().logAction("NewApplicationController", "Logged Click from first page of the new Application");
 
         Boolean formFilled = false;
         Boolean fieldsValid = false;
 
         //getting and storing the image
-
-
         saveImage(file);
         //filling out application type
         boolean labelApproval;
@@ -353,9 +291,7 @@ public class NewApplicationController implements IController {
                 alcContentErrorField.setText("");
             }
             if (serialText.getText().isEmpty()) {
-                serialErrorField.setText("Please input a serial number");
-            } else if(!isInt(serialText)){
-                serialErrorField.setText("Please enter a valid number.");
+                serialErrorField.setText("Please input a serial number.");
             } else {
                 serialErrorField.setText("");
             }
@@ -363,6 +299,13 @@ public class NewApplicationController implements IController {
                 signatureErrorField.setText("Please fill in the signature field.");
             } else {
                 signatureErrorField.setText("");
+            }
+            if (pTypeSelect.getValue().equals("Wine")) {
+                if (!isInt(wineVintageYearField)||!isDouble(pHLevelField)) {
+                    wineNumErrorField.setText("Please enter a valid number.");
+                } else {
+                    wineNumErrorField.setText("");
+                }
             }
 
             //check if required fields are filled in
@@ -373,12 +316,16 @@ public class NewApplicationController implements IController {
                 formFilled = true;
             }
 
-            //check if fields are valid]
-            /*
-            if(isInt(alcoholContentField)&&isInt(serialText)){
-                    fieldsValid=true;
+
+            //check if fields are valid
+            if(isInt(alcoholContentField)) {
+                if (pTypeSelect.getValue().equals("Wine")) {
+                    if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
+                        fieldsValid = true;
+                    }
+                } else fieldsValid = true;
             }
-            */
+
             //Checking alcohol content field and serial number for validity
             if(isDouble(alcoholContentField)){
                 fieldsValid = true;
@@ -392,21 +339,20 @@ public class NewApplicationController implements IController {
                 serialErrorField.setText("Please enter a valid serial number");
             }
 
-            if (formFilled && fieldsValid) {
-
+                if (formFilled && fieldsValid) {
                 if (pTypeSelect.getValue().equals("Wine")) {
                     int vintageYr = 0;
                     double pH = 0.0;
                     String varietal = "";
                     String appellation = "";
                     if (!wineVintageYearField.getText().isEmpty())
-                        vintageYr = Integer.parseInt(wineVintageYearField.getText()); //CHECK IF INPUT INTEGER!
+                        vintageYr = Integer.parseInt(wineVintageYearField.getText());
                     if (!pHLevelField.getText().isEmpty())
-                        pH = Double.parseDouble(pHLevelField.getText()); //CHECK IF INPUT INTEGER!
+                        pH = Double.parseDouble(pHLevelField.getText());
                     if (!varietalText.getText().isEmpty())
                         varietal = varietalText.getText();
                     if (!appellationText.getText().isEmpty())
-                        appellationText.getText();
+                        appellation = appellationText.getText();
                     wineType = new AlcoholInfo.Wine(pH, vintageYr, varietal, appellation);
                 }
 
@@ -429,7 +375,9 @@ public class NewApplicationController implements IController {
                 //sets alc info fields
                 alcName = alcoholName.getText();
                 brandName = brandNameField.getText();
+
                 alcContent = Double.parseDouble(alcoholContentField.getText()); //CHECK IF INTEGER
+
                 serialNum = serialText.getText();
                 if (formulaText.getText().isEmpty()) {
                     formula = " ";
@@ -438,19 +386,20 @@ public class NewApplicationController implements IController {
                     extraInfo = " ";
                 } else extraInfo = extraInfoText.getText();
 
-                //sets the alcohol info
-                appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
-                this.appManInfo= new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
-                        permitNum, phoneNum, emailAddress);
+                //creates alcohol info
+                AlcoholInfo appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
+
                 //sets the date value
                 Date newDate = DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
 
                 //creates a new ManufacturerInfo
-                appManInfo= new ManufacturerInfo(applicant.getApplicant().getName(), applicant.getApplicant().getAddressFromDB(username),
-                        "company", applicant.getApplicant().getRepresentativeIDFromDB(username), applicant.getApplicant().getPermitNumFromDB(username),
-                        new PhoneNumber(applicant.getApplicant().getPhoneNum()), new EmailAddress( applicant.getApplicant().getEmailAddress()));
+                ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
+                        permitNum, phoneNum, emailAddress);
+//                ManufacturerInfo appManInfo= new ManufacturerInfo(applicant.getApplicant().getName(), applicant.getApplicant().getAddressFromDB(username),
+//                        "company", applicant.getApplicant().getRepresentativeIDFromDB(username), applicant.getApplicant().getPermitNumFromDB(username),
+//                        new PhoneNumber(applicant.getApplicant().getPhoneNum()), new EmailAddress( applicant.getApplicant().getEmailAddress()));
 
-                ApplicationInfo appInfo = new ApplicationInfo(newDate, this.appManInfo, appAlcoholInfo, extraInfo, appType);
+                ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo, extraInfo, appType);
 
                 //!!!!!placeholder for applicant's submitted applications!!!!!
                 List<SubmittedApplication> appList = new ArrayList<>();
@@ -465,8 +414,7 @@ public class NewApplicationController implements IController {
                 applicant.addSubmittedApp(newApp);
                 if(proxyLabelImage!= null) {
                     newApp.setImage(proxyLabelImage);
-                }
-                else{
+                } else{
                     newApp.setImage(new ProxyLabelImage(""));
                 }
 
@@ -639,8 +587,7 @@ public class NewApplicationController implements IController {
         try {
             Integer.parseInt(txt.getText());
             return true;
-        }
-        catch(NumberFormatException e){
+        } catch(NumberFormatException e){
             return false;
         }
     }
@@ -649,8 +596,7 @@ public class NewApplicationController implements IController {
         try {
             Double.parseDouble(txt.getText());
             return true;
-        }
-        catch(NumberFormatException e){
+        } catch(NumberFormatException e){
             return false;
         }
     }
@@ -689,7 +635,6 @@ public class NewApplicationController implements IController {
         }
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
-
     }
 
     public void saveImage(File file){
@@ -713,5 +658,4 @@ public class NewApplicationController implements IController {
         }
         proxyLabelImage = new ProxyLabelImage(fileName);
     }
-   
 }

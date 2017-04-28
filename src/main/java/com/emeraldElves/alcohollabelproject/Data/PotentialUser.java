@@ -10,15 +10,18 @@ import java.util.Date;
  */
 public class PotentialUser {
     //TODO: compare by email, not name
-    private String Name,Password, address;//username is now same as email address
-    private int representativeID, permitNum;
+
+    private String Name, Password, address, company;//username is now same as email address
+    private int representativeID;
+    private String permitNum;
+
     private EmailAddress email;
     private PhoneNumber phoneNumber;
     private UserType userType;
     private Date date;
     private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
     public PotentialUser(String Name, int representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
-    int permitNum, String address) {
+    String permitNum, String address, String company) {
         this.Name = Name;
         this.representativeID = representativeID;
         this.email = email;
@@ -29,6 +32,7 @@ public class PotentialUser {
         this.date = date;
         this.address = address;
         this.permitNum = permitNum;
+        this.company = company;
 
     }
 
@@ -40,7 +44,7 @@ public class PotentialUser {
         return representativeID;
     }
 
-    public int getPermitNum(){ return permitNum; }
+    public String getPermitNum(){ return permitNum; }
 
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
@@ -63,4 +67,7 @@ public class PotentialUser {
     }
 
     public String getAddress(){ return address; }
+
+    public String getCompany() { return company; }
 }
+
