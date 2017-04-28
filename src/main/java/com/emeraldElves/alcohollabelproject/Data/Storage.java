@@ -4,7 +4,6 @@ import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.Log;
 
-import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -47,7 +46,8 @@ public class Storage {
                             new Database.TableField("permitNum", "VARCHAR (255)"),
                             new Database.TableField("address", "VARCHAR (255)"),
                             new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                            new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new TTBAgentLogin table");
         }
         catch (SQLException e){
@@ -62,7 +62,8 @@ public class Storage {
                     new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new ApplicantLogin table");
         }
         catch (SQLException e){
@@ -132,7 +133,8 @@ public class Storage {
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
                     new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("date", "BIGINT"));
+                    new Database.TableField("date", "BIGINT"),
+                    new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new NewApplicant table");
         }
         catch (SQLException e){
@@ -199,15 +201,15 @@ public class Storage {
         return alcoholDB.removeSavedApplication(application);
     }
 
-    /**
-     * Adds application to the given agent
-     * @param application Application to add
-     * @param agentUsername Agent to get application added to
-     * @return Whether or not application was added succesfully
-     */
-    public boolean addApplication(SubmittedApplication application, String agentUsername){
-        return alcoholDB.addApplication(application, agentUsername);
-    }
+//    /**
+//     * Adds application to the given agent
+//     * @param application Application to add
+//     * @param agentUsername Agent to get application added to
+//     * @return Whether or not application was added succesfully
+//     */
+//    public boolean addApplication(SubmittedApplication application, String agentUsername){
+//        return alcoholDB.addApplication(application, agentUsername);
+//    }
     /*
     /**
      * Removes application from given agent
@@ -338,11 +340,8 @@ public class Storage {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
 
-<<<<<<< HEAD
         else return new Applicant(email,"", 0, "", "", "", "");
-=======
-        else return new Applicant(email,"", 0, 0, "", "");
->>>>>>> develop
+
 
     }
 

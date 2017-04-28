@@ -76,13 +76,8 @@ public class NewApplicationController implements IController {
     private AlcoholType alcType;
     private String alcName;
     private String brandName;
-<<<<<<< HEAD
-    private int alcContent;
-    private AlcoholInfo.Wine wineType = null;
-=======
     private double alcContent;
     private AlcoholInfo.Wine wineType = null; //null if type is not wine
->>>>>>> develop
     private String formula;
     private String serialNum; //needs to be a string!!!!
     private String extraInfo;
@@ -321,7 +316,7 @@ public class NewApplicationController implements IController {
                 formFilled = true;
             }
 
-<<<<<<< HEAD
+
             //check if fields are valid
             if(isInt(alcoholContentField)) {
                 if (pTypeSelect.getValue().equals("Wine")) {
@@ -329,14 +324,8 @@ public class NewApplicationController implements IController {
                         fieldsValid = true;
                     }
                 } else fieldsValid = true;
-=======
-            //check if fields are valid]
-            /*
-            if(isInt(alcoholContentField)&&isInt(serialText)){
-                    fieldsValid=true;
->>>>>>> develop
             }
-            */
+
             //Checking alcohol content field and serial number for validity
             if(isDouble(alcoholContentField)){
                 fieldsValid = true;
@@ -386,11 +375,9 @@ public class NewApplicationController implements IController {
                 //sets alc info fields
                 alcName = alcoholName.getText();
                 brandName = brandNameField.getText();
-<<<<<<< HEAD
-                alcContent = Integer.parseInt(alcoholContentField.getText());
-=======
+
                 alcContent = Double.parseDouble(alcoholContentField.getText()); //CHECK IF INTEGER
->>>>>>> develop
+
                 serialNum = serialText.getText();
                 if (formulaText.getText().isEmpty()) {
                     formula = " ";
@@ -610,16 +597,6 @@ public class NewApplicationController implements IController {
             Double.parseDouble(txt.getText());
             return true;
         } catch(NumberFormatException e){
-            return false;
-        }
-    }
-
-    public boolean isDouble(TextField txt){
-        try {
-            Double.parseDouble(txt.getText());
-            return true;
-        }
-        catch(NumberFormatException e){
             return false;
         }
     }

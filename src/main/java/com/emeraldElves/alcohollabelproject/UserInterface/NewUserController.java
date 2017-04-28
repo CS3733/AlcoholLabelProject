@@ -16,6 +16,8 @@ import java.util.Date;
  */
 public class NewUserController implements IController {
     @FXML
+    TextField companyField;
+    @FXML
     PasswordField passwordField;
     @FXML
     TextField representativeID;
@@ -56,6 +58,7 @@ public class NewUserController implements IController {
     @FXML
     ImageView isValid;
 
+
     private int repID; //move this to application info
     String permitNum;
     private Main main;
@@ -63,6 +66,7 @@ public class NewUserController implements IController {
     private String FullName;
     private String password;
     private String address;
+    private String company;
     private PasswordStrengthChecker CheckStrength;
     Image image;
     public NewUserController() {
@@ -148,7 +152,11 @@ public class NewUserController implements IController {
         }
 
 
-
+        if (companyField.getText().trim().isEmpty())
+        {
+            nameError.setText("Enter a valid company");
+            return;
+        }
 
 
 
@@ -178,14 +186,15 @@ public class NewUserController implements IController {
         password = passwordField.getText();
         permitNum = permitNumText.getText();//check if field is not null
         address = addressText.getText();//representative ID
+        company = companyField.getText();
 
 
         FullName = Name.getText();
 
 
 
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
-                password, newDate, permitNum, address))){
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName, repID, Email, PhoneNumber, userType,
+                password, newDate, permitNum, address, company))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {

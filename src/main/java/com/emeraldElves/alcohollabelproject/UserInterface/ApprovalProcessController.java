@@ -2,18 +2,9 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
-<<<<<<< HEAD
 import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-=======
-import com.emeraldElves.alcohollabelproject.EmailManager;
-import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
-import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
-import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
->>>>>>> develop
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;

@@ -16,7 +16,7 @@ import java.util.Properties;
  */
 public class SuperUserWorkflowController implements IController {
     @FXML
-    Label Name, Type, PhoneNumber, RepresentativeID, Email, Date, physicalAddress, permitNo;
+    Label Name, Type, PhoneNumber, RepresentativeID, Email, Date, physicalAddress, permitNo, company;
     List<PotentialUser> users;
     PotentialUser UserforApproval;
     Main main;
@@ -36,13 +36,8 @@ public class SuperUserWorkflowController implements IController {
         Email.setText(UserforApproval.getEmail().getEmailAddress());
         Date.setText(UserforApproval.getDate().toString());
         physicalAddress.setText(UserforApproval.getAddress());
-<<<<<<< HEAD
         permitNo.setText(UserforApproval.getPermitNum());
         company.setText(UserforApproval.getCompany());
-=======
-        permitNo.setText(String.valueOf(UserforApproval.getPermitNum()));
-
->>>>>>> develop
     }
 
     public void Approve() {

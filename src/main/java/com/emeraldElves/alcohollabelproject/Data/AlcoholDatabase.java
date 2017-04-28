@@ -367,7 +367,7 @@ public class AlcoholDatabase {
         return true;
     }
 
-<<<<<<< HEAD
+
     public boolean updateApplication(SubmittedApplication application, String username) {
         //making application type
         ApplicationType appType = application.getApplication().getApplicationType();
@@ -377,20 +377,7 @@ public class AlcoholDatabase {
         ApplicationInfo info = application.getApplication();
         AlcoholInfo alcInfo = info.getAlcohol();
         ManufacturerInfo manInfo = info.getManufacturer();
-=======
-    /**
-     * Saves an application in the SavedApplications database. This application is able to be
-     * loaded up again by the same person who saved it.
-     * @param application The application to save
-     * @param username The username of the person who saved the application
-     * @return Whether or not the application was saved successfully
-     */
-    public boolean saveApplication(SavedApplication application, String username) {
-        //making application type
-        ApplicationType appType = application.getApplicationType();
 
-        AlcoholInfo alcInfo = application.getAlcoholInfo();
->>>>>>> develop
 
         //Image name
         String image;
@@ -401,11 +388,6 @@ public class AlcoholDatabase {
             image = "";
         }
 
-<<<<<<< HEAD
-=======
-
-        //
->>>>>>> develop
         boolean worked;//whether or not it added stuff to database
 
         int appID;
@@ -416,7 +398,6 @@ public class AlcoholDatabase {
         } else {
             appID = application.getApplicationID();
         }
-<<<<<<< HEAD
 
         ResultSet resultsSubmitted = db.select("*", "SubmittedApplications", "applicationID = " + appID);
 
@@ -489,7 +470,41 @@ public class AlcoholDatabase {
         catch (SQLException e){
             e.printStackTrace();
         }
-=======
+        return true;
+    }
+
+    /**
+     * Saves an application in the SavedApplications database. This application is able to be
+     * loaded up again by the same person who saved it.
+     * @param application The application to save
+     * @param username The username of the person who saved the application
+     * @return Whether or not the application was saved successfully
+     */
+    public boolean saveApplication(SavedApplication application, String username) {
+        //making application type
+        ApplicationType appType = application.getApplicationType();
+
+        AlcoholInfo alcInfo = application.getAlcoholInfo();
+
+        //Image name
+        String image;
+        if (application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+            //if(false)
+            image = application.getImage().getFileName();
+        else {
+            image = "";
+        }
+
+        boolean worked;//whether or not it added stuff to database
+
+        int appID;
+
+        if (application.getApplicationID() == -1) {
+            appID = generateApplicationID();
+            application.setApplicationID(appID);
+        } else {
+            appID = application.getApplicationID();
+        }
         ResultSet resultsSubmitted = db.select("*", "SavedApplications", "applicationID = " + appID);
 
         try {
@@ -587,8 +602,6 @@ public class AlcoholDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
->>>>>>> develop
         return true;
     }
 
