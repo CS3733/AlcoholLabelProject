@@ -475,7 +475,7 @@ public class NewApplicationController implements IController {
 
                 //Submit the new application to the database
                 ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
-                boolean success = applicantInterface.submitApplication(newApp);
+              boolean success = applicantInterface.submitApplication(newApp);
                 if(isSavedApplication){
                     //delete old saved application after submitting it
                     boolean saveSuccess = Storage.getInstance().removeSavedApplication(savedApplication);
