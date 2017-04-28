@@ -454,7 +454,6 @@ public class NewApplicationController implements IController {
         ApplicationType appType;
         AlcoholInfo alcoholInfo;
         String extraInfo;
-        image;
         //
         //Time for a ton of isEmpty()
 
