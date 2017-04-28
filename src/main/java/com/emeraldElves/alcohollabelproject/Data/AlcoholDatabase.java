@@ -449,6 +449,12 @@ public class AlcoholDatabase {
         return db.update("SubmittedApplications", "status = " + ApplicationStatus.REJECTED.getValue() + ", statusMsg = '" + message + "'", "applicationID = " + application.getApplicationID());
     }
 
+    /**
+     * Adds the application to the given agent
+     * @param application Application to add
+     * @param agentUsername Username to add to
+     * @return Whether or not it was added successfully
+     */
     public boolean addApplication(SubmittedApplication application, String agentUsername){
         return db.update("SubmittedApplications", "TTBUsername = '" + agentUsername + "'"
                             , "applicationID = " + application.getApplicationID());
