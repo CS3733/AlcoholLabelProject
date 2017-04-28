@@ -93,11 +93,13 @@ public class NewUserController implements IController {
         userTypeInt = 0;
         //permitNumText.setText(null);
         permitNumText.setDisable(true);
+        companyField.setDisable(true);
     }
 
     public void setUserTypeApplicant(){
         userTypeInt = 1;
         permitNumText.setDisable(false);
+        companyField.setDisable(false);
     }
 
     public void createPotentialUser() throws UnsupportedEncodingException {
