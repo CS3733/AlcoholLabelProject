@@ -4,7 +4,6 @@ import com.emeraldElves.alcohollabelproject.AppState;
 import com.emeraldElves.alcohollabelproject.Applicant;
 import com.emeraldElves.alcohollabelproject.Log;
 
-import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -202,7 +201,7 @@ public class Storage {
      * @return Whether or not application was added succesfully
      */
     public boolean addApplication(SubmittedApplication application, String agentUsername){
-        return alcoholDB.addApplication(application, agentUsername);
+        return alcoholDB.submitApplication(application, agentUsername);
     }
     /*
     /**

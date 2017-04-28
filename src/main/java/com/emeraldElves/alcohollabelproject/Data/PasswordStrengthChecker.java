@@ -145,7 +145,7 @@ public class PasswordStrengthChecker {
     }
 
     public boolean hasSylbol(String password) {
-        for (int i = 0; i < (password.length()-1); i++) {
+        for (int i = 0; i < (password.length()); i++) {
             if ((password.charAt(i) == '!') || (password.charAt(i) == '@') || (password.charAt(i) == '#') || (password.charAt(i) == '$') || (password.charAt(i) == '%') || (password.charAt(i) == '^') || (password.charAt(i) == '&') || (password.charAt(i) == '*') || (password.charAt(i) == '(') || (password.charAt(i) == ')')) {
                 return true;
             }
@@ -154,7 +154,7 @@ public class PasswordStrengthChecker {
     }
 
     public boolean hasSpace(String password) {
-        for (int i = 0; i < (password.length()-1); i++) {
+        for (int i = 0; i < (password.length()); i++) {
             if (Character.isSpaceChar(password.charAt(i))) {
                 return true;
             }
