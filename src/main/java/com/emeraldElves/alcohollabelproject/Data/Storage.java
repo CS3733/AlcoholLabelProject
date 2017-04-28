@@ -218,9 +218,7 @@ public class Storage {
      */
     public boolean addApplication(SubmittedApplication application, String agentUsername){
 
-//        return alcoholDB.addApplication(application, agentUsername);
-
-        return alcoholDB.submitApplication(application, agentUsername);
+       return alcoholDB.addApplication(application, agentUsername);
     }
     /*
     /**
