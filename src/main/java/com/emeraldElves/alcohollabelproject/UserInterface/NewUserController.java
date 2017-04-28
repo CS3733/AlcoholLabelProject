@@ -138,14 +138,14 @@ public class NewUserController implements IController {
             return;
         }
 
-        int permitNum = -1;
+        //permitNum = -1;
 
         if(permitNumText.isDisabled()){
             permitNum = "";
         }
 
         if(permitNumText.isEditable() && !(permitNumText.getText().trim().isEmpty()) && !(userTypeInt == 0)){
-            permitNum = Integer.parseInt(permitNumText.getText());//check if field is not null
+            permitNum = permitNumText.getText();//check if field is not null
         }
         else if(permitNumText.isEditable() && permitNumText.getText().trim().isEmpty() && !(userTypeInt == 0)){
 
@@ -198,7 +198,7 @@ public class NewUserController implements IController {
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
         repID =(Integer.parseInt(representativeID.getText()));
-        permitNum = Integer.parseInt(representativeID.getText());//check if field is not null
+        permitNum = representativeID.getText();//check if field is not null
         address = addressText.getText();//representative ID
         company = companyField.getText();
 
