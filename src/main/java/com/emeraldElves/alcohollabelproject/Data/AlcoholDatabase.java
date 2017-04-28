@@ -306,8 +306,7 @@ public class AlcoholDatabase {
                                 + appType.getStateOnly() + "', "
                                 + appType.getBottleCapacity() + ", '"
                                 + image + "', '"
-                                + info.getQualifications() + "', '"
-                                + info.getExpirationDate()+"'"
+                                + info.getQualifications() + "'"
                         //TTBUsername
                         , "SubmittedApplications");
 

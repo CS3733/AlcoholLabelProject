@@ -43,7 +43,7 @@ public class ApplicationInfo {
     public ApplicationType getApplicationType(){ return appType;}
 
     public String getQualifications(){ return qualifications;}
-    public Date getExpirationDate(){return expirationDate;}
+//    public Date getExpirationDate(){return expirationDate;}
 
     public void setQualifications(String qualifications){ this.qualifications = qualifications;}
 
