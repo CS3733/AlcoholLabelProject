@@ -311,7 +311,18 @@
                      </padding>
                   </Label>
                   <Label text="To edit the following information, please go to your 'Profile' page." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+<<<<<<< HEAD:src/main/resources/fxml/NewApplication.fxml
+                  <Label fx:id="wineNumErrorField" GridPane.columnIndex="2" GridPane.rowIndex="19">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+=======
                   <Button mnemonicParsing="false" onMouseClicked="#saveApplication" styleClass="button-raised" text="Save Application" GridPane.rowIndex="27" />
+>>>>>>> develop:src/main/resources/fxml/newApplication.fxml
                </children>
             </GridPane>
          </content>

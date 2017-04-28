@@ -59,6 +59,23 @@
                 <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+<<<<<<< HEAD
+
+                  <BorderPane layoutX="276.0" layoutY="71.0" prefHeight="300.0" prefWidth="250.0">
+                     <top>
+                        <VBox fx:id="errorMsg" alignment="CENTER" prefHeight="50.0" style="-fx-background-color: ffdce0; -fx-border-color: red;" translateY="-10.0" visible="false" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Username already exists" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+                  <GridPane layoutX="257.0" layoutY="-3.0" prefHeight="624.0" prefWidth="768.0">
+=======
                   <Label text="Email" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -86,6 +103,7 @@
                   <Label text="Name" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                   <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
                   <GridPane prefHeight="98.0" prefWidth="458.0">
+>>>>>>> develop
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.66665649414062" minWidth="10.0" prefWidth="243.66665649414062" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.66668701171875" minWidth="10.0" prefWidth="213.33334350585938" />

@@ -58,6 +58,7 @@ public class Main extends Application {
      * Loads the given fxml file, and inits the controller of the file
      * @param fxml File to load
      */
+
     public void loadFXML(String fxml){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         try {
