@@ -139,11 +139,11 @@ public class NewUserController implements IController {
             permitNum = -1;
         }
 
-
         if(permitNumText.isEditable() && !(permitNumText.getText().trim().isEmpty()) && !(userTypeInt == 0)){
             permitNum = Integer.parseInt(permitNumText.getText());//check if field is not null
         }
         else if(permitNumText.isEditable() && permitNumText.getText().trim().isEmpty() && !(userTypeInt == 0)){
+
             permitNumError.setText("Enter a valid permit number");
             return;
         }
@@ -184,11 +184,17 @@ public class NewUserController implements IController {
         java.util.Date newDate = new Date();
          Email  = new EmailAddress(emailAddress.getText().toString());
          PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
+<<<<<<< HEAD
         password = EncryptPassword.encryptPassword(passwordField.getText());
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
         repID =(Integer.parseInt(representativeID.getText()));
         permitNum = Integer.parseInt(representativeID.getText());//check if field is not null
+=======
+        password = passwordField.getText();
+
+        repID = Integer.parseInt(representativeID.getText());
+>>>>>>> I_needed_to_test_develop
         address = addressText.getText();//representative ID
 
 
