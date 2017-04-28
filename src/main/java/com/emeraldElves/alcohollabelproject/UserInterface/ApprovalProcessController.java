@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
+<<<<<<< HEAD
 import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
@@ -9,10 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+=======
+import com.emeraldElves.alcohollabelproject.EmailManager;
+import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
+import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
+import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+>>>>>>> develop
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by keionbis on 4/5/17.
@@ -67,6 +75,7 @@ public class ApprovalProcessController implements IController {
 
     @FXML
     Label applicationID;
+
     @FXML
     ComboBox assignUserBox;
     @FXML
@@ -78,6 +87,7 @@ public class ApprovalProcessController implements IController {
 
     ObservableList<String> assignUser = FXCollections.observableArrayList();
 
+
     public void init(Bundle bundle){
         this.init(bundle.getMain("main"), bundle.getApplication("app"));
     }
@@ -85,20 +95,6 @@ public class ApprovalProcessController implements IController {
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
-        //Checks if super user
-        if(Authenticator.getInstance().getUserType() == UserType.SUPERAGENT){
-            assignUserBox.setVisible(true);
-            assignUserBox.setDisable(false);
-            assignButton.setVisible(true);
-            assignButton.setDisable(false);
-            //add all users to combo box
-            List<String> userList = new ArrayList<>();
-            userList = Storage.getInstance().getAllTTBUsernames();
-            assignUser.addAll(userList);
-            assignUserBox.setValue("Select a user");
-            assignUserBox.setItems(assignUser);
-        }
-
         agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
@@ -136,23 +132,6 @@ public class ApprovalProcessController implements IController {
         phoneNum.setText(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
         emailAddress.setText( application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
         alcoholContent.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
-    }
-
-    /**
-     * Called when the assign button is clicked. This assigns the agent selected to the current
-     * application and then returns to the view all applications screen.
-     */
-    public void assignToUser(){
-        String userToAssign;
-        userToAssign = assignUserBox.getValue().toString();
-        if(userToAssign.equals("Select a user")){
-            assignErrorField.setText("Select a user");
-            return;
-        }
-        TTBAgentInterface agent = new TTBAgentInterface(userToAssign); // user to assign to
-        //Log.console(application.getTtbAgentName());
-        agent.addApplication(application);
-        main.loadFXML("/fxml/SuperagentViewAllApplications.fxml");
     }
 
     public void GoHome() {
