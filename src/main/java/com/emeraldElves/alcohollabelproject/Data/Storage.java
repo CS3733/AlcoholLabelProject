@@ -201,15 +201,16 @@ public class Storage {
         return alcoholDB.removeSavedApplication(application);
     }
 
-//    /**
-//     * Adds application to the given agent
-//     * @param application Application to add
-//     * @param agentUsername Agent to get application added to
-//     * @return Whether or not application was added succesfully
-//     */
-//    public boolean addApplication(SubmittedApplication application, String agentUsername){
+    /**
+     * Adds application to the given agent
+     * @param application Application to add
+     * @param agentUsername Agent to get application added to
+     * @return Whether or not application was added succesfully
+     */
+    public boolean addApplication(SubmittedApplication application, String agentUsername){
 //        return alcoholDB.addApplication(application, agentUsername);
-//    }
+        return alcoholDB.submitApplication(application, agentUsername);
+    }
     /*
     /**
      * Removes application from given agent

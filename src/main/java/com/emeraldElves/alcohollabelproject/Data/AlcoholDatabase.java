@@ -258,8 +258,8 @@ public class AlcoholDatabase {
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
                         + manInfo.getPhysicalAddress() + "', company = '" //physical address
                         + manInfo.getCompany() + "', representativeID = " //company
-                        + manInfo.getRepresentativeID() + ", permitNum = " //representative id
-                        + manInfo.getPermitNum() + ", phoneNum = '"//permit num
+                        + manInfo.getRepresentativeID() + ", permitNum = '" //representative id
+                        + manInfo.getPermitNum() + "', phoneNum = '"//permit num
                         + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
 
@@ -319,8 +319,8 @@ public class AlcoholDatabase {
                                 + manInfo.getName() + "', '" //authorized name: i assume this is just the name of the applicant???
                                 + manInfo.getPhysicalAddress() + "', '" //physical address
                                 + manInfo.getCompany() + "', " //company
-                                + manInfo.getRepresentativeID() + ", " //representative id
-                                + manInfo.getPermitNum() + ", '"//permit num
+                                + manInfo.getRepresentativeID() + ", '" //representative id
+                                + manInfo.getPermitNum() + "', '"//permit num
                                 + manInfo.getPhoneNumber().getPhoneNumber() + "', '" //phone num. It may look stupid but it works
                                 + manInfo.getEmailAddress().getEmailAddress() + "'" //email
                         , "ManufacturerInfo");
@@ -427,8 +427,8 @@ public class AlcoholDatabase {
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
                         + manInfo.getPhysicalAddress() + "', company = '" //physical address
                         + manInfo.getCompany() + "', representativeID = " //company
-                        + manInfo.getRepresentativeID() + ", permitNum = " //representative id
-                        + manInfo.getPermitNum() + ", phoneNum = '"//permit num
+                        + manInfo.getRepresentativeID() + ", permitNum = '" //representative id
+                        + manInfo.getPermitNum() + "', phoneNum = '"//permit num
                         + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
 

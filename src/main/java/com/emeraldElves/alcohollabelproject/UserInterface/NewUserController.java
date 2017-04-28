@@ -152,11 +152,11 @@ public class NewUserController implements IController {
         }
 
 
-        if (companyField.getText().trim().isEmpty())
-        {
-            nameError.setText("Enter a valid company");
-            return;
-        }
+//        if (companyField.getText().trim().isEmpty())
+//        {
+//            nameError.setText("Enter a valid company");
+//            return;
+//        }
 
 
 

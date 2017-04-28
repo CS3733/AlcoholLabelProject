@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SuperUserWorkflowController">
+<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SuperUserWorkflowController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -32,36 +32,76 @@
                <children>
                   <VBox prefHeight="140.0" prefWidth="157.0">
                      <children>
-                        <Label text="Name" />
-                        <Label text="Account type" />
-                        <Label text="Phone Number" />
-                        <Label text="Representative ID" />
-                        <Label text="Permit Number" />
-                        <Label text="Email" />
-                        <Label text="Date Submitted" />
+                        <Label text="Name">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Account type">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Company">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="Phone Number">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Permit Number">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Email">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Date Submitted">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Representative ID">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="140.0" prefWidth="178.0">
+                  <VBox prefHeight="131.0" prefWidth="160.0">
                      <children>
-                        <Label fx:id="Name" prefHeight="17.0" prefWidth="86.0" text="name" />
-                        <Label fx:id="Type" text="type" />
+                        <Label fx:id="Name" prefHeight="17.0" prefWidth="86.0" text="name">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="Type" text="type">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="company" text="company">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                             <Label fx:id="PhoneNumber" alignment="CENTER" contentDisplay="CENTER" text="PhoneNumber" textAlignment="CENTER">
                                 <font>
                                     <Font size="14.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="RepresentativeID" text="RepresentativeID">
-                                <font>
-                                    <Font size="14.0" />
-                                </font>
-                            </Label>
-                        <Label fx:id="permitNo" text="PermitNo" />
+                        <Label fx:id="permitNo" text="PermitNo">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                             <Label fx:id="Email" text="Email">
                                 <font>
                                     <Font size="14.0" />
                                 </font>
                             </Label>
                             <Label fx:id="Date" text="Date">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="RepresentativeID" text="RepresentativeID">
                                 <font>
                                     <Font size="14.0" />
                                 </font>

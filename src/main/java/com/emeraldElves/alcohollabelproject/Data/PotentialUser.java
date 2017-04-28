@@ -21,7 +21,6 @@ public class PotentialUser {
     private Date date;
     private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
     public PotentialUser(String Name, int representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
-
     String permitNum, String address, String company) {
         this.Name = Name;
         this.representativeID = representativeID;
