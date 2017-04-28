@@ -1,20 +1,11 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 /**
- * Created by elijaheldredge on 4/22/17.
+ * Created by Dan on 4/22/2017.
  */
-public class AboutPageController implements IController {
-    Main main;
+public class AboutPageController implements IController{
 
-   public AboutPageController() {
 
-   }
-   public void init(Bundle bundle){
-       this.init(bundle.getMain("main"));
-   }
-
-    public void init(Main main) {
-        this.main = main;
-    }
-
+    //Meant to do nothing
+    public void init(Bundle bundle){}
 }

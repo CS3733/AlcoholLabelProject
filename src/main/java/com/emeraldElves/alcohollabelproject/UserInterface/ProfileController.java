@@ -28,7 +28,7 @@ public class ProfileController implements IController {
 
     private String emailAddress;
     private int representativeID;
-    private int permitNum;
+    private String permitNum;
     private String address;
     private PhoneNumber phoneNum;
 
@@ -56,7 +56,7 @@ public class ProfileController implements IController {
 
         // set text values to current values
         representativeIDField.setText(Integer.toString(representativeID));
-        permitNumField.setText(Integer.toString(permitNum));
+        permitNumField.setText(permitNum);
         addressField.setText(address);
         phoneNumField.setText(phoneNum.getPhoneNumber());
         emailAddressField.setText(emailAddress);
@@ -68,7 +68,7 @@ public class ProfileController implements IController {
         applicant.getApplicant().setRepresentativeID(emailAddress, representativeID);
     }
     public void modifyPermitNum() {
-        permitNum = Integer.valueOf(permitNumField.getText());
+        permitNum = permitNumField.getText();
         applicant.getApplicant().setPermitNum(emailAddress, permitNum);
     }
     public void modifyAddress() {
