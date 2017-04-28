@@ -112,7 +112,7 @@
             </GridPane>
             <ButtonBar layoutX="698.0" layoutY="557.0" prefHeight="40.0" prefWidth="288.0">
               <buttons>
-                  <Button fx:id="assignButton" mnemonicParsing="false" styleClass="button-raised" text="Assign" />
+                  <Button fx:id="assignButton" mnemonicParsing="false" onMouseClicked="#assignToUser" styleClass="button-raised" text="Assign" />
                   <Button mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" />
                   <Button mnemonicParsing="false" onMouseClicked="#Reject" styleClass="button-raised" text="Reject" />
               </buttons>
