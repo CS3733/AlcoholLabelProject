@@ -247,7 +247,7 @@ public class UpdateApplicationController implements IController{
     public void submitApp() {
 
         LogManager.getInstance().logAction("NewApplicationController", "Logged Click from first page of the new Application");
-
+        Storage.getInstance().saveUpdateHistory(application,username);
         Boolean formFilled = false;
         Boolean fieldsValid = false;
 

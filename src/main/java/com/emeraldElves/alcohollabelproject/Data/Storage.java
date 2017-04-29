@@ -315,7 +315,7 @@ public class Storage {
         return alcoholDB.saveApplication(application,username);
     }
 
-    public boolean saveUpdateHistory(SavedApplication application, String username){
+    public boolean saveUpdateHistory(SubmittedApplication application, String username){
         return alcoholDB.saveUpdateHistory(application,username);
     }
 

@@ -606,11 +606,11 @@ public class AlcoholDatabase {
         }
         return true;
     }
-    public boolean saveUpdateHistory(SavedApplication application, String username) {
+    public boolean saveUpdateHistory(SubmittedApplication application, String username) {
         //making application type
-        ApplicationType appType = application.getApplicationType();
+        ApplicationType appType = application.getApplication().getApplicationType();
 
-        AlcoholInfo alcInfo = application.getAlcoholInfo();
+        AlcoholInfo alcInfo = application.getApplication().getAlcohol();
 
         //Image name
         String image;
@@ -652,7 +652,7 @@ public class AlcoholDatabase {
                                     + alcInfo.getWineInfo().vintageYear + ", varietals = '" //vintage year
                                     + alcInfo.getWineInfo().grapeVarietal + "', wineAppellation = '" //varietal
                                     + alcInfo.getWineInfo().appellation + "', extraInfo = '" // appelation
-                                    + application.getExtraInfo() + "', imageURL = '" //Any extra info on application
+                                    + application.getApplication().getExtraInfo() + "', imageURL = '" //Any extra info on application
                                     + application.getImage().getFileName() + "', submitterUsername = '" //file location of image
                                     + username + "', applicationID = " //Username of person who saved application
                                     + appID // ID of saved application. Will change when submitted
@@ -669,7 +669,7 @@ public class AlcoholDatabase {
                                     + alcInfo.getAlcoholContent() + ", formula = '"//alcohol content
                                     + alcInfo.getFormula() + "', serialNumber = '" //formula
                                     + alcInfo.getWineInfo().appellation + "', extraInfo = '" // appelation
-                                    + application.getExtraInfo() + "', imageURL = '" //Any extra info on application
+                                    + application.getApplication().getExtraInfo() + "', imageURL = '" //Any extra info on application
                                     + application.getImage().getFileName() + "', submitterUsername = '" //file location of image
                                     + username + "', applicationID = " //Username of person who saved application
                                     + appID // ID of saved application. Will change when submitted
@@ -693,7 +693,7 @@ public class AlcoholDatabase {
                                     + alcInfo.getWineInfo().vintageYear + ", '" //vintage year: see above comment
                                     + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
                                     + alcInfo.getWineInfo().appellation + "', '" //appalation
-                                    + application.getExtraInfo() + "', '"
+                                    + application.getApplication().getExtraInfo() + "', '"
                                     + application.getImage().getFileName() + "', '"
                                     + username + "', "
                                     + appID
@@ -714,7 +714,7 @@ public class AlcoholDatabase {
                                     + -1 + ", '" //vintage year: see above comment
                                     + " " + "', '" //grape vaietal
                                     + " " + "', '" //appalation
-                                    + application.getExtraInfo() + "', '"
+                                    + application.getApplication().getExtraInfo() + "', '"
                                     + application.getImage().getFileName() + "', '"
                                     + username + "', "
                                     + appID
