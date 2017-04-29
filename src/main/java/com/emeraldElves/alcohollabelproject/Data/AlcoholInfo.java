@@ -5,7 +5,7 @@ package com.emeraldElves.alcohollabelproject.Data;
  */
 public class AlcoholInfo {
 
-    private int alcoholContent;
+    private double alcoholContent;
     private String fancifulName;
     private String brandName;
     private ProductSource origin;
@@ -13,7 +13,7 @@ public class AlcoholInfo {
     private String formula;
 
 
-    public AlcoholInfo(int alcoholContent, String fancifulName, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo, String serialNumber, String formula) {
+    public AlcoholInfo(double alcoholContent, String fancifulName, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo, String serialNumber, String formula) {
         this.alcoholContent = alcoholContent;
         this.fancifulName = fancifulName;
         this.brandName = brandName;
@@ -88,7 +88,7 @@ public class AlcoholInfo {
      *
      * @return the alcohol percentage as an int
      */
-    public int getAlcoholContent() {
+    public double getAlcoholContent() {
         return this.alcoholContent;
     }
 

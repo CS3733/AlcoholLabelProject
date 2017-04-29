@@ -1,18 +1,23 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.Log;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
-
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
  * Created by Essam on 4/4/2017.
  */
 public class NewUserController implements IController {
+    @FXML
+    TextField companyField;
     @FXML
     PasswordField passwordField;
     @FXML
@@ -49,13 +54,23 @@ public class NewUserController implements IController {
     Label addressError;
     @FXML
     Label repIDError;
-    private int repID;
+    @FXML
+    Tooltip passwordHint;
+    @FXML
+    ImageView isValid;
+
+
+    private int repID; //move this to application info
+    String permitNum;
     private Main main;
     private int userTypeInt = -1;
     private String FullName;
     private String password;
     private String address;
+    private String company;
     private PasswordStrengthChecker CheckStrength;
+    private StrongPasswordEncryptor EncryptPassword = new StrongPasswordEncryptor();
+    Image image;
     public NewUserController() {
 
     }
@@ -70,19 +85,24 @@ public class NewUserController implements IController {
         applicantBtn.setToggleGroup(accountType);
         agentBtn.setToggleGroup(accountType);
         CheckStrength = new PasswordStrengthChecker();
+        passwordHint.setText("Password must: \n Contains atleast 8 Characters \n 1 Uppercase character \n 1 Lowercase character \n A digit \n A symbol");
+
     }
 
     public void setUserTypeAgent(){
         userTypeInt = 0;
+        //permitNumText.setText(null);
         permitNumText.setDisable(true);
+        companyField.setDisable(true);
     }
 
     public void setUserTypeApplicant(){
         userTypeInt = 1;
         permitNumText.setDisable(false);
+        companyField.setDisable(false);
     }
 
-    public void createPotentialUser(){
+    public void createPotentialUser() throws UnsupportedEncodingException {
         accountError.setText("");
         emailError.setText("");
         phoneNumError.setText("");
@@ -105,6 +125,10 @@ public class NewUserController implements IController {
 
 
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
+        if(Storage.getInstance().isValidUser(Email.getEmailAddress())){
+            emailError.setText("There is already an account with this email");
+            return;
+        }
         PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
         if(!PhoneNumber.isValid()){
             phoneNumError.setText("Enter a valid phone number");
@@ -116,17 +140,21 @@ public class NewUserController implements IController {
             return;
         }
 
-        int permitNum;
+        //permitNum = -1;
 
         if(permitNumText.isDisabled()){
-            permitNum = -1;
+            permitNum = "";
         }
 
+        if(permitNumText.isEditable() && !(permitNumText.getText().trim().isEmpty()) && !(userTypeInt == 0)){
+            permitNum = permitNumText.getText();//check if field is not null
+        }
+        else if(permitNumText.isEditable() && permitNumText.getText().trim().isEmpty() && !(userTypeInt == 0)){
 
-        if(permitNumText.isEditable()&&permitNumText.getText().trim().isEmpty()){
             permitNumError.setText("Enter a valid permit number");
             return;
         }
+
 
 
 
@@ -136,7 +164,11 @@ public class NewUserController implements IController {
         }
 
 
-
+//        if (companyField.getText().trim().isEmpty())
+//        {
+//            nameError.setText("Enter a valid company");
+//            return;
+//        }
 
 
 
@@ -163,53 +195,41 @@ public class NewUserController implements IController {
         java.util.Date newDate = new Date();
          Email  = new EmailAddress(emailAddress.getText().toString());
          PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        password = passwordField.getText();
-        permitNum = Integer.parseInt(representativeID.getText());//check if field is not null
+
+        password = EncryptPassword.encryptPassword(passwordField.getText());
+        Email  = new EmailAddress(emailAddress.getText().toString());
+        PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
+        repID =(Integer.parseInt(representativeID.getText()));
+        permitNum = representativeID.getText();//check if field is not null
         address = addressText.getText();//representative ID
-        repID = Integer.parseInt(permitNumText.getText());//check if field is not null
+        company = companyField.getText();
+
+
         FullName = Name.getText();
 
 
 
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
-                password, newDate, permitNum, address))){
+        if (Storage.getInstance().applyForUser(new PotentialUser(FullName, repID, Email, PhoneNumber, userType,
+                password, newDate, permitNum, address, company))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
         }
     }
-
-
-    //shouldn't be needed anymore
-    /*
-    public void createApplicant(){
-        //Setting all the fields for the new potential user
-        String password = passwordField.getText();
-        String FullName = Name.getText();
-        UserType userType = UserType.APPLICANT;
-        int repID = Integer.parseInt(representativeID.getText());//representative ID
-        java.util.Date newDate =DateHelper.getDate(date.getValue().getDayOfMonth(),date.getValue().getMonthValue() - 1,date.getValue().getYear());
-        EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
-        PhoneNumber PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        int permitNum = Integer.parseInt(permitNumText.getText());
-        String address = addressText.getText();
-
-        if (Storage.getInstance().applyForUser(new PotentialUser(FullName,repID ,Email, PhoneNumber, userType,
-                password, newDate, permitNum, address))){
-            errorMsg.setVisible(false);
-            main.loadHomepage();
-        } else {
-            errorMsg.setVisible(true);
-        }
-    }
-    */
 
     public void checkPassword(){
-        if(CheckStrength.isPasswordValid(passwordField.getText())){
-            Log.console("Good");
-        }
-
+        final Popup popup = new Popup();
+        //popup.show();
+        passwordHint.setText("Password must: \n - Contains atleast 8 Characters \n - A Uppercase character \n - A Lowercase character \n - A digit \n - A symbol");
+        passwordError.setVisible(false);
+            if (!CheckStrength.isPasswordValid(passwordField.getText())) {
+                image = new Image("/images/X.png");
+                isValid.setImage(image);
+            } else if (CheckStrength.isPasswordValid(passwordField.getText())) {
+                image = new Image("/images/Tick.png");
+                isValid.setImage(image);
+            }
     }
 
     public void GoHome(){

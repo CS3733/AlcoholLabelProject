@@ -43,10 +43,11 @@ public class Storage {
                             new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                             new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                             new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                            new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                            new Database.TableField("permitNum", "VARCHAR (255)"),
                             new Database.TableField("address", "VARCHAR (255)"),
                             new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+                            new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                            new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new TTBAgentLogin table");
         }
         catch (SQLException e){
@@ -58,10 +59,11 @@ public class Storage {
                     new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
-                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"));
+                    new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new ApplicantLogin table");
         }
         catch (SQLException e){
@@ -96,7 +98,7 @@ public class Storage {
                     new Database.TableField("physicalAddress", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("company", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("phoneNum", "VARCHAR (255) NOT NULL"), //check with kyle
                     new Database.TableField("emailAddress", "VARCHAR (255) NOT NULL"));
             Log.console("Created new ManufacturerInfo table");
@@ -106,7 +108,7 @@ public class Storage {
 
         try {
             database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
+                    new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
                     new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),
@@ -127,15 +129,42 @@ public class Storage {
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
-                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
                     new Database.TableField("email", "VARCHAR (255) UNIQUE NOT NULL"),
-                    new Database.TableField("date", "BIGINT"));
+                    new Database.TableField("date", "BIGINT"),
+                    new Database.TableField("company", "VARCHAR (255)"));
             Log.console("Created new NewApplicant table");
         }
         catch (SQLException e){
             Log.console("Used existing NewApplicant table");
+        }
+
+        try{
+            database.createTable("SavedApplications",
+                new Database.TableField("labelApproval", "BOOLEAN"),
+                new Database.TableField("stateOnly", "VARCHAR (2)"),
+                new Database.TableField("bottleCapacity", "INTEGER"),
+                new Database.TableField("origin", "INTEGER"),//Domestic or Imported
+                new Database.TableField("type", "INTEGER"),//BEER, WINE or SPIRITS
+                new Database.TableField("fancifulName", "VARCHAR (255)"),
+                new Database.TableField("brandName", "VARCHAR (255)"),
+                new Database.TableField("alcoholContent", "DOUBLE"),
+                new Database.TableField("formula", "VARCHAR (255)"),
+                new Database.TableField("serialNumber", "VARCHAR (255)"),
+                new Database.TableField("pH", "REAL"),
+                new Database.TableField("vintageYear", "INTEGER"),
+                new Database.TableField("varietals", "VARCHAR (255)"),
+                new Database.TableField("wineAppellation", "VARCHAR (255)"),
+                new Database.TableField("extraInfo", "VARCHAR (255)"),
+                new Database.TableField("imageURL", "VARCHAR (255)"),
+                new Database.TableField("submitterUsername", "VARCHAR (255)"),
+                new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"));
+
+        }
+        catch (SQLException e){
+            Log.console("Used existing SavedApplications table");
         }
 
         return database;
@@ -156,6 +185,19 @@ public class Storage {
         return alcoholDB.submitApplication(application, username);
     }
 
+    public String getAgentPassword(String username){
+        return usersDB.getAgentPassword(username);
+    }
+    public String getUserPassword(String username){
+        return usersDB.getUserPassword(username);
+    }
+
+
+    public boolean updateApplication(SubmittedApplication application, String username) {
+        return alcoholDB.updateApplication(application, username);
+    }
+
+
     public boolean approveApplication(SubmittedApplication application, String agentName, Date expirationDate) {
         return alcoholDB.approveApplication(application, agentName, expirationDate);
     }
@@ -163,6 +205,34 @@ public class Storage {
     public boolean rejectApplication(SubmittedApplication application, String reason) {
         return alcoholDB.rejectApplication(application, reason);
     }
+
+    public boolean removeSavedApplication(SavedApplication application){
+        return alcoholDB.removeSavedApplication(application);
+    }
+
+    /**
+     * Adds application to the given agent
+     * @param application Application to add
+     * @param agentUsername Agent to get application added to
+     * @return Whether or not application was added succesfully
+     */
+    public boolean addApplication(SubmittedApplication application, String agentUsername){
+
+
+       return alcoholDB.addApplication(application, agentUsername);
+    }
+    /*
+    /**
+     * Removes application from given agent
+     * @param application Application to add
+     * @param agentUsername Agent to remove application from
+     * @return Whether or not application was removed successfully
+
+    public boolean removeApplication(SubmittedApplication application, String agentUsername){
+        return alcoholDB.removeApplication(application, agentUsername);
+    }
+    */
+
 
     public boolean createUser(PotentialUser user) {
         return usersDB.createUser(user);
@@ -182,6 +252,16 @@ public class Storage {
     }
 
     public List<PotentialUser> getPotentialUsers(){ return usersDB.getPotentialUsers();  }
+
+    /**
+     * calls the saveApplication function in the alcohol database
+     * @param application The application to save
+     * @param username The username of the person saving the application
+     * @return Whether or not the application was successfully saved
+     */
+    public boolean saveApplication(SavedApplication application, String username){
+        return alcoholDB.saveApplication(application,username);
+    }
 
     /**
      *
@@ -205,21 +285,30 @@ public class Storage {
         if( usersDB.isValidTTBAgentAccount(username)){
             usersDB.updatePasswordTTBAgent(password,username);
         }
-        else if( usersDB.isValidTTBAgentAccount(username)) {
-            usersDB.updatePasswordApplicant(password,username);
-        }
+        else if( usersDB.isValidUserAccount(username)) {
+           usersDB.updatePasswordApplicant(password,username);
+       }
     }
 
     public boolean isValidUser( String username) {
-        if( usersDB.isValidTTBAgentAccount(username)){
-            return(true);
-        }
-        else if( usersDB.isValidTTBAgentAccount(username)) {
+        return usersDB.isValidTTBAgentAccount(username)||(usersDB.isValidUserAccount(username));
+//            return(true);
+//        }
+//        return false;
+    }
+
+    public boolean isValidAgent(String username){
+        if( usersDB.isValidTTBAgent(username,"")) {
             return (true);
         }
         return false;
     }
-
+    public boolean isValidApplicant(String username){
+        if( usersDB.isValidAccount(username,"")) {
+            return (true);
+        }
+        return false;
+    }
     public boolean isValidUser( String username, String password) {
         if( usersDB.isValidAccount(username, password)){
             return(true);
@@ -254,6 +343,10 @@ public class Storage {
         return alcoholDB.getApplicationsByApplicantUsername(username);
     }
 
+    public List<SavedApplication> getSavedApplicationsByApplicant(String username){
+        return alcoholDB.getSavedApplicationsByApplicant(username);
+    }
+
     public List<SubmittedApplication> getAssignedApplications(String agentName) {
         return alcoholDB.getAssignedApplications(agentName);
     }
@@ -267,14 +360,16 @@ public class Storage {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
 
-        else return new Applicant(email,"", 0, 0, "", "");
+        else return new Applicant(email,"", 0, "", "", "", "");
+
 
     }
 
     public void modifyRepresentativeID(String email, int repID) {
         usersDB.setRepIDFromEmail(repID, email);
     }
-    public void modifypermitNum(String email, int permitNum) {
+
+    public void modifypermitNum(String email, String permitNum) {
 
     }
     public void modifyAddress(String email, String address) {

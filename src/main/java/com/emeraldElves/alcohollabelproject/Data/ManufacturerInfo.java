@@ -9,11 +9,11 @@ public class ManufacturerInfo {
     private String physicalAddress;
     private String company;
     private int representativeID;
-    private int permitNum;
+    private String permitNum;
     private PhoneNumber phoneNumber;
     private EmailAddress emailAddress;
 
-    public ManufacturerInfo(String name, String physicalAddress, String company, int representativeID, int permitNum, PhoneNumber phoneNumber, EmailAddress emailAddress) {
+    public ManufacturerInfo(String name, String physicalAddress, String company, int representativeID, String permitNum, PhoneNumber phoneNumber, EmailAddress emailAddress) {
         this.name = name;
         this.physicalAddress = physicalAddress;
         this.company = company;
@@ -64,7 +64,7 @@ public class ManufacturerInfo {
      *
      * @return The permit number of the manufacturer.
      */
-    public int getPermitNum() {
+    public String getPermitNum() {
         return permitNum;
     }
 
