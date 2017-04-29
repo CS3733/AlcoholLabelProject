@@ -214,9 +214,9 @@ public class Database {
 
     public boolean update(String tableName, String values, String where) {
         if (!connected)
-            return false;
+            return false;//+ tableName +    +values+
         try {
-            statement.execute("UPDATE " + tableName + " SET " + values + " WHERE " + where);
+            statement.execute("UPDATE "+tableName+" SET "+values+" WHERE "+ where);
             connection.commit();
             return true;
         } catch (SQLException e) {

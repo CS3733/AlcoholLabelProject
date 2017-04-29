@@ -185,9 +185,18 @@ public class Storage {
         return alcoholDB.submitApplication(application, username);
     }
 
+    public String getAgentPassword(String username){
+        return usersDB.getAgentPassword(username);
+    }
+    public String getUserPassword(String username){
+        return usersDB.getUserPassword(username);
+    }
+
+
     public boolean updateApplication(SubmittedApplication application, String username) {
         return alcoholDB.updateApplication(application, username);
     }
+
 
     public boolean approveApplication(SubmittedApplication application, String agentName, Date expirationDate) {
         return alcoholDB.approveApplication(application, agentName, expirationDate);
@@ -208,7 +217,9 @@ public class Storage {
      * @return Whether or not application was added succesfully
      */
     public boolean addApplication(SubmittedApplication application, String agentUsername){
-        return alcoholDB.addApplication(application, agentUsername);
+
+
+       return alcoholDB.addApplication(application, agentUsername);
     }
     /*
     /**
@@ -274,21 +285,30 @@ public class Storage {
         if( usersDB.isValidTTBAgentAccount(username)){
             usersDB.updatePasswordTTBAgent(password,username);
         }
-        else if( usersDB.isValidTTBAgentAccount(username)) {
-            usersDB.updatePasswordApplicant(password,username);
-        }
+        else if( usersDB.isValidUserAccount(username)) {
+           usersDB.updatePasswordApplicant(password,username);
+       }
     }
 
     public boolean isValidUser( String username) {
-        if( usersDB.isValidTTBAgentAccount(username)){
-            return(true);
-        }
-        else if( usersDB.isValidTTBAgentAccount(username)) {
+        return usersDB.isValidTTBAgentAccount(username)||(usersDB.isValidUserAccount(username));
+//            return(true);
+//        }
+//        return false;
+    }
+
+    public boolean isValidAgent(String username){
+        if( usersDB.isValidTTBAgent(username,"")) {
             return (true);
         }
         return false;
     }
-
+    public boolean isValidApplicant(String username){
+        if( usersDB.isValidAccount(username,"")) {
+            return (true);
+        }
+        return false;
+    }
     public boolean isValidUser( String username, String password) {
         if( usersDB.isValidAccount(username, password)){
             return(true);

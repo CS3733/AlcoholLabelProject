@@ -97,11 +97,7 @@ public class AlcoholDatabase {
 
         return applications;
     }
-
-    public boolean addApplication(SubmittedApplication application, String agentUsername){
-        return db.update("SubmittedApplications", "TTBUsername = '" + agentUsername + "'"
-                , "applicationID = " + application.getApplicationID());
-    }
+    
 
     /**
      * Get applications from a {@link ResultSet}
@@ -255,7 +251,8 @@ public class AlcoholDatabase {
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
                         + image + "', qualifications = '"
-                        + info.getQualifications() + "'", "applicationID = "
+                        + info.getQualifications() + "', expirationDate = '"
+                        + info.getSubmissionDate()+"'", "applicationID = "
                         + application.getApplicationID());
 
 
@@ -263,8 +260,8 @@ public class AlcoholDatabase {
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
                         + manInfo.getPhysicalAddress() + "', company = '" //physical address
                         + manInfo.getCompany() + "', representativeID = " //company
-                        + manInfo.getRepresentativeID() + ", permitNum = " //representative id
-                        + manInfo.getPermitNum() + ", phoneNum = '"//permit num
+                        + manInfo.getRepresentativeID() + ", permitNum = '" //representative id
+                        + manInfo.getPermitNum() + "', phoneNum = '"//permit num
                         + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
 
@@ -300,7 +297,7 @@ public class AlcoholDatabase {
                                 + status.getValue() + ", '" //status
                                 + status.getMessage() + "', " //status message
                                 + info.getSubmissionDate().getTime() + ", " //submission time
-                                + info.getSubmissionDate().getTime() + ", '"//no field for expiration date
+                                + info.getSubmissionDate().getTime() + ", '"
                                 + manInfo.getName() + "', " //agent name
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
                                 + assignedAgent + "', '" //TTB username
@@ -324,8 +321,8 @@ public class AlcoholDatabase {
                                 + manInfo.getName() + "', '" //authorized name: i assume this is just the name of the applicant???
                                 + manInfo.getPhysicalAddress() + "', '" //physical address
                                 + manInfo.getCompany() + "', " //company
-                                + manInfo.getRepresentativeID() + ", " //representative id
-                                + manInfo.getPermitNum() + ", '"//permit num
+                                + manInfo.getRepresentativeID() + ", '" //representative id
+                                + manInfo.getPermitNum() + "', '"//permit num
                                 + manInfo.getPhoneNumber().getPhoneNumber() + "', '" //phone num. It may look stupid but it works
                                 + manInfo.getEmailAddress().getEmailAddress() + "'" //email
                         , "ManufacturerInfo");
@@ -432,8 +429,8 @@ public class AlcoholDatabase {
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
                         + manInfo.getPhysicalAddress() + "', company = '" //physical address
                         + manInfo.getCompany() + "', representativeID = " //company
-                        + manInfo.getRepresentativeID() + ", permitNum = " //representative id
-                        + manInfo.getPermitNum() + ", phoneNum = '"//permit num
+                        + manInfo.getRepresentativeID() + ", permitNum = '" //representative id
+                        + manInfo.getPermitNum() + "', phoneNum = '"//permit num
                         + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
 
@@ -747,6 +744,18 @@ public class AlcoholDatabase {
         application.setStatus(ApplicationStatus.REJECTED);
         return db.update("SubmittedApplications", "status = " + ApplicationStatus.REJECTED.getValue() + ", statusMsg = '" + message + "'", "applicationID = " + application.getApplicationID());
     }
+
+    /**
+     * Adds the application to the given agent
+     * @param application Application to add
+     * @param agentUsername Username to add to
+     * @return Whether or not it was added successfully
+     */
+    public boolean addApplication(SubmittedApplication application, String agentUsername){
+        return db.update("SubmittedApplications", "TTBUsername = '" + agentUsername + "'"
+                            , "applicationID = " + application.getApplicationID());
+    }
+    
 
     public boolean changeVintageYear(SubmittedApplication application, int vintageYear) {
         if (application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE) {

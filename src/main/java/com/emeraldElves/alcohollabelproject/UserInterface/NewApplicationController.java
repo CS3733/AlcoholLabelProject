@@ -85,6 +85,8 @@ public class NewApplicationController implements IController {
 
     private Main main;
 
+    private LabelImage image;
+
     private SubmittedApplication application;
     private SavedApplication savedApplication;
 
@@ -417,13 +419,16 @@ public class NewApplicationController implements IController {
                 } else{
                     newApp.setImage(new ProxyLabelImage(""));
                 }
+                if(isSavedApplication){
+                    newApp.setImage(new ProxyLabelImage(this.image.getFileName()));
+                }
 
                 if (application != null)
                     newApp.setApplicationID(application.getApplicationID());
 
                 //Submit the new application to the database
                 ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
-                boolean success = applicantInterface.submitApplication(newApp);
+              boolean success = applicantInterface.submitApplication(newApp);
                 if(isSavedApplication){
                     //delete old saved application after submitting it
                     boolean saveSuccess = Storage.getInstance().removeSavedApplication(savedApplication);
@@ -449,7 +454,6 @@ public class NewApplicationController implements IController {
         ApplicationType appType;
         AlcoholInfo alcoholInfo;
         String extraInfo;
-        LabelImage image;
         //
         //Time for a ton of isEmpty()
 

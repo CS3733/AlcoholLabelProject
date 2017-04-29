@@ -10,17 +10,17 @@ import javafx.scene.layout.VBox;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 /**
- * Created by keionbis on 4/21/17.
+ * Created by keionbis on 4/27/17.
  */
-public class UpdatePasswordController implements IController {
+ public class UpdateUserPasswordController implements IController {
     private String currentUser;
     private String currentPassword;
     @FXML
-    TextField NewPassword1, NewPassword2;
+    TextField NewPassword1, NewPassword2, CurrentPassword;
     @FXML
     VBox errorMsg;
     @FXML
-    Label passwordError;
+    Label passwordError, passwordError1;
 
     private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
     private PasswordStrengthChecker checkPassword = new PasswordStrengthChecker();
@@ -29,8 +29,9 @@ public class UpdatePasswordController implements IController {
     public void UpdatePassword() {
         passwordError.setText("");
         this.currentUser = Authenticator.getInstance().getUsername();
-        if (Storage.getInstance().isValidUser(currentUser)) {
-            if(checkPassword.isPasswordValid(NewPassword1.getText())) {
+        currentPassword = CurrentPassword.getText();
+        if (Storage.getInstance().isValidUser(currentUser) && (passwordEncryptor.checkPassword(currentPassword, (Storage.getInstance().getAgentPassword(currentUser))) || (passwordEncryptor.checkPassword(currentPassword,(Storage.getInstance().getUserPassword(currentUser)))))) {
+            if (checkPassword.isPasswordValid(NewPassword1.getText())) {
                 if (NewPassword1.getText().equals(NewPassword2.getText())) {
                     Storage.getInstance().updatePassword(currentUser, passwordEncryptor.encryptPassword(NewPassword1.getText()));
                     main.loadFXML("/fxml/HomePage.fxml");
@@ -40,11 +41,14 @@ public class UpdatePasswordController implements IController {
                     return;
 
                 }
-            }
-            else{
-                passwordError.setText("Please Enter a valid Password");
+            } else {
+                passwordError1.setText("Please Enter a valid Password");
                 return;
             }
+        }
+        else{
+            passwordError.setText("Incorrect Password");
+
         }
     }
 
@@ -53,3 +57,5 @@ public class UpdatePasswordController implements IController {
 
     }
 }
+
+

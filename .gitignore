@@ -196,3 +196,7 @@ testDB/
 Log.txt
 
 *.jpeg
+
+src/main/resources/fxml/ApprovalPage.fxml
+
+src/main/resources/fxml/NewUser.fxml
