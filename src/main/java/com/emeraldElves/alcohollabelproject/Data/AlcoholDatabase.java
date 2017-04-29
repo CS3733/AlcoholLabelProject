@@ -97,11 +97,7 @@ public class AlcoholDatabase {
 
         return applications;
     }
-
-    public boolean addApplication(SubmittedApplication application, String agentUsername){
-        return db.update("SubmittedApplications", "TTBUsername = '" + agentUsername + "'"
-                , "applicationID = " + application.getApplicationID());
-    }
+    
 
     /**
      * Get applications from a {@link ResultSet}
