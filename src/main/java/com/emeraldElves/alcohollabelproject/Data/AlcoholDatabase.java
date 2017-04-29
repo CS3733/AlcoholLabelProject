@@ -759,11 +759,7 @@ public class AlcoholDatabase {
         return db.update("SubmittedApplications", "TTBUsername = '" + agentUsername + "'"
                             , "applicationID = " + application.getApplicationID());
     }
-    /*
-    public boolean removeApplication(SubmittedApplication application, String agentUsername){
-
-    }
-    */
+    
 
     public boolean changeVintageYear(SubmittedApplication application, int vintageYear) {
         if (application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE) {
