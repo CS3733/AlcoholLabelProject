@@ -9,8 +9,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by keionbis on 4/5/17.
@@ -72,6 +79,7 @@ public class ApprovalProcessController implements IController {
     Button assignButton;
     @FXML
     Label assignErrorField;
+
     @FXML
     DatePicker ExpirationDate;
 
@@ -85,6 +93,20 @@ public class ApprovalProcessController implements IController {
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application = application;
+        //Checks if super user
+        if(Authenticator.getInstance().getUserType() == UserType.SUPERAGENT){
+            assignUserBox.setVisible(true);
+            assignUserBox.setDisable(false);
+            assignButton.setVisible(true);
+            assignButton.setDisable(false);
+            //add all users to combo box
+            List<String> userList = new ArrayList<>();
+            userList = Storage.getInstance().getAllTTBUsernames();
+            assignUser.addAll(userList);
+            assignUserBox.setValue("Select a user");
+            assignUserBox.setItems(assignUser);
+        }
+
         agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
         fancifulName.setText(application.getApplication().getAlcohol().getName());
@@ -127,6 +149,23 @@ public class ApprovalProcessController implements IController {
     public void GoHome() {
         main.loadFXML("/fxml/HomePage.fxml");
 
+    }
+
+    /**
+     * Called when the assign button is clicked. This assigns the agent selected to the current
+     * application and then returns to the view all applications screen.
+     */
+    public void assignToUser(){
+        String userToAssign;
+        userToAssign = assignUserBox.getValue().toString();
+        if(userToAssign.equals("Select a user")){
+            assignErrorField.setText("Select a user");
+            return;
+        }
+        TTBAgentInterface agent = new TTBAgentInterface(userToAssign); // user to assign to
+        //Log.console(application.getTtbAgentName());
+        agent.addApplication(application);
+        main.loadFXML("/fxml/SuperagentViewAllApplications.fxml");
     }
 
     public void Approve() {
