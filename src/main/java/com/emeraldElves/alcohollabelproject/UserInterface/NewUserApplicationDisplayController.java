@@ -48,7 +48,6 @@ public class NewUserApplicationDisplayController implements IController {
     private ObservableList<PotentialUser> data = FXCollections.observableArrayList();
     private COLASearch search;
 
-
     public void init(Bundle bundle){
         this.init(bundle.getMain("main"));
     }
