@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.Applicant;
 
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -16,6 +17,15 @@ public class SubmittedApplication {
     private String ttbMessage = "";
     private ProxyLabelImage proxyImage;
     private String ttbAgentName = "";
+    //Adding fields for CSV import
+    private int classTypeCode;
+    private String applType;
+    private String specialDesc;
+    private Date issueDate;
+    private Date surrenderedDate;
+    private String recievedCode;
+    //End of adding fields for csv import
+
     public String getTtbMessage() {
         return ttbMessage;
     }
@@ -94,5 +104,53 @@ public class SubmittedApplication {
 
     public HashMap<String,Boolean> getUpdatesSelected(){
         return this.updatesSelected;
+    }
+
+    public void setClassTypeCode(int classTypeCode) {
+        this.classTypeCode = classTypeCode;
+    }
+
+    public void setApplType(String applType) {
+        this.applType = applType;
+    }
+
+    public void setSpecialDesc(String specialDesc) {
+        this.specialDesc = specialDesc;
+    }
+
+    public void setIssueDate(Date issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public void setSurrenderedDate(Date surrenderedDate) {
+        this.surrenderedDate = surrenderedDate;
+    }
+
+    public void setRecievedCode(String recievedCode) {
+        this.recievedCode = recievedCode;
+    }
+
+    public int getClassTypeCode() {
+        return classTypeCode;
+    }
+
+    public String getApplType() {
+        return applType;
+    }
+
+    public String getSpecialDesc() {
+        return specialDesc;
+    }
+
+    public Date getIssueDate() {
+        return issueDate;
+    }
+
+    public Date getSurrenderedDate() {
+        return surrenderedDate;
+    }
+
+    public String getRecievedCode() {
+        return recievedCode;
     }
 }

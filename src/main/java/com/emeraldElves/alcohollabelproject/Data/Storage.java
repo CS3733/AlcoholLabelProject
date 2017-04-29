@@ -86,7 +86,13 @@ public class Storage {
                     new Database.TableField("stateOnly", "VARCHAR (2)"),
                     new Database.TableField("bottleCapacity", "INTEGER"),
                     new Database.TableField("imageURL", "VARCHAR (255)"),
-                    new Database.TableField("qualifications", "VARCHAR (10000)"));
+                    new Database.TableField("qualifications", "VARCHAR (10000)"),
+                    new Database.TableField("classTypeCode", "INTEGER"),
+                    new Database.TableField("applType", "VARCHAR (255)"), // always cola
+                    new Database.TableField("specialDesc", "VARCHAR (255)"), // always .
+                    new Database.TableField("issueDate", "BIGINT"),
+                    new Database.TableField("surrenderedDate", "BIGINT"),
+                    new Database.TableField("recievedCode", "VARCHAR (255)"));
             Log.console("Created new SubmittedApplications table");
         } catch (SQLException e) {
             Log.console("Used existing SubmittedApplications table");
