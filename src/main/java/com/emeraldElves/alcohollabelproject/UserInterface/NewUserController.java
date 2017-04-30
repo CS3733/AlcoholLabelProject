@@ -125,7 +125,7 @@ public class NewUserController implements IController {
 
 
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
-        if(Storage.getInstance().isValidUser(Email.getEmailAddress())){
+        if(Storage.getInstance().isValidUser(Email.getEmailAddress()) || Storage.getInstance().isCurrentNewApplicant(Email.getEmailAddress())){
             emailError.setText("There is already an account with this email");
             return;
         }

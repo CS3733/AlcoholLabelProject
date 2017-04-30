@@ -41,6 +41,9 @@ public class ApplicationInfo {
     }
 
     public ApplicationType getApplicationType(){ return appType;}
+    public Date getExpirationDate(){
+        return expirationDate;
+    }
 
     public String getQualifications(){ return qualifications;}
 //    public Date getExpirationDate(){return expirationDate;}
@@ -54,6 +57,10 @@ public class ApplicationInfo {
     public void setExtraInfo(String extraInfo) {
         this.extraInfo = extraInfo;
     }
+    public void setExpirationDate(Date expirationDate){
+        this.expirationDate = expirationDate;
+    }
 }
+
 
 
