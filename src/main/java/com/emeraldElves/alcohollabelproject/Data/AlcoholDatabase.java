@@ -680,45 +680,33 @@ public class AlcoholDatabase {
             else {
                 //No saved application with that ID, so add to table, not update
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    worked = db.insert(appType.isLabelApproval() + ", '" // app types
-                                    + appType.getStateOnly() + "', " // app types
-                                    + appType.getBottleCapacity() + ", " // app types
-                                    + alcInfo.getOrigin().getValue() + ", " //origin
-                                    + alcInfo.getAlcoholType().getValue() + ", '" // alcohol type
-                                    + alcInfo.getName() + "', '" //fanciful name
-                                    + alcInfo.getBrandName() + "', " //brand name
-                                    + alcInfo.getAlcoholContent() + ", '"
+                    worked = db.insert(appID + ", " // app ID
+                                    + alcInfo.getAlcoholContent() + ", '" // alcohol content
+                                    + alcInfo.getName() + "', '" // fanciful name
+                                    + alcInfo.getBrandName() + "', " // brand name
+                                    + alcInfo.getOrigin().getValue() + ", " // origin
+                                    + alcInfo.getAlcoholType().getValue() + ", '" //alcohol type
                                     + alcInfo.getFormula() + "', '" //formula
-                                    + alcInfo.getSerialNumber() + "', "//serial number
+                                    + alcInfo.getSerialNumber() + "', " //serial number
                                     + alcInfo.getWineInfo().pH + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
                                     + alcInfo.getWineInfo().vintageYear + ", '" //vintage year: see above comment
                                     + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
-                                    + alcInfo.getWineInfo().appellation + "', '" //appalation
-                                    + application.getApplication().getExtraInfo() + "', '"
-                                    + application.getImage().getFileName() + "', '"
-                                    + username + "', "
-                                    + appID
+                                    + alcInfo.getWineInfo().appellation + "'" //appalation
                             , "HistoryAlcoholInfo");
                 } else {
                     //not a wine application, so wine fields are not applicable
-                    worked = db.insert(appType.isLabelApproval() + ", '" // app types
-                                    + appType.getStateOnly() + "', " // app types
-                                    + appType.getBottleCapacity() + ", " // app types
-                                    + alcInfo.getOrigin().getValue() + ", " //origin
-                                    + alcInfo.getAlcoholType().getValue() + ", '" // alcohol type
-                                    + alcInfo.getName() + "', '" //fanciful name
-                                    + alcInfo.getBrandName() + "', " //brand name
-                                    + alcInfo.getAlcoholContent() + ", '"
+                    worked = db.insert(appID + ", " // app ID
+                                    + alcInfo.getAlcoholContent() + ", '" // alcohol content
+                                    + alcInfo.getName() + "', '" // fanciful name
+                                    + alcInfo.getBrandName() + "', " // brand name
+                                    + alcInfo.getOrigin().getValue() + ", " // origin
+                                    + alcInfo.getAlcoholType().getValue() + ", '" //alcohol type
                                     + alcInfo.getFormula() + "', '" //formula
-                                    + alcInfo.getSerialNumber() + "', "//serial number
+                                    + alcInfo.getSerialNumber() + "', " //serial number
                                     + -1 + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
                                     + -1 + ", '" //vintage year: see above comment
                                     + " " + "', '" //grape vaietal
-                                    + " " + "', '" //appalation
-                                    + application.getApplication().getExtraInfo() + "', '"
-                                    + application.getImage().getFileName() + "', '"
-                                    + username + "', "
-                                    + appID
+                                    + " " + "'" //appalation
                             , "HistoryAlcoholInfo");
                 }
 
