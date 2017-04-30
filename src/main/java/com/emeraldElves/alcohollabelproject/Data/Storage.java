@@ -432,15 +432,18 @@ public class Storage {
     }
 
     public void modifypermitNum(String email, String permitNum) {
-
+        usersDB.setPermitNumFromEmail(permitNum, email);
     }
     public void modifyAddress(String email, String address) {
-
+        usersDB.setAddressFromEmail(address, email);
     }
     public void modifyphoneNum(String email, String phoneNum) {
-
+        usersDB.setPhoneNumFromEmail(phoneNum, email);
     }
     public void modifyName(String email, String name) {
-
+        usersDB.setNameFromEmail(name, email);
+    }
+    public void modifyCompany(String email, String company) {
+        usersDB.setCompanyFromEmail(company, email);
     }
 }
