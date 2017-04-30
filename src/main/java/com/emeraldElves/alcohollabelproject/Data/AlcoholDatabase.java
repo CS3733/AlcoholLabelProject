@@ -638,7 +638,7 @@ public class AlcoholDatabase {
             if (resultsSubmitted.next()) {
                 //ID already exists, so we update saved application in table
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    db.update("HistorySubmittedApplication",
+                    db.update("HistoricalSubmittedApplication",
                             "labelApproval = " + appType.isLabelApproval() + ", stateOnly = '"
                                     + appType.getStateOnly() + "', bottleCapacity = "
                                     + appType.getBottleCapacity() + ", origin = "
@@ -659,7 +659,7 @@ public class AlcoholDatabase {
                                     + appID // ID of saved application. Will change when submitted
                             , "applicationID = " + application.getApplicationID());
                 } else {
-                    db.update("HistorySubmittedApplication",
+                    db.update("HistoricalSubmittedApplication",
                             "labelApproval = " + appType.isLabelApproval() + ", stateOnly = '"
                                     + appType.getStateOnly() + "', bottleCapacity = "
                                     + appType.getBottleCapacity() + ", origin = "
@@ -693,6 +693,7 @@ public class AlcoholDatabase {
                                     + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
                                     + alcInfo.getWineInfo().appellation + "'" //appalation
                             , "HistoryAlcoholInfo");
+
                 } else {
                     //not a wine application, so wine fields are not applicable
                     worked = db.insert(appID + ", " // app ID
@@ -708,6 +709,7 @@ public class AlcoholDatabase {
                                     + " " + "', '" //grape vaietal
                                     + " " + "'" //appalation
                             , "HistoryAlcoholInfo");
+
                 }
 
                 if (!worked) {
