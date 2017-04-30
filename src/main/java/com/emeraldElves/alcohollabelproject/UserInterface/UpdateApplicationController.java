@@ -77,7 +77,7 @@ public class UpdateApplicationController implements IController{
     private AlcoholType alcType;
     private String alcName;
     private String brandName;
-    private int alcContent;
+    private double alcContent;
     private AlcoholInfo.Wine wineType = null;
     private String formula;
     private String serialNum; //needs to be a string!!!!
@@ -226,7 +226,7 @@ public class UpdateApplicationController implements IController{
 
         alcName = alcoholName.getText();
         brandName = brandNameField.getText();
-        alcContent = Integer.parseInt(alcoholContentField.getText());
+        alcContent = Double.parseDouble(alcoholContentField.getText());
         serialNum = serialText.getText();
         if (formulaText.getText().isEmpty()) {
             formula = " ";
@@ -256,7 +256,7 @@ public class UpdateApplicationController implements IController{
         //errors are printed only if required fields are not filled in
 
         //malt beverages: don't need alcohol content
-        if (!isInt(alcoholContentField)) {
+        if (!isDouble(alcoholContentField)) {
             alcContentErrorField.setText("Please enter a valid number.");
         } else {
             alcContentErrorField.setText("");
@@ -264,7 +264,7 @@ public class UpdateApplicationController implements IController{
 
         if (alcoholContentField.getText().isEmpty()) {
             alcContentErrorField.setText("Please fill in the alcohol percentage.");
-        } else if (!isInt(alcoholContentField)) {
+        } else if (!isDouble(alcoholContentField)) {
             alcContentErrorField.setText("Please enter a valid number.");
         } else {
             alcContentErrorField.setText("");
@@ -290,7 +290,7 @@ public class UpdateApplicationController implements IController{
 
 
         //check if fields are valid
-        if (isInt(alcoholContentField)) {
+        if (isDouble(alcoholContentField)) {
             if (pTypeSelect.getValue().equals("Wine")) {
                 if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
                     fieldsValid = true;
@@ -304,6 +304,9 @@ public class UpdateApplicationController implements IController{
 
             boolean success = Storage.getInstance().updateApplication(this.newApplication, this.username);
             main.loadHomepage();
+        }
+        else{
+            Log.console("All fields not valid");
         }
     }
 
