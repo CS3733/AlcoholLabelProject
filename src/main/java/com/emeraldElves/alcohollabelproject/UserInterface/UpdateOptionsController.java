@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class UpdateOptionsController implements IController {
     @FXML
@@ -38,84 +39,84 @@ public class UpdateOptionsController implements IController {
 
     public void nextPage(){
 
-       HashMap<String,Boolean> updates= new HashMap<>();
-        updates.put("label", false);
-        updates.put("alcContent", false);
-        updates.put("vintYr", false);
-        updates.put("pH", false);
-        updates.put("formula", false);
-        updates.put("stateSelect", false);
-        updates.put("alcoholName", false);
-        updates.put("brandName", false);
-        updates.put("address", false);
-        updates.put("extraInfo", false);
-        updates.put("repID", false);
-        updates.put("date", false);
+       HashSet<String> updates= new HashSet<>();
+//        updates.put("label", false);
+//        updates.put("alcContent", false);
+//        updates.put("vintYr", false);
+//        updates.put("pH", false);
+//        updates.put("formula", false);
+//        updates.put("stateSelect", false);
+//        updates.put("alcoholName", false);
+//        updates.put("brandName", false);
+//        updates.put("address", false);
+//        updates.put("extraInfo", false);
+//        updates.put("repID", false);
+//        updates.put("date", false);
 
         if(option1.isSelected() || option2.isSelected() || option3.isSelected() || option4.isSelected()
                 || option6.isSelected() || option8.isSelected() || option9.isSelected() || option14.isSelected()
                 || option15.isSelected() || option26.isSelected() || option27.isSelected() || option28.isSelected()
                 || option29.isSelected() || option30.isSelected() || option31.isSelected() || option23.isSelected()
                 || option34.isSelected()){
-            updates.replace("label", true);
+            updates.add("label");
         }
         if(option5.isSelected()){
-            updates.replace("vintYr", true);
+            updates.add("vintYr");
         }
         if(option7.isSelected()){
-            updates.replace("pH", true);
+            updates.add("pH");
         }
         if(option10.isSelected()||option17.isSelected()){
-            updates.replace("formula", true);
+            updates.add("formula");
         }
         if(option11.isSelected()){
-            updates.replace("label", true);
-            updates.replace("alcContent", true);
+            updates.add("label");
+            updates.add("alcContent");
         }
         if(option12.isSelected()||option13.isSelected()){
-            updates.replace("alcContent", true);
+            updates.add("alcContent");
         }
         if(option16.isSelected()){
-            updates.replace("stateSelect", true);
+            updates.add("stateSelect");
         }
         if(option18.isSelected()){
-            updates.replace("date", true);
+            updates.add("date");
         }
         if(option19.isSelected()){
-            updates.replace("alcContent", true);
-            updates.replace("brandName", true);
-            updates.replace("address", true);
+            updates.add("alcContent");
+            updates.add("brandName");
+            updates.add("address");
         }
         if(option20.isSelected()){
-            updates.replace("alcoholName", true);
-            updates.replace("address", true);
-            updates.replace("brandName", true);
+            updates.add("alcoholName");
+            updates.add("address");
+            updates.add("brandName");
         }
         if(option21.isSelected()){
-            updates.replace("alcoholName", true);
-            updates.replace("address", true);
-            updates.replace("brandName", true);
+            updates.add("alcoholName");
+            updates.add("address");
+            updates.add("brandName");
         }
         if(option22.isSelected()){
-            updates.replace("label", true);
-            updates.replace("extraInfo", true);
+            updates.add("label");
+            updates.add("extraInfo");
         }
         if(option24.isSelected()){
-            updates.replace("address", true);
+            updates.add("address");
         }
         if(option25.isSelected()){
-            updates.replace("repID", true);
+            updates.add("repID");
         }
         if(option32.isSelected()){
-            updates.replace("formula", true);
-            updates.replace("label", true);
+            updates.add("formula");
+            updates.add("label");
         }
         if(option33.isSelected()){
-            updates.replace("extraInfo", true);
-            updates.replace("label", true);
+            updates.add("extraInfo");
+            updates.add("label");
         }
 
-        //application.setUpdatesSelected(updates);
+        application.setUpdatesSelected(updates);
 
         //go to page 2 of update app
         main.loadFXML("/fxml/UpdateApplication.fxml", application);

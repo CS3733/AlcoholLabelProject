@@ -638,7 +638,7 @@ public class AlcoholDatabase {
             if (resultsSubmitted.next()) {
                 //ID already exists, so we update saved application in table
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    db.update("HistorySubmittedApplication",
+                    db.update("HistoricalSubmittedApplication",
                             "labelApproval = " + appType.isLabelApproval() + ", stateOnly = '"
                                     + appType.getStateOnly() + "', bottleCapacity = "
                                     + appType.getBottleCapacity() + ", origin = "
@@ -659,7 +659,7 @@ public class AlcoholDatabase {
                                     + appID // ID of saved application. Will change when submitted
                             , "applicationID = " + application.getApplicationID());
                 } else {
-                    db.update("HistorySubmittedApplication",
+                    db.update("HistoricalSubmittedApplication",
                             "labelApproval = " + appType.isLabelApproval() + ", stateOnly = '"
                                     + appType.getStateOnly() + "', bottleCapacity = "
                                     + appType.getBottleCapacity() + ", origin = "
@@ -698,7 +698,7 @@ public class AlcoholDatabase {
                                     + application.getImage().getFileName() + "', '"
                                     + username + "', "
                                     + appID
-                            , "HistoryAlcoholInfo");
+                            , "HistoricalAlcoholInfo");
                 } else {
                     //not a wine application, so wine fields are not applicable
                     worked = db.insert(appType.isLabelApproval() + ", '" // app types
@@ -719,7 +719,7 @@ public class AlcoholDatabase {
                                     + application.getImage().getFileName() + "', '"
                                     + username + "', "
                                     + appID
-                            , "HistoryAlcoholInfo");
+                            , "HistoricalAlcoholInfo");
                 }
 
                 if (!worked) {
