@@ -437,4 +437,8 @@ public class Storage {
     public void modifyName(String email, String name) {
 
     }
+
+    public List<SubmittedApplication> getUnassignedApplications(){
+        return alcoholDB.getUnassignedApplications();
+    }
 }

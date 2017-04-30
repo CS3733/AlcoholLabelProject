@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import com.emeraldElves.alcohollabelproject.Data.TTBAgentInterface;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -70,6 +71,15 @@ public class TTBWorkflowController implements IController {
         //Find & add matching applications
         List<SubmittedApplication> resultsList = agentInterface.getAssignedApplications();
         data.addAll(resultsList);
+    }
+
+    public void fetchApplications(){
+        List<SubmittedApplication> unassigned = Storage.getInstance().getUnassignedApplications();
+        int numAssigned = agentInterface.getAssignedApplications().size();
+        for (int i = numAssigned; i < 10 && unassigned.size() > 0; i++) {
+            agentInterface.addApplication(unassigned.get(0));
+            unassigned.remove(0);
+        }
     }
 
 }
