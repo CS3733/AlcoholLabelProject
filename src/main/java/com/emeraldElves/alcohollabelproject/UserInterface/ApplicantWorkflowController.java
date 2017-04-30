@@ -86,6 +86,10 @@ public class ApplicantWorkflowController implements IController {
         return applicantInterface.getSavedApplications().get(i);
     }
 
+    public void onShowContextMenu(){
+        hideIfSaved();
+    }
+
     public void viewApplication(){
         main.loadFXML("/fxml/DetailedSearchPage.fxml",getSelectedApplication(), "");
     }
@@ -98,19 +102,21 @@ public class ApplicantWorkflowController implements IController {
 
         }
     }
-    /*
+
     public void hideIfSaved(){
         if(list.getSelectionModel().getSelectedIndex() < numSavedApplications){
             //its a saved application
             updateMenu.setVisible(false);
             viewMenu.setVisible(false);
+            reviseMenu.setText("Finish");
         }
         else{
             updateMenu.setVisible(true);
             viewMenu.setVisible(true);
+            reviseMenu.setText("Revise");
         }
     }
-    */
+
 
     public void ApplicationWorkflow() {
         if(getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {
