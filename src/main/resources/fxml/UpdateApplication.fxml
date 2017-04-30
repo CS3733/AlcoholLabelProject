@@ -188,11 +188,7 @@
                               <Insets />
                            </GridPane.margin>
                         </Text>
-                        <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1">
-                           <tooltip>
-                              <Tooltip prefWidth="400.0" text="A vintage date indicates the year in which the grapes used to make the wine were harvested.  Please supply the vintage date of the wine if one appears on the label.A vintage date may be used on the label if not less than 95 percent of the wine is produced from grapes grown in that year and must be labeled with an appellation smaller than a country." wrapText="true" />
-                           </tooltip>
-                        </TextField>
+                        <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1" />
                         <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="138.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
@@ -246,16 +242,8 @@
                               <Insets />
                            </GridPane.margin>
                         </Text>
-                        <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1">
-                           <tooltip>
-                              <Tooltip prefWidth="400.0" text="This must specify each grape varietal (if any) that appears on a wine label" wrapText="true" />
-                           </tooltip>
-                        </TextField>
-                        <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <tooltip>
-                              <Tooltip prefWidth="400.0" text="An appellation indicates the origin of the grapes used to make the wine.  Please supply the appellation of origin if it appears on the label" wrapText="true" />
-                           </tooltip>
-                        </TextField>
+                        <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1" />
+                        <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="54.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                            <cursor>
                               <Cursor fx:constant="HAND" />
