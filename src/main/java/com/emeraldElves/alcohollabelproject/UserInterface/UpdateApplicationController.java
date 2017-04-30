@@ -124,6 +124,22 @@ public class UpdateApplicationController implements IController{
 //        pTypeSelect.setValue("Select a product type");
 //        pTypeSelect.setItems(typeList);
 
+        //Application Type
+        ApplicationType applicationType = application.getApplication().getApplicationType();
+        if(applicationType.isLabelApproval()){
+            certOfApproval.setSelected(true);
+        }
+        if(!applicationType.getStateOnly().equals("")){
+            certOfExemption.setSelected(true);
+            stateSelect.setValue(applicationType.getStateOnly());
+            stateSelect.setDisable(false);
+        }
+        if(applicationType.getBottleCapacity() != -1){
+            distinctiveApproval.setSelected(true);
+            distinctiveText.setText("" + applicationType.getBottleCapacity());
+            distinctiveText.setDisable(false);
+        }
+        //end application type
 
         if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
             pSourceSelect.setValue("Domestic");
