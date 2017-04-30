@@ -251,8 +251,7 @@ public class AlcoholDatabase {
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
                         + image + "', qualifications = '"
-                        + info.getQualifications() + "', expirationDate = '"
-                        + info.getSubmissionDate()+"'", "applicationID = "
+                        + info.getQualifications() + "'", "applicationID = "
                         + application.getApplicationID());
 
 
@@ -309,7 +308,9 @@ public class AlcoholDatabase {
                                 + image + "', '"
                                 + info.getQualifications() + "'"
                         //TTBUsername
-                        , "SubmittedApplications");
+                        , "SubmittedApplications (applicationID, applicantID, status, statusMsg, submissionTime, expirationDate," +
+                                " agentName, approvalDate, TTBUsername, submitterUsername, extraInfo, labelApproval, stateOnly," +
+                                " bottleCapacity, imageURL, qualifications)");
 
                 Log.console("SubmittedApplication");
 

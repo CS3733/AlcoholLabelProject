@@ -118,7 +118,7 @@ public class UpdateOptionsController implements IController {
         application.setUpdatesSelected(updates);
 
         //go to page 2 of update app
-        main.loadFXML("fxml/UpdateApplication.fxml", application);
+        main.loadFXML("/fxml/UpdateApplication.fxml", application);
 
     }
 
