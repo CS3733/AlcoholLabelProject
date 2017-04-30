@@ -97,6 +97,7 @@ public class AlcoholDatabase {
 
         return applications;
     }
+    
 
     /**
      * Get applications from a {@link ResultSet}
@@ -250,7 +251,8 @@ public class AlcoholDatabase {
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
                         + image + "', qualifications = '"
-                        + info.getQualifications() + "'", "applicationID = "
+                        + info.getQualifications() + "', expirationDate = '"
+                        + info.getSubmissionDate()+"'", "applicationID = "
                         + application.getApplicationID());
 
 
@@ -295,7 +297,7 @@ public class AlcoholDatabase {
                                 + status.getValue() + ", '" //status
                                 + status.getMessage() + "', " //status message
                                 + info.getSubmissionDate().getTime() + ", " //submission time
-                                + info.getSubmissionDate().getTime() + ", '"//no field for expiration date
+                                + info.getSubmissionDate().getTime() + ", '"
                                 + manInfo.getName() + "', " //agent name
                                 + info.getSubmissionDate().getTime() + ", '" //approval date
                                 + assignedAgent + "', '" //TTB username
@@ -604,6 +606,130 @@ public class AlcoholDatabase {
         }
         return true;
     }
+    public boolean saveUpdateHistory(SubmittedApplication application, String username) {
+        //making application type
+        ApplicationType appType = application.getApplication().getApplicationType();
+
+        AlcoholInfo alcInfo = application.getApplication().getAlcohol();
+
+        //Image name
+        String image;
+        if (application.getImage().getFileName() != null && !application.getImage().getFileName().isEmpty())
+            //if(false)
+            image = application.getImage().getFileName();
+        else {
+            image = "";
+        }
+
+        boolean worked;//whether or not it added stuff to database
+
+        int appID;
+
+        if (application.getApplicationID() == -1) {
+            appID = generateApplicationID();
+            application.setApplicationID(appID);
+        } else {
+            appID = application.getApplicationID();
+        }
+        ResultSet resultsSubmitted = db.select("*", "SavedApplications", "applicationID = " + appID);
+
+        try {
+            if (resultsSubmitted.next()) {
+                //ID already exists, so we update saved application in table
+                if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
+                    db.update("HistorySubmittedApplication",
+                            "labelApproval = " + appType.isLabelApproval() + ", stateOnly = '"
+                                    + appType.getStateOnly() + "', bottleCapacity = "
+                                    + appType.getBottleCapacity() + ", origin = "
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", fancifulName = '"
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', alcoholContent = " //brand name
+                                    + alcInfo.getAlcoholContent() + ", formula = '"//alcohol content
+                                    + alcInfo.getFormula() + "', serialNumber = '" //formula
+                                    + alcInfo.getSerialNumber() + "', pH = " // serial number
+                                    + alcInfo.getWineInfo().pH + ", vintageYear = " //ph
+                                    + alcInfo.getWineInfo().vintageYear + ", varietals = '" //vintage year
+                                    + alcInfo.getWineInfo().grapeVarietal + "', wineAppellation = '" //varietal
+                                    + alcInfo.getWineInfo().appellation + "', extraInfo = '" // appelation
+                                    + application.getApplication().getExtraInfo() + "', imageURL = '" //Any extra info on application
+                                    + application.getImage().getFileName() + "', submitterUsername = '" //file location of image
+                                    + username + "', applicationID = " //Username of person who saved application
+                                    + appID // ID of saved application. Will change when submitted
+                            , "applicationID = " + application.getApplicationID());
+                } else {
+                    db.update("HistorySubmittedApplication",
+                            "labelApproval = " + appType.isLabelApproval() + ", stateOnly = '"
+                                    + appType.getStateOnly() + "', bottleCapacity = "
+                                    + appType.getBottleCapacity() + ", origin = "
+                                    + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
+                                    + alcInfo.getAlcoholType().getValue() + ", fancifulName = '"
+                                    + alcInfo.getName() + "', brandName = '" //fanciful name
+                                    + alcInfo.getBrandName() + "', alcoholContent = " //brand name
+                                    + alcInfo.getAlcoholContent() + ", formula = '"//alcohol content
+                                    + alcInfo.getFormula() + "', serialNumber = '" //formula
+                                    + alcInfo.getWineInfo().appellation + "', extraInfo = '" // appelation
+                                    + application.getApplication().getExtraInfo() + "', imageURL = '" //Any extra info on application
+                                    + application.getImage().getFileName() + "', submitterUsername = '" //file location of image
+                                    + username + "', applicationID = " //Username of person who saved application
+                                    + appID // ID of saved application. Will change when submitted
+                            , "applicationID = " + application.getApplicationID());
+                }
+            }
+            else {
+                //No saved application with that ID, so add to table, not update
+                if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
+                    worked = db.insert(appType.isLabelApproval() + ", '" // app types
+                                    + appType.getStateOnly() + "', " // app types
+                                    + appType.getBottleCapacity() + ", " // app types
+                                    + alcInfo.getOrigin().getValue() + ", " //origin
+                                    + alcInfo.getAlcoholType().getValue() + ", '" // alcohol type
+                                    + alcInfo.getName() + "', '" //fanciful name
+                                    + alcInfo.getBrandName() + "', " //brand name
+                                    + alcInfo.getAlcoholContent() + ", '"
+                                    + alcInfo.getFormula() + "', '" //formula
+                                    + alcInfo.getSerialNumber() + "', "//serial number
+                                    + alcInfo.getWineInfo().pH + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                                    + alcInfo.getWineInfo().vintageYear + ", '" //vintage year: see above comment
+                                    + alcInfo.getWineInfo().grapeVarietal + "', '" //grape vaietal
+                                    + alcInfo.getWineInfo().appellation + "', '" //appalation
+                                    + application.getApplication().getExtraInfo() + "', '"
+                                    + application.getImage().getFileName() + "', '"
+                                    + username + "', "
+                                    + appID
+                            , "HistoryAlcoholInfo");
+                } else {
+                    //not a wine application, so wine fields are not applicable
+                    worked = db.insert(appType.isLabelApproval() + ", '" // app types
+                                    + appType.getStateOnly() + "', " // app types
+                                    + appType.getBottleCapacity() + ", " // app types
+                                    + alcInfo.getOrigin().getValue() + ", " //origin
+                                    + alcInfo.getAlcoholType().getValue() + ", '" // alcohol type
+                                    + alcInfo.getName() + "', '" //fanciful name
+                                    + alcInfo.getBrandName() + "', " //brand name
+                                    + alcInfo.getAlcoholContent() + ", '"
+                                    + alcInfo.getFormula() + "', '" //formula
+                                    + alcInfo.getSerialNumber() + "', "//serial number
+                                    + -1 + ", " //pH: to get ph, have to call wineinfo in alcinfo. Not sure if good
+                                    + -1 + ", '" //vintage year: see above comment
+                                    + " " + "', '" //grape vaietal
+                                    + " " + "', '" //appalation
+                                    + application.getApplication().getExtraInfo() + "', '"
+                                    + application.getImage().getFileName() + "', '"
+                                    + username + "', "
+                                    + appID
+                            , "HistoryAlcoholInfo");
+                }
+
+                if (!worked) {
+                    return false;
+                }//didn't add to table so return false
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
 
     public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID) {
@@ -742,6 +868,18 @@ public class AlcoholDatabase {
         application.setStatus(ApplicationStatus.REJECTED);
         return db.update("SubmittedApplications", "status = " + ApplicationStatus.REJECTED.getValue() + ", statusMsg = '" + message + "'", "applicationID = " + application.getApplicationID());
     }
+
+    /**
+     * Adds the application to the given agent
+     * @param application Application to add
+     * @param agentUsername Username to add to
+     * @return Whether or not it was added successfully
+     */
+    public boolean addApplication(SubmittedApplication application, String agentUsername){
+        return db.update("SubmittedApplications", "TTBUsername = '" + agentUsername + "'"
+                            , "applicationID = " + application.getApplicationID());
+    }
+    
 
     public boolean changeVintageYear(SubmittedApplication application, int vintageYear) {
         if (application.getApplication().getAlcohol().getAlcoholType() != AlcoholType.WINE) {

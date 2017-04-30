@@ -729,7 +729,7 @@
 .text-area, .text-field {
 	-fx-background-color: transparent;
 	-fx-background-radius: 2.0;
-	-fx-padding: 0.5em 0.5em 0.5em 0.1em;
+	-fx-padding: 0.1em 0.1em 0.1em 0.1em;
 	-fx-border-color: -swatch-grey;
 	-fx-border-width: 0 0 2 0;
 	-fx-prompt-text-fill: derive(-dark, 50.0%);

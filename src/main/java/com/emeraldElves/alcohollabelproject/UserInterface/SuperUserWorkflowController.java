@@ -25,7 +25,7 @@ public class SuperUserWorkflowController implements IController {
         this.init(bundle.getMain("main"), bundle.getPotentialUser("user"));
     }
 
-    public void init(Main main,PotentialUser UserforApproval){
+    public void init(Main main,PotentialUser  UserforApproval){
         this.main = main;
         this.UserforApproval = UserforApproval;
         //add to displayed table, copy from search functionality

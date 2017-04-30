@@ -64,6 +64,9 @@ public class Main extends Application {
         try {
             Parent root = loader.load();
             root.getStylesheets().add("/style/material.css");
+
+            //Log.console(loader.getController());
+
             IController controller = loader.getController();
             Bundle bundle = new Bundle();
             bundle.putMain("main",this);
