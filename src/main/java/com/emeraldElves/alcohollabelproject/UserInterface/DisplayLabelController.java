@@ -15,7 +15,6 @@ public class DisplayLabelController implements IController {
     @FXML
     ImageView labelView;
     Main main;
-    Image image;
     SubmittedApplication application;
 
     public void init(Bundle bundle){

@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
+import com.emeraldElves.alcohollabelproject.Log;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
@@ -9,13 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 
-
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -105,6 +103,8 @@ public class ApprovalProcessController implements IController {
             assignUser.addAll(userList);
             assignUserBox.setValue("Select a user");
             assignUserBox.setItems(assignUser);
+            Calendar cal = Calendar.getInstance();
+            ExpirationDate.setValue(cal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
 
         agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
@@ -172,6 +172,8 @@ public class ApprovalProcessController implements IController {
         application.getApplication().setQualifications(qualifications.getText());//sets qualifications
         //need to update in database now
         ApplicationStatusChanger changer = new ApplicationStatusChanger();
+        Log.console(ExpirationDate.getValue());
+        //application.getApplication().setExpirationDate();
         changer.changeStatus(new ApproveCommand(application, true));
         changer.commitUpdates();
         //Storage.getInstance().submitApplication(application,);
@@ -189,7 +191,7 @@ public class ApprovalProcessController implements IController {
 
     public void PendingReview() {
         application.setStatus(ApplicationStatus.PENDINGREVIEW);
-        application.getApplication().setExpirationDate((DateHelper.getDate(ExpirationDate.getValue().getDayOfMonth(), ExpirationDate.getValue().getMonthValue() - 1, ExpirationDate.getValue().getYear())));
+        application.getApplication().setExpirationDate((DateHelper.getDate(ExpirationDate.getValue().getYear()+1, ExpirationDate.getValue().getMonthValue(), ExpirationDate.getValue().getDayOfMonth())));
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
         main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
