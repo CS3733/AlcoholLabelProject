@@ -251,8 +251,7 @@ public class AlcoholDatabase {
                         + appType.getStateOnly() + "', bottleCapacity = "
                         + appType.getBottleCapacity() + ", imageURL = '"
                         + image + "', qualifications = '"
-                        + info.getQualifications() + "', expirationDate = '"
-                        + info.getSubmissionDate()+"'", "applicationID = "
+                        + info.getQualifications() + "'", "applicationID = "
                         + application.getApplicationID());
 
 
