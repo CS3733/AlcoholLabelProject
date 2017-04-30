@@ -557,6 +557,7 @@ public class NewApplicationController implements IController {
         else{ extraInfo = extraInfoText.getText(); }
         //END extra info
         //image
+        file = new File("Labels/"+savedApplication.getImage().getFileName());
         saveImage(file);
         if(proxyLabelImage!= null) {
             image = new LabelImage(proxyLabelImage.getFileName());
