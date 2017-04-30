@@ -221,6 +221,7 @@ public class NewApplicationController implements IController {
             File file = new File("Labels/" + imageURL);
             Image tempImage = new Image(file.toURI().toString());
             imageView.setImage(tempImage);
+            this.proxyLabelImage = new ProxyLabelImage("Labels/"+ imageURL);
         }
     }
 
