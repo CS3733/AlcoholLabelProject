@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.Applicant;
+import com.emeraldElves.alcohollabelproject.Log;
 
 import java.util.Date;
 import java.util.HashMap;

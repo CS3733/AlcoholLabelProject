@@ -96,7 +96,7 @@ public class UpdateApplicationController implements IController{
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application=application;
-
+        Log.console(application);
         setUpApp();
     }
 
@@ -154,40 +154,40 @@ public class UpdateApplicationController implements IController{
 
         disableAllFields();
 
-        if(application.getUpdatesSelected().get("label")==true){
+        if(application.getUpdatesSelected().containsKey("label")){
             submitLabel.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("alcContent")==true){
+        if(application.getUpdatesSelected().containsKey("alcContent")){
             alcoholContentField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("vintYr")==true){
+        if(application.getUpdatesSelected().containsKey("vintYr")){
             wineVintageYearField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("pH")==true){
+        if(application.getUpdatesSelected().containsKey("pH")){
             pHLevelField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("formula")==true){
+        if(application.getUpdatesSelected().containsKey("formula")){
             formulaText.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("stateSelect")==true){
+        if(application.getUpdatesSelected().containsKey("stateSelect")){
             stateSelect.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("alcoholName")==true){
+        if(application.getUpdatesSelected().containsKey("alcoholName")){
             alcoholName.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("brandName")==true){
+        if(application.getUpdatesSelected().containsKey("brandName")){
             brandNameField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("address")==true){
+        if(application.getUpdatesSelected().containsKey("address")){
             addressField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("extraInfo")==true){
+        if(application.getUpdatesSelected().containsKey("extraInfo")){
             extraInfoText.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("repID")==true){
+        if(application.getUpdatesSelected().containsKey("repID")){
             repIDNoTextField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("date")==true){
+        if(application.getUpdatesSelected().containsKey("date")){
             datePicker.setDisable(false);
         }
     }

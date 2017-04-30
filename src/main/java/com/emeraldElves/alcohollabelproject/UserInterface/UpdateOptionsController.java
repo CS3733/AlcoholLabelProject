@@ -23,7 +23,7 @@ public class UpdateOptionsController implements IController {
     private ApplicationType appType;
 
     public void init(Bundle bundle){
-        this.init(bundle.getMain("main"));
+        this.init(bundle.getMain("main"), bundle.getApplication("app"));
     }
 
     public void init(Main main){
