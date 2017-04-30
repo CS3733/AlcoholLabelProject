@@ -235,6 +235,19 @@ public class UpdateApplicationController implements IController{
             extraInfo = " ";
         } else extraInfo = extraInfoText.getText();
 
+        //appType
+        boolean labelApproval = certOfApproval.isSelected();
+        String stateOnly;
+        if(certOfExemption.isSelected()){ stateOnly = stateSelect.getValue().toString();}//Maybe change this
+        else { stateOnly = "";}
+        int bottleCapacity;
+        if(distinctiveApproval.isSelected()){ bottleCapacity = Integer.parseInt(distinctiveText.getText());}
+        else { bottleCapacity = -1;}//know this for future
+        appType = new ApplicationType(labelApproval,stateOnly,bottleCapacity);
+        //END appType
+
+
+
         AlcoholInfo appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
         ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
                 permitNum, phoneNum, emailAddress);
