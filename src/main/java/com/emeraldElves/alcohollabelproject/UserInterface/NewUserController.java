@@ -200,7 +200,7 @@ public class NewUserController implements IController {
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
         repID =(Integer.parseInt(representativeID.getText()));
-        permitNum = representativeID.getText();//check if field is not null
+        permitNum = permitNumText.getText();//check if field is not null
         address = addressText.getText();//representative ID
         company = companyField.getText();
 

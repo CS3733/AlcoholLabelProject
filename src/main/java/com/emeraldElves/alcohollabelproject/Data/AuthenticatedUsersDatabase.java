@@ -292,6 +292,21 @@ public class AuthenticatedUsersDatabase {
     public void setRepIDFromEmail(int repID, String email) {
         db.update("ApplicantLogin", "representativeID = " + repID, "email = '" + email + "'");
     }
+    public void setPhoneNumFromEmail(String phoneNum, String email) {
+        db.update("ApplicantLogin", "phoneNumber = '" + phoneNum + "'", "email = '" + email + "'");
+    }
+    public void setPermitNumFromEmail(String permitNum, String email) {
+        db.update("ApplicantLogin", "permitNum = '" + permitNum + "'", "email = '" + email + "'");
+    }
+    public void setAddressFromEmail(String address, String email) {
+        db.update("ApplicantLogin", "address = '" + address + "'", "email = '" + email + "'");
+    }
+    public void setNameFromEmail(String name, String email) {
+        db.update("ApplicantLogin", "name = '" + name + "'", "email = '" + email + "'");
+    }
+    public void setCompanyFromEmail(String company, String email) {
+        db.update("ApplicantLogin", "company = '" + company + "'", "email = '" + email + "'");
+    }
 
     public void updatePasswordApplicant(String password, String email) {
         db.update("ApplicantLogin", "password = '"+password+"'", "email = '"+email+"'" );
