@@ -22,6 +22,12 @@ public class ApplicantInterfaceTest {
     }
 
     @Test
+    public void testApplicant(){
+        Applicant applicant = applicantInterface.getApplicant();
+        assertNotNull(applicant);
+    }
+
+    @Test
     public void testApplicantSubmittedApps() {
         Applicant applicant = applicantInterface.getApplicant();
         assertEquals(1, applicant.getApplications().size());
@@ -35,5 +41,17 @@ public class ApplicantInterfaceTest {
         assertEquals(1, savedApplicationList.size());
         assertEquals(5, savedApplicationList.get(0).getApplicationID());
     }
+
+    @Test
+    public void testGetSubmittedApplications(){
+        assertEquals(applicantInterface.getApplicant().getApplications(), applicantInterface.getSubmittedApplications());
+    }
+
+    @Test
+    public void testGetSavedApplications(){
+        assertEquals(applicantInterface.getApplicant().getSavedApplications(), applicantInterface.getSavedApplications());
+    }
+
+
 
 }
