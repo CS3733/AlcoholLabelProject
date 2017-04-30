@@ -172,6 +172,52 @@ public class Storage {
         catch (SQLException e){
             Log.console("Used existing SavedApplications table");
         }
+        try {
+            database.createTable("HistoricalSubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
+                    new Database.TableField("status", "INTEGER NOT NULL"),
+                    new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("submissionTime", "BIGINT NOT NULL"),
+                    new Database.TableField("expirationDate", "BIGINT"),
+                    new Database.TableField("agentName", "VARCHAR (255)"),
+                    new Database.TableField("approvalDate", "BIGINT"),
+                    new Database.TableField("TTBUsername", "VARCHAR (255)"),
+                    new Database.TableField("submitterUsername", "VARCHAR (255)"),
+                    new Database.TableField("extraInfo", "VARCHAR (1000)"),
+                    new Database.TableField("labelApproval", "BOOLEAN"),
+                    new Database.TableField("stateOnly", "VARCHAR (2)"),
+                    new Database.TableField("bottleCapacity", "INTEGER"),
+                    new Database.TableField("imageURL", "VARCHAR (255)"),
+                    new Database.TableField("qualifications", "VARCHAR (10000)"),
+                    new Database.TableField("classTypeCode", "INTEGER"),
+                    new Database.TableField("applType", "VARCHAR (255)"), // always cola
+                    new Database.TableField("specialDesc", "VARCHAR (255)"), // always .
+                    new Database.TableField("issueDate", "BIGINT"),
+                    new Database.TableField("surrenderedDate", "BIGINT"),
+                    new Database.TableField("recievedCode", "VARCHAR (255)"));
+            Log.console("Created new HistorySubmittedApplications table");
+        } catch (SQLException e) {
+            Log.console("Used existing HistorySubmittedApplications table");
+        }
+
+        try {
+            database.createTable("HistoricalAlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
+                    new Database.TableField("fancifulName", "VARCHAR (255)"),
+                    new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("origin", "INTEGER NOT NULL"),
+                    new Database.TableField("type", "INTEGER NOT NULL"),
+                    new Database.TableField("formula", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("serialNumber", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("pH", "REAL"),
+                    new Database.TableField("vintageYear", "INTEGER"),
+                    new Database.TableField("varietals", "VARCHAR (255)"),
+                    new Database.TableField("wineAppellation", "VARCHAR (255)"));
+            Log.console("Created new HistoryAlcoholInfo table");
+        } catch (SQLException e) {
+            Log.console("Used existing HistoryAlcoholInfo table");
+        }
+
 
         return database;
     }
@@ -267,6 +313,10 @@ public class Storage {
      */
     public boolean saveApplication(SavedApplication application, String username){
         return alcoholDB.saveApplication(application,username);
+    }
+
+    public boolean saveUpdateHistory(SubmittedApplication application, String username){
+        return alcoholDB.saveUpdateHistory(application,username);
     }
 
     /**
