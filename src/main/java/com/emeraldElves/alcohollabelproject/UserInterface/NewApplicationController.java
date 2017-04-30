@@ -85,7 +85,7 @@ public class NewApplicationController implements IController {
 
     private Main main;
 
-    private LabelImage image;
+    private ILabelImage image;
 
     private SubmittedApplication application;
     private SavedApplication savedApplication;
@@ -414,6 +414,7 @@ public class NewApplicationController implements IController {
                 if (application != null)
                     newApp.setApplicationID(application.getApplicationID());
                 applicant.addSubmittedApp(newApp);
+                this.image = proxyLabelImage;
                 if(proxyLabelImage!= null) {
                     newApp.setImage(proxyLabelImage);
                 } else{
