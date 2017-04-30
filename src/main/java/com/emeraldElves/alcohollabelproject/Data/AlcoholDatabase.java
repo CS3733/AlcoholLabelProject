@@ -186,7 +186,9 @@ public class AlcoholDatabase {
     public boolean submitApplication(SubmittedApplication application, String username) {
 
         if (AppState.getInstance().ttbAgents == null) {
-            AppState.getInstance().ttbAgents = new MultiApplicationAssigner(usersDatabase.getAllAgents(), 10, 0);
+            if (!Storage.getInstance().getAllTTBUsernames().isEmpty()) {
+                AppState.getInstance().ttbAgents = new MultiApplicationAssigner(usersDatabase.getAllAgents(), 10, 0);
+            }
         }
         //making application type
         ApplicationType appType = application.getApplication().getApplicationType();
@@ -290,6 +292,7 @@ public class AlcoholDatabase {
                 }
             } else {
                 String assignedAgent = AppState.getInstance().ttbAgents.assignAgent();
+
                 //not in table, need to add to all 3 tables
                 //SubmittedApplications
                 worked = db.insert(appID + ", " //application id
