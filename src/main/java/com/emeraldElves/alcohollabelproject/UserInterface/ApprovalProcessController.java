@@ -189,6 +189,7 @@ public class ApprovalProcessController implements IController {
 
     public void PendingReview() {
         application.setStatus(ApplicationStatus.PENDINGREVIEW);
+        application.getApplication().setExpirationDate((DateHelper.getDate(ExpirationDate.getValue().getDayOfMonth(), ExpirationDate.getValue().getMonthValue() - 1, ExpirationDate.getValue().getYear())));
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
         main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }

@@ -54,6 +54,10 @@ public class ApplicationInfo {
     public void setExtraInfo(String extraInfo) {
         this.extraInfo = extraInfo;
     }
+    public void setExpirationDate(Date expirationDate){
+        this.expirationDate = expirationDate;
+    }
 }
+
 
 
