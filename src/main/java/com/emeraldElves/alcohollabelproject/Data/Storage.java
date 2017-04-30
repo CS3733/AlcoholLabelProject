@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Harry on 4/9/2017.
  */
-public class Storage {
+public class Storage implements IStorage {
     private AlcoholDatabase alcoholDB;
     private AuthenticatedUsersDatabase usersDB;
     private Database db;
@@ -233,31 +233,38 @@ public class Storage {
     }
 
 
+    @Override
     public boolean submitApplication(SubmittedApplication application, String username) {
         return alcoholDB.submitApplication(application, username);
     }
 
+    @Override
     public String getAgentPassword(String username){
         return usersDB.getAgentPassword(username);
     }
+    @Override
     public String getUserPassword(String username){
         return usersDB.getUserPassword(username);
     }
 
 
+    @Override
     public boolean updateApplication(SubmittedApplication application, String username) {
         return alcoholDB.updateApplication(application, username);
     }
 
 
+    @Override
     public boolean approveApplication(SubmittedApplication application, String agentName, Date expirationDate) {
         return alcoholDB.approveApplication(application, agentName, expirationDate);
     }
 
+    @Override
     public boolean rejectApplication(SubmittedApplication application, String reason) {
         return alcoholDB.rejectApplication(application, reason);
     }
 
+    @Override
     public boolean removeSavedApplication(SavedApplication application){
         return alcoholDB.removeSavedApplication(application);
     }
@@ -268,6 +275,7 @@ public class Storage {
      * @param agentUsername Agent to get application added to
      * @return Whether or not application was added succesfully
      */
+    @Override
     public boolean addApplication(SubmittedApplication application, String agentUsername){
 
 
@@ -286,10 +294,12 @@ public class Storage {
     */
 
 
+    @Override
     public boolean createUser(PotentialUser user) {
         return usersDB.createUser(user);
     }
 
+    @Override
     public void deleteUser(PotentialUser potentialUser) {
         db.delete("NewApplicant","email = '" + potentialUser.getEmail().getEmailAddress() + "'");
     }
@@ -297,12 +307,14 @@ public class Storage {
 //       return usersDB.getUserFromEmail(email);
 //    }
 
+    @Override
     public boolean applyForUser(PotentialUser user){
         usersDB.addPotentialUser(user);
         //call superuserworkflow controller
         return true;
     }
 
+    @Override
     public List<PotentialUser> getPotentialUsers(){ return usersDB.getPotentialUsers();  }
 
     /**
@@ -311,10 +323,12 @@ public class Storage {
      * @param username The username of the person saving the application
      * @return Whether or not the application was successfully saved
      */
+    @Override
     public boolean saveApplication(SavedApplication application, String username){
         return alcoholDB.saveApplication(application,username);
     }
 
+    @Override
     public boolean saveUpdateHistory(SubmittedApplication application, String username){
         return alcoholDB.saveUpdateHistory(application,username);
     }
@@ -326,6 +340,7 @@ public class Storage {
      * @param password The password of the user
      * @return Whether or not it is a valid user
      */
+    @Override
     public boolean isValidUser(UserType usertype, String username, String password) {
         if (usertype == UserType.TTBAGENT) {
             return usersDB.isValidTTBAgent(username, password);
@@ -337,6 +352,7 @@ public class Storage {
         return false;
     }
 
+    @Override
     public void updatePassword(String username, String password){
         if( usersDB.isValidTTBAgentAccount(username)){
             usersDB.updatePasswordTTBAgent(password,username);
@@ -346,26 +362,30 @@ public class Storage {
        }
     }
 
-    public boolean isValidUser( String username) {
+    @Override
+    public boolean isValidUser(String username) {
         return usersDB.isValidTTBAgentAccount(username)||(usersDB.isValidUserAccount(username));
 //            return(true);
 //        }
 //        return false;
     }
 
+    @Override
     public boolean isValidAgent(String username){
         if( usersDB.isValidTTBAgent(username,"")) {
             return (true);
         }
         return false;
     }
+    @Override
     public boolean isValidApplicant(String username){
         if( usersDB.isValidAccount(username,"")) {
             return (true);
         }
         return false;
     }
-    public boolean isValidUser( String username, String password) {
+    @Override
+    public boolean isValidUser(String username, String password) {
         if( usersDB.isValidAccount(username, password)){
             return(true);
         }
@@ -375,43 +395,53 @@ public class Storage {
         return false;
     }
 
+    @Override
     public List<SubmittedApplication> getRecentlyApprovedApplications(int numApps) {
         return alcoholDB.getMostRecentApproved(numApps);
     }
 
+    @Override
     public List<SubmittedApplication> getApprovedApplications() {
         return alcoholDB.getApproved();
     }
 
+    @Override
     public List<SubmittedApplication> getApplicationsByBrandName(String brandName) {
         return alcoholDB.searchByBrandName(brandName);
     }
 
+    @Override
     public List<SubmittedApplication> getApplicationsByName(String name) {
         return alcoholDB.searchByName(name);
     }
 
+    @Override
     public List<SubmittedApplication> getApplicationsByFancifulName(String fancifulName) {
         return alcoholDB.searchByFancifulName(fancifulName);
     }
 
+    @Override
     public List<SubmittedApplication> getApplicationsByApplicant(String username) {
         return alcoholDB.getApplicationsByApplicantUsername(username);
     }
 
+    @Override
     public List<SavedApplication> getSavedApplicationsByApplicant(String username){
         return alcoholDB.getSavedApplicationsByApplicant(username);
     }
 
+    @Override
     public List<SubmittedApplication> getAssignedApplications(String agentName) {
         return alcoholDB.getAssignedApplications(agentName);
     }
 
 
+    @Override
     public List<String> getAllTTBUsernames() {
         return usersDB.getAllTTBUsernames();
     }
 
+    @Override
     public Applicant getUserFromEmail(String email) {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
@@ -421,19 +451,24 @@ public class Storage {
 
     }
 
+    @Override
     public void modifyRepresentativeID(String email, int repID) {
         usersDB.setRepIDFromEmail(repID, email);
     }
 
+    @Override
     public void modifypermitNum(String email, String permitNum) {
 
     }
+    @Override
     public void modifyAddress(String email, String address) {
 
     }
+    @Override
     public void modifyphoneNum(String email, String phoneNum) {
 
     }
+    @Override
     public void modifyName(String email, String name) {
 
     }

@@ -112,7 +112,7 @@ public class NewApplicationController implements IController {
         this.main = main;
 
         username= Authenticator.getInstance().getUsername();
-        applicant = new ApplicantInterface(username);
+        applicant = new ApplicantInterface(username, Storage.getInstance());
         Log.console(username);
         welcomeApplicantLabel.setText("Welcome, " + applicant.getApplicant().getNamefromDB(username) + ".");
         emailAddress = new EmailAddress(applicant.getApplicant().getEmailAddress());
@@ -427,7 +427,7 @@ public class NewApplicationController implements IController {
                     newApp.setApplicationID(application.getApplicationID());
 
                 //Submit the new application to the database
-                ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
+                ApplicantInterface applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername(), Storage.getInstance());
               boolean success = applicantInterface.submitApplication(newApp);
                 if(isSavedApplication){
                     //delete old saved application after submitting it

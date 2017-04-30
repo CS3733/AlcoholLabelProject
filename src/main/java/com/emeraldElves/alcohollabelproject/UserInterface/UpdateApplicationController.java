@@ -101,7 +101,7 @@ public class UpdateApplicationController implements IController{
 
     public void setUpApp(){
         username= Authenticator.getInstance().getUsername();
-        applicant = new ApplicantInterface(username);
+        applicant = new ApplicantInterface(username, Storage.getInstance());
         Log.console(username);
         welcomeApplicantLabel.setText("Welcome, " + applicant.getApplicant().getNamefromDB(username) + ".");
         emailAddress = new EmailAddress(applicant.getApplicant().getEmailAddress());

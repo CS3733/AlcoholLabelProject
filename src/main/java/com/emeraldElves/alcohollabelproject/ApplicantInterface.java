@@ -1,5 +1,6 @@
 package com.emeraldElves.alcohollabelproject;
 
+import com.emeraldElves.alcohollabelproject.Data.IStorage;
 import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
@@ -13,13 +14,13 @@ import java.util.List;
  */
 public class ApplicantInterface implements IController {
 
-    private Storage storage;
+    private IStorage storage;
     private Applicant applicant;
     private String username;
 
-    public ApplicantInterface(String username){
+    public ApplicantInterface(String username, IStorage storage){
         this.username = username;
-        storage = Storage.getInstance();
+        this.storage = storage;
         applicant = new Applicant(storage.getApplicationsByApplicant(username), storage.getSavedApplicationsByApplicant(username));
     }
 

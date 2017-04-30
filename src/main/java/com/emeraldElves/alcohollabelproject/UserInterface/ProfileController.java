@@ -2,6 +2,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Data.PhoneNumber;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Log;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -46,7 +47,7 @@ public class ProfileController implements IController {
         this.main = main;
 
         emailAddress = Authenticator.getInstance().getUsername();
-        applicant = new ApplicantInterface(emailAddress);
+        applicant = new ApplicantInterface(emailAddress, Storage.getInstance());
         representativeID = applicant.getApplicant().getRepresentativeIDFromDB(emailAddress);
         Log.console(representativeID);
         permitNum = applicant.getApplicant().getPermitNumFromDB(emailAddress);

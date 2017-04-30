@@ -4,6 +4,7 @@ import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.ApplicationStatus;
 import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
+import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,7 +32,7 @@ public class ApplicantWorkflowController implements IController {
 
     public void init(Main main) {
         this.main = main;
-        applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername());
+        applicantInterface = new ApplicantInterface(Authenticator.getInstance().getUsername(), Storage.getInstance());
         List<String> applicationNames = new ArrayList<>();
         List<SubmittedApplication> applications = applicantInterface.getSubmittedApplications();
         List<SavedApplication> savedApplications = applicantInterface.getSavedApplications();
