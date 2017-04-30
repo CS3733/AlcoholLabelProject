@@ -91,6 +91,7 @@ public class UpdateApplicationController implements IController{
     private Main main;
 
     private SubmittedApplication application;
+    private SubmittedApplication newApplication;
 
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
@@ -240,7 +241,8 @@ public class UpdateApplicationController implements IController{
         Date newDate= DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
         ApplicationInfo appInfo= new ApplicationInfo(newDate, appManInfo, appAlcoholInfo, extraInfo, appType);
 
-        application = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant.getApplicant());
+        newApplication = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant.getApplicant());
+        newApplication.setApplicationID(application.getApplicationID());//setting id for updating
     }
 
 
@@ -300,7 +302,7 @@ public class UpdateApplicationController implements IController{
 
             setUpdatedAppInfo();
 
-            boolean success = Storage.getInstance().updateApplication(this.application, this.username);
+            boolean success = Storage.getInstance().updateApplication(this.newApplication, this.username);
             main.loadHomepage();
         }
     }
