@@ -186,7 +186,7 @@ public class AlcoholDatabase {
     public boolean submitApplication(SubmittedApplication application, String username) {
 
         if (AppState.getInstance().ttbAgents == null) {
-            AppState.getInstance().ttbAgents = new ApplicationAssigner(new LazyAssigner(), null);
+            AppState.getInstance().ttbAgents = new ApplicationAssigner(new LazyAssigner(), new ArrayList<>());
         }
         //making application type
         ApplicationType appType = application.getApplication().getApplicationType();
