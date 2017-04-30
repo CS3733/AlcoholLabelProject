@@ -80,6 +80,9 @@ public class TTBWorkflowController implements IController {
             agentInterface.addApplication(unassigned.get(0));
             unassigned.remove(0);
         }
+        List<SubmittedApplication> resultsList = agentInterface.getAssignedApplications();
+        data.clear();
+        data.addAll(resultsList);
     }
 
 }
