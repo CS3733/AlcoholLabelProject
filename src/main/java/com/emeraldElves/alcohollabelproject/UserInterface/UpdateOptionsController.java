@@ -8,7 +8,7 @@ import javafx.scene.control.CheckBox;
 
 import java.util.HashMap;
 
-public class UpdateOptionsController {
+public class UpdateOptionsController implements IController {
     @FXML
     private Button selectRev;
     @FXML
@@ -21,6 +21,10 @@ public class UpdateOptionsController {
     private Main main;
     private SubmittedApplication application;
     private ApplicationType appType;
+
+    public void init(Bundle bundle){
+        this.init(bundle.getMain("main"));
+    }
 
     public void init(Main main){
         this.main = main;
