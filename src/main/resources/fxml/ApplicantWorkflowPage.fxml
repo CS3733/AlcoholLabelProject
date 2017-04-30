@@ -17,11 +17,11 @@
          <children>
             <ListView fx:id="list" prefHeight="511.0" prefWidth="900.0">
                <contextMenu>
-                  <ContextMenu onAction="#hideIfSaved">
+                  <ContextMenu>
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#ApplicationWorkflow" text="Update" />
-                        <MenuItem mnemonicParsing="false" onAction="#reviseApplication" text="Revise" />
-                        <MenuItem mnemonicParsing="false" onAction="#viewApplication" text="View" />
+                      <MenuItem fx:id="updateMenu" mnemonicParsing="false" onAction="#ApplicationWorkflow" text="Update" />
+                        <MenuItem fx:id="reviseMenu" mnemonicParsing="false" onAction="#reviseApplication" text="Revise" />
+                        <MenuItem fx:id="viewMenu" mnemonicParsing="false" onAction="#viewApplication" text="View" />
                     </items>
                   </ContextMenu>
                </contextMenu>

@@ -98,7 +98,7 @@ public class ApplicantWorkflowController implements IController {
 
         }
     }
-
+    /*
     public void hideIfSaved(){
         if(list.getSelectionModel().getSelectedIndex() < numSavedApplications){
             //its a saved application
@@ -110,6 +110,7 @@ public class ApplicantWorkflowController implements IController {
             viewMenu.setVisible(true);
         }
     }
+    */
 
     public void ApplicationWorkflow() {
         if(getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {

@@ -419,10 +419,11 @@ public class NewApplicationController implements IController {
                 } else{
                     newApp.setImage(new ProxyLabelImage(""));
                 }
+                /*
                 if(isSavedApplication){
                     newApp.setImage(new ProxyLabelImage(this.image.getFileName()));
                 }
-
+                */
                 if (application != null)
                     newApp.setApplicationID(application.getApplicationID());
 
