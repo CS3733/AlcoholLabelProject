@@ -309,7 +309,9 @@ public class AlcoholDatabase {
                                 + image + "', '"
                                 + info.getQualifications() + "'"
                         //TTBUsername
-                        , "SubmittedApplications");
+                        , "SubmittedApplications (applicationID, applicantID, status, statusMsg, submissionTime, expirationDate," +
+                                " agentName, approvalDate, TTBUsername, submitterUsername, extraInfo, labelApproval, stateOnly," +
+                                " bottleCapacity, imageURL, qualifications)");
 
                 Log.console("SubmittedApplication");
 
