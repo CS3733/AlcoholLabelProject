@@ -151,7 +151,7 @@ public class NewApplicationController implements IController {
         ApplicationType applicationType = savedApplication.getApplicationType();
         AlcoholInfo alcoholInfo = savedApplication.getAlcoholInfo();
         String extraInfo = savedApplication.getExtraInfo();
-        String imageURL = savedApplication.getImage().getFileName();
+        String imageURL = (savedApplication.getImage().getFileName());
 
         //Application Type
         if(applicationType.isLabelApproval()){
@@ -415,6 +415,11 @@ public class NewApplicationController implements IController {
                 if (application != null)
                     newApp.setApplicationID(application.getApplicationID());
                 applicant.addSubmittedApp(newApp);
+                if(isSavedApplication) {
+                    if(!(savedApplication.getImage().getFileName().equals("")||savedApplication.getImage().getFileName().isEmpty()|savedApplication.getImage().getFileName().equals(null))) {
+                        proxyLabelImage = new ProxyLabelImage(savedApplication.getImage().getFileName());
+                    }
+                }
                 if(proxyLabelImage!= null) {
                     newApp.setImage(proxyLabelImage);
                 } else{
@@ -557,7 +562,6 @@ public class NewApplicationController implements IController {
         else{ extraInfo = extraInfoText.getText(); }
         //END extra info
         //image
-        file = new File("Labels/"+savedApplication.getImage().getFileName());
         saveImage(file);
         if(proxyLabelImage!= null) {
             image = new LabelImage(proxyLabelImage.getFileName());
