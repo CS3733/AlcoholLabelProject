@@ -141,6 +141,17 @@ public class UpdateApplicationController implements IController{
         }
         //end application type
 
+        //Image
+        String imageURL = application.getImage().getFileName();
+        if(!imageURL.equals("")) {
+            Log.console("Image path: " + imageURL);
+            File file = new File("Labels/" + imageURL);
+            Image tempImage = new Image(file.toURI().toString());
+            imageView.setImage(tempImage);
+            this.proxyLabelImage = new ProxyLabelImage("Labels/"+ imageURL);
+        }
+        //End image
+
         if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
             pSourceSelect.setValue("Domestic");
         } else if (application.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED) {
