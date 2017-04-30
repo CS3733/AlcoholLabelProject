@@ -446,4 +446,8 @@ public class Storage {
     public void modifyCompany(String email, String company) {
         usersDB.setCompanyFromEmail(company, email);
     }
+
+    public List<SubmittedApplication> getUnassignedApplications(){
+        return alcoholDB.getUnassignedApplications();
+    }
 }
