@@ -131,7 +131,7 @@ public class Storage {
         }
         try{
             database.createTable("NewApplicant",
-                    new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("name", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
@@ -348,6 +348,12 @@ public class Storage {
 
     public boolean isValidUser( String username) {
         return usersDB.isValidTTBAgentAccount(username)||(usersDB.isValidUserAccount(username));
+//            return(true);
+//        }
+//        return false;
+    }
+    public boolean isCurrentNewApplicant( String username) {
+        return usersDB.isCurrentNewApplicant(username);
 //            return(true);
 //        }
 //        return false;

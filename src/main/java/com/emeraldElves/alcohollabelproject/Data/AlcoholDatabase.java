@@ -286,6 +286,7 @@ public class AlcoholDatabase {
                 }
             } else {
                 String assignedAgent = AppState.getInstance().ttbAgents.assignAgent();
+
                 //not in table, need to add to all 3 tables
                 //SubmittedApplications
                 worked = db.insert(appID + ", " //application id

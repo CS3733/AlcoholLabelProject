@@ -65,6 +65,18 @@ public class AuthenticatedUsersDatabase {
         }
     }
 
+    public boolean isCurrentNewApplicant(String userName) {
+        ResultSet results = db.select("*", "NewApplicant", "email = '" + userName+"'");
+        if (results == null)
+            return false;
+        try {
+            return results.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public String getAgentPassword(String userName){
         ResultSet results = db.select("password", "TTBAgentLogin", "email = '" + userName+"'");
 
