@@ -72,6 +72,9 @@ public class ApprovalProcessController implements IController {
     Label applicationID;
 
     @FXML
+    Button correctionsButton;
+
+    @FXML
     ComboBox assignUserBox;
     @FXML
     Button assignButton;
