@@ -106,6 +106,17 @@ public class AdvancedSearch implements IController {
         brandCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getBrandName())));
         typeCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(p.getValue().getApplication().getAlcohol().getAlcoholType().name())));
         contentCol.setCellValueFactory(p -> new ReadOnlyObjectWrapper<String>(StringEscapeUtils.escapeJava(String.valueOf(p.getValue().getApplication().getAlcohol().getAlcoholContent()))));
+        resultsTable.setItems(this.data);
+        resultsTable.setRowFactory(tv -> {
+            TableRow<SubmittedApplication> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    SubmittedApplication rowData = row.getItem();
+                    main.loadFXML("/fxml/DetailedSearchPage.fxml",rowData, this.brand.getText());
+                }
+            });
+            return row;
+        });
 
     }
 

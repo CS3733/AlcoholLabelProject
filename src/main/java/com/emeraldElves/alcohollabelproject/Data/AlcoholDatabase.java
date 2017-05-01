@@ -1006,9 +1006,9 @@ public class AlcoholDatabase {
         String brandWhere = " AND UPPER(AlcoholInfo.brandName) LIKE UPPER('%" + brandName + "%')";
         String fancifulWhere = " AND UPPER(AlcoholInfo.fancifulName) LIKE UPPER('%" + fancifulName + "%')";
 
-        String emailWhere = "";//" AND (UPPER(emailAddress)  LIKE UPPER('%" + email + "%')";
+        String emailWhere = " AND (UPPER(emailAddress)  LIKE UPPER('%" + email + "%')";
 
-        String addressWhere = "";//" AND (UPPER(physicalAddress)  LIKE UPPER('%" + address + "%')";
+        String addressWhere = "AND (UPPER(physicalAddress)  LIKE UPPER('%" + address + "%')";
 
 //        String contentWhere = " AND alcoholContent"
 
