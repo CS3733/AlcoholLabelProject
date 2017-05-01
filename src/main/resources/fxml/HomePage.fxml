@@ -17,7 +17,7 @@
         <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="96.0" />
+        <RowConstraints maxHeight="96.0" minHeight="96.0" prefHeight="96.0" />
       <RowConstraints />
       <RowConstraints />
     </rowConstraints>
