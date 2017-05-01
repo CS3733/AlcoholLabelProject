@@ -77,7 +77,7 @@ public class UpdateApplicationController implements IController{
     private AlcoholType alcType;
     private String alcName;
     private String brandName;
-    private double alcContent;
+    private String alcContent;
     private AlcoholInfo.Wine wineType = null;
     private String formula;
     private String serialNum; //needs to be a string!!!!
@@ -253,7 +253,7 @@ public class UpdateApplicationController implements IController{
 
         alcName = alcoholName.getText();
         brandName = brandNameField.getText();
-        alcContent = Double.parseDouble(alcoholContentField.getText());
+        alcContent = alcoholContentField.getText();
         serialNum = serialText.getText();
         if (formulaText.getText().isEmpty()) {
             formula = " ";
