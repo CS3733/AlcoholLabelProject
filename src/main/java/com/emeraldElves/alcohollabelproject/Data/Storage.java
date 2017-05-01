@@ -201,7 +201,7 @@ public class Storage {
         }
 
         try {
-            database.createTable("HistoricalAlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+            database.createTable("HistoryAlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
                     new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
                     new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),

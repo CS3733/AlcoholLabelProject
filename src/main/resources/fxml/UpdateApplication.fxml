@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -14,9 +15,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane prefHeight="1600.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="1600.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateApplicationController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1024.0" minWidth="1024.0" prefWidth="1024.0" />
    </columnConstraints>
@@ -46,7 +48,6 @@
                   <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="124.66668701171875" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="13.66668701171875" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="96.33331298828125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="937.0" minHeight="2.0" prefHeight="4.66668701171875" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="53.66668701171875" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="51.33331298828125" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="50.3333740234375" vgrow="SOMETIMES" />
@@ -82,12 +83,48 @@
                         <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
                         <ComboBox fx:id="stateSelect" disable="true" prefHeight="47.0" prefWidth="129.0" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="153.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="A Certificate of Label Approval authorizes a product to be sold in interstate commerce" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="50.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" prefHeight="100.0" text="A Certificate of Exemption authorizes a product to be sold in the state where it was bottled and must be obtained BEFORE a product is bottled." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="120.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="If Distinctive Liquor Bottle is selected, enter the total bottle capacity before closure." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="11">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="162.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="339.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="110.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="368.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -101,36 +138,41 @@
                               <Tooltip text="Tyoe of alcohol. e.g. Wine" />
                            </tooltip>
                         </Label>
-                        <Label text="Product Source:">
+                        <Label text="Product Source:" />
+                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="72.0" prefHeight="19.0" prefWidth="24.0" style="-fx-font-size: 10;" stylesheets="@../style/material.css" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                            <tooltip>
-                              <Tooltip text="Where the product came from. e.g. Domestic" />
+                              <Tooltip text="This code indicates the class and or type designation for a product." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Tooltip>
                            </tooltip>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Label>
+                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="24.0" prefHeight="20.0" prefWidth="11.0" style="-fx-font-size: 10;" text="?" textAlignment="CENTER" GridPane.halignment="RIGHT">
+                           <tooltip>
+                              <Tooltip text="Where the product came from. e.g. Domestic" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Tooltip>
+                           </tooltip>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </children>
                   </GridPane>
-                  <Label text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
-                  <Label text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
-                  <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="13">
-                     <tooltip>
-                        <Tooltip maxWidth="400.0" text="This is a name that may be used in addition to a brand name to further identify a product and is required for malt beverage and distilled spirit specialty products that must be labeled with a statement of composition.  It is optional for other products." wrapText="true" />
-                     </tooltip>
-                  </TextField>
-                  <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="14">
-                     <tooltip>
-                        <Tooltip maxWidth="400.0" text="This is the name under which a product is sold.  If the product is not sold under a brand name, the name of the bottler, packer or importer becomes the brand name." wrapText="true" />
-                     </tooltip>
-                  </TextField>
-                  <Label text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
-                  <Label text="Formula: " GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
-                  <Label text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="17" />
-                  <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="15">
-                     <tooltip>
-                        <Tooltip prefWidth="400.0" text="An accurate statement of the alcohol content must appear on the brand label of all wine and distilled spirits products.  This statement is optional for malt beverages, but if shown must be in the correct format." wrapText="true" />
-                     </tooltip>
-                  </TextField>
-                  <TextField fx:id="formulaText" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-                  <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="17" />
-                  <GridPane prefHeight="161.0" prefWidth="471.0" GridPane.columnIndex="1" GridPane.rowIndex="19">
+                  <Label prefHeight="20.0" prefWidth="145.0" text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
+                  <Label prefHeight="20.0" prefWidth="88.0" text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
+                  <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Label prefHeight="20.0" prefWidth="111.0" text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+                  <Label prefHeight="20.0" prefWidth="65.0" text="Formula: " GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
+                  <Label prefHeight="20.0" prefWidth="101.0" text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
+                  <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  <TextField fx:id="formulaText" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                  <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                  <GridPane prefHeight="161.0" prefWidth="471.0" GridPane.columnIndex="1" GridPane.rowIndex="18">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.66665649414062" minWidth="30.0" prefWidth="205.66665649414062" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="19.0" prefWidth="73.33331298828125" />
@@ -146,20 +188,40 @@
                               <Insets />
                            </GridPane.margin>
                         </Text>
-                        <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1">
-                           <tooltip>
-                              <Tooltip prefWidth="400.0" text="A vintage date indicates the year in which the grapes used to make the wine were harvested.  Please supply the vintage date of the wine if one appears on the label.A vintage date may be used on the label if not less than 95 percent of the wine is produced from grapes grown in that year and must be labeled with an appellation smaller than a country." wrapText="true" />
-                           </tooltip>
-                        </TextField>
+                        <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1" />
                         <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="138.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Text>
                         <TextField fx:id="pHLevelField" disable="true" prefHeight="59.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="34.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="A vintage date indicates the year in which the grapes used to make the wine were harvested." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="73.0" style="-fx-font-size: 10;" text="?" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="pH Level indicates the acidity of the wine." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
                      </children>
                   </GridPane>
-                  <GridPane prefHeight="40.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="20">
+                  <GridPane prefHeight="40.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="19">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="30.0" prefWidth="204.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.66668701171875" minWidth="30.0" prefWidth="75.0" />
@@ -180,21 +242,37 @@
                               <Insets />
                            </GridPane.margin>
                         </Text>
-                        <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1">
+                        <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1" />
+                        <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="54.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                            <tooltip>
-                              <Tooltip prefWidth="400.0" text="This must specify each grape varietal (if any) that appears on a wine label" wrapText="true" />
+                              <Tooltip maxWidth="350.0" text="This must specify each grape varietal (if any) that appears on a wine label" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
                            </tooltip>
-                        </TextField>
-                        <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="63.0" style="-fx-font-size: 10;" text="?" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                            <tooltip>
-                              <Tooltip prefWidth="400.0" text="An appellation indicates the origin of the grapes used to make the wine.  Please supply the appellation of origin if it appears on the label" wrapText="true" />
+                              <Tooltip maxWidth="350.0" text="An appellation indicates the origin of the grapes used to make the wine." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
                            </tooltip>
-                        </TextField>
+                        </Label>
                      </children>
                   </GridPane>
-                  <Label text="Extra info: " GridPane.halignment="RIGHT" GridPane.rowIndex="22" />
-                  <TextField fx:id="extraInfoText" GridPane.columnIndex="1" GridPane.rowIndex="22" />
-                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="26">
+                  <Label text="Extra info: " GridPane.halignment="RIGHT" GridPane.rowIndex="21" />
+                  <TextField fx:id="extraInfoText" GridPane.columnIndex="1" GridPane.rowIndex="21" />
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="25">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="10.0" prefWidth="261.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="69.0" />
@@ -215,20 +293,20 @@
                         <DatePicker fx:id="datePicker" maxHeight="30.0" minHeight="35.0" prefHeight="30.0" prefWidth="144.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Label text="Signature: " GridPane.halignment="RIGHT" GridPane.rowIndex="26">
+                  <Label text="Signature: " GridPane.halignment="RIGHT" GridPane.rowIndex="25">
                      <tooltip>
                         <Tooltip text="Electronic Signature" />
                      </tooltip>
                   </Label>
-                  <Button fx:id="submitLabel" mnemonicParsing="false" onMouseClicked="#submitImage" styleClass="button-raised" text="Upload Label Image" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="24" GridPane.valignment="CENTER">
+                  <Button fx:id="submitLabel" mnemonicParsing="false" onMouseClicked="#submitImage" styleClass="button-raised" text="Upload Label Image" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="23" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets bottom="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="27" GridPane.valignment="TOP" />
-                  <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="27" GridPane.valignment="TOP" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="255.0" stroke="BLACK" strokeType="INSIDE" width="480.0" GridPane.columnIndex="1" GridPane.rowIndex="25" />
-                  <ImageView fx:id="imageView" fitHeight="255.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="25" />
+                  <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="26" GridPane.valignment="TOP" />
+                  <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="26" GridPane.valignment="TOP" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="255.0" stroke="BLACK" strokeType="INSIDE" width="480.0" GridPane.columnIndex="1" GridPane.rowIndex="24" />
+                  <ImageView fx:id="imageView" fitHeight="255.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="24" />
                   <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -243,27 +321,27 @@
                         <Label fx:id="distinctiveError" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <Label fx:id="brandNameErrorField" GridPane.columnIndex="2" GridPane.rowIndex="14">
+                  <Label fx:id="brandNameErrorField" GridPane.columnIndex="2" GridPane.rowIndex="13">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="alcContentErrorField" GridPane.columnIndex="2" GridPane.rowIndex="15">
+                  <Label fx:id="alcContentErrorField" GridPane.columnIndex="2" GridPane.rowIndex="14">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="serialErrorField" GridPane.columnIndex="2" GridPane.rowIndex="17">
+                  <Label fx:id="serialErrorField" GridPane.columnIndex="2" GridPane.rowIndex="16">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="dateErrorField" GridPane.columnIndex="2" GridPane.rowIndex="26">
+                  <Label fx:id="dateErrorField" GridPane.columnIndex="2" GridPane.rowIndex="25">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="varietalErrorField" GridPane.columnIndex="2" GridPane.rowIndex="19">
+                  <Label fx:id="varietalErrorField" GridPane.columnIndex="2" GridPane.rowIndex="18">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -305,19 +383,79 @@
                   <TextField fx:id="emailAddressField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Phone Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                   <Label text="Email Address: " GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-                  <Label fx:id="signatureErrorField" GridPane.columnIndex="2" GridPane.rowIndex="26">
+                  <Label fx:id="signatureErrorField" GridPane.columnIndex="2" GridPane.rowIndex="25">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
                   <Label text="To edit the following information, please go to your 'Profile' page." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="wineNumErrorField" GridPane.columnIndex="2" GridPane.rowIndex="19">
+                  <Label fx:id="wineNumErrorField" GridPane.columnIndex="2" GridPane.rowIndex="18">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" layoutX="113.0" layoutY="589.0" prefHeight="20.0" prefWidth="12.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip maxWidth="550.0" prefHeight="120.0" text="This is a name that may be used in addition to a brand name to further identify a product and is required for malt beverage and distilled spirit specialty products that must be labeled with a statement of composition.  It is optional for other products." wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" layoutX="171.0" layoutY="640.0" prefHeight="20.0" prefWidth="12.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="13">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip maxWidth="500.0" prefHeight="100.0" text="This is the name under which a product is sold.  If the product is not sold under a brand name, the name of the bottler, packer or importer becomes the brand name." wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="13.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="14">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="An accurate statement of the alcohol content">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="12.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip maxWidth="550.0" prefHeight="100.0" text="A Formula is a quantitative list of ingredients and a step-by-step method of manufacture for alcohol beverage products (wine, distilled spirits, malt beverage) requiring approval from TTB prior to production or importation." wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="11.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip maxWidth="600.0" prefHeight="90.0" text="This is a unique, sequential number assigned by the COLA holder.  The first two digits reflect the calendar year the application was created.  The remaining digits may be a combination of letters and numbers but may not exceed four characters in length." wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
                   </Label>
                </children>
             </GridPane>

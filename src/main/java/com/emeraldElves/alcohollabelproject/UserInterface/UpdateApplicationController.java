@@ -77,7 +77,7 @@ public class UpdateApplicationController implements IController{
     private AlcoholType alcType;
     private String alcName;
     private String brandName;
-    private int alcContent;
+    private double alcContent;
     private AlcoholInfo.Wine wineType = null;
     private String formula;
     private String serialNum; //needs to be a string!!!!
@@ -96,7 +96,7 @@ public class UpdateApplicationController implements IController{
     public void init(Main main, SubmittedApplication application) {
         this.main = main;
         this.application=application;
-
+        Log.console(application);
         setUpApp();
     }
 
@@ -124,6 +124,33 @@ public class UpdateApplicationController implements IController{
 //        pTypeSelect.setValue("Select a product type");
 //        pTypeSelect.setItems(typeList);
 
+        //Application Type
+        ApplicationType applicationType = application.getApplication().getApplicationType();
+        if(applicationType.isLabelApproval()){
+            certOfApproval.setSelected(true);
+        }
+        if(!applicationType.getStateOnly().equals("")){
+            certOfExemption.setSelected(true);
+            stateSelect.setValue(applicationType.getStateOnly());
+            stateSelect.setDisable(false);
+        }
+        if(applicationType.getBottleCapacity() != -1){
+            distinctiveApproval.setSelected(true);
+            distinctiveText.setText("" + applicationType.getBottleCapacity());
+            distinctiveText.setDisable(false);
+        }
+        //end application type
+
+        //Image
+        String imageURL = application.getImage().getFileName();
+        if(!imageURL.equals("")) {
+            Log.console("Image path: " + imageURL);
+            File file = new File("Labels/" + imageURL);
+            Image tempImage = new Image(file.toURI().toString());
+            imageView.setImage(tempImage);
+            this.proxyLabelImage = new ProxyLabelImage("Labels/"+ imageURL);
+        }
+        //End image
 
         if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
             pSourceSelect.setValue("Domestic");
@@ -154,40 +181,40 @@ public class UpdateApplicationController implements IController{
 
         disableAllFields();
 
-        if(application.getUpdatesSelected().get("label")==true){
+        if(application.getUpdatesSelected().contains("label")){
             submitLabel.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("alcContent")==true){
+        if(application.getUpdatesSelected().contains("alcContent")){
             alcoholContentField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("vintYr")==true){
+        if(application.getUpdatesSelected().contains("vintYr")){
             wineVintageYearField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("pH")==true){
+        if(application.getUpdatesSelected().contains("pH")){
             pHLevelField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("formula")==true){
+        if(application.getUpdatesSelected().contains("formula")){
             formulaText.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("stateSelect")==true){
+        if(application.getUpdatesSelected().contains("stateSelect")){
             stateSelect.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("alcoholName")==true){
+        if(application.getUpdatesSelected().contains("alcoholName")){
             alcoholName.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("brandName")==true){
+        if(application.getUpdatesSelected().contains("brandName")){
             brandNameField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("address")==true){
+        if(application.getUpdatesSelected().contains("address")){
             addressField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("extraInfo")==true){
+        if(application.getUpdatesSelected().contains("extraInfo")){
             extraInfoText.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("repID")==true){
+        if(application.getUpdatesSelected().contains("repID")){
             repIDNoTextField.setDisable(false);
         }
-        if(application.getUpdatesSelected().get("date")==true){
+        if(application.getUpdatesSelected().contains("date")){
             datePicker.setDisable(false);
         }
     }
@@ -226,7 +253,7 @@ public class UpdateApplicationController implements IController{
 
         alcName = alcoholName.getText();
         brandName = brandNameField.getText();
-        alcContent = Integer.parseInt(alcoholContentField.getText());
+        alcContent = Double.parseDouble(alcoholContentField.getText());
         serialNum = serialText.getText();
         if (formulaText.getText().isEmpty()) {
             formula = " ";
@@ -234,6 +261,19 @@ public class UpdateApplicationController implements IController{
         if (extraInfoText.getText().isEmpty()) {
             extraInfo = " ";
         } else extraInfo = extraInfoText.getText();
+
+        //appType
+        boolean labelApproval = certOfApproval.isSelected();
+        String stateOnly;
+        if(certOfExemption.isSelected()){ stateOnly = stateSelect.getValue().toString();}//Maybe change this
+        else { stateOnly = "";}
+        int bottleCapacity;
+        if(distinctiveApproval.isSelected()){ bottleCapacity = Integer.parseInt(distinctiveText.getText());}
+        else { bottleCapacity = -1;}//know this for future
+        appType = new ApplicationType(labelApproval,stateOnly,bottleCapacity);
+        //END appType
+
+
 
         AlcoholInfo appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
         ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
@@ -243,6 +283,7 @@ public class UpdateApplicationController implements IController{
 
         newApplication = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant.getApplicant());
         newApplication.setApplicationID(application.getApplicationID());//setting id for updating
+        newApplication.setImage(proxyLabelImage);
     }
 
 
@@ -256,7 +297,7 @@ public class UpdateApplicationController implements IController{
         //errors are printed only if required fields are not filled in
 
         //malt beverages: don't need alcohol content
-        if (!isInt(alcoholContentField)) {
+        if (!isDouble(alcoholContentField)) {
             alcContentErrorField.setText("Please enter a valid number.");
         } else {
             alcContentErrorField.setText("");
@@ -264,7 +305,7 @@ public class UpdateApplicationController implements IController{
 
         if (alcoholContentField.getText().isEmpty()) {
             alcContentErrorField.setText("Please fill in the alcohol percentage.");
-        } else if (!isInt(alcoholContentField)) {
+        } else if (!isDouble(alcoholContentField)) {
             alcContentErrorField.setText("Please enter a valid number.");
         } else {
             alcContentErrorField.setText("");
@@ -290,7 +331,7 @@ public class UpdateApplicationController implements IController{
 
 
         //check if fields are valid
-        if (isInt(alcoholContentField)) {
+        if (isDouble(alcoholContentField)) {
             if (pTypeSelect.getValue().equals("Wine")) {
                 if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
                     fieldsValid = true;
@@ -304,6 +345,9 @@ public class UpdateApplicationController implements IController{
 
             boolean success = Storage.getInstance().updateApplication(this.newApplication, this.username);
             main.loadHomepage();
+        }
+        else{
+            Log.console("All fields not valid");
         }
     }
 
