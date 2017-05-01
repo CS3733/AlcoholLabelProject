@@ -40,6 +40,7 @@
 	-swatch-400: #319b54;
 	-swatch-500: #319b54;
 	-swatch-green: #319b54;
+	-swatch-dark-green: #1b5e20;
 	/*default text */
 	-fx-text-base-color: rgb(100.0, 100.0, 100.0);
 	-fx-text-button-normal: white;/*-swatch-500;*/
@@ -135,6 +136,12 @@
 	-fx-background-color: -swatch-green;/*rgb(209, 209, 209);*/
 }
 
+.button-raised2 {
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
+		1);
+	-fx-background-color: -swatch-dark-green;
+}
+
 .fab {
    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
    		1);
@@ -166,7 +173,7 @@
 	-fx-alignment: CENTER;
 }
 
-.button-raised .button .text, .button-flat .button .text {
+.button-raised .button .text, .button-raised2 .button .text, .button-flat .button .text {
 	-fx-text-weight: Bold;
 }
 
@@ -722,7 +729,7 @@
 .text-area, .text-field {
 	-fx-background-color: transparent;
 	-fx-background-radius: 2.0;
-	-fx-padding: 0.5em 0.5em 0.5em 0.1em;
+	-fx-padding: 0.1em 0.1em 0.1em 0.1em;
 	-fx-border-color: -swatch-grey;
 	-fx-border-width: 0 0 2 0;
 	-fx-prompt-text-fill: derive(-dark, 50.0%);

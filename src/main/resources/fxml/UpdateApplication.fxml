@@ -1,90 +1,466 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateApplicationController">
+<GridPane prefHeight="1600.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateApplicationController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.3333435058594" minWidth="10.0" prefWidth="285.3333435058594" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="616.0" minWidth="10.0" prefWidth="434.6666564941406" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.3333740234375" minWidth="10.0" prefWidth="303.6666259765625" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1024.0" minWidth="1024.0" prefWidth="1024.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="58.33332824707031" minHeight="10.0" prefHeight="56.333335876464844" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="41.66667175292969" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="105.33332824707031" minHeight="10.0" prefHeight="41.66667175292969" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.66666412353516" minHeight="1.0" prefHeight="88.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="127.33334350585938" minHeight="10.0" prefHeight="43.33331298828125" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.66665649414062" minHeight="10.0" prefHeight="67.66668701171875" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="54.333343505859375" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.33331298828125" minHeight="10.0" prefHeight="54.666656494140625" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="139.33334350585938" minHeight="10.0" prefHeight="57.333343505859375" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="46.3333740234375" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="114.0" minHeight="1.3333740234375" prefHeight="50.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="62.6666259765625" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="96.0" minHeight="96.0" prefHeight="96.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="672.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button fx:id="logoutBtn" mnemonicParsing="false" onMouseClicked="#logout" styleClass="button-raised" text="Logout" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
-         <opaqueInsets>
-            <Insets right="20.0" />
-         </opaqueInsets>
-         <GridPane.margin>
-            <Insets right="20.0" />
-         </GridPane.margin></Button>
-      <ImageView fitHeight="124.0" fitWidth="1024.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-         <image>
-            <Image url="@../images/ttbmasthead.gif" />
-         </image>
-      </ImageView>
-      <Label text="  Welcome, [ApplicantName]." GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-      <TextField fx:id="signatureField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Signature:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin></Text>
-      <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-      <Text layoutX="10.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin></Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol Content:" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin></Text>
-      <TextField fx:id="wineVintageYearField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage Year (wine only):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin></Text>
-      <TextField fx:id="phLevelField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (wine only):" textAlignment="RIGHT" wrappingWidth="339.994140625" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
-         <GridPane.margin>
-            <Insets right="10.0" />
-         </GridPane.margin></Text>
-      <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
-      <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="14" />
-      <Label fx:id="error2" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You are on the Allowed Revisions page for this approved label:" wrappingWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Label text="Please fill out any of the following revisions:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
-      <Hyperlink text="[Alcohol Name, Alcohol Brand]--&gt;links to alcohol page" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <ScrollPane prefHeight="1503.0" prefWidth="1005.0" GridPane.rowIndex="1">
+         <content>
+            <GridPane prefHeight="1468.0" prefWidth="1006.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="249.3333282470703" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="619.0" minWidth="10.0" prefWidth="477.66668701171875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.6666259765625" minWidth="10.0" prefWidth="278.33331298828125" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="366.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="32.66667175292969" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="48.33332824707031" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="39.66667175292969" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="42.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="882.0" minHeight="10.0" prefHeight="37.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="124.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="13.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="96.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="53.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="51.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="50.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="52.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="55.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="9.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="73.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="64.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="7.0" prefHeight="28.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="39.666748046875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="7.0" prefHeight="30.333251953125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="261.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="951.0" minHeight="6.0" prefHeight="51.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label fx:id="welcomeApplicantLabel" text="Welcome, [Applicant]" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                  <Label text="Type of Application (Check applicable boxes): " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                  <GridPane prefHeight="148.0" prefWidth="503.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="393.0" minWidth="10.0" prefWidth="367.66668701171875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.0" minWidth="10.0" prefWidth="115.33331298828125" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="29.666656494140625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="39.33331298828125" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="35.33331298828125" minHeight="10.0" prefHeight="29.66668701171875" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <CheckBox fx:id="certOfApproval" mnemonicParsing="false" text="Certificate of Label Approval" />
+                        <CheckBox fx:id="certOfExemption" mnemonicParsing="false" onAction="#exemptionChecked" onKeyPressed="#exemptionChecked" onMouseClicked="#exemptionChecked" prefHeight="40.0" prefWidth="346.0" text="Certificate of Exemption from Label Approval" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="stateSelect" disable="true" prefHeight="47.0" prefWidth="129.0" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="153.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="A Certificate of Label Approval authorizes a product to be sold in interstate commerce" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="50.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" prefHeight="100.0" text="A Certificate of Exemption authorizes a product to be sold in the state where it was bottled and must be obtained BEFORE a product is bottled." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="120.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="If Distinctive Liquor Bottle is selected, enter the total bottle capacity before closure." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="11">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="110.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="368.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ComboBox fx:id="pSourceSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product source of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                        <ComboBox fx:id="pTypeSelect" prefHeight="41.0" prefWidth="310.0" promptText="Select the product type of the alcohol" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                        <Label text="Product Type:" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="Tyoe of alcohol. e.g. Wine" />
+                           </tooltip>
+                        </Label>
+                        <Label text="Product Source:" />
+                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="72.0" prefHeight="19.0" prefWidth="24.0" style="-fx-font-size: 10;" stylesheets="@../style/material.css" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <tooltip>
+                              <Tooltip text="This code indicates the class and or type designation for a product." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Tooltip>
+                           </tooltip>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Label>
+                        <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="24.0" prefHeight="20.0" prefWidth="11.0" style="-fx-font-size: 10;" text="?" textAlignment="CENTER" GridPane.halignment="RIGHT">
+                           <tooltip>
+                              <Tooltip text="Where the product came from. e.g. Domestic" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Tooltip>
+                           </tooltip>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label prefHeight="20.0" prefWidth="145.0" text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
+                  <Label prefHeight="20.0" prefWidth="88.0" text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
+                  <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Label prefHeight="20.0" prefWidth="111.0" text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+                  <Label prefHeight="20.0" prefWidth="65.0" text="Formula: " GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
+                  <Label prefHeight="20.0" prefWidth="101.0" text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
+                  <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  <TextField fx:id="formulaText" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                  <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                  <GridPane prefHeight="161.0" prefWidth="471.0" GridPane.columnIndex="1" GridPane.rowIndex="18">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.66665649414062" minWidth="30.0" prefWidth="205.66665649414062" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="19.0" prefWidth="73.33331298828125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.66668701171875" minWidth="30.0" prefWidth="221.66668701171875" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="14.33331298828125" minHeight="0.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage Year (Wine Only):" textAlignment="RIGHT" wrappingWidth="162.99417114257812" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Text>
+                        <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" prefHeight="27.0" prefWidth="211.0" GridPane.rowIndex="1" />
+                        <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="138.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Text>
+                        <TextField fx:id="pHLevelField" disable="true" prefHeight="59.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="34.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="A vintage date indicates the year in which the grapes used to make the wine were harvested." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="73.0" style="-fx-font-size: 10;" text="?" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="pH Level indicates the acidity of the wine." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane prefHeight="40.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="19">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="30.0" prefWidth="204.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.66668701171875" minWidth="30.0" prefWidth="75.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.66668701171875" minWidth="30.0" prefWidth="223.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="Varietal(s) (Wine Only):" wrappingWidth="170.15072631835938" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="Appellation (Wine Only):" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Text>
+                        <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1" />
+                        <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="54.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="This must specify each grape varietal (if any) that appears on a wine label" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="63.0" style="-fx-font-size: 10;" text="?" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip maxWidth="350.0" text="An appellation indicates the origin of the grapes used to make the wine." wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label text="Extra info: " GridPane.halignment="RIGHT" GridPane.rowIndex="21" />
+                  <TextField fx:id="extraInfoText" GridPane.columnIndex="1" GridPane.rowIndex="21" />
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="25">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="10.0" prefWidth="261.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="69.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="141.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TextField fx:id="signatureField" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="50.66082763671875" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="5.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <DatePicker fx:id="datePicker" maxHeight="30.0" minHeight="35.0" prefHeight="30.0" prefWidth="144.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label text="Signature: " GridPane.halignment="RIGHT" GridPane.rowIndex="25">
+                     <tooltip>
+                        <Tooltip text="Electronic Signature" />
+                     </tooltip>
+                  </Label>
+                  <Button fx:id="submitLabel" mnemonicParsing="false" onMouseClicked="#submitImage" styleClass="button-raised" text="Upload Label Image" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="23" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="26" GridPane.valignment="TOP" />
+                  <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="26" GridPane.valignment="TOP" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="255.0" stroke="BLACK" strokeType="INSIDE" width="480.0" GridPane.columnIndex="1" GridPane.rowIndex="24" />
+                  <ImageView fx:id="imageView" fitHeight="255.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="24" />
+                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="exceptionError" GridPane.rowIndex="1" />
+                        <Label fx:id="distinctiveError" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="brandNameErrorField" GridPane.columnIndex="2" GridPane.rowIndex="13">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="alcContentErrorField" GridPane.columnIndex="2" GridPane.rowIndex="14">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="serialErrorField" GridPane.columnIndex="2" GridPane.rowIndex="16">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="dateErrorField" GridPane.columnIndex="2" GridPane.rowIndex="25">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="varietalErrorField" GridPane.columnIndex="2" GridPane.rowIndex="18">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="11">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="pTypeErrorField" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="pSourceErrorField">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <TextField fx:id="repIDNoTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Representative ID (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <TextField fx:id="permitNoTextField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Permit number: " GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                  <TextField fx:id="addressField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Address: " GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                  <TextField fx:id="phoneNumberField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="emailAddressField" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label text="Phone Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label text="Email Address: " GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                  <Label fx:id="signatureErrorField" GridPane.columnIndex="2" GridPane.rowIndex="25">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="To edit the following information, please go to your 'Profile' page." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="wineNumErrorField" GridPane.columnIndex="2" GridPane.rowIndex="18">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" layoutX="113.0" layoutY="589.0" prefHeight="20.0" prefWidth="12.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip maxWidth="550.0" prefHeight="120.0" text="This is a name that may be used in addition to a brand name to further identify a product and is required for malt beverage and distilled spirit specialty products that must be labeled with a statement of composition.  It is optional for other products." wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" layoutX="171.0" layoutY="640.0" prefHeight="20.0" prefWidth="12.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="13">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip maxWidth="500.0" prefHeight="100.0" text="This is the name under which a product is sold.  If the product is not sold under a brand name, the name of the bottler, packer or importer becomes the brand name." wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="13.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="14">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip text="An accurate statement of the alcohol content">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="12.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip maxWidth="550.0" prefHeight="100.0" text="A Formula is a quantitative list of ingredients and a step-by-step method of manufacture for alcohol beverage products (wine, distilled spirits, malt beverage) requiring approval from TTB prior to production or importation." wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+                  <Label alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="11.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <tooltip>
+                        <Tooltip maxWidth="600.0" prefHeight="90.0" text="This is a unique, sequential number assigned by the COLA holder.  The first two digits reflect the calendar year the application was created.  The remaining digits may be a combination of letters and numbers but may not exceed four characters in length." wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
+                  </Label>
+               </children>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <fx:include source="toolbar.fxml" />
    </children>
 </GridPane>

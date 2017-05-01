@@ -43,12 +43,6 @@ public class EmailManager {
     }
 
     public void sendEmail(SubmittedApplication application) {
-//        try {
-//            InetAddress.getByName(props.toString()).isReachable(2000);
-//        }
-//        catch (UnknownHostException e) {
-//            e.printStackTrace();
-//        }
 
         try {
 
