@@ -24,9 +24,9 @@ import java.util.List;
 
 public class NewApplicationController implements IController {
     @FXML
-    private TextField repIDNoTextField, permitNoTextField, alcoholName, brandNameField;
+    private TextField repIDNoTextField, permitNoTextField, addressField, companyField;
     @FXML
-    private TextField addressField, phoneNumberField, emailAddressField, signatureField;
+    private TextField phoneNumberField, emailAddressField, alcoholName, brandNameField, signatureField;
     @FXML
     private DatePicker datePicker;
     @FXML
@@ -49,6 +49,8 @@ public class NewApplicationController implements IController {
     private ImageView imageView;
     @FXML
     private ComboBox pTypeSelect, pSourceSelect, stateSelect;
+    @FXML
+    private Button normalFormButton;
 
     //Options for the comboBox fields
     private ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
@@ -79,9 +81,9 @@ public class NewApplicationController implements IController {
     private double alcContent;
     private AlcoholInfo.Wine wineType = null; //null if type is not wine
     private String formula;
-    private String serialNum; //needs to be a string!!!!
+    private String serialNum;
     private String extraInfo;
-    private  File file;
+    private File file;
 
     private Main main;
 
@@ -102,30 +104,36 @@ public class NewApplicationController implements IController {
             this.init(bundle.getMain("main"), bundle.getApplication("app"));
         } else if (bundle.getSavedApplication("saved") != null) {
             this.init(bundle.getMain("main"), bundle.getSavedApplication("saved"));
-        }
-        else{
+        } else{
             this.init(bundle.getMain("main"));
         }
     }
 
+    //initializing for filling out a blank application
     public void init(Main main){
         this.main = main;
 
+        //get applicant
         username= Authenticator.getInstance().getUsername();
         applicant = new ApplicantInterface(username);
         Log.console(username);
+
+        //set manufacturer info
         welcomeApplicantLabel.setText("Welcome, " + applicant.getApplicant().getNamefromDB(username) + ".");
         emailAddress = new EmailAddress(applicant.getApplicant().getEmailAddress());
-        permitNum = applicant.getApplicant().getPermitNumFromDB(username);
-        address = applicant.getApplicant().getAddress();
         phoneNum = new PhoneNumber(applicant.getApplicant().getPhoneNum());
+        address = applicant.getApplicant().getAddress();
+        permitNum = applicant.getApplicant().getPermitNumFromDB(username);
         representativeID = applicant.getApplicant().getRepresentativeID();
-        repIDNoTextField.setText(String.valueOf(representativeID));
-        permitNoTextField.setText(String.valueOf(permitNum));
-        addressField.setText(String.valueOf(address));
-        phoneNumberField.setText((phoneNum.getPhoneNumber()));
+        company = applicant.getApplicant().getCompany();
         emailAddressField.setText((emailAddress.getEmailAddress()));
+        phoneNumberField.setText((phoneNum.getPhoneNumber()));
+        addressField.setText(String.valueOf(address));
+        permitNoTextField.setText(String.valueOf(permitNum));
+        repIDNoTextField.setText(String.valueOf(representativeID));
+        companyField.setText(company);
 
+        //set up combo boxes
         datePicker.setValue(LocalDate.now());
         stateSelect.setValue("State Abb.");
         stateSelect.setItems(stateList);
@@ -143,6 +151,7 @@ public class NewApplicationController implements IController {
         });
     }
 
+    //initialize for editing a saved application
     public void init(Main main, SavedApplication savedApplication){
         isSavedApplication= true;
         init(main);
@@ -225,6 +234,7 @@ public class NewApplicationController implements IController {
         }
     }
 
+    //initialize for a revising a form
     public void init(Main main, SubmittedApplication application) {
         init(main);
         this.application = application;
@@ -319,7 +329,6 @@ public class NewApplicationController implements IController {
                 formFilled = true;
             }
 
-
             //check if fields are valid
             if(isInt(alcoholContentField)) {
                 if (pTypeSelect.getValue().equals("Wine")) {
@@ -398,13 +407,10 @@ public class NewApplicationController implements IController {
                 //creates a new ManufacturerInfo
                 ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
                         permitNum, phoneNum, emailAddress);
-//                ManufacturerInfo appManInfo= new ManufacturerInfo(applicant.getApplicant().getName(), applicant.getApplicant().getAddressFromDB(username),
-//                        "company", applicant.getApplicant().getRepresentativeIDFromDB(username), applicant.getApplicant().getPermitNumFromDB(username),
-//                        new PhoneNumber(applicant.getApplicant().getPhoneNum()), new EmailAddress( applicant.getApplicant().getEmailAddress()));
 
                 ApplicationInfo appInfo = new ApplicationInfo(newDate, appManInfo, appAlcoholInfo, extraInfo, appType);
 
-                //!!!!!placeholder for applicant's submitted applications!!!!!
+                //placeholder for applicant's submitted applications
                 List<SubmittedApplication> appList = new ArrayList<>();
 
                 //Create applicant to store in submitted application
@@ -425,11 +431,6 @@ public class NewApplicationController implements IController {
                 } else{
                     newApp.setImage(new ProxyLabelImage(""));
                 }
-                /*
-                if(isSavedApplication){
-                    newApp.setImage(new ProxyLabelImage(this.image.getFileName()));
-                }
-                */
                 if (application != null)
                     newApp.setApplicationID(application.getApplicationID());
 
@@ -461,10 +462,6 @@ public class NewApplicationController implements IController {
         ApplicationType appType;
         AlcoholInfo alcoholInfo;
         String extraInfo;
-        //
-        //Time for a ton of isEmpty()
-
-
 
         //appType
         boolean labelApproval = certOfApproval.isSelected();
@@ -478,7 +475,7 @@ public class NewApplicationController implements IController {
         //END appType
 
         //alcoholInfo
-        double alcoholContent; // double??
+        double alcoholContent;
         String fanciful;
         String brand;
         ProductSource origin;
@@ -582,11 +579,6 @@ public class NewApplicationController implements IController {
     public void cancelApp() {
         //Go back to homepage
         main.loadFXML("/fxml/ApplicantWorkflowPage.fxml");
-    }
-
-    public void saveApp() {
-        //TODO: this
-
     }
 
     public void logout() {

@@ -34,16 +34,16 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="619.0" minWidth="0.0" prefWidth="63.3333740234375" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="366.0" minHeight="0.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="61.66667175292969" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="546.0" minHeight="10.0" prefHeight="200.66665649414062" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="0.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="546.0" minHeight="10.0" prefHeight="187.6666717529297" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="882.0" minHeight="10.0" prefHeight="208.66668701171875" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="882.0" minHeight="10.0" prefHeight="304.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="0.0" prefHeight="365.6666259765625" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="83.3333740234375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="84.3333740234375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="66.6666259765625" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="951.0" minHeight="6.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="98.6666259765625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="46.3333740234375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="951.0" minHeight="6.0" prefHeight="107.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Label fx:id="welcomeApplicantLabel" text="Welcome, [Applicant]" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
@@ -66,10 +66,10 @@
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.6666259765625" minWidth="10.0" prefWidth="254.6666259765625" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="54.33332824707031" minHeight="10.0" prefHeight="40.33332824707031" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="85.33332824707031" minHeight="10.0" prefHeight="43.333343505859375" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="41.666656494140625" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="54.33332824707031" minHeight="10.0" prefHeight="51.33332824707031" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="85.33332824707031" minHeight="10.0" prefHeight="34.66667175292969" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="48.66668701171875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="33.33331298828125" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="65.0" minHeight="6.333343505859375" prefHeight="24.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
@@ -228,6 +228,7 @@
                         <Tooltip text="Electronic Signature" />
                      </tooltip>
                   </Label>
+                  <Button fx:id="normalFormButton" mnemonicParsing="false" onMouseClicked="#submitImage" styleClass="button-raised" text="Alternate Form" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
          </content>
