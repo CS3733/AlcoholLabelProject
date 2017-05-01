@@ -143,13 +143,13 @@ public class AdvancedSearch implements IController {
         else{
             addr = "";
         }
-        if(!dateStart.getValue().equals("")){
+        if(dateStart.getValue() != null){
             startDate = DateHelper.getDate(dateStart.getValue().getDayOfMonth(), dateStart.getValue().getMonthValue(), dateStart.getValue().getYear());
         }
         else{
             startDate = DateHelper.getDate(1,1,1700);
         }
-        if(!dateEnd.getValue().equals("")) {
+        if(dateEnd.getValue() != null) {
             endDate = DateHelper.getDate(dateEnd.getValue().getDayOfMonth(), dateEnd.getValue().getMonthValue(), dateEnd.getValue().getYear());
         }
         else{
