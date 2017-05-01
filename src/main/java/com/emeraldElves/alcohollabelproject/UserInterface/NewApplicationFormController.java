@@ -343,7 +343,7 @@ public class NewApplicationFormController implements IController {
                 alcName = alcoholName.getText();
                 brandName = brandNameField.getText();
 
-                alcContent = Double.parseDouble(alcoholContentField.getText()); //CHECK IF INTEGER
+                alcContent = Double.parseDouble(alcoholContentField.getText());
 
                 serialNum = serialText.getText();
                 if (formulaText.getText().isEmpty()) {
