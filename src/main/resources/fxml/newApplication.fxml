@@ -63,6 +63,7 @@
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="261.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="951.0" minHeight="6.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
                </rowConstraints>
                <children>
                   <Label fx:id="welcomeApplicantLabel" text="Welcome, [Applicant]" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
@@ -303,8 +304,6 @@
                         <Insets bottom="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="26" GridPane.valignment="TOP" />
-                  <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="26" GridPane.valignment="TOP" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="255.0" stroke="BLACK" strokeType="INSIDE" width="480.0" GridPane.columnIndex="1" GridPane.rowIndex="24" />
                   <ImageView fx:id="imageView" fitHeight="255.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="24" />
                   <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
@@ -397,7 +396,6 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                   <Button mnemonicParsing="false" onMouseClicked="#saveApplication" styleClass="button-raised" text="Save Application" GridPane.rowIndex="27" />
                   <Label alignment="TOP_RIGHT" layoutX="113.0" layoutY="589.0" prefHeight="20.0" prefWidth="12.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -458,6 +456,22 @@
                         </Tooltip>
                      </tooltip>
                   </Label>
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="26">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="40.0" prefWidth="120.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="80.0" prefWidth="80.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="cancelApplication" mnemonicParsing="false" onMouseClicked="#cancelApp" styleClass="button-raised" text="Cancel Application" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                         <Button mnemonicParsing="false" onMouseClicked="#saveApplication" styleClass="button-raised" text="Save Application" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
          </content>
