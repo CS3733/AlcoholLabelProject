@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ProfileController">
+<GridPane alignment="center" hgap="10" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ProfileController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -70,18 +70,23 @@
                   <TextField fx:id="companyField" onKeyPressed="#modifyCompany" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                </children>
             </GridPane>
-            <Label layoutX="159.0" layoutY="49.0" prefHeight="34.0" prefWidth="773.0" text="As a manufacturer, you can update your user information if you need.">
+            <Label layoutX="122.0" layoutY="53.0" prefHeight="34.0" prefWidth="460.0" text="As a manufacturer, you can update your user information if you need.">
                <font>
-                  <Font size="23.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="121.0" layoutY="83.0" prefHeight="23.0" prefWidth="824.0" text="The information below will be automatically filled in to any applications you send in the future.">
+            <Label layoutX="122.0" layoutY="83.0" prefHeight="23.0" prefWidth="824.0" text="The information below will be automatically filled in to any applications you send in the future.">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="485.0" layoutY="549.0" mnemonicParsing="false" onMouseClicked="#returnHome" styleClass="button-raised" text="SAVE" />
-            <Button layoutX="854.0" layoutY="184.0" mnemonicParsing="false" onMouseClicked="#updatePassword" styleClass="button-raised" text="Change password" />
+            <Button layoutX="486.0" layoutY="569.0" mnemonicParsing="false" onMouseClicked="#returnHome" styleClass="button-raised" text="Save" />
+            <Button layoutX="443.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#updatePassword" styleClass="button-raised" text="Change Password" />
+            <Label layoutX="88.0" layoutY="23.0" text="Update Profile:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
             </children>
         </Pane>
         <Pane prefHeight="124.0" prefWidth="1024.0" />
