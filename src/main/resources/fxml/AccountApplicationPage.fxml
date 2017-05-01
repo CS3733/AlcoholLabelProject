@@ -21,7 +21,7 @@
     </rowConstraints>
     <children>
         <Pane prefHeight="672.0" prefWidth="802.0" GridPane.rowIndex="1" />
-        <Pane prefHeight="96.0" prefWidth="1024.0" />
+        <Pane minHeight="48.0" prefHeight="96.0" prefWidth="1024.0" />
       <fx:include source="toolbar.fxml" />
       <GridPane GridPane.rowIndex="1">
         <columnConstraints>

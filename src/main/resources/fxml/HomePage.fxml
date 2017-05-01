@@ -85,7 +85,7 @@
 
             </children>
         </Pane>
-      <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;">
          <children>
             <fx:include source="toolbar.fxml" />
          </children>
