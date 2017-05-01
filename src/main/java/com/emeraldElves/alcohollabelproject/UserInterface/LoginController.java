@@ -57,7 +57,7 @@ public class LoginController implements IController {
         } else if(Authenticator.getInstance().login(UserType.APPLICANT, username, password)&&(EncryptPassword.checkPassword(password, Storage.getInstance().getUserPassword(username)) && !((password.equals(null)||(password.equals(""))||(password.isEmpty()))))){
             errorMsg.setVisible(false);
             main.loadHomepage();
-        } else if (Authenticator.getInstance().login(UserType.TTBAGENT, username, password)&&(EncryptPassword.checkPassword(password, Storage.getInstance().getAgentPassword(username))&& ((password.equals(null)||(password.equals("")))))){
+        } else if (Authenticator.getInstance().login(UserType.TTBAGENT, username, password)&&(EncryptPassword.checkPassword(password, Storage.getInstance().getAgentPassword(username))&& !((password.equals(null)||(password.equals("")))))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
