@@ -101,7 +101,7 @@
                   <Label fx:id="vintageYear" />
                </children>
             </HBox>
-            <GridPane layoutX="516.0" layoutY="92.0" prefHeight="226.0" prefWidth="443.0">
+            <GridPane layoutX="516.0" layoutY="92.0" prefHeight="207.0" prefWidth="443.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -111,7 +111,7 @@
                 <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="121.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label prefHeight="20.0" prefWidth="101.0" text="Submitted By:" visible="false" />
@@ -131,7 +131,7 @@
                   <Button mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" />
                   <Button fx:id="assignButton" mnemonicParsing="false" onMouseClicked="#assignToUser" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Assign" />
                   <Button mnemonicParsing="false" onMouseClicked="#Reject" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Reject" />
-                  <Button mnemonicParsing="false" onMouseClicked="#NeedsCorrections" prefHeight="40.0" text="Return for Corrections" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="correctionsButton" mnemonicParsing="false" onMouseClicked="#NeedsCorrections" prefHeight="40.0" styleClass="button-raised" stylesheets="@../style/material.css" text="Return for Corrections" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="11.0" />
                      </font>
