@@ -64,6 +64,7 @@ public class UpdateApplicationController implements IController{
     private ProxyLabelImage proxyLabelImage;
 
     //Applicant's info
+    private boolean newImage = false;
     private String username;
     private ApplicantInterface applicant;
     private EmailAddress emailAddress;
@@ -284,6 +285,17 @@ public class UpdateApplicationController implements IController{
 
         newApplication = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant.getApplicant());
         newApplication.setApplicationID(application.getApplicationID());//setting id for updating
+        if (newImage) {
+            if(file.equals("")){
+                proxyLabelImage = application.getproxyImage();
+            }
+            else {
+                saveImage(file);
+            }
+        }
+        else {
+            proxyLabelImage = application.getproxyImage();
+        }
         newApplication.setImage(proxyLabelImage);
     }
 
@@ -291,7 +303,7 @@ public class UpdateApplicationController implements IController{
     public void submitApp() {
 
         LogManager.getInstance().logAction("NewApplicationController", "Logged Click from first page of the new Application");
-        Storage.getInstance().saveUpdateHistory(application,username);
+        //Storage.getInstance().saveUpdateHistory(application,username);
         Boolean formFilled = false;
         Boolean fieldsValid = false;
 
@@ -402,9 +414,30 @@ public class UpdateApplicationController implements IController{
 
     public void submitImage() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*jpeg", "*png");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.png", "*.jpg", "*.jpeg", "*.gif");
         fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(null);
+        file = fileChooser.showOpenDialog(null);
+        Log.console(file);
+
+        if (file == null) {
+            Log.console(file);
+            file = new File("");
+        }
+        if(file.equals("")){
+            newImage = false;
+        }
+        else{
+            newImage = true;
+        }
+        Image image = new Image(file.toURI().toString());
+        imageView.setImage(image);
+    }
+
+    public void saveImage(File file){
+        if (file == null) {
+            proxyLabelImage = new ProxyLabelImage("");
+            return;
+        }
         java.nio.file.Path source = Paths.get((file.getPath()));
         java.nio.file.Path targetDir = Paths.get("Labels");
         try {
@@ -419,11 +452,7 @@ public class UpdateApplicationController implements IController{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image image = new Image(target.toUri().toString());
-        imageView.setImage(image);
         proxyLabelImage = new ProxyLabelImage(fileName);
-        //newApplication.setImage(proxyLabelImage);
     }
-
 
 }

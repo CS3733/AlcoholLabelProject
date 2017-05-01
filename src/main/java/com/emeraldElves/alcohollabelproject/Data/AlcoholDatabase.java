@@ -635,7 +635,7 @@ public class AlcoholDatabase {
         } else {
             appID = application.getApplicationID();
         }
-        ResultSet resultsSubmitted = db.select("*", "SavedApplications", "applicationID = " + appID);
+        ResultSet resultsSubmitted = db.select("*", "SubmittedApplication", "applicationID = " + appID);
 
         try {
             if (resultsSubmitted.next()) {
