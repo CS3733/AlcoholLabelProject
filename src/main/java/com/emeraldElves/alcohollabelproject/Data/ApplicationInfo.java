@@ -41,6 +41,7 @@ public class ApplicationInfo {
     }
 
     public ApplicationType getApplicationType(){ return appType;}
+
     public Date getExpirationDate(){
         return expirationDate;
     }
