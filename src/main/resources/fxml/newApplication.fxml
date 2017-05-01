@@ -397,6 +397,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
+                   <Button mnemonicParsing="false" onMouseClicked="#saveApplication" styleClass="button-raised" text="Save Application" GridPane.rowIndex="27" />
                   <Label alignment="TOP_RIGHT" layoutX="113.0" layoutY="589.0" prefHeight="20.0" prefWidth="12.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
                      <cursor>
                         <Cursor fx:constant="HAND" />
