@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class NewApplicationController implements IController {
+public class NewApplicationFormController implements IController {
     @FXML
     private TextField repIDNoTextField, permitNoTextField, addressField, companyField;
     @FXML
@@ -32,15 +32,11 @@ public class NewApplicationController implements IController {
     @FXML
     private TextField alcoholContentField, wineVintageYearField, pHLevelField;
     @FXML
-    private Label welcomeApplicantLabel;
+    private Label welcomeApplicantLabel, errorMsg;
     @FXML
     private Button cancelApplication, submitBtn, submitLabel, saveApplication;
     @FXML
-    private Label pSourceErrorField, pTypeErrorField, brandNameErrorField, alcContentErrorField, signatureErrorField;
-    @FXML
     private TextField varietalText, appellationText, formulaText, serialText, extraInfoText;
-    @FXML
-    private Label varietalErrorField, serialErrorField, wineNumErrorField;
     @FXML
     private CheckBox certOfApproval, certOfExemption, distinctiveApproval;
     @FXML
@@ -50,7 +46,7 @@ public class NewApplicationController implements IController {
     @FXML
     private ComboBox pTypeSelect, pSourceSelect, stateSelect;
     @FXML
-    private Button alternateFormButton;
+    private Button normalFormButton;
 
     //Options for the comboBox fields
     private ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
@@ -131,7 +127,7 @@ public class NewApplicationController implements IController {
         addressField.setText(String.valueOf(address));
         permitNoTextField.setText(String.valueOf(permitNum));
         repIDNoTextField.setText(String.valueOf(representativeID));
-//        companyField.setText(String.valueOf(company));
+        companyField.setText(String.valueOf(company));
 
         //set up combo boxes
         datePicker.setValue(LocalDate.now());
@@ -200,9 +196,7 @@ public class NewApplicationController implements IController {
         //brand name
         brandNameField.setText(alcoholInfo.getBrandName());
         //Alcohol Content
-        if(alcoholInfo.getAlcoholContent() != "") {
-            alcoholContentField.setText("" + alcoholInfo.getAlcoholContent());
-        }
+        alcoholContentField.setText(alcoholInfo.getAlcoholContent());
         //formula
         formulaText.setText(alcoholInfo.getFormula());
         //serial number
@@ -241,57 +235,12 @@ public class NewApplicationController implements IController {
 
         file = new File("");
 
-        String imageURL = application.getImage().getFileName();
-        if(!imageURL.equals("")) {
-            Log.console("Image path: " + imageURL);
-            File file = new File("Labels/" + imageURL);
-            Image tempImage = new Image(file.toURI().toString());
-            imageView.setImage(tempImage);
-            this.proxyLabelImage = new ProxyLabelImage("Labels/"+ imageURL);
-        }
-
-        //Application Type
-        ApplicationType applicationType = application.getApplication().getApplicationType();
-        if(applicationType.isLabelApproval()){
-            certOfApproval.setSelected(true);
-        }
-        if(!applicationType.getStateOnly().equals("")){
-            certOfExemption.setSelected(true);
-            stateSelect.setValue(applicationType.getStateOnly());
-            stateSelect.setDisable(false);
-        }
-        if(applicationType.getBottleCapacity() != -1){
-            distinctiveApproval.setSelected(true);
-            distinctiveText.setText("" + applicationType.getBottleCapacity());
-            distinctiveText.setDisable(false);
-        }
-
-        if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
-            pSourceSelect.setValue("Domestic");
-        } else if (application.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED) {
-            pSourceSelect.setValue("Imported");
-        }
-
-        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER) {
-            pTypeSelect.setValue("Malt Beverages");
-        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
-            pTypeSelect.setValue("Wine");
-        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS) {
-            pTypeSelect.setValue("Distilled Spirits");
-        }
-
         alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
         brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
         alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
         formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
         serialText.setText(String.valueOf(application.getApplication().getAlcohol().getSerialNumber()));
         extraInfoText.setText(String.valueOf(application.getApplication().getExtraInfo()));
-        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
-            wineVintageYearField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().vintageYear));
-            pHLevelField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().pH));
-            varietalText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().grapeVarietal));
-            appellationText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().appellation));
-        }
     }
 
     public void submitApp() {
@@ -325,80 +274,34 @@ public class NewApplicationController implements IController {
 
         appType = new ApplicationType(labelApproval, stateOnly, bottleCapacity);
 
-            //errors are printed only if required fields are not filled in
-            if (pSourceSelect.getValue().equals("Select a product source")) {
-                pSourceErrorField.setText("Please select the alcohol source.");
-            } else {
-                pSourceErrorField.setText("");
-            }
-            if (pTypeSelect.getValue().equals("Select a product type")) {
-                pTypeErrorField.setText("Please select the alcohol type.");
-            } else {
-                pTypeErrorField.setText("");
-            }
-            if (brandNameField.getText().isEmpty()) {
-                brandNameErrorField.setText("Please fill in the brand name.");
-            } else {
-                brandNameErrorField.setText("");
-            }
-            if (alcoholContentField.getText().isEmpty()) {
-                alcContentErrorField.setText("Please fill in the alcohol percentage.");
-            } else if(!isInt(alcoholContentField)){
-                alcContentErrorField.setText("Please enter a valid number.");
-            } else {
-                alcContentErrorField.setText("");
-            }
-            if (serialText.getText().isEmpty()) {
-                serialErrorField.setText("Please input a serial number.");
-            } else {
-                serialErrorField.setText("");
-            }
-            if (signatureField.getText().isEmpty()) {
-                signatureErrorField.setText("Please fill in the signature field.");
-            } else {
-                signatureErrorField.setText("");
-            }
-            if (pTypeSelect.getValue().equals("Wine")) {
-                if (!isInt(wineVintageYearField)||!isDouble(pHLevelField)) {
-                    wineNumErrorField.setText("Please enter a valid number.");
-                } else {
-                    wineNumErrorField.setText("");
-                }
-            }
+        //check if required fields are filled in
+        if ((!pTypeSelect.getValue().equals("Select a product type")) &&
+                (!pSourceSelect.getValue().equals("Select a product source")) &&
+                !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
+                !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()) {
+            formFilled = true;
+        }
 
-            //check if required fields are filled in
-            if ((!pTypeSelect.getValue().equals("Select a product type")) &&
-                    (!pSourceSelect.getValue().equals("Select a product source")) &&
-                    !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
-                    !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()) {
-                formFilled = true;
-            }
-
-
-//            //checking wine fields and serial number for validity
-//            //check if fields are valid
-//            if(isInt(alcoholContentField)) {
-//                if (pTypeSelect.getValue().equals("Wine")) {
-//                    if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
-//                        fieldsValid = true;
-//                    }
-//                } else fieldsValid = true;
-//            }
-
-            //checking wine fields for validity
-            if (pTypeSelect.getValue().equals("Wine")) {
-                if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
-                    fieldsValid = true;
-                }
-            }
-
-            //check serial number for validity
-            if(serialText.getText().length()<7 && serialText.getText().length()>0){
+        //checking wine fields for validity
+        if (pTypeSelect.getValue().equals("Wine")) {
+            if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
                 fieldsValid = true;
-                serialErrorField.setText("");
             }
-            else serialErrorField.setText("Please enter a valid serial number");
+        }
 
+        //error message saying to fill in all required fields
+        if (!formFilled) {
+            errorMsg.setText("Please fill in all the required fields.");
+        } else if (!fieldsValid) {
+            errorMsg.setText("Please make sure number fields are valid.");
+        } else if(!(serialText.getText().length()<7 && serialText.getText().length()>0)){
+            fieldsValid = false;
+            errorMsg.setText("Please enter a valid serial number.");
+        } else {
+            errorMsg.setText("");
+        }
+
+            //Checking alcohol content field and serial number for validity
                 if (formFilled && fieldsValid) {
                 if (pTypeSelect.getValue().equals("Wine")) {
                     int vintageYr = 0;
@@ -435,6 +338,7 @@ public class NewApplicationController implements IController {
                 //sets alc info fields
                 alcName = alcoholName.getText();
                 brandName = brandNameField.getText();
+
                 alcContent = alcoholContentField.getText();
 
                 serialNum = serialText.getText();
@@ -522,7 +426,7 @@ public class NewApplicationController implements IController {
         //END appType
 
         //alcoholInfo
-        String alcoholContent;
+       String alcoholContent;
         String fanciful;
         String brand;
         ProductSource origin;
@@ -707,8 +611,7 @@ public class NewApplicationController implements IController {
         proxyLabelImage = new ProxyLabelImage(fileName);
     }
 
-    public void useFormLayout(){
-        main.loadFXML("/fxml/NewApplicationForm.fxml");
+    public void useNormalLayout(){
+        main.loadFXML("/fxml/NewApplication.fxml");
     }
-
 }

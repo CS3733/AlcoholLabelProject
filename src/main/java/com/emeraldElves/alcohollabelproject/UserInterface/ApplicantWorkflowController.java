@@ -120,7 +120,6 @@ public class ApplicantWorkflowController implements IController {
         }
     }
 
-
     public void ApplicationWorkflow() {
         if(getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {
             main.loadFXML("/fxml/updateOptions.fxml",getSelectedApplication());

@@ -456,6 +456,14 @@
                         </Tooltip>
                      </tooltip>
                   </Label>
+                  <Button mnemonicParsing="false" onMouseClicked="#useFormLayout" prefHeight="38.0" prefWidth="147.0" styleClass="button-raised" text="Use Form Layout" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="26">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
