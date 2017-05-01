@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class ApplicantWorkflowController implements IController {
 
     @FXML
     ListView<String> list;
+    @FXML
+    MenuItem updateMenu, reviseMenu, viewMenu;
 
     public void init(Bundle bundle){
         this.init(bundle.getMain("main"));
@@ -64,6 +67,9 @@ public class ApplicantWorkflowController implements IController {
                 case PENDINGREVIEW:
                     name += " - Pending Review";
                     break;
+                case NEEDSCORRECTIONS:
+                    name += " - Needs Corrections";
+                    break;
             }
             applicationNames.add(name);
         }
@@ -83,6 +89,10 @@ public class ApplicantWorkflowController implements IController {
         return applicantInterface.getSavedApplications().get(i);
     }
 
+    public void onShowContextMenu(){
+        hideIfSaved();
+    }
+
     public void viewApplication(){
         main.loadFXML("/fxml/DetailedSearchPage.fxml",getSelectedApplication(), "");
     }
@@ -95,6 +105,21 @@ public class ApplicantWorkflowController implements IController {
 
         }
     }
+
+    public void hideIfSaved(){
+        if(list.getSelectionModel().getSelectedIndex() < numSavedApplications){
+            //its a saved application
+            updateMenu.setVisible(false);
+            viewMenu.setVisible(false);
+            reviseMenu.setText("Finish");
+        }
+        else{
+            updateMenu.setVisible(true);
+            viewMenu.setVisible(true);
+            reviseMenu.setText("Revise");
+        }
+    }
+
 
     public void ApplicationWorkflow() {
         if(getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {
