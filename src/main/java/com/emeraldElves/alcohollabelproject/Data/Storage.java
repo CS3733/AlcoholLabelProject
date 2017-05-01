@@ -227,6 +227,10 @@ public class Storage {
         return StorageHolder.instance;
     }
 
+    public List<SubmittedApplication> advancedSearch(String brandName, String fancifulName, boolean wantBeer, boolean wantWine, boolean wantSpirits, String email, String address, Date startDate, Date endDate, double contentMin, double contentMax) {
+        return alcoholDB.advancedSearch(brandName, fancifulName, wantBeer, wantWine, wantSpirits, email, address, startDate, endDate, contentMin, contentMax);
+    }
+
 
     private static class StorageHolder {
         public static final Storage instance = new Storage();

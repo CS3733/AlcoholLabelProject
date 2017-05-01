@@ -157,6 +157,10 @@ public class SearchController implements IController{
         });
     }
 
+    public void advancedSearch(){
+        main.loadFXML("/fxml/AdvancedSearchPage.fxml");
+    }
+
     private int getNumberOfVisibleRows()
     {
         return 100;
