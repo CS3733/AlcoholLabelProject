@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class NewApplicationController implements IController {
+public class NewApplicationFormController implements IController {
     @FXML
     private TextField repIDNoTextField, permitNoTextField, addressField, companyField;
     @FXML
@@ -32,15 +32,11 @@ public class NewApplicationController implements IController {
     @FXML
     private TextField alcoholContentField, wineVintageYearField, pHLevelField;
     @FXML
-    private Label welcomeApplicantLabel;
+    private Label welcomeApplicantLabel, errorMsg;
     @FXML
     private Button cancelApplication, submitBtn, submitLabel, saveApplication;
     @FXML
-    private Label pSourceErrorField, pTypeErrorField, brandNameErrorField, alcContentErrorField, signatureErrorField;
-    @FXML
     private TextField varietalText, appellationText, formulaText, serialText, extraInfoText;
-    @FXML
-    private Label varietalErrorField, serialErrorField, wineNumErrorField;
     @FXML
     private CheckBox certOfApproval, certOfExemption, distinctiveApproval;
     @FXML
@@ -50,7 +46,7 @@ public class NewApplicationController implements IController {
     @FXML
     private ComboBox pTypeSelect, pSourceSelect, stateSelect;
     @FXML
-    private Button alternateFormButton;
+    private Button normalFormButton;
 
     //Options for the comboBox fields
     private ObservableList<String> sourceList = FXCollections.observableArrayList("Imported", "Domestic");
@@ -280,77 +276,36 @@ public class NewApplicationController implements IController {
 
         appType = new ApplicationType(labelApproval, stateOnly, bottleCapacity);
 
-            //errors are printed only if required fields are not filled in
-            if (pSourceSelect.getValue().equals("Select a product source")) {
-                pSourceErrorField.setText("Please select the alcohol source.");
-            } else {
-                pSourceErrorField.setText("");
-            }
-            if (pTypeSelect.getValue().equals("Select a product type")) {
-                pTypeErrorField.setText("Please select the alcohol type.");
-            } else {
-                pTypeErrorField.setText("");
-            }
-            if (brandNameField.getText().isEmpty()) {
-                brandNameErrorField.setText("Please fill in the brand name.");
-            } else {
-                brandNameErrorField.setText("");
-            }
-            if (alcoholContentField.getText().isEmpty()) {
-                alcContentErrorField.setText("Please fill in the alcohol percentage.");
-            } else if(!isInt(alcoholContentField)){
-                alcContentErrorField.setText("Please enter a valid number.");
-            } else {
-                alcContentErrorField.setText("");
-            }
-            if (serialText.getText().isEmpty()) {
-                serialErrorField.setText("Please input a serial number.");
-            } else {
-                serialErrorField.setText("");
-            }
-            if (signatureField.getText().isEmpty()) {
-                signatureErrorField.setText("Please fill in the signature field.");
-            } else {
-                signatureErrorField.setText("");
-            }
+        //check if required fields are filled in
+        if ((!pTypeSelect.getValue().equals("Select a product type")) &&
+                (!pSourceSelect.getValue().equals("Select a product source")) &&
+                !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
+                !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()) {
+            formFilled = true;
+        }
+
+        //check if fields are valid
+        if(isDouble(alcoholContentField)) {
             if (pTypeSelect.getValue().equals("Wine")) {
-                if (!isInt(wineVintageYearField)||!isDouble(pHLevelField)) {
-                    wineNumErrorField.setText("Please enter a valid number.");
-                } else {
-                    wineNumErrorField.setText("");
+                if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
+                    fieldsValid = true;
                 }
-            }
+            } else fieldsValid = true;
+        }
 
-            //check if required fields are filled in
-            if ((!pTypeSelect.getValue().equals("Select a product type")) &&
-                    (!pSourceSelect.getValue().equals("Select a product source")) &&
-                    !brandNameField.getText().isEmpty() && !alcoholContentField.getText().isEmpty() &&
-                    !signatureField.getText().isEmpty() && !serialText.getText().isEmpty()) {
-                formFilled = true;
-            }
-
-            //check if fields are valid
-            if(isInt(alcoholContentField)) {
-                if (pTypeSelect.getValue().equals("Wine")) {
-                    if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
-                        fieldsValid = true;
-                    }
-                } else fieldsValid = true;
-            }
+        //error message saying to fill in all required fields
+        if (!formFilled) {
+            errorMsg.setText("Please fill in all the required fields.");
+        } else if (!fieldsValid) {
+            errorMsg.setText("Please make sure number fields are valid.");
+        } else if(!(serialText.getText().length()<7 && serialText.getText().length()>0)){
+            fieldsValid = false;
+            errorMsg.setText("Please enter a valid serial number.");
+        } else {
+            errorMsg.setText("");
+        }
 
             //Checking alcohol content field and serial number for validity
-            if(isDouble(alcoholContentField)){
-                fieldsValid = true;
-            }
-            else{
-                alcContentErrorField.setText("Please enter a valid alcohol content");
-                fieldsValid = false;
-            }
-            if(!(serialText.getText().length()<7 && serialText.getText().length()>0)){
-                fieldsValid = false;
-                serialErrorField.setText("Please enter a valid serial number");
-            }
-
                 if (formFilled && fieldsValid) {
                 if (pTypeSelect.getValue().equals("Wine")) {
                     int vintageYr = 0;
@@ -660,8 +615,7 @@ public class NewApplicationController implements IController {
         proxyLabelImage = new ProxyLabelImage(fileName);
     }
 
-    public void useFormLayout(){
-        main.loadFXML("/fxml/NewApplicationForm.fxml");
+    public void useNormalLayout(){
+        main.loadFXML("/fxml/NewApplication.fxml");
     }
-
 }
