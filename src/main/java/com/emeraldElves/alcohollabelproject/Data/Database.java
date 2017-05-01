@@ -190,6 +190,14 @@ public class Database {
         }
     }
 
+    public void setMaxRows(int rows){
+        try {
+            statement.setMaxRows(rows);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Select values from the table.
      *
