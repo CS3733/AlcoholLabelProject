@@ -16,8 +16,8 @@
         <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
-        <RowConstraints />
+        <RowConstraints maxHeight="96.0" minHeight="96.0" prefHeight="96.0" />
+        <RowConstraints maxHeight="672.0" minHeight="672.0" prefHeight="672.0" />
     </rowConstraints>
     <children>
         <Pane prefHeight="672.0" prefWidth="802.0" GridPane.rowIndex="1" />
