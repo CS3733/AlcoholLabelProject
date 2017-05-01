@@ -162,14 +162,13 @@ public class NewUserController implements IController {
         password = EncryptPassword.encryptPassword(passwordField.getText());
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        if(representativeID.getText().trim().isEmpty()){
+        if(representativeID.getText().isEmpty()){
             repID="";
         } else repID =representativeID.getText();
         permitNum = permitNumText.getText();
         address = addressText.getText();
-        if(companyField.getText().trim().isEmpty()){
-            company="";
-        } else company = companyField.getText();
+        if(!companyField.getText().isEmpty())
+            company = companyField.getText();
 
         FullName = Name.getText();
 
