@@ -63,6 +63,7 @@
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="261.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="937.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="951.0" minHeight="6.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
                </rowConstraints>
                <children>
                   <Label fx:id="welcomeApplicantLabel" text="Welcome, [Applicant]" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
@@ -458,6 +459,14 @@
                         </Tooltip>
                      </tooltip>
                   </Label>
+                  <Button mnemonicParsing="false" onMouseClicked="#useFormLayout" prefHeight="27.0" prefWidth="183.0" styleClass="button-raised" text="Use Form Layout" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
                </children>
             </GridPane>
          </content>

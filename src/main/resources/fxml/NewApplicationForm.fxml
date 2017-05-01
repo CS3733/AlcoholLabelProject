@@ -222,6 +222,14 @@
                         <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="4" />
                      </children>
                   </GridPane>
+                  <Button mnemonicParsing="false" onMouseClicked="#useNormalLayout" prefHeight="38.0" prefWidth="150.0" styleClass="button-raised" text="Use normal Layout" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets left="650.0" />
+                     </GridPane.margin>
+                  </Button>
                </children>
             </GridPane>
          </content>

@@ -669,4 +669,11 @@ public class NewApplicationController implements IController {
         }
         proxyLabelImage = new ProxyLabelImage(fileName);
     }
+
+    public void useFormLayout(){
+        main.loadFXML("/fxml/NewApplicationForm.fxml");
+    }
+    public void useNormalLayout(){
+        main.loadFXML("/fxml/NewApplication.fxml");
+    }
 }
