@@ -93,13 +93,13 @@ public class DetailedSearchController {
             case WINE:
                 wineInfo.setVisible(true);
                 type = "WINE";
-                if((Integer)application.getApplication().getAlcohol().getWineInfo().vintageYear == null){
+                if((Integer)application.getApplication().getAlcohol().getWineInfo().vintageYear != null){
                     vintageYear.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().vintageYear));
                 }
                 else {
                     vintageYear.setText("");
                 }
-                if((Double)application.getApplication().getAlcohol().getWineInfo().pH==null){
+                if((Double)application.getApplication().getAlcohol().getWineInfo().pH != null){
                     pH.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().pH));
                 }
                 else {
