@@ -16,6 +16,7 @@ public class ForgotPasswordController implements IController {
     @FXML
     Label InvalidAccountError;
     ResetPassword resetPassword = new ResetPassword();
+    Main main = new Main();
     public void Reset(){
         if(Storage.getInstance().isValidUser(usernameField.getText())){
             resetPassword.resetEmail(usernameField.getText());
@@ -25,6 +26,7 @@ public class ForgotPasswordController implements IController {
             Log.console(usernameField.getText());
             return;
         }
+        main.loadHomepage();
 
 
     }
