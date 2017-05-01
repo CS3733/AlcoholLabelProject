@@ -23,7 +23,7 @@ public class TTBFormatGenerator implements IDGenerator {
 
     @Override
     public String generateID() {
-        String id = getCalendarNumbers() + fileMethod + padZeros(counter, 4);
+        String id = getCalendarNumbers() + padZeros(fileMethod, 3) + padZeros(counter, 6);
         counter++;
         return id;
     }

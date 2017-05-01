@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="768.0" maxWidth="1028.0" minHeight="768.0" minWidth="1028.0" prefHeight="768.0" prefWidth="1028.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.AdvancedSearch">
+   <children>
+      <fx:include source="toolbar.fxml" />
+      <TextField fx:id="brand" layoutX="40.0" layoutY="119.0" promptText="Brand Name" />
+      <TextField fx:id="fanciful" layoutX="250.0" layoutY="119.0" promptText="Fanciful Name" />
+      <TextField fx:id="contentStart" layoutX="40.0" layoutY="171.0" promptText="Min Alcohol Content" />
+      <TextField fx:id="contentEnd" layoutX="250.0" layoutY="171.0" promptText="Max Alcohol Content" />
+      <Button fx:id="search" layoutX="902.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#search" styleClass="button-raised" text="SEARCH" />
+      <CheckBox fx:id="beer" layoutX="457.0" layoutY="151.0" mnemonicParsing="false" text="Beer" />
+      <CheckBox fx:id="wine" layoutX="583.0" layoutY="151.0" mnemonicParsing="false" text="Wine" />
+      <CheckBox fx:id="spirits" layoutX="710.0" layoutY="151.0" mnemonicParsing="false" text="Distilled Spirits" />
+      <TextField fx:id="email" layoutX="40.0" layoutY="231.0" promptText="Email" />
+      <TextField fx:id="address" layoutX="250.0" layoutY="231.0" promptText="Address" />
+      <DatePicker fx:id="dateStart" layoutX="457.0" layoutY="210.0" promptText="Submitted Date Start" />
+      <DatePicker fx:id="dateEnd" layoutX="667.0" layoutY="210.0" promptText="Submitted Date End" />
+      <TableView fx:id="resultsTable" layoutX="2.0" layoutY="290.0" prefHeight="479.0" prefWidth="1024.0">
+         <columns>
+            <TableColumn fx:id="dateCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="     Date" />
+            <TableColumn fx:id="brandCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Brand" />
+            <TableColumn fx:id="manufacturerCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Fanciful" />
+            <TableColumn fx:id="typeCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Type" />
+            <TableColumn fx:id="contentCol" maxWidth="1.7976931348623157E308" minWidth="190.0" prefWidth="190.0" resizable="false" text="Alcohol Content" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

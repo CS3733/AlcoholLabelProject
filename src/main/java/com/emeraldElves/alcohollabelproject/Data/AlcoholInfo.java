@@ -5,7 +5,7 @@ package com.emeraldElves.alcohollabelproject.Data;
  */
 public class AlcoholInfo {
 
-    private int alcoholContent;
+    private String alcoholContent;
     private String fancifulName;
     private String brandName;
     private ProductSource origin;
@@ -13,7 +13,7 @@ public class AlcoholInfo {
     private String formula;
 
 
-    public AlcoholInfo(int alcoholContent, String fancifulName, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo, String serialNumber, String formula) {
+    public AlcoholInfo(String alcoholContent, String fancifulName, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo, String serialNumber, String formula) {
         this.alcoholContent = alcoholContent;
         this.fancifulName = fancifulName;
         this.brandName = brandName;
@@ -54,7 +54,7 @@ public class AlcoholInfo {
         }
     }
 
-    public void setAlcoholContent(int alcoholContent) {
+    public void setAlcoholContent(String alcoholContent) {
         this.alcoholContent = alcoholContent;
     }
 
@@ -66,7 +66,7 @@ public class AlcoholInfo {
      * @param brandName      Brand name of alcohol
      * @param origin         Whether the alcohol is domestic or imported
      */
-    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo) {
+    public AlcoholInfo(String alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo) {
         this.alcoholContent = alcoholContent;
         this.fancifulName = name;
         this.brandName = brandName;
@@ -88,7 +88,7 @@ public class AlcoholInfo {
      *
      * @return the alcohol percentage as an int
      */
-    public int getAlcoholContent() {
+    public String getAlcoholContent() {
         return this.alcoholContent;
     }
 
@@ -124,6 +124,8 @@ public class AlcoholInfo {
     public void setAlcoholType(AlcoholType alcoholType) {
         this.alcoholType = alcoholType;
     }
+
+    public void setSerialNumber(String serialNumber){this.serialNumber = serialNumber;}
 
     public Wine getWineInfo()
     {

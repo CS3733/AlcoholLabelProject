@@ -24,7 +24,7 @@ public class AuthenticatedUsersDatabase {
     }
 
     /**
-     * Checks if TTB agent login is vali-d.
+     * Checks if TTB agent login is valid.
      *
      * @param userName The username of the TTB agent
      * @param password The password of the TTB agent
@@ -32,7 +32,7 @@ public class AuthenticatedUsersDatabase {
      */
     public boolean isValidTTBAgent(String userName, String password) {
         ResultSet results = db.select("*", "TTBAgentLogin", "email = '" + userName +
-                "' AND  password = '" + password + "'");
+                "'");
         if (results == null)
             return false;
         try {
@@ -43,7 +43,7 @@ public class AuthenticatedUsersDatabase {
         }
     }
     public boolean isValidTTBAgentAccount(String userName) {
-        ResultSet results = db.select("*", "TTBAgentLogin", "email = '" + userName);
+        ResultSet results = db.select("*", "TTBAgentLogin", "email = '" + userName + "'");
         if (results == null)
             return false;
         try {
@@ -54,7 +54,7 @@ public class AuthenticatedUsersDatabase {
         }
     }
     public boolean isValidUserAccount(String userName) {
-        ResultSet results = db.select("*", "ApplicantLogin", "email = '" + userName);
+        ResultSet results = db.select("*", "ApplicantLogin", "email = '" + userName+"'");
         if (results == null)
             return false;
         try {
@@ -65,12 +65,59 @@ public class AuthenticatedUsersDatabase {
         }
     }
 
+    public boolean isCurrentNewApplicant(String userName) {
+        ResultSet results = db.select("*", "NewApplicant", "email = '" + userName+"'");
+        if (results == null)
+            return false;
+        try {
+            return results.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public String getAgentPassword(String userName){
+        ResultSet results = db.select("password", "TTBAgentLogin", "email = '" + userName+"'");
+
+        if (results == null)
+            return null;
+        try {
+            if(results.next()) {
+                return results.getString("password");
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String getUserPassword(String userName){
+        ResultSet results = db.select("password", "ApplicantLogin", "email = '" + userName+"'");
+
+        if (results == null)
+            return null;
+        try {
+            if(results.next()) {
+                return results.getString("password");
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public boolean createUser(PotentialUser user){
         if (user.getUserType() == UserType.TTBAGENT) {
             return db.insert("'" + user.getName()
-                            + "', '" + user.getPassword() + "', "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + "', '" + user.getPassword() + "', '"
+                            + user.getRepresentativeID() + "', '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', '"
@@ -78,9 +125,9 @@ public class AuthenticatedUsersDatabase {
                     , "TTBAgentLogin");
         } else { // type is Applicant
             return db.insert("'" + user.getName()
-                            + "', '" + user.getPassword() + "', "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + "', '" + user.getPassword() + "', '"
+                            + user.getRepresentativeID() + "', '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', '"
@@ -126,7 +173,7 @@ public class AuthenticatedUsersDatabase {
      */
     public boolean isValidApplicant(String email, String password) {
         ResultSet results = db.select("*", "ApplicantLogin", "email = '" + email +
-                "' AND  password = '" + password + "'");
+                "'");
         if (results == null)
             return false;
         try {
@@ -172,9 +219,9 @@ public class AuthenticatedUsersDatabase {
         try{
             worked = db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
-                            + user.getUserType().getValue() + ", "
-                            + user.getRepresentativeID() + ", "
-                            + user.getPermitNum() + ", '"
+                            + user.getUserType().getValue() + ", '"
+                            + user.getRepresentativeID() + "', '"
+                            + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
                             + user.getEmail().getEmailAddress() + "', "
@@ -212,18 +259,18 @@ public class AuthenticatedUsersDatabase {
                 String password = resultSet.getString("password");
                 int usertype = resultSet.getInt("type");
                 UserType useType = UserType.fromInt(usertype);
-                int representativeID = resultSet.getInt("representativeID");
+                String representativeID = resultSet.getString("representativeID");
                 String emailString = resultSet.getString("email");
                 EmailAddress email = new EmailAddress(emailString);
                 String phoneNumberString = resultSet.getString("phoneNumber");
                 PhoneNumber phoneNumber = new PhoneNumber(phoneNumberString);
                 Date date = new Date(resultSet.getLong("date"));
-                int permitNum = resultSet.getInt("permitNum");
+                String permitNum = resultSet.getString("permitNum");
                 String address = resultSet.getString("address");
                 String company = resultSet.getString("company");
 
                 users.add(new PotentialUser(name, representativeID, email, phoneNumber,
-                         useType, password, date, permitNum, address, company));
+                        useType, password, date, permitNum, address, company));
             }
         }
         catch(SQLException e){
@@ -238,8 +285,8 @@ public class AuthenticatedUsersDatabase {
             while (resultSet.next()) {
                 //Adding all stuff from database to new Applicant object
                 String name = resultSet.getString("name");
-                int representativeID = resultSet.getInt("representativeID");
-                int permitNum = resultSet.getInt("permitNum");
+                String representativeID = resultSet.getString("representativeID");
+                String permitNum = resultSet.getString("permitNum");
                 String address = resultSet.getString("address");
                 String phoneNum = resultSet.getString("phoneNumber");
                 String company = resultSet.getString("company");
@@ -254,17 +301,17 @@ public class AuthenticatedUsersDatabase {
         return null;
     }
 
-    public void setRepIDFromEmail(int repID, String email) {
-        db.update("ApplicantLogin", "representativeID = " + repID, "email = '" + email + "'");
-    }
-    public void setPermitNumFromEmail(int permitNum, String email) {
-        db.update("ApplicantLogin", "permitNum = " + permitNum, "email = '" + email + "'");
-    }
-    public void setAddressFromEmail(String address, String email) {
-        db.update("ApplicantLogin", "address = '" + address + "'", "email = '" + email + "'");
+    public void setRepIDFromEmail(String repID, String email) {
+        db.update("ApplicantLogin", "representativeID = '" + repID + "'", "email = '" + email + "'");
     }
     public void setPhoneNumFromEmail(String phoneNum, String email) {
         db.update("ApplicantLogin", "phoneNumber = '" + phoneNum + "'", "email = '" + email + "'");
+    }
+    public void setPermitNumFromEmail(String permitNum, String email) {
+        db.update("ApplicantLogin", "permitNum = '" + permitNum + "'", "email = '" + email + "'");
+    }
+    public void setAddressFromEmail(String address, String email) {
+        db.update("ApplicantLogin", "address = '" + address + "'", "email = '" + email + "'");
     }
     public void setNameFromEmail(String name, String email) {
         db.update("ApplicantLogin", "name = '" + name + "'", "email = '" + email + "'");
@@ -274,11 +321,11 @@ public class AuthenticatedUsersDatabase {
     }
 
     public void updatePasswordApplicant(String password, String email) {
-        db.update("ApplicantLogin", "password = " + password, "email = '" + email + "'");
+        db.update("ApplicantLogin", "password = '"+password+"'", "email = '"+email+"'" );
     }
 
     public void updatePasswordTTBAgent(String password, String email) {
-        db.update("TTBAgentLogin", "password = " + password, "email = '" + email + "'");
+        db.update("TTBAgentLogin", "password = '"+password+"'", "email = '"+email+"'" );
     }
 
     public List<String> getAllTTBUsernames(){
@@ -294,6 +341,7 @@ public class AuthenticatedUsersDatabase {
         }
         return names;
     }
+
 
 
 }

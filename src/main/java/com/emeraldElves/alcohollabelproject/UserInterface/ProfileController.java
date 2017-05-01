@@ -22,16 +22,16 @@ public class ProfileController implements IController {
     @FXML
     TextField phoneNumField;
     @FXML
-    Label emailAddressField;
-    @FXML
     TextField companyField;
+    @FXML
+    Label emailAddressField;
 
     private Main main;
     private ApplicantInterface applicant;
 
     private String emailAddress;
-    private int representativeID;
-    private int permitNum;
+    private String representativeID;
+    private String permitNum;
     private String address;
     private PhoneNumber phoneNum;
     private String company;
@@ -60,23 +60,21 @@ public class ProfileController implements IController {
         //phoneNum = applicant.getApplicant().getPhoneNumFromDB(emailAddress);
 
         // set text values to current values
-        representativeIDField.setText(Integer.toString(representativeID));
-        permitNumField.setText(Integer.toString(permitNum));
+        representativeIDField.setText(representativeID);
+        permitNumField.setText(permitNum);
         addressField.setText(address);
         phoneNumField.setText(phoneNum.getPhoneNumber());
         emailAddressField.setText(emailAddress);
         companyField.setText(company);
     }
 
-    // TODO: error handling
-
     // functions - simply modify fields when user changes them
     public void modifyRepresentativeID() {
-        representativeID = Integer.valueOf(representativeIDField.getText());
+        representativeID = representativeIDField.getText();
         applicant.getApplicant().setRepresentativeID(emailAddress, representativeID);
     }
     public void modifyPermitNum() {
-        permitNum = Integer.valueOf(permitNumField.getText());
+        permitNum = permitNumField.getText();
         applicant.getApplicant().setPermitNum(emailAddress, permitNum);
     }
     public void modifyAddress() {
@@ -87,13 +85,13 @@ public class ProfileController implements IController {
         phoneNum = new PhoneNumber(phoneNumField.getText());
         applicant.getApplicant().setPhoneNum(emailAddress, phoneNum.getPhoneNumber());
     }
-    public void modifyEmailAddress() { // this should never be used actually
-        emailAddress = emailAddressField.getText();
-        applicant.getApplicant().setEmailAddress();
-    }
     public void modifyCompany() {
         company = companyField.getText();
         applicant.getApplicant().setCompany(emailAddress, company);
+    }
+
+    public void updatePassword(){
+        main.loadFXML("/fxml/ChangeUserPassword.fxml");
     }
 
     public void returnHome() {
@@ -101,7 +99,6 @@ public class ProfileController implements IController {
         modifyPermitNum();
         modifyAddress();
         modifyPhoneNum();
-        modifyEmailAddress();
         modifyCompany();
         main.loadHomepage();
     }

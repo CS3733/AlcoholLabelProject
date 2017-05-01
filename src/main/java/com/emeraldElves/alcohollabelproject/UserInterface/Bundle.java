@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Data.PotentialUser;
+import com.emeraldElves.alcohollabelproject.Data.SavedApplication;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
 import java.util.HashMap;
@@ -27,6 +28,8 @@ public class Bundle {
 
     public void putString(String key, String s){ data.put(key, s);}
 
+    public void putSavedApplication(String key, SavedApplication savedApplication){data.put(key, savedApplication);}
+
     public SubmittedApplication getApplication(String key) {
         return (SubmittedApplication) data.get(key);
     }
@@ -36,5 +39,7 @@ public class Bundle {
     public Main getMain(String key){ return (Main) data.get(key);}
 
     public String getString(String key){ return (String) data.get(key);}
+
+    public SavedApplication getSavedApplication(String key){ return (SavedApplication) data.get(key);}
 
 }

@@ -2,22 +2,18 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 
 import com.emeraldElves.alcohollabelproject.Authenticator;
 import com.emeraldElves.alcohollabelproject.Data.*;
-import com.emeraldElves.alcohollabelproject.EmailManager;
 import com.emeraldElves.alcohollabelproject.Log;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApplicationStatusChanger;
 import com.emeraldElves.alcohollabelproject.updateCommands.ApproveCommand;
 import com.emeraldElves.alcohollabelproject.updateCommands.RejectCommand;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -51,9 +47,9 @@ public class ApprovalProcessController implements IController {
     Label applicantID;
 
     @FXML
-    TextArea reason;
+    TextField reason;
     @FXML
-    TextArea qualifications;
+    TextField qualifications;
 
     @FXML
     Label authorizedName;
@@ -74,6 +70,10 @@ public class ApprovalProcessController implements IController {
 
     @FXML
     Label applicationID;
+
+    @FXML
+    Button correctionsButton;
+
     @FXML
     ComboBox assignUserBox;
     @FXML
@@ -81,7 +81,11 @@ public class ApprovalProcessController implements IController {
     @FXML
     Label assignErrorField;
 
+    @FXML
+    DatePicker ExpirationDate;
+
     ObservableList<String> assignUser = FXCollections.observableArrayList();
+
 
     public void init(Bundle bundle){
         this.init(bundle.getMain("main"), bundle.getApplication("app"));
@@ -102,6 +106,8 @@ public class ApprovalProcessController implements IController {
             assignUser.addAll(userList);
             assignUserBox.setValue("Select a user");
             assignUserBox.setItems(assignUser);
+            Calendar cal = Calendar.getInstance();
+            ExpirationDate.setValue(cal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
 
         agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
@@ -135,12 +141,17 @@ public class ApprovalProcessController implements IController {
         }
         origin.setText( productSource);
         applicantID.setText( String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
-        authorizedName.setText( application.getApplication().getManufacturer().getName());
+        //authorizedName.setText( application.getApplication().getManufacturer().getName());
         physicalAddress.setText( application.getApplication().getManufacturer().getPhysicalAddress());
-        permitNum.setText( String.valueOf(application.getApplication().getManufacturer().getPermitNum()));
+        permitNum.setText( application.getApplication().getManufacturer().getPermitNum());
         phoneNum.setText(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());
         emailAddress.setText( application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
         alcoholContent.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
+    }
+
+    public void GoHome() {
+        main.loadFXML("/fxml/HomePage.fxml");
+
     }
 
     /**
@@ -160,15 +171,12 @@ public class ApprovalProcessController implements IController {
         main.loadFXML("/fxml/SuperagentViewAllApplications.fxml");
     }
 
-    public void GoHome() {
-        main.loadFXML("/fxml/HomePage.fxml");
-
-    }
-
     public void Approve() {
         application.getApplication().setQualifications(qualifications.getText());//sets qualifications
         //need to update in database now
         ApplicationStatusChanger changer = new ApplicationStatusChanger();
+        Log.console(ExpirationDate.getValue());
+        //application.getApplication().setExpirationDate();
         changer.changeStatus(new ApproveCommand(application, true));
         changer.commitUpdates();
         //Storage.getInstance().submitApplication(application,);
@@ -186,6 +194,7 @@ public class ApprovalProcessController implements IController {
 
     public void PendingReview() {
         application.setStatus(ApplicationStatus.PENDINGREVIEW);
+        application.getApplication().setExpirationDate((DateHelper.getDate(ExpirationDate.getValue().getYear()+1, ExpirationDate.getValue().getMonthValue(), ExpirationDate.getValue().getDayOfMonth())));
         Storage.getInstance().submitApplication(application, Authenticator.getInstance().getUsername());
         main.loadFXML("/fxml/TTBWorkflowPage.fxml");
     }
@@ -210,6 +219,6 @@ public class ApprovalProcessController implements IController {
 
     }
     public void viewLabel(){
-        main.loadFXML("/fxml/DisplayLabel.fxml",application);
-    }
+        main.loadFXML("/fxml/DisplayLabel.fxml", application);
+    } //THIS DOESN'T CURRENTLY WORK
 }

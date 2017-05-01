@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane prefHeight="2000.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.UpdateOptionsController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1024.0" minWidth="1024.0" prefWidth="1024.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="96.0" minHeight="96.0" prefHeight="96.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="672.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <ScrollPane prefHeight="1503.0" prefWidth="1005.0" GridPane.rowIndex="1">
+         <content>
+            <GridPane prefHeight="1900.0" prefWidth="1006.0" stylesheets="@../style/material.css">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="36.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="932.0" minWidth="10.0" prefWidth="932.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.6666259765625" minWidth="10.0" prefWidth="38.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="75.0" minHeight="7.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="7.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label fx:id="welcomeApplicantLabel" text="Welcome, [Applicant]" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                  <CheckBox fx:id="option1" mnemonicParsing="false" text="Delete any non-mandatory label information, including text, illustrations, graphics, etc." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="option2" mnemonicParsing="false" prefHeight="39.0" prefWidth="576.0" text="Reposition any label information, including text, illustrations, graphics, etc." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <CheckBox fx:id="option11" mnemonicParsing="false" text="Change the mandatory statement of alcohol content, as long as the change is consistent with the labeled class and type designation, andall other labeling statements." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <CheckBox fx:id="option3" mnemonicParsing="false" prefHeight="94.0" prefWidth="932.0" text="Change the color(s) (background and text), shape and proportionate size of labels. Change the type size and font, and make appropriate changes to the spelling (including punctuation marks, changing letters from upper case to lower case and vice versa, and abbreviations) of words, in compliance with the regulations. Change from an adhesive label to one where label information is etched, painted or printed directly on the container and vice versa." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="option4" mnemonicParsing="false" text="Change the stated percentages for blends of grape varietals and appellations of origin for wine labels." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <CheckBox fx:id="option5" mnemonicParsing="false" text="Add, change or delete a vintage date for wine labels." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <CheckBox fx:id="option6" mnemonicParsing="false" text="Change the optional “produced” or “made” by statements on wine labels to “blended,” “vinted,” “cellared,” or “prepared” by statements." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <CheckBox fx:id="option7" mnemonicParsing="false" text="Add, change or delete the stated amount of acid and/or the pH level for wine labels." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <CheckBox fx:id="option8" mnemonicParsing="false" text="Change the stated amounts of sugar at harvest and/or residual sugar for wine labels." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <CheckBox fx:id="option9" mnemonicParsing="false" text="Add or delete bonded winery or tax paid wine bottling house numberfor wine labels." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <CheckBox fx:id="option10" mnemonicParsing="false" text="Change the net contents statement." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <CheckBox fx:id="option12" mnemonicParsing="false" text="Add, delete, or change an optional statement of alcohol content formal beverage labels." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <CheckBox fx:id="option13" mnemonicParsing="false" text="Change the statement of percentage of neutral spirits and the name of the commodity from which a distilled spirit is produced." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  <CheckBox fx:id="option14" mnemonicParsing="false" text="Change the mandatory age statement, or delete or change anoptional age statement for distilled spirits labels." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                  <CheckBox fx:id="option15" mnemonicParsing="false" text="Delete or change an optional age statement, including a barrel aging statement, for wine and malt beverage labels." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                  <CheckBox fx:id="option16" mnemonicParsing="false" text="Add, delete, or change statements or information in order to comply with the requirements of the State in which the malt beverage is to be sold." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+                  <CheckBox fx:id="option17" mnemonicParsing="false" text="Add a new Serving Facts statement or statement of average analysis, add a Serving Facts statement to replace a statement of average analysis, or change the numerical values for calories, carbohydrates, protein, and fat contained in an existing statement." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+                  <CheckBox fx:id="option18" mnemonicParsing="false" text="Add, delete, or change stated bottling date, production date (day,month, and/or year) or freshness information including bottling, production or expiration dates or codes." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="19" />
+                  <CheckBox fx:id="option19" mnemonicParsing="false" text="Change the name or trade name to reflect a different name already approved for use by the responsible bonded wine cellar, tax paid wine bottling house, distilled spirits plant, brewery, or importer. Change the address where it is within the same State." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="20" />
+                  <CheckBox fx:id="option20" mnemonicParsing="false" text="Add, delete, or change the name and/or address of the foreign producer, bottler, or shipper." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="21" />
+                  <CheckBox fx:id="option21" mnemonicParsing="false" text="Add, delete, or change the name, address, and/or trademark of the wholesaler, retailer, or persons for whom the product is imported or bottled." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="22" />
+                  <CheckBox fx:id="option22" mnemonicParsing="false" text="Add, delete, or change bottle deposit information, or container recycling information or logos." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="23" />
+                  <CheckBox fx:id="option23" mnemonicParsing="false" text="Add, delete, or change UPC barcodes and/or 2D mobilebarcodes, e.g., QR codes or Microsoft Tags." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="24" />
+                  <CheckBox fx:id="option24" mnemonicParsing="false" text="Add, delete, or change a website address, phone number, fax number, or zip code." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="25" />
+                  <CheckBox fx:id="option25" mnemonicParsing="false" text="Add, delete, or change a lot or batch identification number or other serial numbers." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="26" />
+                  <CheckBox fx:id="option26" mnemonicParsing="false" text="Add, delete, or change trademark, copyright symbols (e.g., TM, ©, ®), kosher symbols, company logos, and/or social media icons." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="27" />
+                  <CheckBox fx:id="option27" mnemonicParsing="false" text="Add, delete, or change optional information about awards or medals, or the signature of the brewer, winemaker, or distiller of the product." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="28" />
+                  <CheckBox fx:id="option28" mnemonicParsing="false" text="Add, delete, or change holiday- and/or seasonal-themed graphics, artwork and/or salutations." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="29" />
+                  <CheckBox fx:id="option29" mnemonicParsing="false" text="Delete or change promotional sponsorship-themed graphics, logos, artwork, dates, event locations and/or other sponsorship-related information. (Examples: sports leagues, teamorganizations, annual sporting events, and annual or semi-annual festivals). Delete or change charitable endorsement information to include information about the proceeds." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="30" />
+                  <CheckBox fx:id="option30" mnemonicParsing="false" text="Add, delete, or change a label or sticker that provides information about a rating or recognition provided by an organization (e.g., “Recognized as one of the top values in vodka by x Magazine” or “Rated as the best 2012 wine by x Association”), as long as the rating or recognition reflects simply the opinion of the organization and does not make a specific substantive claim about the product or its competitors." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="31" />
+                  <CheckBox fx:id="option31" mnemonicParsing="false" text="Delete all organic references from the label." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="32" />
+                  <CheckBox fx:id="option32" mnemonicParsing="false" text="Change an approved sulfite statement to any of these options: “Contains Sulfites”, “Contains (a) Sulfiting Agent(s)”, “Contains [name of specific sulfating agent]”, “Contains Naturally Occurring and Added Sulfites”, or “Contains Naturally Occurring Sulfites.” “Sulphites” may be used in lieu of “Sulfites.”" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="33" />
+                  <CheckBox fx:id="option33" mnemonicParsing="false" text="Add, delete, or change information about the number of bottles that were “made,” “produced,” “brewed,” or “distilled” in a batch; respectively." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="34" />
+                  <CheckBox fx:id="option34" mnemonicParsing="false" text="Add certain instructional statements to the label(s) about how best to consume or serve the product. Only the statements listed in the comments section may be added." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="35" />
+                  <Button fx:id="selectRev" mnemonicParsing="false" onMouseClicked="#nextPage" styleClass="button-raised" text="Select Revisions" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="36" />
+                  <Button fx:id="cancelBtn" mnemonicParsing="false" styleClass="button-raised" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="36" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please select all the revisions you wish to make" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+               </children>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <fx:include source="toolbar.fxml" />
+   </children>
+</GridPane>

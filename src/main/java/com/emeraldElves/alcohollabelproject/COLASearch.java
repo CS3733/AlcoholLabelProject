@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,15 +25,19 @@ public class COLASearch {
         return storage.getApplicationsByFancifulName(fancifulName);
     }
 
-    public List<SubmittedApplication> searchByName(String brandOrFancifulName){
-        return storage.getApplicationsByName(brandOrFancifulName);
+    public List<SubmittedApplication> searchByName(String brandOrFancifulName, int rows, boolean hideBeer, boolean hideWine, boolean hideSpirits){
+        return storage.getApplicationsByName(brandOrFancifulName, rows, hideBeer, hideWine, hideSpirits);
     }
 
-    public List<SubmittedApplication> searchApprovedApplications(){
-        return storage.getApprovedApplications();
+    public List<SubmittedApplication> searchApprovedApplications(boolean hideBeer, boolean hideWine, boolean hideSpirits){
+        return storage.getApprovedApplications(hideBeer, hideWine, hideSpirits);
     }
 
     public List<SubmittedApplication> searchRecentApplications(int numApps){
         return storage.getRecentlyApprovedApplications(numApps);
+    }
+
+    public List<SubmittedApplication> advancedSearch(String brandName, String fancifulName, boolean wantBeer, boolean wantWine, boolean wantSpirits, String email, String address, Date startDate, Date endDate, double contentMin, double contentMax) {
+        return storage.advancedSearch(brandName, fancifulName, wantBeer, wantWine, wantSpirits, email, address, startDate, endDate, contentMin, contentMax);
     }
 }

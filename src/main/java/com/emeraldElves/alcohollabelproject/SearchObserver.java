@@ -21,7 +21,7 @@ public class SearchObserver {
 
     public void update() {
         applications.clear();
-        applications.addAll(colaSearch.searchByName(subject.getSearchTerm().trim()));
+//        applications.addAll(colaSearch.searchByName(subject.getSearchTerm().trim(), 100));
     }
 
 }

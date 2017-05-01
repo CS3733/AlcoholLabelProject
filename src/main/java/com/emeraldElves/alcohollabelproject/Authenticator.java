@@ -22,6 +22,8 @@ public class Authenticator {
         return AuthenticatorHolder.instance;
     }
 
+
+
     private static class AuthenticatorHolder {
         public static final Authenticator instance = new Authenticator();
     }

@@ -12,7 +12,7 @@ public class DistilledSpiritsAlcoholInfo extends AlcoholInfo {
      * @param brandName Brand name of alcohol
      * @param origin Whether the alcohol is domestic or imported
      */
-    public DistilledSpiritsAlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin){
+    public DistilledSpiritsAlcoholInfo(String alcoholContent, String name, String brandName, ProductSource origin){
         super(alcoholContent, name, brandName, origin, AlcoholType.DISTILLEDSPIRITS, null);
     }
 }
