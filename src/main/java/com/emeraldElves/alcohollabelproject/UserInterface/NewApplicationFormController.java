@@ -74,7 +74,7 @@ public class NewApplicationFormController implements IController {
     private AlcoholType alcType;
     private String alcName;
     private String brandName;
-    private double alcContent;
+    private String alcContent;
     private AlcoholInfo.Wine wineType = null; //null if type is not wine
     private String formula;
     private String serialNum;
@@ -196,9 +196,7 @@ public class NewApplicationFormController implements IController {
         //brand name
         brandNameField.setText(alcoholInfo.getBrandName());
         //Alcohol Content
-        if(alcoholInfo.getAlcoholContent() != -1) {
-            alcoholContentField.setText("" + alcoholInfo.getAlcoholContent());
-        }
+        alcoholContentField.setText(alcoholInfo.getAlcoholContent());
         //formula
         formulaText.setText(alcoholInfo.getFormula());
         //serial number
@@ -284,15 +282,6 @@ public class NewApplicationFormController implements IController {
             formFilled = true;
         }
 
-        //check if fields are valid
-        if(isDouble(alcoholContentField)) {
-            if (pTypeSelect.getValue().equals("Wine")) {
-                if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
-                    fieldsValid = true;
-                }
-            } else fieldsValid = true;
-        }
-
         //error message saying to fill in all required fields
         if (!formFilled) {
             errorMsg.setText("Please fill in all the required fields.");
@@ -343,7 +332,7 @@ public class NewApplicationFormController implements IController {
                 alcName = alcoholName.getText();
                 brandName = brandNameField.getText();
 
-                alcContent = Double.parseDouble(alcoholContentField.getText());
+                alcContent = alcoholContentField.getText();
 
                 serialNum = serialText.getText();
                 if (formulaText.getText().isEmpty()) {
@@ -430,7 +419,7 @@ public class NewApplicationFormController implements IController {
         //END appType
 
         //alcoholInfo
-        double alcoholContent;
+       String alcoholContent;
         String fanciful;
         String brand;
         ProductSource origin;
@@ -439,8 +428,8 @@ public class NewApplicationFormController implements IController {
         AlcoholInfo.Wine wineInfo;
         AlcoholType alcoholType;
         //alcoholContent
-        if(alcoholContentField.getText().isEmpty()){ alcoholContent = -1;}
-        else{ alcoholContent = Double.parseDouble(alcoholContentField.getText());}
+        if(alcoholContentField.getText().isEmpty()){ alcoholContent = "";}
+        else{ alcoholContent = alcoholContentField.getText();}
         //fanciful
         if(alcoholName.getText().isEmpty()){ fanciful = "";}
         else{ fanciful = alcoholName.getText(); }

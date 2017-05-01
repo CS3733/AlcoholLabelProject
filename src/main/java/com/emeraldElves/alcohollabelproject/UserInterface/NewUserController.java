@@ -131,12 +131,11 @@ public class NewUserController implements IController {
 //        }
 
 
-        if (companyField.getText().trim().isEmpty())
+        if (companyField.getText().trim().isEmpty()&&(userTypeInt == 1))
         {
             companyError.setText("Enter a valid company");
             return;
         }
-
 
 
         if (addressText.getText().trim().isEmpty())
@@ -168,8 +167,9 @@ public class NewUserController implements IController {
         } else repID =representativeID.getText();
         permitNum = permitNumText.getText();
         address = addressText.getText();
-        company = companyField.getText();
-
+        if(companyField.getText().trim().isEmpty()){
+            company="";
+        } else company = companyField.getText();
 
         FullName = Name.getText();
 
@@ -186,7 +186,7 @@ public class NewUserController implements IController {
     public void checkPassword(){
         final Popup popup = new Popup();
         //popup.show();
-        passwordHint.setText("Password must: \n - Contains atleast 8 Characters \n - A Uppercase character \n - A Lowercase character \n - A digit \n - A symbol");
+        passwordHint.setText("Password must: \n - Contains at least 8 Characters \n - A Uppercase character \n - A Lowercase character \n - A digit \n - A symbol");
         passwordError.setVisible(false);
             if (!CheckStrength.isPasswordValid(passwordField.getText())) {
                 image = new Image("/images/X.png");

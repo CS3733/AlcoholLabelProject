@@ -74,14 +74,7 @@ public class UpdateApplicationController implements IController{
     //Alcohol info
     private ProductSource pSource;
     private AlcoholType alcType;
-<<<<<<< HEAD
-    private String alcName, brandName;
-    private double alcContent;
-=======
-    private String alcName;
-    private String brandName;
-    private String alcContent;
->>>>>>> develop
+    private String alcName, brandName, alcContent;
     private AlcoholInfo.Wine wineType = null;
     private String formula, serialNum, extraInfo;
     private File file;
