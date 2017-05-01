@@ -9,7 +9,7 @@ public class SavedApplication {
     private AlcoholInfo alcoholInfo;
     private String extraInfo;
     private LabelImage image;
-    private int applicationID = -1;
+    private long applicationID = -1;
 
     public SavedApplication(ApplicationType applicationType, AlcoholInfo alcoholInfo, String extraInfo, LabelImage imageURL) {
         this.applicationType = applicationType;
@@ -34,7 +34,7 @@ public class SavedApplication {
         return image;
     }
 
-    public int getApplicationID(){ return applicationID;}
+    public long getApplicationID(){ return applicationID;}
 
-    public void setApplicationID(int id){ applicationID = id;}
+    public void setApplicationID(long id){ applicationID = id;}
 }

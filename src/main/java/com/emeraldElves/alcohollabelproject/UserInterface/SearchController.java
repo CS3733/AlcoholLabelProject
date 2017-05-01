@@ -5,6 +5,8 @@ import com.emeraldElves.alcohollabelproject.Data.AlcoholType;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.*;
 
+import com.sun.javafx.scene.control.skin.TableViewSkin;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import javafx.application.Platform;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -13,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
@@ -154,13 +157,20 @@ public class SearchController implements IController{
         });
     }
 
+    private int getNumberOfVisibleRows()
+    {
+        return 100;
+    }
+
+
+
     public void search(String searchTerm) {
         //Remove previous results
         data.remove(0, data.size());
 
         //Find & add matching applications
-        List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim());
-        filterList(resultsList);
+        List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim(), getNumberOfVisibleRows(), filterBeers.isSelected(), filterWine.isSelected(), filterSpirits.isSelected());
+//        filterList(resultsList);
         data.addAll(resultsList); //change to resultsList
         descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);
@@ -169,8 +179,8 @@ public class SearchController implements IController{
     }
 
     private void refreshSuggestions() {
-        List<SubmittedApplication> resultsList = search.searchApprovedApplications();
-        filterList(resultsList);
+        List<SubmittedApplication> resultsList = search.searchApprovedApplications(filterBeers.isSelected(), filterWine.isSelected(), filterSpirits.isSelected());
+//        filterList(resultsList);
         possibleSuggestions.clear();
         /*
         Collections.sort(resultsList, new Comparator<SubmittedApplication>() {
@@ -203,9 +213,9 @@ public class SearchController implements IController{
     }
 
     private void filterList(List<SubmittedApplication> appList) {
-        appList.removeIf(p -> (filterBeers.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER));
-        appList.removeIf(p -> (filterWine.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE));
-        appList.removeIf(p -> (filterSpirits.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS));
+//        appList.removeIf(p -> (filterBeers.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER));
+//        appList.removeIf(p -> (filterWine.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE));
+//        appList.removeIf(p -> (filterSpirits.isSelected() && p.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS));
     }
 
     public void saveTSV(ActionEvent e) {

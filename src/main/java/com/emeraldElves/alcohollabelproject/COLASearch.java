@@ -24,12 +24,12 @@ public class COLASearch {
         return storage.getApplicationsByFancifulName(fancifulName);
     }
 
-    public List<SubmittedApplication> searchByName(String brandOrFancifulName){
-        return storage.getApplicationsByName(brandOrFancifulName);
+    public List<SubmittedApplication> searchByName(String brandOrFancifulName, int rows, boolean hideBeer, boolean hideWine, boolean hideSpirits){
+        return storage.getApplicationsByName(brandOrFancifulName, rows, hideBeer, hideWine, hideSpirits);
     }
 
-    public List<SubmittedApplication> searchApprovedApplications(){
-        return storage.getApprovedApplications();
+    public List<SubmittedApplication> searchApprovedApplications(boolean hideBeer, boolean hideWine, boolean hideSpirits){
+        return storage.getApprovedApplications(hideBeer, hideWine, hideSpirits);
     }
 
     public List<SubmittedApplication> searchRecentApplications(int numApps){

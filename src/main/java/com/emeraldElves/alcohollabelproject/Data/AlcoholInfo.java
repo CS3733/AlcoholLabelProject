@@ -125,6 +125,8 @@ public class AlcoholInfo {
         this.alcoholType = alcoholType;
     }
 
+    public void setSerialNumber(String serialNumber){this.serialNumber = serialNumber;}
+
     public Wine getWineInfo()
     {
         return this.wineInfo;

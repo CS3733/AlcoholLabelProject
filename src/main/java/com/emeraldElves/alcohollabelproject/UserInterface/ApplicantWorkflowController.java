@@ -40,7 +40,7 @@ public class ApplicantWorkflowController implements IController {
         List<SavedApplication> savedApplications = applicantInterface.getSavedApplications();
         applications.sort((a, b) -> {
             if (a.getStatus() == b.getStatus()) {
-                return a.getApplicationID() - b.getApplicationID();
+                return (int)( a.getApplicationID() - b.getApplicationID());
             } else {
                 return a.getStatus().ordinal() - b.getStatus().ordinal();
             }
