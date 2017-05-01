@@ -1000,4 +1000,35 @@ public class AlcoholDatabase {
         return getApplicationsFromResultSet(results);
     }
 
+    public List<SubmittedApplication> advancedSearch(String brandName, String fancifulName, boolean wantBeer, boolean wantWine, boolean wantSpirits, String email, String address, Date startDate, Date endDate, double contentMin, double contentMax) {
+        db.setMaxRows(100);
+
+        String brandWhere = " AND UPPER(AlcoholInfo.brandName) LIKE UPPER('%" + brandName + "%')";
+        String fancifulWhere = " AND UPPER(AlcoholInfo.fancifulName) LIKE UPPER('%" + fancifulName + "%')";
+
+        //String emailWhere = " AND UPPER(emailAddress)  LIKE UPPER('%" + email + "%')";
+
+        //String addressWhere = "AND UPPER(physicalAddress)  LIKE UPPER('%" + address + "%')";
+
+//        String contentWhere = " AND alcoholContent"
+
+        String dateWhere = "";//" AND submissionTime >= " + startDate.getTime() + " AND submissionTime <= " + endDate.getTime();
+
+        String typeWhere = "";
+        if(!wantBeer){
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.BEER.getValue();
+        }
+
+        if(!wantWine) {
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.WINE.getValue();
+        }
+
+        if(!wantSpirits){
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.DISTILLEDSPIRITS.getValue();
+        }
+        ResultSet results = db.select("SubmittedApplications.applicationId, AlcoholInfo.type, AlcoholInfo.brandName, AlcoholInfo.fancifulName", "SubmittedApplications INNER JOIN AlcoholInfo ON SubmittedApplications.applicationId=AlcoholInfo.applicationId",
+                "SubmittedApplications.status = " + ApplicationStatus.APPROVED.getValue() + typeWhere + brandWhere + fancifulWhere /*+ emailWhere + addressWhere*/ + dateWhere);
+        return getApplicationsFromResultSet(results);
+
+    }
 }

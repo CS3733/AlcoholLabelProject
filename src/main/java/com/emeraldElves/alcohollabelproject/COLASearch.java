@@ -3,6 +3,7 @@ package com.emeraldElves.alcohollabelproject;
 import com.emeraldElves.alcohollabelproject.Data.Storage;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,5 +35,9 @@ public class COLASearch {
 
     public List<SubmittedApplication> searchRecentApplications(int numApps){
         return storage.getRecentlyApprovedApplications(numApps);
+    }
+
+    public List<SubmittedApplication> advancedSearch(String brandName, String fancifulName, boolean wantBeer, boolean wantWine, boolean wantSpirits, String email, String address, Date startDate, Date endDate, double contentMin, double contentMax) {
+        return storage.advancedSearch(brandName, fancifulName, wantBeer, wantWine, wantSpirits, email, address, startDate, endDate, contentMin, contentMax);
     }
 }

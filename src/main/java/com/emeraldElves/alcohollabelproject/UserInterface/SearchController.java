@@ -157,6 +157,10 @@ public class SearchController implements IController{
         });
     }
 
+    public void advancedSearch(){
+        main.loadFXML("/fxml/AdvancedSearchPage.fxml");
+    }
+
     private int getNumberOfVisibleRows()
     {
         return 100;
@@ -172,7 +176,7 @@ public class SearchController implements IController{
         List<SubmittedApplication> resultsList = search.searchByName(searchTerm.trim(), getNumberOfVisibleRows(), filterBeers.isSelected(), filterWine.isSelected(), filterSpirits.isSelected());
 //        filterList(resultsList);
         data.addAll(resultsList); //change to resultsList
-        descriptionLabel.setText("Showing " + data.size() + " results for \"" + searchTerm + "\"");
+        descriptionLabel.setText("Showing top " + data.size() + " results for \"" + searchTerm + "\"");
         descriptionLabel.setVisible(true);
         saveBtn.setDisable(data.size() == 0);
         contextSaveBtn.setDisable(data.size() == 0);

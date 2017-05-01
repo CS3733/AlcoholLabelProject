@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.DetailedSearchController">
+<GridPane alignment="center" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.DetailedSearchController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -27,7 +27,7 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label fx:id="fancifulName" layoutX="32.0" layoutY="73.0" prefHeight="20.0" prefWidth="278.0" text="Fanciful name">
+            <Label fx:id="fancifulName" layoutX="32.0" layoutY="73.0" prefHeight="27.0" prefWidth="728.0" text="Fanciful name">
                <font>
                   <Font size="18.0" />
                </font>
