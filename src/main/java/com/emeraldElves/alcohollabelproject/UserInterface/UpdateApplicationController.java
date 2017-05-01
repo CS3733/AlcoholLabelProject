@@ -67,21 +67,16 @@ public class UpdateApplicationController implements IController{
     private String username;
     private ApplicantInterface applicant;
     private EmailAddress emailAddress;
-    private String permitNum; //needs to be a string!!!!
-    private String address;
+    private String permitNum, address;
     private PhoneNumber phoneNum;
     private String representativeID; //needs to be a string!!!!
 
     //Alcohol info
     private ProductSource pSource;
     private AlcoholType alcType;
-    private String alcName;
-    private String brandName;
-    private String alcContent;
+    private String alcName, brandName, alcContent;
     private AlcoholInfo.Wine wineType = null;
-    private String formula;
-    private String serialNum; //needs to be a string!!!!
-    private String extraInfo;
+    private String formula, serialNum, extraInfo;
     private File file;
 
     public void init(Bundle bundle){
@@ -329,7 +324,6 @@ public class UpdateApplicationController implements IController{
             formFilled = true;
         }
 
-
         //check if fields are valid
         if (isDouble(alcoholContentField)) {
             if (pTypeSelect.getValue().equals("Wine")) {
@@ -375,6 +369,9 @@ public class UpdateApplicationController implements IController{
     }
 
     public void disableAllFields() {
+        certOfApproval.setDisable(true);
+        certOfExemption.setDisable(true);
+        distinctiveApproval.setDisable(true);
         pSourceSelect.setDisable(true);
         pTypeSelect.setDisable(true);
         alcoholName.setDisable(true);

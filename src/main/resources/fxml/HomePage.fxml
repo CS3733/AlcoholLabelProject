@@ -19,7 +19,7 @@
     <rowConstraints>
         <RowConstraints maxHeight="96.0" minHeight="96.0" prefHeight="96.0" />
       <RowConstraints />
-      <RowConstraints />
+      <RowConstraints maxHeight="672.0" minHeight="672.0" prefHeight="672.0" />
     </rowConstraints>
     <children>
         <Pane prefHeight="675.0" prefWidth="1024.0" GridPane.rowIndex="2">
@@ -85,7 +85,7 @@
 
             </children>
         </Pane>
-      <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <Pane prefHeight="96.0" prefWidth="1024.0" style="-fx-background-color: #319b54;">
          <children>
             <fx:include source="toolbar.fxml" />
          </children>

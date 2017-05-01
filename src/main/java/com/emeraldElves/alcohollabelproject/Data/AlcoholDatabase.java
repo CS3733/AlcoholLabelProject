@@ -57,7 +57,8 @@ public class AlcoholDatabase {
      * @return A list of the most recently approved applications ordered from most recent to least recent.
      */
     public List<SubmittedApplication> getMostRecentApproved(int numApplications) {
-        ResultSet results = db.selectOrdered("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "approvalDate DESC");
+        db.setMaxRows(numApplications);
+        ResultSet results = db.selectOrdered("applicationId", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue(), "approvalDate DESC");
         return getApplicationsFromResultSet(results, numApplications);
     }
 
@@ -79,13 +80,13 @@ public class AlcoholDatabase {
      */
     private List<SubmittedApplication> getApplicationsFromResultSet(ResultSet results, int numApplications) {
         List<SubmittedApplication> applications = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>();
+        List<Long> ids = new ArrayList<>();
 
         try {
             while (results.next() && ids.size() < numApplications) {
-                ids.add(results.getInt("applicationID"));
+                ids.add(results.getLong("applicationID"));
             }
-            for (Integer id : ids) {
+            for (Long id : ids) {
                 applications.add(getApplicationByID(id));
             }
         } catch (SQLException e) {
@@ -104,13 +105,13 @@ public class AlcoholDatabase {
      */
     private List<SubmittedApplication> getApplicationsFromResultSet(ResultSet results) {
         List<SubmittedApplication> applications = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>();
+        List<Long> ids = new ArrayList<>();
 
         try {
             while (results.next()) {
-                ids.add(results.getInt("applicationID"));
+                ids.add(results.getLong("applicationID"));
             }
-            for (Integer id : ids) {
+            for (Long id : ids) {
                 applications.add(getApplicationByID(id));
             }
         } catch (SQLException e) {
@@ -120,23 +121,7 @@ public class AlcoholDatabase {
         return applications;
     }
 
-    /**
-     * Search by the brand or fanciful name of alcohol.
-     *
-     * @param name The name to search.
-     * @return A list of approved alcohols containing the name ordered by time approved.
-     */
-    public List<SubmittedApplication> searchByName(String name) {
-        ResultSet results = db.select("*", "AlcoholInfo", "UPPER(brandName)  LIKE UPPER('%" + name + "%') OR UPPER(fancifulName) LIKE UPPER('%" + name + "%')");
 
-        List<SubmittedApplication> applications = getApplicationsFromResultSet(results);
-
-        for (int i = applications.size() - 1; i >= 0; i--) {
-            if (applications.get(i).getStatus() != ApplicationStatus.APPROVED)
-                applications.remove(i);
-        }
-        return applications;
-    }
 
     /**
      * Search by the brand name of alcohol.
@@ -207,7 +192,7 @@ public class AlcoholDatabase {
         //
         boolean worked;//whether or not it added stuff to database
 
-        int appID;
+        long appID;
 
         if (application.getApplicationID() == -1) {
             appID = generateApplicationID();
@@ -391,7 +376,7 @@ public class AlcoholDatabase {
 
         boolean worked;//whether or not it added stuff to database
 
-        int appID;
+        long appID;
 
         if (application.getApplicationID() == -1) {
             appID = generateApplicationID();
@@ -498,7 +483,7 @@ public class AlcoholDatabase {
 
         boolean worked;//whether or not it added stuff to database
 
-        int appID;
+        long appID;
 
         if (application.getApplicationID() == -1) {
             appID = generateApplicationID();
@@ -607,6 +592,7 @@ public class AlcoholDatabase {
     }
 
     public List<SubmittedApplication> getUnassignedApplications(){
+        db.setMaxRows(10);
         return getAssignedApplications("PENDING");
     }
 
@@ -627,7 +613,7 @@ public class AlcoholDatabase {
 
         boolean worked;//whether or not it added stuff to database
 
-        int appID;
+        long appID;
 
         if (application.getApplicationID() == -1) {
             appID = generateApplicationID();
@@ -799,7 +785,7 @@ public class AlcoholDatabase {
         return getApplicationsFromResultSet(results, numApplications);
     }
 
-    private SubmittedApplication getApplicationByID(int id) {
+    private SubmittedApplication getApplicationByID(long id) {
         ResultSet submittedResult = db.select("*", "SubmittedApplications", "applicationID = " + id);
 
         try {
@@ -913,17 +899,18 @@ public class AlcoholDatabase {
         return applications.get(pos);
     }
 
-    private AlcoholInfo getAlcoholInfoByID(int applicationID) {
+    private AlcoholInfo getAlcoholInfoByID(long applicationID) {
         ResultSet alcoholResult = db.select("*", "AlcoholInfo", "applicationID = " + applicationID);
         try {
             if (alcoholResult.next()) {
                 AlcoholType type = AlcoholType.fromInt(alcoholResult.getInt("type"));
                 if (type == AlcoholType.WINE) {
-                    return new WineInfo(alcoholResult.getString("alcoholContent"),
+                    WineInfo info =  new WineInfo(alcoholResult.getString("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")),
                             alcoholResult.getInt("vintageYear"), (double) alcoholResult.getFloat("pH"),
                             alcoholResult.getString("varietals"), alcoholResult.getString("wineAppellation"));
+                    return info;
                 } else {
                     return new AlcoholInfo(alcoholResult.getString("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
@@ -935,10 +922,11 @@ public class AlcoholDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        Log.console(null);
         return null;
     }
 
-    private ManufacturerInfo getManufacturerInfoByID(int applicationID) {
+    private ManufacturerInfo getManufacturerInfoByID(long applicationID) {
         ResultSet results = db.select("*", "ManufacturerInfo", "applicationID = " + applicationID);
         try {
             if (results.next()) {
@@ -964,14 +952,83 @@ public class AlcoholDatabase {
     }
 
 
-    private int generateApplicationID() {
+    private long generateApplicationID() {
         incrementAppCount();
-        return Integer.valueOf(generator.generateID());
+        return Long.valueOf(generator.generateID());
     }
 
-    public List<SubmittedApplication> getApproved() {
-        ResultSet results = db.select("*", "SubmittedApplications", "status = " + ApplicationStatus.APPROVED.getValue());
+    /**
+     * Search by the brand or fanciful name of alcohol.
+     *
+     * @param name The name to search.
+     * @return A list of approved alcohols containing the name ordered by time approved.
+     */
+    public List<SubmittedApplication> searchByName(String name, int rows, boolean hideBeer, boolean hideWine, boolean hideSpirits) {
+        db.setMaxRows(rows);
+        String typeWhere = "";
+        if(hideBeer){
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.BEER.getValue();
+        }
+
+        if(hideWine) {
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.WINE.getValue();
+        }
+
+        if(hideSpirits){
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.DISTILLEDSPIRITS.getValue();
+        }
+        ResultSet results = db.select("SubmittedApplications.applicationId, AlcoholInfo.type, AlcoholInfo.brandName, AlcoholInfo.fancifulName", "SubmittedApplications INNER JOIN AlcoholInfo ON SubmittedApplications.applicationId=AlcoholInfo.applicationId", "SubmittedApplications.status = " + ApplicationStatus.APPROVED.getValue() + typeWhere + " AND (UPPER(brandName)  LIKE UPPER('%" + name + "%') OR UPPER(fancifulName) LIKE UPPER('%" + name + "%'))");
+
         return getApplicationsFromResultSet(results);
     }
 
+    public List<SubmittedApplication> getApproved(boolean hideBeer, boolean hideWine, boolean hideSpirits) {
+        db.setMaxRows(100);
+        String typeWhere = "";
+        if(hideBeer){
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.BEER.getValue();
+        }
+
+        if(hideWine) {
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.WINE.getValue();
+        }
+
+        if(hideSpirits){
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.DISTILLEDSPIRITS.getValue();
+        }
+        ResultSet results = db.select("SubmittedApplications.applicationId, AlcoholInfo.type", "SubmittedApplications INNER JOIN AlcoholInfo ON SubmittedApplications.applicationId=AlcoholInfo.applicationId", "SubmittedApplications.status = " + ApplicationStatus.APPROVED.getValue() + typeWhere);
+        return getApplicationsFromResultSet(results);
+    }
+
+    public List<SubmittedApplication> advancedSearch(String brandName, String fancifulName, boolean wantBeer, boolean wantWine, boolean wantSpirits, String email, String address, Date startDate, Date endDate, double contentMin, double contentMax) {
+        db.setMaxRows(100);
+
+        String brandWhere = " AND UPPER(AlcoholInfo.brandName) LIKE UPPER('%" + brandName + "%')";
+        String fancifulWhere = " AND UPPER(AlcoholInfo.fancifulName) LIKE UPPER('%" + fancifulName + "%')";
+
+        //String emailWhere = " AND UPPER(emailAddress)  LIKE UPPER('%" + email + "%')";
+
+        //String addressWhere = "AND UPPER(physicalAddress)  LIKE UPPER('%" + address + "%')";
+
+//        String contentWhere = " AND alcoholContent"
+
+        String dateWhere = "";//" AND submissionTime >= " + startDate.getTime() + " AND submissionTime <= " + endDate.getTime();
+
+        String typeWhere = "";
+        if(!wantBeer){
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.BEER.getValue();
+        }
+
+        if(!wantWine) {
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.WINE.getValue();
+        }
+
+        if(!wantSpirits){
+            typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.DISTILLEDSPIRITS.getValue();
+        }
+        ResultSet results = db.select("SubmittedApplications.applicationId, AlcoholInfo.type, AlcoholInfo.brandName, AlcoholInfo.fancifulName", "SubmittedApplications INNER JOIN AlcoholInfo ON SubmittedApplications.applicationId=AlcoholInfo.applicationId",
+                "SubmittedApplications.status = " + ApplicationStatus.APPROVED.getValue() + typeWhere + brandWhere + fancifulWhere /*+ emailWhere + addressWhere*/ + dateWhere);
+        return getApplicationsFromResultSet(results);
+
+    }
 }

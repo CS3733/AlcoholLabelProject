@@ -30,9 +30,9 @@ public class ApplicationIDGeneratorTest {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYDDD");
         String formattedDate = dateFormat.format(date);
-        assertEquals(formattedDate + "10000", generator.generateID());
-        assertEquals(formattedDate + "10001", generator.generateID());
-        assertEquals(formattedDate + "10002", generator.generateID());
+        assertEquals(formattedDate + "001000000", generator.generateID());
+        assertEquals(formattedDate + "001000001", generator.generateID());
+        assertEquals(formattedDate + "001000002", generator.generateID());
     }
 
 

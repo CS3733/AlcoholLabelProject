@@ -28,7 +28,7 @@ public class ApplicantWorkflowController implements IController {
     @FXML
     MenuItem updateMenu, reviseMenu, viewMenu;
 
-    public void init(Bundle bundle){
+    public void init(Bundle bundle) {
         this.init(bundle.getMain("main"));
     }
 
@@ -40,18 +40,18 @@ public class ApplicantWorkflowController implements IController {
         List<SavedApplication> savedApplications = applicantInterface.getSavedApplications();
         applications.sort((a, b) -> {
             if (a.getStatus() == b.getStatus()) {
-                return a.getApplicationID() - b.getApplicationID();
+                return (int)( a.getApplicationID() - b.getApplicationID());
             } else {
                 return a.getStatus().ordinal() - b.getStatus().ordinal();
             }
         });
         numSavedApplications = 0;
-        for(SavedApplication application : savedApplications){
+        for (SavedApplication application : savedApplications) {
             String name = "";
             name += application.getApplicationID();
             name += " - Saved";
             applicationNames.add(name);
-            numSavedApplications ++;
+            numSavedApplications++;
         }
 
         for (SubmittedApplication application : applications) {
@@ -89,12 +89,12 @@ public class ApplicantWorkflowController implements IController {
         return applicantInterface.getSavedApplications().get(i);
     }
 
-    public void onShowContextMenu(){
+    public void onShowContextMenu() {
         hideIfSaved();
     }
 
-    public void viewApplication(){
-        main.loadFXML("/fxml/DetailedSearchPage.fxml",getSelectedApplication(), "");
+    public void viewApplication() {
+        main.loadFXML("/fxml/DetailedSearchPage.fxml", getSelectedApplication(), "");
     }
 
     public void reviseApplication() {
@@ -106,24 +106,40 @@ public class ApplicantWorkflowController implements IController {
         }
     }
 
-    public void hideIfSaved(){
-        if(list.getSelectionModel().getSelectedIndex() < numSavedApplications){
+    public void hideIfSaved() {
+        if (list.getSelectionModel().getSelectedIndex() < numSavedApplications) {
             //its a saved application
             updateMenu.setVisible(false);
             viewMenu.setVisible(false);
             reviseMenu.setText("Finish");
-        }
-        else{
-            updateMenu.setVisible(true);
+        } else {
+            ApplicationStatus status = getSelectedApplication().getStatus();
+            switch (status) {
+                case APPROVED:
+                    updateMenu.setVisible(true);
+                    reviseMenu.setVisible(false);
+                    break;
+                case REJECTED:
+                    updateMenu.setVisible(false);
+                    reviseMenu.setVisible(true);
+                    break;
+                case PENDINGREVIEW:
+                    updateMenu.setVisible(false);
+                    reviseMenu.setVisible(false);
+                    break;
+                default:
+                    updateMenu.setVisible(true);
+                    viewMenu.setVisible(true);
+                    reviseMenu.setVisible(true);
+            }
             viewMenu.setVisible(true);
             reviseMenu.setText("Revise");
         }
     }
 
-
     public void ApplicationWorkflow() {
-        if(getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {
-            main.loadFXML("/fxml/updateOptions.fxml",getSelectedApplication());
+        if (getSelectedApplication().getStatus() == ApplicationStatus.APPROVED) {
+            main.loadFXML("/fxml/updateOptions.fxml", getSelectedApplication());
         }
     }
 

@@ -155,7 +155,7 @@ public class HomeController implements IController {
     }
 
     public void feelingThirsty() {
-        List<SubmittedApplication> applications = search.searchApprovedApplications();
+        List<SubmittedApplication> applications = search.searchApprovedApplications(false, false, false);
         Random random = new Random();
         SubmittedApplication application;
         if (applications.isEmpty()) {
@@ -214,7 +214,7 @@ public class HomeController implements IController {
                     ImageUtils.centerImage(image4);
                     break;
             }
-            List<SubmittedApplication> resultsList = search.searchApprovedApplications();
+            List<SubmittedApplication> resultsList = search.searchApprovedApplications(false, false, false);
 
             AutoCompletionBinding<String> autoCompletionBinding;
             Set<String> possibleSuggestions = new HashSet<>();

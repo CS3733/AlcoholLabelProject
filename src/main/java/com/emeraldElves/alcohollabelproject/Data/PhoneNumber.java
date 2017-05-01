@@ -39,7 +39,7 @@ public class PhoneNumber {
         String number = phoneNumber;
         if (number.length() == 10) {
             number = number.substring(0, 3) + "-" + number.substring(3, 6) + "-" + number.substring(6);
-        } else {
+        } else if(number.length() == 11) {
             number = number.charAt(0) + "-" + number.substring(1, 4) + "-" + number.substring(4, 7) + "-" + number.substring(7);
         }
         return number;
