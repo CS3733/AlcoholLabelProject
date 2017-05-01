@@ -235,7 +235,7 @@ public class AlcoholDatabase {
 
         try {
             if (resultsSubmitted.next()) {
-                db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
+                db.update("SubmittedApplications", "applicantID = '" + manInfo.getRepresentativeID() + "', status = " //applicant ID
                         + status.getValue() + ", statusMsg = '" //status
                         + status.getMessage() + "', submissionTime = " //status message
                         + info.getSubmissionDate().getTime() + ", expirationDate = " //submission time
@@ -255,14 +255,14 @@ public class AlcoholDatabase {
                 db.update("ManufacturerInfo", "authorizedName = '"
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
                         + manInfo.getPhysicalAddress() + "', company = '" //physical address
-                        + manInfo.getCompany() + "', representativeID = " //company
-                        + manInfo.getRepresentativeID() + ", permitNum = '" //representative id
+                        + manInfo.getCompany() + "', representativeID = '" //company
+                        + manInfo.getRepresentativeID() + "', permitNum = '" //representative id
                         + manInfo.getPermitNum() + "', phoneNum = '"//permit num
                         + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
 
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                    db.update("AlcoholInfo", "alcoholContent = '" + alcInfo.getAlcoholContent() + "', fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
@@ -275,7 +275,7 @@ public class AlcoholDatabase {
                                     + alcInfo.getWineInfo().appellation + "'"
                             , "applicationID = " + application.getApplicationID());
                 } else {
-                    db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                    db.update("AlcoholInfo", "alcoholContent = '" + alcInfo.getAlcoholContent() + "', fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
@@ -289,8 +289,8 @@ public class AlcoholDatabase {
 
                 //not in table, need to add to all 3 tables
                 //SubmittedApplications
-                worked = db.insert(appID + ", " //application id
-                                + manInfo.getRepresentativeID() + ", " //applicant ID
+                worked = db.insert(appID + ", '" //application id
+                                + manInfo.getRepresentativeID() + "', " //applicant ID
                                 + status.getValue() + ", '" //status
                                 + status.getMessage() + "', " //status message
                                 + info.getSubmissionDate().getTime() + ", " //submission time
@@ -319,8 +319,8 @@ public class AlcoholDatabase {
                 worked = db.insert(appID + ", '"
                                 + manInfo.getName() + "', '" //authorized name: i assume this is just the name of the applicant???
                                 + manInfo.getPhysicalAddress() + "', '" //physical address
-                                + manInfo.getCompany() + "', " //company
-                                + manInfo.getRepresentativeID() + ", '" //representative id
+                                + manInfo.getCompany() + "', '" //company
+                                + manInfo.getRepresentativeID() + "', '" //representative id
                                 + manInfo.getPermitNum() + "', '"//permit num
                                 + manInfo.getPhoneNumber().getPhoneNumber() + "', '" //phone num. It may look stupid but it works
                                 + manInfo.getEmailAddress().getEmailAddress() + "'" //email
@@ -332,8 +332,8 @@ public class AlcoholDatabase {
 
 
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    worked = db.insert(appID + ", "
-                                    + alcInfo.getAlcoholContent() + ", '" //alcohol content
+                    worked = db.insert(appID + ", '"
+                                    + alcInfo.getAlcoholContent() + "', '" //alcohol content
                                     + alcInfo.getName() + "', '" //fanciful name
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
@@ -346,8 +346,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getWineInfo().appellation + "'" //appalation
                             , "AlcoholInfo");
                 } else {
-                    worked = db.insert(appID + ", "
-                                    + alcInfo.getAlcoholContent() + ", '" //alcohol content
+                    worked = db.insert(appID + ", '"
+                                    + alcInfo.getAlcoholContent() + "', '" //alcohol content
                                     + alcInfo.getName() + "', '" //fanciful name
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
@@ -404,8 +404,8 @@ public class AlcoholDatabase {
 
         try {
             if (resultsSubmitted.next()) {
-                worked = db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
-                        + status.getValue() + ", statusMsg = '" //status
+                worked = db.update("SubmittedApplications", "applicantID = '" + manInfo.getRepresentativeID() + ", status = " //applicant ID
+                        + status.getValue() + "', statusMsg = '" //status
                         + status.getMessage() + "', submissionTime = " //status message
                         + info.getSubmissionDate().getTime() + ", expirationDate = " //submission time
                         + info.getSubmissionDate().getTime() + ", agentName = '"//no field for expiration date
@@ -427,8 +427,8 @@ public class AlcoholDatabase {
                 worked= db.update("ManufacturerInfo", "authorizedName = '"
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
                         + manInfo.getPhysicalAddress() + "', company = '" //physical address
-                        + manInfo.getCompany() + "', representativeID = " //company
-                        + manInfo.getRepresentativeID() + ", permitNum = '" //representative id
+                        + manInfo.getCompany() + "', representativeID = '" //company
+                        + manInfo.getRepresentativeID() + "', permitNum = '" //representative id
                         + manInfo.getPermitNum() + "', phoneNum = '"//permit num
                         + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
@@ -438,7 +438,7 @@ public class AlcoholDatabase {
                 }
 
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    worked= db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                    worked= db.update("AlcoholInfo", "alcoholContent = '" + alcInfo.getAlcoholContent() + "', fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
@@ -454,7 +454,7 @@ public class AlcoholDatabase {
                         return false;
                     }
                 } else {
-                    worked= db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                    worked= db.update("AlcoholInfo", "alcoholContent = '" + alcInfo.getAlcoholContent() + "', fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
@@ -726,8 +726,8 @@ public class AlcoholDatabase {
     }
 
 
-    public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID) {
-        ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);
+    public List<SubmittedApplication> getApplicationsByRepresentative(String representativeID) {
+        ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = '" + representativeID + "'");
         return getApplicationsFromResultSet(results);
     }
 
@@ -756,7 +756,7 @@ public class AlcoholDatabase {
                 int type = results.getInt("type");
                 String fancifulName = results.getString("fancifulName");
                 String brandName = results.getString("brandName");
-                double alcoholContent = results.getDouble("alcoholContent");
+                String alcoholContent = results.getString("alcoholContent");
                 String formula = results.getString("formula");
                 String serialNumber = results.getString("serialNumber");
                 Double pH = results.getDouble("pH");
@@ -895,10 +895,10 @@ public class AlcoholDatabase {
         return db.update("AlcoholInfo", "pH = " + pH, "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent) {
+    public boolean changeAlcoholContent(SubmittedApplication application, String alcoholContent) {
         application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
 
-        return db.update("AlcoholInfo", "alcoholContent = " + alcoholContent, "applicationID = " + application.getApplicationID());
+        return db.update("AlcoholInfo", "alcoholContent = '" + alcoholContent + "'", "applicationID = " + application.getApplicationID());
 
     }
 
@@ -919,13 +919,13 @@ public class AlcoholDatabase {
             if (alcoholResult.next()) {
                 AlcoholType type = AlcoholType.fromInt(alcoholResult.getInt("type"));
                 if (type == AlcoholType.WINE) {
-                    return new WineInfo(alcoholResult.getInt("alcoholContent"),
+                    return new WineInfo(alcoholResult.getString("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")),
                             alcoholResult.getInt("vintageYear"), (double) alcoholResult.getFloat("pH"),
                             alcoholResult.getString("varietals"), alcoholResult.getString("wineAppellation"));
                 } else {
-                    return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
+                    return new AlcoholInfo(alcoholResult.getString("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")), type, null,
                             alcoholResult.getString("serialNumber"), alcoholResult.getString("formula"));
@@ -945,7 +945,7 @@ public class AlcoholDatabase {
                 String authorizedName = results.getString("authorizedName");
                 String physicalAddress = results.getString("physicalAddress");
                 String company = results.getString("company");
-                int repID = results.getInt("representativeID");
+                String repID = results.getString("representativeID");
                 String permitNum = results.getString("permitNum");
                 PhoneNumber phoneNumber = new PhoneNumber(results.getString("phoneNum"));
                 EmailAddress emailAddress = new EmailAddress(results.getString("emailAddress"));

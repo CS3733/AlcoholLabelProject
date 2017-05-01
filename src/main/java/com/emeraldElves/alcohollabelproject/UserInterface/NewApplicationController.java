@@ -68,7 +68,7 @@ public class NewApplicationController implements IController {
     private String permitNum;
     private String address;
     private PhoneNumber phoneNum;
-    private int representativeID;
+    private String representativeID;
     private String company;
 
     //Alcohol info
@@ -76,7 +76,7 @@ public class NewApplicationController implements IController {
     private AlcoholType alcType;
     private String alcName;
     private String brandName;
-    private double alcContent;
+    private String alcContent;
     private AlcoholInfo.Wine wineType = null; //null if type is not wine
     private String formula;
     private String serialNum; //needs to be a string!!!!
@@ -191,7 +191,7 @@ public class NewApplicationController implements IController {
         //brand name
         brandNameField.setText(alcoholInfo.getBrandName());
         //Alcohol Content
-        if(alcoholInfo.getAlcoholContent() != -1) {
+        if(alcoholInfo.getAlcoholContent() != "") {
             alcoholContentField.setText("" + alcoholInfo.getAlcoholContent());
         }
         //formula
@@ -379,7 +379,7 @@ public class NewApplicationController implements IController {
                 alcName = alcoholName.getText();
                 brandName = brandNameField.getText();
 
-                alcContent = Double.parseDouble(alcoholContentField.getText()); //CHECK IF INTEGER
+                alcContent = alcoholContentField.getText();
 
                 serialNum = serialText.getText();
                 if (formulaText.getText().isEmpty()) {
@@ -478,7 +478,7 @@ public class NewApplicationController implements IController {
         //END appType
 
         //alcoholInfo
-        double alcoholContent; // double??
+        String alcoholContent;
         String fanciful;
         String brand;
         ProductSource origin;
@@ -487,8 +487,8 @@ public class NewApplicationController implements IController {
         AlcoholInfo.Wine wineInfo;
         AlcoholType alcoholType;
         //alcoholContent
-        if(alcoholContentField.getText().isEmpty()){ alcoholContent = -1;}
-        else{ alcoholContent = Double.parseDouble(alcoholContentField.getText());}
+        if(alcoholContentField.getText().isEmpty()){ alcoholContent = "";}
+        else{ alcoholContent = alcoholContentField.getText();}
         //fanciful
         if(alcoholName.getText().isEmpty()){ fanciful = "";}
         else{ fanciful = alcoholName.getText(); }

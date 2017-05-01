@@ -141,7 +141,7 @@ public class ApprovalProcessController implements IController {
         }
         origin.setText( productSource);
         applicantID.setText( String.valueOf(application.getApplication().getManufacturer().getRepresentativeID()));
-        authorizedName.setText( application.getApplication().getManufacturer().getName());
+        //authorizedName.setText( application.getApplication().getManufacturer().getName());
         physicalAddress.setText( application.getApplication().getManufacturer().getPhysicalAddress());
         permitNum.setText( application.getApplication().getManufacturer().getPermitNum());
         phoneNum.setText(application.getApplication().getManufacturer().getPhoneNumber().getPhoneNumber());

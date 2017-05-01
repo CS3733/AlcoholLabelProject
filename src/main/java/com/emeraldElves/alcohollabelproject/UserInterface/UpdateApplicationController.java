@@ -70,14 +70,14 @@ public class UpdateApplicationController implements IController{
     private String permitNum; //needs to be a string!!!!
     private String address;
     private PhoneNumber phoneNum;
-    private int representativeID; //needs to be a string!!!!
+    private String representativeID; //needs to be a string!!!!
 
     //Alcohol info
     private ProductSource pSource;
     private AlcoholType alcType;
     private String alcName;
     private String brandName;
-    private double alcContent;
+    private String alcContent;
     private AlcoholInfo.Wine wineType = null;
     private String formula;
     private String serialNum; //needs to be a string!!!!
@@ -253,7 +253,7 @@ public class UpdateApplicationController implements IController{
 
         alcName = alcoholName.getText();
         brandName = brandNameField.getText();
-        alcContent = Double.parseDouble(alcoholContentField.getText());
+        alcContent = alcoholContentField.getText();
         serialNum = serialText.getText();
         if (formulaText.getText().isEmpty()) {
             formula = " ";
@@ -276,7 +276,7 @@ public class UpdateApplicationController implements IController{
 
 
         AlcoholInfo appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
-        ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
+        ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", "" + representativeID,
                 permitNum, phoneNum, emailAddress);
         Date newDate= DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
         ApplicationInfo appInfo= new ApplicationInfo(newDate, appManInfo, appAlcoholInfo, extraInfo, appType);
