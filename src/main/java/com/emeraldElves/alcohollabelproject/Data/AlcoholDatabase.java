@@ -235,7 +235,7 @@ public class AlcoholDatabase {
 
         try {
             if (resultsSubmitted.next()) {
-                db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
+                db.update("SubmittedApplications", "applicantID = '" + manInfo.getRepresentativeID() + "', status = " //applicant ID
                         + status.getValue() + ", statusMsg = '" //status
                         + status.getMessage() + "', submissionTime = " //status message
                         + info.getSubmissionDate().getTime() + ", expirationDate = " //submission time
@@ -255,8 +255,8 @@ public class AlcoholDatabase {
                 db.update("ManufacturerInfo", "authorizedName = '"
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
                         + manInfo.getPhysicalAddress() + "', company = '" //physical address
-                        + manInfo.getCompany() + "', representativeID = " //company
-                        + manInfo.getRepresentativeID() + ", permitNum = '" //representative id
+                        + manInfo.getCompany() + "', representativeID = '" //company
+                        + manInfo.getRepresentativeID() + "', permitNum = '" //representative id
                         + manInfo.getPermitNum() + "', phoneNum = '"//permit num
                         + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
@@ -289,8 +289,8 @@ public class AlcoholDatabase {
 
                 //not in table, need to add to all 3 tables
                 //SubmittedApplications
-                worked = db.insert(appID + ", " //application id
-                                + manInfo.getRepresentativeID() + ", " //applicant ID
+                worked = db.insert(appID + ", '" //application id
+                                + manInfo.getRepresentativeID() + "', " //applicant ID
                                 + status.getValue() + ", '" //status
                                 + status.getMessage() + "', " //status message
                                 + info.getSubmissionDate().getTime() + ", " //submission time
@@ -319,8 +319,8 @@ public class AlcoholDatabase {
                 worked = db.insert(appID + ", '"
                                 + manInfo.getName() + "', '" //authorized name: i assume this is just the name of the applicant???
                                 + manInfo.getPhysicalAddress() + "', '" //physical address
-                                + manInfo.getCompany() + "', " //company
-                                + manInfo.getRepresentativeID() + ", '" //representative id
+                                + manInfo.getCompany() + "', '" //company
+                                + manInfo.getRepresentativeID() + "', '" //representative id
                                 + manInfo.getPermitNum() + "', '"//permit num
                                 + manInfo.getPhoneNumber().getPhoneNumber() + "', '" //phone num. It may look stupid but it works
                                 + manInfo.getEmailAddress().getEmailAddress() + "'" //email
@@ -404,8 +404,8 @@ public class AlcoholDatabase {
 
         try {
             if (resultsSubmitted.next()) {
-                worked = db.update("SubmittedApplications", "applicantID = " + manInfo.getRepresentativeID() + ", status = " //applicant ID
-                        + status.getValue() + ", statusMsg = '" //status
+                worked = db.update("SubmittedApplications", "applicantID = '" + manInfo.getRepresentativeID() + ", status = " //applicant ID
+                        + status.getValue() + "', statusMsg = '" //status
                         + status.getMessage() + "', submissionTime = " //status message
                         + info.getSubmissionDate().getTime() + ", expirationDate = " //submission time
                         + info.getSubmissionDate().getTime() + ", agentName = '"//no field for expiration date
@@ -427,8 +427,8 @@ public class AlcoholDatabase {
                 worked= db.update("ManufacturerInfo", "authorizedName = '"
                         + manInfo.getName() + "', physicalAddress = '" //authorized name: i assume this is just the name of the applicant???
                         + manInfo.getPhysicalAddress() + "', company = '" //physical address
-                        + manInfo.getCompany() + "', representativeID = " //company
-                        + manInfo.getRepresentativeID() + ", permitNum = '" //representative id
+                        + manInfo.getCompany() + "', representativeID = '" //company
+                        + manInfo.getRepresentativeID() + "', permitNum = '" //representative id
                         + manInfo.getPermitNum() + "', phoneNum = '"//permit num
                         + manInfo.getPhoneNumber().getPhoneNumber() + "', emailAddress = '" //phone num. It may look stupid but it works
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
@@ -726,8 +726,8 @@ public class AlcoholDatabase {
     }
 
 
-    public List<SubmittedApplication> getApplicationsByRepresentative(int representativeID) {
-        ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = " + representativeID);
+    public List<SubmittedApplication> getApplicationsByRepresentative(String representativeID) {
+        ResultSet results = db.select("*", "ManufacturerInfo", "representativeID = '" + representativeID + "'");
         return getApplicationsFromResultSet(results);
     }
 
@@ -945,7 +945,7 @@ public class AlcoholDatabase {
                 String authorizedName = results.getString("authorizedName");
                 String physicalAddress = results.getString("physicalAddress");
                 String company = results.getString("company");
-                int repID = results.getInt("representativeID");
+                String repID = results.getString("representativeID");
                 String permitNum = results.getString("permitNum");
                 PhoneNumber phoneNumber = new PhoneNumber(results.getString("phoneNum"));
                 EmailAddress emailAddress = new EmailAddress(results.getString("emailAddress"));

@@ -103,7 +103,7 @@ public class Storage {
                     new Database.TableField("authorizedName", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("physicalAddress", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("company", "VARCHAR (10000) NOT NULL"),
-                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("representativeID", "VARCHAR (255)"),
                     new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("phoneNum", "VARCHAR (255) NOT NULL"), //check with kyle
                     new Database.TableField("emailAddress", "VARCHAR (255) NOT NULL"));
