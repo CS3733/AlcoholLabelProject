@@ -286,4 +286,62 @@ public class Storage {
     public void modifyName(String email, String name) {
 
     }
+    public void removeApplications(){
+        try {
+            db.dropTable("SubmittedApplications");
+            db.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
+                    new Database.TableField("status", "INTEGER NOT NULL"),
+                    new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("submissionTime", "BIGINT NOT NULL"),
+                    new Database.TableField("expirationDate", "BIGINT"),
+                    new Database.TableField("agentName", "VARCHAR (255)"),
+                    new Database.TableField("approvalDate", "BIGINT"),
+                    new Database.TableField("TTBUsername", "VARCHAR (255)"),
+                    new Database.TableField("submitterUsername", "VARCHAR (255)"),
+                    new Database.TableField("extraInfo", "VARCHAR (1000)"),
+                    new Database.TableField("labelApproval", "BOOLEAN"),
+                    new Database.TableField("stateOnly", "VARCHAR (2)"),
+                    new Database.TableField("bottleCapacity", "INTEGER"),
+                    new Database.TableField("imageURL", "VARCHAR (255)"),
+                    new Database.TableField("qualifications", "VARCHAR (10000)"));
+            Log.console("Created new SubmittedApplications table");
+        } catch (SQLException e) {
+            Log.console("Used existing SubmittedApplications table");
+        }
+
+        try {
+            db.dropTable("ManufacturerInfo");
+            db.createTable("ManufacturerInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("authorizedName", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("physicalAddress", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("company", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("permitNum", "INTEGER NOT NULL"),
+                    new Database.TableField("phoneNum", "VARCHAR (255) NOT NULL"), //check with kyle
+                    new Database.TableField("emailAddress", "VARCHAR (255) NOT NULL"));
+            Log.console("Created new ManufacturerInfo table");
+        } catch (SQLException e) {
+            Log.console("Used existing ManufacturerInfo table");
+        }
+
+        try {
+            db.dropTable("AlcoholInfo");
+            db.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
+                    new Database.TableField("alcoholContent", "INTEGER NOT NULL"),
+                    new Database.TableField("fancifulName", "VARCHAR (255)"),
+                    new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
+                    new Database.TableField("origin", "INTEGER NOT NULL"),
+                    new Database.TableField("type", "INTEGER NOT NULL"),
+                    new Database.TableField("formula", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("serialNumber", "VARCHAR (255) NOT NULL"),
+                    new Database.TableField("pH", "REAL"),
+                    new Database.TableField("vintageYear", "INTEGER"),
+                    new Database.TableField("varietals", "VARCHAR (255)"),
+                    new Database.TableField("wineAppellation", "VARCHAR (255)"));
+            Log.console("Created new AlcoholInfo table");
+        } catch (SQLException e) {
+            Log.console("Used existing AlcoholInfo table");
+        }
+    }
 }

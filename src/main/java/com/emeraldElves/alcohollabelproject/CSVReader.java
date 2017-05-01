@@ -1,6 +1,7 @@
 package com.emeraldElves.alcohollabelproject;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,5 +67,10 @@ class CSVReader {
     public double getDouble(String column, int row) {
         int colIndex = columns.indexOf(column);
         return Double.valueOf(data.get(row).get(colIndex));
+    }
+
+    public BigInteger getBigint(String column, int row){
+        int colIndex = columns.indexOf(column);
+        return  BigInteger.valueOf(Long.valueOf(data.get(row).get(colIndex)));
     }
 }
