@@ -422,7 +422,7 @@ public class Storage {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
 
-        else return new Applicant(email,"", 0, "", "", "", "");
+        else return new Applicant(email,"", "0", "", "", "", "");
 
 
     }

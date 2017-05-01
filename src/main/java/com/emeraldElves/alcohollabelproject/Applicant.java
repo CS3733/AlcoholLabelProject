@@ -15,7 +15,7 @@ public class Applicant {
     private List<SavedApplication> savedApplications;
     private String email;
     private String name;
-    private int representativeID = 0;
+    private String representativeID = "0";
     private String permitNum = "";
     private String address = "";
     private String phoneNum = "";
@@ -38,7 +38,7 @@ public class Applicant {
     /**
      * Creates applicant with fields
      */
-    public Applicant(String email, String name, int representativeID, String permitNum, String address, String phoneNum, String company) {
+    public Applicant(String email, String name, String representativeID, String permitNum, String address, String phoneNum, String company) {
         this.email = email;
         this.name = name;
         this.representativeID = representativeID;
@@ -79,7 +79,7 @@ public class Applicant {
     public String getEmailAddress() {
         return email;
     }
-    public int getRepresentativeIDFromDB(String email) {
+    public String getRepresentativeIDFromDB(String email) {
         getApplicantFields(email);
         return this.getRepresentativeID();
     }
@@ -106,7 +106,7 @@ public class Applicant {
 //    public String getPhoneNumFromDB(String email) { return ""; }
 
     // getter functions -- NOT from DB
-    public int getRepresentativeID() { return representativeID; }
+    public String getRepresentativeID() { return representativeID; }
     public String getPermitNum() { return permitNum; }
     public String getAddress() { return address; }
     public String getPhoneNum() { return phoneNum; }
