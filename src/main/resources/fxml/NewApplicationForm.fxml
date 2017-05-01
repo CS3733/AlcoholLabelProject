@@ -223,7 +223,7 @@
                         <Button fx:id="submitBtn" mnemonicParsing="false" onMouseClicked="#submitApp" styleClass="button-raised" text="Submit" GridPane.columnIndex="4" />
                      </children>
                   </GridPane>
-                  <Label fx:id="errorMsg" prefHeight="18.0" prefWidth="903.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <Label fx:id="errorMsg" prefHeight="18.0" prefWidth="903.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <tooltip>
                         <Tooltip text="Electronic Signature" />
                      </tooltip>
