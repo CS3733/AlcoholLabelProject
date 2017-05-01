@@ -756,7 +756,7 @@ public class AlcoholDatabase {
                 int type = results.getInt("type");
                 String fancifulName = results.getString("fancifulName");
                 String brandName = results.getString("brandName");
-                double alcoholContent = results.getDouble("alcoholContent");
+                String alcoholContent = results.getString("alcoholContent");
                 String formula = results.getString("formula");
                 String serialNumber = results.getString("serialNumber");
                 Double pH = results.getDouble("pH");
@@ -895,7 +895,7 @@ public class AlcoholDatabase {
         return db.update("AlcoholInfo", "pH = " + pH, "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changeAlcoholContent(SubmittedApplication application, double alcoholContent) {
+    public boolean changeAlcoholContent(SubmittedApplication application, String alcoholContent) {
         application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
 
         return db.update("AlcoholInfo", "alcoholContent = '" + alcoholContent + "'", "applicationID = " + application.getApplicationID());
@@ -919,13 +919,13 @@ public class AlcoholDatabase {
             if (alcoholResult.next()) {
                 AlcoholType type = AlcoholType.fromInt(alcoholResult.getInt("type"));
                 if (type == AlcoholType.WINE) {
-                    return new WineInfo(alcoholResult.getDouble("alcoholContent"),
+                    return new WineInfo(alcoholResult.getString("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")),
                             alcoholResult.getInt("vintageYear"), (double) alcoholResult.getFloat("pH"),
                             alcoholResult.getString("varietals"), alcoholResult.getString("wineAppellation"));
                 } else {
-                    return new AlcoholInfo(alcoholResult.getDouble("alcoholContent"),
+                    return new AlcoholInfo(alcoholResult.getString("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")), type, null,
                             alcoholResult.getString("serialNumber"), alcoholResult.getString("formula"));
