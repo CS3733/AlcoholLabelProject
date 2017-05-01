@@ -97,6 +97,7 @@ public class UpdateApplicationController implements IController{
         this.main = main;
         this.application=application;
         Log.console(application);
+        proxyLabelImage = application.getproxyImage();
         setUpApp();
     }
 
@@ -148,7 +149,7 @@ public class UpdateApplicationController implements IController{
             File file = new File("Labels/" + imageURL);
             Image tempImage = new Image(file.toURI().toString());
             imageView.setImage(tempImage);
-            this.proxyLabelImage = new ProxyLabelImage("Labels/"+ imageURL);
+            this.proxyLabelImage = new ProxyLabelImage(imageView.getImage().toString());
         }
         //End image
 
@@ -421,7 +422,7 @@ public class UpdateApplicationController implements IController{
         Image image = new Image(target.toUri().toString());
         imageView.setImage(image);
         proxyLabelImage = new ProxyLabelImage(fileName);
-        //application.setImage(proxyLabelImage);
+        //newApplication.setImage(proxyLabelImage);
     }
 
 
