@@ -43,6 +43,10 @@ public class LoginController implements IController {
     public void login(ActionEvent e) throws UnsupportedEncodingException {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        if (password.isEmpty()||password.equals("")||(password.length() == 1)||password.equals(null)){
+            errorMsg.setVisible(true);
+            return;
+        }
 //        Log.console(Authenticator.getInstance().login(UserType.TTBAGENT, username, password));
 //        Log.console(Storage.getInstance().getAgentPassword(username));
 //        Log.console(EncryptPassword.checkPassword(password,Storage.getInstance().getAgentPassword(username)));
@@ -50,10 +54,10 @@ public class LoginController implements IController {
         if (Authenticator.getInstance().login(UserType.SUPERAGENT, username, password)) {
             errorMsg.setVisible(false);
             main.loadHomepage();
-        } else if(Authenticator.getInstance().login(UserType.APPLICANT, username, password)&&(EncryptPassword.checkPassword(password, Storage.getInstance().getUserPassword(username)))){
+        } else if(Authenticator.getInstance().login(UserType.APPLICANT, username, password)&&(EncryptPassword.checkPassword(password, Storage.getInstance().getUserPassword(username)) && !((password.equals(null)||(password.equals(""))||(password.isEmpty()))))){
             errorMsg.setVisible(false);
             main.loadHomepage();
-        } else if (Authenticator.getInstance().login(UserType.TTBAGENT, username, password)&&(EncryptPassword.checkPassword(password, Storage.getInstance().getAgentPassword(username)))){
+        } else if (Authenticator.getInstance().login(UserType.TTBAGENT, username, password)&&(EncryptPassword.checkPassword(password, Storage.getInstance().getAgentPassword(username))&& ((password.equals(null)||(password.equals("")))))){
             errorMsg.setVisible(false);
             main.loadHomepage();
         } else {

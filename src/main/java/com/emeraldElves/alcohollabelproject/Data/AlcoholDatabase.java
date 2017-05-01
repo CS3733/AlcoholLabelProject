@@ -9,10 +9,7 @@ import com.emeraldElves.alcohollabelproject.Log;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by elijaheldredge on 3/31/17.
@@ -186,7 +183,7 @@ public class AlcoholDatabase {
     public boolean submitApplication(SubmittedApplication application, String username) {
 
         if (AppState.getInstance().ttbAgents == null) {
-            AppState.getInstance().ttbAgents = new MultiApplicationAssigner(usersDatabase.getAllAgents(), 10, 0);
+            AppState.getInstance().ttbAgents = new ApplicationAssigner(new LazyAssigner(), Arrays.asList("PENDING"));
         }
         //making application type
         ApplicationType appType = application.getApplication().getApplicationType();
@@ -289,6 +286,7 @@ public class AlcoholDatabase {
                 }
             } else {
                 String assignedAgent = AppState.getInstance().ttbAgents.assignAgent();
+
                 //not in table, need to add to all 3 tables
                 //SubmittedApplications
                 worked = db.insert(appID + ", " //application id
@@ -607,6 +605,11 @@ public class AlcoholDatabase {
         }
         return true;
     }
+
+    public List<SubmittedApplication> getUnassignedApplications(){
+        return getAssignedApplications("PENDING");
+    }
+
     public boolean saveUpdateHistory(SubmittedApplication application, String username) {
         //making application type
         ApplicationType appType = application.getApplication().getApplicationType();

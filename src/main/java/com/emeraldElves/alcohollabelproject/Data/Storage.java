@@ -131,7 +131,7 @@ public class Storage {
         }
         try{
             database.createTable("NewApplicant",
-                    new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
+                    new Database.TableField("name", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
                     new Database.TableField("representativeID", "INTEGER NOT NULL"),
@@ -352,6 +352,12 @@ public class Storage {
 //        }
 //        return false;
     }
+    public boolean isCurrentNewApplicant( String username) {
+        return usersDB.isCurrentNewApplicant(username);
+//            return(true);
+//        }
+//        return false;
+    }
 
     public boolean isValidAgent(String username){
         if( usersDB.isValidTTBAgent(username,"")) {
@@ -426,15 +432,22 @@ public class Storage {
     }
 
     public void modifypermitNum(String email, String permitNum) {
-
+        usersDB.setPermitNumFromEmail(permitNum, email);
     }
     public void modifyAddress(String email, String address) {
-
+        usersDB.setAddressFromEmail(address, email);
     }
     public void modifyphoneNum(String email, String phoneNum) {
-
+        usersDB.setPhoneNumFromEmail(phoneNum, email);
     }
     public void modifyName(String email, String name) {
+        usersDB.setNameFromEmail(name, email);
+    }
+    public void modifyCompany(String email, String company) {
+        usersDB.setCompanyFromEmail(company, email);
+    }
 
+    public List<SubmittedApplication> getUnassignedApplications(){
+        return alcoholDB.getUnassignedApplications();
     }
 }
