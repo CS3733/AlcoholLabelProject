@@ -105,13 +105,13 @@ public class DetailedSearchController {
                 else {
                     pH.setText("");
                 }
-                if(application.getApplication().getAlcohol().getWineInfo().grapeVarietal==null){
+                if(!application.getApplication().getAlcohol().getWineInfo().grapeVarietal.equals("")){
                     varietals.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().grapeVarietal));
                 }
                 else {
                     varietals.setText("");
                 }
-                if(application.getApplication().getAlcohol().getWineInfo().appellation==null){
+                if(!application.getApplication().getAlcohol().getWineInfo().appellation.equals("")){
                     appellation.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().appellation));
                 }
                 else {

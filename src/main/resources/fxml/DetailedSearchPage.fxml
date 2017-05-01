@@ -70,7 +70,7 @@
                         <Label fx:id="email1" prefHeight="20.0" prefWidth="149.0" style="-fx-font-size: 16;" text="pH:" GridPane.rowIndex="2" />
                         <Label fx:id="pH" prefHeight="20.0" prefWidth="302.0" style="-fx-font-size: 16;" text="email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="email11" prefHeight="20.0" prefWidth="149.0" style="-fx-font-size: 16;" text="Varietals:" GridPane.rowIndex="3" />
-                        <Label fx:id="Varietals" prefHeight="20.0" prefWidth="302.0" style="-fx-font-size: 16;" text="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="varietals" prefHeight="20.0" prefWidth="302.0" style="-fx-font-size: 16;" text="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children>
