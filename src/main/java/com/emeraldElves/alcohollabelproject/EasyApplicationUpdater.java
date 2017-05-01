@@ -50,29 +50,36 @@ public class EasyApplicationUpdater {
             BigInteger completedDate = reader.getBigint("COMPLETED_DATE", i);
             BigInteger issuedDate = reader.getBigint("ISSUED_DATE", i);
             BigInteger receivedDate = reader.getBigint("RECEIVED_DATE", i);
+            Integer receivedDateMonth = reader.getInt("RECEIVED_DATE_MONTH", i);
+            Integer receivedDateDay = reader.getInt("RECEIVED_DATE_DAY", i);
+            Integer receivedDateYear = reader.getInt("RECEIVED_DATE_YEAR", i);
+
             ApplicationStatus appStatus;
             appStatus = ApplicationStatus.fromInt(0);
             String qual = reader.getString("QUALIFICATION", i);
 
 
-            ManufacturerInfo manufacturerInfo = new ManufacturerInfo(permitName, permitAddress, brandName, repID), (int)(Math.random() * 10000), phoneNo, email);
+            ManufacturerInfo manufacturerInfo = new ManufacturerInfo(permitName, permitAddress, brandName, repID, permitID, new PhoneNumber(""), new EmailAddress("asfdsaf@fsadf.com"));
             AlcoholInfo alcoholInfo;
             if(type == AlcoholType.WINE){
-                alcoholInfo = new WineInfo(alcoholContent, fanciful, brand, origin, vintageYear, 0, "", appellation);
+                alcoholInfo = new WineInfo(alcoholContent, fancifulName, brandName, productSource, vintageYear, 0, "", appellation);
             } else {
-                alcoholInfo = new AlcoholInfo(alcoholContent, fanciful, brand, origin, type, null);
+                alcoholInfo = new AlcoholInfo(alcoholContent, fancifulName, brandName, productSource, type, null);
             }
 
-            alcoholInfo.setSerialNumber(serialNo);
+            alcoholInfo.setSerialNumber(serialNum);
             alcoholInfo.setFormula("");
+            Date submittedDate = new Date();
+            submittedDate.setDate(receivedDateDay);
+            submittedDate.setMonth(receivedDateMonth);
+            submittedDate.setYear(receivedDateYear);
+            ApplicationInfo applicationInfo = new ApplicationInfo(submittedDate, manufacturerInfo, alcoholInfo, "", new ApplicationType(true, "", 0));
 
-            ApplicationInfo applicationInfo = new ApplicationInfo(new Date(), manufacturerInfo, alcoholInfo, "", new ApplicationType(true, "", 0));
-
-            SubmittedApplication application = new SubmittedApplication(applicationInfo, ApplicationStatus.PENDINGREVIEW, null);
+            SubmittedApplication application = new SubmittedApplication(applicationInfo, ApplicationStatus.APPROVED, null);
 
            // application.setImage(new ProxyLabelImage(img));
 
-            application.getApplication().setQualifications("");
+            application.getApplication().setQualifications(qual);
 
 
             Storage.getInstance().submitApplication(application, manufacturerInfo.getEmailAddress().getEmailAddress());
