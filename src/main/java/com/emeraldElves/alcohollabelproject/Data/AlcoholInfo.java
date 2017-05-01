@@ -54,7 +54,7 @@ public class AlcoholInfo {
         }
     }
 
-    public void setAlcoholContent(int alcoholContent) {
+    public void setAlcoholContent(double alcoholContent) {
         this.alcoholContent = alcoholContent;
     }
 
@@ -66,7 +66,7 @@ public class AlcoholInfo {
      * @param brandName      Brand name of alcohol
      * @param origin         Whether the alcohol is domestic or imported
      */
-    public AlcoholInfo(int alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo) {
+    public AlcoholInfo(double alcoholContent, String name, String brandName, ProductSource origin, AlcoholType alcoholType, Wine wineInfo) {
         this.alcoholContent = alcoholContent;
         this.fancifulName = name;
         this.brandName = brandName;

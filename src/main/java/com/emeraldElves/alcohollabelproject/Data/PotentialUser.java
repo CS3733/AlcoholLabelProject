@@ -12,7 +12,7 @@ public class PotentialUser {
     //TODO: compare by email, not name
 
     private String Name, Password, address, company;//username is now same as email address
-    private int representativeID;
+    private String representativeID;
     private String permitNum;
 
     private EmailAddress email;
@@ -20,7 +20,7 @@ public class PotentialUser {
     private UserType userType;
     private Date date;
     private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-    public PotentialUser(String Name, int representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
+    public PotentialUser(String Name, String representativeID, EmailAddress email, PhoneNumber phoneNumber, UserType userType, String Password, Date date,
     String permitNum, String address, String company) {
         this.Name = Name;
         this.representativeID = representativeID;
@@ -40,7 +40,7 @@ public class PotentialUser {
         return email;
     }
 
-    public int getRepresentativeID() {
+    public String getRepresentativeID() {
         return representativeID;
     }
 
