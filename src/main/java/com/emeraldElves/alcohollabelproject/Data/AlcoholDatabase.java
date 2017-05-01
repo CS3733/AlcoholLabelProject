@@ -1003,8 +1003,8 @@ public class AlcoholDatabase {
     public List<SubmittedApplication> advancedSearch(String brandName, String fancifulName, boolean wantBeer, boolean wantWine, boolean wantSpirits, String email, String address, Date startDate, Date endDate, double contentMin, double contentMax) {
         db.setMaxRows(100);
 
-        String brandWhere = " AND (UPPER(AlcoholInfo.brandName) LIKE UPPER('%" + brandName + "%')";
-        String fancifulWhere = " AND (UPPER(AlcoholInfo.fancifulName) LIKE UPPER('%" + fancifulName + "%')";
+        String brandWhere = " AND UPPER(AlcoholInfo.brandName) LIKE UPPER('%" + brandName + "%')";
+        String fancifulWhere = " AND UPPER(AlcoholInfo.fancifulName) LIKE UPPER('%" + fancifulName + "%')";
 
         String emailWhere = "";//" AND (UPPER(emailAddress)  LIKE UPPER('%" + email + "%')";
 
