@@ -7,6 +7,8 @@ import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+
 import java.util.Date;
 
 /**
@@ -22,6 +24,9 @@ public class DetailedSearchController {
 
     @FXML
     Label brandName;
+
+    @FXML
+    Label serialNum;
 
     @FXML
     Label fancifulName;
@@ -46,12 +51,30 @@ public class DetailedSearchController {
 
     @FXML
     Label email;
+
     @FXML
     Label phone;
+
     @FXML
     Label address;
+
     @FXML
     Label ttbID;
+
+    @FXML
+    AnchorPane wineInfo;
+
+    @FXML
+    Label vintageYear;
+
+    @FXML
+    Label appellation;
+
+    @FXML
+    Label pH;
+
+    @FXML
+    Label varietals;
 
 
 
@@ -64,12 +87,39 @@ public class DetailedSearchController {
         String type = "";
         switch (application.getApplication().getAlcohol().getAlcoholType()) {
             case BEER:
+                wineInfo.setVisible(false);
                 type = "BEER";
                 break;
             case WINE:
+                wineInfo.setVisible(true);
                 type = "WINE";
+                if((Integer)application.getApplication().getAlcohol().getWineInfo().vintageYear != null){
+                    vintageYear.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().vintageYear));
+                }
+                else {
+                    vintageYear.setText("");
+                }
+                if((Double)application.getApplication().getAlcohol().getWineInfo().pH != null){
+                    pH.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().pH));
+                }
+                else {
+                    pH.setText("");
+                }
+                if(!application.getApplication().getAlcohol().getWineInfo().grapeVarietal.equals("")){
+                    varietals.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().grapeVarietal));
+                }
+                else {
+                    varietals.setText("");
+                }
+                if(!application.getApplication().getAlcohol().getWineInfo().appellation.equals("")){
+                    appellation.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().appellation));
+                }
+                else {
+                    appellation.setText("");
+                }
                 break;
             case DISTILLEDSPIRITS:
+                wineInfo.setVisible(false);
                 type = "DISTILLED SPIRITS";
                 break;
         }
@@ -91,9 +141,16 @@ public class DetailedSearchController {
         status.setText(application.getStatus().toString());
         labelView.setImage(application.getImage().display());
         ImageUtils.centerImage(labelView);
-        email.setText(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
-        phone.setText(application.getApplication().getManufacturer().getPhoneNumber().getFormattedNumber());
-        address.setText(application.getApplication().getManufacturer().getPhysicalAddress());
+
+//        email.setText(application.getApplication().getManufacturer().getEmailAddress().getEmailAddress());
+//        phone.setText(application.getApplication().getManufacturer().getPhoneNumber().getFormattedNumber());
+        if(application.getApplication().getManufacturer().getPhysicalAddress()==", ,"){
+            address.setText(application.getApplication().getManufacturer().getPhysicalAddress());
+        }
+        else{
+            address.setText(application.getApplication().getManufacturer().getPhysicalAddress());
+
+        }
     }
 
 
