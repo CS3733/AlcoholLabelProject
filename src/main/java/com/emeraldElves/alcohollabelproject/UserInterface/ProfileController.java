@@ -94,8 +94,7 @@ public class ProfileController implements IController {
         main.loadFXML("/fxml/ChangeUserPassword.fxml");
     }
 
-    public void returnHome()
-    {
+    public void returnHome() {
         modifyRepresentativeID();
         modifyPermitNum();
         modifyAddress();

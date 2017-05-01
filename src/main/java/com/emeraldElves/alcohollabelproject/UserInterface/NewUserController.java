@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
@@ -17,43 +16,15 @@ import java.util.Date;
  */
 public class NewUserController implements IController {
     @FXML
-    TextField companyField;
+    TextField Name, emailAddress, phoneNumber, permitNumText, addressText, representativeID, companyField;
     @FXML
     PasswordField passwordField;
     @FXML
-    TextField representativeID;
+    Label errorMsg;
     @FXML
-    TextField Name;
+    RadioButton applicantBtn, agentBtn;
     @FXML
-    TextField emailAddress;
-    @FXML
-    TextField phoneNumber;
-    @FXML
-    VBox errorMsg;
-    @FXML
-    TextField permitNumText;
-    @FXML
-    TextField addressText;
-    @FXML
-    RadioButton applicantBtn;
-    @FXML
-    RadioButton agentBtn;
-    @FXML
-    Label accountError;
-    @FXML
-    Label emailError;
-    @FXML
-    Label phoneNumError;
-    @FXML
-    Label passwordError;
-    @FXML
-    Label permitNumError;
-    @FXML
-    Label nameError;
-    @FXML
-    Label addressError;
-    @FXML
-    Label repIDError;
+    Label accountError, emailError, phoneNumError, passwordError, permitNumError, nameError, addressError, companyError;
     @FXML
     Tooltip passwordHint;
     @FXML
@@ -71,6 +42,7 @@ public class NewUserController implements IController {
     private PasswordStrengthChecker CheckStrength;
     private StrongPasswordEncryptor EncryptPassword = new StrongPasswordEncryptor();
     Image image;
+
     public NewUserController() {
 
     }
@@ -94,12 +66,14 @@ public class NewUserController implements IController {
         //permitNumText.setText(null);
         permitNumText.setDisable(true);
         companyField.setDisable(true);
+        representativeID.setDisable(true);
     }
 
     public void setUserTypeApplicant(){
         userTypeInt = 1;
         permitNumText.setDisable(false);
         companyField.setDisable(false);
+        representativeID.setDisable(false);
     }
 
     public void createPotentialUser() throws UnsupportedEncodingException {
@@ -108,7 +82,6 @@ public class NewUserController implements IController {
         phoneNumError.setText("");
         passwordError.setText("");
         permitNumError.setText("");
-        repIDError.setText("");
         addressError.setText("");
         nameError.setText("");
         if(!(applicantBtn.isSelected() || agentBtn.isSelected())) {
@@ -120,9 +93,6 @@ public class NewUserController implements IController {
             passwordError.setText("Enter a valid Password");
             return;
         }
-
-
-
 
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
         if(Storage.getInstance().isValidUser(Email.getEmailAddress()) || Storage.getInstance().isCurrentNewApplicant(Email.getEmailAddress())){
@@ -150,25 +120,22 @@ public class NewUserController implements IController {
             permitNum = permitNumText.getText();//check if field is not null
         }
         else if(permitNumText.isEditable() && permitNumText.getText().trim().isEmpty() && !(userTypeInt == 0)){
-
             permitNumError.setText("Enter a valid permit number");
             return;
         }
 
 
-
-
-        if(representativeID.getText().trim().isEmpty()){
-            repIDError.setText("Enter a valid representative ID");
-            return;
-        }
-
-
-//        if (companyField.getText().trim().isEmpty())
-//        {
-//            nameError.setText("Enter a valid company");
+//        if(representativeID.getText().trim().isEmpty()){
+//            repIDError.setText("Enter a valid representative ID");
 //            return;
 //        }
+
+
+        if (companyField.getText().trim().isEmpty())
+        {
+            companyError.setText("Enter a valid company");
+            return;
+        }
 
 
 
@@ -177,8 +144,6 @@ public class NewUserController implements IController {
             addressError.setText("Enter a valid address");
             return;
         }
-
-
 
 
         if (Name.getText().trim().isEmpty())
@@ -190,7 +155,6 @@ public class NewUserController implements IController {
 
         //Setting all the fields for the new potential user
 
-
         UserType userType = UserType.fromInt(userTypeInt);
         java.util.Date newDate = new Date();
          Email  = new EmailAddress(emailAddress.getText().toString());
@@ -199,14 +163,15 @@ public class NewUserController implements IController {
         password = EncryptPassword.encryptPassword(passwordField.getText());
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        repID =representativeID.getText();
-        permitNum = permitNumText.getText();//check if field is not null
-        address = addressText.getText();//representative ID
+        if(representativeID.getText().trim().isEmpty()){
+            repID="";
+        } else repID =representativeID.getText();
+        permitNum = permitNumText.getText();
+        address = addressText.getText();
         company = companyField.getText();
 
 
         FullName = Name.getText();
-
 
 
         if (Storage.getInstance().applyForUser(new PotentialUser(FullName, repID, Email, PhoneNumber, userType,

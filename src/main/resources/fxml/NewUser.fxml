@@ -89,7 +89,7 @@
                      </GridPane.margin></PasswordField>
                   <Label text="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP" />
                   <Label text="Permit No." GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                  <Label text="Representative ID" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="TOP" />
+                  <Label prefHeight="18.0" prefWidth="207.0" text="Representative ID (if any)" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="TOP" />
                   <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets top="10.0" />
@@ -143,7 +143,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="nameError" prefWidth="7.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="nameError" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -155,6 +155,11 @@
                      </GridPane.margin></TextField>
                   <Label text="Company" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.valignment="TOP" />
                   <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#createPotentialUser" styleClass="button-raised" text="Create Account" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                  <Label fx:id="companyError" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
                </children>
             </GridPane>
          </children>

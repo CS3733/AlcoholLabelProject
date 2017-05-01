@@ -456,7 +456,7 @@
                         </Tooltip>
                      </tooltip>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#useFormLayout" prefHeight="27.0" prefWidth="183.0" styleClass="button-raised" text="Use Form Layout" GridPane.columnIndex="2">
+                  <Button mnemonicParsing="false" onMouseClicked="#useFormLayout" prefHeight="38.0" prefWidth="147.0" styleClass="button-raised" text="Use Form Layout" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
