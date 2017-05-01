@@ -1006,9 +1006,9 @@ public class AlcoholDatabase {
         String brandWhere = " AND UPPER(AlcoholInfo.brandName) LIKE UPPER('%" + brandName + "%')";
         String fancifulWhere = " AND UPPER(AlcoholInfo.fancifulName) LIKE UPPER('%" + fancifulName + "%')";
 
-        String emailWhere = " AND UPPER(emailAddress)  LIKE UPPER('%" + email + "%')";
+        //String emailWhere = " AND UPPER(emailAddress)  LIKE UPPER('%" + email + "%')";
 
-        String addressWhere = "AND UPPER(physicalAddress)  LIKE UPPER('%" + address + "%')";
+        //String addressWhere = "AND UPPER(physicalAddress)  LIKE UPPER('%" + address + "%')";
 
 //        String contentWhere = " AND alcoholContent"
 
@@ -1027,7 +1027,7 @@ public class AlcoholDatabase {
             typeWhere += " AND AlcoholInfo.type <> " + AlcoholType.DISTILLEDSPIRITS.getValue();
         }
         ResultSet results = db.select("SubmittedApplications.applicationId, AlcoholInfo.type, AlcoholInfo.brandName, AlcoholInfo.fancifulName", "SubmittedApplications INNER JOIN AlcoholInfo ON SubmittedApplications.applicationId=AlcoholInfo.applicationId",
-                "SubmittedApplications.status = " + ApplicationStatus.APPROVED.getValue() + typeWhere + brandWhere + fancifulWhere + emailWhere + addressWhere + dateWhere);
+                "SubmittedApplications.status = " + ApplicationStatus.APPROVED.getValue() + typeWhere + brandWhere + fancifulWhere /*+ emailWhere + addressWhere*/ + dateWhere);
         return getApplicationsFromResultSet(results);
 
     }
