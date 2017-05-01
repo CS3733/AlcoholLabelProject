@@ -752,7 +752,7 @@ public class AlcoholDatabase {
                 String extraInfo = results.getString("extraInfo");
                 String imageURL = results.getString("imageURL");
                 String submitterUsername = results.getString("submitterUsername");
-                int applicationID = results.getInt("applicationID");
+                long applicationID = results.getLong("applicationID");
 
                 applicationType = new ApplicationType(labelApproval,stateOnly,bottleCapacity);
                 alcoholInfo = new AlcoholInfo(alcoholContent,fancifulName,brandName,ProductSource.fromInt(origin),

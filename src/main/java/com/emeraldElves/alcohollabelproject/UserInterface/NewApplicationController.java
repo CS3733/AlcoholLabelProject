@@ -469,7 +469,7 @@ public class NewApplicationController implements IController {
                     newApp.setApplicationID(application.getApplicationID());
                 applicant.addSubmittedApp(newApp);
                 if(isSavedApplication) {
-                    if(!(savedApplication.getImage().getFileName().equals("")||savedApplication.getImage().getFileName().isEmpty()|savedApplication.getImage().getFileName().equals(null))) {
+                    if(!(savedApplication.getImage().getFileName().equals("")||savedApplication.getImage().getFileName().isEmpty()||savedApplication.getImage().getFileName().equals(null))) {
                         proxyLabelImage = new ProxyLabelImage(savedApplication.getImage().getFileName());
                     }
                 }
