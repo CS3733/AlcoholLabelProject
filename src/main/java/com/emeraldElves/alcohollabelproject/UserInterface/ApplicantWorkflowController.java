@@ -67,6 +67,9 @@ public class ApplicantWorkflowController implements IController {
                 case PENDINGREVIEW:
                     name += " - Pending Review";
                     break;
+                case NEEDSCORRECTIONS:
+                    name += " - Needs Corrections";
+                    break;
             }
             applicationNames.add(name);
         }
