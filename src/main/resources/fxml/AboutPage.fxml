@@ -257,7 +257,7 @@
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                             <image>
-                                <Image backgroundLoading="true" url="@../images/no-image.gif" />
+                                <Image backgroundLoading="true" url="@../images/tarekSafa2.jpg" />
                             </image>
                         </ImageView>
                         <GridPane GridPane.rowIndex="1">
