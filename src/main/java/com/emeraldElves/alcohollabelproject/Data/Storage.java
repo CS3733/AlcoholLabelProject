@@ -114,7 +114,7 @@ public class Storage {
 
         try {
             database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
+                    new Database.TableField("alcoholContent", "VARCHAR (255)"),
                     new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),

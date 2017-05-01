@@ -262,7 +262,7 @@ public class AlcoholDatabase {
                         + manInfo.getEmailAddress().getEmailAddress() + "'", "applicationID = " + application.getApplicationID());
 
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                    db.update("AlcoholInfo", "alcoholContent = '" + alcInfo.getAlcoholContent() + "', fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
@@ -275,7 +275,7 @@ public class AlcoholDatabase {
                                     + alcInfo.getWineInfo().appellation + "'"
                             , "applicationID = " + application.getApplicationID());
                 } else {
-                    db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                    db.update("AlcoholInfo", "alcoholContent = '" + alcInfo.getAlcoholContent() + "', fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
@@ -332,8 +332,8 @@ public class AlcoholDatabase {
 
 
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    worked = db.insert(appID + ", "
-                                    + alcInfo.getAlcoholContent() + ", '" //alcohol content
+                    worked = db.insert(appID + ", '"
+                                    + alcInfo.getAlcoholContent() + "', '" //alcohol content
                                     + alcInfo.getName() + "', '" //fanciful name
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
@@ -346,8 +346,8 @@ public class AlcoholDatabase {
                                     + alcInfo.getWineInfo().appellation + "'" //appalation
                             , "AlcoholInfo");
                 } else {
-                    worked = db.insert(appID + ", "
-                                    + alcInfo.getAlcoholContent() + ", '" //alcohol content
+                    worked = db.insert(appID + ", '"
+                                    + alcInfo.getAlcoholContent() + "', '" //alcohol content
                                     + alcInfo.getName() + "', '" //fanciful name
                                     + alcInfo.getBrandName() + "', " //brand name
                                     + alcInfo.getOrigin().getValue() + ", " //origin: still not sure how it handles enums...
@@ -438,7 +438,7 @@ public class AlcoholDatabase {
                 }
 
                 if (alcInfo.getAlcoholType() == AlcoholType.WINE) {
-                    worked= db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                    worked= db.update("AlcoholInfo", "alcoholContent = '" + alcInfo.getAlcoholContent() + "', fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
@@ -454,7 +454,7 @@ public class AlcoholDatabase {
                         return false;
                     }
                 } else {
-                    worked= db.update("AlcoholInfo", "alcoholContent = " + alcInfo.getAlcoholContent() + ", fancifulName = '" //alcohol content
+                    worked= db.update("AlcoholInfo", "alcoholContent = '" + alcInfo.getAlcoholContent() + "', fancifulName = '" //alcohol content
                                     + alcInfo.getName() + "', brandName = '" //fanciful name
                                     + alcInfo.getBrandName() + "', origin = " //brand name
                                     + alcInfo.getOrigin().getValue() + ", type = " //origin: still not sure how it handles enums...
@@ -895,10 +895,10 @@ public class AlcoholDatabase {
         return db.update("AlcoholInfo", "pH = " + pH, "applicationID = " + application.getApplicationID());
     }
 
-    public boolean changeAlcoholContent(SubmittedApplication application, int alcoholContent) {
+    public boolean changeAlcoholContent(SubmittedApplication application, double alcoholContent) {
         application.getApplication().getAlcohol().setAlcoholContent(alcoholContent);
 
-        return db.update("AlcoholInfo", "alcoholContent = " + alcoholContent, "applicationID = " + application.getApplicationID());
+        return db.update("AlcoholInfo", "alcoholContent = '" + alcoholContent + "'", "applicationID = " + application.getApplicationID());
 
     }
 
@@ -919,13 +919,13 @@ public class AlcoholDatabase {
             if (alcoholResult.next()) {
                 AlcoholType type = AlcoholType.fromInt(alcoholResult.getInt("type"));
                 if (type == AlcoholType.WINE) {
-                    return new WineInfo(alcoholResult.getInt("alcoholContent"),
+                    return new WineInfo(alcoholResult.getDouble("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")),
                             alcoholResult.getInt("vintageYear"), (double) alcoholResult.getFloat("pH"),
                             alcoholResult.getString("varietals"), alcoholResult.getString("wineAppellation"));
                 } else {
-                    return new AlcoholInfo(alcoholResult.getInt("alcoholContent"),
+                    return new AlcoholInfo(alcoholResult.getDouble("alcoholContent"),
                             alcoholResult.getString("fancifulName"), alcoholResult.getString("brandName"),
                             ProductSource.fromInt(alcoholResult.getInt("origin")), type, null,
                             alcoholResult.getString("serialNumber"), alcoholResult.getString("formula"));
