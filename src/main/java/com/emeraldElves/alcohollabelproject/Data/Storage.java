@@ -427,7 +427,7 @@ public class Storage {
 
     }
 
-    public void modifyRepresentativeID(String email, int repID) {
+    public void modifyRepresentativeID(String email, String repID) {
         usersDB.setRepIDFromEmail(repID, email);
     }
 

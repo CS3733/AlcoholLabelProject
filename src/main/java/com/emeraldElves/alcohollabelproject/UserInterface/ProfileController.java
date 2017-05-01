@@ -30,7 +30,7 @@ public class ProfileController implements IController {
     private ApplicantInterface applicant;
 
     private String emailAddress;
-    private int representativeID;
+    private String representativeID;
     private String permitNum;
     private String address;
     private PhoneNumber phoneNum;
@@ -60,7 +60,7 @@ public class ProfileController implements IController {
         //phoneNum = applicant.getApplicant().getPhoneNumFromDB(emailAddress);
 
         // set text values to current values
-        representativeIDField.setText(Integer.toString(representativeID));
+        representativeIDField.setText(representativeID);
         permitNumField.setText(permitNum);
         addressField.setText(address);
         phoneNumField.setText(phoneNum.getPhoneNumber());
@@ -70,7 +70,7 @@ public class ProfileController implements IController {
 
     // functions - simply modify fields when user changes them
     public void modifyRepresentativeID() {
-        representativeID = Integer.valueOf(representativeIDField.getText());
+        representativeID = representativeIDField.getText();
         applicant.getApplicant().setRepresentativeID(emailAddress, representativeID);
     }
     public void modifyPermitNum() {

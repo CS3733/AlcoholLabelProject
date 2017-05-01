@@ -113,7 +113,7 @@ public class Applicant {
     public String getCompany() { return company; }
 
     // setter functions - set to DB
-    public void setRepresentativeID(String email, int representativeID) {
+    public void setRepresentativeID(String email, String representativeID) {
         storage.modifyRepresentativeID(email, representativeID);
     }
     public void setPermitNum(String email, String permitNum) {

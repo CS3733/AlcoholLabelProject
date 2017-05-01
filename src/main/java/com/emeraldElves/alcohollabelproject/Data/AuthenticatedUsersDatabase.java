@@ -115,8 +115,8 @@ public class AuthenticatedUsersDatabase {
     public boolean createUser(PotentialUser user){
         if (user.getUserType() == UserType.TTBAGENT) {
             return db.insert("'" + user.getName()
-                            + "', '" + user.getPassword() + "', "
-                            + user.getRepresentativeID() + ", '"
+                            + "', '" + user.getPassword() + "', '"
+                            + user.getRepresentativeID() + "', '"
                             + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
@@ -125,8 +125,8 @@ public class AuthenticatedUsersDatabase {
                     , "TTBAgentLogin");
         } else { // type is Applicant
             return db.insert("'" + user.getName()
-                            + "', '" + user.getPassword() + "', "
-                            + user.getRepresentativeID() + ", '"
+                            + "', '" + user.getPassword() + "', '"
+                            + user.getRepresentativeID() + "', '"
                             + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
@@ -219,8 +219,8 @@ public class AuthenticatedUsersDatabase {
         try{
             worked = db.insert("'" + user.getName()
                             + "', '" + user.getPassword() + "', "
-                            + user.getUserType().getValue() + ", "
-                            + user.getRepresentativeID() + ", '"
+                            + user.getUserType().getValue() + ", '"
+                            + user.getRepresentativeID() + "', '"
                             + user.getPermitNum() + "' , '"
                             + user.getAddress() + "', '"
                             + user.getPhoneNumber().getPhoneNumber() + "', '"
@@ -259,7 +259,7 @@ public class AuthenticatedUsersDatabase {
                 String password = resultSet.getString("password");
                 int usertype = resultSet.getInt("type");
                 UserType useType = UserType.fromInt(usertype);
-                int representativeID = resultSet.getInt("representativeID");
+                String representativeID = resultSet.getString("representativeID");
                 String emailString = resultSet.getString("email");
                 EmailAddress email = new EmailAddress(emailString);
                 String phoneNumberString = resultSet.getString("phoneNumber");
@@ -301,8 +301,8 @@ public class AuthenticatedUsersDatabase {
         return null;
     }
 
-    public void setRepIDFromEmail(int repID, String email) {
-        db.update("ApplicantLogin", "representativeID = " + repID, "email = '" + email + "'");
+    public void setRepIDFromEmail(String repID, String email) {
+        db.update("ApplicantLogin", "representativeID = '" + repID + "'", "email = '" + email + "'");
     }
     public void setPhoneNumFromEmail(String phoneNum, String email) {
         db.update("ApplicantLogin", "phoneNumber = '" + phoneNum + "'", "email = '" + email + "'");
