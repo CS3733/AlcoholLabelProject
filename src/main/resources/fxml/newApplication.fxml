@@ -84,7 +84,7 @@
                         <CheckBox fx:id="distinctiveApproval" mnemonicParsing="false" onAction="#distinctiveChecked" onKeyPressed="#distinctiveChecked" onMouseClicked="#distinctiveChecked" text="Distinctive Liquor Bottle Approval" GridPane.rowIndex="2" />
                         <ComboBox fx:id="stateSelect" disable="true" prefHeight="47.0" prefWidth="129.0" promptText="State Abb." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="distinctiveText" disable="true" promptText="Total Cap. (mL)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="153.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT">
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="138.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -96,7 +96,7 @@
                               </Tooltip>
                            </tooltip>
                         </Label>
-                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="50.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="29.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -108,7 +108,7 @@
                               </Tooltip>
                            </tooltip>
                         </Label>
-                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="120.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="102.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -124,8 +124,8 @@
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="11">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="110.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="368.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="121.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="357.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -163,13 +163,13 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label prefHeight="20.0" prefWidth="145.0" text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
-                  <Label prefHeight="20.0" prefWidth="88.0" text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
+                  <Label prefHeight="20.0" prefWidth="155.0" text="Fanciful name (if any): " GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
+                  <Label prefHeight="20.0" prefWidth="92.0" text="Brand name: " GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
                   <TextField fx:id="alcoholName" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                   <TextField fx:id="brandNameField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                  <Label prefHeight="20.0" prefWidth="111.0" text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+                  <Label prefHeight="20.0" prefWidth="116.0" text="Alcohol content: " GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
                   <Label prefHeight="20.0" prefWidth="65.0" text="Formula: " GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
-                  <Label prefHeight="20.0" prefWidth="101.0" text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
+                  <Label prefHeight="20.0" prefWidth="106.0" text="Serial Number: " GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
                   <TextField fx:id="alcoholContentField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                   <TextField fx:id="formulaText" GridPane.columnIndex="1" GridPane.rowIndex="15" />
                   <TextField fx:id="serialText" promptText="Must be 6 digits" GridPane.columnIndex="1" GridPane.rowIndex="16" />
@@ -184,19 +184,19 @@
                         <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage Year (Wine Only):" textAlignment="RIGHT" wrappingWidth="162.99417114257812" GridPane.valignment="BOTTOM">
+                        <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="Vintage Year (Wine Only):" textAlignment="RIGHT" wrappingWidth="169.99417114257812" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Text>
                         <TextField fx:id="wineVintageYearField" disable="true" layoutY="1.0" GridPane.rowIndex="1" />
-                        <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="138.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                        <Text fill="#646464" strokeType="OUTSIDE" strokeWidth="0.0" text="pH Level (Wine Only):" textAlignment="RIGHT" wrappingWidth="143.6607666015625" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Text>
                         <TextField fx:id="pHLevelField" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="34.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="26.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -208,7 +208,7 @@
                               </Tooltip>
                            </tooltip>
                         </Label>
-                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="73.0" style="-fx-font-size: 10;" text="?" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="68.0" style="-fx-font-size: 10;" text="?" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -245,7 +245,7 @@
                         </Text>
                         <TextField fx:id="varietalText" disable="true" prefHeight="34.0" prefWidth="165.0" GridPane.rowIndex="1" />
                         <TextField fx:id="appellationText" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="54.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="41.0" style="-fx-font-size: 10;" text="?" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -257,7 +257,7 @@
                               </Tooltip>
                            </tooltip>
                         </Label>
-                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="63.0" style="-fx-font-size: 10;" text="?" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="52.0" style="-fx-font-size: 10;" text="?" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
