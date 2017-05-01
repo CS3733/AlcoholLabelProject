@@ -60,7 +60,7 @@ public class NewUserController implements IController {
     ImageView isValid;
 
 
-    private int repID; //move this to application info
+    private String repID; //move this to application info
     String permitNum;
     private Main main;
     private int userTypeInt = -1;
@@ -199,7 +199,7 @@ public class NewUserController implements IController {
         password = EncryptPassword.encryptPassword(passwordField.getText());
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
-        repID =(Integer.parseInt(representativeID.getText()));
+        repID =representativeID.getText();
         permitNum = permitNumText.getText();//check if field is not null
         address = addressText.getText();//representative ID
         company = companyField.getText();
@@ -211,7 +211,7 @@ public class NewUserController implements IController {
 
         if (Storage.getInstance().applyForUser(new PotentialUser(FullName, repID, Email, PhoneNumber, userType,
                 password, newDate, permitNum, address, company))){
-            errorMsg.setVisible(false);
+            //errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
             errorMsg.setVisible(true);

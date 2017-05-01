@@ -69,7 +69,7 @@ public class UpdateApplicationController implements IController{
     private EmailAddress emailAddress;
     private String permitNum, address;
     private PhoneNumber phoneNum;
-    private int representativeID; //needs to be a string!!!!
+    private String representativeID; //needs to be a string!!!!
 
     //Alcohol info
     private ProductSource pSource;
@@ -272,7 +272,7 @@ public class UpdateApplicationController implements IController{
 
 
         AlcoholInfo appAlcoholInfo = new AlcoholInfo(alcContent, alcName, brandName, pSource, alcType, wineType, serialNum, formula);
-        ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", representativeID,
+        ManufacturerInfo appManInfo = new ManufacturerInfo(applicant.getApplicant().getNamefromDB(username), address, "company", "" + representativeID,
                 permitNum, phoneNum, emailAddress);
         Date newDate= DateHelper.getDate(datePicker.getValue().getDayOfMonth(), datePicker.getValue().getMonthValue() - 1, datePicker.getValue().getYear());
         ApplicationInfo appInfo= new ApplicationInfo(newDate, appManInfo, appAlcoholInfo, extraInfo, appType);

@@ -42,7 +42,7 @@ public class Storage {
                     database.createTable("TTBAgentLogin",
                             new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                             new Database.TableField("password", "VARCHAR (255) NOT NULL"),
-                            new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                            new Database.TableField("representativeID", "VARCHAR (255)"),
                             new Database.TableField("permitNum", "VARCHAR (255)"),
                             new Database.TableField("address", "VARCHAR (255)"),
                             new Database.TableField("phoneNumber", "VARCHAR (255)"),
@@ -58,7 +58,7 @@ public class Storage {
             database.createTable("ApplicantLogin",
                     new Database.TableField("name", "VARCHAR (255) UNIQUE NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
-                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("representativeID", "VARCHAR (255)"),
                     new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
@@ -72,7 +72,7 @@ public class Storage {
 
         try {
             database.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
+                    new Database.TableField("applicantID", "VARCHAR (255)"),
                     new Database.TableField("status", "INTEGER NOT NULL"),
                     new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("submissionTime", "BIGINT NOT NULL"),
@@ -103,7 +103,7 @@ public class Storage {
                     new Database.TableField("authorizedName", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("physicalAddress", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("company", "VARCHAR (10000) NOT NULL"),
-                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("representativeID", "VARCHAR (255)"),
                     new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("phoneNum", "VARCHAR (255) NOT NULL"), //check with kyle
                     new Database.TableField("emailAddress", "VARCHAR (255) NOT NULL"));
@@ -114,7 +114,7 @@ public class Storage {
 
         try {
             database.createTable("AlcoholInfo", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("alcoholContent", "DOUBLE NOT NULL"),
+                    new Database.TableField("alcoholContent", "VARCHAR (255)"),
                     new Database.TableField("fancifulName", "VARCHAR (255)"),
                     new Database.TableField("brandName", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("origin", "INTEGER NOT NULL"),
@@ -134,7 +134,7 @@ public class Storage {
                     new Database.TableField("name", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("password", "VARCHAR (255) NOT NULL"),
                     new Database.TableField("type", "INTEGER NOT NULL"), //0 Man, 1 TTB
-                    new Database.TableField("representativeID", "INTEGER NOT NULL"),
+                    new Database.TableField("representativeID", "VARCHAR (255)"),
                     new Database.TableField("permitNum", "VARCHAR (255)"),
                     new Database.TableField("address", "VARCHAR (255)"),
                     new Database.TableField("phoneNumber", "VARCHAR (255)"),
@@ -422,12 +422,12 @@ public class Storage {
         Applicant applicant = usersDB.getUserFromEmail(email);
         if (applicant != null) { return applicant; }
 
-        else return new Applicant(email,"", 0, "", "", "", "");
+        else return new Applicant(email,"", "0", "", "", "", "");
 
 
     }
 
-    public void modifyRepresentativeID(String email, int repID) {
+    public void modifyRepresentativeID(String email, String repID) {
         usersDB.setRepIDFromEmail(repID, email);
     }
 
