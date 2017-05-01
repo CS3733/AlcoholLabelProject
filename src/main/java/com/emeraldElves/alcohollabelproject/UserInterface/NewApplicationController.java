@@ -131,7 +131,7 @@ public class NewApplicationController implements IController {
         addressField.setText(String.valueOf(address));
         permitNoTextField.setText(String.valueOf(permitNum));
         repIDNoTextField.setText(String.valueOf(representativeID));
-        companyField.setText(String.valueOf(company));
+//        companyField.setText(String.valueOf(company));
 
         //set up combo boxes
         datePicker.setValue(LocalDate.now());
