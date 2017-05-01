@@ -1,5 +1,7 @@
 package com.emeraldElves.alcohollabelproject.UserInterface;
 
+import com.emeraldElves.alcohollabelproject.ApplicationExporter;
+import com.emeraldElves.alcohollabelproject.CSVExporter;
 import com.emeraldElves.alcohollabelproject.Data.DateHelper;
 import com.emeraldElves.alcohollabelproject.Data.SubmittedApplication;
 import javafx.fxml.FXML;
@@ -100,7 +102,8 @@ public class DetailedSearchController {
     }
 
     public void export(){
-        // Exporter
+        ApplicationExporter exporter = new ApplicationExporter(new CSVExporter());
+        exporter.export(application);
     }
 
 

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SearchController">
+<GridPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" pickOnBounds="false" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.SearchController">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
     </columnConstraints>
@@ -37,6 +38,7 @@
                 <Label fx:id="descriptionLabel" alignment="CENTER" layoutY="81.0" prefHeight="20.0" prefWidth="1024.0" text="N/A" />
                 <TextField fx:id="searchField" layoutX="105.0" layoutY="14.0" onAction="#search" onKeyTyped="#onKeyType" prefHeight="56.0" prefWidth="583.0" promptText="Search..." styleClass="search-box" />
                 <Button fx:id="searchBtn" layoutX="723.0" layoutY="14.0" mnemonicParsing="false" onAction="#search" prefHeight="56.0" prefWidth="102.0" styleClass="button-raised" text="SEARCH" />
+            <Hyperlink layoutX="105.0" layoutY="77.0" onMouseClicked="#advancedSearch" text="Advanced Search" />
             </children></Pane>
         <Pane fx:id="resultsPane" GridPane.rowIndex="2">
             <children>
