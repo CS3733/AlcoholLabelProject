@@ -47,9 +47,9 @@ public class ApprovalProcessController implements IController {
     Label applicantID;
 
     @FXML
-    TextArea reason;
+    TextField reason;
     @FXML
-    TextArea qualifications;
+    TextField qualifications;
 
     @FXML
     Label authorizedName;
@@ -219,6 +219,6 @@ public class ApprovalProcessController implements IController {
 
     }
     public void viewLabel(){
-        main.loadFXML("/fxml/DisplayLabel.fxml",application);
-    } //THIS DOESNT CURRENTLY WORK
+        main.loadFXML("/fxml/DisplayLabel.fxml", application);
+    } //THIS DOESN'T CURRENTLY WORK
 }
