@@ -241,12 +241,57 @@ public class NewApplicationController implements IController {
 
         file = new File("");
 
+        String imageURL = application.getImage().getFileName();
+        if(!imageURL.equals("")) {
+            Log.console("Image path: " + imageURL);
+            File file = new File("Labels/" + imageURL);
+            Image tempImage = new Image(file.toURI().toString());
+            imageView.setImage(tempImage);
+            this.proxyLabelImage = new ProxyLabelImage("Labels/"+ imageURL);
+        }
+
+        //Application Type
+        ApplicationType applicationType = application.getApplication().getApplicationType();
+        if(applicationType.isLabelApproval()){
+            certOfApproval.setSelected(true);
+        }
+        if(!applicationType.getStateOnly().equals("")){
+            certOfExemption.setSelected(true);
+            stateSelect.setValue(applicationType.getStateOnly());
+            stateSelect.setDisable(false);
+        }
+        if(applicationType.getBottleCapacity() != -1){
+            distinctiveApproval.setSelected(true);
+            distinctiveText.setText("" + applicationType.getBottleCapacity());
+            distinctiveText.setDisable(false);
+        }
+
+        if (application.getApplication().getAlcohol().getOrigin() == ProductSource.DOMESTIC) {
+            pSourceSelect.setValue("Domestic");
+        } else if (application.getApplication().getAlcohol().getOrigin() == ProductSource.IMPORTED) {
+            pSourceSelect.setValue("Imported");
+        }
+
+        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.BEER) {
+            pTypeSelect.setValue("Malt Beverages");
+        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
+            pTypeSelect.setValue("Wine");
+        } else if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.DISTILLEDSPIRITS) {
+            pTypeSelect.setValue("Distilled Spirits");
+        }
+
         alcoholName.setText(String.valueOf(application.getApplication().getAlcohol().getName()));
         brandNameField.setText(String.valueOf(application.getApplication().getAlcohol().getBrandName()));
         alcoholContentField.setText(String.valueOf(application.getApplication().getAlcohol().getAlcoholContent()));
         formulaText.setText(String.valueOf(application.getApplication().getAlcohol().getFormula()));
         serialText.setText(String.valueOf(application.getApplication().getAlcohol().getSerialNumber()));
         extraInfoText.setText(String.valueOf(application.getApplication().getExtraInfo()));
+        if (application.getApplication().getAlcohol().getAlcoholType() == AlcoholType.WINE) {
+            wineVintageYearField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().vintageYear));
+            pHLevelField.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().pH));
+            varietalText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().grapeVarietal));
+            appellationText.setText(String.valueOf(application.getApplication().getAlcohol().getWineInfo().appellation));
+        }
     }
 
     public void submitApp() {
