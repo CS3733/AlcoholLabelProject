@@ -258,17 +258,17 @@
                         <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="0.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="130.0" prefWidth="140.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button maxHeight="40.0" mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                              <Button maxHeight="40.0" mnemonicParsing="false" onMouseClicked="#Reject" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Reject" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                              <Button maxHeight="40.0" maxWidth="130.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Needs Correction" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                              <Button maxHeight="40.0" mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                              <Button maxHeight="40.0" mnemonicParsing="false" onMouseClicked="#Reject" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Reject" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                              <Button maxHeight="40.0" maxWidth="130.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Needs Correction" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
