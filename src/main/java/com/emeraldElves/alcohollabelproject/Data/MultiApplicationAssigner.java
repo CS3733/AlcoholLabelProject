@@ -1,7 +1,5 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
-import com.emeraldElves.alcohollabelproject.Data.ApplicationAssigner;
-
 import java.util.List;
 
 /**
@@ -12,7 +10,7 @@ public class MultiApplicationAssigner extends ApplicationAssigner {
     int maxAppsPerAgent;
 
     public MultiApplicationAssigner(List<String> agentUserNames, int numApps, int currentApplicationCount) {
-        this(agentUserNames, agentUserNames.get(0), numApps, currentApplicationCount);
+            this(agentUserNames, agentUserNames.get(0), numApps, currentApplicationCount);
     }
 
     public MultiApplicationAssigner(List<String> agentUserNames, String lastAssignedAgent, int numApps, int currentApplicationCount) {

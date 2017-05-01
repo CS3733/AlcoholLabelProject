@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApprovalProcessController">
+<GridPane alignment="center" hgap="10" prefHeight="768.0" prefWidth="1024.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emeraldElves.alcohollabelproject.UserInterface.ApprovalProcessController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -40,7 +40,7 @@
       </GridPane>
         <Pane prefHeight="644.0" prefWidth="802.0" GridPane.rowIndex="1">
             <children>
-            <TextArea layoutX="269.0" layoutY="557.0" prefHeight="35.0" prefWidth="200.0" promptText="OR:" />
+            <TextArea layoutX="182.0" layoutY="557.0" prefHeight="47.0" prefWidth="121.0" promptText="OR:" />
             <TextArea fx:id="qualifications" layoutX="40.0" layoutY="447.0" prefHeight="85.0" prefWidth="922.0" promptText="Qualifications:" />
                 <Label fx:id="brandName" layoutX="207.0" layoutY="21.0" prefHeight="35.0" prefWidth="248.0" text="Brand name">
                     <font>
@@ -126,19 +126,24 @@
                   <Label fx:id="emailAddress" text="Email Address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <ButtonBar layoutX="698.0" layoutY="557.0" prefHeight="40.0" prefWidth="288.0">
+            <ButtonBar layoutX="507.0" layoutY="557.0" prefHeight="40.0" prefWidth="479.0">
               <buttons>
-                  <Button fx:id="assignButton" mnemonicParsing="false" onMouseClicked="#assignToUser" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Assign" />
                   <Button mnemonicParsing="false" onMouseClicked="#Approve" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Approve" />
+                  <Button fx:id="assignButton" mnemonicParsing="false" onMouseClicked="#assignToUser" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Assign" />
                   <Button mnemonicParsing="false" onMouseClicked="#Reject" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Reject" />
+                  <Button mnemonicParsing="false" onMouseClicked="#NeedsCorrections" prefHeight="40.0" text="Return for Corrections" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
               </buttons>
             </ButtonBar>
             <Button layoutX="870.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#viewLabel" styleClass="button-raised" text="View Label" />
             <Button layoutX="790.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#printPage" styleClass="button-raised" text="Print" />
-            <TextArea layoutX="40.0" layoutY="556.0" prefHeight="35.0" prefWidth="200.0" promptText="CT:" />
+            <TextArea layoutX="40.0" layoutY="556.0" prefHeight="48.0" prefWidth="125.0" promptText="CT:" />
             <ComboBox fx:id="assignUserBox" disable="true" layoutX="505.0" layoutY="555.0" prefWidth="150.0" visible="false" />
             <Label fx:id="assignErrorField" layoutX="516.0" layoutY="612.0" />
-            <DatePicker fx:id="ExpoirationDate" layoutX="507.0" layoutY="565.0" promptText="Expiration Date" />
+            <DatePicker fx:id="ExpirationDate" layoutX="323.0" layoutY="565.0" prefHeight="31.0" prefWidth="139.0" promptText="Expiration Date" />
             </children>
         </Pane>
         <Pane prefHeight="124.0" prefWidth="1024.0" />

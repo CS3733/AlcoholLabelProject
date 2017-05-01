@@ -4,6 +4,7 @@ import com.emeraldElves.alcohollabelproject.ApplicantInterface;
 import com.emeraldElves.alcohollabelproject.Data.PhoneNumber;
 import com.emeraldElves.alcohollabelproject.Log;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import com.emeraldElves.alcohollabelproject.Authenticator;
 
@@ -21,7 +22,9 @@ public class ProfileController implements IController {
     @FXML
     TextField phoneNumField;
     @FXML
-    TextField emailAddressField;
+    TextField companyField;
+    @FXML
+    Label emailAddressField;
 
     private Main main;
     private ApplicantInterface applicant;
@@ -31,6 +34,7 @@ public class ProfileController implements IController {
     private String permitNum;
     private String address;
     private PhoneNumber phoneNum;
+    private String company;
 
     public ProfileController() {
 
@@ -52,6 +56,7 @@ public class ProfileController implements IController {
         permitNum = applicant.getApplicant().getPermitNumFromDB(emailAddress);
         address = applicant.getApplicant().getAddressFromDB(emailAddress);
         phoneNum = new PhoneNumber(applicant.getApplicant().getPhoneNum());
+        company = applicant.getApplicant().getCompanyFromDB(emailAddress);
         //phoneNum = applicant.getApplicant().getPhoneNumFromDB(emailAddress);
 
         // set text values to current values
@@ -60,6 +65,7 @@ public class ProfileController implements IController {
         addressField.setText(address);
         phoneNumField.setText(phoneNum.getPhoneNumber());
         emailAddressField.setText(emailAddress);
+        companyField.setText(company);
     }
 
     // functions - simply modify fields when user changes them
@@ -79,9 +85,9 @@ public class ProfileController implements IController {
         phoneNum = new PhoneNumber(phoneNumField.getText());
         applicant.getApplicant().setPhoneNum(emailAddress, phoneNum.getPhoneNumber());
     }
-    public void modifyEmailAddress() {
-        emailAddress = emailAddressField.getText();
-        applicant.getApplicant().setEmailAddress();
+    public void modifyCompany() {
+        company = companyField.getText();
+        applicant.getApplicant().setCompany(emailAddress, company);
     }
 
     public void updatePassword(){
@@ -94,7 +100,7 @@ public class ProfileController implements IController {
         modifyPermitNum();
         modifyAddress();
         modifyPhoneNum();
-        modifyEmailAddress();
+        modifyCompany();
         main.loadHomepage();
     }
 }

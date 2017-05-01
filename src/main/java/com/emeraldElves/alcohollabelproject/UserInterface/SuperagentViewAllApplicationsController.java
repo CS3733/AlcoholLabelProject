@@ -49,6 +49,7 @@ public class SuperagentViewAllApplicationsController implements IController{
         this.main = main;
         //list of all ttb agent usernames
         List<String> names = Storage.getInstance().getAllTTBUsernames();
+        names.add("PENDING");
 
 
 

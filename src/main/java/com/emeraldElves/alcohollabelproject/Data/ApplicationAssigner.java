@@ -8,7 +8,7 @@ import java.util.ListIterator;
 /**
  * Created by Joe on 4/9/2017.
  */
-public abstract class ApplicationAssigner {
+public class ApplicationAssigner {
     protected IAssigner assigner;
     private List<String> agentUserNames;
     private String lastAssignedAgent;
@@ -30,7 +30,7 @@ public abstract class ApplicationAssigner {
      * assignAgent() uses round robin to assign an agent
      * @return new agent's username
      */
-    String assignAgent() {
+    public String assignAgent() {
         this.lastAssignedAgent = assigner.assignAgent(agentUserNames, lastAssignedAgent);
         return lastAssignedAgent;
     }
