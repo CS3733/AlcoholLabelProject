@@ -72,7 +72,7 @@ public class Storage {
 
         try {
             database.createTable("SubmittedApplications", new Database.TableField("applicationID", "INTEGER UNIQUE NOT NULL"),
-                    new Database.TableField("applicantID", "INTEGER NOT NULL"),
+                    new Database.TableField("applicantID", "VARCHAR (255)"),
                     new Database.TableField("status", "INTEGER NOT NULL"),
                     new Database.TableField("statusMsg", "VARCHAR (10000) NOT NULL"),
                     new Database.TableField("submissionTime", "BIGINT NOT NULL"),

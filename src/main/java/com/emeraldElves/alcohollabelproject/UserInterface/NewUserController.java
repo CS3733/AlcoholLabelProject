@@ -211,7 +211,7 @@ public class NewUserController implements IController {
 
         if (Storage.getInstance().applyForUser(new PotentialUser(FullName, repID, Email, PhoneNumber, userType,
                 password, newDate, permitNum, address, company))){
-            errorMsg.setVisible(false);
+            //errorMsg.setVisible(false);
             main.loadHomepage();
         } else {
             errorMsg.setVisible(true);
