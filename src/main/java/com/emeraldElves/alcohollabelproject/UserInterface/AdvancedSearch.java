@@ -110,18 +110,63 @@ public class AdvancedSearch implements IController {
     }
 
     public void search() {
-        String brandName = brand.getText();
-        String fancifulName = fanciful.getText();
+        String brandName;
+        String fancifulName;
+        String eAddr, addr;
+        double contentMin, contentMax;
+        Date startDate,endDate;
+        if(!brand.getText().isEmpty()){
+            brandName = brand.getText();
+        }
+        else{
+            brandName = "";
+        }
+        if(!fanciful.getText().isEmpty()) {
+            fancifulName = fanciful.getText();
+        }
+        else{
+            fancifulName = "";
+        }
+
         boolean wantBeer = beer.isSelected();
         boolean wantWine = wine.isSelected();
         boolean wantSpirits = spirits.isSelected();
-        String eAddr = email.getText();
-        String addr = address.getText();
-        Date startDate = DateHelper.getDate(dateStart.getValue().getDayOfMonth(), dateStart.getValue().getMonthValue(), dateStart.getValue().getYear());
-        Date endDate = DateHelper.getDate(dateEnd.getValue().getDayOfMonth(), dateEnd.getValue().getMonthValue(), dateEnd.getValue().getYear());
-        double contentMin = Double.valueOf(contentStart.getText());
-        double contentMax = Double.valueOf(contentEnd.getText());
-
+        if(!email.getText().isEmpty()) {
+            eAddr = email.getText();
+        }
+        else{
+            eAddr = "";
+        }
+        if(!address.getText().isEmpty()) {
+            addr = address.getText();
+        }
+        else{
+            addr = "";
+        }
+        if(!dateStart.getValue().equals("")){
+            startDate = DateHelper.getDate(dateStart.getValue().getDayOfMonth(), dateStart.getValue().getMonthValue(), dateStart.getValue().getYear());
+        }
+        else{
+            startDate = DateHelper.getDate(1,1,1700);
+        }
+        if(!dateEnd.getValue().equals("")) {
+            endDate = DateHelper.getDate(dateEnd.getValue().getDayOfMonth(), dateEnd.getValue().getMonthValue(), dateEnd.getValue().getYear());
+        }
+        else{
+            endDate = DateHelper.getDate(1,1,2300);
+        }
+        if(!contentStart.getText().isEmpty()) {
+            contentMin = Double.valueOf(contentStart.getText());
+        }
+        else{
+            contentMin = 0.0;
+        }
+        if(!contentStart.getText().isEmpty()) {
+            contentMax = Double.valueOf(contentEnd.getText());
+        }
+        else{
+            contentMax = 999999.99;
+        }
         data.remove(0, data.size());
 
         //Find & add matching applications
