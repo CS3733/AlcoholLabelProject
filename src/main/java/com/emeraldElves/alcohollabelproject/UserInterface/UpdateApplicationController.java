@@ -283,6 +283,7 @@ public class UpdateApplicationController implements IController{
 
         newApplication = new SubmittedApplication(appInfo, ApplicationStatus.APPROVED, applicant.getApplicant());
         newApplication.setApplicationID(application.getApplicationID());//setting id for updating
+        newApplication.setImage(proxyLabelImage);
     }
 
 
