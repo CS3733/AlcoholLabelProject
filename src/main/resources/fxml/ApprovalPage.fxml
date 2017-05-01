@@ -234,7 +234,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ComboBox fx:id="assignUserBox" disable="true" prefWidth="150.0" promptText="Assign Agent" visible="false" GridPane.halignment="CENTER" />
+                              <ComboBox fx:id="assignUserBox" prefWidth="150.0" promptText="Assign Agent" GridPane.halignment="CENTER" />
                               <Button fx:id="assignButton" mnemonicParsing="false" onMouseClicked="#assignToUser" prefHeight="40.0" prefWidth="101.0" styleClass="button-raised" text="Assign" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                            </children>
                         </GridPane>
