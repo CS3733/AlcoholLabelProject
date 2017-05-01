@@ -95,20 +95,20 @@ public class ApprovalProcessController implements IController {
         this.main = main;
         this.application = application;
         //Checks if super user
-        if(Authenticator.getInstance().getUserType() == UserType.SUPERAGENT){
-            assignUserBox.setVisible(true);
-            assignUserBox.setDisable(false);
-            assignButton.setVisible(true);
-            assignButton.setDisable(false);
-            //add all users to combo box
-            List<String> userList = new ArrayList<>();
-            userList = Storage.getInstance().getAllTTBUsernames();
-            assignUser.addAll(userList);
-            assignUserBox.setValue("Select a user");
-            assignUserBox.setItems(assignUser);
-            Calendar cal = Calendar.getInstance();
-            ExpirationDate.setValue(cal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        }
+
+        assignUserBox.setVisible(true);
+        assignUserBox.setDisable(false);
+        assignButton.setVisible(true);
+        assignButton.setDisable(false);
+        //add all users to combo box
+        List<String> userList = new ArrayList<>();
+        userList = Storage.getInstance().getAllTTBUsernames();
+        assignUser.addAll(userList);
+        assignUserBox.setValue("Select a user");
+        assignUserBox.setItems(assignUser);
+        Calendar cal = Calendar.getInstance();
+        ExpirationDate.setValue(cal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
 
         agentInterface = new TTBAgentInterface(Authenticator.getInstance().getUsername());
         brandName.setText(application.getApplication().getAlcohol().getBrandName());
