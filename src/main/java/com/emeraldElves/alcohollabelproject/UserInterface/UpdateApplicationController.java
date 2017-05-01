@@ -74,8 +74,14 @@ public class UpdateApplicationController implements IController{
     //Alcohol info
     private ProductSource pSource;
     private AlcoholType alcType;
+<<<<<<< HEAD
     private String alcName, brandName;
     private double alcContent;
+=======
+    private String alcName;
+    private String brandName;
+    private String alcContent;
+>>>>>>> develop
     private AlcoholInfo.Wine wineType = null;
     private String formula, serialNum, extraInfo;
     private File file;
@@ -249,7 +255,7 @@ public class UpdateApplicationController implements IController{
 
         alcName = alcoholName.getText();
         brandName = brandNameField.getText();
-        alcContent = Double.parseDouble(alcoholContentField.getText());
+        alcContent = alcoholContentField.getText();
         serialNum = serialText.getText();
         if (formulaText.getText().isEmpty()) {
             formula = " ";

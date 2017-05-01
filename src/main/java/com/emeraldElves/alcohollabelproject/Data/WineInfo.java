@@ -14,7 +14,7 @@ public class WineInfo extends AlcoholInfo {
      * @param grapeVarietal The grape varietal of the wine
      * @param appellation The appellation of the wine
      */
-    public WineInfo(double alcoholContent, String name, String brandName, ProductSource origin, int vintageYear, double pH, String grapeVarietal, String appellation){
+    public WineInfo(String alcoholContent, String name, String brandName, ProductSource origin, int vintageYear, double pH, String grapeVarietal, String appellation){
         super(alcoholContent, name, brandName, origin, AlcoholType.WINE,  new AlcoholInfo.Wine(pH,vintageYear,grapeVarietal,appellation));
     }
 }

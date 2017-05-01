@@ -6,6 +6,7 @@ package com.emeraldElves.alcohollabelproject.UserInterface;
 public class AboutPageController implements IController{
 
 
+    
     //Meant to do nothing
     public void init(Bundle bundle){}
 }
