@@ -1,9 +1,11 @@
 package com.emeraldElves.alcohollabelproject.Data;
 
 import com.emeraldElves.alcohollabelproject.Applicant;
+import com.emeraldElves.alcohollabelproject.Log;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Represents a submitted application
@@ -29,7 +31,7 @@ public class SubmittedApplication {
     public String getTtbMessage() {
         return ttbMessage;
     }
-    private HashMap<String, Boolean> updatesSelected= new HashMap<>();
+    private HashSet<String> updatesSelected= new HashSet<>();
 
     public void setTtbMessage(String ttbMessage) {
         this.ttbMessage = ttbMessage;
@@ -98,11 +100,11 @@ public class SubmittedApplication {
         this.proxyImage = proxyImage;
     }
 
-    public void setUpdatesSelected(HashMap<String,Boolean> updates){
+    public void setUpdatesSelected(HashSet<String> updates){
         this.updatesSelected=updates;
     }
 
-    public HashMap<String,Boolean> getUpdatesSelected(){
+    public HashSet<String> getUpdatesSelected(){
         return this.updatesSelected;
     }
 

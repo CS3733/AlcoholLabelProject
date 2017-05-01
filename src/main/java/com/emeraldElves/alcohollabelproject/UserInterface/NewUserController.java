@@ -125,7 +125,7 @@ public class NewUserController implements IController {
 
 
         EmailAddress Email  = new EmailAddress(emailAddress.getText().toString());
-        if(Storage.getInstance().isValidUser(Email.getEmailAddress())){
+        if(Storage.getInstance().isValidUser(Email.getEmailAddress()) || Storage.getInstance().isCurrentNewApplicant(Email.getEmailAddress())){
             emailError.setText("There is already an account with this email");
             return;
         }
@@ -200,7 +200,7 @@ public class NewUserController implements IController {
         Email  = new EmailAddress(emailAddress.getText().toString());
         PhoneNumber = new PhoneNumber(phoneNumber.getText().toString());
         repID =(Integer.parseInt(representativeID.getText()));
-        permitNum = representativeID.getText();//check if field is not null
+        permitNum = permitNumText.getText();//check if field is not null
         address = addressText.getText();//representative ID
         company = companyField.getText();
 

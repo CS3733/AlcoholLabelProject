@@ -51,6 +51,8 @@ public enum ApplicationStatus {
                 return APPROVED;
             case 1:
                 return PENDINGREVIEW;
+            case 2:
+                return NEEDSCORRECTIONS;
             default:
                 return REJECTED;
         }
