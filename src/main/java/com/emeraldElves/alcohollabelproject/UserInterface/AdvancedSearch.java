@@ -118,6 +118,10 @@ public class AdvancedSearch implements IController {
             return row;
         });
 
+        beer.setSelected(true);
+        wine.setSelected(true);
+        spirits.setSelected(true);
+
     }
 
     public void search() {
