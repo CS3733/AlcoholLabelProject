@@ -374,27 +374,30 @@ public class NewApplicationController implements IController {
                 formFilled = true;
             }
 
-            //check if fields are valid
-            if(isInt(alcoholContentField)) {
-                if (pTypeSelect.getValue().equals("Wine")) {
-                    if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
-                        fieldsValid = true;
-                    }
-                } else fieldsValid = true;
+
+//            //checking wine fields and serial number for validity
+//            //check if fields are valid
+//            if(isInt(alcoholContentField)) {
+//                if (pTypeSelect.getValue().equals("Wine")) {
+//                    if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
+//                        fieldsValid = true;
+//                    }
+//                } else fieldsValid = true;
+//            }
+
+            //checking wine fields for validity
+            if (pTypeSelect.getValue().equals("Wine")) {
+                if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
+                    fieldsValid = true;
+                }
             }
 
-            //Checking alcohol content field and serial number for validity
-            if(isDouble(alcoholContentField)){
+            //check serial number for validity
+            if(serialText.getText().length()<7 && serialText.getText().length()>0){
                 fieldsValid = true;
+                serialErrorField.setText("");
             }
-            else{
-                alcContentErrorField.setText("Please enter a valid alcohol content");
-                fieldsValid = false;
-            }
-            if(!(serialText.getText().length()<7 && serialText.getText().length()>0)){
-                fieldsValid = false;
-                serialErrorField.setText("Please enter a valid serial number");
-            }
+            else serialErrorField.setText("Please enter a valid serial number");
 
                 if (formFilled && fieldsValid) {
                 if (pTypeSelect.getValue().equals("Wine")) {

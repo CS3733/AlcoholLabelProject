@@ -282,6 +282,13 @@ public class NewApplicationFormController implements IController {
             formFilled = true;
         }
 
+        //checking wine fields for validity
+        if (pTypeSelect.getValue().equals("Wine")) {
+            if (isInt(wineVintageYearField) && isDouble(pHLevelField)) {
+                fieldsValid = true;
+            }
+        }
+
         //error message saying to fill in all required fields
         if (!formFilled) {
             errorMsg.setText("Please fill in all the required fields.");

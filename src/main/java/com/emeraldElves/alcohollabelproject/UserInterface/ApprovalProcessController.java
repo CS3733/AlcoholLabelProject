@@ -220,5 +220,5 @@ public class ApprovalProcessController implements IController {
     }
     public void viewLabel(){
         main.loadFXML("/fxml/DisplayLabel.fxml",application);
-    }
+    } //THIS DOESNT CURRENTLY WORK
 }
